@@ -22,6 +22,51 @@ Checks: `cargo fmt --check`, `cargo clippy --workspace --all-targets -- -D warni
 
 See [progress](docs/progress.md), [architecture and limits](docs/architecture.md), and [map syntax](docs/sym.md).
 
+## Agent disassembly workspaces
+
+See [INSTRUCTIONS.md](INSTRUCTIONS.md) for setup and Codex startup steps.
+
+Prepare one separate local workspace per owned ROM, including agent instructions,
+start/resume prompts, an identity record, and baseline/checkpoint commands:
+
+```sh
+python3 scripts/disassemble.py /path/to/game.gb --root /root/rom-work
+# Multiple ROMs can be supplied to the same command.
+cd /root/rom-work/game
+python3 run.py inspect
+python3 run.py baseline
+```
+
+Run your agent from the game workspace and give it `prompts/start.md`; use
+`prompts/resume.md` for subsequent sessions. `AGENTS.md` and `workflow.md` guide
+static discovery, bounded gameplay tracing, evidence-supported code/data mapping,
+and verified assembly output. The tool prepares the workflow; it does not launch
+an agent or automatically classify the ROM. No agent provider is required.
+
+The initializer prints Codex goal-mode startup instructions for each game: run
+`codex --enable goals -C /path/to/workspace`, then paste the printed `/goal ...`
+objective inside Codex. It also prints a goal for subsequent disassembly passes
+and the commands for inspecting, pausing and resuming an existing goal. Goal
+support is required in your Codex version. Workspace results remain JSON lines
+on stdout; human instructions go to stderr. Add `--json` to suppress instructions.
+
+The default parent is `~/rom-work`; `--workspace /exact/path` selects a workspace
+for a single ROM. Existing workspaces and paths inside this repository are
+rejected. Use `--binary /path/to/romatlas` to select a different built binary.
+The toolkit and pinned tools must stay installed at their configured locations.
+Batch initialization stops on the first error; earlier successful workspaces
+remain available. Resolve the error and rerun only the remaining ROMs.
+
+The agent uses `python3 run.py serve` for persistent JSON-RPC. After saving
+`analysis/state.json` and exporting `maps/current.sym`, run
+`python3 run.py checkpoint pass-001` to save the exact map used, generate assembly,
+and record byte-identical verification. Choose a new checkpoint name each time.
+Failed checkpoints may retain their map or generated source for inspection; use
+a new name for the next attempt. Baseline is raw-byte output and does not complete
+classification. All ROMs, traces, internal state, generated source and extracted
+assets stay local; `.gitignore` ignores the entire workspace. Only exported stock
+maps are intended for sharing. Test with `python3 scripts/test-disassemble.py`.
+
 ## Internal analysis store
 
 Keep this JSON file local. Export `.sym` for others. Offsets and lengths below use decimal physical ROM offsets.
