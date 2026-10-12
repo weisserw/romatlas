@@ -1,0 +1,9 @@
+/target/
+/vendor/mizu/mizu-core/target/
+/tools/
+/build/
+*.gb
+*.gbc
+
+__pycache__/
+*.pyc

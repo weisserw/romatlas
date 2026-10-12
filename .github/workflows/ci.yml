@@ -1,0 +1,39 @@
+name: checks
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned tools
+        run: sudo env PATH="$PATH" bash scripts/setup.sh
+      - run: python3 scripts/test-boundaries.py
+      - run: cargo fmt --check
+      - run: cargo clippy --workspace --all-targets --locked -- -D warnings
+      - run: cargo test --workspace --locked
+      - run: cargo test --manifest-path vendor/mizu/mizu-core/Cargo.toml --locked
+      - run: cargo build --locked
+      - run: python3 scripts/test-portability.py
+      - run: python3 scripts/test-fidelity.py
+      - run: python3 scripts/test-session.py
+      - run: python3 scripts/test-api.py
+  hardware:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned tools
+        run: sudo env PATH="$PATH" bash scripts/setup.sh
+      - name: Build licensed hardware suites
+        run: sudo env PATH="$PATH" bash scripts/setup-hardware-tests.sh
+      - run: cargo build --release --locked
+      - run: python3 scripts/test-hardware.py
+      - run: python3 scripts/test-hardware.py --all-cgb
+  homebrew:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned tools
+        run: sudo env PATH="$PATH" bash scripts/setup.sh
+      - run: bash scripts/setup-homebrew-tests.sh
+      - run: cargo build --release --locked
+      - run: python3 scripts/test-homebrew.py --binary "$PWD/target/release/romatlas"

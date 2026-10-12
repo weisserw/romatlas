@@ -1,0 +1,11 @@
+[package]
+name = "romatlas-map"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+serde.workspace = true
+anyhow.workspace = true
+romatlas-core = { path = "../romatlas-core" }
+serde_json.workspace = true

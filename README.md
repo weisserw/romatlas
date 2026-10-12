@@ -1,0 +1,61 @@
+# ROMAtlas
+
+Rust tools for ROM-free Game Boy maps. The project.md milestone scope is complete; documented hardware limits remain. This build supports ROM inspection, SM83 decoding, stock mgbdis map import/export, raw-data maps, source generation, and exact byte checks. It also supports bounded DMG ROM-only/MBC1/MBC3/MBC5 execution. A persistent JSON-RPC server supports agent sessions. Bounded CPU tracing and coverage are available through the server. The server also proposes code regions with bounded recursive discovery. The 89-case source-built default Mooneye gate and 55-case CGB selection pass. Full hardware compatibility is not claimed.
+
+## Setup
+
+On a new Ubuntu/Debian VM, run `bash scripts/setup.sh` as root. Then add `$HOME/.cargo/bin` to PATH. The script installs Rust 1.90.0, pinned mgbdis, and RGBDS 0.9.4.
+
+```sh
+cargo build --locked
+./target/debug/romatlas inspect game.gb
+./target/debug/romatlas decode game.gb --offset 256 --count 16
+./target/debug/romatlas map init game.gb --output game.sym
+./target/debug/romatlas map validate game.sym --rom game.gb
+./target/debug/romatlas generate game.gb --map game.sym --out build/game
+./target/debug/romatlas verify game.gb --generated build/game
+```
+
+Use a new output folder for each generation. Maps contain labels and region directives, never ROM bytes. Initial maps mark every bank as raw data for lossless output; this does not claim that unexecuted bytes are data. Source and assets stay local and are not shareable map files.
+
+Checks: `cargo fmt --check`, `cargo clippy --workspace --all-targets -- -D warnings`, `cargo test --locked`, `python3 scripts/test-portability.py`.
+
+See [progress](docs/progress.md), [architecture and limits](docs/architecture.md), and [map syntax](docs/sym.md).
+
+## Internal analysis store
+
+Keep this JSON file local. Export `.sym` for others. Offsets and lengths below use decimal physical ROM offsets.
+
+```sh
+./target/debug/romatlas store init game.gb --output analysis.json
+./target/debug/romatlas store annotate game.gb --store analysis.json --offset 256 --length 3 --kind code --provenance manual --confidence 1
+./target/debug/romatlas store get analysis.json --limit 100
+./target/debug/romatlas store validate game.gb --store analysis.json
+./target/debug/romatlas store export game.gb --store analysis.json --output game.sym
+```
+
+Use `--id N` on annotate to edit a region. Use `store remove analysis.json --id N` to remove it. Region kinds: code, data, text, padding, image, unknown. Provenance: manual, static, observed. User-supplied provenance is an assertion; it is not proof of execution. Export fills gaps with lossless raw data and creates stable labels for code starts. The store keeps those gaps unknown. Failed edits leave the file unchanged.
+
+## Headless execution
+
+```sh
+./target/debug/romatlas run game.gb --operations 10000 --timeout-ms 1000
+```
+
+Returns registers, operation/cycle counts, and effective ROM banks as JSON. Limits: one million CPU operations and 30 seconds per call. The Rust adapter also exposes input, reset, snapshots, and mapped memory peeks; a persistent JSON-RPC server exposes these calls. CGB execution selects its model from the cartridge flag; emulator.start can override it. Basic banking, speed and DMA/replay tests pass; wider timing tests remain. The adapter does not read or write battery save files.
+
+Run `romatlas serve --rom game.gb` for persistent control. See [protocol.md](docs/protocol.md) for calls and limits. Run `python3 scripts/test-session.py` to test replay, map edits, generation, and stock-tool portability.
+
+Use `store import game.gb --map community.sym --output analysis.json` to keep community map annotations in the internal store. The server uses map.import. See docs/sym.md for the stock RAM/I/O label workaround.
+
+MBC3 RTC uses emulated time from an initial zero clock. Snapshots preserve clock and latch state; host time does not affect replay.
+
+State includes model, WRAM/VRAM banks and speed. The CGB gate adds two public boot-state cases; see docs/hardware-tests.md for limits.
+
+Generation and verification use a shared 120-second external-tool deadline. Set --timeout-ms (1..300000) to change it. Generation validates the map and publishes source only after a byte-identical rebuild. If it rejects an annotation, use raw data for that region and retry.
+
+Licensed gameplay and clean recipient rebuild checks are in [docs/homebrew-tests.md](docs/homebrew-tests.md). They build Galactic Armada and Unbricked from pinned MIT/zlib source; no commercial ROM is required.
+
+To check setup without reusing installed tools or build caches on a root-capable Ubuntu host, install debootstrap and run `sudo bash scripts/test-fresh-setup.sh`. The script creates an Ubuntu noble minbase under ignored build/, copies only source, runs setup and the acceptance checks, and unmounts its /dev and /proc on exit. Logs and the success-only result JSON stay in build/. It needs several GiB of free disk and network access. This checks a clean root filesystem on the host kernel, not a separate VM.
+
+The final requirement review is in [docs/completion-audit.md](docs/completion-audit.md). It records verified scope, milestone exits and hardware limits.

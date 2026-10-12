@@ -1,0 +1,41 @@
+use super::{Mapper, MappingResult};
+use save_state::Savable;
+
+#[derive(Default, Savable)]
+pub struct NoMapper {
+    ram_size: usize,
+}
+
+impl Mapper for NoMapper {
+    fn init(&mut self, rom_banks: u16, ram_size: usize) {
+        // only support 32KB
+        assert!(rom_banks == 2);
+        assert!(ram_size <= 0x2000);
+
+        self.ram_size = ram_size;
+    }
+
+    fn map_read_rom0(&self, addr: u16) -> usize {
+        addr as usize
+    }
+
+    fn map_read_romx(&self, addr: u16) -> usize {
+        // return the same address
+        addr as usize
+    }
+
+    fn physical_ram_offset(&self, addr: u16) -> Option<usize> {
+        if self.ram_size == 0 {
+            None
+        } else {
+            Some((addr as usize) & (self.ram_size - 1))
+        }
+    }
+
+    fn map_ram_read(&mut self,addr:u16)->MappingResult{self.physical_ram_offset(addr).map(MappingResult::Addr).unwrap_or(MappingResult::NotMapped)}
+    fn map_ram_write(&mut self, addr: u16, _data: u8) -> MappingResult {
+        self.map_ram_read(addr)
+    }
+
+    save_state_fns!();
+}

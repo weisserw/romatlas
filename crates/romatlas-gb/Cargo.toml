@@ -1,0 +1,17 @@
+[package]
+name = "romatlas-gb"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+serde.workspace = true
+sha2.workspace = true
+anyhow.workspace = true
+romatlas-core = { path = "../romatlas-core" }
+serde_json.workspace = true
+romatlas-map = { path = "../romatlas-map" }
+
+mizu-core = { path = "../../vendor/mizu/mizu-core" }
+romatlas-analysis = { path = "../romatlas-analysis" }
+romatlas-disasm = { path = "../romatlas-disasm" }

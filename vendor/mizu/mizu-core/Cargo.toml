@@ -1,0 +1,24 @@
+[package]
+name = "mizu-core"
+version = "1.3.0"
+authors = ["Amjad Alsharafi <amjadsharafi10@gmail.com>"]
+edition = "2021"
+description = "The core library implementation of all Gameboy emulation for Mizu"
+repository = "https://github.com/Amjad50/mizu"
+license = "MIT"
+keywords = ["gameboy", "emulator"]
+categories = ["emulators"]
+
+[dependencies]
+bitflags = "2.4"
+fixed-vec-deque = "0.1"
+byteorder = "1.3"
+thiserror = "2.0"
+zstd = "0.13"
+
+sha2 = "0.10"
+
+save_state = { version = "0.2.0", path = "../save_state" }
+
+[dev-dependencies]
+crc = "3.0"
