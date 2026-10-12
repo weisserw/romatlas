@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
-apt-get update
-apt-get install -y cmake build-essential git
+hardware_privilege=()
+if (( EUID != 0 )); then hardware_privilege=(sudo); fi
+"${hardware_privilege[@]}" apt-get update
+"${hardware_privilege[@]}" apt-get install -y cmake build-essential git
 mkdir -p tools
 if [ ! -d tools/mooneye/.git ]; then git clone https://github.com/Gekkio/mooneye-test-suite.git tools/mooneye; fi
 git -C tools/mooneye checkout 31510e12eea6286d36eea060a6adde755e1067aa

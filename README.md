@@ -4,7 +4,7 @@ Rust tools for ROM-free Game Boy maps. The project.md milestone scope is complet
 
 ## Setup
 
-On a new Ubuntu/Debian VM, run `bash scripts/setup.sh` as root. Then add `$HOME/.cargo/bin` to PATH. The script installs Rust 1.90.0, pinned mgbdis, and RGBDS 0.9.4.
+On a new Ubuntu/Debian VM, run `bash scripts/setup.sh` as your normal user with sudo access (running directly as root is also supported). Then add `$HOME/.cargo/bin` to PATH. The script installs Rust 1.90.0, pinned mgbdis, and RGBDS 0.9.4. Only system package installation and RGBDS installation use sudo; Rust and local builds stay under the invoking user. Do not wrap the whole script in sudo when using an existing user Rust installation.
 
 ```sh
 cargo build --locked
