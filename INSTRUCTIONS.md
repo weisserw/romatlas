@@ -118,3 +118,63 @@ workspaces are not updated automatically.
 Keep ROMs, generated assembly, extracted assets, and traces local. The exported
 stock `.sym` map is the shareable deliverable. A verified raw-byte baseline is
 the starting point; it does not mean code/data classification is complete.
+
+## 5. Prepare the commentary phase in the existing workspace
+
+After structural analysis, prepare a separate editable assembly tree:
+
+```sh
+python3 scripts/commentary.py prepare /root/rom-work/game
+```
+
+This uses the existing `workspace.json`, `analysis/state.json` and
+`maps/current.sym`. It validates ROM identity and both maps, generates a fresh
+listing from the current `.sym`, and verifies a byte-identical rebuild. It then
+creates `commentary/` without modifying phase-1 instructions, maps or evidence.
+An investigated phase-1 unknown interval does not prevent starting this phase.
+Preparation refuses an existing commentary directory; it never replaces edits.
+
+The command prints a Codex startup command and a short `/goal` referring to
+`commentary/prompt.md`. That prompt asks the agent to review the entire game,
+identify routines, loops, shared tails and data structures, introduce meaningful
+symbols, and explain functionality using conventional readable assembly style.
+Comment detail scales with complexity; opcode translations and boilerplate
+headers are discouraged. Static interpretation is the default, tentative meanings
+use `(?)`, and debugging targets genuinely unclear behavior. Completion requires
+full review, documented investigated uncertainties, a final editorial pass and a
+fresh byte-identical rebuild, rather than certainty about every original intent.
+
+The files to read and compare are:
+
+- `commentary/reading-before.asm`: frozen consolidated baseline from the current map.
+- `commentary/source/game.asm` and its includes: authoritative editable, buildable source.
+- `commentary/reading-after.asm`: consolidated reading copy of that source.
+- `commentary/review.json`: full-ROM scaffold and agent-maintained semantic review inventory.
+- `commentary/progress.md` and `commentary/uncertainties.md`: progress and useful unresolved interpretations.
+
+The reading copies expand `.asm` includes in source order, mark file boundaries,
+and retain hardware/constants includes and binary-asset references. They are
+reading aids, not independent build targets. Preserve the source tree and assets
+to rebuild the commented game: **the `.sym` alone cannot reproduce comments**.
+Generation does not render phase-1 role/evidence metadata as assembly comments.
+Never regenerate over the commentary source tree.
+
+From the toolkit repository, use:
+
+```sh
+python3 scripts/commentary.py instructions /root/rom-work/game
+python3 scripts/commentary.py verify /root/rom-work/game
+python3 scripts/commentary.py read /root/rom-work/game
+python3 scripts/commentary.py audit /root/rom-work/game
+```
+
+`instructions` prints the startup/goal text again for a later session. `verify`
+rebuilds the edited source and checks exact equality without `rgbfix` header
+changes. `read` refreshes the after copy. `audit` checks the review inventory,
+requires final editorial notes, performs fresh verification and refreshes the
+reading copy. It checks coverage/status, not comment quality; the agent remains
+responsible for useful and coherent explanations. Reviewed ambiguity can satisfy
+phase 2 without declaring the phase-1 classification goal complete.
+
+All assembly, ROMs, extracted assets and reading copies remain local. Do not
+commit or distribute a commercial game's generated workspace.

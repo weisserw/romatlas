@@ -17,6 +17,7 @@ jobs:
       - run: python3 scripts/test-fidelity.py
       - run: python3 scripts/test-session.py
       - run: python3 scripts/test-disassemble.py
+      - run: python3 scripts/test-commentary.py
       - run: python3 scripts/test-api.py
   hardware:
     runs-on: ubuntu-24.04

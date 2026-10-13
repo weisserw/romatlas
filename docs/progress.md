@@ -176,3 +176,27 @@ Workspace initialization now prints per-game Codex startup commands and explicit
 New disassembly workspaces now include analysis/toolkit-issues.md. Generated agent instructions, workflow, start/resume prompts and printed goals require recording confirmed/suspected bugs and substantial evidence-backed missing features as encountered, preserving findings across passes, and summarizing/linking the report at completion or blocked handoff (explicitly reporting no findings when empty). Entries include affected tools, evidence/reproduction, impact, workarounds and suggested improvements; toolkit fixes remain outside the disassembly task. INSTRUCTIONS.md documents the report and new-workspace scope. scripts/test-disassemble.py passes, including synthetic baseline/code checkpoint verification. A separate synthetic workspace smoke check confirms report initialization, prompt/goal references and preservation when initialization rejects an existing workspace. git diff --check passes. No live disassembly-agent behavior was tested.
 
 Revised generated start/resume prompts and printed goals to pursue whole-ROM completion rather than one verified checkpoint. Structural and semantic investigation now proceed together; required annotations record role and evidence. Completion requires every physical byte classified, annotations, valid maps and byte-identical rebuilding. The new persistent analysis/investigation.md ledger requires per-range method applicability, experiments, hypotheses, blockers and reopening on new evidence. Incomplete termination requires exhaustion of concrete investigation paths, not a total budget, stagnant pass count or unsupported unknowability claim; it never authorizes marking the whole-ROM goal complete. INSTRUCTIONS.md and project.md align with the contract. Rust 1.90.0 fmt (the CI cargo fmt --check command), locked workspace clippy/tests/build, synthetic workspace regression, stock portability and session tests pass. An initial cargo fmt --all --check also checked excluded vendor sources and reported existing formatting differences; vendor files were unchanged. Regression checks cover both generated prompts, both printed goals, ledger initialization and completion/exhaustion requirements. These are prompt-contract checks, not evidence that a live agent will fully classify a commercial ROM or always terminate. Existing workspaces are not automatically updated; no commercial ROMs or extracted assets were added.
+
+Added scripts/commentary.py as phase 2 for existing game workspaces. Preparation
+validates identity, internal state and current stock map, generates/verifies a
+fresh local baseline, and creates a separate editable source tree, frozen reading
+copy, after copy, prompt, printed goal and full-ROM review scaffold. Phase-1 files
+are preserved. Static semantic interpretation, conventional proportionate
+comments, descriptive symbols and thoroughly explained data are the default;
+investigated ambiguity can satisfy editorial review without declaring phase-1
+classification complete. verify/read/audit commands check source fidelity,
+refresh the reading copy and validate inventory/status/editorial notes. The audit
+cannot assess semantic correctness or comment quality; those remain agent review
+obligations. Stock .sym alone does not preserve the final commentary.
+
+The synthetic scripts/test-commentary.py regression passes preparation from an
+existing workspace with spaces, unchanged phase-1 files, duplicate-preparation
+rejection, reviewed unknown gaps, pending/tampered inventory rejection, faithful
+comment edits, byte-changing edit rejection, changed-ROM rejection and cyclic/
+escaping assembly include rejection. It is included in CI. Rust 1.90.0 fmt,
+locked workspace clippy/tests, existing workspace regression and stock portability
+pass. Session Rust/API code and dependencies were not changed. Local Alleyway
+preparation also passed fresh byte-identical rebuilding and created 161 scaffold
+entries covering all 32768 bytes, including its preserved 31-byte unknown gap;
+before/after reading copies initially match. No commentary agent was launched,
+and no commercial ROMs, assembly or extracted assets were added to the repository.
