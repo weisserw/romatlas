@@ -305,8 +305,8 @@ If /goal is unavailable, use a Codex version with goal support.
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("roms", type=Path, nargs="+", help="local owned .gb/.gbc files")
-    parser.add_argument("--root", type=Path, default=Path.home() / "rom-work",
-                        help="parent for game workspaces (default: ~/rom-work)")
+    parser.add_argument("--root", type=Path, default=Path.cwd(),
+                        help="parent for game workspaces (default: current directory)")
     parser.add_argument("--workspace", type=Path, help="exact directory; only for one ROM")
     parser.add_argument("--binary", type=Path, default=ROOT / "target/debug/romatlas")
     parser.add_argument("--json", action="store_true",

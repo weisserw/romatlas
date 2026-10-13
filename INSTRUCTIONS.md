@@ -18,7 +18,9 @@ needs repeating for every game.
 
 ## 2. Create a game workspace
 
-From the repository, pass the path to your locally owned ROM:
+The default workspace parent is the current directory. Run from a directory
+outside the toolkit repository, or pass `--root` explicitly as below, with the
+path to your locally owned ROM:
 
 ```sh
 python3 scripts/disassemble.py /path/to/game.gb --root /root/rom-work

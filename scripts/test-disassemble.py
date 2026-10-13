@@ -27,6 +27,12 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
     second = base / "Game two.gbc"
     first.write_bytes(data)
     second.write_bytes(data)
+    current = base / "current directory"
+    current.mkdir()
+    default = call("python3", ROOT / "scripts/disassemble.py", first,
+                   "--json", cwd=current)
+    assert Path(json.loads(default.stdout)["workspace"]) == current / first.stem
+    assert (current / first.stem / "input/game.rom").read_bytes() == data
     workroot = base / "work spaces"
     result = call("python3", ROOT / "scripts/disassemble.py", first, second, "--root", workroot)
     records = [json.loads(line) for line in result.stdout.splitlines()]

@@ -1,5 +1,14 @@
 # Milestone checklist
 
+Disassembly workspace initialization now defaults to the caller's current directory,
+creating a per-ROM subdirectory there. Explicit --root/--workspace options and the
+repository-local destination guard remain supported. README and startup instructions
+document the default. The synthetic workspace regression verifies initialization from
+a separate current directory with spaces. Workspace regression, cargo fmt -- --check,
+locked workspace clippy/tests and stock portability pass on Rust 1.90.0.
+The broader cargo fmt --all -- --check reports existing vendor/mizu formatting issues;
+no vendored Rust files were changed for this Python default adjustment.
+
 ## M1 — complete
 
 - [x] Rust workspace, pinned toolchain, lockfile, basic CLI and tests

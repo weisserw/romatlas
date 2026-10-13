@@ -50,7 +50,7 @@ and the commands for inspecting, pausing and resuming an existing goal. Goal
 support is required in your Codex version. Workspace results remain JSON lines
 on stdout; human instructions go to stderr. Add `--json` to suppress instructions.
 
-The default parent is `~/rom-work`; `--workspace /exact/path` selects a workspace
+The default parent is the current directory; `--workspace /exact/path` selects a workspace
 for a single ROM. Existing workspaces and paths inside this repository are
 rejected. Use `--binary /path/to/romatlas` to select a different built binary.
 The toolkit and pinned tools must stay installed at their configured locations.
