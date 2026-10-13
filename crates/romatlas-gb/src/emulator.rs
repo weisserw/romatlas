@@ -449,6 +449,24 @@ mod tests {
         path
     }
     #[test]
+    fn cartridge_filename_does_not_gate_execution() {
+        let original = fixture("filename", &[0x18, 0xfe], 0, 2);
+        let bytes = std::fs::read(&original).unwrap();
+        for extension in ["rom", "", "GBC"] {
+            let path = original.with_extension(extension);
+            std::fs::write(&path, &bytes).unwrap();
+            let mut emulator = Emulator::open(&path).unwrap();
+            let initial = emulator.state();
+            emulator.step().unwrap();
+            emulator.reset().unwrap();
+            assert_eq!(emulator.state(), initial);
+            assert_eq!(std::fs::read(&path).unwrap(), bytes);
+            drop(emulator);
+            std::fs::remove_file(path).unwrap();
+        }
+        std::fs::remove_file(original).unwrap();
+    }
+    #[test]
     fn stepping_snapshot_and_inspection() {
         let path = fixture(
             "snapshot",

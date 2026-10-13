@@ -258,6 +258,27 @@ pub fn import(rom: &Rom, map: &Map) -> Result<Store> {
     Ok(store)
 }
 fn push_region(map: &mut Map, offset: usize, length: usize, kind: &str) {
+    // Pinned stock mgbdis keeps interior default blocks unless their exact starts
+    // are overridden. Include DMG and CGB defaults so unknown bytes stay raw.
+    const DEFAULT_STARTS: &[usize] = &[
+        0x08, 0x10, 0x18, 0x20, 0x28, 0x30, 0x38, 0x40, 0x48, 0x50, 0x58, 0x60, 0x100, 0x104,
+        0x134, 0x13f, 0x143, 0x144,
+    ];
+    if kind == "data" {
+        let end = offset + length;
+        let mut cursor = offset;
+        for &boundary in DEFAULT_STARTS {
+            if boundary > cursor && boundary < end {
+                push_directive(map, cursor, boundary - cursor, kind);
+                cursor = boundary;
+            }
+        }
+        push_directive(map, cursor, end - cursor, kind);
+    } else {
+        push_directive(map, offset, length, kind);
+    }
+}
+fn push_directive(map: &mut Map, offset: usize, length: usize, kind: &str) {
     let (bank, address) = Rom::sym_location(offset);
     map.entries.push(Entry {
         bank,
@@ -328,7 +349,8 @@ mod tests {
         let text = export(&rom, &s).unwrap().export().unwrap();
         assert!(text.contains("00:0100 .code:2\n"));
         assert!(text.contains("00:0100 code_00_0100\n"));
-        assert!(text.contains("00:0102 .data:3efe\n"));
+        assert!(text.contains("00:0102 .data:2\n"));
+        assert!(text.contains("00:0144 .data:3ebc\n"));
         assert_eq!(s.regions.len(), 1);
     }
     #[test]

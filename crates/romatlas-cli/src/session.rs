@@ -336,7 +336,8 @@ impl GbSession {
                 let limit = usize::try_from(num(p, "limit", 100)?)?;
                 ensure!(limit <= 1000, "trace query limit exceeds 1000");
                 let trace = &self.emulator()?.trace;
-                json!({"items":trace.query(offset,limit),"total":trace.summary().retained})
+                let total = trace.summary().retained;
+                json!({"items":trace.query(offset,limit),"total":total,"next_offset":offset.saturating_add(limit).min(total)})
             }
             "trace.clear" => {
                 self.emulator()?.trace.clear();

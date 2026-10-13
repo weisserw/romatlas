@@ -19,6 +19,8 @@ Bank 0 ROM addresses are 0000–3fff; other ROM banks use 4000–7fff. RAM/I/O l
 
 Export sorts entries by bank, address, and annotation. It preserves supported annotations, not comment formatting or line order. Unknown regions stay internal; there is no `.unknown` directive. No hash header is required. Maps do not contain bytes or extracted assets. Mapping metadata can still raise legal questions; export does not give legal clearance.
 
+Export splits raw gaps and Unknown regions at the pinned generator's default vector and DMG/CGB header block starts. Each start receives a `.data` override, preventing stock defaults from decoding unknown bytes as instructions or text. These extra export boundaries do not change the internal classification store.
+
 ## Stock RAM/I/O label limit
 
 The pinned generator uses non-ROM labels in operands but emits no EQU definitions for them. An imported label such as `00:c000 wBuffer` can therefore cause an undefined-symbol link error. ROMAtlas leaves the stock emitter intact and adds a separate metadata-only constants include. This does not change any ROM byte.

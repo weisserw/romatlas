@@ -211,15 +211,7 @@ impl Cartridge {
         sram_file_path: Option<SavP>,
         save_on_shutdown: bool,
     ) -> Result<Self, CartridgeError> {
-        let extension = file_path
-            .as_ref()
-            .extension()
-            .ok_or(CartridgeError::ExtensionError)?;
-
-        if extension != "gbc" && extension != "gb" {
-            return Err(CartridgeError::ExtensionError);
-        }
-
+        // ROMAtlas accepts cartridge images by content, including workspace .rom files.
         let file_path = file_path.as_ref().to_path_buf().into_boxed_path();
         let sram_file_path = if let Some(sram_file_path) = sram_file_path {
             sram_file_path.as_ref().to_path_buf().into_boxed_path()
@@ -265,8 +257,6 @@ impl Cartridge {
         } else {
             TargetDevice::Dmg
         };
-
-
 
         let mut cartridge_type =
             CartridgeType::from_byte(data[0x147]).ok_or(CartridgeError::InvalidCartridgeType)?;
@@ -335,8 +325,6 @@ impl Cartridge {
             });
         }
 
-
-
         let mut mapper =
             cartridge_type
                 .get_mapper()
@@ -371,13 +359,36 @@ impl Cartridge {
     }
 
     /// ROMAtlas: actual mapper translation, including MBC1 fixed-window banking.
-    pub fn image_hash(&self) -> [u8;32] { self.hash }
-    pub fn storage_shape(&self)->(u64,u64){(self.rom.len() as u64,self.ram.len() as u64)}
-    pub fn physical_ram_offset(&self,addr:u16)->Option<usize>{self.mapper.physical_ram_offset(addr)}
-    pub fn selected_rtc(&self)->Option<u8>{self.mapper.selected_rtc()}
-    pub fn physical_memory(&self,space:&str,offset:usize,length:usize)->Option<Vec<u8>>{if space=="cartridge-rtc"{let values=self.mapper.rtc_values()?;return Some(values.get(offset..offset.checked_add(length)?)?.to_vec());}let bytes=match space{"cartridge-rom"=>&self.rom,"cartridge-ram"=>&self.ram,_=>return None};Some(bytes.get(offset..offset.checked_add(length)?)?.to_vec())}
-    pub fn physical_rom_offset(&self, addr:u16) -> Option<usize> {
-        match addr {0..=0x3fff=>Some(self.mapper.map_read_rom0(addr)),0x4000..=0x7fff=>Some(self.mapper.map_read_romx(addr)),_=>None}
+    pub fn image_hash(&self) -> [u8; 32] {
+        self.hash
+    }
+    pub fn storage_shape(&self) -> (u64, u64) {
+        (self.rom.len() as u64, self.ram.len() as u64)
+    }
+    pub fn physical_ram_offset(&self, addr: u16) -> Option<usize> {
+        self.mapper.physical_ram_offset(addr)
+    }
+    pub fn selected_rtc(&self) -> Option<u8> {
+        self.mapper.selected_rtc()
+    }
+    pub fn physical_memory(&self, space: &str, offset: usize, length: usize) -> Option<Vec<u8>> {
+        if space == "cartridge-rtc" {
+            let values = self.mapper.rtc_values()?;
+            return Some(values.get(offset..offset.checked_add(length)?)?.to_vec());
+        }
+        let bytes = match space {
+            "cartridge-rom" => &self.rom,
+            "cartridge-ram" => &self.ram,
+            _ => return None,
+        };
+        Some(bytes.get(offset..offset.checked_add(length)?)?.to_vec())
+    }
+    pub fn physical_rom_offset(&self, addr: u16) -> Option<usize> {
+        match addr {
+            0..=0x3fff => Some(self.mapper.map_read_rom0(addr)),
+            0x4000..=0x7fff => Some(self.mapper.map_read_romx(addr)),
+            _ => None,
+        }
     }
     /// 0x0000-0x3FFF
     pub fn read_rom0(&self, addr: u16) -> u8 {
@@ -444,8 +455,9 @@ impl Cartridge {
 
 impl Cartridge {
     fn get_save_file<P: AsRef<Path>>(path: P) -> PathBuf {
-        let extension = path.as_ref().extension().unwrap().to_str().unwrap();
-        path.as_ref().with_extension(format!("{extension}.sav"))
+        let mut name = path.as_ref().as_os_str().to_os_string();
+        name.push(".sav");
+        PathBuf::from(name)
     }
 
     fn load_sram_file<P: AsRef<Path>>(

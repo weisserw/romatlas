@@ -1,4 +1,6 @@
 # ROMAtlas fork
+Cartridge loading accepts any filename extension, including workspace `.rom` and extensionless inputs. ROMAtlas validates image content before starting the core; reset uses the original path and still checks image identity.
+
 Source: https://github.com/Amjad50/mizu
 Revision: ece2c0d40e1f2984a258410b6a6188418cd3e1c6 (2025-12-16).
 MIT license: LICENSE. Copyright and license notices remain intact.

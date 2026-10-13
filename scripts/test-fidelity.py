@@ -3,6 +3,7 @@
 import json
 import os
 import pathlib
+import re
 import shutil
 import subprocess
 import tempfile
@@ -23,6 +24,39 @@ with tempfile.TemporaryDirectory() as directory:
     data[0x300:0x320] = bytes((i * 73 + 19) % 256 for i in range(32))
     data[0x400:0x403] = bytes([0xc3, 0x00, 0x04])
     rom.write_bytes(data)
+
+    # Stock's interior vector/header defaults must not classify exported gaps.
+    # Test both default sets, explicit Unknown, and an empty classification store.
+    for cgb in [False, True]:
+        raw_rom = work / f'raw-{cgb}.rom'
+        raw_data = bytearray([0xff] * 0x8000)
+        raw_data[0x134:0x143] = b'RAW HEADER TEST'
+        raw_data[0x143] = 0x80 if cgb else 0
+        raw_data[0x147:0x14a] = bytes(3)
+        raw_data[0x400:0x403] = bytes([0xc3, 0, 4])
+        raw_rom.write_bytes(raw_data)
+        store = work / f'raw-{cgb}.json'
+        raw_sym = work / f'raw-{cgb}.sym'
+        call('store', 'init', raw_rom, '--output', store)
+        for classified in [False, True]:
+            if classified:
+                call('store', 'annotate', raw_rom, '--store', store,
+                     '--offset', 0, '--length', 0x40, '--kind', 'unknown', '--confidence', 0)
+                call('store', 'annotate', raw_rom, '--store', store,
+                     '--offset', 0x400, '--length', 3, '--kind', 'code')
+            before = store.read_bytes()
+            call('store', 'export', raw_rom, '--store', store, '--output', raw_sym)
+            assert store.read_bytes() == before
+            raw_out = work / f'raw-{cgb}-{classified}'
+            call('generate', raw_rom, '--map', raw_sym, '--out', raw_out)
+            listing = (raw_out / 'bank_000.asm').read_text()
+            statements = re.findall(r'^[ \t]+(\w+)\b', listing, re.MULTILINE)
+            unexpected = set(statements) - {'db', 'jp'}
+            assert not unexpected, unexpected
+            assert statements.count('jp') == int(classified), statements.count('jp')
+            assert 'db "' not in listing  # Header title must stay raw too.
+            call('verify', raw_rom, '--generated', raw_out)
+            assert (raw_out / 'romatlas-rebuilt.gb').read_bytes() == raw_data
 
     # All byte values in text, 1bpp and 2bpp assets, labels, and padding.
     sym = work / 'owned.sym'

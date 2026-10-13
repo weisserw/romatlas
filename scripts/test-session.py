@@ -4,7 +4,7 @@ import pathlib, tempfile, subprocess, json, shutil
 root = pathlib.Path(__file__).resolve().parents[1]
 with tempfile.TemporaryDirectory() as directory:
     work = pathlib.Path(directory)
-    rom = work / 'session.gb'
+    rom = work / 'session.rom'
     data = bytearray(0x8000)
     data[0x100:0x103] = bytes([0xc3, 0x50, 1])
     data[0x150:0x158] = bytes([0x3e, 0x42, 0xea, 0, 0xc0, 0x04, 0x18, 0xfd])
@@ -75,6 +75,20 @@ with tempfile.TemporaryDirectory() as directory:
         assert call('emulator.memory', {'address':0xc000, 'length':1})['bytes'] == [0x42]
         summary = call('trace.summary')
         assert summary['unique_instructions'] == 4
+        events = call('trace.query')['items']
+        collected = []
+        offset = 0
+        while offset < len(events):
+            page = call('trace.query', {'offset':offset, 'limit':2})
+            assert page['total'] == len(events)
+            assert page['next_offset'] == min(offset + 2, len(events))
+            collected.extend(page['items'])
+            offset = page['next_offset']
+        assert collected == events
+        for offset, limit in [(len(events),2), (len(events)+10,2), (0,0)]:
+            page = call('trace.query', {'offset':offset,'limit':limit})
+            assert page['items'] == []
+            assert page['next_offset'] == min(offset + limit, len(events))
         assert any(item['kind'] == 'Write' and item['context']['cpu_address'] == 49152 for item in call('trace.query')['items'])
         assert call('analysis.coverage')['total'] == 4
         edges = call('analysis.edges')

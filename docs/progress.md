@@ -1,5 +1,24 @@
 # Milestone checklist
 
+Alleyway toolkit report fixes (RA-001–RA-003): cartridge loading no longer gates
+execution on .gb/.gbc filenames. The synthetic RPC workflow now runs from .rom;
+an adapter regression also covers extensionless/uppercase filenames, reset and
+unchanged input bytes. trace.query returns next_offset, with cursor traversal,
+final/empty/out-of-range pages and zero limits covered by the session regression.
+Raw export gaps and Unknown regions split at pinned stock vector and DMG/CGB
+header block starts, overriding interior default code/text blocks without changing
+the classification store. Synthetic empty/mixed stores now verify generated
+statement kinds and byte-identical rebuilds for both header variants. No commercial
+ROMs or extracted assets were added.
+
+Tested on Rust 1.90.0: locked build, workspace fmt/clippy/tests (55 adapter tests),
+all nine standalone core tests, session, fidelity, stock portability, API,
+disassembly-workspace and crate-boundary regressions pass. Whole-tree
+`cargo fmt --all --check` retains the previously documented unrelated vendor
+formatting failures; workspace `cargo fmt -- --check` passes. The modified
+cartridge source is formatted. The rebuilt debug toolkit is available locally.
+
+
 Disassembly workspace initialization now defaults to the caller's current directory,
 creating a per-ROM subdirectory there. Explicit --root/--workspace options and the
 repository-local destination guard remain supported. README and startup instructions
