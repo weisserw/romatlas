@@ -7,6 +7,34 @@ use anyhow::{Result, ensure};
 use romatlas_core::{ImageAdapter, Region, RegionKind};
 use romatlas_map::{Entry, Map, store::Store};
 
+fn named_regions(store: &Store) -> Result<Vec<Entry>> {
+    let mut entries = Vec::new();
+    for (id, region) in &store.regions {
+        if let Some(metadata) = store.region_metadata.get(id) {
+            ensure!(metadata.is_object(), "region metadata must be object");
+            for field in ["name", "role", "evidence", "comment"] {
+                if let Some(value) = metadata.get(field) {
+                    ensure!(value.is_string(), "region {field} must be string");
+                }
+            }
+            if let Some(name) = metadata.get("name").and_then(|v| v.as_str()) {
+                ensure!(!name.starts_with('.'), "region name must be a stock symbol");
+                ensure!(
+                    !name.is_empty() && !name.chars().any(char::is_whitespace),
+                    "region name must be a stock symbol"
+                );
+                let (bank, address) = Rom::sym_location(region.start.offset as usize);
+                entries.push(Entry {
+                    bank,
+                    address,
+                    annotation: name.into(),
+                });
+            }
+        }
+    }
+    Ok(entries)
+}
+
 pub fn validate_store(rom: &Rom, store: &Store) -> Result<()> {
     store.validate()?;
     use sha2::{Digest, Sha256};
@@ -16,6 +44,7 @@ pub fn validate_store(rom: &Rom, store: &Store) -> Result<()> {
         rom.bytes.len() as u64,
     )?;
     let mut label_offsets = std::collections::BTreeSet::new();
+    let mut all_labels = named_regions(store)?;
     if let Some(labels) = store.metadata.get("gb.sym.labels") {
         let entries: Vec<Entry> = serde_json::from_value(labels.clone())?;
         ensure!(
@@ -28,6 +57,7 @@ pub fn validate_store(rom: &Rom, store: &Store) -> Result<()> {
             entries: entries.clone(),
         }
         .validate(Some(rom.info.banks))?;
+        all_labels.extend(entries.clone());
         for entry in entries.iter().filter(|entry| entry.address < 0x8000) {
             let offset = if entry.address < 0x4000 {
                 entry.address as u64
@@ -37,11 +67,14 @@ pub fn validate_store(rom: &Rom, store: &Store) -> Result<()> {
             label_offsets.insert(offset);
         }
     }
+    Map {
+        entries: all_labels,
+    }
+    .validate(Some(rom.info.banks))?;
     for (id, region) in &store.regions {
-        if let Some(value) = store.region_metadata.get(id) {
+        if let Some(value) = store.region_metadata.get(id).and_then(|v| v.get("sym")) {
             let annotation = value
-                .get("sym")
-                .and_then(|v| v.as_str())
+                .as_str()
                 .ok_or_else(|| anyhow::anyhow!("invalid mgbdis region metadata"))?;
             let (bank, address) = Rom::sym_location(region.start.offset as usize);
             let parsed = Map::parse(&format!("{bank:02x}:{address:04x} {annotation}\n"))?;
@@ -152,6 +185,7 @@ pub fn export(rom: &Rom, store: &Store) -> Result<Map> {
     if let Some(labels) = store.metadata.get("gb.sym.labels") {
         map.entries = serde_json::from_value(labels.clone())?;
     }
+    map.entries.extend(named_regions(store)?);
     let label_locations: std::collections::BTreeSet<_> =
         map.entries.iter().map(|e| (e.bank, e.address)).collect();
     for bank in 0..rom.info.banks {
@@ -304,6 +338,26 @@ mod tests {
             confidence: 1.0,
             provenance: Provenance::Manual,
         }
+    }
+    #[test]
+    fn explanatory_metadata_without_directive_exports_names() {
+        let (rom, mut store) = fixture();
+        let id = store
+            .annotate(region(&rom, 0x100, 3, RegionKind::Code))
+            .unwrap();
+        store.region_metadata.insert(
+            id,
+            serde_json::json!({
+                "name":"Entry", "role":"entry routine", "evidence":"observed fetches"
+            }),
+        );
+        let text = export(&rom, &store).unwrap().export().unwrap();
+        assert!(text.contains("00:0100 Entry\n"));
+        assert!(text.contains("00:0100 .code:3\n"));
+        assert!(!text.contains("code_00_0100"));
+        assert!(!text.contains("observed fetches"));
+        store.region_metadata.get_mut(&id).unwrap()["name"] = serde_json::json!("bad symbol");
+        assert!(validate_store(&rom, &store).is_err());
     }
     #[test]
     fn imported_annotations_persist_and_edit() {

@@ -124,11 +124,30 @@ with tempfile.TemporaryDirectory() as directory:
         for candidate in discovered['candidates']:
             call('map.annotate', {'offset':candidate['start']['offset'],'length':candidate['length'],'kind':'code','provenance':candidate['provenance'].lower(),'confidence':candidate['confidence']})
         original = call('map.get')
+        first = original['items'][0]
+        r = first['region']
+        edit = {'id':first['id'],'offset':r['start']['offset'],'length':r['length'],'kind':'code'}
+        metadata = {'name':'AgentEntry','role':'entry routine','evidence':'synthetic execution trace','comment':'reviewed'}
+        call('map.annotate', {**edit, **metadata})
+        assert call('map.get')['items'][0]['metadata'] == metadata
+        retained = call('map.get')
+        for invalid in [{'role':7}, {'name':'invalid symbol'}, {'name':'.code:3'}, {'offset':257}]:
+            call('map.annotate', {**edit, **invalid}, error=True)
+            assert call('map.get') == retained
+        call('map.annotate', {**edit, 'comment':None})
+        del metadata['comment']
+        call('map.annotate', edit)
+        assert call('map.get')['items'][0]['metadata'] == metadata
+        original = call('map.get')
         blocked_context = call('analysis.discover_context', {'entrypoints':[{'offset':0x250,'cpu_context':{'cpu_address':0x250,'fixed_bank':0,'switch_bank':1}}],'budget':1,'use_observed':False})
         assert blocked_context['visited']==1
         assert call('map.get') == original
         call('map.annotate', {'offset':257,'length':1,'kind':'data'}, error=True)
         assert call('map.get') == original
+        temporary = call('map.annotate', {'offset':0x380,'length':1,'kind':'data','role':'temporary evidence'})['id']
+        call('map.annotate', {'id':temporary,'offset':0x381,'length':1,'kind':'data'})
+        assert next(item for item in call('map.get')['items'] if item['id']==temporary)['metadata'] is None
+        call('map.remove', {'id':temporary})
         call('map.validate')
         call('map.save', {'path':str(work/'state.json')})
         sym = work/'session.sym'
@@ -139,6 +158,8 @@ with tempfile.TemporaryDirectory() as directory:
         call('rom.open', {'path':str(rom)})
         assert call('map.get')['total'] == 0
         call('map.load', {'path':str(work/'state.json')})
+        assert call('map.get') == original
+        assert 'AgentEntry' in exported and 'synthetic execution trace' not in exported
         assert call('map.export')['sym'] == exported
         pointers = call('analysis.pointers', {'offset':0x200,'count':4})
         assert pointers['candidate'] is None and pointers['total']==4
@@ -166,9 +187,17 @@ with tempfile.TemporaryDirectory() as directory:
         imported = call('map.export')['sym']
         for line in community.splitlines():
             assert line in imported
+        image = next(item for item in call('map.get')['items'] if item['region']['kind']=='Image')
+        image_edit = {'id':image['id'],'offset':0x4000,'length':8,'kind':'image'}
+        call('map.annotate', {**image_edit,'role':'one-bit tiles','evidence':'explicit imported 1bpp directive'})
+        assert call('map.export')['sym'] == imported
+        before_rejection = call('map.get')
+        call('map.annotate', {**image_edit,'name':'DuplicateTiles'}, error=True)
+        assert call('map.get') == before_rejection
         call('map.save', {'path':str(work/'community.json')})
         call('rom.open', {'path':str(rom)})
         call('map.load', {'path':str(work/'community.json')})
+        assert call('map.get') == before_rejection
         assert call('map.export')['sym'] == imported
         call('map.import', {'sym':'00:0200 .byt:20\n00:0201 .data:10\n'}, error=True)
         assert call('map.export')['sym'] == imported

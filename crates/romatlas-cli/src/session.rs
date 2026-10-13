@@ -555,7 +555,7 @@ impl GbSession {
             }
             "analysis.conflicts" => json!({"conflicts":self.store()?.conflicts()}),
             "map.get" => page_records(self.store()?.regions.iter(), p, |(id, r)| {
-                Ok(json!({"id":id,"region":r}))
+                Ok(json!({"id":id,"region":r,"metadata":self.store()?.region_metadata.get(id)}))
             })?,
             "map.annotate" => {
                 let offset = num_required(p, "offset")?;
@@ -593,14 +593,35 @@ impl GbSession {
                     provenance,
                     confidence,
                 };
-                mapping::validate_region(rom, &region)?;
+                // Stage metadata and structural changes together so rejected edits
+                // cannot discard imported directives or explanatory evidence.
+                let mut store = self.store()?.clone();
                 let id = if p.get("id").is_some() {
                     let id = num_required(p, "id")?;
-                    self.store.as_mut().unwrap().edit(id, region)?;
+                    store.edit(id, region)?;
                     id
                 } else {
-                    self.store.as_mut().unwrap().annotate(region)?
+                    store.annotate(region)?
                 };
+                for field in ["name", "role", "evidence", "comment"] {
+                    if let Some(value) = p.get(field) {
+                        ensure!(
+                            value.is_string() || value.is_null(),
+                            "{field} must be string or null"
+                        );
+                        let metadata = store.region_metadata.entry(id).or_insert_with(|| json!({}));
+                        let object = metadata
+                            .as_object_mut()
+                            .context("region metadata must be object")?;
+                        if value.is_null() {
+                            object.remove(field);
+                        } else {
+                            object.insert(field.into(), value.clone());
+                        }
+                    }
+                }
+                mapping::validate_store(rom, &store)?;
+                self.store = Some(store);
                 json!({"id":id})
             }
             "map.remove" => {
