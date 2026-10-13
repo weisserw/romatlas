@@ -1,0 +1,250 @@
+{
+  "outcome": "incomplete",
+  "goal_status": "blocked",
+  "blocked_audit": {
+    "pass": "007",
+    "consecutive_goal_turns": 3,
+    "entry": "U-ZERO-0426",
+    "reason": "No evidence discriminates dormant NOP code, reserved zero bytes and unused zero data in physical range 0426-0445 after the documented concrete local paths were exhausted.",
+    "reopen_when": "Applicable source/symbol metadata or a newly evidenced natural reference/access becomes available.",
+    "latest_save_export": "analysis/pass-007-final-results.json",
+    "fresh_existing_source_verify": {"generated": "generated/pass-006", "ok": true, "byte_identical": true}
+  },
+  "rom_sha256": "ed8070e011713527bdc03e2b9cec9f9c4a7e3aaa00e57e8786a186b265da1bb2",
+  "map_sha256": "18d33cc539fdf5739ab7036e38fbc67118ca06b1427de4cf7a64c9ec0ac464dd",
+  "rebuild_sha256": "ed8070e011713527bdc03e2b9cec9f9c4a7e3aaa00e57e8786a186b265da1bb2",
+  "checkpoint": "pass-006",
+  "verification": "analysis/pass-006-verification.json",
+  "banks": [
+    {
+      "code": 4550,
+      "data": 11563,
+      "text": 0,
+      "padding": 240,
+      "image": 0,
+      "unknown": 31,
+      "bank": 0,
+      "total": 16384
+    },
+    {
+      "code": 4953,
+      "data": 2887,
+      "text": 0,
+      "padding": 2400,
+      "image": 6144,
+      "unknown": 0,
+      "bank": 1,
+      "total": 16384
+    }
+  ],
+  "classified_regions": 160,
+  "role_evidence_metadata_regions": 160,
+  "named_symbols": 38,
+  "unknown": [
+    {
+      "offset": 1062,
+      "length": 31,
+      "entry": "U-ZERO-0426"
+    }
+  ],
+  "observed_opcode_starts": {
+    "rom": 2310,
+    "hram": 8
+  },
+  "targeted_unknown_trace": {
+    "artifact": "analysis/zero-probe-results.json",
+    "route": "python3 analysis/frame_scenario.py zero-probe",
+    "physical_range": [1062, 1093],
+    "space": "cartridge-rom",
+    "kinds": ["Instruction", "Fetch", "Read"],
+    "capacity": 1000,
+    "completed_frames": 257,
+    "completed_operations": 4009009,
+    "retained_events": 0,
+    "dropped_events": 0,
+    "aggregate_dropped": 0,
+    "interpretation": "No access to the unresolved zero block on this tested startup/title/entry/launch/move/pause/reset route; original structural role remains unresolved."
+  },
+  "pointer_hypothesis_scan": {
+    "little": [
+      {
+        "source": 1047,
+        "target": 1080
+      },
+      {
+        "source": 1400,
+        "target": 1086
+      },
+      {
+        "source": 1531,
+        "target": 1086
+      },
+      {
+        "source": 1545,
+        "target": 1086
+      },
+      {
+        "source": 2210,
+        "target": 1086
+      },
+      {
+        "source": 3924,
+        "target": 1080
+      },
+      {
+        "source": 4148,
+        "target": 1072
+      },
+      {
+        "source": 4330,
+        "target": 1080
+      },
+      {
+        "source": 4334,
+        "target": 1072
+      },
+      {
+        "source": 4475,
+        "target": 1080
+      },
+      {
+        "source": 16524,
+        "target": 1089
+      },
+      {
+        "source": 17428,
+        "target": 1086
+      },
+      {
+        "source": 17515,
+        "target": 1072
+      },
+      {
+        "source": 18384,
+        "target": 1086
+      },
+      {
+        "source": 18416,
+        "target": 1086
+      },
+      {
+        "source": 18451,
+        "target": 1086
+      },
+      {
+        "source": 19034,
+        "target": 1089
+      },
+      {
+        "source": 19061,
+        "target": 1086
+      },
+      {
+        "source": 19668,
+        "target": 1084
+      },
+      {
+        "source": 22535,
+        "target": 1080
+      },
+      {
+        "source": 25530,
+        "target": 1086
+      },
+      {
+        "source": 25588,
+        "target": 1086
+      },
+      {
+        "source": 26713,
+        "target": 1086
+      },
+      {
+        "source": 26816,
+        "target": 1086
+      },
+      {
+        "source": 26925,
+        "target": 1086
+      },
+      {
+        "source": 27019,
+        "target": 1086
+      },
+      {
+        "source": 27342,
+        "target": 1086
+      },
+      {
+        "source": 27347,
+        "target": 1086
+      },
+      {
+        "source": 27420,
+        "target": 1086
+      },
+      {
+        "source": 28152,
+        "target": 1086
+      },
+      {
+        "source": 28267,
+        "target": 1086
+      },
+      {
+        "source": 29105,
+        "target": 1086
+      }
+    ],
+    "big": [
+      {
+        "source": 866,
+        "target": 1086
+      },
+      {
+        "source": 2224,
+        "target": 1066
+      },
+      {
+        "source": 3110,
+        "target": 1086
+      },
+      {
+        "source": 3697,
+        "target": 1086
+      },
+      {
+        "source": 4149,
+        "target": 1086
+      },
+      {
+        "source": 4335,
+        "target": 1086
+      },
+      {
+        "source": 4476,
+        "target": 1086
+      },
+      {
+        "source": 18472,
+        "target": 1086
+      },
+      {
+        "source": 18569,
+        "target": 1086
+      },
+      {
+        "source": 18768,
+        "target": 1086
+      }
+    ]
+  },
+  "toolkit_report": "analysis/toolkit-issues.md",
+  "toolkit_commit": "9f134115bc0f68973bfd6073fe00d43260b4cab5",
+  "limits": [
+    "31 unknown bytes prevent whole-ROM completion",
+    "No full hardware compatibility claim",
+    "No exhaustive execution or comprehensive ROM data-read coverage claim",
+    "Source intent for zero reservation unresolved"
+  ]
+}

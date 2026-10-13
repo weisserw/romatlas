@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "scenarios": [{
+    "id": "startup-early-inputs",
+    "route_script": "analysis/collect.py",
+    "evidence": "analysis/collect-results.json",
+    "model": "dmg",
+    "trace": {"enabled": true, "capacity": 0},
+    "startup": {"calls": 5, "operations_each": 10000, "timeout_ms": 10000},
+    "button_order": ["start", "a", "right", "b", "left", "start", "start"],
+    "each_button": [{"pressed": true}, {"run_operations": 3000, "timeout_ms": 10000}, {"pressed": false}, {"run_operations": 10000, "timeout_ms": 10000}],
+    "result": "141000 operations completed; PC 0226; only initialization and frame wait established, not gameplay outcomes.",
+    "hypotheses": ["Start enters play", "A launches", "direction and B alter speed", "Start pauses/resumes"],
+    "next": "Complete startup before repeating title/gameplay inputs.",
+    "investigation": ["C-DISPATCH", "U-LEVEL"]
+  }, {
+    "id": "later-startup-short-holds",
+    "route_script": "analysis/collect.py gameplay",
+    "evidence": "analysis/gameplay-results.json",
+    "startup": {"calls": 22, "operations_each": 10000, "timeout_ms": 10000},
+    "button_order": ["start", "a", "right", "b", "left", "start", "start"],
+    "each_button": [{"pressed": true}, {"run_operations": 3000, "timeout_ms": 10000}, {"pressed": false}, {"run_operations": 10000, "timeout_ms": 10000}],
+    "result": "311000 operations, ten frames; VBlank and copied HRAM DMA execute. Short holds may miss a frame sample.",
+    "investigation": ["C-HRAM", "C-DISPATCH"]
+  }, {
+    "id": "stage-launch-move-pause",
+    "route_script": "analysis/frame_scenario.py stage-play",
+    "evidence": "analysis/stage-play-results.json",
+    "startup": {"calls": 22, "operations_each": 10000, "timeout_ms": 10000},
+    "title_start": [{"button": "start", "pressed": true}, {"unit": "frame", "count": 2, "timeout_ms": 10000}, {"button": "start", "pressed": false}, {"unit": "frame", "count": 2, "timeout_ms": 10000}],
+    "stage_entry_wait": {"unit": "frame", "count_per_call": 10, "timeout_ms": 10000, "max_calls": 30, "stop_when_cpu_memory": {"address": 65444, "value": 5}, "actual_calls": 22},
+    "button_order": ["a", "right", "b", "left", "start", "start"],
+    "each_button": [{"pressed": true}, {"unit": "frame", "count": 2, "timeout_ms": 10000}, {"pressed": false}, {"unit": "frame", "count": 2, "timeout_ms": 10000}],
+    "result": "253 frames,3937951 operations. State5 reached frame229, A advances to6 with moving ball. Right/left shift paddle40->46->40. Start toggles6->12->6 and pauses/resumes ball movement.",
+    "snapshots": "None; replay from reset required.",
+    "hypotheses_tested": ["Start begins play", "A launches", "left/right move paddle", "Start pauses/resumes"],
+    "remaining": ["B and A directional speed modifiers not measured", "later stages not played"],
+    "investigation": ["C-HRAM", "C-DISPATCH", "U-ZERO-0426"]
+  }, {
+    "id": "zero-block-joypad-reset-read-probe",
+    "route_script": "analysis/frame_scenario.py zero-probe",
+    "evidence": "analysis/zero-probe-results.json",
+    "base_scenario": "stage-launch-move-pause",
+    "trace_from_startup": {
+      "enabled": true,
+      "capacity": 1000,
+      "space": "cartridge-rom",
+      "range": [1062, 1093],
+      "kinds": ["Instruction", "Fetch", "Read"]
+    },
+    "extra_reset_inputs": [
+      {"button": "select", "pressed": true},
+      {"button": "start", "pressed": true},
+      {"unit": "frame", "count": 2, "timeout_ms": 10000},
+      {"button": "start", "pressed": false},
+      {"button": "select", "pressed": false},
+      {"unit": "frame", "count": 2, "timeout_ms": 10000}
+    ],
+    "hypothesis": "The unresolved zero block is consumed as joypad/reset-related ROM data despite absent instruction fetches.",
+    "result": "257 frames,4009009 operations,19257508 PPU ticks; no errors. Zero filtered events, zero detail/aggregate drops. State byte returns to2 after Select+Start. No access on this route; dormant-code/reserved-fill/unused-data interpretations remain unresolved.",
+    "snapshots": "None; replay from reset.",
+    "investigation": ["U-ZERO-0426"]
+  }]
+}

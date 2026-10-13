@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "platform": "gb",
+  "name": "alleyway",
+  "rom_sha256": "ed8070e011713527bdc03e2b9cec9f9c4a7e3aaa00e57e8786a186b265da1bb2",
+  "rom_filename": "game.rom",
+  "image_size": 32768,
+  "editorial_complete": true,
+  "omitted_documents": [],
+  "artifacts": {
+    "README.md": "468db2be2f0e4ff891af9bf0090e5652f08c720a01d6ec793c70f0f33007955b",
+    "analysis/annotations.json": "61ca72744f3e429c915dc59750648e95b26aef02a940d37940de5cccbd9bf71c",
+    "analysis/current-audit.json": "5cbdbe631f3e22633421bc99e4508feae5e9cf7fe803955ed2079db9b86cd84e",
+    "analysis/gameplay.md": "8d5bf65b25ced69ec57ab785bbd5755344ca9fb0dbf27b1d6e64e0257c3ceb0e",
+    "analysis/investigation.md": "a13159ee4ad593cb4a030f9b2064c4b6d53e1d17650e944a649a36d4b4134329",
+    "analysis/progress.md": "148df02fb6638189862b17e81511502a2b9940744bf9a046a638728e4bcedd63",
+    "analysis/scenarios.json": "e96f8e395a9db56a54fea3f92fa0880bec52da9f6df499394fa92f72a1497571",
+    "analysis/state.json": "6b80c1aba9d6c1fa803412436181c5918c23867f8231d9892618cf49e4a9aca0",
+    "commentary/audit.json": "70b1f7f0065efef05057ddcf479c7ec1055144b84d97029438ae189ff3177eac",
+    "commentary/baseline.sym": "18d33cc539fdf5739ab7036e38fbc67118ca06b1427de4cf7a64c9ec0ac464dd",
+    "commentary/editorial-audit.md": "a8ef352baed5a41415a8716d52e5cd6d1be626451e1dc6a16e178d103339b1ba",
+    "commentary/manifest.json": "4deab123ea7bab6610a47ee030c4fd5aba7ca84e9bbd22ee02f3c835939bed35",
+    "commentary/phase1-state.json": "6b80c1aba9d6c1fa803412436181c5918c23867f8231d9892618cf49e4a9aca0",
+    "commentary/progress.md": "67367f8b2f6c32819b9d9a711756d60cb5cea6cf9ba026939dbe30bea4f719d0",
+    "commentary/review.json": "04c4dfb40beb25262738c67662fa66c58003449547422163e9f7115f99a51adc",
+    "commentary/uncertainties.md": "d22f192b44fbee4b9d814fd6c5df70f897d23fed3f1eada4a93e0918870f9738",
+    "commentary/verification.json": "2315bffcf38ec8ce68923ac294b321a1a2dfc035b1536f45579e43ec6ad7a2f2",
+    "editorial.json": "20eca17f1e2c447f0f6e47d4b4da6609616aa3a0a99903f27fd26107116b3cbe",
+    "maps/current.sym": "18d33cc539fdf5739ab7036e38fbc67118ca06b1427de4cf7a64c9ec0ac464dd"
+  }
+}

@@ -1,0 +1,1922 @@
+[
+  {
+    "offset": 0,
+    "length": 3,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 1
+    }
+  },
+  {
+    "offset": 3,
+    "length": 61,
+    "kind": "padding",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Erased-byte fill in unused reset/restart/interrupt vector space",
+    "evidence": "Exact FF run 0003-0040, bounded by established structures. All decoded direct control targets audited: none enters this gap; no RST instructions in classified code. Reset and implemented interrupt slots contain explicit JP/RETI. FF fills unused bytes to next defined hardware entry slot/header, rather than defining restart handlers; no execution observed.",
+    "map_result": {
+      "id": 152
+    }
+  },
+  {
+    "offset": 64,
+    "length": 3,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 2
+    }
+  },
+  {
+    "offset": 67,
+    "length": 5,
+    "kind": "padding",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Erased-byte fill in unused reset/restart/interrupt vector space",
+    "evidence": "Exact FF run 0043-0048, bounded by established structures. All decoded direct control targets audited: none enters this gap; no RST instructions in classified code. Reset and implemented interrupt slots contain explicit JP/RETI. FF fills unused bytes to next defined hardware entry slot/header, rather than defining restart handlers; no execution observed.",
+    "map_result": {
+      "id": 153
+    }
+  },
+  {
+    "offset": 72,
+    "length": 3,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 3
+    }
+  },
+  {
+    "offset": 75,
+    "length": 5,
+    "kind": "padding",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Erased-byte fill in unused reset/restart/interrupt vector space",
+    "evidence": "Exact FF run 004b-0050, bounded by established structures. All decoded direct control targets audited: none enters this gap; no RST instructions in classified code. Reset and implemented interrupt slots contain explicit JP/RETI. FF fills unused bytes to next defined hardware entry slot/header, rather than defining restart handlers; no execution observed.",
+    "map_result": {
+      "id": 154
+    }
+  },
+  {
+    "offset": 80,
+    "length": 3,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 4
+    }
+  },
+  {
+    "offset": 83,
+    "length": 5,
+    "kind": "padding",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Erased-byte fill in unused reset/restart/interrupt vector space",
+    "evidence": "Exact FF run 0053-0058, bounded by established structures. All decoded direct control targets audited: none enters this gap; no RST instructions in classified code. Reset and implemented interrupt slots contain explicit JP/RETI. FF fills unused bytes to next defined hardware entry slot/header, rather than defining restart handlers; no execution observed.",
+    "map_result": {
+      "id": 155
+    }
+  },
+  {
+    "offset": 88,
+    "length": 3,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 5
+    }
+  },
+  {
+    "offset": 91,
+    "length": 5,
+    "kind": "padding",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Erased-byte fill in unused reset/restart/interrupt vector space",
+    "evidence": "Exact FF run 005b-0060, bounded by established structures. All decoded direct control targets audited: none enters this gap; no RST instructions in classified code. Reset and implemented interrupt slots contain explicit JP/RETI. FF fills unused bytes to next defined hardware entry slot/header, rather than defining restart handlers; no execution observed.",
+    "map_result": {
+      "id": 156
+    }
+  },
+  {
+    "offset": 96,
+    "length": 1,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 6
+    }
+  },
+  {
+    "offset": 97,
+    "length": 159,
+    "kind": "padding",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Erased-byte fill in unused reset/restart/interrupt vector space",
+    "evidence": "Exact FF run 0061-0100, bounded by established structures. All decoded direct control targets audited: none enters this gap; no RST instructions in classified code. Reset and implemented interrupt slots contain explicit JP/RETI. FF fills unused bytes to next defined hardware entry slot/header, rather than defining restart handlers; no execution observed.",
+    "map_result": {
+      "id": 157
+    }
+  },
+  {
+    "offset": 256,
+    "length": 4,
+    "kind": "code",
+    "confidence": 1,
+    "provenance": "observed",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b. collect-results.json: observed opcode fetch addresses and decoded lengths.",
+    "map_result": {
+      "id": 7
+    }
+  },
+  {
+    "offset": 260,
+    "length": 76,
+    "kind": "data",
+    "confidence": 1,
+    "provenance": "static",
+    "role": "Game Boy boot logo and cartridge metadata/checksums",
+    "evidence": "Header location and valid header checksum from run.py inspect; ROM title ALLEY WAY, destination 1, version 0.",
+    "map_result": {
+      "id": 8
+    }
+  },
+  {
+    "offset": 336,
+    "length": 159,
+    "kind": "code",
+    "confidence": 1,
+    "provenance": "observed",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b. collect-results.json: observed opcode fetch addresses and decoded lengths.",
+    "map_result": {
+      "id": 9
+    }
+  },
+  {
+    "offset": 495,
+    "length": 50,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 10
+    }
+  },
+  {
+    "offset": 545,
+    "length": 5,
+    "kind": "code",
+    "confidence": 1,
+    "provenance": "observed",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b. collect-results.json: observed opcode fetch addresses and decoded lengths.",
+    "map_result": {
+      "id": 11
+    }
+  },
+  {
+    "offset": 550,
+    "length": 7,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 12
+    }
+  },
+  {
+    "offset": 557,
+    "length": 16,
+    "kind": "code",
+    "confidence": 1,
+    "provenance": "observed",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b. collect-results.json: observed opcode fetch addresses and decoded lengths.",
+    "map_result": {
+      "id": 13
+    }
+  },
+  {
+    "offset": 573,
+    "length": 90,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 14
+    }
+  },
+  {
+    "offset": 663,
+    "length": 10,
+    "kind": "code",
+    "confidence": 1,
+    "provenance": "observed",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b. collect-results.json: observed opcode fetch addresses and decoded lengths.",
+    "map_result": {
+      "id": 15
+    }
+  },
+  {
+    "offset": 673,
+    "length": 97,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 16
+    }
+  },
+  {
+    "offset": 770,
+    "length": 86,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Inline-pointer rectangular transfer helper; POP DE extracts and advances return address, copies/repeats rows with 32-byte destination stride",
+    "evidence": "detached-results.json inspection plus detached-static-results.json/decoded.json: coherent routine effects, branch/return boundaries and complete legal nonoverlapping decodes. Static semantic evidence; no execution claim.",
+    "map_result": {
+      "id": 57
+    }
+  },
+  {
+    "offset": 856,
+    "length": 20,
+    "kind": "code",
+    "confidence": 1,
+    "provenance": "observed",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b. collect-results.json: observed opcode fetch addresses and decoded lengths.",
+    "map_result": {
+      "id": 17
+    }
+  },
+  {
+    "offset": 876,
+    "length": 21,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 18
+    }
+  },
+  {
+    "offset": 897,
+    "length": 52,
+    "kind": "code",
+    "confidence": 1,
+    "provenance": "observed",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b. collect-results.json: observed opcode fetch addresses and decoded lengths.",
+    "map_result": {
+      "id": 19
+    }
+  },
+  {
+    "offset": 949,
+    "length": 12,
+    "kind": "code",
+    "confidence": 0.99,
+    "provenance": "static",
+    "role": "OAM DMA routine copied to HRAM FF80",
+    "evidence": "0199-01a4 copies exactly 12 bytes from 03b5 to FF80; VBlank 01fe calls FF80. Decoded DI, LD A,c8, LDH(46), delay, EI, RET.",
+    "map_result": {
+      "id": 20
+    }
+  },
+  {
+    "offset": 961,
+    "length": 101,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 21
+    }
+  },
+  {
+    "offset": 1093,
+    "length": 14,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Return stub and VBlank interrupt enable/disable helpers",
+    "evidence": "detached-results.json inspection plus detached-static-results.json/decoded.json: coherent routine effects, branch/return boundaries and complete legal nonoverlapping decodes. Static semantic evidence; no execution claim.",
+    "map_result": {
+      "id": 58
+    }
+  },
+  {
+    "offset": 1107,
+    "length": 31,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 22
+    }
+  },
+  {
+    "offset": 1138,
+    "length": 10,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Absolute difference helper: subtract B, test sign and negate if negative",
+    "evidence": "detached-results.json inspection plus detached-static-results.json/decoded.json: coherent routine effects, branch/return boundaries and complete legal nonoverlapping decodes. Static semantic evidence; no execution claim.",
+    "map_result": {
+      "id": 59
+    }
+  },
+  {
+    "offset": 1148,
+    "length": 137,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 23
+    }
+  },
+  {
+    "offset": 1285,
+    "length": 35,
+    "kind": "code",
+    "confidence": 1,
+    "provenance": "observed",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b. collect-results.json: observed opcode fetch addresses and decoded lengths.",
+    "map_result": {
+      "id": 24
+    }
+  },
+  {
+    "offset": 1320,
+    "length": 3,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 25
+    }
+  },
+  {
+    "offset": 1323,
+    "length": 6,
+    "kind": "code",
+    "confidence": 1,
+    "provenance": "observed",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b. collect-results.json: observed opcode fetch addresses and decoded lengths.",
+    "map_result": {
+      "id": 26
+    }
+  },
+  {
+    "offset": 1329,
+    "length": 11,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 27
+    }
+  },
+  {
+    "offset": 1340,
+    "length": 16,
+    "kind": "code",
+    "confidence": 1,
+    "provenance": "observed",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b. collect-results.json: observed opcode fetch addresses and decoded lengths.",
+    "map_result": {
+      "id": 28
+    }
+  },
+  {
+    "offset": 1356,
+    "length": 32,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Sixteen little-endian state handler pointers",
+    "evidence": "053c-054b multiplies FFA4 by two and loads low/high address before JP HL. Last three pointers share RET at 022c. Table ends exactly at first handler 056c; state-value bounds need further audit.",
+    "map_result": {
+      "id": 29
+    }
+  },
+  {
+    "offset": 1388,
+    "length": 12,
+    "kind": "code",
+    "confidence": 1,
+    "provenance": "observed",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b. collect-results.json: observed opcode fetch addresses and decoded lengths.",
+    "map_result": {
+      "id": 30
+    }
+  },
+  {
+    "offset": 1400,
+    "length": 842,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 31
+    }
+  },
+  {
+    "offset": 2242,
+    "length": 8,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Two four-step palette fade sequences",
+    "evidence": "08a7/08ac select base; 08af loads B=4 and each loop reads HL+ before applying BG/object palettes.",
+    "map_result": {
+      "id": 67
+    }
+  },
+  {
+    "offset": 2250,
+    "length": 1540,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 32
+    }
+  },
+  {
+    "offset": 3790,
+    "length": 13,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Velocity-sign conditional adjustment wrapper",
+    "evidence": "detached-results.json inspection plus detached-static-results.json/decoded.json: coherent routine effects, branch/return boundaries and complete legal nonoverlapping decodes. Static semantic evidence; no execution claim.",
+    "map_result": {
+      "id": 60
+    }
+  },
+  {
+    "offset": 3803,
+    "length": 130,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 33
+    }
+  },
+  {
+    "offset": 3933,
+    "length": 31,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Paddle hit counter and bounded speed increment (26 wraps to 3)",
+    "evidence": "detached-results.json inspection plus detached-static-results.json/decoded.json: coherent routine effects, branch/return boundaries and complete legal nonoverlapping decodes. Static semantic evidence; no execution claim.",
+    "map_result": {
+      "id": 61
+    }
+  },
+  {
+    "offset": 3964,
+    "length": 143,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 34
+    }
+  },
+  {
+    "offset": 4107,
+    "length": 16,
+    "kind": "data",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Launch-angle selector constants",
+    "evidence": "0fd1 masks random value with 7 and indexes first eight bytes; remaining eight have matching constants before code at 101b. Structural repeated table evidence; second half usage not established.",
+    "map_result": {
+      "id": 68
+    }
+  },
+  {
+    "offset": 4123,
+    "length": 467,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 35
+    }
+  },
+  {
+    "offset": 4590,
+    "length": 50,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "25 little-endian velocity-table pointers",
+    "evidence": "0fc5/1062/111c index by twice speed-1. All 25 pointers point to consecutive 76-byte records ending at 198c; 0f6e bounds speed to 1..25 with wrap to 3.",
+    "map_result": {
+      "id": 69
+    }
+  },
+  {
+    "offset": 4640,
+    "length": 1900,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "25 velocity tables, each 19 four-byte direction records",
+    "evidence": "All pointer targets from 11ee match 76-byte strides. 0fdc/1137 multiply angle selector by four and load two successive 16-bit components. Repeated symmetric fixed-point component layout.",
+    "map_result": {
+      "id": 70
+    }
+  },
+  {
+    "offset": 6540,
+    "length": 291,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 36
+    }
+  },
+  {
+    "offset": 6831,
+    "length": 23,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Buffered VRAM command stream",
+    "evidence": "1a97 copies exactly 23 bytes to C901; 02a1 invokes parser 02c1. Stream parses to the exact boundary with zero terminator, VRAM destinations and literal/repeat payloads.",
+    "map_result": {
+      "id": 71
+    }
+  },
+  {
+    "offset": 6854,
+    "length": 24,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 37
+    }
+  },
+  {
+    "offset": 6878,
+    "length": 23,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Buffered VRAM command stream",
+    "evidence": "1ac6 copies exactly 23 bytes to C901; 02a1 invokes parser 02c1. Stream parses to the exact boundary with zero terminator, VRAM destinations and literal/repeat payloads.",
+    "map_result": {
+      "id": 72
+    }
+  },
+  {
+    "offset": 6901,
+    "length": 24,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 38
+    }
+  },
+  {
+    "offset": 6925,
+    "length": 14,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Buffered VRAM command stream",
+    "evidence": "1af5 copies exactly 14 bytes to C901; 02a1 invokes parser 02c1. Stream parses to the exact boundary with zero terminator, VRAM destinations and literal/repeat payloads.",
+    "map_result": {
+      "id": 73
+    }
+  },
+  {
+    "offset": 6939,
+    "length": 24,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 39
+    }
+  },
+  {
+    "offset": 6963,
+    "length": 14,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Buffered VRAM command stream",
+    "evidence": "1b1b copies exactly 14 bytes to C901; 02a1 invokes parser 02c1. Stream parses to the exact boundary with zero terminator, VRAM destinations and literal/repeat payloads.",
+    "map_result": {
+      "id": 74
+    }
+  },
+  {
+    "offset": 6977,
+    "length": 16,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Normal paddle impact angle mapping",
+    "evidence": "1129 selects this base; 1135 reads indexed byte and multiplies by four to select velocity record. 16-byte symmetric mapping before alternate table.",
+    "map_result": {
+      "id": 75
+    }
+  },
+  {
+    "offset": 6993,
+    "length": 12,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Short paddle impact angle mapping",
+    "evidence": "1132 selects alternate base based on FFC1; same record selector consumer. 12-byte symmetric mapping before score table.",
+    "map_result": {
+      "id": 76
+    }
+  },
+  {
+    "offset": 7005,
+    "length": 20,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Ten two-byte score thresholds for extra lives",
+    "evidence": "0c8f-0ca5 doubles FFA5, reads two bytes and increments threshold index; words increase in regular 1000-point steps.",
+    "map_result": {
+      "id": 77
+    }
+  },
+  {
+    "offset": 7025,
+    "length": 12,
+    "kind": "data",
+    "confidence": 0.99,
+    "provenance": "static",
+    "role": "Four three-byte score/time parameter records",
+    "evidence": "19e2-19f6 subtracts one from CA47, clamps the resulting unsigned index to 0..3, multiplies by three through 0454, and selects 1b71+BC. Four complete triples occupy exactly 12 bytes; pass-006-inspect-results.json.",
+    "map_result": {
+      "id": 78
+    }
+  },
+  {
+    "offset": 7037,
+    "length": 10,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Ten speed-delay counters",
+    "evidence": "1177 compares index with 10 before reading 1b7d+index; 118c stores value in FFC4.",
+    "map_result": {
+      "id": 79
+    }
+  },
+  {
+    "offset": 7047,
+    "length": 90,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Fifteen six-byte brick appearance/scoring records including default slots",
+    "evidence": "0951-0962 multiplies brick type-1 by six; reads tile and scoring fields. Multiple consumers reference same base; six-byte repeated records fill 90 bytes before stage table.",
+    "map_result": {
+      "id": 80
+    }
+  },
+  {
+    "offset": 7137,
+    "length": 99,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "33 stage records: mode flags and little-endian layout pointer",
+    "evidence": "06b3-06cc multiplies stage index by three and tests bits 7/6; 092a-0937 reads two pointer bytes. 33rd record repeats stage 1 for wraparound.",
+    "map_result": {
+      "id": 81
+    }
+  },
+  {
+    "offset": 7236,
+    "length": 197,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Stage brick grid in 14-cell rows with FF sentinel",
+    "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 14 rows, cells 0..4, exact sentinel at 1d08.",
+    "map_result": {
+      "id": 82
+    }
+  },
+  {
+    "offset": 7433,
+    "length": 197,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Stage brick grid in 14-cell rows with FF sentinel",
+    "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 14 rows, cells 0..4, exact sentinel at 1dcd.",
+    "map_result": {
+      "id": 83
+    }
+  },
+  {
+    "offset": 7630,
+    "length": 281,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Stage brick grid in 14-cell rows with FF sentinel",
+    "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 20 rows, cells 0..4, exact sentinel at 1ee6.",
+    "map_result": {
+      "id": 84
+    }
+  },
+  {
+    "offset": 7911,
+    "length": 225,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Stage brick grid in 14-cell rows with FF sentinel",
+    "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 16 rows, cells 0..4, exact sentinel at 1fc7.",
+    "map_result": {
+      "id": 85
+    }
+  },
+  {
+    "offset": 8136,
+    "length": 253,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Stage brick grid in 14-cell rows with FF sentinel",
+    "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 18 rows, cells 0..4, exact sentinel at 20c4.",
+    "map_result": {
+      "id": 86
+    }
+  },
+  {
+    "offset": 8389,
+    "length": 281,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Stage brick grid in 14-cell rows with FF sentinel",
+    "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 20 rows, cells 0..4, exact sentinel at 21dd.",
+    "map_result": {
+      "id": 87
+    }
+  },
+  {
+    "offset": 8670,
+    "length": 281,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Stage brick grid in 14-cell rows with FF sentinel",
+    "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 20 rows, cells 0..4, exact sentinel at 22f6.",
+    "map_result": {
+      "id": 88
+    }
+  },
+  {
+    "offset": 8951,
+    "length": 253,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Stage brick grid in 14-cell rows with FF sentinel",
+    "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 18 rows, cells 0..4, exact sentinel at 23f3.",
+    "map_result": {
+      "id": 89
+    }
+  },
+  {
+    "offset": 9204,
+    "length": 561,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Stage brick grid in 14-cell rows with FF sentinel",
+    "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 40 rows, cells 0..4, exact sentinel at 2624.",
+    "map_result": {
+      "id": 90
+    }
+  },
+  {
+    "offset": 9765,
+    "length": 561,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Stage brick grid in 14-cell rows with FF sentinel",
+    "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 40 rows, cells 0..4, exact sentinel at 2855.",
+    "map_result": {
+      "id": 91
+    }
+  },
+  {
+    "offset": 10326,
+    "length": 561,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Stage brick grid in 14-cell rows with FF sentinel",
+    "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 40 rows, cells 0..4, exact sentinel at 2a86.",
+    "map_result": {
+      "id": 92
+    }
+  },
+  {
+    "offset": 10887,
+    "length": 561,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Stage brick grid in 14-cell rows with FF sentinel",
+    "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 40 rows, cells 0..4, exact sentinel at 2cb7.",
+    "map_result": {
+      "id": 93
+    }
+  },
+  {
+    "offset": 11448,
+    "length": 561,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Stage brick grid in 14-cell rows with FF sentinel",
+    "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 40 rows, cells 0..4, exact sentinel at 2ee8.",
+    "map_result": {
+      "id": 94
+    }
+  },
+  {
+    "offset": 12009,
+    "length": 561,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Stage brick grid in 14-cell rows with FF sentinel",
+    "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 40 rows, cells 0..4, exact sentinel at 3119.",
+    "map_result": {
+      "id": 95
+    }
+  },
+  {
+    "offset": 12570,
+    "length": 561,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Stage brick grid in 14-cell rows with FF sentinel",
+    "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 40 rows, cells 0..4, exact sentinel at 334a.",
+    "map_result": {
+      "id": 96
+    }
+  },
+  {
+    "offset": 13131,
+    "length": 561,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Stage brick grid in 14-cell rows with FF sentinel",
+    "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 40 rows, cells 0..4, exact sentinel at 357b.",
+    "map_result": {
+      "id": 97
+    }
+  },
+  {
+    "offset": 13692,
+    "length": 281,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Stage brick grid in 14-cell rows with FF sentinel",
+    "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 20 rows, cells 0..4, exact sentinel at 3694.",
+    "map_result": {
+      "id": 98
+    }
+  },
+  {
+    "offset": 13973,
+    "length": 281,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Stage brick grid in 14-cell rows with FF sentinel",
+    "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 20 rows, cells 0..4, exact sentinel at 37ad.",
+    "map_result": {
+      "id": 99
+    }
+  },
+  {
+    "offset": 14254,
+    "length": 281,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Stage brick grid in 14-cell rows with FF sentinel",
+    "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 20 rows, cells 0..4, exact sentinel at 38c6.",
+    "map_result": {
+      "id": 100
+    }
+  },
+  {
+    "offset": 14535,
+    "length": 281,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Stage brick grid in 14-cell rows with FF sentinel",
+    "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 20 rows, cells 0..4, exact sentinel at 39df.",
+    "map_result": {
+      "id": 101
+    }
+  },
+  {
+    "offset": 14816,
+    "length": 281,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Stage brick grid in 14-cell rows with FF sentinel",
+    "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 20 rows, cells 0..4, exact sentinel at 3af8.",
+    "map_result": {
+      "id": 102
+    }
+  },
+  {
+    "offset": 15097,
+    "length": 281,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Stage brick grid in 14-cell rows with FF sentinel",
+    "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 20 rows, cells 0..4, exact sentinel at 3c11.",
+    "map_result": {
+      "id": 103
+    }
+  },
+  {
+    "offset": 15378,
+    "length": 281,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Stage brick grid in 14-cell rows with FF sentinel",
+    "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 20 rows, cells 0..4, exact sentinel at 3d2a.",
+    "map_result": {
+      "id": 104
+    }
+  },
+  {
+    "offset": 15659,
+    "length": 281,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Stage brick grid in 14-cell rows with FF sentinel",
+    "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 20 rows, cells 0..4, exact sentinel at 3e43.",
+    "map_result": {
+      "id": 105
+    }
+  },
+  {
+    "offset": 15940,
+    "length": 444,
+    "kind": "data",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Unreferenced 40-row brick grid, predominantly empty",
+    "evidence": "Same 14-cell schema as contiguous preceding layouts; exactly 560 cells (only 0/1) followed by FF at 4074. No pointer or execution usage established. Region split at physical bank boundary.",
+    "map_result": {
+      "id": 106
+    }
+  },
+  {
+    "offset": 16384,
+    "length": 117,
+    "kind": "data",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Unreferenced 40-row brick grid, predominantly empty",
+    "evidence": "Same 14-cell schema as contiguous preceding layouts; exactly 560 cells (only 0/1) followed by FF at 4074. No pointer or execution usage established. Region split at physical bank boundary.",
+    "map_result": {
+      "id": 107
+    }
+  },
+  {
+    "offset": 16501,
+    "length": 24,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Twelve little-endian scrolling-pattern pointers",
+    "evidence": "074c masks flag value and doubles it; 0753-0759 loads pointer; every pointer targets a 20-byte record in following region.",
+    "map_result": {
+      "id": 108
+    }
+  },
+  {
+    "offset": 16525,
+    "length": 320,
+    "kind": "data",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Sixteen 20-byte scrolling-pattern columns (four unreferenced)",
+    "evidence": "075a-076c copies exactly 20 bytes per selected pointer. Twelve pointers select first twelve columns; remaining four match same 20-byte repeated schema and border before next command stream.",
+    "map_result": {
+      "id": 109
+    }
+  },
+  {
+    "offset": 16845,
+    "length": 230,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Title display VRAM command stream",
+    "evidence": "Explicit DE base passed to 02c1 consumer. Parsed 15 commands, VRAM destinations, mode/count payloads, zero terminator and exact end at 42b3.",
+    "map_result": {
+      "id": 110
+    }
+  },
+  {
+    "offset": 17075,
+    "length": 128,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Display overlay VRAM command stream",
+    "evidence": "Explicit DE base passed to 02c1 consumer. Parsed 10 commands, VRAM destinations, mode/count payloads, zero terminator and exact end at 4333.",
+    "map_result": {
+      "id": 111
+    }
+  },
+  {
+    "offset": 17203,
+    "length": 169,
+    "kind": "data",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Unreferenced twelve-row brick-grid record",
+    "evidence": "169 bytes = 12*14 cells plus FF. Same row grammar proven by 0943-0976 and preceding layouts; cells 0 except one 1, sentinel at 43db. No usage established.",
+    "map_result": {
+      "id": 118
+    }
+  },
+  {
+    "offset": 17372,
+    "length": 281,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 40
+    }
+  },
+  {
+    "offset": 17653,
+    "length": 24,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "24 signed animation movement deltas",
+    "evidence": "4419/4479 initialize CA42=0; 44cf indexes 44f5 and increments CA42; 4429/4486 bound at 24. Signed deltas range -3..+3.",
+    "map_result": {
+      "id": 119
+    }
+  },
+  {
+    "offset": 17677,
+    "length": 68,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 41
+    }
+  },
+  {
+    "offset": 17745,
+    "length": 12,
+    "kind": "data",
+    "confidence": 0.99,
+    "provenance": "static",
+    "role": "Three animation frame selectors and three three-tile records",
+    "evidence": "4521 loops A from 2 down to 0; 4536 indexes selectors 00/01/02 at 4551. 453a-453d multiplies the selected byte by three through helper 0454, then 4540-454d reads three successive tile IDs at 4554+3*selector. Exactly 3+3*3=12 bytes; pass-006-inspect-results.json.",
+    "map_result": {
+      "id": 113
+    }
+  },
+  {
+    "offset": 17757,
+    "length": 60,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 42
+    }
+  },
+  {
+    "offset": 17817,
+    "length": 36,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "36 animation frame selectors",
+    "evidence": "457f indexes CA41, 458b increments it and 4592 compares with 36 before loop.",
+    "map_result": {
+      "id": 114
+    }
+  },
+  {
+    "offset": 17853,
+    "length": 41,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 43
+    }
+  },
+  {
+    "offset": 17894,
+    "length": 29,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "29 animation frame selectors",
+    "evidence": "45cc indexes CA41, 45d8 increments it and 45df compares with 29 before loop.",
+    "map_result": {
+      "id": 115
+    }
+  },
+  {
+    "offset": 17923,
+    "length": 1063,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 44
+    }
+  },
+  {
+    "offset": 18986,
+    "length": 18,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Write four-byte speed indicator sprite into OAM shadow C810",
+    "evidence": "detached-results.json inspection plus detached-static-results.json/decoded.json: coherent routine effects, branch/return boundaries and complete legal nonoverlapping decodes. Static semantic evidence; no execution claim.",
+    "map_result": {
+      "id": 62
+    }
+  },
+  {
+    "offset": 19004,
+    "length": 42,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Stage HUD VRAM command stream",
+    "evidence": "Explicit DE base passed to 02c1 consumer. Parsed 8 commands, VRAM destinations, mode/count payloads, zero terminator and exact end at 4a66.",
+    "map_result": {
+      "id": 112
+    }
+  },
+  {
+    "offset": 19046,
+    "length": 37,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 45
+    }
+  },
+  {
+    "offset": 19083,
+    "length": 26,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Thirteen big-endian sprite-composition pointers",
+    "evidence": "4a66 doubles frame selector; 4a6f reads D high byte then E low byte. Pointers target consecutive 16-byte records ending at 4b75.",
+    "map_result": {
+      "id": 116
+    }
+  },
+  {
+    "offset": 19109,
+    "length": 208,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Thirteen four-sprite composition records",
+    "evidence": "4a75 loads A=4, 4a78-4a88 reads four bytes per sprite (relative coordinates, tile and flags) to C888 shadow OAM. All pointer-defined records match exact 16-byte stride.",
+    "map_result": {
+      "id": 117
+    }
+  },
+  {
+    "offset": 19317,
+    "length": 2048,
+    "kind": "image",
+    "confidence": 0.99,
+    "provenance": "static",
+    "role": "128 Game Boy 2bpp tiles copied to VRAM 8000",
+    "evidence": "03a3-03b4 loads HL=4b75, DE=8000, BC=0800; byte-copy loop decrements BC to zero.",
+    "map_result": {
+      "id": 46
+    }
+  },
+  {
+    "offset": 21365,
+    "length": 2048,
+    "kind": "image",
+    "confidence": 0.99,
+    "provenance": "static",
+    "role": "128 Game Boy 2bpp tiles copied to VRAM 8800",
+    "evidence": "0392-03a1 loads HL=5375, DE=8800, BC=0800; byte-copy loop decrements BC to zero.",
+    "map_result": {
+      "id": 47
+    }
+  },
+  {
+    "offset": 23413,
+    "length": 2048,
+    "kind": "image",
+    "confidence": 0.99,
+    "provenance": "static",
+    "role": "128 Game Boy 2bpp tiles copied to VRAM 9000",
+    "evidence": "0381-0390 loads HL=5b75, DE=9000, BC=0800; byte-copy loop decrements BC to zero.",
+    "map_result": {
+      "id": 48
+    }
+  },
+  {
+    "offset": 25461,
+    "length": 13,
+    "kind": "code",
+    "confidence": 1,
+    "provenance": "observed",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b. collect-results.json: observed opcode fetch addresses and decoded lengths.",
+    "map_result": {
+      "id": 49
+    }
+  },
+  {
+    "offset": 25474,
+    "length": 152,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 50
+    }
+  },
+  {
+    "offset": 25626,
+    "length": 998,
+    "kind": "padding",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Erased-byte section alignment/tail fill",
+    "evidence": "Exact FF run 641a-6800, bounded by established structures. All decoded direct control targets audited: none enters this gap; no RST instructions in classified code. Reset and implemented interrupt slots contain explicit JP/RETI. Previous helper ends at641a, next sound engine begins on6800 section boundary.",
+    "map_result": {
+      "id": 158
+    }
+  },
+  {
+    "offset": 26624,
+    "length": 26,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 51
+    }
+  },
+  {
+    "offset": 26650,
+    "length": 305,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Detached joypad-bit to sound-request selectors; writes DFE0/DFE1/DFE8",
+    "evidence": "detached-results.json inspection plus detached-static-results.json/decoded.json: coherent routine effects, branch/return boundaries and complete legal nonoverlapping decodes. Static semantic evidence; no execution claim.",
+    "map_result": {
+      "id": 63
+    }
+  },
+  {
+    "offset": 26955,
+    "length": 1,
+    "kind": "code",
+    "confidence": 0.8,
+    "provenance": "static",
+    "role": "Unused trailing return stub",
+    "evidence": "C9 RET after last bit-selected DFE1 setter; same default-return convention as 6877/68ed/69a9. Detached semantic instruction, not observed.",
+    "map_result": {
+      "id": 120
+    }
+  },
+  {
+    "offset": 26956,
+    "length": 155,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Detached joypad-bit sound selector and joypad scan at 69aa",
+    "evidence": "detached-results.json inspection plus detached-static-results.json/decoded.json: coherent routine effects, branch/return boundaries and complete legal nonoverlapping decodes. Static semantic evidence; no execution claim.",
+    "map_result": {
+      "id": 64
+    }
+  },
+  {
+    "offset": 27111,
+    "length": 1328,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 52
+    }
+  },
+  {
+    "offset": 28439,
+    "length": 1,
+    "kind": "code",
+    "confidence": 0.8,
+    "provenance": "static",
+    "role": "Unused trailing return stub",
+    "evidence": "C9 RET after unconditional JP at 6f14. Adjacent sound helper uses same RET boundaries; unreachable redundant instruction, no execution claim.",
+    "map_result": {
+      "id": 121
+    }
+  },
+  {
+    "offset": 28440,
+    "length": 115,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 53
+    }
+  },
+  {
+    "offset": 28555,
+    "length": 4,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Clear music-control flag through 752c",
+    "evidence": "detached-results.json inspection plus detached-static-results.json/decoded.json: coherent routine effects, branch/return boundaries and complete legal nonoverlapping decodes. Static semantic evidence; no execution claim.",
+    "map_result": {
+      "id": 65
+    }
+  },
+  {
+    "offset": 28559,
+    "length": 29,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 54
+    }
+  },
+  {
+    "offset": 28588,
+    "length": 160,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "32 five-byte sound register presets",
+    "evidence": "6f9d-6fab writes exactly five bytes HL+ through successive LDH(C) sound registers. Explicit bases across 6axx-6dxx align at five-byte boundaries; last three unused records match complete preset layout.",
+    "map_result": {
+      "id": 122
+    }
+  },
+  {
+    "offset": 28748,
+    "length": 4,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Four-byte sound register preset",
+    "evidence": "705c loads HL=704c,C=20; 7073-707e reads exactly four consecutive bytes and writes FF20-FF23.",
+    "map_result": {
+      "id": 123
+    }
+  },
+  {
+    "offset": 28752,
+    "length": 1238,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 55
+    }
+  },
+  {
+    "offset": 29990,
+    "length": 11,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Set/clear sound-control flag DFF4",
+    "evidence": "detached-results.json inspection plus detached-static-results.json/decoded.json: coherent routine effects, branch/return boundaries and complete legal nonoverlapping decodes. Static semantic evidence; no execution claim.",
+    "map_result": {
+      "id": 66
+    }
+  },
+  {
+    "offset": 30001,
+    "length": 67,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "67 high-byte note frequency register values",
+    "evidence": "73d3 and 7442 use note index to read high component for FF19/FF1e. Parallel 67-byte low table immediately follows; repeated high components and monotone combined 11-bit frequency progression.",
+    "map_result": {
+      "id": 124
+    }
+  },
+  {
+    "offset": 30068,
+    "length": 67,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "67 low-byte note frequency register values",
+    "evidence": "73c9 and 7438 use same note index for FF18/FF1d; paired with high-byte table 7531. No execution claim for unused upper note indices.",
+    "map_result": {
+      "id": 125
+    }
+  },
+  {
+    "offset": 30135,
+    "length": 44,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "44 note-duration constants",
+    "evidence": "7478/748d mask control byte with 7f and index this table, then immediately resume voice reader. All stream duration controls below use index <=42; 44 constants form four repeated tempo groups before first explicit sequence base.",
+    "map_result": {
+      "id": 126
+    }
+  },
+  {
+    "offset": 30179,
+    "length": 111,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Voice sequence with stop marker",
+    "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 7651. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+    "map_result": {
+      "id": 127
+    }
+  },
+  {
+    "offset": 30290,
+    "length": 113,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Voice sequence with stop marker",
+    "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 76c2. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+    "map_result": {
+      "id": 128
+    }
+  },
+  {
+    "offset": 30403,
+    "length": 22,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Voice sequence with stop marker",
+    "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 76d8. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+    "map_result": {
+      "id": 129
+    }
+  },
+  {
+    "offset": 30425,
+    "length": 23,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Voice sequence with stop marker",
+    "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 76ef. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+    "map_result": {
+      "id": 130
+    }
+  },
+  {
+    "offset": 30448,
+    "length": 34,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Voice sequence with stop marker",
+    "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 7711. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+    "map_result": {
+      "id": 131
+    }
+  },
+  {
+    "offset": 30482,
+    "length": 33,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Voice sequence with stop marker",
+    "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 7732. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+    "map_result": {
+      "id": 132
+    }
+  },
+  {
+    "offset": 30515,
+    "length": 5,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Voice sequence with stop marker",
+    "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 7737. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+    "map_result": {
+      "id": 133
+    }
+  },
+  {
+    "offset": 30520,
+    "length": 3,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Voice sequence with stop marker",
+    "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 773a. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+    "map_result": {
+      "id": 134
+    }
+  },
+  {
+    "offset": 30523,
+    "length": 21,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Voice sequence with stop marker",
+    "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 774f. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+    "map_result": {
+      "id": 135
+    }
+  },
+  {
+    "offset": 30544,
+    "length": 21,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Voice sequence with stop marker",
+    "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 7764. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+    "map_result": {
+      "id": 136
+    }
+  },
+  {
+    "offset": 30565,
+    "length": 54,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Voice sequence with loop marker",
+    "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 779a. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+    "map_result": {
+      "id": 137
+    }
+  },
+  {
+    "offset": 30619,
+    "length": 60,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Voice sequence with loop marker",
+    "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 77d6. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+    "map_result": {
+      "id": 138
+    }
+  },
+  {
+    "offset": 30679,
+    "length": 54,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Voice sequence with loop marker",
+    "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 780c. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+    "map_result": {
+      "id": 139
+    }
+  },
+  {
+    "offset": 30733,
+    "length": 60,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Voice sequence with loop marker",
+    "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 7848. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+    "map_result": {
+      "id": 140
+    }
+  },
+  {
+    "offset": 30793,
+    "length": 19,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Voice sequence with stop marker",
+    "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 785b. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+    "map_result": {
+      "id": 141
+    }
+  },
+  {
+    "offset": 30812,
+    "length": 25,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Voice sequence with stop marker",
+    "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 7874. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+    "map_result": {
+      "id": 142
+    }
+  },
+  {
+    "offset": 30837,
+    "length": 18,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Voice sequence with stop marker",
+    "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 7886. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+    "map_result": {
+      "id": 143
+    }
+  },
+  {
+    "offset": 30855,
+    "length": 21,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Voice sequence with stop marker",
+    "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 789b. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+    "map_result": {
+      "id": 144
+    }
+  },
+  {
+    "offset": 30876,
+    "length": 58,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Voice sequence with stop marker",
+    "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 78d5. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+    "map_result": {
+      "id": 145
+    }
+  },
+  {
+    "offset": 30934,
+    "length": 57,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Voice sequence with stop marker",
+    "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 790e. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+    "map_result": {
+      "id": 146
+    }
+  },
+  {
+    "offset": 30991,
+    "length": 10,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Voice sequence with stop marker",
+    "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 7918. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+    "map_result": {
+      "id": 147
+    }
+  },
+  {
+    "offset": 31001,
+    "length": 6,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Voice sequence with stop marker",
+    "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 791e. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+    "map_result": {
+      "id": 148
+    }
+  },
+  {
+    "offset": 31007,
+    "length": 105,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Voice sequence with stop marker",
+    "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 7987. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+    "map_result": {
+      "id": 149
+    }
+  },
+  {
+    "offset": 31112,
+    "length": 231,
+    "kind": "data",
+    "confidence": 0.9,
+    "provenance": "static",
+    "role": "Voice sequence with stop marker",
+    "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 7a6e. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+    "map_result": {
+      "id": 150
+    }
+  },
+  {
+    "offset": 31343,
+    "length": 16,
+    "kind": "data",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "16-byte Game Boy wave RAM waveform",
+    "evidence": "745f loads HL=7a6f,C=30; 7464-7470 copies 16 bytes to FF30-FF3f, bounded by DFF7 counter ==16.",
+    "map_result": {
+      "id": 151
+    }
+  },
+  {
+    "offset": 31359,
+    "length": 1393,
+    "kind": "padding",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Erased-byte section alignment/tail fill",
+    "evidence": "Exact FF run 7a7f-7ff0, bounded by established structures. All decoded direct control targets audited: none enters this gap; no RST instructions in classified code. Reset and implemented interrupt slots contain explicit JP/RETI. 16-byte waveform ends at7a7f; FF fill extends to VBlank trampoline at7ff0. Voice streams stop/loop before waveform and no data consumer extends here.",
+    "map_result": {
+      "id": 159
+    }
+  },
+  {
+    "offset": 32752,
+    "length": 7,
+    "kind": "code",
+    "confidence": 0.85,
+    "provenance": "static",
+    "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+    "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+    "map_result": {
+      "id": 56
+    }
+  },
+  {
+    "offset": 32759,
+    "length": 9,
+    "kind": "padding",
+    "confidence": 0.95,
+    "provenance": "static",
+    "role": "Erased-byte section alignment/tail fill",
+    "evidence": "Exact FF run 7ff7-8000, bounded by established structures. All decoded direct control targets audited: none enters this gap; no RST instructions in classified code. Reset and implemented interrupt slots contain explicit JP/RETI. Trampoline/unused return helper ends at7ff7; FF tail fills to ROM end8000.",
+    "map_result": {
+      "id": 160
+    }
+  }
+]

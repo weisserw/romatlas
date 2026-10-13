@@ -1,0 +1,3085 @@
+{
+  "version": 1,
+  "platform": "gb",
+  "image_sha256": "ed8070e011713527bdc03e2b9cec9f9c4a7e3aaa00e57e8786a186b265da1bb2",
+  "image_size": 32768,
+  "regions": {
+    "1": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 0,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 3,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "2": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 64,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 3,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "3": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 72,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 3,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "4": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 80,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 3,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "5": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 88,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 3,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "6": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 96,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 1,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "7": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 256,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 4,
+      "kind": "Code",
+      "provenance": "Observed",
+      "confidence": 1.0
+    },
+    "8": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 260,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 76,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0
+    },
+    "9": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 336,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 159,
+      "kind": "Code",
+      "provenance": "Observed",
+      "confidence": 1.0
+    },
+    "10": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 495,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 50,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "11": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 545,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 5,
+      "kind": "Code",
+      "provenance": "Observed",
+      "confidence": 1.0
+    },
+    "12": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 550,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 7,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "13": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 557,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 16,
+      "kind": "Code",
+      "provenance": "Observed",
+      "confidence": 1.0
+    },
+    "14": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 573,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 90,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "15": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 663,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 10,
+      "kind": "Code",
+      "provenance": "Observed",
+      "confidence": 1.0
+    },
+    "16": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 673,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 97,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "17": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 856,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 20,
+      "kind": "Code",
+      "provenance": "Observed",
+      "confidence": 1.0
+    },
+    "18": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 876,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 21,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "19": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 897,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 52,
+      "kind": "Code",
+      "provenance": "Observed",
+      "confidence": 1.0
+    },
+    "20": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 949,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 12,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.99
+    },
+    "21": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 961,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 101,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "22": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 1107,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 31,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "23": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 1148,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 137,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "24": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 1285,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 35,
+      "kind": "Code",
+      "provenance": "Observed",
+      "confidence": 1.0
+    },
+    "25": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 1320,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 3,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "26": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 1323,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 6,
+      "kind": "Code",
+      "provenance": "Observed",
+      "confidence": 1.0
+    },
+    "27": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 1329,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 11,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "28": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 1340,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 16,
+      "kind": "Code",
+      "provenance": "Observed",
+      "confidence": 1.0
+    },
+    "29": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 1356,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 32,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "30": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 1388,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 12,
+      "kind": "Code",
+      "provenance": "Observed",
+      "confidence": 1.0
+    },
+    "31": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 1400,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 842,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "32": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 2250,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 1540,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "33": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 3803,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 130,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "34": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 3964,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 143,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "35": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 4123,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 467,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "36": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 6540,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 291,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "37": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 6854,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 24,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "38": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 6901,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 24,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "39": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 6939,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 24,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "40": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 17372,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 281,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "41": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 17677,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 68,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "42": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 17757,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 60,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "43": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 17853,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 41,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "44": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 17923,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 1063,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "45": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 19046,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 37,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "46": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 19317,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 2048,
+      "kind": "Image",
+      "provenance": "Static",
+      "confidence": 0.99
+    },
+    "47": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 21365,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 2048,
+      "kind": "Image",
+      "provenance": "Static",
+      "confidence": 0.99
+    },
+    "48": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 23413,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 2048,
+      "kind": "Image",
+      "provenance": "Static",
+      "confidence": 0.99
+    },
+    "49": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 25461,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 13,
+      "kind": "Code",
+      "provenance": "Observed",
+      "confidence": 1.0
+    },
+    "50": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 25474,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 152,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "51": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 26624,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 26,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "52": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 27111,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 1328,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "53": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 28440,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 115,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "54": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 28559,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 29,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "55": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 28752,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 1238,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "56": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 32752,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 7,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "57": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 770,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 86,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "58": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 1093,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 14,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "59": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 1138,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 10,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "60": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 3790,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 13,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "61": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 3933,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 31,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "62": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 18986,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 18,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "63": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 26650,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 305,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "64": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 26956,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 155,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "65": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 28555,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 4,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "66": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 29990,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 11,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "67": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 2242,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "68": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 4107,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "69": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 4590,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 50,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "70": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 4640,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 1900,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "71": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 6831,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 23,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "72": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 6878,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 23,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "73": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 6925,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 14,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "74": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 6963,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 14,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "75": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 6977,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "76": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 6993,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "77": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 7005,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 20,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "78": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 7025,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.99
+    },
+    "79": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 7037,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 10,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "80": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 7047,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 90,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "81": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 7137,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 99,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "82": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 7236,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 197,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "83": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 7433,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 197,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "84": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 7630,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 281,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "85": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 7911,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 225,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "86": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 8136,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 253,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "87": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 8389,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 281,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "88": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 8670,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 281,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "89": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 8951,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 253,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "90": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 9204,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 561,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "91": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 9765,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 561,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "92": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 10326,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 561,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "93": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 10887,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 561,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "94": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 11448,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 561,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "95": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 12009,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 561,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "96": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 12570,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 561,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "97": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 13131,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 561,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "98": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 13692,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 281,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "99": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 13973,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 281,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "100": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 14254,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 281,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "101": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 14535,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 281,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "102": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 14816,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 281,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "103": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 15097,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 281,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "104": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 15378,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 281,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "105": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 15659,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 281,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "106": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 15940,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 444,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "107": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 16384,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 117,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "108": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 16501,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 24,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "109": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 16525,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 320,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "110": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 16845,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 230,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "111": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 17075,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 128,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "112": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 19004,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 42,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "113": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 17745,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.99
+    },
+    "114": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 17817,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 36,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "115": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 17894,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 29,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "116": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 19083,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 26,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "117": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 19109,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 208,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "118": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 17203,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 169,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.85
+    },
+    "119": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 17653,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 24,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "120": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 26955,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 1,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.8
+    },
+    "121": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 28439,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 1,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.8
+    },
+    "122": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 28588,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 160,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "123": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 28748,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "124": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 30001,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 67,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "125": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 30068,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 67,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "126": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 30135,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 44,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "127": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 30179,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 111,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "128": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 30290,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 113,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "129": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 30403,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 22,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "130": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 30425,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 23,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "131": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 30448,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 34,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "132": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 30482,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 33,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "133": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 30515,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 5,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "134": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 30520,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 3,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "135": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 30523,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 21,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "136": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 30544,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 21,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "137": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 30565,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 54,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "138": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 30619,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 60,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "139": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 30679,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 54,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "140": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 30733,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 60,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "141": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 30793,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 19,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "142": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 30812,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 25,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "143": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 30837,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 18,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "144": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 30855,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 21,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "145": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 30876,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 58,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "146": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 30934,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 57,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "147": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 30991,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 10,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "148": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 31001,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "149": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 31007,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 105,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "150": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 31112,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 231,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.9
+    },
+    "151": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 31343,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "152": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 3,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 61,
+      "kind": "Padding",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "153": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 67,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 5,
+      "kind": "Padding",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "154": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 75,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 5,
+      "kind": "Padding",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "155": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 83,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 5,
+      "kind": "Padding",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "156": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 91,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 5,
+      "kind": "Padding",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "157": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 97,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 159,
+      "kind": "Padding",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "158": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 25626,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 998,
+      "kind": "Padding",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "159": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 31359,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 1393,
+      "kind": "Padding",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "160": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 32759,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 9,
+      "kind": "Padding",
+      "provenance": "Static",
+      "confidence": 0.95
+    }
+  },
+  "next_id": 161,
+  "metadata": {
+    "gb.sym.labels": [
+      {
+        "address": 256,
+        "annotation": "CartridgeEntry",
+        "bank": 0
+      },
+      {
+        "address": 336,
+        "annotation": "ResetInitialize",
+        "bank": 0
+      },
+      {
+        "address": 495,
+        "annotation": "VBlankHandler",
+        "bank": 0
+      },
+      {
+        "address": 545,
+        "annotation": "WaitVBlank",
+        "bank": 0
+      },
+      {
+        "address": 557,
+        "annotation": "RestoreInterrupts",
+        "bank": 0
+      },
+      {
+        "address": 563,
+        "annotation": "DisableInterrupts",
+        "bank": 0
+      },
+      {
+        "address": 608,
+        "annotation": "StatHandler",
+        "bank": 0
+      },
+      {
+        "address": 626,
+        "annotation": "SerialHandler",
+        "bank": 0
+      },
+      {
+        "address": 705,
+        "annotation": "ApplyVramCommands",
+        "bank": 0
+      },
+      {
+        "address": 770,
+        "annotation": "UnusedInlineRectTransfer",
+        "bank": 0
+      },
+      {
+        "address": 897,
+        "annotation": "LoadTileGraphics",
+        "bank": 0
+      },
+      {
+        "address": 949,
+        "annotation": "OamDmaSource",
+        "bank": 0
+      },
+      {
+        "address": 961,
+        "annotation": "ReadJoypad",
+        "bank": 0
+      },
+      {
+        "address": 1108,
+        "annotation": "MultiplyBByE",
+        "bank": 0
+      },
+      {
+        "address": 1297,
+        "annotation": "MainLoop",
+        "bank": 0
+      },
+      {
+        "address": 1340,
+        "annotation": "DispatchGameState",
+        "bank": 0
+      },
+      {
+        "address": 1356,
+        "annotation": "GameStatePointers",
+        "bank": 0
+      },
+      {
+        "address": 1410,
+        "annotation": "TitleSetup",
+        "bank": 0
+      },
+      {
+        "address": 1698,
+        "annotation": "StageEntry",
+        "bank": 0
+      },
+      {
+        "address": 1907,
+        "annotation": "AwaitBallLaunch",
+        "bank": 0
+      },
+      {
+        "address": 1956,
+        "annotation": "PlayFrame",
+        "bank": 0
+      },
+      {
+        "address": 2311,
+        "annotation": "PausedFrame",
+        "bank": 0
+      },
+      {
+        "address": 4260,
+        "annotation": "MovePaddle",
+        "bank": 0
+      },
+      {
+        "address": 4590,
+        "annotation": "VelocityTablePointers",
+        "bank": 0
+      },
+      {
+        "address": 7137,
+        "annotation": "StageDefinitionTable",
+        "bank": 0
+      },
+      {
+        "address": 19046,
+        "annotation": "ComposeFourSprites",
+        "bank": 1
+      },
+      {
+        "address": 19317,
+        "annotation": "TileGraphics8000",
+        "bank": 1
+      },
+      {
+        "address": 21365,
+        "annotation": "TileGraphics8800",
+        "bank": 1
+      },
+      {
+        "address": 23413,
+        "annotation": "TileGraphics9000",
+        "bank": 1
+      },
+      {
+        "address": 26624,
+        "annotation": "UpdateAudio",
+        "bank": 1
+      },
+      {
+        "address": 28573,
+        "annotation": "WriteFiveAudioRegisters",
+        "bank": 1
+      },
+      {
+        "address": 29592,
+        "annotation": "ReadPulseVoice",
+        "bank": 1
+      },
+      {
+        "address": 29700,
+        "annotation": "ReadWaveVoice",
+        "bank": 1
+      },
+      {
+        "address": 30001,
+        "annotation": "NoteFrequencyHigh",
+        "bank": 1
+      },
+      {
+        "address": 30068,
+        "annotation": "NoteFrequencyLow",
+        "bank": 1
+      },
+      {
+        "address": 30135,
+        "annotation": "NoteDurations",
+        "bank": 1
+      },
+      {
+        "address": 31343,
+        "annotation": "WaveformData",
+        "bank": 1
+      },
+      {
+        "address": 32752,
+        "annotation": "VBlankAudioTrampoline",
+        "bank": 1
+      }
+    ]
+  },
+  "region_metadata": {
+    "1": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:3"
+    },
+    "2": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:3"
+    },
+    "3": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:3"
+    },
+    "4": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:3"
+    },
+    "5": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:3"
+    },
+    "6": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:1"
+    },
+    "7": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b. collect-results.json: observed opcode fetch addresses and decoded lengths.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:4"
+    },
+    "8": {
+      "evidence": "Header location and valid header checksum from run.py inspect; ROM title ALLEY WAY, destination 1, version 0.",
+      "role": "Game Boy boot logo and cartridge metadata/checksums",
+      "sym": ".data:4c"
+    },
+    "9": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b. collect-results.json: observed opcode fetch addresses and decoded lengths.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:9f"
+    },
+    "10": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:32"
+    },
+    "11": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b. collect-results.json: observed opcode fetch addresses and decoded lengths.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:5"
+    },
+    "12": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:7"
+    },
+    "13": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b. collect-results.json: observed opcode fetch addresses and decoded lengths.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:10"
+    },
+    "14": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:5a"
+    },
+    "15": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b. collect-results.json: observed opcode fetch addresses and decoded lengths.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:a"
+    },
+    "16": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:61"
+    },
+    "17": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b. collect-results.json: observed opcode fetch addresses and decoded lengths.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:14"
+    },
+    "18": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:15"
+    },
+    "19": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b. collect-results.json: observed opcode fetch addresses and decoded lengths.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:34"
+    },
+    "20": {
+      "evidence": "0199-01a4 copies exactly 12 bytes from 03b5 to FF80; VBlank 01fe calls FF80. Decoded DI, LD A,c8, LDH(46), delay, EI, RET.",
+      "role": "OAM DMA routine copied to HRAM FF80",
+      "sym": ".code:c"
+    },
+    "21": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:65"
+    },
+    "22": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:1f"
+    },
+    "23": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:89"
+    },
+    "24": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b. collect-results.json: observed opcode fetch addresses and decoded lengths.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:23"
+    },
+    "25": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:3"
+    },
+    "26": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b. collect-results.json: observed opcode fetch addresses and decoded lengths.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:6"
+    },
+    "27": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:b"
+    },
+    "28": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b. collect-results.json: observed opcode fetch addresses and decoded lengths.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:10"
+    },
+    "29": {
+      "evidence": "053c-054b multiplies FFA4 by two and loads low/high address before JP HL. Last three pointers share RET at 022c. Table ends exactly at first handler 056c; state-value bounds need further audit.",
+      "role": "Sixteen little-endian state handler pointers",
+      "sym": ".data:20"
+    },
+    "30": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b. collect-results.json: observed opcode fetch addresses and decoded lengths.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:c"
+    },
+    "31": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:34a"
+    },
+    "32": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:604"
+    },
+    "33": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:82"
+    },
+    "34": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:8f"
+    },
+    "35": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:1d3"
+    },
+    "36": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:123"
+    },
+    "37": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:18"
+    },
+    "38": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:18"
+    },
+    "39": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:18"
+    },
+    "40": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:119"
+    },
+    "41": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:44"
+    },
+    "42": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:3c"
+    },
+    "43": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:29"
+    },
+    "44": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:427"
+    },
+    "45": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:25"
+    },
+    "46": {
+      "evidence": "03a3-03b4 loads HL=4b75, DE=8000, BC=0800; byte-copy loop decrements BC to zero.",
+      "role": "128 Game Boy 2bpp tiles copied to VRAM 8000",
+      "sym": ".image:800"
+    },
+    "47": {
+      "evidence": "0392-03a1 loads HL=5375, DE=8800, BC=0800; byte-copy loop decrements BC to zero.",
+      "role": "128 Game Boy 2bpp tiles copied to VRAM 8800",
+      "sym": ".image:800"
+    },
+    "48": {
+      "evidence": "0381-0390 loads HL=5b75, DE=9000, BC=0800; byte-copy loop decrements BC to zero.",
+      "role": "128 Game Boy 2bpp tiles copied to VRAM 9000",
+      "sym": ".image:800"
+    },
+    "49": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b. collect-results.json: observed opcode fetch addresses and decoded lengths.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:d"
+    },
+    "50": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:98"
+    },
+    "51": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:1a"
+    },
+    "52": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:530"
+    },
+    "53": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:73"
+    },
+    "54": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:1d"
+    },
+    "55": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:4d6"
+    },
+    "56": {
+      "evidence": "static-results.json and static-decoded.json: fixed bank 0/switch bank 1; complete legal decodes; no overlap. Dispatch consumer at 053c-054b.",
+      "role": "Executable control-flow segment reached from reset/interrupt vectors, frame-wait continuation or inspected state-dispatch targets.",
+      "sym": ".code:7"
+    },
+    "57": {
+      "evidence": "detached-results.json inspection plus detached-static-results.json/decoded.json: coherent routine effects, branch/return boundaries and complete legal nonoverlapping decodes. Static semantic evidence; no execution claim.",
+      "role": "Inline-pointer rectangular transfer helper; POP DE extracts and advances return address, copies/repeats rows with 32-byte destination stride",
+      "sym": ".code:56"
+    },
+    "58": {
+      "evidence": "detached-results.json inspection plus detached-static-results.json/decoded.json: coherent routine effects, branch/return boundaries and complete legal nonoverlapping decodes. Static semantic evidence; no execution claim.",
+      "role": "Return stub and VBlank interrupt enable/disable helpers",
+      "sym": ".code:e"
+    },
+    "59": {
+      "evidence": "detached-results.json inspection plus detached-static-results.json/decoded.json: coherent routine effects, branch/return boundaries and complete legal nonoverlapping decodes. Static semantic evidence; no execution claim.",
+      "role": "Absolute difference helper: subtract B, test sign and negate if negative",
+      "sym": ".code:a"
+    },
+    "60": {
+      "evidence": "detached-results.json inspection plus detached-static-results.json/decoded.json: coherent routine effects, branch/return boundaries and complete legal nonoverlapping decodes. Static semantic evidence; no execution claim.",
+      "role": "Velocity-sign conditional adjustment wrapper",
+      "sym": ".code:d"
+    },
+    "61": {
+      "evidence": "detached-results.json inspection plus detached-static-results.json/decoded.json: coherent routine effects, branch/return boundaries and complete legal nonoverlapping decodes. Static semantic evidence; no execution claim.",
+      "role": "Paddle hit counter and bounded speed increment (26 wraps to 3)",
+      "sym": ".code:1f"
+    },
+    "62": {
+      "evidence": "detached-results.json inspection plus detached-static-results.json/decoded.json: coherent routine effects, branch/return boundaries and complete legal nonoverlapping decodes. Static semantic evidence; no execution claim.",
+      "role": "Write four-byte speed indicator sprite into OAM shadow C810",
+      "sym": ".code:12"
+    },
+    "63": {
+      "evidence": "detached-results.json inspection plus detached-static-results.json/decoded.json: coherent routine effects, branch/return boundaries and complete legal nonoverlapping decodes. Static semantic evidence; no execution claim.",
+      "role": "Detached joypad-bit to sound-request selectors; writes DFE0/DFE1/DFE8",
+      "sym": ".code:131"
+    },
+    "64": {
+      "evidence": "detached-results.json inspection plus detached-static-results.json/decoded.json: coherent routine effects, branch/return boundaries and complete legal nonoverlapping decodes. Static semantic evidence; no execution claim.",
+      "role": "Detached joypad-bit sound selector and joypad scan at 69aa",
+      "sym": ".code:9b"
+    },
+    "65": {
+      "evidence": "detached-results.json inspection plus detached-static-results.json/decoded.json: coherent routine effects, branch/return boundaries and complete legal nonoverlapping decodes. Static semantic evidence; no execution claim.",
+      "role": "Clear music-control flag through 752c",
+      "sym": ".code:4"
+    },
+    "66": {
+      "evidence": "detached-results.json inspection plus detached-static-results.json/decoded.json: coherent routine effects, branch/return boundaries and complete legal nonoverlapping decodes. Static semantic evidence; no execution claim.",
+      "role": "Set/clear sound-control flag DFF4",
+      "sym": ".code:b"
+    },
+    "67": {
+      "evidence": "08a7/08ac select base; 08af loads B=4 and each loop reads HL+ before applying BG/object palettes.",
+      "role": "Two four-step palette fade sequences",
+      "sym": ".data:8"
+    },
+    "68": {
+      "evidence": "0fd1 masks random value with 7 and indexes first eight bytes; remaining eight have matching constants before code at 101b. Structural repeated table evidence; second half usage not established.",
+      "role": "Launch-angle selector constants",
+      "sym": ".data:10"
+    },
+    "69": {
+      "evidence": "0fc5/1062/111c index by twice speed-1. All 25 pointers point to consecutive 76-byte records ending at 198c; 0f6e bounds speed to 1..25 with wrap to 3.",
+      "role": "25 little-endian velocity-table pointers",
+      "sym": ".data:32"
+    },
+    "70": {
+      "evidence": "All pointer targets from 11ee match 76-byte strides. 0fdc/1137 multiply angle selector by four and load two successive 16-bit components. Repeated symmetric fixed-point component layout.",
+      "role": "25 velocity tables, each 19 four-byte direction records",
+      "sym": ".data:76c"
+    },
+    "71": {
+      "evidence": "1a97 copies exactly 23 bytes to C901; 02a1 invokes parser 02c1. Stream parses to the exact boundary with zero terminator, VRAM destinations and literal/repeat payloads.",
+      "role": "Buffered VRAM command stream",
+      "sym": ".data:17"
+    },
+    "72": {
+      "evidence": "1ac6 copies exactly 23 bytes to C901; 02a1 invokes parser 02c1. Stream parses to the exact boundary with zero terminator, VRAM destinations and literal/repeat payloads.",
+      "role": "Buffered VRAM command stream",
+      "sym": ".data:17"
+    },
+    "73": {
+      "evidence": "1af5 copies exactly 14 bytes to C901; 02a1 invokes parser 02c1. Stream parses to the exact boundary with zero terminator, VRAM destinations and literal/repeat payloads.",
+      "role": "Buffered VRAM command stream",
+      "sym": ".data:e"
+    },
+    "74": {
+      "evidence": "1b1b copies exactly 14 bytes to C901; 02a1 invokes parser 02c1. Stream parses to the exact boundary with zero terminator, VRAM destinations and literal/repeat payloads.",
+      "role": "Buffered VRAM command stream",
+      "sym": ".data:e"
+    },
+    "75": {
+      "evidence": "1129 selects this base; 1135 reads indexed byte and multiplies by four to select velocity record. 16-byte symmetric mapping before alternate table.",
+      "role": "Normal paddle impact angle mapping",
+      "sym": ".data:10"
+    },
+    "76": {
+      "evidence": "1132 selects alternate base based on FFC1; same record selector consumer. 12-byte symmetric mapping before score table.",
+      "role": "Short paddle impact angle mapping",
+      "sym": ".data:c"
+    },
+    "77": {
+      "evidence": "0c8f-0ca5 doubles FFA5, reads two bytes and increments threshold index; words increase in regular 1000-point steps.",
+      "role": "Ten two-byte score thresholds for extra lives",
+      "sym": ".data:14"
+    },
+    "78": {
+      "evidence": "19e2-19f6 subtracts one from CA47, clamps the resulting unsigned index to 0..3, multiplies by three through 0454, and selects 1b71+BC. Four complete triples occupy exactly 12 bytes; pass-006-inspect-results.json.",
+      "role": "Four three-byte score/time parameter records",
+      "sym": ".data:c"
+    },
+    "79": {
+      "evidence": "1177 compares index with 10 before reading 1b7d+index; 118c stores value in FFC4.",
+      "role": "Ten speed-delay counters",
+      "sym": ".data:a"
+    },
+    "80": {
+      "evidence": "0951-0962 multiplies brick type-1 by six; reads tile and scoring fields. Multiple consumers reference same base; six-byte repeated records fill 90 bytes before stage table.",
+      "role": "Fifteen six-byte brick appearance/scoring records including default slots",
+      "sym": ".data:5a"
+    },
+    "81": {
+      "evidence": "06b3-06cc multiplies stage index by three and tests bits 7/6; 092a-0937 reads two pointer bytes. 33rd record repeats stage 1 for wraparound.",
+      "role": "33 stage records: mode flags and little-endian layout pointer",
+      "sym": ".data:63"
+    },
+    "82": {
+      "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 14 rows, cells 0..4, exact sentinel at 1d08.",
+      "role": "Stage brick grid in 14-cell rows with FF sentinel",
+      "sym": ".data:c5"
+    },
+    "83": {
+      "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 14 rows, cells 0..4, exact sentinel at 1dcd.",
+      "role": "Stage brick grid in 14-cell rows with FF sentinel",
+      "sym": ".data:c5"
+    },
+    "84": {
+      "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 20 rows, cells 0..4, exact sentinel at 1ee6.",
+      "role": "Stage brick grid in 14-cell rows with FF sentinel",
+      "sym": ".data:119"
+    },
+    "85": {
+      "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 16 rows, cells 0..4, exact sentinel at 1fc7.",
+      "role": "Stage brick grid in 14-cell rows with FF sentinel",
+      "sym": ".data:e1"
+    },
+    "86": {
+      "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 18 rows, cells 0..4, exact sentinel at 20c4.",
+      "role": "Stage brick grid in 14-cell rows with FF sentinel",
+      "sym": ".data:fd"
+    },
+    "87": {
+      "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 20 rows, cells 0..4, exact sentinel at 21dd.",
+      "role": "Stage brick grid in 14-cell rows with FF sentinel",
+      "sym": ".data:119"
+    },
+    "88": {
+      "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 20 rows, cells 0..4, exact sentinel at 22f6.",
+      "role": "Stage brick grid in 14-cell rows with FF sentinel",
+      "sym": ".data:119"
+    },
+    "89": {
+      "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 18 rows, cells 0..4, exact sentinel at 23f3.",
+      "role": "Stage brick grid in 14-cell rows with FF sentinel",
+      "sym": ".data:fd"
+    },
+    "90": {
+      "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 40 rows, cells 0..4, exact sentinel at 2624.",
+      "role": "Stage brick grid in 14-cell rows with FF sentinel",
+      "sym": ".data:231"
+    },
+    "91": {
+      "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 40 rows, cells 0..4, exact sentinel at 2855.",
+      "role": "Stage brick grid in 14-cell rows with FF sentinel",
+      "sym": ".data:231"
+    },
+    "92": {
+      "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 40 rows, cells 0..4, exact sentinel at 2a86.",
+      "role": "Stage brick grid in 14-cell rows with FF sentinel",
+      "sym": ".data:231"
+    },
+    "93": {
+      "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 40 rows, cells 0..4, exact sentinel at 2cb7.",
+      "role": "Stage brick grid in 14-cell rows with FF sentinel",
+      "sym": ".data:231"
+    },
+    "94": {
+      "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 40 rows, cells 0..4, exact sentinel at 2ee8.",
+      "role": "Stage brick grid in 14-cell rows with FF sentinel",
+      "sym": ".data:231"
+    },
+    "95": {
+      "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 40 rows, cells 0..4, exact sentinel at 3119.",
+      "role": "Stage brick grid in 14-cell rows with FF sentinel",
+      "sym": ".data:231"
+    },
+    "96": {
+      "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 40 rows, cells 0..4, exact sentinel at 334a.",
+      "role": "Stage brick grid in 14-cell rows with FF sentinel",
+      "sym": ".data:231"
+    },
+    "97": {
+      "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 40 rows, cells 0..4, exact sentinel at 357b.",
+      "role": "Stage brick grid in 14-cell rows with FF sentinel",
+      "sym": ".data:231"
+    },
+    "98": {
+      "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 20 rows, cells 0..4, exact sentinel at 3694.",
+      "role": "Stage brick grid in 14-cell rows with FF sentinel",
+      "sym": ".data:119"
+    },
+    "99": {
+      "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 20 rows, cells 0..4, exact sentinel at 37ad.",
+      "role": "Stage brick grid in 14-cell rows with FF sentinel",
+      "sym": ".data:119"
+    },
+    "100": {
+      "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 20 rows, cells 0..4, exact sentinel at 38c6.",
+      "role": "Stage brick grid in 14-cell rows with FF sentinel",
+      "sym": ".data:119"
+    },
+    "101": {
+      "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 20 rows, cells 0..4, exact sentinel at 39df.",
+      "role": "Stage brick grid in 14-cell rows with FF sentinel",
+      "sym": ".data:119"
+    },
+    "102": {
+      "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 20 rows, cells 0..4, exact sentinel at 3af8.",
+      "role": "Stage brick grid in 14-cell rows with FF sentinel",
+      "sym": ".data:119"
+    },
+    "103": {
+      "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 20 rows, cells 0..4, exact sentinel at 3c11.",
+      "role": "Stage brick grid in 14-cell rows with FF sentinel",
+      "sym": ".data:119"
+    },
+    "104": {
+      "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 20 rows, cells 0..4, exact sentinel at 3d2a.",
+      "role": "Stage brick grid in 14-cell rows with FF sentinel",
+      "sym": ".data:119"
+    },
+    "105": {
+      "evidence": "Pointer in 1be1 stage table; 0943-0976 consumes 14 cells per row then tests FF. Parsed 20 rows, cells 0..4, exact sentinel at 3e43.",
+      "role": "Stage brick grid in 14-cell rows with FF sentinel",
+      "sym": ".data:119"
+    },
+    "106": {
+      "evidence": "Same 14-cell schema as contiguous preceding layouts; exactly 560 cells (only 0/1) followed by FF at 4074. No pointer or execution usage established. Region split at physical bank boundary.",
+      "role": "Unreferenced 40-row brick grid, predominantly empty",
+      "sym": ".data:1bc"
+    },
+    "107": {
+      "evidence": "Same 14-cell schema as contiguous preceding layouts; exactly 560 cells (only 0/1) followed by FF at 4074. No pointer or execution usage established. Region split at physical bank boundary.",
+      "role": "Unreferenced 40-row brick grid, predominantly empty",
+      "sym": ".data:75"
+    },
+    "108": {
+      "evidence": "074c masks flag value and doubles it; 0753-0759 loads pointer; every pointer targets a 20-byte record in following region.",
+      "role": "Twelve little-endian scrolling-pattern pointers",
+      "sym": ".data:18"
+    },
+    "109": {
+      "evidence": "075a-076c copies exactly 20 bytes per selected pointer. Twelve pointers select first twelve columns; remaining four match same 20-byte repeated schema and border before next command stream.",
+      "role": "Sixteen 20-byte scrolling-pattern columns (four unreferenced)",
+      "sym": ".data:140"
+    },
+    "110": {
+      "evidence": "Explicit DE base passed to 02c1 consumer. Parsed 15 commands, VRAM destinations, mode/count payloads, zero terminator and exact end at 42b3.",
+      "role": "Title display VRAM command stream",
+      "sym": ".data:e6"
+    },
+    "111": {
+      "evidence": "Explicit DE base passed to 02c1 consumer. Parsed 10 commands, VRAM destinations, mode/count payloads, zero terminator and exact end at 4333.",
+      "role": "Display overlay VRAM command stream",
+      "sym": ".data:80"
+    },
+    "112": {
+      "evidence": "Explicit DE base passed to 02c1 consumer. Parsed 8 commands, VRAM destinations, mode/count payloads, zero terminator and exact end at 4a66.",
+      "role": "Stage HUD VRAM command stream",
+      "sym": ".data:2a"
+    },
+    "113": {
+      "evidence": "4521 loops A from 2 down to 0; 4536 indexes selectors 00/01/02 at 4551. 453a-453d multiplies the selected byte by three through helper 0454, then 4540-454d reads three successive tile IDs at 4554+3*selector. Exactly 3+3*3=12 bytes; pass-006-inspect-results.json.",
+      "role": "Three animation frame selectors and three three-tile records",
+      "sym": ".data:c"
+    },
+    "114": {
+      "evidence": "457f indexes CA41, 458b increments it and 4592 compares with 36 before loop.",
+      "role": "36 animation frame selectors",
+      "sym": ".data:24"
+    },
+    "115": {
+      "evidence": "45cc indexes CA41, 45d8 increments it and 45df compares with 29 before loop.",
+      "role": "29 animation frame selectors",
+      "sym": ".data:1d"
+    },
+    "116": {
+      "evidence": "4a66 doubles frame selector; 4a6f reads D high byte then E low byte. Pointers target consecutive 16-byte records ending at 4b75.",
+      "role": "Thirteen big-endian sprite-composition pointers",
+      "sym": ".data:1a"
+    },
+    "117": {
+      "evidence": "4a75 loads A=4, 4a78-4a88 reads four bytes per sprite (relative coordinates, tile and flags) to C888 shadow OAM. All pointer-defined records match exact 16-byte stride.",
+      "role": "Thirteen four-sprite composition records",
+      "sym": ".data:d0"
+    },
+    "118": {
+      "evidence": "169 bytes = 12*14 cells plus FF. Same row grammar proven by 0943-0976 and preceding layouts; cells 0 except one 1, sentinel at 43db. No usage established.",
+      "role": "Unreferenced twelve-row brick-grid record",
+      "sym": ".data:a9"
+    },
+    "119": {
+      "evidence": "4419/4479 initialize CA42=0; 44cf indexes 44f5 and increments CA42; 4429/4486 bound at 24. Signed deltas range -3..+3.",
+      "role": "24 signed animation movement deltas",
+      "sym": ".data:18"
+    },
+    "120": {
+      "evidence": "C9 RET after last bit-selected DFE1 setter; same default-return convention as 6877/68ed/69a9. Detached semantic instruction, not observed.",
+      "role": "Unused trailing return stub",
+      "sym": ".code:1"
+    },
+    "121": {
+      "evidence": "C9 RET after unconditional JP at 6f14. Adjacent sound helper uses same RET boundaries; unreachable redundant instruction, no execution claim.",
+      "role": "Unused trailing return stub",
+      "sym": ".code:1"
+    },
+    "122": {
+      "evidence": "6f9d-6fab writes exactly five bytes HL+ through successive LDH(C) sound registers. Explicit bases across 6axx-6dxx align at five-byte boundaries; last three unused records match complete preset layout.",
+      "role": "32 five-byte sound register presets",
+      "sym": ".data:a0"
+    },
+    "123": {
+      "evidence": "705c loads HL=704c,C=20; 7073-707e reads exactly four consecutive bytes and writes FF20-FF23.",
+      "role": "Four-byte sound register preset",
+      "sym": ".data:4"
+    },
+    "124": {
+      "evidence": "73d3 and 7442 use note index to read high component for FF19/FF1e. Parallel 67-byte low table immediately follows; repeated high components and monotone combined 11-bit frequency progression.",
+      "role": "67 high-byte note frequency register values",
+      "sym": ".data:43"
+    },
+    "125": {
+      "evidence": "73c9 and 7438 use same note index for FF18/FF1d; paired with high-byte table 7531. No execution claim for unused upper note indices.",
+      "role": "67 low-byte note frequency register values",
+      "sym": ".data:43"
+    },
+    "126": {
+      "evidence": "7478/748d mask control byte with 7f and index this table, then immediately resume voice reader. All stream duration controls below use index <=42; 44 constants form four repeated tempo groups before first explicit sequence base.",
+      "role": "44 note-duration constants",
+      "sym": ".data:2c"
+    },
+    "127": {
+      "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 7651. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+      "role": "Voice sequence with stop marker",
+      "sym": ".data:6f"
+    },
+    "128": {
+      "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 76c2. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+      "role": "Voice sequence with stop marker",
+      "sym": ".data:71"
+    },
+    "129": {
+      "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 76d8. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+      "role": "Voice sequence with stop marker",
+      "sym": ".data:16"
+    },
+    "130": {
+      "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 76ef. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+      "role": "Voice sequence with stop marker",
+      "sym": ".data:17"
+    },
+    "131": {
+      "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 7711. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+      "role": "Voice sequence with stop marker",
+      "sym": ".data:22"
+    },
+    "132": {
+      "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 7732. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+      "role": "Voice sequence with stop marker",
+      "sym": ".data:21"
+    },
+    "133": {
+      "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 7737. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+      "role": "Voice sequence with stop marker",
+      "sym": ".data:5"
+    },
+    "134": {
+      "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 773a. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+      "role": "Voice sequence with stop marker",
+      "sym": ".data:3"
+    },
+    "135": {
+      "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 774f. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+      "role": "Voice sequence with stop marker",
+      "sym": ".data:15"
+    },
+    "136": {
+      "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 7764. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+      "role": "Voice sequence with stop marker",
+      "sym": ".data:15"
+    },
+    "137": {
+      "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 779a. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+      "role": "Voice sequence with loop marker",
+      "sym": ".data:36"
+    },
+    "138": {
+      "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 77d6. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+      "role": "Voice sequence with loop marker",
+      "sym": ".data:3c"
+    },
+    "139": {
+      "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 780c. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+      "role": "Voice sequence with loop marker",
+      "sym": ".data:36"
+    },
+    "140": {
+      "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 7848. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+      "role": "Voice sequence with loop marker",
+      "sym": ".data:3c"
+    },
+    "141": {
+      "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 785b. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+      "role": "Voice sequence with stop marker",
+      "sym": ".data:13"
+    },
+    "142": {
+      "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 7874. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+      "role": "Voice sequence with stop marker",
+      "sym": ".data:19"
+    },
+    "143": {
+      "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 7886. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+      "role": "Voice sequence with stop marker",
+      "sym": ".data:12"
+    },
+    "144": {
+      "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 789b. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+      "role": "Voice sequence with stop marker",
+      "sym": ".data:15"
+    },
+    "145": {
+      "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 78d5. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+      "role": "Voice sequence with stop marker",
+      "sym": ".data:3a"
+    },
+    "146": {
+      "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 790e. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+      "role": "Voice sequence with stop marker",
+      "sym": ".data:39"
+    },
+    "147": {
+      "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 7918. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+      "role": "Voice sequence with stop marker",
+      "sym": ".data:a"
+    },
+    "148": {
+      "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 791e. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+      "role": "Voice sequence with stop marker",
+      "sym": ".data:6"
+    },
+    "149": {
+      "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 7987. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+      "role": "Voice sequence with stop marker",
+      "sym": ".data:69"
+    },
+    "150": {
+      "evidence": "73a0/7404 consume one byte: bit7 selects duration lookup, 01 rests, 00 stops and 7f loops. Every byte validates as note <67 or duration index <44; exact delimiter at 7a6e. Explicit sequence bases at 71xx-73xx; some contiguous extra sequences have no established caller.",
+      "role": "Voice sequence with stop marker",
+      "sym": ".data:e7"
+    },
+    "151": {
+      "evidence": "745f loads HL=7a6f,C=30; 7464-7470 copies 16 bytes to FF30-FF3f, bounded by DFF7 counter ==16.",
+      "role": "16-byte Game Boy wave RAM waveform",
+      "sym": ".data:10"
+    },
+    "152": {
+      "evidence": "Exact FF run 0003-0040, bounded by established structures. All decoded direct control targets audited: none enters this gap; no RST instructions in classified code. Reset and implemented interrupt slots contain explicit JP/RETI. FF fills unused bytes to next defined hardware entry slot/header, rather than defining restart handlers; no execution observed.",
+      "role": "Erased-byte fill in unused reset/restart/interrupt vector space",
+      "sym": ".padding:3d"
+    },
+    "153": {
+      "evidence": "Exact FF run 0043-0048, bounded by established structures. All decoded direct control targets audited: none enters this gap; no RST instructions in classified code. Reset and implemented interrupt slots contain explicit JP/RETI. FF fills unused bytes to next defined hardware entry slot/header, rather than defining restart handlers; no execution observed.",
+      "role": "Erased-byte fill in unused reset/restart/interrupt vector space",
+      "sym": ".padding:5"
+    },
+    "154": {
+      "evidence": "Exact FF run 004b-0050, bounded by established structures. All decoded direct control targets audited: none enters this gap; no RST instructions in classified code. Reset and implemented interrupt slots contain explicit JP/RETI. FF fills unused bytes to next defined hardware entry slot/header, rather than defining restart handlers; no execution observed.",
+      "role": "Erased-byte fill in unused reset/restart/interrupt vector space",
+      "sym": ".padding:5"
+    },
+    "155": {
+      "evidence": "Exact FF run 0053-0058, bounded by established structures. All decoded direct control targets audited: none enters this gap; no RST instructions in classified code. Reset and implemented interrupt slots contain explicit JP/RETI. FF fills unused bytes to next defined hardware entry slot/header, rather than defining restart handlers; no execution observed.",
+      "role": "Erased-byte fill in unused reset/restart/interrupt vector space",
+      "sym": ".padding:5"
+    },
+    "156": {
+      "evidence": "Exact FF run 005b-0060, bounded by established structures. All decoded direct control targets audited: none enters this gap; no RST instructions in classified code. Reset and implemented interrupt slots contain explicit JP/RETI. FF fills unused bytes to next defined hardware entry slot/header, rather than defining restart handlers; no execution observed.",
+      "role": "Erased-byte fill in unused reset/restart/interrupt vector space",
+      "sym": ".padding:5"
+    },
+    "157": {
+      "evidence": "Exact FF run 0061-0100, bounded by established structures. All decoded direct control targets audited: none enters this gap; no RST instructions in classified code. Reset and implemented interrupt slots contain explicit JP/RETI. FF fills unused bytes to next defined hardware entry slot/header, rather than defining restart handlers; no execution observed.",
+      "role": "Erased-byte fill in unused reset/restart/interrupt vector space",
+      "sym": ".padding:9f"
+    },
+    "158": {
+      "evidence": "Exact FF run 641a-6800, bounded by established structures. All decoded direct control targets audited: none enters this gap; no RST instructions in classified code. Reset and implemented interrupt slots contain explicit JP/RETI. Previous helper ends at641a, next sound engine begins on6800 section boundary.",
+      "role": "Erased-byte section alignment/tail fill",
+      "sym": ".padding:3e6"
+    },
+    "159": {
+      "evidence": "Exact FF run 7a7f-7ff0, bounded by established structures. All decoded direct control targets audited: none enters this gap; no RST instructions in classified code. Reset and implemented interrupt slots contain explicit JP/RETI. 16-byte waveform ends at7a7f; FF fill extends to VBlank trampoline at7ff0. Voice streams stop/loop before waveform and no data consumer extends here.",
+      "role": "Erased-byte section alignment/tail fill",
+      "sym": ".padding:571"
+    },
+    "160": {
+      "evidence": "Exact FF run 7ff7-8000, bounded by established structures. All decoded direct control targets audited: none enters this gap; no RST instructions in classified code. Reset and implemented interrupt slots contain explicit JP/RETI. Trampoline/unused return helper ends at7ff7; FF tail fills to ROM end8000.",
+      "role": "Erased-byte section alignment/tail fill",
+      "sym": ".padding:9"
+    }
+  }
+}

@@ -200,3 +200,35 @@ preparation also passed fresh byte-identical rebuilding and created 161 scaffold
 entries covering all 32768 bytes, including its preserved 31-byte unknown gap;
 before/after reading copies initially match. No commentary agent was launched,
 and no commercial ROMs, assembly or extracted assets were added to the repository.
+
+Added scripts/archive.py and documented archive/restore commands in INSTRUCTIONS.md,
+README.md and docs/archives.md. Reviewed results default to
+atlas/<platform>/<game>/<full-ROM-SHA256>/; the archive contains final stock maps,
+classification/review metadata, audit records and final agent documentation.
+Versioned editorial.json stores comments, symbols, constants/formatting and
+references into a regenerated baseline. It preserves exact commentary separately
+from .sym, without storing assembly or extracted assets. Scratch evidence and
+analysis/toolkit-issues.md are excluded; historical documents remain verbatim with
+an explicit omitted-evidence note. Extra final Markdown can be selected explicitly;
+unknown documents are reported. Archive replacements are staged and validated,
+with the previous result retained on failure. Restore publishes only after ROM,
+archive, baseline and final-file hashes and a byte-identical rebuild pass.
+
+The synthetic scripts/test-archive.py regression passes exact source/reading-copy
+recovery, comments/constants/includes, reviewed unknowns, evidence/toolkit exclusions,
+extra/scratch-document selection, unfinished-review rejection, stale-file removal,
+binary-asset rejection, failed-replacement preservation, wrong-ROM and tampered
+archive rejection and existing-output protection. It is included in CI.
+Rust 1.90.0 cargo fmt --check, locked workspace clippy/tests/build, stock portability,
+session, workspace and commentary regressions pass. Rust/session code and
+dependencies were unchanged.
+
+Archived the completed local Alleyway result under atlas/gb/alleyway/
+ed8070e011713527bdc03e2b9cec9f9c4a7e3aaa00e57e8786a186b265da1bb2.
+A separate restore command recovered every authoritative final source/asset and
+the consolidated reading copy exactly and rebuilt all 32768 original bytes.
+Editorial review records 161 regions and 1077 units; phase-one classification
+remains incomplete with the 31-byte unknown interval at $0426–$0444. No commercial
+ROM, generated assembly, extracted game asset or scratch trace was added to the
+repository. Archive metadata does not establish semantic correctness, hardware
+compatibility or completion of the remaining phase-one classification.

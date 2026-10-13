@@ -155,7 +155,7 @@ The files to read and compare are:
 The reading copies expand `.asm` includes in source order, mark file boundaries,
 and retain hardware/constants includes and binary-asset references. They are
 reading aids, not independent build targets. Preserve the source tree and assets
-to rebuild the commented game: **the `.sym` alone cannot reproduce comments**.
+until archiving it in step 6: **the `.sym` alone cannot reproduce comments**.
 Generation does not render phase-1 role/evidence metadata as assembly comments.
 Never regenerate over the commentary source tree.
 
@@ -178,3 +178,59 @@ phase 2 without declaring the phase-1 classification goal complete.
 
 All assembly, ROMs, extracted assets and reading copies remain local. Do not
 commit or distribute a commercial game's generated workspace.
+
+## 6. Archive the reviewed result
+
+From this repository, archive a completed commentary workspace:
+
+```sh
+python3 scripts/archive.py archive /root/rom-work/game --name game
+```
+
+The default destination is `atlas/gb/game/<full-rom-sha256>/`. Use a lowercase,
+hyphenated game name; without `--name`, the workspace directory name is used.
+`--output DIRECTORY` selects an explicit archive directory. An existing archive
+is replaced in full only after the new result passes validation, exact-source
+restoration and byte-identical rebuilding. Failure preserves the previous archive.
+Directories without `archive.json` are never overwritten.
+
+The command requires a fresh successful commentary audit. It preserves phase-one
+unknowns without claiming that editorial completion establishes classification.
+The archive contains the final portable map, internal analysis/annotations,
+review inventory, final audits, and both phases' final documentation, including
+uncertainties. Additional final Markdown documents require
+`--document commentary/example.md` (repeatable); unrecognized documents are
+reported rather than silently omitted. Use `--omit-document analysis/scratch.md`
+to explicitly exclude an unrecognized scratch document. Scratch results, traces, intermediate
+checkpoints, agent prompts and `analysis/toolkit-issues.md` are excluded.
+Historical documents remain verbatim; references to omitted scratch evidence
+are explicitly described as unavailable in the archive README.
+
+`editorial.json` is a versioned reconstruction recipe holding comments, symbol
+edits, constant definitions and formatting, with references into a regenerated
+baseline. It preserves the final commentary separately from `.sym`. The archive
+contains no generated assembly, ROM, extracted graphics or build products.
+Baseline hashes detect changes in generator/tool output, and every final source
+and asset has an expected hash. Changed/new binary assets are rejected rather
+than included. New quoted data literals that cannot reference baseline content
+are also rejected. Use the pinned tools installed by `scripts/setup.sh`.
+
+## 7. Restore readable assembly from an archive and the original ROM
+
+```sh
+python3 scripts/archive.py restore atlas/gb/game/FULL_ROM_SHA256 \
+  --rom /path/to/original.gb --out /tmp/game-restored
+```
+
+The output must be a new directory outside this repository. It contains the exact
+buildable final source tree in `source/` and its consolidated `reading-after.asm`.
+The command checks archive hashes and the ROM's SHA-256, regenerates the frozen
+baseline map, applies editorial metadata, checks every restored file hash, and
+rebuilds byte-identically before publishing any output. The original filename
+used by the workflow is reproduced internally, so your supplied ROM may have a
+different filename. `--binary /path/to/romatlas` selects an alternate built binary.
+Success returns JSON with `ok`, `exact_source` and `byte_identical` all true;
+errors return JSON on stderr and exit 1. The original workspace is unnecessary.
+
+Keep restored source, reading copies, ROMs and assets local. Test the archive
+lifecycle with `python3 scripts/test-archive.py`, which uses a synthetic ROM only.

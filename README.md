@@ -69,7 +69,9 @@ maps are intended for sharing. Test with `python3 scripts/test-disassemble.py`.
 
 ## Internal analysis store
 
-Keep this JSON file local. Export `.sym` for others. Offsets and lengths below use decimal physical ROM offsets.
+Export `.sym` for stock-tool portability. Final analysis metadata can also be
+preserved by the reviewed-result archive workflow below. Offsets and lengths
+below use decimal physical ROM offsets.
 
 ```sh
 ./target/debug/romatlas store init game.gb --output analysis.json
@@ -104,3 +106,22 @@ Licensed gameplay and clean recipient rebuild checks are in [docs/homebrew-tests
 To check setup without reusing installed tools or build caches on a root-capable Ubuntu host, install debootstrap and run `sudo bash scripts/test-fresh-setup.sh`. The script creates an Ubuntu noble minbase under ignored build/, copies only source, runs setup and the acceptance checks, and unmounts its /dev and /proc on exit. Logs and the success-only result JSON stay in build/. It needs several GiB of free disk and network access. This checks a clean root filesystem on the host kernel, not a separate VM.
 
 The final requirement review is in [docs/completion-audit.md](docs/completion-audit.md). It records verified scope, milestone exits and hardware limits.
+
+## Archive and restore reviewed commentary
+
+After the two-phase workflow in [INSTRUCTIONS.md](INSTRUCTIONS.md), retain final
+maps, commentary metadata, reviews and documents in `atlas/<platform>/<game>/<sha256>/`:
+
+```sh
+python3 scripts/archive.py archive /root/rom-work/game --name game
+python3 scripts/archive.py restore atlas/gb/game/FULL_ROM_SHA256 --rom /path/to/original.gb --out /tmp/game-restored
+```
+
+Archiving requires a fresh editorial audit and verified rebuild. It saves comments
+and symbol edits separately from `.sym`; it excludes assembly, ROMs, extracted
+assets, scratch evidence and the toolkit-issues report. Restoration checks the
+original ROM and reconstructs the exact final source in `source/`, plus a
+`reading-after.asm`, with pinned tools. Existing archives are replaced only after
+successful reconstruction; failures preserve the previous archive. Restore output
+must be new and outside the repository. See steps 6–7 for artifact selection and
+options. Test with `python3 scripts/test-archive.py`.
