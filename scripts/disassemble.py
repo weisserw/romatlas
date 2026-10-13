@@ -14,7 +14,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 AGENTS = """# ROM disassembly workspace
 
-Read workflow.md, workspace.json, and analysis/progress.md before work.
+Read workflow.md, workspace.json, analysis/progress.md, and
+analysis/toolkit-issues.md before work.
 The toolkit repository is {toolkit}. Read its project.md, docs/progress.md,
 docs/protocol.md and docs/sym.md. Use its existing binary; this workspace is
 for disassembling this game, not changing the toolkit.
@@ -42,6 +43,12 @@ Record evidence, confidence, scenario input sequences, remaining unknown ranges,
 and exact tested verification results in analysis/progress.md after each batch.
 Snapshots are session-local; save replayable input sequences for later sessions.
 Do not invent snapshot persistence or claim full hardware compatibility.
+
+Maintain analysis/toolkit-issues.md as you encounter toolkit bugs or missing
+features, following workflow.md's reporting requirements. Preserve findings
+across sessions. Continue ROM analysis using workarounds unless blocked; do not
+fix the toolkit in this workspace. At the end of every pass, summarize toolkit
+findings and link the report, or explicitly say "no toolkit issues found" if empty.
 """
 
 WORKFLOW = """# Per-game workflow
@@ -75,6 +82,42 @@ prompts/resume.md for a later pass. No particular agent provider is required.
 8. Repeat for unknown regions and unresolved paths. End each pass with classified
    code/data/unknown byte counts from the internal store, uncertainty, execution
    scenarios exercised, verification evidence, and concrete next tasks.
+   Include a summary of toolkit findings and a link to analysis/toolkit-issues.md;
+   explicitly say "no toolkit issues found" when the report has no findings.
+
+## Toolkit issues
+
+Keep a separate, persistent report in analysis/toolkit-issues.md. Read it when
+starting or resuming; create it if absent. Record findings when encountered,
+not just at completion, so interrupted sessions retain them. Update existing
+entries when evidence changes and avoid duplicates; never overwrite earlier
+findings on resume. Keep ROM classification evidence in analysis/progress.md.
+
+For each finding, record:
+- A stable ID and short title.
+- Type: confirmed bug, suspected bug, or missing feature.
+- Affected toolkit command/API/component and toolkit version or commit if known.
+- Evidence: the concrete analysis task, expected versus actual behavior for
+  bugs, reproduction commands/API parameters where available, and local links
+  to relevant traces, logs or analysis artifacts. If not reproduced, explain
+  the uncertainty and keep the bug suspected.
+- Impact on analysis speed, inference quality or reliability of conclusions.
+- Workaround, or explicitly state that none is known and whether progress is blocked.
+- Suggested fix or improvement, without implementing it during disassembly.
+
+Missing features must be grounded in a concrete example from this ROM analysis
+and explain how the functionality would substantially improve reverse engineering
+performance or inference. Exclude speculative wish lists and cosmetic preferences.
+Check toolkit documentation before treating a limitation as a defect. Distinguish
+documented limits from newly demonstrated bugs; a documented limit can still be
+a missing feature if it meets the evidence and substantial-impact requirements.
+Missing execution coverage or an unresolved ROM region alone is not a toolkit bug.
+
+Continue the disassembly using bounded workarounds unless an issue blocks it.
+If blocked, record the blocker and save available progress before reporting it.
+At every pass completion or blocked handoff, summarize the report's findings by
+type, identify blockers and link the report. If there are no findings, explicitly
+say "no toolkit issues found"; this describes the pass, not proof of no defects.
 
 To resume, a new serve process needs map.load and emulator.start, then replay the
 recorded inputs; named snapshots from the old process are unavailable. Inspection
@@ -91,15 +134,33 @@ maps/current.sym, and produce a verified checkpoint with code regions decoded
 as assembly. Keep unknown bytes unknown internally. Do not stop at the baseline.
 Record coverage, classification counts, unresolved targets, experiments and
 verification in analysis/progress.md. No semantic recovery is required.
+Record encountered toolkit bugs and substantial, evidence-backed missing features
+in analysis/toolkit-issues.md as you work, following workflow.md. Continue analysis
+unless blocked; do not fix the toolkit. Finish with a findings summary and report
+link, or explicitly say "no toolkit issues found" if empty.
 """
 
-RESUME = """Read AGENTS.md, workflow.md, workspace.json and analysis/progress.md.
+RESUME = """Read AGENTS.md, workflow.md, workspace.json, analysis/progress.md and
+analysis/toolkit-issues.md.
 Resume this ROM's structural disassembly. Load analysis/state.json into a fresh
 ROMAtlas session if present. Review the last verified checkpoint and unresolved
 regions. Replay recorded scenarios when execution evidence is needed; snapshots
 from previous sessions are unavailable. Continue evidence-supported code/data
 classification, save/export the updated map, and create a new verified checkpoint.
 Report classification progress separately from rebuild fidelity.
+Preserve and update the toolkit issue report as you work; merge repeated findings
+and follow workflow.md's evidence requirements for bugs and substantial missing
+features. Continue analysis unless blocked; do not fix the toolkit. Finish with
+a findings summary and report link, or say "no toolkit issues found" if empty.
+"""
+
+TOOLKIT_ISSUES = """# Toolkit issues
+
+No findings recorded yet; ROM analysis has not started.
+
+Preserve and update this report across passes. Follow workflow.md's Toolkit issues
+section for evidence requirements and entry fields. Use one entry per finding with
+a stable ID; distinguish confirmed bugs, suspected bugs, and missing features.
 """
 
 RUNNER = '''#!/usr/bin/env python3
@@ -202,6 +263,7 @@ def initialize(source, destination, binary):
             "prompts/resume.md": RESUME,
             "analysis/progress.md": "# Disassembly progress\n\nWorkspace initialized. Baseline and classification have not run.\n",
             "analysis/scenarios.json": "[]\n",
+            "analysis/toolkit-issues.md": TOOLKIT_ISSUES,
             "run.py": RUNNER,
             ".gitignore": "*\n",
             "workspace.json": json.dumps({"version": 1, "toolkit": str(ROOT),
@@ -229,10 +291,10 @@ Workspace ready: {record['workspace']}
    codex --enable goals -C {workspace}
 
 2. Once Codex opens, paste this into its input and press Enter:
-   /goal Read AGENTS.md, workflow.md and prompts/start.md. Use ROMAtlas to identify evidence-supported code and data regions, export maps/current.sym and generate a byte-identical verified assembly listing. Continue beyond the raw-byte baseline; keep uncertain bytes unknown and record classification counts, unresolved regions and verification in analysis/progress.md.
+   /goal Read AGENTS.md, workflow.md and prompts/start.md. Use ROMAtlas to identify evidence-supported code and data regions, export maps/current.sym and generate a byte-identical verified assembly listing. Continue beyond the raw-byte baseline; keep uncertain bytes unknown and record classification counts, unresolved regions and verification in analysis/progress.md. Maintain analysis/toolkit-issues.md for encountered toolkit bugs and substantial evidence-backed missing features. Continue unless blocked without fixing the toolkit; summarize findings and link the report at completion, or say "no toolkit issues found" if empty.
 
 3. For a later pass, open the same workspace and paste:
-   /goal Read AGENTS.md, workflow.md and prompts/resume.md. Resume structural disassembly from analysis/state.json and analysis/progress.md, improve evidence-supported code/data classification, and save a new byte-identical verified checkpoint with remaining unknown regions documented.
+   /goal Read AGENTS.md, workflow.md and prompts/resume.md. Resume structural disassembly from analysis/state.json and analysis/progress.md, improve evidence-supported code/data classification, and save a new byte-identical verified checkpoint with remaining unknown regions documented. Preserve and update analysis/toolkit-issues.md for encountered toolkit bugs and substantial evidence-backed missing features. Continue unless blocked without fixing the toolkit; summarize findings and link the report at completion, or say "no toolkit issues found" if empty.
 
 Inside Codex, /goal shows status; /goal pause pauses and /goal resume resumes
 an existing paused goal. These are Codex input commands, not shell commands.

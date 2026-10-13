@@ -55,12 +55,28 @@ Run the disassembly agent in the game workspace. Keep `/root/romatlas` for
 building or developing the toolkit. Initialization prepares the workspace;
 it does not launch Codex or perform the disassembly itself.
 
+The agent keeps a separate report at `analysis/toolkit-issues.md` as it encounters
+confirmed bugs, suspected bugs, or missing toolkit features. Each finding includes
+the affected tool, evidence or reproduction steps, impact, any workaround, and a
+suggested improvement. Feature requests must cite a concrete analysis example and
+explain a substantial improvement to reverse engineering speed or inference quality.
+Documented limitations are distinguished from bugs. The agent continues analysis
+unless blocked and leaves toolkit fixes for later.
+
+At the end of each pass, including a blocked handoff, the agent summarizes findings
+and links the report, or explicitly says "no toolkit issues found" when empty.
+
 ## 4. Continue later
 
 Open Codex in the same game workspace and use the printed resume goal, which
 refers to `prompts/resume.md`. The agent loads saved analysis and continues
 classification. In an existing Codex session, `/goal` shows goal status,
 `/goal pause` pauses it, and `/goal resume` resumes a paused goal.
+
+The resume prompt preserves and updates `analysis/toolkit-issues.md`, merging
+repeated findings and retaining evidence from earlier passes. These instructions
+and the initial report are generated for new workspaces; previously created
+workspaces are not updated automatically.
 
 Keep ROMs, generated assembly, extracted assets, and traces local. The exported
 stock `.sym` map is the shareable deliverable. A verified raw-byte baseline is
