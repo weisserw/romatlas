@@ -54,6 +54,34 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
     assert (work / "input/game.rom").read_bytes() == data
     assert (workroot / "Game two/input/game.rom").read_bytes() == data
     assert "Do not stop after a raw-byte baseline" in (work / "AGENTS.md").read_text()
+    for prompt in ["prompts/start.md", "prompts/resume.md"]:
+        content = " ".join((work / prompt).read_text().split())
+        assert "completion and investigation contract" in content
+        assert "not goal completion" in content
+        assert "Stop incomplete" in content
+        assert "semantics wherever useful" in content
+        assert "Game familiarization" in content
+        assert "analysis/gameplay.md" in content
+        assert "against this ROM" in content
+    workflow = (work / "workflow.md").read_text()
+    assert "every physical ROM byte" in workflow
+    assert "total budget or number of stagnant passes" in workflow
+    assert "every remaining path in every unresolved entry" in workflow
+    assert "Reopen entries" in workflow
+    assert "apparent unreachability alone" in workflow
+    assert "Execution coverage need not reach 100%" in workflow
+    assert "required annotation coverage" in workflow
+    assert (work / "analysis/investigation.md").exists()
+    assert (work / "analysis/gameplay.md").exists()
+    assert "source URLs" in (work / "analysis/gameplay.md").read_text()
+    assert "GameFAQs" in workflow
+    assert "do not\nindependently justify structural classification" in workflow
+    assert "Before exhausting a\ngameplay-dependent investigation path" in workflow
+    assert "continue local analysis" in workflow
+    goals = [line for line in result.stderr.splitlines() if line.strip().startswith("/goal Read")]
+    assert len(goals) == 4
+    assert all("every physical byte classified with evidence" in goal for goal in goals)
+    assert all("never marking this goal complete" in goal for goal in goals)
     assert all((work / path).exists() for path in ["prompts/start.md", "prompts/resume.md", "workflow.md"])
     call("python3", ROOT / "scripts/disassemble.py", first, "--root", workroot, ok=False)
     assert (work / "input/game.rom").read_bytes() == data

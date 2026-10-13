@@ -53,6 +53,37 @@ press Enter. The goal tells the agent to read the workspace instructions,
 identify code and data, export a mapping, and generate an assembly listing
 that rebuilds byte-for-byte. Use a Codex version with goal support.
 
+The objective spans the entire physical ROM, across sessions and checkpoints.
+The agent investigates structure and semantics together, annotating each region's
+structural role and supporting evidence. Detailed instruction commentary is optional.
+Success requires every byte to be classified with evidence, required annotations,
+valid maps and a byte-identical rebuild. Raw bytes preserve fidelity but do not
+establish classification; execution coverage is a separate measure.
+
+There is no universal total investigation budget. The generated workflow requires
+an investigation ledger at `analysis/investigation.md`, reviewing static flow,
+references/callers, pointer and bank hypotheses, runtime experiments and structural
+patterns for every unresolved range. Applicable methods must be attempted and
+exclusions justified. The agent continues while concrete unblocked paths remain,
+reopening entries when new evidence changes them. Repeated traces or cosmetic
+annotations do not count as progress.
+
+After identifying the game and likely version, the agent consults available online
+manuals, walkthroughs, FAQs and technical resources. It keeps source links, version
+uncertainty, controls, mechanics and actionable progression/password routes in
+`analysis/gameplay.md`, translating useful findings into targeted runtime scenarios.
+External claims need confirmation against the local ROM and do not independently
+prove structural classifications. Research is revisited for specific obstacles,
+including before exhausting gameplay-dependent paths. If resources are unavailable,
+the agent records that limitation and continues local analysis.
+
+Exhausted investigation permits an **incomplete** handoff only when all remaining
+paths have specific evidenced blockers or require unsupported guessing. Unreachable
+code alone does not establish unknowability. This rule does not mathematically
+guarantee termination. The final report includes per-bank classification counts,
+annotation coverage, verification and unresolved evidence links. An incomplete
+handoff or a verified checkpoint must never mark the whole-ROM goal complete.
+
 Run the disassembly agent in the game workspace. Keep `/root/romatlas` for
 building or developing the toolkit. Initialization prepares the workspace;
 it does not launch Codex or perform the disassembly itself.
@@ -74,6 +105,10 @@ Open Codex in the same game workspace and use the printed resume goal, which
 refers to `prompts/resume.md`. The agent loads saved analysis and continues
 classification. In an existing Codex session, `/goal` shows goal status,
 `/goal pause` pauses it, and `/goal resume` resumes a paused goal.
+
+Keep an existing unfinished goal rather than replacing it with a checkpoint-sized
+goal. The resume prompt pursues the same completion contract and preserves the
+investigation ledger, reopening entries affected by new evidence.
 
 The resume prompt preserves and updates `analysis/toolkit-issues.md`, merging
 repeated findings and retaining evidence from earlier passes. These instructions

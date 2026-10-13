@@ -2,11 +2,11 @@
 
 ## Mission
 
-Build **ROMAtlas**, a generic Game Boy reverse engineering toolkit for use by agents. Its first goal is to let an agent examine a user-supplied ROM, identify code and data, and produce an unannotated assembly listing that rebuilds byte-for-byte to the original ROM. Here, unannotated means no recovered semantic names or explanations; structural directives and stable, nonsemantic labels are still required.
+Build **ROMAtlas**, a generic Game Boy reverse engineering toolkit for use by agents. Its first goal is to let an agent examine a user-supplied ROM, identify code and data, and produce a structurally annotated assembly listing that rebuilds byte-for-byte to the original ROM. Structural roles and supporting evidence are required; exhaustive semantic names and instruction explanations are optional. Agents may investigate behavior and name routines wherever useful to establish structure.
 
 The agent must be able to use a controllable, instrumented emulator, build a **portable, ROM-independent mapping file**, and generate the assembly listing from that mapping and the user's own ROM. The toolkit must expose evidence and uncertainty so the agent can check and revise its decisions. Keep its tools generic enough to support other reverse engineering tasks and later work, such as naming symbols and explaining game behavior, without adding those tasks to this phase.
 
-**The mapping file is the principal deliverable.** It must be useful to someone who independently possesses the same ROM, without distributing any original ROM bytes, graphics, audio, or other copyrighted content. Recovering semantic meaning, descriptive function names, and natural-language explanations is explicitly **out of scope** for this phase. Prioritize accurately distinguishing executable code, data, padding, pointers, and other structural regions, and identifying bank-aware boundaries and references.
+**The mapping file is the principal deliverable.** It must be useful to someone who independently possesses the same ROM, without distributing any original ROM bytes, graphics, audio, or other copyrighted content. Structural and semantic investigation may proceed together; complete gameplay explanations are not required. Prioritize accurately distinguishing executable code, data, padding, pointers, and other structural regions, and identifying bank-aware boundaries and references. Keep role/evidence annotations in local analysis records or the internal store where supported, without inventing stock map directives. Whole-ROM agent completion requires evidence-backed classification of every physical byte, required annotations, valid maps and byte-identical verification. Raw-byte fallback remains essential for fidelity but does not establish classification completion. See the generated workspace contract in scripts/disassemble.py for incomplete termination through evidenced investigation exhaustion, without a universal total budget.
 
 This is an implementation project, not a design-only exercise. Deliver a functioning end-to-end vertical slice early, then improve coverage and accuracy with tests. Do not stop after writing a plan.
 
@@ -194,7 +194,7 @@ romatlas verify ./game.gb --generated ./build/game
 3. **Observable execution:** every structural claim can be linked to runtime evidence, static reasoning, or explicit assertion.
 4. **Agent-native:** automation, determinism, machine-readable errors, bounded results, and replayability matter more than a GUI.
 5. **Bank-aware correctness:** physical ROM identity must never be lost through CPU address translation.
-6. **Minimal semantic ambition:** do not spend this phase naming routines or explaining gameplay logic.
+6. **Evidence-driven analysis:** investigate semantics and name routines where useful to resolve structure; exhaustive behavioral explanation is not a completion requirement.
 7. **Future portability without premature generalization:** keep console-specific logic isolated while making the Game Boy implementation complete and useful.
 
 ## Delivery requirements
