@@ -1,4 +1,8 @@
 //! Selected Game Boy graphics effects, independent of the emulator adapter.
+#[path = "gb_objects.rs"]
+pub mod objects;
+#[path = "gb_sound.rs"]
+pub mod sound;
 use crate::graphics::Color;
 use anyhow::{Result, ensure};
 pub const GRAYSCALE: [Color; 4] = [

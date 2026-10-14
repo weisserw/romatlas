@@ -275,6 +275,41 @@ session, disassembly, commentary, archive, stock portability and dependency
 boundary regressions pass. CI and clean-setup command lists include the new tests.
 The revised setup passed here; the clean-root setup was not rerun for this change.
 
+Native Alleyway port work adds `romatlas-port::gb::sound::Sound`, a device-free
+register-driven synthesis component: pulse duty, wave RAM/sample buffer, noise
+LFSR, DAC/trigger state, length/envelope clocks, master volume, routing and
+deterministic sample budgets. The20Hz high-pass filter is approximate; pulse1
+hardware sweep and register-write edge quirks remain pending. This is selected
+native-port audio, not full APU emulation. Native/desktop-feature port-library
+tests, desktop-feature clippy, boundaries and stock portability pass. Two new
+sound tests cover routing/DAC/length and sample partition invariance. Synthetic
+port-workspace regression passes; no device/desktop process was launched.
+
+Follow-up sound work adds pulse1 hardware sweep shadow/timer, initial and second
+overflow checks, negate-clear disabling and length-enable/trigger extra-clock
+behavior. Two new regressions pass alongside existing desktop-feature sound and
+runtime tests (18 total); desktop-feature clippy and boundaries pass. Portability
+and synthetic port-workspace regressions pass again. Other model-specific
+register quirks and analogue filter accuracy are not claimed.
+
+Native-port graphics now retain indexed backgrounds separately from RGBA and
+provide background_tile/background_pixel plus priority-aware sprite_tile.
+Priority compares nonzero source index even when palette colors coincide.
+Frame::clear resets that mask; generic tile drawing is unchanged. New regression
+and existing desktop-feature library tests pass (19 total), as do desktop clippy,
+dependency boundaries, portability and game checks. Synthetic port-workspace
+regression passes. This is BG priority, not a claim of full PPU/OAM behavior.
+
+Native ports now have gb::objects::draw for40-record DMG8x8 OAM composition.
+Per-line selection counts the first10 Y-matching records even with hidden X;
+opaque drawing prefers lower X then earlier OAM, and BG priority is checked only
+after selecting the winning object pixel. Supports flip/transparency/palettes.
+Two new tests cover overlap/masking and offscreen selection. Desktop-feature
+library tests21, package fmt/clippy, boundaries, stock portability and synthetic
+port-workspace regression pass, as do Alleyway game checks/scripted headless
+execution. No PPU timing/device claim. Unrelated vendor formatting was restored;
+only port-library source and this progress document remain modified.
+
 README.md, INSTRUCTIONS.md, AGENTS.md, project.md and docs/porting.md describe the
 new phase and keep native-port accounting distinct from whole-ROM structural
 classification. No window, audio device, physical controller or live port/review
