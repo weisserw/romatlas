@@ -317,3 +317,21 @@ agent was launched. These checks prove the initial workflow/library and generate
 build contract, not a completed real-game port, desktop runtime behavior or other
 OS compatibility. No commercial ROM, regenerated assembly or extracted game asset
 was added to the repository; all synthetic generated material stayed local.
+
+Future native port preparation now renders BUILDING.md from a shared template,
+substituting the game name/executable and toolkit path, and links it from the
+generated README. Baseline recipes cover private macOS/Linux/Windows builds,
+SDL linking (including Homebrew LIBRARY_PATH), source transfer without target/
+products, path-dependency relocation, device-free builds and later packaging.
+Start/resume goals and workspace workflow require the port agent to adapt it
+for final dependencies/flags and record actual validation without inheriting
+another game's platform success. Existing workspaces are not overwritten.
+
+Validation: scripts/test-port.py passes, including generated-document/name/path
+checks, README link and start/resume/workflow requirements in its synthetic
+archive-to-workspace regression. Stock portability and dependency boundaries
+pass; romatlas-port package formatting, desktop-feature clippy and all 21 unit/
+integration tests pass under Rust 1.90.0 with locked dependencies. No dependency
+or runtime changes, GUI launch, commercial-asset distribution, check-in or
+publication. Platform recipes remain documentation rather than new Mac/Windows
+execution evidence.

@@ -64,6 +64,16 @@ with tempfile.TemporaryDirectory(prefix="romatlas-port-") as temporary:
     assert str(work) in printed.stderr
     assert inventory(archive) == initial_archive and rom.read_bytes() == data
     assert (work / "port/Cargo.lock").is_file()
+    build_guide = (work / "BUILDING.md").read_text()
+    assert "synthetic-port.exe" in build_guide and "./target/release/synthetic-port" in build_guide
+    assert "__GAME_NAME__" not in build_guide and "__TOOLKIT_PATH__" not in build_guide
+    assert str(ROOT / "crates/romatlas-port") in build_guide
+    assert '[BUILDING.md](BUILDING.md)' in (work / "README.md").read_text()
+    for required in ["LIBRARY_PATH", "macOS", "Linux", "Windows", "--locked", "--exclude='target/'",
+                     "path dependency", "No desktop runtime"]:
+        assert required in build_guide, required
+    for path in ["prompts/start.md", "prompts/resume.md", "workflow.md"]:
+        assert "BUILDING.md" in (work / path).read_text()
     meta = json.loads((work / "workspace.json").read_text())
     before = json.loads((work / "review/toolkit-before.json").read_text())
     assert before["head"] and "crates/romatlas-port/src/assets.rs" in before["files"]

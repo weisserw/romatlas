@@ -129,6 +129,16 @@ No graphical editor or arbitrary-format modding system is supplied.
 
 ## Player settings and desktop backend
 
+Preparation also creates BUILDING.md from scripts/port-template/BUILDING.md,
+substituting the port's name/executable and initial toolkit path. The generated
+README links to this guide. It covers private macOS/Linux/Windows source builds,
+SDL prerequisites/linking, source transfers excluding target/, path relocation,
+headless builds and later packaging. Start/resume goals require the port agent
+to adapt it to final dependencies/flags and record actual platform validation.
+The baseline recipes are not platform-test evidence and do not authorize
+distribution. Existing source ports can adopt the guide without regeneration;
+preserve their source and edited library when adding later build automation.
+
 SDL2 provides window operations, keyboard/controller input, 2D presentation and
 audio queues. The shell uses desktop fullscreen, resizable windows, nearest-neighbor
 aspect-preserving presentation, and optional integer scaling. Fullscreen uses the

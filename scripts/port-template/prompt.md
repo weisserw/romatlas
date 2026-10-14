@@ -52,7 +52,14 @@ dependency boundaries, and update its docs/progress.md with tested facts. Never
 interpret tests or the ledger audit as proof of semantic correctness.
 
 Update README.md with how to run the port, replace assets, add a level and find
-game rules. Provide an original-content-only example extension manifest. Keep
+game rules. Adapt the generated BUILDING.md to the finished port and link it from
+README.md. Include macOS/Linux/Windows prerequisites and build/run commands,
+source transfer excluding target/ binaries, the exact shared-library source and
+lockfiles required, path-dependency relocation, and game-specific dependencies or
+flags. Record actual validation separately from untested build recipes; never
+copy another port's platform success as evidence for this one. Check upstream
+platform setup when needed. Keep packaging/publication as later work.
+Provide an original-content-only example extension manifest. Keep
 progress.md and differences.md current. Completion requires a finished ledger,
 implemented gameplay equivalents, useful passing tests and a documented handoff.
 Set ledger completion.status=complete with notes only when this is true, and run

@@ -26,7 +26,8 @@ GOAL = ("Port this entire archived game into readable native Rust, following AGE
         "changes directly in ROMAtlas, preserve unrelated work, leave edits uncommitted "
         "and log requirements, rationale and validation for a separate reviewer. Continue "
         "through the whole game, not one playable checkpoint. Finish the ledger, checks "
-        "and handoff; report untested desktop behavior. If blocked, preserve work and "
+        "and handoff; adapt BUILDING.md with platform build instructions and validation, "
+        "and report untested desktop behavior. If blocked, preserve work and "
         "explain concrete unresolved behaviors and what would unblock them; never mark "
         "an incomplete port complete.")
 RESUME_GOAL = ("Resume this entire-game port goal. Read prompts/resume.md and persistent "
@@ -160,6 +161,8 @@ def prepare(archive, rom, output, binary):
         (stage / "prompts/start.md").write_text(prompt)
         (stage / "prompts/resume.md").write_text("# Resume the whole-game port\n\nRead progress.md, ledger.json, differences.md, library-changes.md and existing code first. Preserve work; do not reinitialize. Continue unresolved behavior and library work.\n\n" + prompt)
         shutil.copyfile(TEMPLATES / "review.md", stage / "prompts/review.md")
+        build_guide = (TEMPLATES / "BUILDING.md").read_text().replace("__GAME_NAME__", name).replace("__TOOLKIT_PATH__", str(ROOT))
+        (stage / "BUILDING.md").write_text(build_guide)
         (stage / "AGENTS.md").write_text(f"""# Native port workspace
 
 Read workflow.md and prompts/start.md (or prompts/resume.md). The whole-game
@@ -206,6 +209,8 @@ is allowed at preparation; relevant unknown behavior must be resolved for portin
 Use progress.md for progress/blockers, differences.md for known behavior differences
 and untested platform/device behavior, and library-changes.md for shared-library
 requirements, actual changes, interface rationale, tests and unresolved findings.
+BUILDING.md contains baseline platform recipes. Adapt it to the finished port's
+dependencies/executable/flags, link it from README.md and record actual validation.
 The initial repository files are copied to review/toolkit-before/, with hashes,
 HEAD and pre-existing status in review/toolkit-before.json. Another agent reviews
 the actual changes using prompts/review.md before the user checks them in.
@@ -217,6 +222,8 @@ All ROMs, restored source/assets and generated build products remain local.
         (stage / "README.md").write_text(f"""# {name}: native Rust port workspace
 
 Status: scaffold only. Implement the entire game before claiming completion.
+See [BUILDING.md](BUILDING.md) for local macOS/Linux/Windows source builds and
+transfer instructions. Adapt that guide for the finished port and tested facts.
 Run `python3 run.py headless --frames 120` on this server. On a desktop with SDL2
 installed, `python3 run.py desktop` opens the window; F1 opens saved player settings.
 The executable accepts --rom, --assets, --settings and --headless (frame count).
