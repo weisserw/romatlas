@@ -1,0 +1,18 @@
+[package]
+name = "romatlas-port"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version = "1.90"
+description = "ROM-backed assets and reusable runtime helpers for native game ports"
+
+[features]
+default = []
+desktop = ["dep:sdl2"]
+
+[dependencies]
+anyhow.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+sdl2 = { version = "=0.38.0", optional = true }

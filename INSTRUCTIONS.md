@@ -11,8 +11,10 @@ export PATH="$HOME/.cargo/bin:$PATH"
 cargo build --locked
 ```
 
-The setup script requires root privileges; use `sudo bash scripts/setup.sh` if
-needed. It installs the pinned tools, including Rust 1.90.0.
+Run setup as your normal user with sudo access, or directly as root. It elevates
+only system installation; do not wrap the whole script in sudo with an existing
+user Rust installation. It installs pinned tools, Rust 1.90.0 and SDL2 development
+libraries for native ports.
 Setup is generally needed once. Rebuild after toolkit changes; neither step
 needs repeating for every game.
 
@@ -234,3 +236,45 @@ errors return JSON on stderr and exit 1. The original workspace is unnecessary.
 
 Keep restored source, reading copies, ROMs and assets local. Test the archive
 lifecycle with `python3 scripts/test-archive.py`, which uses a synthetic ROM only.
+
+## 8. Prepare the native port phase
+
+```sh
+python3 scripts/port.py prepare atlas/gb/game/FULL_ROM_SHA256 \
+  --rom /path/to/original.gb --out /root/rom-ports/game
+codex --enable goals -C /root/rom-ports/game
+```
+
+Paste the printed whole-game port goal. Use the printed resume goal for later
+sessions. Preparation validates/restores the archived source, creates a separate
+Rust project and behavior ledger, and records the toolkit's initial files for
+review. It implements no gameplay and launches no agent. Phase-one unknowns are
+allowed, but gameplay-relevant gaps must be investigated by the port agent.
+
+The agent implements every gameplay-relevant equivalent, accounting for merged,
+modernized and obviously irrelevant original paths rather than translating every
+line. Original assets load from the user's ROM at startup. File-backed replacements
+and new slots allow original levels plus added levels. The shared library includes
+console timing, selected Game Boy effects, assets, headless helpers and an optional
+SDL2 shell with persisted keyboard/controller/display/audio settings.
+
+```sh
+cd /root/rom-ports/game
+python3 run.py headless --frames 120
+python3 run.py check
+python3 run.py audit
+```
+
+check runs formatting, clippy, headless tests and desktop compilation. Do not run
+`python3 run.py desktop` on this headless server; it is for a graphical desktop.
+F1 or controller Guide opens the settings menu. Do not write tests requiring
+unavailable graphics/devices. Desktop/other-platform runtime behavior remains
+explicitly untested here. Audit checks explained source accounting and builds,
+not gameplay fidelity or semantic correctness.
+
+The agent may implement needed library changes directly in ROMAtlas, uncommitted,
+with a log and relevant toolkit checks. Launch another agent manually from the port
+workspace and give it `prompts/review.md` to review the actual diff against the
+initial toolkit snapshot. You decide check-in. No release packaging or library
+publication is performed; the development port uses an editable local dependency.
+See [docs/porting.md](docs/porting.md) for the full contract and extension formats.

@@ -232,3 +232,53 @@ remains incomplete with the 31-byte unknown interval at $0426–$0444. No commer
 ROM, generated assembly, extracted game asset or scratch trace was added to the
 repository. Archive metadata does not establish semantic correctness, hardware
 compatibility or completion of the remaining phase-one classification.
+
+Added the confirmed native-port workflow in scripts/port.py and its generated
+templates. Preparation accepts a reviewed Game Boy archive plus its matching local
+ROM, restores and byte-verifies exact commented reference source, and publishes a
+new workspace outside the repository. It carries incomplete classification into
+pending gameplay-behavior accounting, prints whole-game start/resume goals and a
+separate reviewer prompt, and does not launch agents or implement game behavior.
+The workspace preserves an initial toolkit file/hash/HEAD/status snapshot so
+port-driven library edits can be reviewed separately from pre-existing work.
+Agents may implement needed shared changes directly here, uncommitted, with a
+requirements/rationale/validation log. Accounting audits reject missing original
+units, altered source identities, pending dispositions and missing equivalents;
+they do not assess semantic correctness or test quality.
+
+The new romatlas-port library supplies identity-checked bounded ROM access,
+named asset collections with replacements/additional slots and explicit ordering,
+game-owned decoded-ROM recipe hooks, rational console timing, sample budgets,
+Game Boy tile/palette and CPU tile-map/sprite composition, logical input edges and
+focus rearming, and persisted player settings/menu logic. The optional SDL2 shell
+adds window/fullscreen/aspect/integer scaling, keyboard/controller binding,
+controller/dead-zone selection, volume and focus-loss pause. Identical controller
+models receive separate GUID/ordinal choices; ordinals follow enumeration, not
+serial identity. Desktop initialization is separate from scripted headless
+execution. SDL2 development libraries are installed by setup; compatible Rust
+dependencies are locked. Music drivers, complete PPU/APU behavior, unusual game
+tricks, other console modules, immutable release pinning and packaging are not
+claimed by this starting library. No original game assets are embedded.
+
+Rust 1.90.0 setup/build, fmt, locked workspace clippy/tests, desktop-feature
+clippy and all 14 display/device-independent port-library tests pass. Tests cover
+fifteen ROM-backed levels plus replacement/new sixteenth slot, modern-schema
+decoded defaults, traversal/symlink/duplicate/order rejection, sparse oversized
+ROM rejection, exact timing/sample budgets, tile/palette composition, input
+rearming, persisted settings/rebinding/reset, default SDL names and duplicate
+controller selectors. scripts/test-port.py passes synthetic archive preparation
+with spaces, reference fidelity, unknown regions, prompts/review snapshots,
+offline lockfile generation, actual headless execution and desktop compilation,
+asset overrides, accounting acceptance/rejection, frozen-reference/ROM guards,
+wrong/tampered inputs, JSON-only mode and no-display desktop rejection. Existing
+session, disassembly, commentary, archive, stock portability and dependency
+boundary regressions pass. CI and clean-setup command lists include the new tests.
+The revised setup passed here; the clean-root setup was not rerun for this change.
+
+README.md, INSTRUCTIONS.md, AGENTS.md, project.md and docs/porting.md describe the
+new phase and keep native-port accounting distinct from whole-ROM structural
+classification. No window, audio device, physical controller or live port/review
+agent was launched. These checks prove the initial workflow/library and generated
+build contract, not a completed real-game port, desktop runtime behavior or other
+OS compatibility. No commercial ROM, regenerated assembly or extracted game asset
+was added to the repository; all synthetic generated material stayed local.

@@ -202,3 +202,23 @@ romatlas verify ./game.gb --generated ./build/game
 Deliver runnable Rust source, documented CLI and agent protocol, mgbdis `.sym` compatibility guide and examples, pinned external tool dependencies, tests, CI configuration, `AGENTS.md`, and a concise architecture/limitations document. Keep a running milestone checklist in `docs/progress.md`, updating it as features land. Prefer working vertical slices over broad unfinished scaffolding. If the full scope cannot be completed in one pass, leave the repository in a tested, runnable state, clearly identify incomplete milestones, and do not claim unsupported games or features work.
 
 **Definition of success:** an autonomous agent can investigate a Game Boy ROM using the toolkit, iteratively build a ROM-free structural map, and another user with the identical ROM can use the exported `.sym` with stock mgbdis to generate and byte-verify the same disassembly without needing the original agent's execution traces or any distributed ROM content.
+
+## Additional native port workflow scope
+
+The confirmed extension in docs/port-workflow-design.md adds a final native-port
+workflow beyond the original M1–M4 mapping scope. Starting from a reviewed archive
+and matching local ROM, prepare a separate Rust workspace and print whole-game
+agent goals. Provide a small shared runtime library with ROM-backed extensible
+assets, console cadence, selected platform effects, headless execution and an
+optional SDL2 desktop frontend with player configuration.
+
+The agent accounts for all original source behavior and implements gameplay
+equivalents using modern techniques; obvious irrelevant paths may be excluded
+with explanations, favoring ambiguous cases. Completion requires finished
+accounting, useful passing tests and a documented handoff, not exact frame matching
+or a line-by-line translation. The scaffold is not gameplay completion. Agents
+may evolve the library directly in ROMAtlas, uncommitted, with an initial-file
+snapshot and change log for separate review before user check-in. Keep original
+assets ROM-backed at startup and out of distributions. Headless Linux validation
+does not claim desktop/other-OS runtime compatibility. Library publication and
+release packaging are later scope. See docs/porting.md for the working contract.

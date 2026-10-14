@@ -5,7 +5,7 @@ cd "$(dirname "$0")/.."
 setup_privilege=()
 if (( EUID != 0 )); then setup_privilege=(sudo); fi
 "${setup_privilege[@]}" apt-get update
-"${setup_privilege[@]}" apt-get install -y build-essential pkg-config libpng-dev bison flex curl git python3
+"${setup_privilege[@]}" apt-get install -y build-essential pkg-config libpng-dev libsdl2-dev bison flex curl git python3
 export PATH="$HOME/.cargo/bin:$PATH"
 if ! command -v rustup >/dev/null; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain 1.90.0

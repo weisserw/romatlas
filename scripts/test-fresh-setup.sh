@@ -34,12 +34,18 @@ chroot "$fresh_setup_root" /bin/bash -lc '
   cargo fmt --check
   cargo clippy --workspace --all-targets --locked -- -D warnings
   cargo test --workspace --locked
+  cargo clippy -p romatlas-port --all-targets --features desktop --locked -- -D warnings
+  cargo test -p romatlas-port --features desktop --locked
   cargo test --manifest-path vendor/mizu/mizu-core/Cargo.toml --locked
   python3 scripts/test-boundaries.py
   python3 scripts/test-session.py
   python3 scripts/test-api.py
   python3 scripts/test-portability.py
   python3 scripts/test-fidelity.py
+  python3 scripts/test-disassemble.py
+  python3 scripts/test-commentary.py
+  python3 scripts/test-archive.py
+  python3 scripts/test-port.py
   bash scripts/setup-hardware-tests.sh
   bash scripts/setup-homebrew-tests.sh
   cargo build --release --locked

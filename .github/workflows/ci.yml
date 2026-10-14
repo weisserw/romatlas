@@ -11,6 +11,8 @@ jobs:
       - run: cargo fmt --check
       - run: cargo clippy --workspace --all-targets --locked -- -D warnings
       - run: cargo test --workspace --locked
+      - run: cargo clippy -p romatlas-port --all-targets --features desktop --locked -- -D warnings
+      - run: cargo test -p romatlas-port --features desktop --locked
       - run: cargo test --manifest-path vendor/mizu/mizu-core/Cargo.toml --locked
       - run: cargo build --locked
       - run: python3 scripts/test-portability.py
@@ -19,6 +21,7 @@ jobs:
       - run: python3 scripts/test-disassemble.py
       - run: python3 scripts/test-commentary.py
       - run: python3 scripts/test-archive.py
+      - run: python3 scripts/test-port.py
       - run: python3 scripts/test-api.py
   hardware:
     runs-on: ubuntu-24.04

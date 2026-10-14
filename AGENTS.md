@@ -40,3 +40,17 @@ Shared disasm code must not import Game Boy types. Its backend trait delegates p
 Optional trace.stream.start/stop writes bounded local JSONL files independent of the memory buffer. Do not mix raw trace values into portable mappings. Snapshot replay can rewind cycle values; file sequence remains monotonic.
 
 Use analysis.discover_context for CPU-window-aware traversal. Supply entrypoints with offset and cpu_context. It merges recorded before/after bank states by default; use_observed=false gives static-only paths. A reached target is not execution coverage. Context roots/edges survive zero detail capacity and remain separate from portable maps.
+
+Use scripts/port.py prepare ARCHIVE --rom ROM --out OUTPUT for separate native
+Rust port workspaces. Read docs/porting.md and the generated prompts. Preparation
+restores a byte-identical reference and initializes pending behavior accounting;
+it is not a ported game. Original assets load from the ROM at startup, with file
+replacements/additional slots. The port agent may implement needed romatlas-port
+library changes directly here, uncommitted, with a change log and preservation of
+the initial repository state for separate review. Native-port completion uses
+explained gameplay-behavior accounting and useful tests, not frame equivalence or
+phase-one classification completion. Keep the original mapping goal's stricter
+classification contract intact. Do not write tests needing unavailable GUI/devices
+or launch SDL graphics on the headless server. Run scripts/test-port.py and the
+romatlas-port desktop-feature clippy/tests after relevant changes; these tests
+exercise headless logic and compile desktop code without initializing a window.

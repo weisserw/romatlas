@@ -3,7 +3,7 @@
 import json,subprocess,pathlib
 root=pathlib.Path(__file__).resolve().parents[1]
 metadata=json.loads(subprocess.check_output(['cargo','metadata','--no-deps','--format-version','1','--locked'],cwd=root,text=True))
-neutral={'romatlas-core','romatlas-analysis','romatlas-map','romatlas-agent','romatlas-disasm'}
+neutral={'romatlas-core','romatlas-analysis','romatlas-map','romatlas-agent','romatlas-disasm','romatlas-port'}
 for package in metadata['packages']:
  if package['name'] in neutral:
   forbidden=[d['name'] for d in package['dependencies'] if d['name']=='romatlas-gb' or d['name'].startswith('mizu')]

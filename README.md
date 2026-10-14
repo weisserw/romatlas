@@ -4,7 +4,7 @@ Rust tools for ROM-free Game Boy maps. The project.md milestone scope is complet
 
 ## Setup
 
-On a new Ubuntu/Debian VM, run `bash scripts/setup.sh` as your normal user with sudo access (running directly as root is also supported). Then add `$HOME/.cargo/bin` to PATH. The script installs Rust 1.90.0, pinned mgbdis, and RGBDS 0.9.4. Only system package installation and RGBDS installation use sudo; Rust and local builds stay under the invoking user. Do not wrap the whole script in sudo when using an existing user Rust installation.
+On a new Ubuntu/Debian VM, run `bash scripts/setup.sh` as your normal user with sudo access (running directly as root is also supported). Then add `$HOME/.cargo/bin` to PATH. The script installs Rust 1.90.0, pinned mgbdis, RGBDS 0.9.4 and SDL2 development libraries for native ports. Only system package installation and RGBDS installation use sudo; Rust and local builds stay under the invoking user. Do not wrap the whole script in sudo when using an existing user Rust installation.
 
 ```sh
 cargo build --locked
@@ -66,6 +66,38 @@ a new name for the next attempt. Baseline is raw-byte output and does not comple
 classification. All ROMs, traces, internal state, generated source and extracted
 assets stay local; `.gitignore` ignores the entire workspace. Only exported stock
 maps are intended for sharing. Test with `python3 scripts/test-disassemble.py`.
+
+## Native port workspaces
+
+Prepare a separate Rust game-port workspace from a reviewed archive and your
+matching local ROM:
+
+```sh
+python3 scripts/port.py prepare /path/to/archive --rom /path/to/game.gb --out /root/rom-ports/game
+cd /root/rom-ports/game
+python3 run.py headless --frames 120
+python3 run.py check
+```
+
+Preparation restores and byte-verifies the commented reference source, creates a
+pending source-behavior ledger and demonstration scaffold, and prints whole-game
+start/resume goals and a separate library-review prompt. It does not port gameplay
+or launch an agent. Game Boy is the initial scaffold platform. Incomplete
+classification is accepted; relevant unknown behavior must be investigated.
+
+The new `romatlas-port` library provides ROM-backed assets, replacement/additional
+slots, console timing, tile/palette rendering, input/settings and an optional SDL2
+desktop shell. The port agent can evolve that library directly in ROMAtlas,
+uncommitted, with a change log and an initial-file snapshot for separate review.
+Normal tests and headless execution need no display or audio device. On a desktop,
+`python3 run.py desktop` opens the game; F1 or the controller Guide button opens
+settings. Never run that command on the headless server.
+
+Original assets must load from the ROM at startup and stay out of distributions.
+Code/data behavior accounting and useful passing tests establish the agent's
+completion contract; automated audit cannot assess gameplay fidelity. Release
+packaging and library publication/pinning are later work. See [porting guide](docs/porting.md)
+and [agreed design](docs/port-workflow-design.md). Test with `python3 scripts/test-port.py`.
 
 ## Internal analysis store
 
