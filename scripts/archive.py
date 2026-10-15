@@ -17,6 +17,7 @@ IDENTIFIER = re.compile(r'[A-Za-z_\.][A-Za-z_0-9\.]*\Z')
 FINAL = [
     "maps/current.sym", "analysis/state.json", "analysis/annotations.json",
     "analysis/current-audit.json", "analysis/scenarios.json",
+    "analysis/frontier.md", "analysis/work-queue.json",
     "analysis/investigation.md", "analysis/gameplay.md", "analysis/progress.md",
     "commentary/baseline.sym", "commentary/phase1-state.json",
     "commentary/manifest.json", "commentary/review.json", "commentary/audit.json",
@@ -285,6 +286,7 @@ def archive(workspace, destination, name, binary, documents=(), omitted_document
         unselected = [p.relative_to(work).as_posix() for folder in ["analysis", "commentary"]
                       for p in (work / folder).rglob("*.md")
                       if p.relative_to(work).as_posix() not in known_docs
+                      and not p.relative_to(work).as_posix().startswith("analysis/setup-backups/")
                       and not any(part in {"before", "source"} for part in p.relative_to(work).parts)]
         if unselected:
             raise ValueError(f"unrecognized documents; use --document for final documents or --omit-document for scratch: {unselected}")

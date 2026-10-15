@@ -48,22 +48,26 @@ impl Store {
     }
     pub fn conflicts(&self) -> Vec<Conflict> {
         let mut result = Vec::new();
-        let entries: Vec<_> = self.regions.iter().collect();
+        let mut entries: Vec<_> = self.regions.iter().collect();
+        entries.sort_by_key(|(id, r)| (&r.start.space, &r.start.context, r.start.offset, **id));
         for (i, (a, x)) in entries.iter().enumerate() {
             for (b, y) in &entries[i + 1..] {
-                if x.start.space == y.start.space
-                    && x.start.context == y.start.context
-                    && x.start.offset < y.start.offset.saturating_add(y.length)
-                    && y.start.offset < x.start.offset.saturating_add(x.length)
+                if x.start.space != y.start.space
+                    || x.start.context != y.start.context
+                    || y.start.offset >= x.start.offset.saturating_add(x.length)
                 {
+                    break;
+                }
+                if x.start.offset < y.start.offset.saturating_add(y.length) {
                     result.push(Conflict {
-                        first: **a,
-                        second: **b,
+                        first: (**a).min(**b),
+                        second: (**a).max(**b),
                         reason: "overlapping structural regions".into(),
                     });
                 }
             }
         }
+        result.sort_by_key(|c| (c.first, c.second));
         result
     }
     pub fn validate(&self) -> Result<()> {
@@ -110,6 +114,30 @@ impl Store {
             return Err(e);
         }
         Ok(id)
+    }
+    /// Stage a whole batch, validating once. Failure preserves IDs, regions and metadata.
+    pub fn annotate_batch(
+        &mut self,
+        regions: impl IntoIterator<Item = Region>,
+    ) -> Result<Vec<u64>> {
+        let mut staged = self.clone();
+        let mut ids = Vec::new();
+        for region in regions {
+            validate_region(&region)?;
+            let id = staged.next_id;
+            ensure!(
+                id > 0 && !staged.regions.contains_key(&id),
+                "invalid region IDs"
+            );
+            staged.next_id = id
+                .checked_add(1)
+                .ok_or_else(|| anyhow::anyhow!("region IDs exhausted"))?;
+            staged.regions.insert(id, region);
+            ids.push(id);
+        }
+        staged.validate()?;
+        *self = staged;
+        Ok(ids)
     }
     pub fn edit(&mut self, id: u64, region: Region) -> Result<()> {
         validate_region(&region)?;
@@ -229,5 +257,69 @@ mod tests {
         let json = serde_json::to_string(&s).unwrap();
         let restored: Store = serde_json::from_str(&json).unwrap();
         restored.validate().unwrap();
+    }
+    #[test]
+    fn batch_is_atomic_and_preserves_metadata_and_ids() {
+        let mut s = store();
+        let id = s.annotate(region(10, 10)).unwrap();
+        s.region_metadata
+            .insert(id, serde_json::json!({"evidence":"retained"}));
+        let before = serde_json::to_value(&s).unwrap();
+        for batch in [
+            vec![region(30, 3), region(19, 2)],
+            vec![region(30, 3), region(32, 2)],
+            vec![region(30, 3), region(u64::MAX, 1)],
+        ] {
+            assert!(s.annotate_batch(batch).is_err());
+            assert_eq!(serde_json::to_value(&s).unwrap(), before);
+        }
+        assert_eq!(
+            s.annotate_batch([region(20, 10), region(0, 10)]).unwrap(),
+            vec![2, 3]
+        );
+        assert_eq!(s.region_metadata[&id]["evidence"], "retained");
+        s.next_id = u64::MAX;
+        let before = serde_json::to_value(&s).unwrap();
+        assert!(s.annotate_batch([region(100, 1)]).is_err());
+        assert_eq!(serde_json::to_value(&s).unwrap(), before);
+    }
+    #[test]
+    fn sorted_conflicts_match_pairwise_oracle_with_nested_contexts() {
+        let mut s = store();
+        // Deliberately unsorted IDs, ties, adjacency, nested regions and contexts.
+        for id in 1..=180u64 {
+            let mut r = region((id * 47) % 113, id % 23 + 1);
+            r.start.space = format!("space{}", id % 3);
+            r.start.context.insert("bank".into(), (id % 5).to_string());
+            s.regions.insert(id, r);
+        }
+        let mut expected = Vec::new();
+        for (&a, x) in &s.regions {
+            for (&b, y) in s.regions.range((a + 1)..) {
+                if x.start.space == y.start.space
+                    && x.start.context == y.start.context
+                    && x.start.offset < y.start.offset + y.length
+                    && y.start.offset < x.start.offset + x.length
+                {
+                    expected.push((a, b));
+                }
+            }
+        }
+        assert!(!expected.is_empty());
+        assert_eq!(
+            s.conflicts()
+                .iter()
+                .map(|c| (c.first, c.second))
+                .collect::<Vec<_>>(),
+            expected
+        );
+        let mut s = store();
+        assert_eq!(
+            s.annotate_batch((0..10_000).rev().map(|i| region(i * 2, 2)))
+                .unwrap()
+                .len(),
+            10_000
+        );
+        assert!(s.conflicts().is_empty());
     }
 }

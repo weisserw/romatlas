@@ -1,5 +1,58 @@
 # Milestone checklist
 
+2026-10-15 semantic handoff guidance: classification start/resume/workflow prompts
+now turn specific blocked structural dependencies into targeted subsystem
+explanation experiments and preserve reusable findings in existing evidence
+records. Commentary reuses those findings and documents validated map corrections,
+single-writer coordination, frozen-baseline preservation and manual source/review
+reconciliation with both classification and commentary verification. No phase or
+completion relaxation was added. SML2 workflow and start/resume prompts were
+updated in place; no map/state or edited assembly changed. SML2 has no commentary
+tree yet; preparation will install the new commentary prompt. Synthetic
+disassembly/commentary regressions and git diff --check pass.
+
+2026-10-15 context-saving prompt update: INSTRUCTIONS.md recommends disabling
+context-mode separately in plugin settings. Generated disassembly, commentary,
+native-port start/resume and library-review prompts now encourage scripted
+summaries, bounded queries, exact evidence inspection and concise persistent
+progress without requiring a context plugin. Commentary/port startup reads are
+scoped to relevant sections instead of entire ledgers/source dumps. The existing
+SML2 workflow received the same guidance; plugin settings and classification
+contracts were not changed. Synthetic disassembly, commentary and port
+regressions pass, including headless/desktop builds; git diff --check passes.
+
+2026-10-15 disassembly efficiency implementation: stock imports now stage regions
+and validate once, with sorted overlap checks and transactional rejection tests.
+New workspaces default to the release executable. Backed-up in-place upgrades
+install an identity-bound immutable decode cache, compact unknown-region queue,
+reusable batch reporting, timed checkpoints and updated strict completion prompts.
+Context discovery supports independently paged references/diagnostics and explicit
+ROM/context/source-byte-validated non-mapper-store and inline-dispatch profiles;
+these assertions do not establish execution coverage or remove data barriers.
+Archive selection retains queue/frontier metadata and excludes setup backups.
+Rust 1.90.0 locked debug/release builds, fmt check, workspace clippy/tests,
+session, API, portability, workspace, helper, boundary, archive and port
+regressions pass, as do desktop-feature port clippy/tests (headless execution).
+The local SML2 upgrade preserved ROM, maps, state and prior history; its unchanged
+raw map rebuilt byte-identically, with single-run store validation/map validation/
+generation/verification times 0.169/0.286/5.966/0.780 seconds. This is not an
+end-to-end analysis-speed benchmark. Its stored goal was updated without changing
+model, usage accounting or usage-limited status. No new bytes were classified.
+No commercial ROM or extracted asset was downloaded or committed.
+
+2026-10-15 local disassembly performance review: Rust 1.90.0
+`cargo build --locked --release` succeeded. On the existing privately supplied
+SML2 compact map, current release validation/generation/verification took
+4.900/9.288/0.313 seconds and returned a byte-identical rebuild. The existing
+debug binary validated the same map in 69.761 seconds. These are single-run
+measurements; no general benchmark or whole-project speedup is claimed.
+Current mapping import still validates the growing store after each annotation,
+including pairwise conflict checks. No toolkit source, session implementation,
+disassembly state, map, or agent configuration changed. The local investigation
+report is `/root/super-mario-land-2/analysis/strategy-review-2026-10-15.md`;
+generated verification output remains under `/tmp/romatlas-sml2-review-20261015-source`.
+No commercial ROM or extracted asset was downloaded or committed.
+
 T001 region explanations are now available through map.annotate: optional name, role, evidence and comment strings are stored in region_metadata, exposed by map.get and retained by map.save/load. Null removes a field; unchanged extents preserve imported directives and explanations. Structural edits discard old metadata; all edits stage and validate the full proposed map before committing. Names export as stock symbols; explanatory text remains internal. Metadata no longer requires a sym directive. Rust 1.90.0 fmt, locked workspace clippy/tests/build, synthetic session, API and stock portability pass, including byte-identical rebuilding with a named region and imported 1bpp metadata. A focused mapping unit test also passes for explanation-only metadata and named export. No commercial ROMs or extracted assets were used.
 
 Generated disassembly workflow and start/resume prompts now require game familiarization using available online manuals, FAQs/walkthroughs and technical resources after game/version identification. New workspaces initialize analysis/gameplay.md for source URLs, version uncertainty, actionable controls/mechanics/progression/password routes and local confirmation status. Findings feed targeted runtime scenarios; external claims do not independently justify structural classification. Agents revisit research for specific obstacles and check documented routes before exhausting gameplay-dependent paths, preserving research across sessions and continuing local analysis if browsing/resources are unavailable. INSTRUCTIONS.md documents the behavior. Rust 1.90.0 fmt, locked workspace clippy/tests, synthetic workspace regression, stock portability, session tests and git diff --check pass. Regression checks cover generated prompts, gameplay record initialization, evidence distinction and exhaustion review. No live browsing/disassembly-agent behavior was tested; existing workspaces are not automatically updated.

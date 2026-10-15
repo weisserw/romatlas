@@ -1,5 +1,22 @@
 # Starting a ROM disassembly
 
+## Agent context management (all phases)
+
+Recommended setup: disable context-mode in your agent's plugin settings and use
+the context-saving guidance embedded in the generated prompts below. Preparing
+a workspace does not change plugin settings. Disassembly, commentary and native
+port prompts require no context-management plugin.
+
+Process large traces, JSON, source inventories and test logs with local scripts
+or focused searches; return counts, relevant excerpts, failures and evidence
+paths instead of dumping complete files. Use bounded/paginated tool queries.
+Inspect exact source, bytes and bank context before accepting a conclusion;
+summaries are navigation aids, not proof. Keep full evidence on disk and concise
+progress/next-action records for resumption. Read relevant older sections on
+demand. Use direct tools for short reads and edits. Avoid repeated unchanged
+queries, redundant reports and scripts for trivial one-line reads. Context saving
+must never reduce investigation scope, verification or honest uncertainty.
+
 ## 1. Set up and build the toolkit
 
 Run these commands in the ROMAtlas repository on Ubuntu/Debian:
@@ -19,6 +36,10 @@ Setup is generally needed once. Rebuild after toolkit changes; neither step
 needs repeating for every game.
 
 ## 2. Create a game workspace
+
+Build the optimized toolkit used by disassembly workspaces:
+`cargo build --locked --release`. The initializer defaults to that release binary;
+`--binary /path/to/romatlas` is an explicit override.
 
 The default workspace parent is the current directory. Run from a directory
 outside the toolkit repository, or pass `--root` explicitly as below, with the
@@ -40,6 +61,15 @@ python3 scripts/disassemble.py /path/to/game1.gb /path/to/game2.gbc --root /root
 
 Each ROM gets its own directory named after its filename without the extension.
 Names must be distinct, and existing workspaces are not overwritten.
+
+For an existing workspace, use
+`python3 scripts/upgrade-disassembly.py /path/to/workspace --apply` to install the
+current prompts, cached session client and queue/report helper in place. Stop its
+RPC bridge first. The upgrade backs up configuration and prompts, verifies the
+ROM identity and preserves the classification state, maps and evidence history.
+Read [workspace efficiency](docs/workspace-efficiency.md) for commands and rollback.
+`prompts/goal.md` contains the updated objective. File upgrades do not themselves
+edit an agent provider's stored goal, change its model, or resume a stopped agent.
 
 ## 3. Start the disassembly agent
 
@@ -123,7 +153,13 @@ the starting point; it does not mean code/data classification is complete.
 
 ## 5. Prepare the commentary phase in the existing workspace
 
-After structural analysis, prepare a separate editable assembly tree:
+During classification, a stalled structural dependency can trigger targeted
+subsystem explanation. Preserve names, behavior, invariants, bank-aware ranges
+and supporting evidence in existing investigation/metadata records for reuse.
+This makes the existing permission to investigate semantics actionable; it adds
+no phase and does not require a whole-game commentary sweep during classification.
+
+When ready for the full commentary review, prepare a separate editable assembly tree:
 
 ```sh
 python3 scripts/commentary.py prepare /root/rom-work/game
@@ -135,6 +171,14 @@ listing from the current `.sym`, and verifies a byte-identical rebuild. It then
 creates `commentary/` without modifying phase-1 instructions, maps or evidence.
 An investigated phase-1 unknown interval does not prevent starting this phase.
 Preparation refuses an existing commentary directory; it never replaces edits.
+
+Commentary findings can feed back into classification. Its prompt requires an
+evidence-backed correction record, a single writer for shared maps/state, a
+snapshot and validated map update, and a fresh classification checkpoint.
+Reconcile affected edited source and review units while preserving comments,
+then verify commentary again. Frozen commentary baseline artifacts must remain
+unchanged; never regenerate over edited source. Track blocked reconciliation
+explicitly. Structural and editorial completion remain separate outcomes.
 
 The command prints a Codex startup command and a short `/goal` referring to
 `commentary/prompt.md`. That prompt asks the agent to review the entire game,

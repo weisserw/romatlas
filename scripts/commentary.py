@@ -18,9 +18,37 @@ PROMPT = """# Phase 2: readable, fully reviewed assembly
 
 Read commentary/AGENTS.md and commentary/workflow.md first. Work in this existing
 game workspace; preserve all phase-1 evidence, maps and checkpoints. Read
-analysis/progress.md, analysis/investigation.md, analysis/gameplay.md,
-analysis/toolkit-issues.md and analysis/state.json. The source of truth for this
+the latest analysis/progress.md entries and relevant sections of
+analysis/investigation.md, analysis/gameplay.md and analysis/toolkit-issues.md;
+inspect analysis/state.json with bounded queries or local scripts. The source of truth for this
 phase is commentary/source/, not generated/ or the portable .sym.
+
+Reuse structural-pass semantic findings from the relevant investigation entries,
+region metadata and batch records before re-deriving them. Check their evidence
+and uncertainty against the actual source; earlier names are not unquestionable.
+When explanation exposes a classification error or a newly resolved extent,
+record old/proposed kinds and bounds, physical/bank context, evidence and affected
+source/review units in analysis/investigation.md. Coordinate a single writer for
+shared state. Snapshot the current state/map, apply the correction through normal
+validated map APIs, save/export and verify a fresh classification checkpoint.
+Do not rewrite commentary/baseline.sym, commentary/phase1-state.json or other
+frozen baseline artifacts, and never regenerate over commentary/source. Reconcile
+affected edited source manually, preserving names/comments and exact bytes; update
+review units within the existing coverage scaffold and rerun commentary verification
+and reading-copy generation. Record both checkpoint identities and reconciliation
+status. If safe reconciliation is blocked, preserve the proposed correction and
+explicit dependency rather than claiming it is applied or silently diverging.
+Unresolved reconciliation is outstanding work, not editorial completion. Unknowns
+remain honest and neither phase's completion implies completion of the other.
+
+No context-management plugin is required. Summarize large inventories, traces and
+test logs with local scripts or focused searches. Return counts, relevant excerpts,
+failures and evidence paths; retain full evidence on disk. Read connected source
+units and exact bytes/bank context before accepting interpretations. Use direct
+tools for short reads and edits, bounded queries for large outputs, and concise
+progress/next-action records. Retrieve historical details on demand. Avoid
+unchanged repeat queries and redundant reports; never skip review or verification
+to save context. Summaries are navigation aids, not evidence of correctness.
 
 Objective: make the entire game's assembly understandable enough for an assembly-
 literate human or agent to answer questions, find bugs and modify it. Review all

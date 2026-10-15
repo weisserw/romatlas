@@ -1,5 +1,13 @@
 # Agent instructions
 
+Disassembly workspaces default to `cargo build --locked --release`. Use
+`scripts/upgrade-disassembly.py WORKSPACE --apply` for backed-up in-place setup
+updates; read docs/workspace-efficiency.md. It does not resume agents or update
+provider-stored goals. Preserve strict whole-ROM classification requirements.
+Run `python3 scripts/test-disassembly-tools.py` after cache, queue or upgrade
+changes. Confirmed contextual discovery profiles require ROM/source-byte/context
+identity and evidence covering all arrivals; reachability is not execution.
+
 Read project.md and docs/progress.md before work. Keep the full scope; do not mark the goal complete after the raw-data slice. Never download or commit commercial ROMs or extracted assets. Keep generated files local.
 
 Install tools with `bash scripts/setup.sh` on Ubuntu/Debian. Use Rust 1.90.0 and Cargo.lock. Run fmt, clippy, tests, and the portability script after relevant changes. Update docs/progress.md with tested facts.

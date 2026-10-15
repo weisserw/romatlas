@@ -12,6 +12,93 @@ import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 
+EFFICIENCY = """
+## Efficient investigation and resumption
+
+No context-management plugin is required. Use local scripts and focused searches
+to summarize large traces, JSON and logs; return relevant counts, excerpts,
+failures and evidence paths instead of complete dumps. Use bounded/paginated
+queries and direct tools for short reads or edits. Inspect exact source, bytes
+and bank context before accepting conclusions; summaries are not proof. Keep
+full evidence on disk and concise progress/next-action records. Retrieve older
+sections on demand, avoid unchanged repeat queries and redundant reports, and
+never reduce scope or verification to save context.
+
+Use the configured release binary. If it is unavailable, have the toolkit rebuilt
+with `cargo build --locked --release`; do not silently substitute an older binary.
+Read analysis/frontier.md and the latest progress/batch record first on resume.
+Read older ledger sections only for the selected intervals and their dependencies;
+preserve the full history without repeatedly loading or rewriting it.
+
+Run `python3 analysis/work.py refresh` after loading/saving the current state to
+refresh a compact queue and per-bank audit. Each unknown interval remains tracked.
+Size is only an initial triage heuristic. Record a concrete hypothesis, experiment,
+expected evidence, dependencies, expected bytes unlocked and revisit condition via
+`python3 analysis/work.py plan PLAN.json`. Prefer high-value structural decisions;
+a small helper is worthwhile when it unlocks a larger data/code family. Do not
+repeat a failed scan without a changed prerequisite or a distinct hypothesis.
+
+When a structural hypothesis stalls on a specific semantic dependency, make
+explaining that subsystem the next experiment: inspect connected callers/callees,
+RAM state, selectors, formats and bounds. State which classification decision the
+explanation should unlock; do not start an unrelated whole-game commentary sweep.
+Preserve useful names, behavioral summaries, invariants, physical ranges/bank
+contexts, evidence and competing interpretations in analysis/investigation.md
+and supported region metadata. Link the concise result from the queue/batch so
+the later commentary agent can reuse it. A failed experiment must identify the
+remaining dependency and reopen condition. Semantics are already permitted;
+this is a dependency-driven way to use them, not a new phase or completion rule.
+
+If commentary already exists, incorporate its evidence-backed structural findings
+through normal validated map APIs and fresh verification. Coordinate a single
+writer for shared maps/state. Preserve commentary/source and its frozen baseline;
+never regenerate over edited assembly. Record any unreconciled correction and
+its affected ranges explicitly. Structural and editorial completion stay separate.
+
+The installed analysis/session.py preserves `from session import call` clients.
+Start it with `python3 analysis/session.py --journal traces/session-NEW.jsonl`.
+It binds to this workspace's ROM and binary. Cache hits for analysis.decode avoid
+RPC entirely, keyed by actual ROM/binary identity and all parameters; use bounded
+multi-instruction reads when useful. Nothing else is cached: map-sensitive
+discovery, bank contexts, runtime observations and mapped memory must stay fresh.
+Rebuild/replacement of the binary requires restarting the bridge. A new bridge
+still needs map.load, emulator.start and input replay; old snapshots are gone.
+`python3 analysis/session.py --cache-stats` reports local cache storage.
+
+Page references and diagnostics independently with reference_offset and
+diagnostic_offset in analysis.discover_context. Reuse explicitly reviewed
+ROM-bound inline-dispatch/non-mapper-store profiles as documented in
+docs/protocol.md; one observed register value is not an all-arrival invariant.
+No profile or reached target proves execution or overrides a data barrier.
+
+Group related micro-investigations into coherent passes. Validate/save/export
+accepted map batches, then rebuild/verify once per pass and at final handoff.
+Never waive validation, evidence, or the final byte-identical check. The standard
+checkpoint now handles large uncoalesced maps; coalescing remains optional.
+Avoid a new reporting program per pass. Use
+`python3 analysis/work.py record BATCH.json` with id, summary, evidence paths,
+optional verification report and ticket_updates. It records current accounting
+and concise ledger/progress deltas while retaining historical entries. The
+verification report must match the current ROM and exported map to be called
+current. No helper promotes candidates or marks the whole-ROM goal complete.
+
+Plan runtime around a named unresolved consumer/selector or new scene, with a
+replayable route and expected observations. Consult analysis/gameplay.md and
+scenarios.json; pursue the recorded untested routes where they address a current
+hypothesis. Avoid unguided long runs and repeated read-only inspection of the same
+state. Nonexecution, entropy, duplicate bytes and bank tails are not data/padding
+proof. Existing public disassemblies and format notes need local confirmation.
+
+Keep the existing economical model/reasoning for routine extraction, reviewed
+edits and deterministic reporting. A stronger-reasoning trial should address a
+specific difficult invariant or high-value region, using the same starting state,
+tools and experiment allowance as the cheaper trial. Record accepted progress,
+resolved dependencies, corrections, actual metered usage and total time including
+cooldowns in the batch's model_trial field. The prompts do not change model
+settings automatically. Do not launch parallel model workers under usage limits.
+Operational experiment bounds are never a total investigation or completion budget.
+"""
+
 AGENTS = """# ROM disassembly workspace
 
 Read workflow.md, workspace.json, analysis/progress.md, and
@@ -54,6 +141,14 @@ features, following workflow.md's reporting requirements. Preserve findings
 across sessions. Continue ROM analysis using workarounds unless blocked; do not
 fix the toolkit in this workspace. At the end of every pass, summarize toolkit
 findings and link the report, or explicitly say "no toolkit issues found" if empty.
+"""
+AGENTS += """
+Follow workflow.md's Efficient investigation and resumption section. Read
+analysis/frontier.md when present and use analysis/work.py for current accounting,
+plans and batch reports. Use analysis/session.py for cached immutable decoding.
+Preserve all historical evidence; update current frontiers with deltas. The full
+completion and investigation contract remains unchanged. prompts/goal.md contains
+the persistent objective; prompts/resume.md is also binding on resumed passes.
 """
 
 WORKFLOW = """# Per-game workflow
@@ -270,6 +365,51 @@ features. Continue analysis using workarounds where possible; do not fix the too
 a findings summary and report link, or say "no toolkit issues found" if empty.
 """
 
+WORKFLOW = WORKFLOW.replace("## Completion and investigation contract", EFFICIENCY + "\n## Completion and investigation contract")
+START += "\nFollow Efficient investigation and resumption; use analysis/work.py and cached analysis/session.py.\n"
+RESUME += """
+Apply the current efficiency setup before further analysis. Use the configured
+release binary, read analysis/frontier.md and the latest batch, and consult older
+evidence only for the selected hypotheses. Refresh the queue, choose high-value
+unresolved structures/dependencies, and plan targeted runtime when static input
+domains are missing. Preserve already-tested negative results and explicit reopen
+conditions. Use cached physical decoding and the reusable batch reporter; combine
+related micro-tasks into a verified pass. Keep unknowns honest and the whole-ROM
+goal active while concrete unblocked paths remain. See prompts/goal.md.
+"""
+
+SEMANTIC_HANDOFF = """
+Use workflow.md's dependency-driven semantic experiments when a structural
+decision stalls. Preserve reusable names, invariants and evidence for commentary;
+reconcile commentary-derived map corrections without overwriting edited source.
+This adds no phase and does not weaken either completion contract.
+"""
+START += SEMANTIC_HANDOFF
+RESUME += SEMANTIC_HANDOFF
+
+GOAL = """Read AGENTS.md, workflow.md, prompts/resume.md and analysis/frontier.md
+when present. Complete the same whole-ROM disassembly and evidence-backed structural
+annotations under workflow.md's completion and investigation contract. Success
+requires every physical byte classified with evidence, required role/evidence
+annotations, valid internal and portable stock maps and a byte-identical rebuild.
+Restore analysis/state.json; never treat raw fallback as classification. Apply the
+Efficient investigation and resumption workflow: use the release binary, cached
+immutable decoding, a compact ranked hypothesis/dependency queue, targeted
+replayable runtime experiments, reusable batch reports and coherent verified
+passes. Investigate semantics where they resolve structure; do not require
+exhaustive gameplay explanations. Preserve historical progress, investigation,
+gameplay and toolkit-issue evidence; append changes rather than repeating inventories.
+Keep the economical model for routine work; only trial stronger reasoning on
+specific difficult decisions and compare actual progress, usage and cooldown time.
+Continue while concrete unblocked paths remain. Operational bounds do not authorize
+stopping. Exhausted investigation permits only an evidenced incomplete handoff,
+never marking this unfinished goal complete. Report per-bank classification,
+unknown intervals, annotation coverage, verification, unresolved bank contexts,
+and toolkit findings with links (or say no toolkit issues found if empty).
+Do not download ROMs/assets or commit generated files. Do not fix the toolkit
+during game analysis; record concrete issues and use tested workarounds.
+"""
+
 TOOLKIT_ISSUES = """# Toolkit issues
 
 No findings recorded yet; ROM analysis has not started.
@@ -289,6 +429,7 @@ import re
 import shutil
 import subprocess
 import sys
+import time
 
 ROOT = Path(__file__).resolve().parent
 
@@ -296,7 +437,10 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("command", choices=["inspect", "baseline", "serve", "checkpoint"])
     parser.add_argument("name", nargs="?")
+    parser.add_argument("--timeout-ms", type=int, default=120000)
     args = parser.parse_args()
+    if not 1 <= args.timeout_ms <= 300000:
+        parser.error("timeout-ms must be within 1..300000")
     if args.command == "checkpoint":
         if not args.name or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]*", args.name):
             parser.error("checkpoint requires a simple new name, e.g. pass-001")
@@ -309,9 +453,12 @@ def main():
     if hashlib.sha256(rom.read_bytes()).hexdigest() != meta["sha256"]:
         raise ValueError("input ROM changed; create a separate workspace for another image")
     binary = meta["binary"]
+    timings = {}
     def call(*values, capture=False):
+        started = time.monotonic()
         result = subprocess.run([binary, *map(str, values)], cwd=ROOT,
                                 check=True, text=True, capture_output=capture)
+        timings[" ".join(str(v) for v in values[:2] if v in ("map", "validate", "store", "generate", "verify"))] = time.monotonic() - started
         return json.loads(result.stdout) if capture else None
     if args.command == "inspect":
         call("inspect", rom)
@@ -323,21 +470,34 @@ def main():
     output = ROOT / "generated" / name
     saved_map = ROOT / "maps" / (name + ".sym")
     report = ROOT / "analysis" / (name + "-verification.json")
-    if any(p.exists() or p.is_symlink() for p in [output, saved_map, report]):
+    saved_state = ROOT / "analysis" / (name + "-state.json")
+    state = ROOT / "analysis/state.json"
+    if any(p.exists() or p.is_symlink() for p in [output, saved_map, report, saved_state]):
         raise ValueError("checkpoint paths already exist; choose a new name")
+    state_hash = None
+    if state.exists():
+        call("store", "validate", rom, "--store", state)
+        state_hash = hashlib.sha256(state.read_bytes()).hexdigest()
+        shutil.copyfile(state, saved_state)
     if name == "baseline":
         call("map", "init", rom, "--output", saved_map)
     else:
         shutil.copyfile(ROOT / "maps/current.sym", saved_map)
     call("map", "validate", saved_map, "--rom", rom)
-    call("generate", rom, "--map", saved_map, "--out", output)
-    result = call("verify", rom, "--generated", output, capture=True)
+    call("generate", rom, "--map", saved_map, "--out", output, "--timeout-ms", args.timeout_ms)
+    result = call("verify", rom, "--generated", output, "--timeout-ms", args.timeout_ms, capture=True)
     if result.get("ok") is not True or result.get("byte_identical") is not True:
         raise ValueError("verification did not confirm byte identity")
+    if hashlib.sha256(rom.read_bytes()).hexdigest() != meta["sha256"]:
+        raise ValueError("input ROM changed during checkpoint")
+    if state_hash is not None and hashlib.sha256(state.read_bytes()).hexdigest() != state_hash:
+        raise ValueError("state changed during checkpoint; verify a coherent new pass")
     result.update(rom_sha256=meta["sha256"],
                   map_sha256=hashlib.sha256(saved_map.read_bytes()).hexdigest(),
                   map=str(saved_map.relative_to(ROOT)),
-                  generated=str(output.relative_to(ROOT)))
+                  generated=str(output.relative_to(ROOT)), state_sha256=state_hash,
+                  binary_sha256=hashlib.sha256(Path(binary).read_bytes()).hexdigest(),
+                  tool_timeout_ms=args.timeout_ms, timings_seconds=timings)
     report.write_text(json.dumps(result, indent=2) + "\\n")
     print(json.dumps(result))
 
@@ -377,12 +537,16 @@ def initialize(source, destination, binary):
             "workflow.md": WORKFLOW,
             "prompts/start.md": START,
             "prompts/resume.md": RESUME,
+            "prompts/goal.md": GOAL,
             "analysis/progress.md": "# Disassembly progress\n\nWorkspace initialized. Baseline and classification have not run.\n",
             "analysis/scenarios.json": "[]\n",
             "analysis/investigation.md": "# Investigation ledger\n\nNo regions reviewed yet. Follow workflow.md's completion and investigation contract.\n",
             "analysis/gameplay.md": "# Gameplay research\n\nNo research performed yet. Follow workflow.md's Game familiarization section. Record source URLs, version uncertainty, actionable routes and local confirmation separately.\n",
             "analysis/toolkit-issues.md": TOOLKIT_ISSUES,
             "run.py": RUNNER,
+            "analysis/session.py": (ROOT / "scripts/disassembly_session.py").read_text(),
+            "analysis/work.py": (ROOT / "scripts/disassembly_work.py").read_text(),
+            "analysis/frontier.md": "No classification state yet. Establish the baseline, then run analysis/work.py refresh.\n",
             ".gitignore": "*\n",
             "workspace.json": json.dumps({"version": 1, "toolkit": str(ROOT),
                                           "binary": str(binary), "rom": "input/game.rom",
@@ -426,7 +590,8 @@ def main():
     parser.add_argument("--root", type=Path, default=Path.cwd(),
                         help="parent for game workspaces (default: current directory)")
     parser.add_argument("--workspace", type=Path, help="exact directory; only for one ROM")
-    parser.add_argument("--binary", type=Path, default=ROOT / "target/debug/romatlas")
+    parser.add_argument("--binary", type=Path, default=ROOT / "target/release/romatlas",
+                        help="toolkit executable (default: release; build with cargo build --locked --release)")
     parser.add_argument("--json", action="store_true",
                         help="print JSON results only; suppress Codex startup instructions")
     args = parser.parse_args()

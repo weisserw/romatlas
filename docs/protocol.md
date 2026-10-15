@@ -63,7 +63,7 @@ All byte offsets, lengths, addresses, IDs, counts, and budgets are JSON integers
 | analysis.coverage | offset=0, limit=100 (max 1000). Pages physical executed opcode addresses and hit counts. |
 | analysis.edges | offset=0, limit=100 (max 1000). Pages physical observed successors and hit counts. |
 | analysis.discover | entrypoints=[256], budget=1000 (max 100000), use_observed=true, offset=0, limit=100. Returns physical candidates, references and diagnostics. |
-| analysis.discover_context | Required entrypoints with offset/cpu_context (1..1000). Same budgets/pages as discovery. Propagates CPU context and observed before/after banks. |
+| analysis.discover_context | Required entrypoints with offset/cpu_context (1..1000). Candidate offset, independent reference_offset/diagnostic_offset, common limit. Optional confirmed profiles. Propagates CPU context and observed before/after banks. |
 | analysis.references | Same traversal parameters as analysis.discover. Pages reference records. |
 | analysis.pointers | offset=0, count=16 (max 4096 entries), layout=word-le, optional fixed_bank/switch_bank. References page with page_offset=0, limit=100. Returns hypotheses and conflicts. |
 | analysis.structure | offset=256, required cpu_context with cpu_address and optional fixed_bank/switch_bank. Returns one instruction's physical successors, references and diagnostics. |
@@ -204,6 +204,50 @@ Disabling capture pauses writes. trace.clear clears in-memory detail/aggregates 
 Example: `{"offset":524288,"cpu_context":{"cpu_address":0,"fixed_bank":32,"switch_bank":33}}` decodes an MBC1 fixed-window alias. MBC5 bank zero can also occupy the upper window when `cpu_address` is in 4000–7fff and `switch_bank` is zero. Reference context retains the source CPU address and asserted banks. The result includes length, physical successors, references and diagnostics. Controller writes still stop fallthrough. This call does not edit maps or coverage. Use analysis.discover_context to propagate explicit contexts through static successors.
 
 `analysis.discover_context` accepts `entrypoints` (1..1000 objects with offset and cpu_context), budget (1..100000), offset and limit (max 1000) for candidate pages. It carries fixed/switch banks and successor CPU addresses through each static path. Traversal visits distinct CPU contexts separately, but candidates, coverage tests and data barriers use canonical physical ROM addresses. References retain the asserted CPU context. The result has the same candidate/reference/diagnostic summaries as analysis.discover.
+
+References and diagnostics have independent `reference_offset` and
+`diagnostic_offset` (default zero), with the same `limit`. Responses include
+`next_reference_offset` and `next_diagnostic_offset`; totals, end pages and zero
+limits behave like candidate pagination. Keep the map, profiles and observed
+evidence fixed while paging; each call performs a fresh bounded traversal.
+
+Optional `profiles` reuse explicitly confirmed invariants, without automatically
+inferring register values or game-specific calling conventions. Example shape:
+
+```json
+{
+  "rom_sha256": "<the actual rom.info SHA-256>",
+  "entries": [{
+    "offset": 768,
+    "cpu_context": {"cpu_address": 768, "fixed_bank": 0, "switch_bank": 1},
+    "expected_bytes": [239],
+    "scope": "all_arrivals_in_context",
+    "evidence": "local artifact proving the dispatcher consumes the inline table",
+    "effect": {"kind": "inline_dispatch"}
+  }]
+}
+```
+
+Supply this object as the `profiles` parameter to `analysis.discover_context`.
+The example offsets/opcode describe a synthetic RST, not a game annotation.
+Up to 1000 unique physical/CPU-context entries are allowed. The ROM hash, complete
+instruction bytes, legal source decoding and effective source banks must match.
+Evidence text is required (max 4096 bytes). Scope must cover **all arrivals in the
+specified CPU/bank context**; a single snapshot's HL value is insufficient.
+
+`inline_dispatch` accepts only unconditional CALL/RST and suppresses its ordinary
+return-site fallthrough, retaining the callee. Supply separately reviewed handler
+entrypoints; inline bytes are not silently classified as a table.
+`{"kind":"non_mapper_store","cpu_destination":40960}` accepts a register-indirect
+byte LD store with a confirmed CPU destination at or above 0x8000, allowing its
+fallthrough with unchanged banks. This is an explicit invariant, not automatic
+literal-register dataflow analysis. Unresolved target windows stay unresolved.
+Its memory reference has no physical target: blocked/unmapped RAM or I/O is never
+turned into a physical memory claim. No profile can bypass data/instruction
+barriers, change maps or add execution coverage. Derived candidates remain Static
+unless independently fetched. Profiles appear in diagnostics/references and stay
+in local evidence files, separate from portable .sym maps. Without profiles,
+conservative discovery is unchanged.
 
 Example: `{"entrypoints":[{"offset":524288,"cpu_context":{"cpu_address":0,"fixed_bank":32,"switch_bank":33}}],"budget":1000}`. Controller writes stop static traversal. An observed contextual edge can cross the write; without that evidence, supply a new root with the bank state after it. With use_observed=true (default), this call adds recorded context roots and merges contextual observed edges. Each edge retains source bank state before the operation and target bank state after it. This lets traversal cross an observed controller write without reusing the old bank state. use_observed=false disables both coverage and edge input. Context-free observed edges still belong to analysis.discover. An observed target alone never counts as executed coverage. Neither discovery call edits the map.
 

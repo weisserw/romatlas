@@ -393,8 +393,14 @@ impl GbSession {
                     entries.extend(e.trace.contextual_roots().keys().cloned());
                 }
                 let annotations = self.store()?.regions.values().cloned().collect::<Vec<_>>();
+                let profiles = p
+                    .get("profiles")
+                    .map(|value| serde_json::from_value(value.clone()))
+                    .transpose()?;
+                let decoder =
+                    romatlas_gb::discovery_profiles::ProfiledContextDecoder::new(rom, profiles)?;
                 let result = romatlas_analysis::discovery::discover_with_edges(
-                    &ContextDecoder(rom),
+                    &decoder,
                     entries,
                     &observed,
                     &edges,
@@ -408,7 +414,9 @@ impl GbSession {
                 let total = result.candidates.len();
                 let total_references = result.references.len();
                 let total_diagnostics = result.diagnostics.len();
-                json!({"candidates":result.candidates.into_iter().skip(offset).take(limit).collect::<Vec<_>>(),"total":total,"next_offset":offset.saturating_add(limit).min(total),"references":result.references.into_iter().take(limit).collect::<Vec<_>>(),"total_references":total_references,"diagnostics":result.diagnostics.into_iter().take(limit).collect::<Vec<_>>(),"total_diagnostics":total_diagnostics,"visited":result.visited,"budget_exhausted":result.budget_exhausted})
+                let reference_offset = usize::try_from(num(p, "reference_offset", 0)?)?;
+                let diagnostic_offset = usize::try_from(num(p, "diagnostic_offset", 0)?)?;
+                json!({"candidates":result.candidates.into_iter().skip(offset).take(limit).collect::<Vec<_>>(),"total":total,"next_offset":offset.saturating_add(limit).min(total),"references":result.references.into_iter().skip(reference_offset).take(limit).collect::<Vec<_>>(),"total_references":total_references,"next_reference_offset":reference_offset.saturating_add(limit).min(total_references),"diagnostics":result.diagnostics.into_iter().skip(diagnostic_offset).take(limit).collect::<Vec<_>>(),"total_diagnostics":total_diagnostics,"next_diagnostic_offset":diagnostic_offset.saturating_add(limit).min(total_diagnostics),"visited":result.visited,"budget_exhausted":result.budget_exhausted})
             }
             "analysis.discover" | "analysis.references" => {
                 use std::collections::BTreeSet;

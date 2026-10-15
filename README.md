@@ -30,6 +30,7 @@ Prepare one separate local workspace per owned ROM, including agent instructions
 start/resume prompts, an identity record, and baseline/checkpoint commands:
 
 ```sh
+cargo build --locked --release
 python3 scripts/disassemble.py /path/to/game.gb --root /root/rom-work
 # Multiple ROMs can be supplied to the same command.
 cd /root/rom-work/game
@@ -66,6 +67,14 @@ a new name for the next attempt. Baseline is raw-byte output and does not comple
 classification. All ROMs, traces, internal state, generated source and extracted
 assets stay local; `.gitignore` ignores the entire workspace. Only exported stock
 maps are intended for sharing. Test with `python3 scripts/test-disassemble.py`.
+
+New workspaces default to the release binary and include immutable decode caching,
+a compact investigation queue and reusable batch reporting. Existing workspaces can
+be upgraded in place with backups while preserving ROMs, maps and historical evidence:
+`python3 scripts/upgrade-disassembly.py /path/to/workspace --apply`.
+See [efficient workspace operation](docs/workspace-efficiency.md) for usage,
+resumption, model-trial accounting and rollback. Exercise these helpers with
+`python3 scripts/test-disassembly-tools.py`.
 
 ## Native port workspaces
 

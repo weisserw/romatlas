@@ -9,6 +9,8 @@ with tempfile.TemporaryDirectory() as directory:
     data[0x100:0x103] = bytes([0xc3, 0x50, 1])
     data[0x150:0x158] = bytes([0x3e, 0x42, 0xea, 0, 0xc0, 0x04, 0x18, 0xfd])
     data[0x250:0x256] = bytes([1, 0, 0x40, 1, 0x20, 0x40])
+    data[0x28] = 0xc9
+    data[0x300:0x302] = bytes([0xef, 0x76])
     data[0x14d] = (-sum(data[0x134:0x14d])-25) & 255
     rom.write_bytes(data)
     with subprocess.Popen([str(root / 'target/debug/romatlas'), 'serve'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True) as process:
@@ -61,6 +63,29 @@ with tempfile.TemporaryDirectory() as directory:
         assert contextual['total']==5 and not contextual['budget_exhausted']
         assert all('gb.cpu_context' not in item['start']['context'] for item in contextual['candidates'])
         assert contextual['references'][0]['context']['source_cpu_address']==256
+        query = {'entrypoints':[{'offset':256,'cpu_context':{'cpu_address':256,'fixed_bank':0,'switch_bank':1}}], 'budget':50, 'use_observed':False}
+        paged_refs=[]
+        for offset in range(contextual['total_references']):
+            page=call('analysis.discover_context',dict(query,limit=1,reference_offset=offset))
+            paged_refs.extend(page['references'])
+            assert page['next_reference_offset']==offset+1
+        assert paged_refs==contextual['references']
+        assert call('analysis.discover_context',dict(query,reference_offset=10000))['references']==[]
+        assert call('analysis.discover_context',dict(query,limit=0))['next_reference_offset']==0
+        dispatch = {'entrypoints':[{'offset':0x300,'cpu_context':{'cpu_address':0x300,'fixed_bank':0,'switch_bank':1}}], 'budget':10, 'use_observed':False}
+        profile = dict(offset=0x300,cpu_context=dispatch['entrypoints'][0]['cpu_context'],expected_bytes=[0xef],
+                       evidence='synthetic dispatcher consumes the return-site table',scope='all_arrivals_in_context',
+                       effect={'kind':'inline_dispatch'})
+        profiles=dict(rom_sha256=call('rom.info')['sha256'],entries=[profile])
+        assert call('analysis.discover_context',dispatch)['total']==3
+        profiled=call('analysis.discover_context',dict(dispatch,profiles=profiles))
+        assert [r['start']['offset'] for r in profiled['candidates']]==[0x28,0x300]
+        assert all(r['provenance']=='Static' for r in profiled['candidates'])
+        assert 'caller-confirmed' in profiled['diagnostics'][0]['message']
+        assert call('analysis.discover_context',dict(dispatch,profiles=profiles,diagnostic_offset=1))['diagnostics']==[]
+        assert call('analysis.discover_context',dict(dispatch,profiles=profiles,limit=0))['next_diagnostic_offset']==0
+        call('analysis.discover_context',dict(dispatch,profiles=dict(profiles,entries=[dict(profile,scope='one_observation')])),error=True)
+        call('analysis.discover_context',dict(dispatch,profiles=dict(profiles,entries=[profile,profile])),error=True)
         call('emulator.start')
         caps=call('emulator.capabilities')
         assert caps['platform']=='gb' and caps['clock']=='ppu-ticks'

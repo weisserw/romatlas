@@ -116,6 +116,7 @@ pub mod emulator;
 pub mod tracing;
 
 pub mod discovery;
+pub mod discovery_profiles;
 
 pub mod pointers;
 

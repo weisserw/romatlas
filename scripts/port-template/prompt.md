@@ -1,9 +1,18 @@
 # Port the entire archived game
 
-Read AGENTS.md, workflow.md, reference/reading.asm and relevant archive documents
-before coding. Implement this entire game in readable native Rust. The scaffold
+Read AGENTS.md, workflow.md and relevant units of reference/reading.asm and archive
+documents before coding. Implement this entire game in readable native Rust. The scaffold
 is an arbitrary ROM-backed tile demonstration, not gameplay or identified assets.
 Replace it; do not stop at a working scaffold, first level or playable demo.
+
+No context-management plugin is required. Process large inventories, traces and
+test logs with local scripts or focused searches; return counts, relevant excerpts,
+failures and evidence paths instead of full dumps. Use bounded queries and direct
+tools for short reads/edits. Inspect exact source and bank context before accepting
+behavioral conclusions; summaries are navigation aids, not proof. Keep full
+evidence on disk and concise progress/next-action records, retrieving older
+details on demand. Avoid unchanged repeat queries and redundant reports. Never
+reduce gameplay coverage, investigation or verification to save context.
 
 Use ledger.json to account for every archived region and meaningful unit. Record
 implemented, merged, replaced or excluded, a behavior explanation, and port

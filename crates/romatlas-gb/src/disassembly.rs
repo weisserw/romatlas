@@ -24,7 +24,9 @@ pub fn generate_with_timeout(rom: &Path, map: &Map, out: &Path, timeout_ms: u64)
                 .arg(&tool)
                 .args(["rev-parse", "HEAD"]),
         )
-        .context("mgbdis not installed; run scripts/setup.sh")?;
+        .context(
+            "could not check pinned mgbdis revision (installation, git failure, or command budget)",
+        )?;
     if revision.trim() != MGBDIS_REVISION {
         bail!("mgbdis revision mismatch; run scripts/setup.sh");
     }
