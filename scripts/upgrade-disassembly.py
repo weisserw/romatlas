@@ -11,6 +11,7 @@ import subprocess
 import tempfile
 
 import disassemble
+import behavior
 
 
 def sha(path):
@@ -37,7 +38,7 @@ def upgrade(workspace, binary, apply=False):
     inspected = json.loads(subprocess.check_output([str(binary), "inspect", str(rom)], text=True))
     if inspected["sha256"] != meta["sha256"]:
         raise ValueError("toolkit inspection identity mismatch")
-    meta.update(binary=str(binary), toolkit=str(disassemble.ROOT), workflow_revision=2)
+    meta.update(binary=str(binary), toolkit=str(disassemble.ROOT), workflow_revision=4)
     files = {
         "workspace.json": json.dumps(meta, indent=2) + "\n",
         "AGENTS.md": disassemble.AGENTS.format(toolkit=json.dumps(str(disassemble.ROOT))),
@@ -49,6 +50,11 @@ def upgrade(workspace, binary, apply=False):
         "analysis/session.py": (disassemble.ROOT / "scripts/disassembly_session.py").read_text(),
         "analysis/work.py": (disassemble.ROOT / "scripts/disassembly_work.py").read_text(),
     }
+    # Seed new accounting without overwriting an existing inventory or its history.
+    if not (root / "analysis/behavior.md").exists():
+        files["analysis/behavior.md"] = disassemble.BEHAVIOR
+    if not (root / "analysis/behavior.json").exists():
+        files["analysis/behavior.json"] = json.dumps(behavior.new(meta["sha256"], "disassembly"), indent=2) + "\n"
     if not apply:
         return dict(ok=True, applied=False, workspace=str(root), files=list(files), binary=str(binary))
     with socket.socket() as probe:
@@ -58,7 +64,8 @@ def upgrade(workspace, binary, apply=False):
     protected = [rom, root / "analysis/state.json", root / "maps/current.sym",
                  root / "maps/current-compact.sym", root / "analysis/classification-audit.json",
                  root / "analysis/progress.md", root / "analysis/investigation.md",
-                 root / "analysis/gameplay.md", root / "analysis/toolkit-issues.md"]
+                 root / "analysis/gameplay.md", root / "analysis/toolkit-issues.md",
+                 root / "analysis/behavior.md", root / "analysis/behavior.json"]
     hashes = {str(p.relative_to(root)): sha(p) for p in protected if p.exists()}
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     backup = root / "analysis/setup-backups" / stamp

@@ -7,6 +7,8 @@ from pathlib import Path
 import subprocess
 import tempfile
 
+from behavior_test_support import finish_commentary
+
 ROOT = Path(__file__).resolve().parents[1]
 BIN = ROOT / "target/debug/romatlas"
 SCRIPT = ROOT / "scripts/commentary.py"
@@ -34,18 +36,32 @@ with tempfile.TemporaryDirectory(prefix="romatlas-commentary-") as temporary:
     call(BIN, "store", "annotate", rom, "--store", state, "--offset", "256",
          "--length", "3", "--kind", "code", "--provenance", "static", "--confidence", "0.8")
     call(BIN, "store", "export", rom, "--store", state, "--output", work / "maps/current.sym")
+    # Start with incomplete upstream scope: neither preparation nor byte identity
+    # may silently drop the pending question or promote it to accepted behavior.
+    upstream_path = work / "analysis/behavior.json"
+    upstream = json.loads(upstream_path.read_text())
+    upstream["items"] = [dict(id="B-INHERITED", summary="Synthetic jump destination",
+                             status="pending", evidence=["Fixture entry branches to a loop."],
+                             dependencies=[], unresolved=["Explain the destination behavior."])]
+    upstream["outcome"] = dict(status="incomplete_exhausted", notes="Synthetic unresolved target for handoff test.")
+    upstream_path.write_text(json.dumps(upstream))
     preserved = {name: (work / name).read_bytes() for name in
-                 ["AGENTS.md", "workflow.md", "analysis/state.json", "maps/current.sym"]}
+                 ["AGENTS.md", "workflow.md", "analysis/state.json", "maps/current.sym", "analysis/behavior.json"]}
     result = call("python3", SCRIPT, "prepare", work)
     assert json.loads(result.stdout)["byte_identical"]
     assert "codex --enable goals -C '" in result.stderr and "/goal Read commentary/AGENTS.md" in result.stderr
     phase = work / "commentary"
+    inherited = json.loads((phase / "behavior.json").read_text())
+    assert inherited["items"][0]["id"] == "B-INHERITED"
+    assert inherited["items"][0]["unresolved"] == ["Explain the destination behavior."]
+    assert inherited["outcome"]["status"] == "pending"
+    assert json.loads((phase / "handoff.json").read_text())["behavior"]["outcome"]["status"] == "incomplete_exhausted"
     before = (phase / "reading-before.asm").read_bytes()
     assert b"BEGIN bank_000.asm" in before
     assert b'INCLUDE "hardware.inc"' in before
     assert (phase / "source/game.asm").is_file()
     assert not (phase / "source/game.o").exists()
-    assert "do not relabel" in (phase / "prompt.md").read_text()
+    assert "Do not relabel" in (phase / "prompt.md").read_text()
     call("python3", SCRIPT, "prepare", work, ok=False)
     assert all((work / name).read_bytes() == value for name, value in preserved.items())
     call("python3", SCRIPT, "audit", work, ok=False)
@@ -66,8 +82,78 @@ with tempfile.TemporaryDirectory(prefix="romatlas-commentary-") as temporary:
                              "summary": "Enter synthetic loop", "source": ["bank_000.asm:1"]}]
     review["editorial_audit"] = {"status": "reviewed", "notes": "Synthetic lifecycle acceptance"}
     (phase / "review.json").write_text(json.dumps(review))
+    finish_commentary(work)
     final = json.loads(call("python3", SCRIPT, "audit", work).stdout)
     assert final["byte_identical"] and final["reviewed_units"] == 1
+    assert final["behavior_items"] == 1 and final["preserved_regions"] == 2
+    completed_behavior = json.loads((phase / "behavior.json").read_text())
+    broken = json.loads(json.dumps(completed_behavior))
+    broken["items"][0]["id"] = "B-REPLACEMENT-CANNOT-ERASE-INHERITED"
+    (phase / "behavior.json").write_text(json.dumps(broken))
+    call("python3", SCRIPT, "audit", work, ok=False)
+    assert json.loads((phase / "audit.json").read_text())["ok"] is False
+    (phase / "behavior.json").write_text(json.dumps(completed_behavior))
+    refinements = {"version": 1, "phase": "commentary", "entries": [dict(
+        id="R001", status="pending", summary="Synthetic proposed correction", evidence=["Fixture correction is not applied."])]}
+    (phase / "refinements.json").write_text(json.dumps(refinements))
+    call("python3", SCRIPT, "audit", work, ok=False)
+    refinements["entries"][0].update(status="reconciled", evidence=["Synthetic identity-preserving correction reconciled with source."])
+    (phase / "refinements.json").write_text(json.dumps(refinements))
+    call("python3", SCRIPT, "audit", work)
+    # Metadata-only migration preserves source, reviews, baselines and current evidence.
+    original_source = bank.read_bytes()
+    current_review = json.loads((phase / "review.json").read_text())
+    migration = json.loads(call("python3", SCRIPT, "upgrade", work).stdout)
+    assert migration["preserved_source"] and migration["audit_pending"]
+    assert bank.read_bytes() == original_source
+    assert (phase / "behavior.json").read_text() == json.dumps(completed_behavior)
+    assert json.loads((phase / "review.json").read_text())["regions"] == current_review["regions"]
+    assert (phase / "reading-before.asm").read_bytes() == before
+    assert (Path(migration["backup"]) / "review.json").exists()
+    # Restore the reviewed editorial status after the migration audit.
+    (phase / "review.json").write_text(json.dumps(current_review))
+    call("python3", SCRIPT, "audit", work)
+    missing_resolution = json.loads(json.dumps(completed_behavior))
+    missing_resolution["items"][0]["resolutions"] = []
+    (phase / "behavior.json").write_text(json.dumps(missing_resolution))
+    call("python3", SCRIPT, "audit", work, ok=False)
+    (phase / "behavior.json").write_text(json.dumps(completed_behavior))
+    for field, value in [("dependencies", ["B-MISSING"]),
+                         ("unresolved", ["A new relevant selector is unresolved"]),
+                         ("regions", [next(r["id"] for r in current_review["regions"] if r["kind"] == "Unknown")]),
+                         ("source", ["missing.asm:1"])]:
+        invalid = json.loads(json.dumps(completed_behavior))
+        invalid["items"][0][field] = value
+        (phase / "behavior.json").write_text(json.dumps(invalid))
+        call("python3", SCRIPT, "audit", work, ok=False)
+    (phase / "behavior.json").write_text(json.dumps(completed_behavior))
+    # Legacy metadata can be migrated without recreating source or losing review.
+    legacy_manifest = json.loads((phase / "manifest.json").read_text())
+    legacy_manifest.pop("behavior_contract")
+    legacy_manifest.pop("handoff_sha256")
+    (phase / "manifest.json").write_text(json.dumps(legacy_manifest))
+    (phase / "handoff.json").unlink()
+    legacy_review = json.loads(json.dumps(current_review))
+    for row in legacy_review["regions"]:
+        row.pop("treatment")
+    (phase / "review.json").write_text(json.dumps(legacy_review))
+    call("python3", SCRIPT, "upgrade", work)
+    assert bank.read_bytes() == original_source
+    assert all(r["treatment"] == "pending" for r in json.loads((phase / "review.json").read_text())["regions"])
+    (phase / "review.json").write_text(json.dumps(current_review))
+    # Frozen behavioral claims cannot be silently rewritten.
+    frozen_handoff = (phase / "handoff.json").read_bytes()
+    (phase / "handoff.json").write_bytes(frozen_handoff + b" ")
+    call("python3", SCRIPT, "audit", work, ok=False)
+    (phase / "handoff.json").write_bytes(frozen_handoff)
+    # Unsupported preservation and broken behavior links fail without reclassification.
+    invalid_review = json.loads(json.dumps(current_review))
+    unknown_row = next(r for r in invalid_review["regions"] if r["kind"] == "Unknown")
+    unknown_row["preservation"]["evidence"] = []
+    (phase / "review.json").write_text(json.dumps(invalid_review))
+    call("python3", SCRIPT, "audit", work, ok=False)
+    (phase / "review.json").write_text(json.dumps(current_review))
+    review = current_review
     review["regions"][0]["length"] += 1
     (phase / "review.json").write_text(json.dumps(review))
     call("python3", SCRIPT, "audit", work, ok=False)

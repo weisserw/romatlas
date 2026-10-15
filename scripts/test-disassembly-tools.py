@@ -9,6 +9,7 @@ import subprocess
 import sys
 import tempfile
 import urllib.request
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 BIN = ROOT / "target/debug/romatlas"
@@ -94,6 +95,33 @@ with tempfile.TemporaryDirectory(prefix="romatlas-efficient-workspace-") as temp
             batch_path.write_text(json.dumps(dict(id="test-batch", summary="Four proven bytes",
                                                   evidence=["analysis/plan.json"])))
             assert helper.record(batch_path)["newly_classified"] == 4
+            # A deferred interval stays unknown and does not certify completion.
+            q = helper.refresh()
+            target = q["tickets"][0]
+            deferred = dict(id=target["id"], status="deferred", result="Synthetic triage only",
+                            revisit_when="new behavioral dependency")
+            deferred_path = work / "analysis/defer.json"
+            deferred_batch = dict(id="deferred-batch", summary="Review unknown disposition",
+                                  evidence=["analysis/plan.json"], ticket_updates=[deferred])
+            deferred_path.write_text(json.dumps(deferred_batch))
+            rejects(lambda: helper.record(deferred_path))  # Evidence required.
+            deferred["disposition_evidence"] = ["analysis/missing.json"]
+            deferred_path.write_text(json.dumps(deferred_batch))
+            rejects(lambda: helper.record(deferred_path))
+            deferred["disposition_evidence"] = ["analysis/plan.json"]
+            deferred_path.write_text(json.dumps(deferred_batch))
+            helper.record(deferred_path)
+            q2 = helper.refresh()
+            assert q2["totals"] == q["totals"]
+            assert next(t for t in q2["tickets"] if t["id"] == target["id"])["status"] == "deferred"
+            assert target["id"] not in (work / "analysis/frontier.md").read_text()
+            assert "Whole-ROM completion" not in (work / "analysis/progress.md").read_text()
+            # Explicit planning reopens a deferred interval; relevance outranks size.
+            proposal.update(id=target["id"], behavioral_relevance="B001 unresolved loader",
+                            expected_bytes=0)
+            plan_path.write_text(json.dumps(proposal))
+            helper.plan(plan_path)
+            assert helper.refresh()["tickets"][0]["id"] == target["id"]
             progress = (work / "analysis/progress.md").read_bytes()
             rejects(lambda: helper.record(batch_path))
             assert (work / "analysis/progress.md").read_bytes() == progress
@@ -130,17 +158,34 @@ with tempfile.TemporaryDirectory(prefix="romatlas-efficient-workspace-") as temp
 
     upgrader = module("upgrader", ROOT / "scripts/upgrade-disassembly.py")
     protected = ["input/game.rom", "analysis/state.json", "maps/current.sym",
-                 "analysis/progress.md", "analysis/investigation.md"]
+                 "analysis/progress.md", "analysis/investigation.md", "analysis/behavior.md", "analysis/behavior.json"]
     before = {name: (work / name).read_bytes() for name in protected}
+    (work / "analysis/behavior.md").write_text("Version: 2. Existing evidence must survive.\n")
+    inventory_path = work / "analysis/behavior.json"
+    inventory = json.loads(inventory_path.read_text())
+    inventory["revision"] = 7
+    inventory_path.write_text(json.dumps(inventory))
+    before["analysis/behavior.json"] = inventory_path.read_bytes()
+    before["analysis/behavior.md"] = (work / "analysis/behavior.md").read_bytes()
     old_runner = (work / "run.py").read_bytes()
     preview = upgrader.upgrade(work, BIN)
     assert not preview["applied"] and not (work / "analysis/setup-backups").exists()
-    upgrade = upgrader.upgrade(work, BIN, apply=True)
+    # Do not stop or depend on real workspace bridges using the default port.
+    with patch.object(upgrader.socket.socket, "connect_ex", return_value=0):
+        rejects(lambda: upgrader.upgrade(work, BIN, apply=True))
+    with patch.object(upgrader.socket.socket, "connect_ex", return_value=1):
+        upgrade = upgrader.upgrade(work, BIN, apply=True)
     assert upgrade["protected_files_unchanged"]
     assert (Path(upgrade["backup"]) / "run.py").read_bytes() == old_runner
     assert all((work / name).read_bytes() == content for name, content in before.items())
     assert "Operational bounds do not authorize" in (work / "prompts/goal.md").read_text()
-    assert "every remaining path in every unresolved entry" in (work / "workflow.md").read_text()
+    assert "Every behavior-inventory item" in (work / "workflow.md").read_text()
+    assert json.loads((work / "workspace.json").read_text())["workflow_revision"] == 4
+    # Legacy workspaces get an empty, explicitly unaudited inventory.
+    (work / "analysis/behavior.md").unlink()
+    with patch.object(upgrader.socket.socket, "connect_ex", return_value=1):
+        upgrader.upgrade(work, BIN, apply=True)
+    assert "Not yet audited" in (work / "analysis/behavior.md").read_text()
     assert hashlib.sha256((work / "input/game.rom").read_bytes()).hexdigest() == meta["sha256"]
 
 print("decode cache isolation, RPC bypass, map barriers, accounting and backed-up upgrade passed")

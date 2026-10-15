@@ -85,20 +85,19 @@ press Enter. The goal tells the agent to read the workspace instructions,
 identify code and data, export a mapping, and generate an assembly listing
 that rebuilds byte-for-byte. Use a Codex version with goal support.
 
-The objective spans the entire physical ROM, across sessions and checkpoints.
-The agent investigates structure and semantics together, annotating each region's
-structural role and supporting evidence. Detailed instruction commentary is optional.
-Success requires every byte to be classified with evidence, required annotations,
-valid maps and a byte-identical rebuild. Raw bytes preserve fidelity but do not
-establish classification; execution coverage is a separate measure.
+The objective is an evidence-backed account of released-game behavior and supporting
+assets, with a portable map and byte-identical disassembly. Maintain a versioned
+`analysis/behavior.md` inventory derived from research, static analysis and runtime
+observations. Cover modes, mechanics, progression, terminal states, implementation
+entry points, dispatch and loaders, evidence, validation and unresolved dependencies.
+There is no classification-percentage target. Preserve unexplained bytes verbatim;
+raw fidelity alone does not establish behavioral completion.
 
-There is no universal total investigation budget. The generated workflow requires
-an investigation ledger at `analysis/investigation.md`, reviewing static flow,
-references/callers, pointer and bank hypotheses, runtime experiments and structural
-patterns for every unresolved range. Applicable methods must be attempted and
-exclusions justified. The agent continues while concrete unblocked paths remain,
-reopening entries when new evidence changes them. Repeated traces or cosmetic
-annotations do not count as progress.
+Triage every unknown interval for coherent code, references, banking, consumers,
+formats and allocation boundaries. Prioritize behavioral dependencies and structural
+families. Plausible disassembly is an investigation lead, not proof. Runtime must
+answer a named reconstruction question; advancing through gameplay alone is not
+progress. Preserve results and reopen conditions in `analysis/investigation.md`.
 
 After identifying the game and likely version, the agent consults available online
 manuals, walkthroughs, FAQs and technical resources. It keeps source links, version
@@ -109,12 +108,20 @@ prove structural classifications. Research is revisited for specific obstacles,
 including before exhausting gameplay-dependent paths. If resources are unavailable,
 the agent records that limitation and continues local analysis.
 
-Exhausted investigation permits an **incomplete** handoff only when all remaining
-paths have specific evidenced blockers or require unsupported guessing. Unreachable
-code alone does not establish unknowability. This rule does not mathematically
-guarantee termination. The final report includes per-bank classification counts,
-annotation coverage, verification and unresolved evidence links. An incomplete
-handoff or a verified checkpoint must never mark the whole-ROM goal complete.
+Success requires every inventory item accounted for, relevant control/asset
+uncertainties resolved or evidence-bounded, annotated accepted regions, validated
+maps and a final byte-identical rebuild. Unknown intervals may remain only after
+recorded triage shows no unresolved behavioral dependency, unexamined credible
+hypothesis or concrete follow-up resolving a reconstruction question. Lack of
+observed access is insufficient. Do not claim unexplained regions are proved unused.
+
+Continue concrete actionable investigations. Stop **incomplete, blocked** when
+required questions have only blocked investigations, or **incomplete, investigation
+exhausted** when applicable methods leave no distinguishing experiment. Audit the
+inventory and all unknown dispositions before stopping; report unmet conditions,
+reopen triggers and a verified checkpoint where possible. Neither incomplete outcome
+is success. Do not repeat unchanged exhausted work on resume. Provider goal-status
+constraints still apply; file upgrades cannot change provider-stored goals.
 
 Run the disassembly agent in the game workspace. Keep `/root/romatlas` for
 building or developing the toolkit. Initialization prepares the workspace;
@@ -169,7 +176,8 @@ This uses the existing `workspace.json`, `analysis/state.json` and
 `maps/current.sym`. It validates ROM identity and both maps, generates a fresh
 listing from the current `.sym`, and verifies a byte-identical rebuild. It then
 creates `commentary/` without modifying phase-1 instructions, maps or evidence.
-An investigated phase-1 unknown interval does not prevent starting this phase.
+Unknown intervals and incomplete upstream accounting do not prevent preparation;
+their behavioral obligations remain pending until resolved in the later phase.
 Preparation refuses an existing commentary directory; it never replaces edits.
 
 Commentary findings can feed back into classification. Its prompt requires an
@@ -187,15 +195,20 @@ symbols, and explain functionality using conventional readable assembly style.
 Comment detail scales with complexity; opcode translations and boilerplate
 headers are discouraged. Static interpretation is the default, tentative meanings
 use `(?)`, and debugging targets genuinely unclear behavior. Completion requires
-full review, documented investigated uncertainties, a final editorial pass and a
-fresh byte-identical rebuild, rather than certainty about every original intent.
+behavior-linked semantic review, evidence-backed preservation treatment for opaque
+regions, resolved or bounded dependencies, reconciled structural refinements, a
+final editorial pass and a fresh byte-identical rebuild. It does not require
+certainty about the historical purpose of every byte.
 
 The files to read and compare are:
 
 - `commentary/reading-before.asm`: frozen consolidated baseline from the current map.
 - `commentary/source/game.asm` and its includes: authoritative editable, buildable source.
 - `commentary/reading-after.asm`: consolidated reading copy of that source.
-- `commentary/review.json`: full-ROM scaffold and agent-maintained semantic review inventory.
+- `commentary/review.json`: full-ROM preservation scaffold with semantic/preserved treatments.
+- `commentary/handoff.json`: frozen upstream behavioral claims, outcome, notes and dispositions.
+- `commentary/behavior.json`: current behavioral review, source links and unresolved obligations.
+- `commentary/refinements.json` and `refinements.md`: later structural findings and reconciliation.
 - `commentary/progress.md` and `commentary/uncertainties.md`: progress and useful unresolved interpretations.
 
 The reading copies expand `.asm` includes in source order, mark file boundaries,
@@ -217,10 +230,13 @@ python3 scripts/commentary.py audit /root/rom-work/game
 `instructions` prints the startup/goal text again for a later session. `verify`
 rebuilds the edited source and checks exact equality without `rgbfix` header
 changes. `read` refreshes the after copy. `audit` checks the review inventory,
-requires final editorial notes, performs fresh verification and refreshes the
-reading copy. It checks coverage/status, not comment quality; the agent remains
+requires final editorial notes, inherited behavioral accounting, source/region links
+and reconciled refinements, then verifies and refreshes the reading copy. It checks coverage/status, not comment quality; the agent remains
 responsible for useful and coherent explanations. Reviewed ambiguity can satisfy
-phase 2 without declaring the phase-1 classification goal complete.
+phase 2 when it leaves no unresolved behavioral dependency. Later static analysis
+may close inherited questions; upstream recorded outcomes remain historical. See
+[behavioral accounting](docs/behavioral-accounting.md) for schemas, all-phase endings
+and backed-up `commentary.py upgrade` / `port.py upgrade` migrations.
 
 All assembly, ROMs, extracted assets and reading copies remain local. Do not
 commit or distribute a commercial game's generated workspace.
@@ -241,7 +257,8 @@ restoration and byte-identical rebuilding. Failure preserves the previous archiv
 Directories without `archive.json` are never overwritten.
 
 The command requires a fresh successful commentary audit. It preserves phase-one
-unknowns without claiming that editorial completion establishes classification.
+unknowns, behavioral inventories, durable dispositions and refinement records.
+Opaque preservation is not a claim of nonuse or exhaustive classification.
 The archive contains the final portable map, internal analysis/annotations,
 review inventory, final audits, and both phases' final documentation, including
 uncertainties. Additional final Markdown documents require

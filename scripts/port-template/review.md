@@ -7,7 +7,12 @@ concluding; summaries do not establish correctness. Keep full evidence on disk,
 use direct tools for short reads, and record concise findings and next actions.
 Retrieve older details on demand without reducing review scope or verification.
 
-Read workspace.json, library-changes.md, progress.md, differences.md and ledger.json.
+Read workspace.json, library-changes.md, progress.md, differences.md, ledger.json,
+behavior.json, behavior-contract.md and refinements records. Inherited behavior
+obligations survive phase boundaries; check that library changes and tests address
+their actual dependencies. Static ROM refinements must preserve frozen references
+and be reconciled with native behavior/assets; opaque preservation is not proof of
+nonuse. This library review does not itself certify whole-game completion.
 The toolkit directory is in workspace.json. Compare its current files against
 review/toolkit-before/ and the hashes/status/HEAD in review/toolkit-before.json.
 That snapshot includes tracked and nonignored untracked files from preparation;

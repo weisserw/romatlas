@@ -3,7 +3,11 @@
 Disassembly workspaces default to `cargo build --locked --release`. Use
 `scripts/upgrade-disassembly.py WORKSPACE --apply` for backed-up in-place setup
 updates; read docs/workspace-efficiency.md. It does not resume agents or update
-provider-stored goals. Preserve strict whole-ROM classification requirements.
+provider-stored goals. Use the behavioral accounting and unknown-region disposition contract in
+scripts/disassemble.py and docs/behavioral-accounting.md across all phases; byte
+classification percentage is not a completion target. Carry behavioral IDs and
+unresolved obligations forward; later static analysis may refine ROM contents
+with evidence and reconciled source/maps while preserving frozen references.
 Run `python3 scripts/test-disassembly-tools.py` after cache, queue or upgrade
 changes. Confirmed contextual discovery profiles require ROM/source-byte/context
 identity and evidence covering all arrivals; reachability is not execution.
@@ -57,8 +61,8 @@ replacements/additional slots. The port agent may implement needed romatlas-port
 library changes directly here, uncommitted, with a change log and preservation of
 the initial repository state for separate review. Native-port completion uses
 explained gameplay-behavior accounting and useful tests, not frame equivalence or
-phase-one classification completion. Keep the original mapping goal's stricter
-classification contract intact. Do not write tests needing unavailable GUI/devices
+disassembly accounting completion. Keep native implementation/testing and
+disassembly evidence/byte-identity acceptance distinct. Do not write tests needing unavailable GUI/devices
 or launch SDL graphics on the headless server. Run scripts/test-port.py and the
 romatlas-port desktop-feature clippy/tests after relevant changes; these tests
 exercise headless logic and compile desktop code without initializing a window.

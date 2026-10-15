@@ -64,7 +64,10 @@ The agent uses `python3 run.py serve` for persistent JSON-RPC. After saving
 and record byte-identical verification. Choose a new checkpoint name each time.
 Failed checkpoints may retain their map or generated source for inspection; use
 a new name for the next attempt. Baseline is raw-byte output and does not complete
-classification. All ROMs, traces, internal state, generated source and extracted
+behavioral accounting. Completion uses a versioned `analysis/behavior.md` inventory,
+resolved implementation/asset dependencies and reviewed unknown-region dispositions,
+with no byte-classification percentage target. All ROMs, traces, internal state,
+generated source and extracted
 assets stay local; `.gitignore` ignores the entire workspace. Only exported stock
 maps are intended for sharing. Test with `python3 scripts/test-disassemble.py`.
 
@@ -92,7 +95,10 @@ Preparation restores and byte-verifies the commented reference source, creates a
 pending source-behavior ledger and demonstration scaffold, and prints whole-game
 start/resume goals and a separate library-review prompt. It does not port gameplay
 or launch an agent. Game Boy is the initial scaffold platform. Incomplete
-classification is accepted; relevant unknown behavior must be investigated.
+classification is accepted; inherited behavioral obligations remain explicit.
+Commentary and port audits require behavioral accounting as well as source/region
+records. Opaque preservation is separate from semantic review; any phase can
+refine ROM understanding. See [the shared contract](docs/behavioral-accounting.md).
 
 The new `romatlas-port` library provides ROM-backed assets, replacement/additional
 slots, console timing, tile/palette rendering, input/settings and an optional SDL2

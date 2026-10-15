@@ -21,7 +21,7 @@ cache namespace.
 ## Start and resume
 
 Read `prompts/resume.md` and `analysis/frontier.md`. `prompts/goal.md` preserves
-the strict whole-ROM objective and adds the efficient workflow. A provider's
+the behavioral reconstruction objective and ending contract. A provider's
 stored goal must be updated through its own supported interface; changing files
 does not resume an agent or alter its model. Keep the economical existing model
 for routine work. Compare stronger reasoning only on specific difficult tickets,
@@ -77,7 +77,8 @@ Use `python3 analysis/work.py plan analysis/PLAN.json` to rank an experiment:
 ```
 
 Use the actual current ticket ID and evidence; this is a schema example. Initial
-ranking uses gap size, then reviewed expected gain/time estimates. Neither size
+ranking uses gap size; plans with behavioral_relevance take precedence over byte gain.
+Use a nonempty behavioral_relevance string to link an experiment to an inventory item. Neither size
 nor an estimate licenses classification. A small helper can rank highly if it
 unlocks a large family. A blocked ticket requires a specific recorded result and
 reopen condition. Preserve competing explanations and prior negative results.
@@ -121,7 +122,7 @@ batch's audit, not from the most recent queue refresh. Metadata refinements may
 produce zero new bytes; record the useful dependency/result rather than inventing
 progress. A batch adds one accounting artifact and concise progress/ledger deltas.
 Record runtime routes and sourced gameplay findings in the existing dedicated
-files as needed. These helpers never mark the whole-ROM goal complete.
+files as needed. These helpers never certify behavioral completion.
 
 ## Confirmed control-flow profiles
 
@@ -135,4 +136,30 @@ mapping stays unknown. Keep profile JSON local, and pass it explicitly; none is
 automatically inferred or installed during an upgrade.
 
 Operational budgets, low yield, usage limits and byte-identical raw fallback
-never replace evidence-backed classification or justify marking the goal complete.
+never replace behavioral accounting, evidence-backed unknown dispositions or final verification.
+
+## Behavioral acceptance and migration
+
+There is no required classification percentage. Maintain analysis/behavior.md as a
+versioned inventory with evidence and unresolved implementation/asset dependencies.
+Use workflow.md's complete, incomplete blocked and incomplete exhausted criteria.
+All unknown intervals require triage; completion may retain evidence-reviewed opaque
+regions without labeling them unused. Historical whole-ROM instructions are superseded.
+
+The upgrade installs revision 4 and seeds behavior.md/behavior.json only if absent. It preserves
+maps, ROM, evidence, existing behavioral inventory and historical reports. Reassess
+old tickets under the new contract; a missing inventory or plan is not acceptance.
+It does not modify an active agent or its provider-stored goal. Use prompts/goal.md
+to replace an obsolete goal through the provider's supported interface.
+
+A batch ticket update may use status deferred, with result, revisit_when and a
+nonempty disposition_evidence list of local file paths. These files must document
+triage and the contract's disposition criteria. Deferred tickets remain unknown,
+remain in accounting and leave the active top-20 frontier. State changes flag
+dependency-bearing tickets for review; new evidence also requires agent review.
+The helper checks evidence existence, not semantic sufficiency or game completeness.
+
+Behavioral scope and unresolved obligations flow into commentary and ports; see
+[the shared accounting contract](behavioral-accounting.md). Structured behavior.json
+starts pending on older workspaces; existing prose/evidence must be reconciled into
+it before later phase acceptance. Upgrading files cannot update a stored goal.

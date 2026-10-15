@@ -16,11 +16,14 @@ TOKEN = re.compile(r'"(?:\\.|[^"\\])*"|\s+|\$[0-9a-fA-F]+|%[01]+|[0-9]+|[A-Za-z_
 IDENTIFIER = re.compile(r'[A-Za-z_\.][A-Za-z_0-9\.]*\Z')
 FINAL = [
     "maps/current.sym", "analysis/state.json", "analysis/annotations.json",
+    "analysis/behavior.md", "analysis/behavior.json",
     "analysis/current-audit.json", "analysis/scenarios.json",
     "analysis/frontier.md", "analysis/work-queue.json",
     "analysis/investigation.md", "analysis/gameplay.md", "analysis/progress.md",
     "commentary/baseline.sym", "commentary/phase1-state.json",
     "commentary/manifest.json", "commentary/review.json", "commentary/audit.json",
+    "commentary/handoff.json", "commentary/behavior.json",
+    "commentary/refinements.json", "commentary/refinements.md",
     "commentary/verification.json", "commentary/progress.md",
     "commentary/uncertainties.md", "commentary/editorial-audit.md",
 ]
@@ -286,7 +289,7 @@ def archive(workspace, destination, name, binary, documents=(), omitted_document
         unselected = [p.relative_to(work).as_posix() for folder in ["analysis", "commentary"]
                       for p in (work / folder).rglob("*.md")
                       if p.relative_to(work).as_posix() not in known_docs
-                      and not p.relative_to(work).as_posix().startswith("analysis/setup-backups/")
+                      and not p.relative_to(work).as_posix().startswith(("analysis/setup-backups/", "commentary/setup-backups/"))
                       and not any(part in {"before", "source"} for part in p.relative_to(work).parts)]
         if unselected:
             raise ValueError(f"unrecognized documents; use --document for final documents or --omit-document for scratch: {unselected}")
@@ -296,7 +299,7 @@ def archive(workspace, destination, name, binary, documents=(), omitted_document
         write_recipe(stage / "editorial.json", recipe(files(before), final))
         (stage / "README.md").write_text("# Archived ROM analysis\n\n"
             "Final maps, review metadata and agent documents are retained verbatim.\n"
-            "Phase-one classification and phase-two editorial completion are separate;\n"
+            "Behavioral obligations, opaque dispositions and editorial evidence are retained;\n"
             "see their audit records for remaining unknowns. Scratch evidence, toolkit\n"
             "issue reports, ROMs, generated assembly and extracted assets are omitted.\n"
             "References to omitted scratch files in historical documents are unavailable.\n\n"

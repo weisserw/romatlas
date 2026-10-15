@@ -103,8 +103,9 @@ def refresh():
         ticket.update(gap)
         tickets.append(ticket)
     history = old.get("history", []) + [dict(t, status="superseded_by_current_map") for t in previous.values()]
-    # Persisted human estimates rank experiments; size is only the initial triage heuristic.
-    tickets.sort(key=lambda t: (t["status"] in ("blocked", "waiting_dependency"),
+    # Behavioral relevance precedes byte gain; untriaged intervals still require review.
+    tickets.sort(key=lambda t: (t["status"] in ("blocked", "waiting_dependency", "deferred"),
+                               not bool(t.get("behavioral_relevance")),
                                -t["expected_bytes"] / max(t["estimated_minutes"], 1), t["offset"]))
     result = dict(version=1, state_sha256=current["state_sha256"],
                   totals=current["totals"], tickets=tickets, history=history)
@@ -114,10 +115,12 @@ def refresh():
         write(ROOT / "analysis/last-batch-audit.json", current)
     lines = ["Current investigation frontier. Ranking is a hypothesis, not classification evidence.\n",
              "Full history remains in investigation.md and work-queue.json.\n",
+             "Primary acceptance: analysis/behavior.md and workflow.md; byte totals are diagnostic.\n",
+             "Deferred intervals remain unknown and require final disposition review.\n",
              f"State: {current['state_sha256']}\n",
              f"Unknown: {current['totals']['Unknown']} bytes in {len(tickets)} intervals.\n\n",
              "| Entry | Bytes | Status | Next experiment |\n| --- | ---: | --- | --- |\n"]
-    for t in tickets[:20]:
+    for t in [t for t in tickets if t["status"] != "deferred"][:20]:
         experiment = (t["experiment"] or "Triage consumers, format and build-residue hypotheses").replace("|", "/").replace("\n", " ")
         lines.append(f"| {t['id']} | {t['length']} | {t['status']} | {experiment} |\n")
     write(ROOT / "analysis/frontier.md", "".join(lines))
@@ -144,6 +147,10 @@ def plan(path):
     for key in ["hypothesis", "experiment", "expected_outcome", "revisit_when", "evidence",
                 "dependencies", "expected_bytes", "estimated_minutes"]:
         ticket[key] = proposal[key]
+    if "behavioral_relevance" in proposal:
+        if not isinstance(proposal["behavioral_relevance"], str):
+            raise ValueError("behavioral_relevance must be a string")
+        ticket["behavioral_relevance"] = proposal["behavioral_relevance"]
     ticket["status"] = "ready"
     write(ROOT / "analysis/work-queue.json", q)
     return refresh()
@@ -173,11 +180,21 @@ def record(path):
             # A classified/split ticket belongs to history, not a fabricated new gap.
             q["history"].append(dict(update, recorded_in=id))
             continue
-        if update.get("status") not in ("ready", "needs_review", "blocked", "waiting_dependency"):
+        if update.get("status") not in ("ready", "needs_review", "blocked", "waiting_dependency", "deferred"):
             raise ValueError("invalid ticket status")
         if not update.get("result") or not update.get("revisit_when"):
             raise ValueError("ticket result and revisit condition are required")
+        if update.get("status") == "deferred":
+            if not isinstance(update.get("disposition_evidence"), list) or not update["disposition_evidence"]:
+                raise ValueError("deferred ticket requires disposition_evidence paths")
+            for name in update["disposition_evidence"]:
+                candidate = (ROOT / name).resolve()
+                if ROOT not in candidate.parents or not candidate.is_file():
+                    raise ValueError(f"missing/non-local disposition evidence: {name}")
+        # Evidence existence is checked; the helper cannot judge semantic sufficiency.
         q["history"].append(dict(ticket, updated_in=id))
+        if update.get("status") == "deferred":
+            ticket["disposition_evidence"] = update["disposition_evidence"]
         ticket.update({k: update[k] for k in ["status", "result", "revisit_when"]})
         if "experiment" in update:
             ticket["experiment"] = update["experiment"]
@@ -200,7 +217,7 @@ def record(path):
              + f"Evidence/accounting: [batches/{id}.json](batches/{id}.json). "
              + f"Unknown: {current['totals']['Unknown']}; newly classified: {report['newly_classified']}. "
              + f"Current export byte identity verified: {report['verification_current']}.\n"
-             + "Whole-ROM completion and investigation requirements remain in force.\n")
+             + "Behavioral accounting and unknown dispositions determine completion; byte totals are diagnostic.\n")
     for name in ["progress.md", "investigation.md"]:
         target = ROOT / "analysis" / name
         old = target.read_text() if target.exists() else ""

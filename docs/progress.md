@@ -388,3 +388,90 @@ integration tests pass under Rust 1.90.0 with locked dependencies. No dependency
 or runtime changes, GUI launch, commercial-asset distribution, check-in or
 publication. Platform recipes remain documentation rather than new Mac/Windows
 execution evidence.
+
+Disassembly workflow revision 3 replaces the every-byte classification objective
+with released-game behavioral reconstruction accounting. Generated workspace
+instructions, start/resume/goal prompts and printed goals now require a versioned
+analysis/behavior.md inventory, implementation and asset dependency evidence,
+unknown-interval triage/dispositions, annotated accepted regions and a final
+byte-identical rebuild. Unknown bytes may remain without being called unused;
+nonexecution alone is insufficient. Code-plausibility review, consumer/format
+families and named runtime evidence targets guide investigation. Complete,
+incomplete blocked and incomplete exhausted outcomes include final audits and
+explicit reopen conditions; unchanged exhausted experiments are not restarted.
+Provider goal-status restrictions still apply, and prompt files cannot update a
+provider-stored goal. This supersedes the historical whole-ROM completion entries
+above; those records and archived results remain unchanged.
+
+The queue ranks explicit behavioral relevance ahead of byte gain and supports
+local evidence-linked deferred dispositions without changing ROM classifications
+or accepting completion. Deferred intervals remain in full accounting and leave
+the active frontier; planning can reopen them. Batch reports no longer append the
+superseded whole-ROM instruction. The backed-up upgrader seeds an explicitly
+unaudited inventory only when missing and protects existing inventory content.
+Project/user/agent documentation and commentary's description of the parent
+contract are aligned. No active game workspace or provider goal was changed.
+
+Validation: synthetic workspace/checkpoint and disassembly-tools regressions pass,
+including inventory creation/preservation, legacy inventory seeding, deferred-ticket
+evidence rejection, unchanged unknown totals, relevance ranking and reopening.
+The upgrade test isolates its port probe so an unrelated live bridge is neither
+stopped nor required to be absent; occupied-port rejection remains tested.
+Commentary and stock portability regressions pass, as do Rust 1.90.0 cargo fmt
+--check, locked workspace all-target clippy with warnings denied and workspace
+tests. These checks validate tooling/contracts and reconstruction fidelity, not
+semantic completeness or guaranteed termination of a live commercial-game agent.
+No ROMs, extracted assets or generated game files were added.
+
+Behavioral accounting now survives commentary, archival and native-port boundaries.
+Disassembly setup revision 4 seeds analysis/behavior.json alongside the narrative
+inventory; upgrades preserve both when present. scripts/behavior.py provides the
+shared ending instructions and structural inventory checks. Commentary freezes
+upstream scope, narrative, outcomes and deferred dispositions in handoff.json,
+then resets phase-specific review status while retaining IDs and unresolved
+questions. Missing legacy scope starts pending. Its audit requires behavioral
+source/semantic-region links, preserves inherited IDs, rejects unresolved
+questions/dependencies and requires explicit evidence-backed resolution records
+for inherited questions; a completed source checklist cannot waive those duties.
+
+Full-ROM review scaffolds now distinguish semantic review from evidence-backed
+opaque preservation. Preserved rows need durable rationale/evidence and reopen
+conditions; known Code and semantic units cannot avoid review this way. Unknown
+regions need not be historically identified or falsely called unused. Later static
+analysis may refine code/data/extents, add semantic units within the unchanged
+physical scaffold and reopen affected behavioral accounts. refinements.json/md
+record corrections and reconciliation; outstanding entries block completion.
+Source/map changes still require validation, exact byte verification and safe
+reconciliation without regenerating over edited source or frozen baselines.
+
+Archives retain the behavioral inventory, frozen handoff, opaque dispositions and
+refinement records by default; setup backups and scratch artifacts remain excluded.
+Native ports inherit behavior IDs/evidence/questions and reconciled refinements,
+require their own reviewed scope, implementation equivalents, region links and
+useful-test evidence, and retain source-ledger accounting independently. Reviewed
+opaque rows can remain preserved without an implementation obligation. New ROM
+analysis/maps belong under analysis/, with discovered units and native behavior/
+asset recipes reconciled while reference/ remains immutable. Legacy archives
+remain restorable; missing legacy behavioral scope is never accepted implicitly.
+
+New commentary.py upgrade and port.py upgrade commands back up metadata/prompts,
+preserve existing source, evidence and frozen references, seed only missing
+inventories and invalidate acceptance until fresh audit. They do not update stored
+goals or operate on active agents. No existing game workspace was migrated in this
+change. docs/behavioral-accounting.md documents schemas, phase-specific obligations,
+complete/incomplete blocked/exhausted endings, migrations and durable rationale.
+The native-port/library-review prompts and repository instructions are aligned.
+
+Validation: synthetic disassembly, disassembly-tools, commentary, archive and port
+regressions pass. Tests cover preserved unknown byte totals, incomplete-upstream
+handoff, explicit inherited-question resolution, removed/replaced IDs, missing
+scope/dependencies/source links, preserved-region evidence, pending refinements,
+frozen handoff tampering, legacy commentary migration, port migration preserving
+source/reference, durable archive metadata and excluded backups, and later units/
+behaviors inside a formerly opaque region. Exact source/reading recovery and ROM
+fidelity remain tested. CI now runs disassembly-tools too. Rust 1.90.0 formatting,
+locked workspace clippy/tests, desktop-feature port clippy and all 21 headless/
+device-independent port tests, stock portability and dependency boundaries pass.
+Audits validate records and reconstruction, not explanation quality, useful-test
+semantics or arbitrary-game completeness. No GUI/device launch, commercial ROM,
+extracted asset, generated game file, agent launch, check-in or publication.

@@ -25,10 +25,12 @@ command accepts `--binary` to select a built ROMAtlas executable.
 - `analysis/state.json`, `annotations.json`, `current-audit.json`, `scenarios.json`:
   final classification metadata, explanations, classification audit and scenarios,
   where available.
-- `analysis/investigation.md`, `gameplay.md`, `progress.md`: final agent records.
+- `analysis/behavior.md`, `behavior.json`, `investigation.md`, `gameplay.md`, `progress.md`: final behavioral scope and agent records.
 - `commentary/baseline.sym`, `phase1-state.json`, `manifest.json`: frozen phase-one
   baseline identity and structural interpretation used for the commentary phase.
-- `commentary/review.json`, `audit.json`, `verification.json`: semantic review and
+- `commentary/handoff.json`, `behavior.json`, `refinements.json`, `refinements.md`: frozen
+  upstream claims, current behavioral obligations and durable structural reconciliation.
+- `commentary/review.json`, `audit.json`, `verification.json`: semantic/preservation review and
   final editorial/fidelity checks.
 - `commentary/progress.md`, `uncertainties.md`, `editorial-audit.md`: final editorial
   documentation, where available.
@@ -44,8 +46,11 @@ workspace instructions/prompts, ROMs, generated assembly/reading copies, extract
 assets, object files and `analysis/toolkit-issues.md` are excluded. This is a
 finished-result archive, not a resumable runtime/debug workspace.
 
-An editorial audit does not prove semantic correctness or complete phase-one
-classification. Both phases' recorded statuses and uncertainties remain intact.
+An editorial audit checks behavioral inheritance, source links, semantic/preserved
+treatments and reconciliation, then byte identity; it cannot prove semantic truth.
+Both phases' historical outcomes remain intact. Later phases may close inherited
+questions or discover new ones. Durable acceptance rationale belongs in retained
+records, not only links to excluded scratch evidence. See [behavioral accounting](behavioral-accounting.md).
 
 ## Editorial recipe version 1
 

@@ -64,13 +64,18 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
         assert "analysis/gameplay.md" in content
         assert "against this ROM" in content
     workflow = (work / "workflow.md").read_text()
-    assert "every physical ROM byte" in workflow
-    assert "total budget or number of stagnant passes" in workflow
-    assert "every remaining path in every unresolved entry" in workflow
-    assert "Reopen entries" in workflow
-    assert "apparent unreachability alone" in workflow
-    assert "Execution coverage need not reach 100%" in workflow
-    assert "required annotation coverage" in workflow
+    assert "no classification-percentage target" in workflow
+    assert "Every behavior-inventory item" in workflow
+    assert "no credible code or asset hypothesis remains unexamined" in workflow
+    assert "Lack of observed access alone never satisfies" in workflow
+    assert "Stop incomplete, blocked" in workflow
+    assert "Stop incomplete, investigation exhausted" in workflow
+    assert "do not automatically repeat exhausted experiments" in workflow
+    assert "Systematically rank plausible code" in workflow
+    assert "every physical ROM byte" not in workflow
+    assert "analysis/behavior.md" in (work / "prompts/goal.md").read_text()
+    assert (work / "analysis/behavior.md").exists()
+    assert meta["workflow_revision"] == 4
     assert (work / "analysis/investigation.md").exists()
     assert (work / "analysis/gameplay.md").exists()
     assert "source URLs" in (work / "analysis/gameplay.md").read_text()
@@ -80,8 +85,8 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
     assert "continue local analysis" in workflow
     goals = [line for line in result.stderr.splitlines() if line.strip().startswith("/goal Read")]
     assert len(goals) == 4
-    assert all("every physical byte classified with evidence" in goal for goal in goals)
-    assert all("never marking this goal complete" in goal for goal in goals)
+    assert all("behavioral completion and investigation contract" in goal for goal in goals)
+    assert all("never mark incomplete work complete" in goal for goal in goals)
     assert all((work / path).exists() for path in ["prompts/start.md", "prompts/resume.md", "workflow.md"])
     call("python3", ROOT / "scripts/disassemble.py", first, "--root", workroot, ok=False)
     assert (work / "input/game.rom").read_bytes() == data

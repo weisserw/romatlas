@@ -22,7 +22,8 @@ resume goal. `--json` suppresses human instructions; preparation results are JSO
 on stdout and instructions are on stderr. Use `--binary PATH` to select a toolkit
 binary. Existing destinations and repository-local workspaces are rejected.
 Preparation requires an existing archive; it does not alter the archive or require
-phase-one classification to be complete. It validates archive hashes, restores
+every byte to be classified. Missing legacy behavioral inventories start pending
+and must be recovered before success. It validates archive hashes, restores
 exact commented source and verifies a byte-identical rebuild before publishing
 the workspace. Failed validation leaves no final workspace.
 
@@ -223,3 +224,22 @@ without testing it. Dependencies are pinned and checked with Rust 1.90.0 here.
 - [Macroquad input](https://docs.rs/macroquad/latest/macroquad/input/)
 - [ggez gamepads](https://docs.rs/ggez/latest/ggez/input/gamepad/)
 - [Cargo dependencies](https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html)
+
+## Inherited behavior and later ROM analysis
+
+Read [behavioral accounting](behavioral-accounting.md) for the shared ending
+contract and JSON schema. Preparation carries archived behavioral IDs, evidence,
+opaque dispositions and refinements into the port, resetting phase-specific review
+and implementation status. A finished source ledger alone is insufficient: every
+behavior also needs implementation equivalents, source-region links and useful test
+evidence. Missing/deleted obligations, pending structural reconciliation and open
+behavioral questions block completion. All applicable static techniques remain
+available; put new ROM analysis/maps under analysis/, preserve reference/, add
+new units and reconcile native behavior/assets. Opaque bytes with reviewed
+preservation dispositions need no implementation and must not be claimed unused.
+
+Use `python3 scripts/port.py upgrade WORKSPACE` for an idle existing port. It backs
+up accounting/prompts, preserves source and frozen reference, seeds missing
+behavioral inventory pending and requires a fresh completion audit. It does not
+resume agents or change stored goals. Complete, incomplete blocked and incomplete
+exhausted endings use the shared criteria; old byte percentages are not gates.
