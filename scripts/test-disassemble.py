@@ -3,7 +3,6 @@
 import hashlib
 import json
 from pathlib import Path
-import shlex
 import subprocess
 import tempfile
 
@@ -38,12 +37,8 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
     records = [json.loads(line) for line in result.stdout.splitlines()]
     assert len(records) == 2 and all(record["ok"] for record in records)
     assert result.stderr.count("Workspace ready:") == 2
-    assert result.stderr.count("codex --enable goals -C ") == 2
-    assert "/goal Read AGENTS.md, workflow.md and prompts/start.md." in result.stderr
-    assert "/goal Read AGENTS.md, workflow.md and prompts/resume.md." in result.stderr
-    assert "Continue beyond the raw-byte baseline" in result.stderr
-    assert "not shell commands" in result.stderr
-    assert f"codex --enable goals -C {shlex.quote(str(workroot / 'Game one'))}" in result.stderr
+    assert "/goal " not in result.stderr
+    assert str(workroot / 'Game one' / 'goal.md') in result.stderr
     quiet = call("python3", ROOT / "scripts/disassemble.py", first,
                  "--workspace", base / "quiet workspace", "--json")
     assert json.loads(quiet.stdout)["ok"] and not quiet.stderr
@@ -55,35 +50,27 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
     assert (work / "input/game.rom").read_bytes() == data
     assert (workroot / "Game two/input/game.rom").read_bytes() == data
     assert "Do not stop after a raw-byte baseline" in (work / "AGENTS.md").read_text()
-    for prompt in ["prompts/start.md", "prompts/resume.md"]:
-        content = " ".join((work / prompt).read_text().split())
-        assert "completion and investigation contract" in content
-        assert "not goal completion" in content
-        assert "Stop incomplete" in content
-        assert "semantics wherever useful" in content
-        assert "Game familiarization" in content
-        assert "analysis/gameplay.md" in content
-        assert "against this ROM" in content
-    workflow = (work / "workflow.md").read_text()
-    assert "every physical ROM byte" in workflow
-    assert "total budget or number of stagnant passes" in workflow
-    assert "every remaining path in every unresolved entry" in workflow
-    assert "Reopen entries" in workflow
-    assert "apparent unreachability alone" in workflow
-    assert "Execution coverage need not reach 100%" in workflow
-    assert "required annotation coverage" in workflow
-    assert (work / "analysis/investigation.md").exists()
-    assert (work / "analysis/gameplay.md").exists()
-    assert "source URLs" in (work / "analysis/gameplay.md").read_text()
-    assert "GameFAQs" in workflow
-    assert "do not\nindependently justify structural classification" in workflow
-    assert "Before exhausting a\ngameplay-dependent investigation path" in workflow
-    assert "continue local analysis" in workflow
-    goals = [line for line in result.stderr.splitlines() if line.strip().startswith("/goal Read")]
-    assert len(goals) == 4
-    assert all("every physical byte classified with evidence" in goal for goal in goals)
-    assert all("never marking this goal complete" in goal for goal in goals)
-    assert all((work / path).exists() for path in ["prompts/start.md", "prompts/resume.md", "workflow.md"])
+    assert Path(records[0]["goal_prompt"]).is_file()
+    assert len(records[0]["prompts"]) == 3
+    for path in records[0]["prompts"]:
+        assert Path(path).is_file()
+    disassembly = (work / "prompts/disassembly.txt").read_text()
+    assert "Stop immediately and report incomplete" in disassembly
+    assert "basic menu/gameplay inputs" in disassembly
+    assert "analysis/leads.json" in disassembly
+    redirect = (work / "prompts/redirect.txt").read_text()
+    for required in ["exactly one", "emulator.memory.write", "emulator.registers.set",
+                     "Do not reissue", "additional evidence", "attempt history"]:
+        assert required in redirect
+    commentary = (work / "prompts/commentary.txt").read_text()
+    assert "(??)" in commentary and "(???)" in commentary
+    assert "preserve the entire previous commentary" in commentary
+    goal = (work / "goal.md").read_text()
+    assert goal.index("1. prompts/disassembly") < goal.index("2. prompts/commentary") < goal.index("3. prompts/redirect")
+    assert "no such leads remain" in goal and "report incomplete" in goal
+    assert json.loads((work / "analysis/leads.json").read_text()) == {"version": 1, "passes": [], "leads": []}
+    assert not (work / "prompts/start.md").exists()
+    assert "every physical ROM byte" in (work / "workflow.md").read_text()
     call("python3", ROOT / "scripts/disassemble.py", first, "--root", workroot, ok=False)
     assert (work / "input/game.rom").read_bytes() == data
     invalid = base / "invalid.gb"

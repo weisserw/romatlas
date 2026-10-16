@@ -30,9 +30,9 @@ GOAL = ("Port this entire archived game into readable native Rust, following AGE
         "and report untested desktop behavior. If blocked, preserve work and "
         "explain concrete unresolved behaviors and what would unblock them; never mark "
         "an incomplete port complete.")
-RESUME_GOAL = ("Resume this entire-game port goal. Read prompts/resume.md and persistent "
-               "progress, source ledger, differences and library-change log, preserve "
-               "existing work and continue until the full port completion contract is met. " + GOAL)
+RESUME = ("Read progress.md, ledger.json, differences.md, library-changes.md and existing "
+          "code first. Preserve work; do not reinitialize. Resume the same objective "
+          "and continue unresolved behavior and library work using prompts/start.md.")
 
 
 def git(*args):
@@ -71,11 +71,8 @@ def records(review):
 
 
 def instructions(work):
-    quote = shlex.quote(str(work))
-    return (f"Start a port agent manually:\n  codex --enable goals -C {quote}\n\n"
-            f"First goal:\n/goal {GOAL}\n\nResume goal:\n/goal {RESUME_GOAL}\n\n"
-            f"Launch a separate library reviewer manually when ready:\n"
-            f"  codex -C {quote}\nRead prompts/review.md and review the actual shared-library diff.\n")
+    return (f"Read {work / 'goal.md'} to start or resume the port.\n"
+            f"For a separate library reviewer, read {work / 'prompts/review.md'}.\n")
 
 
 def prepare(archive, rom, output, binary):
@@ -159,13 +156,13 @@ def prepare(archive, rom, output, binary):
         subprocess.run(["cargo", "fmt", "--manifest-path", str(stage / "port/Cargo.toml")], check=True, capture_output=True, text=True)
         prompt = (TEMPLATES / "prompt.md").read_text()
         (stage / "prompts/start.md").write_text(prompt)
-        (stage / "prompts/resume.md").write_text("# Resume the whole-game port\n\nRead progress.md, ledger.json, differences.md, library-changes.md and existing code first. Preserve work; do not reinitialize. Continue unresolved behavior and library work.\n\n" + prompt)
+        (stage / "goal.md").write_text("# Native port\n\n" + GOAL + "\n\nOn resume: " + RESUME + "\n")
         shutil.copyfile(TEMPLATES / "review.md", stage / "prompts/review.md")
         build_guide = (TEMPLATES / "BUILDING.md").read_text().replace("__GAME_NAME__", name).replace("__TOOLKIT_PATH__", str(ROOT))
         (stage / "BUILDING.md").write_text(build_guide)
         (stage / "AGENTS.md").write_text(f"""# Native port workspace
 
-Read workflow.md and prompts/start.md (or prompts/resume.md). The whole-game
+Read goal.md, workflow.md and prompts/start.md. The whole-game
 completion contract applies; the demonstration scaffold is not a completed port.
 Toolkit: {json.dumps(str(ROOT))}. Use its AGENTS.md for shared-library changes.
 reference/ and review/toolkit-before/ are frozen. Change port/, ledger.json and

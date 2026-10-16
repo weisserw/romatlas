@@ -37,18 +37,17 @@ python3 run.py inspect
 python3 run.py baseline
 ```
 
-Run your agent from the game workspace and give it `prompts/start.md`; use
-`prompts/resume.md` for subsequent sessions. `AGENTS.md` and `workflow.md` guide
-static discovery, bounded gameplay tracing, evidence-supported code/data mapping,
-and verified assembly output. The tool prepares the workflow; it does not launch
-an agent or automatically classify the ROM. No agent provider is required.
+Run your agent from the game workspace and ask it to read `goal.md`. The generated
+`prompts/disassembly.txt`, `commentary.txt` and `redirect.txt` define single passes.
+Disassembly stops incomplete when startup/basic-input and supplied-lead easy gains
+end. Commentary explains the incomplete source with uncertainty markers; redirect
+finds new leads once. The coordinator repeats only with new actionable information,
+otherwise reports incomplete. Whole-ROM completion still requires every byte to be
+classified with evidence and a verified rebuild. No agent provider is required.
 
-The initializer prints Codex goal-mode startup instructions for each game: run
-`codex --enable goals -C /path/to/workspace`, then paste the printed `/goal ...`
-objective inside Codex. It also prints a goal for subsequent disassembly passes
-and the commands for inspecting, pausing and resuming an existing goal. Goal
-support is required in your Codex version. Workspace results remain JSON lines
-on stdout; human instructions go to stderr. Add `--json` to suppress instructions.
+Scripts write prompts rather than printing goal commands. JSON results remain on
+stdout; prompt locations go to stderr (`--json` suppresses those locations).
+Existing workspaces are not automatically migrated.
 
 The default parent is the current directory; `--workspace /exact/path` selects a workspace
 for a single ROM. Existing workspaces and paths inside this repository are
@@ -80,8 +79,8 @@ python3 run.py check
 ```
 
 Preparation restores and byte-verifies the commented reference source, creates a
-pending source-behavior ledger and demonstration scaffold, and prints whole-game
-start/resume goals and a separate library-review prompt. It does not port gameplay
+pending source-behavior ledger and demonstration scaffold, and writes `goal.md`
+with a separate library-review prompt. It does not port gameplay
 or launch an agent. Game Boy is the initial scaffold platform. Incomplete
 classification is accepted; relevant unknown behavior must be investigated.
 

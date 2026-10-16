@@ -391,3 +391,43 @@ API, stock portability and fidelity regressions pass. The workspace setup test
 also asserts that the default recorded binary is the release executable. Port
 regressions compile/test locked headless and desktop paths without a window.
 No commercial ROM, extracted asset or generated game file was added.
+
+2026-10-16: Replaced per-script printed goal commands with written coordinator
+prompts. New disassembly workspaces contain goal.md plus exactly three workflow
+prompts under prompts/: disassembly.txt, commentary.txt and redirect.txt.
+Disassembly now stops incomplete immediately when obvious substantial startup,
+basic-input or supplied-lead gains end; difficult remaining investigations no
+longer require exhaustive method/blocker reviews. Whole-ROM classification and
+byte-fidelity requirements for a complete result remain unchanged. Commentary
+accepts incomplete source, uses (?), (??), (???) uncertainty markers and hands
+unresolved investigations to redirect. Redirect specifies one static-first lead
+search with optional bounded debugger state construction, persistent lead IDs,
+evidence/recipes/outcomes and no repeated leads without additional information.
+The coordinator preserves prior commentary across changed-map rounds, resumes
+recorded phases and stops incomplete when no new actionable leads remain.
+Native-port preparation writes goal.md with the existing whole-game objective
+and resume contract. Existing workspaces are not automatically migrated.
+
+Validation: locked release build, cargo fmt --check, locked workspace all-target
+Clippy with warnings denied, locked workspace tests, desktop-feature port Clippy
+and all 21 port tests, synthetic disassembly/commentary/native-port regressions and stock-tool
+portability pass. Prompt-contract regressions check sequencing, lead history,
+debugger APIs, incomplete stopping and uncertainty markers. No live analysis agent,
+commercial ROM, generated game asset or desktop device was used. These checks do
+not prove an agent's semantic quality or easy-gain stopping judgment.
+
+2026-10-16: Reviewed workflow leftovers after the three-pass change. Removed
+new-port generation of the duplicate prompts/resume.md; goal.md now holds the
+resume instructions once instead of repeating the entire objective. Removed
+commentary's redundant generated instructions.txt, inlined the disassembly
+prompt read, renamed the Codex-specific output helper and corrected stale active
+docs that still described printed goals. Commentary's prompt-location helper
+now chooses the existing fallback for older workspaces. Existing game workspaces,
+archive evidence and historical progress entries remain untouched. No whole
+tracked source file was obsolete solely because of this workflow change.
+
+Validation: release build, fmt, locked workspace all-target Clippy with warnings
+denied, locked workspace tests, synthetic disassembly/commentary/native-port
+regressions (including generated headless/desktop builds), Python compilation and stock portability pass. Regressions assert that redundant
+resume/instruction files are no longer generated and resume preservation remains
+in goal.md. No runtime/session implementation or dependencies changed.

@@ -47,8 +47,9 @@ replace numeric operands with them where useful; preserve their exact values.
 Trust thoughtful static interpretation. Read callers, callees, neighboring code
 and data consumers to establish coherent meanings; do not demand runtime proof
 for every name. Accept the best coherent interpretation and move on. Mark material
-tentative interpretations with (?) beside the relevant name/comment; put longer
-alternatives in commentary/uncertainties.md only when useful. Contradictory evidence
+tentative interpretations and unknown lines with (?) beside the relevant name/comment;
+use (??) for weak hypotheses and (???) for unknown or highly speculative meanings.
+Put longer alternatives in commentary/uncertainties.md only when useful. Contradictory evidence
 requires revisiting a guess. Avoid unsupported certainty and invented specificity.
 
 Use ROMAtlas debugging only when static reading leaves the role genuinely unclear
@@ -68,8 +69,9 @@ names and meanings become clearer. Keep statuses honest across interrupted runs.
 Keep commentary/progress.md current with reviewed/pending counts, source edits,
 uncertainties and actual verification results. An uncertain unit can be reviewed:
 explain its observable behavior and reasonable competing meanings, methods tried,
-and the specific reason further useful investigation cannot proceed. Unknown
-purpose alone is insufficient. Preserve the 31-byte or other phase-1 ambiguity
+and what remains unavailable in this incomplete disassembly. Unknown purpose
+may remain unknown; mark it (?) or (???) rather than inventing an explanation.
+Preserve phase-1 ambiguity
 honestly; do not relabel it just to finish this phase. Phase-1 classification and
 phase-2 editorial completion are separate outcomes.
 
@@ -81,10 +83,12 @@ unit must be reviewed, not just named. Ensure source pointers still match edits.
 The script checks inventory coverage/status and byte identity; it cannot judge
 comment quality. You are responsible for the editorial acceptance criteria.
 
-Continue until all review and editorial work is done. No fixed pass count, comment
-count or stagnant batch ends the goal. Documented, investigated semantic limits
+Perform one editorial pass over the supplied disassembly, commenting as much as
+its evidence permits. Accept incomplete workspaces and do not demand missing code
+or semantic resolution before finishing this pass. Documented semantic limits
 are acceptable finished outcomes; missing review, broken builds, unresolved source
-coverage or outstanding useful investigation are not. Report complete only with
+coverage are not. Hand off unresolved investigations to redirect. Report editorial
+completion only with
 the final audit, a fresh byte-identical verification, refreshed reading copy,
 and links to source, inventory, uncertainties and toolkit findings. Do not fix the
 toolkit. All ROMs, assembly, extracted assets and traces remain local.
@@ -190,15 +194,10 @@ def commands(work):
 
 
 def instructions(work):
-    return (f"codex --enable goals -C {shlex.quote(str(work))}\n\n"
-            "/goal Read commentary/AGENTS.md, commentary/workflow.md and commentary/prompt.md. "
-            "Complete the whole-game semantic review and readable assembly commentary in "
-            "commentary/source/. Follow the phase-2 completion contract, preserve phase-1 "
-            "evidence, document investigated ambiguity, and finish with an editorial audit, "
-            "byte-identical verification and refreshed reading copy.\n\n"
-            "For later sessions, read the same prompt and resume commentary/review.json and "
-            "commentary/progress.md. Use /goal resume only for an existing paused goal; "
-            "do not replace an unfinished goal.\n")
+    prompt = work / "prompts/commentary.txt"
+    if not prompt.is_file():
+        prompt = work / "commentary/prompt.md"
+    return f"Read {prompt}\n"
 
 
 def prepare(work, meta, rom):
@@ -278,7 +277,6 @@ Keep all source and assets local. Preserve toolkit reports and upstream notices.
         (stage / "uncertainties.md").write_text("# Commentary uncertainties\n\nCarry forward relevant phase-1 ambiguities as their regions are reviewed.\n")
         (stage / "reading-before.asm").write_text(reading(stage / "before"))
         (stage / "reading-after.asm").write_text(reading(stage / "source"))
-        (stage / "instructions.txt").write_text(instructions(work))
         # Refuse concurrent preparation; retain other workspace files untouched.
         destination.mkdir()
         for item in stage.iterdir():

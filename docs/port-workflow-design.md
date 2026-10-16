@@ -7,7 +7,7 @@ port workflow or runtime library has been implemented or tested.
 ## Purpose and initial scope
 
 Prepare a separate per-game workspace from an archived game and its matching,
-locally supplied ROM. Print start and resume goal prompts directing an agent to
+locally supplied ROM. Write a goal.md coordinator prompt directing an agent to
 port the entire game into readable Rust. Do not launch the agent automatically.
 The result is a native reimplementation of game behavior, not execution of the
 original instructions inside an emulator.
@@ -30,7 +30,7 @@ the existing restoration contract. Preserve the archive and create generated
 material outside the ROMAtlas repository. Reject an existing destination.
 
 Create a Rust port scaffold, commented-source reference, source-behavior ledger,
-library-change log, development instructions, start/resume goals and a separate
+library-change log, development instructions, a coordinator prompt and a separate
 library-review prompt. Keep ROMs, regenerated source and decoded assets local.
 Never download or commit commercial ROMs or extracted game assets.
 

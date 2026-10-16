@@ -4,7 +4,6 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
-import shlex
 import shutil
 import subprocess
 import sys
@@ -50,7 +49,7 @@ to analysis/state.json, and export stock .sym to maps/current.sym.
 Record evidence, confidence, scenario input sequences, remaining unknown ranges,
 and exact tested verification results in analysis/progress.md after each batch.
 Snapshots are session-local; save replayable input sequences for later sessions.
-Do not invent snapshot persistence or claim full hardware compatibility.
+Use snapshot export/import for persistence; do not assume named snapshots persist. Do not invent unsupported snapshot persistence or claim full hardware compatibility.
 
 Maintain analysis/toolkit-issues.md as you encounter toolkit bugs or missing
 features, following workflow.md's reporting requirements. Preserve findings
@@ -61,16 +60,14 @@ findings and link the report, or explicitly say "no toolkit issues found" if emp
 
 WORKFLOW = """# Per-game workflow
 
-Run your agent in this directory. Give it prompts/start.md for a first pass or
-prompts/resume.md for a later pass. No particular agent provider is required.
-Both prompts pursue the same whole-ROM objective. A pass is a checkpoint, not
-goal completion. Follow the completion and investigation contract below.
+Read goal.md and the three single-pass prompts in prompts/. The old provider-specific
+/goal startup/resume workflow is deprecated. Each disassembly pass stops at easy-gain
+exhaustion; the coordinator runs commentary and redirect before considering a new pass.
 
 1. Run `python3 run.py inspect`, then `python3 run.py baseline` once. Baseline
    creates maps/baseline.sym and generated/baseline and verifies the rebuild.
    It marks raw bytes for export only; it is not a classified disassembly.
-   After inspection identifies the game and likely version, perform the Game
-   familiarization step below before planning runtime scenarios.
+   Use targeted Game familiarization below only if it enables an immediate easy gain.
 2. Run `python3 run.py serve` as a persistent JSON-RPC subprocess. Use
    api.describe. A new session has empty analysis state. Load analysis/state.json
    with map.load when resuming. Do not import the raw baseline as classification.
@@ -91,7 +88,7 @@ goal completion. Follow the completion and investigation contract below.
    current.sym, generates from it, and verifies the new source directory. Each
    successful checkpoint saves a copy of the exact map used and a verification
    report. Keep the internal store and progress notes alongside these results.
-8. Repeat for unknown regions and unresolved paths. End each pass with classified
+8. Follow the easy-gain stopping rule below. End this single pass with classified
    code/data/unknown byte counts from the internal store, uncertainty, execution
    scenarios exercised, verification evidence, and concrete next tasks.
    Include a summary of toolkit findings and a link to analysis/toolkit-issues.md;
@@ -99,7 +96,7 @@ goal completion. Follow the completion and investigation contract below.
 
 ## Game familiarization
 
-Consult available online manuals, walkthroughs, FAQs (such as GameFAQs), gameplay
+When needed for an immediate easy gain, consult available online manuals, walkthroughs, FAQs, gameplay
 guides and relevant technical resources after identifying the game and likely
 platform/region/revision. Do not rely on training-set familiarity. Record concise,
 actionable findings in analysis/gameplay.md with source URLs, applicable version,
@@ -117,76 +114,27 @@ from tested input sequences and observed results, including version mismatches.
 Prioritize research that changes an experiment or resolves an obstacle, rather than
 plot summaries or exhaustive background collection. If sources or browsing are
 unavailable, record the limitation and continue local analysis; lack of a guide
-alone does not justify terminating the whole investigation.
-
-Revisit research when it could resolve a specific obstacle. Before exhausting a
-gameplay-dependent investigation path, check for documented controls, passwords,
-shortcuts and progression routes that could make the experiment feasible. New
-actionable findings reopen affected ledger entries under the completion contract.
+alone does not prevent taking available local easy gains.
 
 ## Completion and investigation contract
 
-Declare complete only when every physical ROM byte belongs to an evidence-backed
-structural region, all required role/evidence annotations exist, the internal map
-and exported stock map validate, and the final generated assembly rebuilds
-byte-identically. Include headers, padding, unused banks and unreachable regions.
-Do not decode arbitrary bytes as code, rename unknown to data, or use raw emission
-as classification evidence. Semantic investigation is encouraged throughout;
-exhaustive instruction commentary is not required. Keep annotations and evidence
-in analysis/progress.md and the internal store where supported; use only supported
-stock directives in the portable map. Execution coverage need not reach 100%.
+This is one easy-gain pass, not an exhaustive investigation. Read prompts/disassembly.txt.
+Easy gains are substantial executable regions found by startup static analysis or basic
+inputs, and bounded verification of specific leads in analysis/leads.json. Abandon any
+investigation without an immediate, obvious prospect of substantial usable understanding.
+Stop immediately and report incomplete when these opportunities are exhausted, even if
+other concrete investigations remain. No per-range exhaustion proof is required.
+Maintain analysis/investigation.md with attempted leads, outcomes and remaining unknowns.
+Do not repeat unchanged failed leads. Research gameplay only for an immediate easy gain;
+do not require manuals, late-game routes or exhaustive method reviews before stopping.
 
-Maintain analysis/investigation.md across sessions with stable entries for each
-unresolved physical range and bank/context ambiguity. Record structural hypotheses,
-evidence and local artifact links, competing interpretations, methods attempted,
-results, remaining paths, and specific blockers. Split or merge entries as ranges
-change, retaining history. Before declaring exhaustion, review every bank and every
-unresolved range, including ranges never executed. For each entry assess:
-- Static control flow and valid instruction boundaries.
-- Incoming references and callers' behavior, including semantic interpretation.
-- Pointer/table hypotheses and effective bank/CPU-window context.
-- Runtime instruction/data accesses and targeted input/snapshot experiments.
-- Structural patterns, neighboring regions and relevant format constraints.
-Attempt applicable methods; justify each exclusion specifically. Absence of an
-execution trace or apparent unreachability alone proves neither data nor
-unknowability. Check available APIs/documentation before claiming a tool blocker;
-record missing tools in toolkit-issues.md and consider bounded workarounds.
-
-Runtime experiments must identify the unresolved hypothesis, evidence sought and
-a concrete input/snapshot route. Record outcomes and alternatives. Continue play
-when a concrete route could obtain useful evidence; do not repeat gameplay without
-such a route. Bound individual calls, paginate scans and finish truncated queries.
-These operational bounds are not a total investigation budget.
-
-Progress means new evidence, justified classification, resolved references,
-eliminated hypotheses or a demonstrated blocker. Repeated traces, cosmetic names,
-unsupported classifications and unchanged hypotheses are zero progress. No fixed
-total budget or number of stagnant passes authorizes stopping. A new experiment
-must explain how it could distinguish hypotheses; speculative possibilities alone
-do not justify endless retries. Reopen entries when discoveries elsewhere change
-their evidence or make a blocked method feasible. Audit those dependencies before
-the final exhaustion decision.
-
-Stop incomplete only when every remaining path in every unresolved entry has a
-concrete documented blocker or requires unsupported guessing. Evidence must
-support exhaustion of applicable methods, not merely a claim of diminishing
-returns, exponential effort or several unsuccessful passes. For combinatorial
-obstacles, identify the alternatives, why available evidence cannot narrow them,
-and why targeted experiments cannot distinguish them. Distinguish demonstrated
-impossibility from uncertainty with available methods; do not claim universal
-unknowability. If any concrete unblocked investigation path remains, continue.
-This evidence-based rule is not a mathematical guarantee of termination.
-
-At termination save state, export/validate the map and produce a final verified
-checkpoint when possible. Report outcome complete or incomplete, checkpoint and
-verification links, per-bank counts by internal kind (including unknown gaps),
-required annotation coverage, unresolved ranges/context and investigation links,
-and toolkit findings. Counts must cover the ROM exactly without overlap; report
-execution coverage separately. A checkpoint or byte-identical rebuild alone never
-satisfies the goal. Incomplete termination is an honest handoff, not goal success:
-never mark an unfinished whole-ROM goal complete. If goal tooling has no incomplete
-state, report the limitation and use only an available status whose conditions are
-actually met; do not invent a status or pause without user authorization.
+Complete still means every physical ROM byte has an evidence-backed structural role,
+required annotations, valid internal/stock maps and byte-identical generated assembly.
+Raw emission never proves classification. At either outcome save analysis/state.json,
+export maps/current.sym, validate, and make a new verified checkpoint when possible.
+Report complete or incomplete, per-bank code/data/unknown counts, annotation coverage,
+execution coverage separately, checkpoint links, untested hypotheses and toolkit findings.
+Never declare the ROM complete just because a pass or byte-identical rebuild succeeded.
 
 ## Toolkit issues
 
@@ -229,49 +177,7 @@ Generated files remain local. A verified raw-byte listing is a fidelity baseline
 not evidence that classification is complete.
 """
 
-START = """Read AGENTS.md and workflow.md. Disassemble this workspace's ROM using
-ROMAtlas. Establish the verified baseline, then continue with bank-aware static
-discovery and bounded execution traces to identify code and data. Confirm only
-evidence-supported structural regions. Save analysis/state.json, export
-maps/current.sym, and produce verified checkpoints with code regions decoded
-as assembly. Keep unsupported bytes unknown internally. Do not stop at the baseline.
-After identifying the game/version, follow workflow.md's Game familiarization
-section: consult online resources and record actionable, sourced routes in
-analysis/gameplay.md before planning runtime experiments. Treat external claims
-as hypotheses until confirmed against this ROM; continue locally if unavailable.
-Record coverage, classification counts, unresolved targets, experiments and
-verification in analysis/progress.md. Investigate semantics wherever useful and
-annotate structural roles with evidence. Follow workflow.md's completion and
-investigation contract, maintaining analysis/investigation.md. Continue toward
-whole-ROM completion; a first pass or checkpoint is not goal completion. Stop
-incomplete only under the documented exhaustion rule, never as successful completion.
-Record encountered toolkit bugs and substantial, evidence-backed missing features
-in analysis/toolkit-issues.md as you work, following workflow.md. Continue analysis
-using workarounds where possible; do not fix the toolkit. At termination include a findings summary and report
-link, or explicitly say "no toolkit issues found" if empty.
-"""
-
-RESUME = """Read AGENTS.md, workflow.md, workspace.json, analysis/progress.md and
-analysis/toolkit-issues.md.
-Resume the same whole-ROM disassembly objective. Load analysis/state.json into a fresh
-ROMAtlas session if present. Review the last verified checkpoint and unresolved
-regions. Replay recorded scenarios when execution evidence is needed; snapshots
-from previous sessions are unavailable. Continue evidence-supported code/data
-classification, save/export the updated map, and create a new verified checkpoint.
-Report classification progress separately from rebuild fidelity.
-Read analysis/investigation.md and reopen exhausted entries affected by new evidence.
-Read and preserve analysis/gameplay.md. Follow workflow.md's Game familiarization
-section, revisiting online resources for specific obstacles and checking documented
-routes before exhausting gameplay-dependent paths. Confirm claims against this ROM.
-Investigate semantics wherever useful and annotate structural roles with evidence.
-Follow workflow.md's completion and investigation contract. A new checkpoint is
-not goal completion; continue while concrete unblocked paths remain. Stop incomplete
-only under the documented exhaustion rule, never as successful completion.
-Preserve and update the toolkit issue report as you work; merge repeated findings
-and follow workflow.md's evidence requirements for bugs and substantial missing
-features. Continue analysis using workarounds where possible; do not fix the toolkit. At termination include
-a findings summary and report link, or say "no toolkit issues found" if empty.
-"""
+TEMPLATES = ROOT / "scripts/workflow-template"
 
 TOOLKIT_ISSUES = """# Toolkit issues
 
@@ -378,8 +284,11 @@ def initialize(source, destination, binary):
         files = {
             "AGENTS.md": AGENTS.format(toolkit=json.dumps(str(ROOT))),
             "workflow.md": WORKFLOW,
-            "prompts/start.md": START,
-            "prompts/resume.md": RESUME,
+            "prompts/disassembly.txt": (TEMPLATES / "disassembly.txt").read_text(),
+            "prompts/commentary.txt": (TEMPLATES / "commentary.txt").read_text(),
+            "prompts/redirect.txt": (TEMPLATES / "redirect.txt").read_text(),
+            "goal.md": (TEMPLATES / "goal.md").read_text(),
+            "analysis/leads.json": json.dumps({"version": 1, "passes": [], "leads": []}, indent=2) + "\n",
             "analysis/progress.md": "# Disassembly progress\n\nWorkspace initialized. Baseline and classification have not run.\n",
             "analysis/scenarios.json": "[]\n",
             "analysis/investigation.md": "# Investigation ledger\n\nNo regions reviewed yet. Follow workflow.md's completion and investigation contract.\n",
@@ -399,28 +308,14 @@ def initialize(source, destination, binary):
         for item in work.iterdir():
             shutil.move(str(item), destination / item.name)
     return {"ok": True, "workspace": str(destination), "sha256": identity,
-            "start_prompt": str(destination / "prompts/start.md"),
-            "resume_prompt": str(destination / "prompts/resume.md")}
+            "goal_prompt": str(destination / "goal.md"),
+            "prompts": [str(destination / "prompts" / name) for name in
+                        ["disassembly.txt", "commentary.txt", "redirect.txt"]]}
 
 
-def print_codex_instructions(record):
-    workspace = shlex.quote(record["workspace"])
-    print(f"""
-Workspace ready: {record['workspace']}
-
-1. Run this in your terminal:
-   codex --enable goals -C {workspace}
-
-2. Once Codex opens, paste this into its input and press Enter:
-   /goal Read AGENTS.md, workflow.md and prompts/start.md. Complete the whole-ROM disassembly and evidence-backed structural annotations under workflow.md's completion and investigation contract. Continue beyond the raw-byte baseline and individual checkpoints; investigate semantics wherever useful. Success requires every physical byte classified with evidence, required annotations, valid maps and a byte-identical rebuild. Maintain analysis/progress.md, analysis/investigation.md and analysis/toolkit-issues.md. Continue while concrete unblocked paths remain; exhausted investigation permits an incomplete handoff, never marking this goal complete. Report per-bank counts, verification, unresolved evidence and toolkit findings with report links, or say "no toolkit issues found" if empty. Do not fix the toolkit.
-
-3. For a later session without an existing unfinished goal, open the same workspace and paste:
-   /goal Read AGENTS.md, workflow.md and prompts/resume.md. Resume the same whole-ROM disassembly and evidence-backed structural annotations under workflow.md's completion and investigation contract. Restore analysis/state.json and review analysis/progress.md and analysis/investigation.md; reopen entries affected by new evidence. Success requires every physical byte classified with evidence, required annotations, valid maps and a byte-identical rebuild. A new checkpoint is not goal completion. Continue while concrete unblocked paths remain; exhausted investigation permits an incomplete handoff, never marking this goal complete. Preserve analysis/toolkit-issues.md; report per-bank counts, verification, unresolved evidence and toolkit findings with report links, or say "no toolkit issues found" if empty. Do not fix the toolkit.
-
-Inside Codex, /goal shows status; /goal pause pauses and /goal resume resumes
-an existing paused goal. These are Codex input commands, not shell commands.
-If /goal is unavailable, use a Codex version with goal support.
-""", file=sys.stderr, flush=True)
+def print_prompt_location(record):
+    print(f"Workspace ready: {record['workspace']}\nRead {record['goal_prompt']}",
+          file=sys.stderr, flush=True)
 
 
 def main():
@@ -431,7 +326,7 @@ def main():
     parser.add_argument("--workspace", type=Path, help="exact directory; only for one ROM")
     parser.add_argument("--binary", type=Path, default=ROOT / "target/release/romatlas")
     parser.add_argument("--json", action="store_true",
-                        help="print JSON results only; suppress Codex startup instructions")
+                        help="print JSON results only; suppress prompt locations")
     args = parser.parse_args()
     if args.workspace and len(args.roms) != 1:
         parser.error("--workspace requires exactly one ROM")
@@ -443,7 +338,7 @@ def main():
         record = initialize(source, destination, binary)
         print(json.dumps(record), flush=True)
         if not args.json:
-            print_codex_instructions(record)
+            print_prompt_location(record)
 
 
 if __name__ == "__main__":

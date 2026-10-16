@@ -1,0 +1,18 @@
+Perform one commentary pass on the latest verified disassembly. Incomplete
+classification is expected: explain as much as the supplied source permits.
+Use the toolkit's scripts/commentary.py prepare WORKSPACE on the first round,
+then read commentary/AGENTS.md, commentary/workflow.md and commentary/prompt.md.
+Follow their naming, data documentation, inventory and byte-fidelity rules.
+Mark speculative or unknown lines (?) and use (??) or (???) for increasing
+uncertainty. Do not invent semantics or demand full classification to finish.
+Record unresolved dependencies for redirect rather than pursuing difficult analysis.
+Run commentary verify, read and audit; report editorial review separately from
+ROM classification. An explained unknown can be reviewed without being resolved.
+
+On later rounds compare maps/current.sym and analysis/state.json with the frozen
+commentary baseline. If unchanged, resume existing commentary directly. If changed,
+preserve the entire previous commentary directory under a new analysis/round-N/
+directory before preparing a fresh baseline. Carry prior comments, names, review
+findings and uncertainty forward by physical ROM ranges, checking changed boundaries;
+never blindly copy stale assembly or overwrite the only copy of previous work.
+Reverify all carried edits. All generated source/assets remain local.

@@ -1,8 +1,8 @@
 # Native port workflow
 
 The port phase starts from a reviewed archive and a matching local ROM, creating
-a separate development workspace. It prints an agent goal to implement the whole
-game in readable native Rust. It does not execute the goal or translate the game
+a separate development workspace. It writes goal.md to direct implementation of the
+whole game in readable native Rust. It does not launch an agent or translate the game
 automatically. The initial scaffold supports Game Boy archives. The shared
 library can add other explicit console modules later without imposing a universal
 hardware model.
@@ -14,11 +14,11 @@ Setup installs SDL2 development libraries as well as the existing pinned tools.
 
 ```sh
 python3 scripts/port.py prepare /path/to/archive --rom /path/to/owned.gb --out /root/rom-ports/game
-codex --enable goals -C /root/rom-ports/game
+codex -C /root/rom-ports/game
 ```
 
-Paste the printed first `/goal ...` into Codex. Later sessions use the printed
-resume goal. `--json` suppresses human instructions; preparation results are JSON
+Ask the agent to read the generated `goal.md`; it includes the whole-game
+objective and resume instructions. No goal command is printed. `--json` suppresses human instructions; preparation results are JSON
 on stdout and instructions are on stderr. Use `--binary PATH` to select a toolkit
 binary. Existing destinations and repository-local workspaces are rejected.
 Preparation requires an existing archive; it does not alter the archive or require
@@ -40,7 +40,8 @@ the toolkit before retrying. Rust 1.90.0 is pinned in the generated project.
 | `reference/source/`, `reference/reading.asm` | Frozen restored, verified source and reading copy. |
 | `port/` | Editable Cargo project with locked dependencies. |
 | `ledger.json` | Original source regions/units and their native behavior equivalents. |
-| `prompts/start.md`, `resume.md`, `review.md` | Whole-game objectives and separate reviewer instructions. |
+| `goal.md` | Overall native-port objective and resume instructions. |
+| `prompts/start.md`, `review.md` | Detailed port contract and separate reviewer instructions. |
 | `review/toolkit-before/`, `toolkit-before.json` | Initial toolkit files, hashes, Git HEAD and pre-existing status. |
 | `library-changes.md` | Shared changes, requirements, rationale, validation and unresolved findings. |
 | `progress.md`, `differences.md`, `README.md` | Progress/blockers, behavioral differences and editor instructions. |
@@ -133,7 +134,7 @@ Preparation also creates BUILDING.md from scripts/port-template/BUILDING.md,
 substituting the port's name/executable and initial toolkit path. The generated
 README links to this guide. It covers private macOS/Linux/Windows source builds,
 SDL prerequisites/linking, source transfers excluding target/, path relocation,
-headless builds and later packaging. Start/resume goals require the port agent
+headless builds and later packaging. The coordinator prompt requires the port agent
 to adapt it to final dependencies/flags and record actual platform validation.
 The baseline recipes are not platform-test evidence and do not authorize
 distribution. Existing source ports can adopt the guide without regeneration;

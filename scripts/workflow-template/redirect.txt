@@ -1,0 +1,27 @@
+Run exactly one redirect pass after commentary, including incomplete commentary.
+Read commentary/source/, reading-after.asm, uncertainties.md, review.json,
+analysis/state.json, analysis/investigation.md and analysis/leads.json.
+Search the available commented source for all identifiable leads in this pass:
+missing callees, dispatch paths, table consumers, bank selection, unresolved
+pointers, state-dependent references and unexplained structures. Prefer static
+analysis and concrete missing pieces over speculative gameplay exploration.
+
+Use run.py serve and docs/protocol.md for bounded hypothesis tests when helpful.
+Inspect api.describe. Use emulator.memory.write and emulator.registers.set to
+construct states that load needed pointers/tables, saving/restoring snapshots and
+recording exact patches, effective banks, inputs and budgets. ROM backing remains
+immutable. Debugger mutations prove no execution or natural reachability; clearly
+separate artificial-state observations from ordinary gameplay evidence.
+
+Write the persistent leads file analysis/leads.json (version 1, passes and leads
+arrays). Each lead needs a stable id, physical ranges and CPU/bank context, source
+locations, hypothesis, evidence/artifact links, a concrete bounded verification
+recipe, expected substantial gain, priority, status and attempt history. Preserve
+all previous entries and outcomes. Match by target/hypothesis, not wording.
+Do not reissue a previous lead without additional evidence or an improved actionable
+recipe; append the new information and explain why it reopens the lead. Mark new
+or materially improved actionable leads ready; retain rejected/blocked/verified
+history. Record every pass's input checkpoint and added/updated IDs, including an
+empty result. Summarize unresolved gaps and why remaining ideas are not actionable.
+Do not classify candidates just to create leads. Do not loop internally or attempt
+exhaustive game completion. Return the lead list for the next disassembly pass.

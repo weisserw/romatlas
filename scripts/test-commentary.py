@@ -38,7 +38,11 @@ with tempfile.TemporaryDirectory(prefix="romatlas-commentary-") as temporary:
                  ["AGENTS.md", "workflow.md", "analysis/state.json", "maps/current.sym"]}
     result = call("python3", SCRIPT, "prepare", work)
     assert json.loads(result.stdout)["byte_identical"]
-    assert "codex --enable goals -C '" in result.stderr and "/goal Read commentary/AGENTS.md" in result.stderr
+    assert "prompts/commentary.txt" in result.stderr and "/goal " not in result.stderr
+    prompt = (work / "commentary/prompt.md").read_text()
+    assert "(??)" in prompt and "(???)" in prompt
+    assert "Accept incomplete workspaces" in prompt
+    assert not (work / "commentary/instructions.txt").exists()
     phase = work / "commentary"
     before = (phase / "reading-before.asm").read_bytes()
     assert b"BEGIN bank_000.asm" in before

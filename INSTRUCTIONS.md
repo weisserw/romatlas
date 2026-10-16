@@ -43,48 +43,27 @@ Names must be distinct, and existing workspaces are not overwritten.
 
 ## 3. Start the disassembly agent
 
-Follow the startup instructions printed by the command. For example, run this
-in your terminal:
+Read the generated `goal.md` in the game workspace. It coordinates three single-pass
+prompts in `prompts/`: `disassembly.txt`, `commentary.txt`, and `redirect.txt`.
+The old printed provider-specific goal startup/resume workflow is deprecated.
 
-```sh
-codex --enable goals -C /root/rom-work/game
-```
+Disassembly takes substantial easy gains from startup static analysis, basic inputs,
+and bounded verification of supplied leads. It immediately stops **incomplete** when
+no obvious substantial gain remains, even if difficult investigations are possible.
+The full completion contract still requires evidence-backed classification of every
+byte, annotations, valid maps and byte-identical rebuilding.
 
-Once Codex opens, paste the printed `/goal ...` command into Codex's input and
-press Enter. The goal tells the agent to read the workspace instructions,
-identify code and data, export a mapping, and generate an assembly listing
-that rebuilds byte-for-byte. Use a Codex version with goal support.
+Commentary reviews and explains the available disassembly, accepting missing pieces.
+Speculative or unknown lines carry `(?)`, `(??)` or `(???)` with increasing uncertainty.
+Redirect searches commented source once for all available leads, using bounded debugger
+experiments and memory/register edits where useful. Artificial states are recorded as
+such, never as proof of natural reachability. `analysis/leads.json` preserves stable
+lead IDs, evidence, verification recipes, statuses and attempt history. Later passes
+must add information before reissuing a lead.
 
-The objective spans the entire physical ROM, across sessions and checkpoints.
-The agent investigates structure and semantics together, annotating each region's
-structural role and supporting evidence. Detailed instruction commentary is optional.
-Success requires every byte to be classified with evidence, required annotations,
-valid maps and a byte-identical rebuild. Raw bytes preserve fidelity but do not
-establish classification; execution coverage is a separate measure.
-
-There is no universal total investigation budget. The generated workflow requires
-an investigation ledger at `analysis/investigation.md`, reviewing static flow,
-references/callers, pointer and bank hypotheses, runtime experiments and structural
-patterns for every unresolved range. Applicable methods must be attempted and
-exclusions justified. The agent continues while concrete unblocked paths remain,
-reopening entries when new evidence changes them. Repeated traces or cosmetic
-annotations do not count as progress.
-
-After identifying the game and likely version, the agent consults available online
-manuals, walkthroughs, FAQs and technical resources. It keeps source links, version
-uncertainty, controls, mechanics and actionable progression/password routes in
-`analysis/gameplay.md`, translating useful findings into targeted runtime scenarios.
-External claims need confirmation against the local ROM and do not independently
-prove structural classifications. Research is revisited for specific obstacles,
-including before exhausting gameplay-dependent paths. If resources are unavailable,
-the agent records that limitation and continues local analysis.
-
-Exhausted investigation permits an **incomplete** handoff only when all remaining
-paths have specific evidenced blockers or require unsupported guessing. Unreachable
-code alone does not establish unknowability. This rule does not mathematically
-guarantee termination. The final report includes per-bank classification counts,
-annotation coverage, verification and unresolved evidence links. An incomplete
-handoff or a verified checkpoint must never mark the whole-ROM goal complete.
+The coordinator repeats only for new or materially improved actionable leads. Without
+those it stops incomplete and reports unknown counts and verified artifacts. Prior
+commentary is preserved between rounds; generated source and assets stay local.
 
 Run the disassembly agent in the game workspace. Keep `/root/romatlas` for
 building or developing the toolkit. Initialization prepares the workspace;
@@ -103,16 +82,10 @@ and links the report, or explicitly says "no toolkit issues found" when empty.
 
 ## 4. Continue later
 
-Open Codex in the same game workspace and use the printed resume goal, which
-refers to `prompts/resume.md`. The agent loads saved analysis and continues
-classification. In an existing Codex session, `/goal` shows goal status,
-`/goal pause` pauses it, and `/goal resume` resumes a paused goal.
+Read `goal.md` again in the same workspace. Resume the phase and round recorded in
+`analysis/progress.md`; preserve state, commentary and lead history.
 
-Keep an existing unfinished goal rather than replacing it with a checkpoint-sized
-goal. The resume prompt pursues the same completion contract and preserves the
-investigation ledger, reopening entries affected by new evidence.
-
-The resume prompt preserves and updates `analysis/toolkit-issues.md`, merging
+The coordinator preserves and updates `analysis/toolkit-issues.md`, merging
 repeated findings and retaining evidence from earlier passes. These instructions
 and the initial report are generated for new workspaces; previously created
 workspaces are not updated automatically.
@@ -136,13 +109,13 @@ creates `commentary/` without modifying phase-1 instructions, maps or evidence.
 An investigated phase-1 unknown interval does not prevent starting this phase.
 Preparation refuses an existing commentary directory; it never replaces edits.
 
-The command prints a Codex startup command and a short `/goal` referring to
-`commentary/prompt.md`. That prompt asks the agent to review the entire game,
+The command points to `prompts/commentary.txt` (older workspaces use
+`commentary/prompt.md`). That prompt asks the agent to review the entire game,
 identify routines, loops, shared tails and data structures, introduce meaningful
 symbols, and explain functionality using conventional readable assembly style.
 Comment detail scales with complexity; opcode translations and boilerplate
 headers are discouraged. Static interpretation is the default, tentative meanings
-use `(?)`, and debugging targets genuinely unclear behavior. Completion requires
+use `(?)`, `(??)` and `(???)`, and debugging targets genuinely unclear behavior. Completion requires
 full review, documented investigated uncertainties, a final editorial pass and a
 fresh byte-identical rebuild, rather than certainty about every original intent.
 
@@ -170,7 +143,7 @@ python3 scripts/commentary.py read /root/rom-work/game
 python3 scripts/commentary.py audit /root/rom-work/game
 ```
 
-`instructions` prints the startup/goal text again for a later session. `verify`
+`instructions` prints the prompt location for a later session. `verify`
 rebuilds the edited source and checks exact equality without `rgbfix` header
 changes. `read` refreshes the after copy. `audit` checks the review inventory,
 requires final editorial notes, performs fresh verification and refreshes the
@@ -242,11 +215,10 @@ lifecycle with `python3 scripts/test-archive.py`, which uses a synthetic ROM onl
 ```sh
 python3 scripts/port.py prepare atlas/gb/game/FULL_ROM_SHA256 \
   --rom /path/to/original.gb --out /root/rom-ports/game
-codex --enable goals -C /root/rom-ports/game
+codex -C /root/rom-ports/game
 ```
 
-Paste the printed whole-game port goal. Use the printed resume goal for later
-sessions. Preparation validates/restores the archived source, creates a separate
+Ask the agent to read `goal.md` to start or resume the port. Preparation validates/restores the archived source, creates a separate
 Rust project and behavior ledger, and records the toolkit's initial files for
 review. It implements no gameplay and launches no agent. Phase-one unknowns are
 allowed, but gameplay-relevant gaps must be investigated by the port agent.

@@ -59,7 +59,11 @@ with tempfile.TemporaryDirectory(prefix="romatlas-port-") as temporary:
     prepare = ["python3",SCRIPT,"prepare",archive,"--rom",rom,"--out",work]
     result, printed = call(*prepare)
     assert result["byte_identical_reference"] and result["scaffold"]
-    assert "/goal Port this entire" in printed.stderr and "/goal Resume" in printed.stderr
+    assert "goal.md" in printed.stderr and "/goal " not in printed.stderr
+    assert "Port this entire" in (work / "goal.md").read_text()
+    assert "BUILDING.md" in (work / "goal.md").read_text()
+    assert not (work / "prompts/resume.md").exists()
+    assert "Preserve work; do not reinitialize" in (work / "goal.md").read_text()
     assert "separate library reviewer" in printed.stderr
     assert str(work) in printed.stderr
     assert inventory(archive) == initial_archive and rom.read_bytes() == data
@@ -72,13 +76,13 @@ with tempfile.TemporaryDirectory(prefix="romatlas-port-") as temporary:
     for required in ["LIBRARY_PATH", "macOS", "Linux", "Windows", "--locked", "--exclude='target/'",
                      "path dependency", "No desktop runtime"]:
         assert required in build_guide, required
-    for path in ["prompts/start.md", "prompts/resume.md", "workflow.md"]:
+    for path in ["goal.md", "prompts/start.md", "workflow.md"]:
         assert "BUILDING.md" in (work / path).read_text()
     meta = json.loads((work / "workspace.json").read_text())
     before = json.loads((work / "review/toolkit-before.json").read_text())
     assert before["head"] and "crates/romatlas-port/src/assets.rs" in before["files"]
     assert any(row["kind"] == "Unknown" for row in json.loads((work / "ledger.json").read_text())["regions"])
-    for path in ["AGENTS.md","prompts/start.md","prompts/resume.md","workflow.md"]:
+    for path in ["AGENTS.md","prompts/start.md","workflow.md"]:
         text = (work / path).read_text()
         assert "whole" in text.lower() or "entire" in text.lower()
     prompt = (work / "prompts/start.md").read_text()

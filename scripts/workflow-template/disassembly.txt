@@ -1,0 +1,24 @@
+Read AGENTS.md, workflow.md, workspace.json, analysis/progress.md,
+analysis/investigation.md, analysis/toolkit-issues.md and analysis/leads.json.
+Run exactly one disassembly pass. Restore analysis/state.json if present; preserve
+existing classifications. Establish the verified baseline only if absent.
+
+Take easy gains: identify and verify substantial executable regions available
+through startup static discovery and basic menu/gameplay inputs. Also verify
+specific leads from analysis/leads.json with bounded, targeted experiments.
+Inspect bank-aware candidates before map.annotate; pointer targets and debugger
+edits are hypotheses, not execution evidence. Keep unsupported bytes unknown.
+For each attempted lead preserve its ID, evidence, status (verified, rejected,
+blocked or superseded), result and why it should or should not be retried.
+
+Abandon investigations that do not immediately promise substantial usable new
+understanding. Stop immediately and report incomplete once no obvious easy gain
+remains, even when more difficult investigations are possible. Do not exhaust
+all gameplay, all methods or all unknown ranges. Do not stop at raw baseline
+while obvious startup gains remain. Do not repeat failed leads without new evidence.
+
+Save state, export maps/current.sym, validate and create a fresh verified checkpoint.
+Record per-bank classified/unknown counts, evidence, lead outcomes and verification
+in analysis/progress.md and analysis/investigation.md. Report incomplete unless
+all bytes meet the full evidence-backed classification contract. Preserve and link
+analysis/toolkit-issues.md; say "no toolkit issues found" if empty. Do not fix toolkit.
