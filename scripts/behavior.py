@@ -27,8 +27,8 @@ its status to pending while preserving evidence and unresolved questions.
 
 Continue concrete investigations that can distinguish behaviorally relevant
 hypotheses. Runtime needs a named evidence target; advancing gameplay or labeling
-more bytes is not itself sufficient. Use static interpretation, coherent-code
-review and consumer/format families without demanding execution of every branch.
+more bytes is not itself sufficient. Use static interpretation and consumer/format
+families without demanding execution of every branch.
 Later phases may discover/refine code, data and extents. Preserve frozen originals;
 record old/new physical ranges, bank context, evidence and affected obligations in
 refinements.md. Reopen affected behavior/dispositions, reconcile editable source

@@ -475,3 +475,21 @@ device-independent port tests, stock portability and dependency boundaries pass.
 Audits validate records and reconstruction, not explanation quality, useful-test
 semantics or arbitrary-game completeness. No GUI/device launch, commercial ROM,
 extracted asset, generated game file, agent launch, check-in or publication.
+
+Removed the experimental code-plausibility ranking/window-disassembly guidance
+from generated disassembly start/resume/goal/workflow text and shared later-phase
+instructions. Ordinary static control-flow/reference analysis and consumer-family
+investigation remain. The corresponding prompt-presence assertion was removed;
+INSTRUCTIONS.md matches the simpler strategy. Historical progress entries describe
+prior versions and do not reinstate that experimental guidance.
+
+The same targeted wording edits were applied to the existing Super Mario Land 2
+workflow and three prompt files, with previous copies preserved under its local
+analysis/setup-backups/20261016T015925299806Z-remove-plausibility/. No ROM, map,
+evidence, emulator process or provider-stored goal was changed. An already-running
+agent must reread the files to receive the changed instructions.
+
+Validation: synthetic workspace/checkpoint, disassembly-tools and commentary
+regressions pass; git diff --check passes. This is a prompt-only strategy change,
+not measured evidence of improved token usage or runtime. No Rust/runtime change
+or generated game artifact was added.

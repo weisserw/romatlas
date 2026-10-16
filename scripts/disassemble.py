@@ -249,16 +249,12 @@ is an engineering acceptance record, not a mathematical completeness proof.
 ### Unexplained regions
 
 Track every unknown physical interval in analysis/investigation.md or linked
-queue records. Triage plausible code/coherent control flow, incoming references
+queue records. Triage static control flow, incoming references
 including computed dispatch and banking, and known loaders, pointer tables,
 formats and allocation boundaries. Record findings, limitations, applicable
 methods and justified exclusions; reuse existing evidence rather than repeat scans.
 
-Systematically rank plausible code using patterns from confirmed code in this ROM.
-Decode bounded windows at plausible starts and inspect branches, calls, register
-use, stack balance and memory accesses for coherent routines. Legal decoding or
-statistical resemblance alone is not classification proof. Inspect competing data
-formats and interleaved tables. Prefer consumer/decoder/selector analysis that
+Prefer consumer/decoder/selector analysis that
 resolves whole families over visiting every asset through gameplay. Reserved fields
 may belong to an established record allocation without proof each field is read;
 record the allocation evidence and avoid extending boundaries by appearance alone.
@@ -384,7 +380,7 @@ completion and investigation contract. Do not stop at the baseline: a checkpoint
 not goal completion. Follow Game familiarization; record sourced findings in
 analysis/gameplay.md and confirm external claims against this ROM. Create the
 versioned inventory in analysis/behavior.md from research, static analysis and
-observations. Investigate semantics wherever useful, plausible code and consumer
+observations. Investigate semantics wherever useful and inspect consumer
 families before choosing targeted runtime experiments. Keep unsupported bytes
 unknown and preserve them verbatim. Save analysis/state.json, export maps/current.sym
 and verify coherent passes. Maintain analysis/investigation.md, progress.md and
@@ -404,7 +400,7 @@ unknown-region dispositions and dependencies. Follow Game familiarization and
 preserve analysis/gameplay.md; confirm external claims against this ROM. Investigate
 semantics wherever useful. Reopen entries only when new evidence or capabilities
 justify it; do not repeat unchanged exhausted experiments. Prioritize behavior,
-coherent-code review and consumer/asset families over raw byte gains. Runtime needs
+consumer/asset families over raw byte gains. Runtime needs
 a named evidence target; replay only when needed and do not claim durable snapshots.
 Save/export validated changes and verify coherent passes. A checkpoint is not goal
 completion. Continue actionable investigations; Stop incomplete only under the
@@ -433,7 +429,7 @@ remaining unknown interval, annotated accepted regions, valid internal/stock map
 and a final byte-identical rebuild. No classification-percentage target applies.
 Preserve unexplained bytes verbatim; lack of observed access does not prove nonuse.
 Maintain analysis/behavior.md, investigation.md, progress.md, gameplay.md and
-toolkit-issues.md. Prioritize coherent-code analysis and consumer families; runtime
+toolkit-issues.md. Prioritize behavioral dependencies and consumer families; runtime
 requires a named evidence target. Use the release binary, cached immutable decoding,
 ranked dependency queue and coherent verified passes. Continue concrete actionable
 investigations. Operational bounds do not authorize stopping. Stop incomplete only

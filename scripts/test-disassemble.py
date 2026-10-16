@@ -71,7 +71,6 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
     assert "Stop incomplete, blocked" in workflow
     assert "Stop incomplete, investigation exhausted" in workflow
     assert "do not automatically repeat exhausted experiments" in workflow
-    assert "Systematically rank plausible code" in workflow
     assert "every physical ROM byte" not in workflow
     assert "analysis/behavior.md" in (work / "prompts/goal.md").read_text()
     assert (work / "analysis/behavior.md").exists()

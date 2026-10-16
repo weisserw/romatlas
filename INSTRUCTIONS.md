@@ -93,7 +93,7 @@ entry points, dispatch and loaders, evidence, validation and unresolved dependen
 There is no classification-percentage target. Preserve unexplained bytes verbatim;
 raw fidelity alone does not establish behavioral completion.
 
-Triage every unknown interval for coherent code, references, banking, consumers,
+Triage every unknown interval for static control flow, references, banking, consumers,
 formats and allocation boundaries. Prioritize behavioral dependencies and structural
 families. Plausible disassembly is an investigation lead, not proof. Runtime must
 answer a named reconstruction question; advancing through gameplay alone is not
