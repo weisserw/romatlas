@@ -6,6 +6,11 @@ existing classifications. Establish the verified baseline only if absent.
 Take easy gains: identify and verify substantial executable regions available
 through startup static discovery and basic menu/gameplay inputs. Also verify
 specific leads from analysis/leads.json with bounded, targeted experiments.
+For concrete lead verification, use emulator.memory.write and emulator.registers.set
+when direct state changes can expose the needed code, pointers or tables immediately.
+Save/restore snapshots and record exact patches, effective banks and execution budgets.
+Distinguish artificial-state observations from natural gameplay reachability; abandon
+speculative state manipulation under the same easy-gain stopping rule below.
 Inspect bank-aware candidates before map.annotate; pointer targets and debugger
 edits are hypotheses, not execution evidence. Keep unsupported bytes unknown.
 For each attempted lead preserve its ID, evidence, status (verified, rejected,

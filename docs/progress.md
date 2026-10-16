@@ -431,3 +431,12 @@ denied, locked workspace tests, synthetic disassembly/commentary/native-port
 regressions (including generated headless/desktop builds), Python compilation and stock portability pass. Regressions assert that redundant
 resume/instruction files are no longer generated and resume preservation remains
 in goal.md. No runtime/session implementation or dependencies changed.
+
+2026-10-16: The disassembly prompt now explicitly recommends emulator.memory.write
+and emulator.registers.set for concrete lead verification when direct state changes
+can immediately expose relevant code, pointers or tables. It requires snapshots,
+exact patch/bank/budget records, separates artificial observations from natural
+reachability and applies the existing easy-gain stop rule to speculative edits.
+Validation: scripts/test-disassemble.py passes, including generated-prompt checks
+and synthetic baseline/code checkpoint rebuilding. git diff --check passes. This
+is a prompt-only change; no runtime behavior or existing workspace was changed.

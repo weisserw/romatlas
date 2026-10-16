@@ -58,6 +58,10 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
     assert "Stop immediately and report incomplete" in disassembly
     assert "basic menu/gameplay inputs" in disassembly
     assert "analysis/leads.json" in disassembly
+    for required in ["emulator.memory.write", "emulator.registers.set",
+                     "record exact patches", "natural gameplay reachability",
+                     "same easy-gain stopping rule"]:
+        assert required in disassembly
     redirect = (work / "prompts/redirect.txt").read_text()
     for required in ["exactly one", "emulator.memory.write", "emulator.registers.set",
                      "Do not reissue", "additional evidence", "attempt history"]:
