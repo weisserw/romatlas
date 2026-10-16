@@ -2,7 +2,7 @@
 use crate::Rom;
 use anyhow::{Result, ensure};
 use mizu_core::{GameBoy, GameBoyConfig, JoypadButton};
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use std::{
     io::Cursor,
     path::{Path, PathBuf},
@@ -34,11 +34,20 @@ pub struct State {
     pub vram_bank: u8,
     pub double_speed: bool,
 }
-#[derive(Clone)]
+#[derive(Clone, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct Snapshot {
     bytes: Vec<u8>,
     cycles: u64,
     operations: u64,
+}
+#[derive(Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct SnapshotFile {
+    format: String,
+    image_sha256: String,
+    model: String,
+    snapshot: Snapshot,
 }
 pub struct Emulator {
     gb: GameBoy,
@@ -394,6 +403,59 @@ impl Emulator {
         );
         Ok(self.gb.debug_peek(address, length)?)
     }
+    pub fn framebuffer(&self) -> serde_json::Value {
+        serde_json::json!({"width":160,"height":144,"format":"rgb8",
+            "pixels":self.gb.screen_buffer(),"frames":self.gb.frame_count(),
+            "ppu_cycles":self.cycles,"operations":self.operations,"image_sha256":self.hash})
+    }
+    pub fn write_memory(&mut self, address: u16, bytes: &[u8]) -> Result<()> {
+        ensure!(
+            !bytes.is_empty() && bytes.len() <= 4096 && address as usize + bytes.len() <= 0x10000,
+            "write range must contain 1..4096 bytes within CPU address space"
+        );
+        self.gb.debug_write(address, bytes);
+        Ok(())
+    }
+    pub fn set_registers(
+        &mut self,
+        values: &serde_json::Map<String, serde_json::Value>,
+    ) -> Result<State> {
+        let mut r = self.gb.cpu_registers();
+        ensure!(!values.is_empty(), "registers must not be empty");
+        for (name, value) in values {
+            let n = value
+                .as_u64()
+                .ok_or_else(|| anyhow::anyhow!("register {name} must be an unsigned integer"))?;
+            match name.as_str() {
+                "pc" | "sp" => {
+                    ensure!(n <= 65535, "register {name} exceeds 16 bits");
+                    if name == "pc" {
+                        r.pc = n as u16;
+                    } else {
+                        r.sp = n as u16;
+                    }
+                }
+                "a" | "f" | "b" | "c" | "d" | "e" | "h" | "l" => {
+                    ensure!(n <= 255, "register {name} exceeds 8 bits");
+                    ensure!(name != "f" || n & 15 == 0, "F low nibble must be zero");
+                    let target = match name.as_str() {
+                        "a" => &mut r.a,
+                        "f" => &mut r.f,
+                        "b" => &mut r.b,
+                        "c" => &mut r.c,
+                        "d" => &mut r.d,
+                        "e" => &mut r.e,
+                        "h" => &mut r.h,
+                        _ => &mut r.l,
+                    };
+                    *target = n as u8;
+                }
+                _ => anyhow::bail!("unknown register {name}"),
+            }
+        }
+        self.gb.debug_set_registers(r);
+        Ok(self.state())
+    }
     pub fn physical_rom_offset(&self, address: u16) -> Option<usize> {
         self.gb.physical_rom_offset(address)
     }
@@ -424,6 +486,41 @@ impl Emulator {
             cycles: self.cycles,
             operations: self.operations,
         })
+    }
+    pub fn export_snapshot(&self, path: &Path) -> Result<()> {
+        use std::io::Write;
+        let file = SnapshotFile {
+            format: "romatlas-gb-snapshot-v1".into(),
+            image_sha256: self.hash.clone(),
+            model: self.state().model,
+            snapshot: self.save()?,
+        };
+        let bytes = serde_json::to_vec(&file)?;
+        let mut output = std::fs::OpenOptions::new()
+            .write(true)
+            .create_new(true)
+            .open(path)?;
+        let result = output.write_all(&bytes).and_then(|()| output.sync_all());
+        if result.is_err() {
+            let _ = std::fs::remove_file(path);
+        }
+        result?;
+        Ok(())
+    }
+    pub fn import_snapshot(&mut self, path: &Path) -> Result<State> {
+        let bytes = romatlas_map::read_limited(path, 64 * 1024 * 1024)?;
+        let file: SnapshotFile = serde_json::from_slice(&bytes)?;
+        ensure!(
+            file.format == "romatlas-gb-snapshot-v1",
+            "incompatible snapshot format"
+        );
+        ensure!(
+            file.image_sha256 == self.hash,
+            "snapshot ROM identity mismatch"
+        );
+        ensure!(file.model == self.state().model, "snapshot model mismatch");
+        self.load(&file.snapshot)?;
+        Ok(self.state())
     }
     pub fn load(&mut self, snapshot: &Snapshot) -> Result<()> {
         self.gb.load_state(Cursor::new(&snapshot.bytes))?;
@@ -466,6 +563,28 @@ mod tests {
         }
         std::fs::remove_file(original).unwrap();
     }
+    #[test]
+    fn debugger_edits_validate_and_do_not_execute() {
+        let path = fixture("debug-edits", &[0x00, 0x18, 0xfd], 0, 2);
+        let mut e = Emulator::open(&path).unwrap();
+        let original = e.state();
+        let registers = serde_json::json!({"a": 42, "pc": 49152, "f": 176});
+        e.set_registers(registers.as_object().unwrap()).unwrap();
+        e.write_memory(0xc000, &[0x3e, 99]).unwrap();
+        assert_eq!(e.peek(0xc000, 2).unwrap(), [0x3e, 99]);
+        assert_eq!(e.state().registers.a, 42);
+        assert_eq!(e.state().operations, original.operations);
+        assert_eq!(e.state().ppu_cycles, original.ppu_cycles);
+        let before = e.state();
+        let invalid = serde_json::json!({"a": 5, "sp": 65536});
+        assert!(e.set_registers(invalid.as_object().unwrap()).is_err());
+        assert_eq!(e.state(), before);
+        assert!(e.write_memory(0xffff, &[1, 2]).is_err());
+        e.step().unwrap();
+        assert_eq!(e.state().registers.a, 99);
+        std::fs::remove_file(path).unwrap();
+    }
+
     #[test]
     fn stepping_snapshot_and_inspection() {
         let path = fixture(

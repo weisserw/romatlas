@@ -1,18 +1,6 @@
 # Review the shared library changes from this port
 
-No context-management plugin is required. Use local scripts and focused searches
-for large diffs, inventories and test logs; return relevant excerpts, counts,
-failures and evidence paths. Inspect actual changed code and dependencies before
-concluding; summaries do not establish correctness. Keep full evidence on disk,
-use direct tools for short reads, and record concise findings and next actions.
-Retrieve older details on demand without reducing review scope or verification.
-
-Read workspace.json, library-changes.md, progress.md, differences.md, ledger.json,
-behavior.json, behavior-contract.md and refinements records. Inherited behavior
-obligations survive phase boundaries; check that library changes and tests address
-their actual dependencies. Static ROM refinements must preserve frozen references
-and be reconciled with native behavior/assets; opaque preservation is not proof of
-nonuse. This library review does not itself certify whole-game completion.
+Read workspace.json, library-changes.md, progress.md, differences.md and ledger.json.
 The toolkit directory is in workspace.json. Compare its current files against
 review/toolkit-before/ and the hashes/status/HEAD in review/toolkit-before.json.
 That snapshot includes tracked and nonignored untracked files from preparation;

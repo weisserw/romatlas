@@ -1,16 +1,7 @@
 # Agent instructions
 
-Disassembly workspaces default to `cargo build --locked --release`. Use
-`scripts/upgrade-disassembly.py WORKSPACE --apply` for backed-up in-place setup
-updates; read docs/workspace-efficiency.md. It does not resume agents or update
-provider-stored goals. Use the behavioral accounting and unknown-region disposition contract in
-scripts/disassemble.py and docs/behavioral-accounting.md across all phases; byte
-classification percentage is not a completion target. Carry behavioral IDs and
-unresolved obligations forward; later static analysis may refine ROM contents
-with evidence and reconciled source/maps while preserving frozen references.
-Run `python3 scripts/test-disassembly-tools.py` after cache, queue or upgrade
-changes. Confirmed contextual discovery profiles require ROM/source-byte/context
-identity and evidence covering all arrivals; reachability is not execution.
+Build the toolkit with `cargo build --locked --release`; setup, workspace tools,
+CLI examples and integration tests default to `target/release/romatlas`.
 
 Read project.md and docs/progress.md before work. Keep the full scope; do not mark the goal complete after the raw-data slice. Never download or commit commercial ROMs or extracted assets. Keep generated files local.
 
@@ -19,12 +10,12 @@ Install tools with `bash scripts/setup.sh` on Ubuntu/Debian. Use Rust 1.90.0 and
 Current workflow:
 
 ```sh
-cargo build --locked
-./target/debug/romatlas inspect /path/to/owned.gb
-./target/debug/romatlas map init /path/to/owned.gb --output /tmp/owned.sym
-./target/debug/romatlas map validate /tmp/owned.sym --rom /path/to/owned.gb
-./target/debug/romatlas generate /path/to/owned.gb --map /tmp/owned.sym --out /tmp/owned-source
-./target/debug/romatlas verify /path/to/owned.gb --generated /tmp/owned-source
+cargo build --locked --release
+./target/release/romatlas inspect /path/to/owned.gb
+./target/release/romatlas map init /path/to/owned.gb --output /tmp/owned.sym
+./target/release/romatlas map validate /tmp/owned.sym --rom /path/to/owned.gb
+./target/release/romatlas generate /path/to/owned.gb --map /tmp/owned.sym --out /tmp/owned-source
+./target/release/romatlas verify /path/to/owned.gb --generated /tmp/owned-source
 ```
 
 Success returns JSON `{"ok":true}`; verification adds `"byte_identical":true`. Errors return JSON on stderr and exit 1. Inspection returns metadata including hash and controller. For map cleanup, use `map normalize input.sym --output output.sym`. Use supported stock directives only. Split existing regions before adding a smaller region to avoid overlap.
@@ -61,8 +52,8 @@ replacements/additional slots. The port agent may implement needed romatlas-port
 library changes directly here, uncommitted, with a change log and preservation of
 the initial repository state for separate review. Native-port completion uses
 explained gameplay-behavior accounting and useful tests, not frame equivalence or
-disassembly accounting completion. Keep native implementation/testing and
-disassembly evidence/byte-identity acceptance distinct. Do not write tests needing unavailable GUI/devices
+phase-one classification completion. Keep the original mapping goal's stricter
+classification contract intact. Do not write tests needing unavailable GUI/devices
 or launch SDL graphics on the headless server. Run scripts/test-port.py and the
 romatlas-port desktop-feature clippy/tests after relevant changes; these tests
 exercise headless logic and compile desktop code without initializing a window.

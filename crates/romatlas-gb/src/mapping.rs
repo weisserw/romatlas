@@ -262,8 +262,6 @@ pub fn import(rom: &Rom, map: &Map) -> Result<Store> {
     map.validate(Some(rom.info.banks))?;
     let mut store = Store::new("gb", &rom.info.sha256, rom.info.size as u64)?;
     let mut labels = Vec::new();
-    let mut regions = Vec::new();
-    let mut annotations = Vec::new();
     for entry in &map.entries {
         if entry.annotation.starts_with('.') && entry.annotation.contains(':') {
             let parts: Vec<_> = entry.annotation.split(':').collect();
@@ -279,16 +277,19 @@ pub fn import(rom: &Rom, map: &Map) -> Result<Store> {
                 confidence: 1.0,
             };
             validate_region_with_annotation(rom, &region, Some(&entry.annotation))?;
-            regions.push(region);
-            annotations.push(entry.annotation.clone());
+            // This is a private, newly constructed store. Validate the complete
+            // import once below rather than revalidating every prefix.
+            let id = store.next_id;
+            store.next_id = id
+                .checked_add(1)
+                .ok_or_else(|| anyhow::anyhow!("region IDs exhausted"))?;
+            store.regions.insert(id, region);
+            store
+                .region_metadata
+                .insert(id, serde_json::json!({"sym":entry.annotation}));
         } else {
             labels.push(entry.clone());
         }
-    }
-    for (id, annotation) in store.annotate_batch(regions)?.into_iter().zip(annotations) {
-        store
-            .region_metadata
-            .insert(id, serde_json::json!({"sym":annotation}));
     }
     store
         .metadata
@@ -328,6 +329,27 @@ fn push_directive(map: &mut Map, offset: usize, length: usize, kind: &str) {
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn large_stock_import_preserves_all_directives_without_prefix_validation() {
+        let (rom, _) = fixture();
+        let text = (0x200..0x2200)
+            .map(|offset| format!("00:{offset:04x} .data:1\n"))
+            .collect::<String>();
+        let map = Map::parse(&text).unwrap();
+        let start = std::time::Instant::now();
+        let store = import(&rom, &map).unwrap();
+        eprintln!("8192-directive import: {:?}", start.elapsed());
+        assert_eq!(store.regions.len(), 8192);
+        assert_eq!(store.region_metadata.len(), 8192);
+        assert_eq!(store.next_id, 8193);
+        validate_store(&rom, &store).unwrap();
+        assert!(
+            store
+                .regions
+                .values()
+                .all(|r| r.length == 1 && r.kind == RegionKind::Data)
+        );
+    }
     use super::*;
     use romatlas_core::Provenance;
     fn fixture() -> (Rom, Store) {

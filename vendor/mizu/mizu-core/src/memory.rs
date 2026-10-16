@@ -514,7 +514,7 @@ impl Bus {
         }
     }
 
-    fn write_not_ticked(&mut self, addr: u16, data: u8, block_for_dma: Option<BusType>) {
+    pub(crate) fn write_not_ticked(&mut self, addr: u16, data: u8, block_for_dma: Option<BusType>) {
         let page = (addr >> 8) as u8;
         let offset = addr as u8;
 

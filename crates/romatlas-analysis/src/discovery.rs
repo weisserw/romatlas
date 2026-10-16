@@ -149,7 +149,7 @@ pub fn discover_with_edges(
         if instruction.successors.len() > 16 || instruction.references.len() > 16 {
             return Err("adapter exceeds instruction edge/reference budget".into());
         }
-        if let Some(targets) = successors.get(&address) {
+        if let Some(targets) = successors.get(&adapter.observation_address(&address)) {
             for (target, hits) in targets {
                 result.references.push(Reference {
                     source: adapter.canonical_address(&address),

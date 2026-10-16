@@ -7,12 +7,8 @@ from pathlib import Path
 import subprocess
 import tempfile
 
-import port as port_tools
-
-from behavior_test_support import finish_commentary, finish_port
-
 ROOT = Path(__file__).resolve().parents[1]
-BIN = ROOT / "target/debug/romatlas"
+BIN = ROOT / "target/release/romatlas"
 SCRIPT = ROOT / "scripts/port.py"
 
 
@@ -56,10 +52,6 @@ with tempfile.TemporaryDirectory(prefix="romatlas-port-") as temporary:
                              "summary":"Synthetic jump","source":["bank_000.asm:1"]}]
     review["editorial_audit"] = {"status":"reviewed","notes":"Synthetic review complete"}
     review_file.write_text(json.dumps(review))
-    finish_commentary(analysis)
-    inherited_refinement = dict(id="R-UPSTREAM", status="reconciled", summary="Synthetic upstream refinement",
-                                evidence=["Fixture reconciliation completed before archival."])
-    (analysis / "commentary/refinements.json").write_text(json.dumps(dict(version=1, phase="commentary", entries=[inherited_refinement])))
     archive = base / "archive"
     call("python3",ROOT / "scripts/archive.py","archive",analysis,"--name","synthetic","--output",archive)
     initial_archive = inventory(archive)
@@ -67,10 +59,6 @@ with tempfile.TemporaryDirectory(prefix="romatlas-port-") as temporary:
     prepare = ["python3",SCRIPT,"prepare",archive,"--rom",rom,"--out",work]
     result, printed = call(*prepare)
     assert result["byte_identical_reference"] and result["scaffold"]
-    inherited_behavior = json.loads((work / "behavior.json").read_text())
-    assert inherited_behavior["items"][0]["id"] == "B001"
-    assert inherited_behavior["items"][0]["status"] == "pending"
-    assert (work / "analysis").is_dir()
     assert "/goal Port this entire" in printed.stderr and "/goal Resume" in printed.stderr
     assert "separate library reviewer" in printed.stderr
     assert str(work) in printed.stderr
@@ -115,70 +103,15 @@ with tempfile.TemporaryDirectory(prefix="romatlas-port-") as temporary:
     ledger_file = work / "ledger.json"
     ledger = json.loads(ledger_file.read_text())
     for row in ledger["regions"]:
-        if row["original_treatment"] == "preserved":
-            row.update(disposition="preserved", summary="Synthetic preservation reviewed for port fixture",
-                       preservation=row["original_preservation"], equivalents=[])
-        else:
-            row.update(disposition="implemented", summary="Synthetic entry accounting exercise",
-                       equivalents=["port/src/game.rs:Port"])
+        row.update(disposition="excluded",summary="Synthetic fixture has no gameplay",equivalents=[])
         for unit in row["units"]:
             unit.update(disposition="replaced",summary="Native control flow replaces synthetic jump",
                         equivalents=["port/src/game.rs:Port"])
     ledger["completion"] = {"status":"complete","notes":"Synthetic accounting exercise, not a real port"}
     ledger_file.write_text(json.dumps(ledger))
-    # Source ledger completion cannot waive inherited behavior obligations.
-    call(*run,"audit",ok=False)
-    behavior_record = finish_port(work)
     audited = call(*run,"audit")[0]
-    assert audited["behavior_items"] == 1
-    assert json.loads((work / "reference/archive/commentary/behavior.json").read_text())["items"][0]["status"] == "accounted"
-    behavior_record["items"][0]["id"] = "B-REPLACEMENT-CANNOT-ERASE-INHERITED"
-    (work / "behavior.json").write_text(json.dumps(behavior_record))
-    call(*run,"audit",ok=False)
-    inherited = json.loads((work / "reference/archive/commentary/behavior.json").read_text())
-    inherited["phase"] = "port"
-    (work / "behavior.json").write_text(json.dumps(inherited))
-    finish_port(work)
     assert audited["accounting_complete"] and audited["units"] == 1
     assert not audited["semantic_correctness_assessed"] and not audited["release_ready"]
-    refinement_path = work / "refinements.json"
-    pending_refinement = {"version":1,"phase":"port","entries":[inherited_refinement, dict(id="R-LATE",status="pending",
-                          summary="New static asset extent",evidence=["Fixture pending correction"])]}
-    refinement_path.write_text(json.dumps(pending_refinement))
-    call(*run,"audit",ok=False)
-    pending_refinement["entries"][-1].update(status="reconciled",evidence=["Synthetic asset recipe reconciled with the new extent."])
-    refinement_path.write_text(json.dumps(pending_refinement))
-    # Later static analysis may add a unit/behavior inside a formerly opaque row.
-    # This validates accounting extensibility, not semantic correctness of a port.
-    expanded_ledger = json.loads(json.dumps(ledger))
-    opaque = next(r for r in expanded_ledger["regions"] if r["original_treatment"] == "preserved")
-    opaque.update(disposition="replaced", summary="Newly understood fixture block",
-                  equivalents=["port/src/game.rs:Port"])
-    opaque["units"].append(dict(id="late-discovery", name="DiscoveredBlock", offset=opaque["offset"],
-                               length=1, disposition="replaced", summary="Synthetic late interpretation",
-                               equivalents=["port/src/game.rs:Port"]))
-    expanded_behavior = json.loads((work / "behavior.json").read_text())
-    expanded_behavior["items"].append(dict(id="B-LATE", summary="Late-discovered fixture behavior",
-        status="accounted", evidence=["Synthetic static interpretation of a previously opaque region."],
-        dependencies=["B001"], unresolved=[], regions=[opaque["id"]],
-        equivalents=["port/src/game.rs:Port"], tests=["Synthetic fixture lifecycle check only."]))
-    ledger_file.write_text(json.dumps(expanded_ledger))
-    (work / "behavior.json").write_text(json.dumps(expanded_behavior))
-    assert port_tools.validate_ledger(work, meta)["behavior_items"] == 2
-    ledger_file.write_text(json.dumps(ledger))
-    expanded_behavior["items"].pop()
-    (work / "behavior.json").write_text(json.dumps(expanded_behavior))
-    # Metadata upgrade never rewrites port code or the immutable reference.
-    before_port = inventory(work / "port/src")
-    before_behavior = (work / "behavior.json").read_bytes()
-    migrated = call(*run,"upgrade")[0]
-    assert migrated["preserved_port"] and migrated["audit_pending"]
-    assert inventory(work / "port/src") == before_port
-    assert (work / "behavior.json").read_bytes() == before_behavior
-    assert inventory(work / "reference") == frozen
-    assert (Path(migrated["backup"]) / "ledger.json").is_file()
-    ledger["completion"]["status"] = "complete"
-    ledger_file.write_text(json.dumps(ledger))
     old = ledger["regions"][0]["offset"]
     ledger["regions"][0]["offset"] = old + 1
     ledger_file.write_text(json.dumps(ledger))

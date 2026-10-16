@@ -5,6 +5,16 @@ use romatlas_disasm::Budget;
 use romatlas_map::Map;
 use std::{path::Path, process::Command};
 pub const MGBDIS_REVISION: &str = "95d951a9881a0d7ff1a42a94d1be175da92b1777";
+fn mgbdis_revision(budget: &Budget, tool: &Path) -> Result<String> {
+    budget
+        .run(
+            Command::new("git")
+                .arg("-C")
+                .arg(tool)
+                .args(["rev-parse", "HEAD"]),
+        )
+        .context("checking mgbdis revision failed")
+}
 pub fn generate(rom: &Path, map: &Map, out: &Path) -> Result<()> {
     generate_with_timeout(rom, map, out, 120000)
 }
@@ -17,16 +27,7 @@ pub fn generate_with_timeout(rom: &Path, map: &Map, out: &Path, timeout_ms: u64)
     }
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../..");
     let tool = root.join("tools/mgbdis");
-    let revision = budget
-        .run(
-            Command::new("git")
-                .arg("-C")
-                .arg(&tool)
-                .args(["rev-parse", "HEAD"]),
-        )
-        .context(
-            "could not check pinned mgbdis revision (installation, git failure, or command budget)",
-        )?;
+    let revision = mgbdis_revision(&budget, &tool)?;
     if revision.trim() != MGBDIS_REVISION {
         bail!("mgbdis revision mismatch; run scripts/setup.sh");
     }
@@ -189,6 +190,17 @@ impl romatlas_disasm::DisassemblyBackend for GameBoyBackend {
 }
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn expired_preflight_does_not_claim_missing_installation() {
+        let budget = romatlas_disasm::Budget::new(1).unwrap();
+        std::thread::sleep(std::time::Duration::from_millis(5));
+        let error = format!(
+            "{:#}",
+            super::mgbdis_revision(&budget, std::path::Path::new("unused")).unwrap_err()
+        );
+        assert!(error.contains("deadline exhausted"));
+        assert!(!error.contains("not installed"));
+    }
     use super::*;
     #[test]
     fn mismatch_context() {

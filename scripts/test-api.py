@@ -14,7 +14,7 @@ with tempfile.TemporaryDirectory() as directory:
     data[0x150:0x153] = bytes([0,0x18,0xfd])
     data[0x14d] = (-sum(data[0x134:0x14d])-25)&255
     rom.write_bytes(data)
-    with subprocess.Popen([str(root/'target/debug/romatlas'),'serve'],stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True) as process:
+    with subprocess.Popen([str(root/'target/release/romatlas'),'serve'],stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True) as process:
         serial = 0
         def call(method, params=None, rejected=False):
             global serial

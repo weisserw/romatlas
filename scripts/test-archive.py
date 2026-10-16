@@ -6,10 +6,8 @@ from pathlib import Path
 import subprocess
 import tempfile
 
-from behavior_test_support import finish_commentary
-
 ROOT = Path(__file__).resolve().parents[1]
-BIN = ROOT / "target/debug/romatlas"
+BIN = ROOT / "target/release/romatlas"
 SCRIPT = ROOT / "scripts/archive.py"
 
 
@@ -60,11 +58,6 @@ with tempfile.TemporaryDirectory(prefix="romatlas-archive-") as temporary:
                              "status": "reviewed", "summary": "Synthetic entry", "source": ["bank_000.asm:1"]}]
     review["editorial_audit"] = {"status": "reviewed", "notes": "Synthetic complete editorial pass"}
     review_path.write_text(json.dumps(review))
-    finish_commentary(work)
-    call("python3", ROOT / "scripts/commentary.py", "upgrade", work)
-    upgraded_review = json.loads(review_path.read_text())
-    upgraded_review["editorial_audit"]["status"] = "reviewed"
-    review_path.write_text(json.dumps(upgraded_review))
     scratch = work / "analysis/raw-results.json"
     scratch.write_text(json.dumps({"bytes": list(data)}))
     (work / "analysis/toolkit-issues.md").write_text("EXCLUDED TOOLKIT ISSUE\n")
@@ -77,11 +70,6 @@ with tempfile.TemporaryDirectory(prefix="romatlas-archive-") as temporary:
     assert call(*save)["exact_source"]
     archived = retained(destination)
     assert "commentary/conclusions.md" in archived
-    for name in ["analysis/behavior.md", "analysis/behavior.json", "commentary/handoff.json",
-                 "commentary/behavior.json", "commentary/refinements.json", "commentary/refinements.md"]:
-        assert name in archived
-    assert json.loads(archived["commentary/behavior.json"])["items"][0]["id"] == "B001"
-    assert not any("setup-backups" in name for name in archived)
     assert "analysis/raw-results.json" not in archived
     assert "analysis/scratch.md" not in archived
     assert "analysis/toolkit-issues.md" not in archived

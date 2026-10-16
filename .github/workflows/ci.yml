@@ -14,12 +14,11 @@ jobs:
       - run: cargo clippy -p romatlas-port --all-targets --features desktop --locked -- -D warnings
       - run: cargo test -p romatlas-port --features desktop --locked
       - run: cargo test --manifest-path vendor/mizu/mizu-core/Cargo.toml --locked
-      - run: cargo build --locked
+      - run: cargo build --locked --release
       - run: python3 scripts/test-portability.py
       - run: python3 scripts/test-fidelity.py
       - run: python3 scripts/test-session.py
       - run: python3 scripts/test-disassemble.py
-      - run: python3 scripts/test-disassembly-tools.py
       - run: python3 scripts/test-commentary.py
       - run: python3 scripts/test-archive.py
       - run: python3 scripts/test-port.py

@@ -1,27 +1,17 @@
 # Port the entire archived game
 
-Read AGENTS.md, workflow.md and relevant units of reference/reading.asm and archive
-documents before coding. Implement this entire game in readable native Rust. The scaffold
+Read AGENTS.md, workflow.md, reference/reading.asm and relevant archive documents
+before coding. Implement this entire game in readable native Rust. The scaffold
 is an arbitrary ROM-backed tile demonstration, not gameplay or identified assets.
 Replace it; do not stop at a working scaffold, first level or playable demo.
 
-No context-management plugin is required. Process large inventories, traces and
-test logs with local scripts or focused searches; return counts, relevant excerpts,
-failures and evidence paths instead of full dumps. Use bounded queries and direct
-tools for short reads/edits. Inspect exact source and bank context before accepting
-behavioral conclusions; summaries are navigation aids, not proof. Keep full
-evidence on disk and concise progress/next-action records, retrieving older
-details on demand. Avoid unchanged repeat queries and redundant reports. Never
-reduce gameplay coverage, investigation or verification to save context.
-
-Read behavior-contract.md and behavior.json for the inherited ending contract.
 Use ledger.json to account for every archived region and meaningful unit. Record
 implemented, merged, replaced or excluded, a behavior explanation, and port
 equivalents. Add units as you discover them. Every gameplay-relevant behavior
 needs an equivalent; source lines need not translate one-for-one. Modern methods
-may merge routines or remove the need for an original mechanism. Review apparent irrelevance using the inherited triage and static consumer/control
-analysis; lack of observed access is not proof of nonuse. Inherited preserved rows
-may receive evidence-backed preserved dispositions without implementation. Favor porting borderline/unclear behavior. Resolve relevant
+may merge routines or remove the need for an original mechanism. Judge obviously
+irrelevant junk/unreachable paths from the commented source without a formal
+reachability proof. Favor porting borderline/unclear behavior. Resolve relevant
 unknown regions; editorial review does not prove complete gameplay understanding.
 
 All original graphics, fonts, music, sound and gameplay data (including maps)
@@ -77,15 +67,8 @@ python3 run.py audit. Audit validates records and builds, not gameplay fidelity.
 Leave shared-library edits for the separate reviewer; provide the actual diff,
 requirements and validation. No check-in, publication or agent launch is authorized.
 
-Follow behavior-contract.md for complete and incomplete blocked/exhausted endings.
-Preserve inherited IDs and unresolved questions in behavior.json, adding discoveries
-from static analysis. Keep new ROM analysis/maps under analysis/, record refinements
-and reconcile behavior/assets without editing reference/. Use static interpretation
-to fill code/data/extent gaps; no byte-classification percentage is required. Each
-behavior needs source-region links, implementation equivalents and useful test
-evidence. Audit scope and opaque dispositions before any ending. Do not repeat
-unchanged exhausted experiments. If incomplete, preserve work and document unmet
-conditions, concrete attempts and reopen triggers. Do not mark an incomplete port complete.
+If blocked, preserve work, identify unresolved behaviors and concrete attempts,
+and explain what would unblock them. Do not mark an incomplete port complete.
 Release packaging and immutable library dependency pinning happen later, after
 user review and check-in. A local path dependency and Cargo.lock do not freeze
 the edited library source.

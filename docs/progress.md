@@ -1,58 +1,5 @@
 # Milestone checklist
 
-2026-10-15 semantic handoff guidance: classification start/resume/workflow prompts
-now turn specific blocked structural dependencies into targeted subsystem
-explanation experiments and preserve reusable findings in existing evidence
-records. Commentary reuses those findings and documents validated map corrections,
-single-writer coordination, frozen-baseline preservation and manual source/review
-reconciliation with both classification and commentary verification. No phase or
-completion relaxation was added. SML2 workflow and start/resume prompts were
-updated in place; no map/state or edited assembly changed. SML2 has no commentary
-tree yet; preparation will install the new commentary prompt. Synthetic
-disassembly/commentary regressions and git diff --check pass.
-
-2026-10-15 context-saving prompt update: INSTRUCTIONS.md recommends disabling
-context-mode separately in plugin settings. Generated disassembly, commentary,
-native-port start/resume and library-review prompts now encourage scripted
-summaries, bounded queries, exact evidence inspection and concise persistent
-progress without requiring a context plugin. Commentary/port startup reads are
-scoped to relevant sections instead of entire ledgers/source dumps. The existing
-SML2 workflow received the same guidance; plugin settings and classification
-contracts were not changed. Synthetic disassembly, commentary and port
-regressions pass, including headless/desktop builds; git diff --check passes.
-
-2026-10-15 disassembly efficiency implementation: stock imports now stage regions
-and validate once, with sorted overlap checks and transactional rejection tests.
-New workspaces default to the release executable. Backed-up in-place upgrades
-install an identity-bound immutable decode cache, compact unknown-region queue,
-reusable batch reporting, timed checkpoints and updated strict completion prompts.
-Context discovery supports independently paged references/diagnostics and explicit
-ROM/context/source-byte-validated non-mapper-store and inline-dispatch profiles;
-these assertions do not establish execution coverage or remove data barriers.
-Archive selection retains queue/frontier metadata and excludes setup backups.
-Rust 1.90.0 locked debug/release builds, fmt check, workspace clippy/tests,
-session, API, portability, workspace, helper, boundary, archive and port
-regressions pass, as do desktop-feature port clippy/tests (headless execution).
-The local SML2 upgrade preserved ROM, maps, state and prior history; its unchanged
-raw map rebuilt byte-identically, with single-run store validation/map validation/
-generation/verification times 0.169/0.286/5.966/0.780 seconds. This is not an
-end-to-end analysis-speed benchmark. Its stored goal was updated without changing
-model, usage accounting or usage-limited status. No new bytes were classified.
-No commercial ROM or extracted asset was downloaded or committed.
-
-2026-10-15 local disassembly performance review: Rust 1.90.0
-`cargo build --locked --release` succeeded. On the existing privately supplied
-SML2 compact map, current release validation/generation/verification took
-4.900/9.288/0.313 seconds and returned a byte-identical rebuild. The existing
-debug binary validated the same map in 69.761 seconds. These are single-run
-measurements; no general benchmark or whole-project speedup is claimed.
-Current mapping import still validates the growing store after each annotation,
-including pairwise conflict checks. No toolkit source, session implementation,
-disassembly state, map, or agent configuration changed. The local investigation
-report is `/root/super-mario-land-2/analysis/strategy-review-2026-10-15.md`;
-generated verification output remains under `/tmp/romatlas-sml2-review-20261015-source`.
-No commercial ROM or extracted asset was downloaded or committed.
-
 T001 region explanations are now available through map.annotate: optional name, role, evidence and comment strings are stored in region_metadata, exposed by map.get and retained by map.save/load. Null removes a field; unchanged extents preserve imported directives and explanations. Structural edits discard old metadata; all edits stage and validate the full proposed map before committing. Names export as stock symbols; explanatory text remains internal. Metadata no longer requires a sym directive. Rust 1.90.0 fmt, locked workspace clippy/tests/build, synthetic session, API and stock portability pass, including byte-identical rebuilding with a named region and imported 1bpp metadata. A focused mapping unit test also passes for explanation-only metadata and named export. No commercial ROMs or extracted assets were used.
 
 Generated disassembly workflow and start/resume prompts now require game familiarization using available online manuals, FAQs/walkthroughs and technical resources after game/version identification. New workspaces initialize analysis/gameplay.md for source URLs, version uncertainty, actionable controls/mechanics/progression/password routes and local confirmation status. Findings feed targeted runtime scenarios; external claims do not independently justify structural classification. Agents revisit research for specific obstacles and check documented routes before exhausting gameplay-dependent paths, preserving research across sessions and continuing local analysis if browsing/resources are unavailable. INSTRUCTIONS.md documents the behavior. Rust 1.90.0 fmt, locked workspace clippy/tests, synthetic workspace regression, stock portability, session tests and git diff --check pass. Regression checks cover generated prompts, gameplay record initialization, evidence distinction and exhaustion review. No live browsing/disassembly-agent behavior was tested; existing workspaces are not automatically updated.
@@ -389,107 +336,58 @@ or runtime changes, GUI launch, commercial-asset distribution, check-in or
 publication. Platform recipes remain documentation rather than new Mac/Windows
 execution evidence.
 
-Disassembly workflow revision 3 replaces the every-byte classification objective
-with released-game behavioral reconstruction accounting. Generated workspace
-instructions, start/resume/goal prompts and printed goals now require a versioned
-analysis/behavior.md inventory, implementation and asset dependency evidence,
-unknown-interval triage/dispositions, annotated accepted regions and a final
-byte-identical rebuild. Unknown bytes may remain without being called unused;
-nonexecution alone is insufficient. Code-plausibility review, consumer/format
-families and named runtime evidence targets guide investigation. Complete,
-incomplete blocked and incomplete exhausted outcomes include final audits and
-explicit reopen conditions; unchanged exhausted experiments are not restarted.
-Provider goal-status restrictions still apply, and prompt files cannot update a
-provider-stored goal. This supersedes the historical whole-ROM completion entries
-above; those records and archived results remain unchanged.
 
-The queue ranks explicit behavioral relevance ahead of byte gain and supports
-local evidence-linked deferred dispositions without changing ROM classifications
-or accepting completion. Deferred intervals remain in full accounting and leave
-the active frontier; planning can reopen them. Batch reports no longer append the
-superseded whole-ROM instruction. The backed-up upgrader seeds an explicitly
-unaudited inventory only when missing and protects existing inventory content.
-Project/user/agent documentation and commentary's description of the parent
-contract are aligned. No active game workspace or provider goal was changed.
+2026-10-16: Added explicit debugger state mutation and addressed workspace reports
+T001–T007. emulator.registers.set validates complete CPU register patches before
+applying; emulator.memory.write performs bounded unticked mapped bus writes,
+including I/O/controller side effects. Neither emits execution evidence. ROM
+backing storage remains immutable. T001 exposes the core RGB8 framebuffer with
+ROM/frame/cycle/operation identity. T002 independently pages contextual and ordinary
+discovery references/diagnostics. T003 preserves preflight deadline errors without
+claiming missing installation. T004 constructs imports privately and validates once;
+ordered overlap enumeration preserves every conflicting pair, including nested
+ranges and separate address contexts. An 8192-directive synthetic import measured
+486.8 ms in this debug build; this is not a commercial-ROM performance claim.
 
-Validation: synthetic workspace/checkpoint and disassembly-tools regressions pass,
-including inventory creation/preservation, legacy inventory seeding, deferred-ticket
-evidence rejection, unchanged unknown totals, relevance ranking and reopening.
-The upgrade test isolates its port probe so an unrelated live bridge is neither
-stopped nor required to be absent; occupied-port rejection remains tested.
-Commentary and stock portability regressions pass, as do Rust 1.90.0 cargo fmt
---check, locked workspace all-target clippy with warnings denied and workspace
-tests. These checks validate tooling/contracts and reconstruction fidelity, not
-semantic completeness or guaranteed termination of a live commercial-game agent.
-No ROMs, extracted assets or generated game files were added.
+T005 tracks literal BC/DE/HL values along bounded straight-line contextual paths;
+known non-controller destinations preserve fallthrough, while unsupported effects
+forget facts and uncertain/controller writes retain conservative stops. Analysis
+facts stay separate from physical regions and recorded-edge identity. This is
+literal tracking, not general interval or interprocedural analysis. T006 adds
+explicit call profiles qualified by ROM identity, exact source/inline bytes, CPU
+and effective banks, and caller evidence covering all arrivals. Profiles suppress
+presumed returns or resume after a proved inline extent; they do not infer selector
+domains, automatically classify tables, or imply execution. T007 adds local version/
+ROM/model-qualified snapshot export/import, preserving core machine state and
+adapter counters, with rejected incompatible/corrupt imports retaining state.
+Named snapshots and trace history retain their existing lifecycle semantics.
 
-Behavioral accounting now survives commentary, archival and native-port boundaries.
-Disassembly setup revision 4 seeds analysis/behavior.json alongside the narrative
-inventory; upgrades preserve both when present. scripts/behavior.py provides the
-shared ending instructions and structural inventory checks. Commentary freezes
-upstream scope, narrative, outcomes and deferred dispositions in handoff.json,
-then resets phase-specific review status while retaining IDs and unresolved
-questions. Missing legacy scope starts pending. Its audit requires behavioral
-source/semantic-region links, preserves inherited IDs, rejects unresolved
-questions/dependencies and requires explicit evidence-backed resolution records
-for inherited questions; a completed source checklist cannot waive those duties.
+Validation: Rust 1.90.0 cargo fmt --check, locked workspace all-target Clippy with
+warnings denied, and locked workspace tests pass. The synthetic session regression
+covers edits, rejected edits, execution of edited RAM, unchanged time/trace during
+edits, framebuffer dimensions, independent reference/diagnostic pagination, profile
+application/rejection, persistent snapshot recovery after reset, restored RAM, and
+rejected ROM/model/version/corrupt snapshot imports. Store tests compare ordered
+conflicts to exhaustive pairs; discovery tests cover SRAM/controller destinations,
+inline return suppression and explicit continuation. The expired-preflight test
+checks the deadline diagnostic. Stock-tool portability (deterministic source and
+exact four-bank rebuild) and dependency-boundary regressions pass. No desktop
+window, commercial ROM, extracted asset, or game workspace modification was used.
 
-Full-ROM review scaffolds now distinguish semantic review from evidence-backed
-opaque preservation. Preserved rows need durable rationale/evidence and reopen
-conditions; known Code and semantic units cannot avoid review this way. Unknown
-regions need not be historically identified or falsely called unused. Later static
-analysis may refine code/data/extents, add semantic units within the unchanged
-physical scaffold and reopen affected behavioral accounts. refinements.json/md
-record corrections and reconciliation; outstanding entries block completion.
-Source/map changes still require validation, exact byte verification and safe
-reconciliation without regenerating over edited source or frozen baselines.
 
-Archives retain the behavioral inventory, frozen handoff, opaque dispositions and
-refinement records by default; setup backups and scratch artifacts remain excluded.
-Native ports inherit behavior IDs/evidence/questions and reconciled refinements,
-require their own reviewed scope, implementation equivalents, region links and
-useful-test evidence, and retain source-ledger accounting independently. Reviewed
-opaque rows can remain preserved without an implementation obligation. New ROM
-analysis/maps belong under analysis/, with discovered units and native behavior/
-asset recipes reconciled while reference/ remains immutable. Legacy archives
-remain restorable; missing legacy behavioral scope is never accepted implicitly.
+2026-10-16: Restored only release-build defaults from the reset workflow changes,
+and aligned the remaining toolkit entry points. setup.sh, README/AGENTS/starting/
+porting instructions and CI build with cargo build --locked --release. Disassembly
+creation, archive restoration, native-port preparation and CLI integration scripts
+select target/release/romatlas by default; explicit --binary overrides remain.
+Generated disassembly instructions identify the release build and the need to
+restart servers after replacement. Existing workspace metadata/runtime processes
+are not migrated or restarted. No cache/queue/upgrade or completion-contract
+changes were restored as part of this update.
 
-New commentary.py upgrade and port.py upgrade commands back up metadata/prompts,
-preserve existing source, evidence and frozen references, seed only missing
-inventories and invalidate acceptance until fresh audit. They do not update stored
-goals or operate on active agents. No existing game workspace was migrated in this
-change. docs/behavioral-accounting.md documents schemas, phase-specific obligations,
-complete/incomplete blocked/exhausted endings, migrations and durable rationale.
-The native-port/library-review prompts and repository instructions are aligned.
-
-Validation: synthetic disassembly, disassembly-tools, commentary, archive and port
-regressions pass. Tests cover preserved unknown byte totals, incomplete-upstream
-handoff, explicit inherited-question resolution, removed/replaced IDs, missing
-scope/dependencies/source links, preserved-region evidence, pending refinements,
-frozen handoff tampering, legacy commentary migration, port migration preserving
-source/reference, durable archive metadata and excluded backups, and later units/
-behaviors inside a formerly opaque region. Exact source/reading recovery and ROM
-fidelity remain tested. CI now runs disassembly-tools too. Rust 1.90.0 formatting,
-locked workspace clippy/tests, desktop-feature port clippy and all 21 headless/
-device-independent port tests, stock portability and dependency boundaries pass.
-Audits validate records and reconstruction, not explanation quality, useful-test
-semantics or arbitrary-game completeness. No GUI/device launch, commercial ROM,
-extracted asset, generated game file, agent launch, check-in or publication.
-
-Removed the experimental code-plausibility ranking/window-disassembly guidance
-from generated disassembly start/resume/goal/workflow text and shared later-phase
-instructions. Ordinary static control-flow/reference analysis and consumer-family
-investigation remain. The corresponding prompt-presence assertion was removed;
-INSTRUCTIONS.md matches the simpler strategy. Historical progress entries describe
-prior versions and do not reinstate that experimental guidance.
-
-The same targeted wording edits were applied to the existing Super Mario Land 2
-workflow and three prompt files, with previous copies preserved under its local
-analysis/setup-backups/20261016T015925299806Z-remove-plausibility/. No ROM, map,
-evidence, emulator process or provider-stored goal was changed. An already-running
-agent must reread the files to receive the changed instructions.
-
-Validation: synthetic workspace/checkpoint, disassembly-tools and commentary
-regressions pass; git diff --check passes. This is a prompt-only strategy change,
-not measured evidence of improved token usage or runtime. No Rust/runtime change
-or generated game artifact was added.
+Validation: locked release build, setup shell syntax, cargo fmt --check and git
+diff --check pass. Release-backed disassembly, commentary, archive, port, session,
+API, stock portability and fidelity regressions pass. The workspace setup test
+also asserts that the default recorded binary is the release executable. Port
+regressions compile/test locked headless and desktop paths without a window.
+No commercial ROM, extracted asset or generated game file was added.

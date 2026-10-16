@@ -7,13 +7,13 @@ Rust tools for ROM-free Game Boy maps. The project.md milestone scope is complet
 On a new Ubuntu/Debian VM, run `bash scripts/setup.sh` as your normal user with sudo access (running directly as root is also supported). Then add `$HOME/.cargo/bin` to PATH. The script installs Rust 1.90.0, pinned mgbdis, RGBDS 0.9.4 and SDL2 development libraries for native ports. Only system package installation and RGBDS installation use sudo; Rust and local builds stay under the invoking user. Do not wrap the whole script in sudo when using an existing user Rust installation.
 
 ```sh
-cargo build --locked
-./target/debug/romatlas inspect game.gb
-./target/debug/romatlas decode game.gb --offset 256 --count 16
-./target/debug/romatlas map init game.gb --output game.sym
-./target/debug/romatlas map validate game.sym --rom game.gb
-./target/debug/romatlas generate game.gb --map game.sym --out build/game
-./target/debug/romatlas verify game.gb --generated build/game
+cargo build --locked --release
+./target/release/romatlas inspect game.gb
+./target/release/romatlas decode game.gb --offset 256 --count 16
+./target/release/romatlas map init game.gb --output game.sym
+./target/release/romatlas map validate game.sym --rom game.gb
+./target/release/romatlas generate game.gb --map game.sym --out build/game
+./target/release/romatlas verify game.gb --generated build/game
 ```
 
 Use a new output folder for each generation. Maps contain labels and region directives, never ROM bytes. Initial maps mark every bank as raw data for lossless output; this does not claim that unexecuted bytes are data. Source and assets stay local and are not shareable map files.
@@ -30,7 +30,6 @@ Prepare one separate local workspace per owned ROM, including agent instructions
 start/resume prompts, an identity record, and baseline/checkpoint commands:
 
 ```sh
-cargo build --locked --release
 python3 scripts/disassemble.py /path/to/game.gb --root /root/rom-work
 # Multiple ROMs can be supplied to the same command.
 cd /root/rom-work/game
@@ -64,20 +63,9 @@ The agent uses `python3 run.py serve` for persistent JSON-RPC. After saving
 and record byte-identical verification. Choose a new checkpoint name each time.
 Failed checkpoints may retain their map or generated source for inspection; use
 a new name for the next attempt. Baseline is raw-byte output and does not complete
-behavioral accounting. Completion uses a versioned `analysis/behavior.md` inventory,
-resolved implementation/asset dependencies and reviewed unknown-region dispositions,
-with no byte-classification percentage target. All ROMs, traces, internal state,
-generated source and extracted
+classification. All ROMs, traces, internal state, generated source and extracted
 assets stay local; `.gitignore` ignores the entire workspace. Only exported stock
 maps are intended for sharing. Test with `python3 scripts/test-disassemble.py`.
-
-New workspaces default to the release binary and include immutable decode caching,
-a compact investigation queue and reusable batch reporting. Existing workspaces can
-be upgraded in place with backups while preserving ROMs, maps and historical evidence:
-`python3 scripts/upgrade-disassembly.py /path/to/workspace --apply`.
-See [efficient workspace operation](docs/workspace-efficiency.md) for usage,
-resumption, model-trial accounting and rollback. Exercise these helpers with
-`python3 scripts/test-disassembly-tools.py`.
 
 ## Native port workspaces
 
@@ -95,10 +83,7 @@ Preparation restores and byte-verifies the commented reference source, creates a
 pending source-behavior ledger and demonstration scaffold, and prints whole-game
 start/resume goals and a separate library-review prompt. It does not port gameplay
 or launch an agent. Game Boy is the initial scaffold platform. Incomplete
-classification is accepted; inherited behavioral obligations remain explicit.
-Commentary and port audits require behavioral accounting as well as source/region
-records. Opaque preservation is separate from semantic review; any phase can
-refine ROM understanding. See [the shared contract](docs/behavioral-accounting.md).
+classification is accepted; relevant unknown behavior must be investigated.
 
 The new `romatlas-port` library provides ROM-backed assets, replacement/additional
 slots, console timing, tile/palette rendering, input/settings and an optional SDL2
@@ -121,11 +106,11 @@ preserved by the reviewed-result archive workflow below. Offsets and lengths
 below use decimal physical ROM offsets.
 
 ```sh
-./target/debug/romatlas store init game.gb --output analysis.json
-./target/debug/romatlas store annotate game.gb --store analysis.json --offset 256 --length 3 --kind code --provenance manual --confidence 1
-./target/debug/romatlas store get analysis.json --limit 100
-./target/debug/romatlas store validate game.gb --store analysis.json
-./target/debug/romatlas store export game.gb --store analysis.json --output game.sym
+./target/release/romatlas store init game.gb --output analysis.json
+./target/release/romatlas store annotate game.gb --store analysis.json --offset 256 --length 3 --kind code --provenance manual --confidence 1
+./target/release/romatlas store get analysis.json --limit 100
+./target/release/romatlas store validate game.gb --store analysis.json
+./target/release/romatlas store export game.gb --store analysis.json --output game.sym
 ```
 
 Use `--id N` on annotate to edit a region. Use `store remove analysis.json --id N` to remove it. Region kinds: code, data, text, padding, image, unknown. Provenance: manual, static, observed. User-supplied provenance is an assertion; it is not proof of execution. Export fills gaps with lossless raw data and creates stable labels for code starts. The store keeps those gaps unknown. Failed edits leave the file unchanged.
@@ -133,7 +118,7 @@ Use `--id N` on annotate to edit a region. Use `store remove analysis.json --id 
 ## Headless execution
 
 ```sh
-./target/debug/romatlas run game.gb --operations 10000 --timeout-ms 1000
+./target/release/romatlas run game.gb --operations 10000 --timeout-ms 1000
 ```
 
 Returns registers, operation/cycle counts, and effective ROM banks as JSON. Limits: one million CPU operations and 30 seconds per call. The Rust adapter also exposes input, reset, snapshots, and mapped memory peeks; a persistent JSON-RPC server exposes these calls. CGB execution selects its model from the cartridge flag; emulator.start can override it. Basic banking, speed and DMA/replay tests pass; wider timing tests remain. The adapter does not read or write battery save files.

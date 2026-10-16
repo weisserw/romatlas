@@ -9,7 +9,7 @@ import subprocess
 import tempfile
 
 root = pathlib.Path(__file__).resolve().parents[1]
-cli = root / 'target/debug/romatlas'
+cli = root / 'target/release/romatlas'
 
 def call(*args, success=True, env=None):
     result = subprocess.run([str(cli), *map(str, args)], capture_output=True, text=True, timeout=120, env=env)

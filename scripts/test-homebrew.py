@@ -2,7 +2,7 @@
 """Pinned MIT source-built games: gameplay, replay, mapping and clean recipient rebuild."""
 import pathlib,subprocess,tempfile,json,hashlib,re,argparse
 root=pathlib.Path(__file__).resolve().parents[1]
-parser=argparse.ArgumentParser();parser.add_argument('--binary',type=pathlib.Path,default=root/'target/debug/romatlas');args=parser.parse_args()
+parser=argparse.ArgumentParser();parser.add_argument('--binary',type=pathlib.Path,default=root/'target/release/romatlas');args=parser.parse_args()
 suite=root/'tools/gb-asm-tutorial';revision='c931a929eac276156d65e0cb44cf422a7d19990b'
 assert subprocess.check_output(['git','-C',str(suite),'rev-parse','HEAD'],text=True).strip()==revision
 assert not subprocess.check_output(['git','-C',str(suite),'status','--porcelain','--untracked-files=no'],text=True).strip(), 'homebrew source checkout changed'

@@ -175,6 +175,25 @@ impl GameBoy {
         }
     }
 
+    /// Debugger edits do not clock hardware or emit CPU execution evidence.
+    pub fn debug_set_registers(&mut self, r: cpu::CpuRegisters) {
+        self.cpu.reg_af_write(((r.a as u16) << 8) | r.f as u16);
+        self.cpu.reg_b = r.b;
+        self.cpu.reg_c = r.c;
+        self.cpu.reg_d = r.d;
+        self.cpu.reg_e = r.e;
+        self.cpu.reg_h = r.h;
+        self.cpu.reg_l = r.l;
+        self.cpu.reg_sp = r.sp;
+        self.cpu.reg_pc = r.pc;
+    }
+    pub fn debug_write(&mut self, address: u16, bytes: &[u8]) {
+        for (i, byte) in bytes.iter().enumerate() {
+            self.bus
+                .write_not_ticked(address.wrapping_add(i as u16), *byte, None);
+        }
+    }
+
     /// ROMAtlas: mapped read without ticks or OAM bus side effects.
     /// Restore internal state after register reads which may update mapper latches.
     pub fn debug_peek(&mut self, addr:u16, len:usize) -> Result<Vec<u8>, SaveError> {

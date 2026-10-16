@@ -110,6 +110,10 @@ pub trait DecodeAdapter: ImageAdapter {
     fn canonical_address(&self, address: &Address) -> Address {
         address.clone()
     }
+    /// Key used for recorded successor evidence, excluding derived analysis facts.
+    fn observation_address(&self, address: &Address) -> Address {
+        address.clone()
+    }
     fn decode_structure(&self, address: &Address) -> Result<StructuralInstruction, String>;
 }
 

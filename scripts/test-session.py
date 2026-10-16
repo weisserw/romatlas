@@ -9,11 +9,12 @@ with tempfile.TemporaryDirectory() as directory:
     data[0x100:0x103] = bytes([0xc3, 0x50, 1])
     data[0x150:0x158] = bytes([0x3e, 0x42, 0xea, 0, 0xc0, 0x04, 0x18, 0xfd])
     data[0x250:0x256] = bytes([1, 0, 0x40, 1, 0x20, 0x40])
-    data[0x28] = 0xc9
-    data[0x300:0x302] = bytes([0xef, 0x76])
+    data[0x28] = 0xe9
+    data[0x310:0x313] = bytes([0xef,0xdf,0])
+    data[0x300:0x302] = bytes([0xd3,0xdb])
     data[0x14d] = (-sum(data[0x134:0x14d])-25) & 255
     rom.write_bytes(data)
-    with subprocess.Popen([str(root / 'target/debug/romatlas'), 'serve'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True) as process:
+    with subprocess.Popen([str(root / 'target/release/romatlas'), 'serve'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True) as process:
         serial = 0
         def call(method, params=None, error=False):
             global serial
@@ -46,10 +47,10 @@ with tempfile.TemporaryDirectory() as directory:
             for method in ['map.export','map.save']:
                 assert 'aliases the input ROM' in call(method,{'path':str(alias)},error=True)['message']
                 assert rom.read_bytes() == data
-            result = subprocess.run([str(root/'target/debug/romatlas'),'map','init',str(rom),'--output',str(alias)],capture_output=True,text=True)
+            result = subprocess.run([str(root/'target/release/romatlas'),'map','init',str(rom),'--output',str(alias)],capture_output=True,text=True)
             assert result.returncode == 1 and 'aliases the input ROM' in result.stderr
             assert rom.read_bytes() == data
-            result = subprocess.run([str(root/'target/debug/romatlas'),'store','export',str(rom),'--store',str(alias_store),'--output',str(alias)],capture_output=True,text=True)
+            result = subprocess.run([str(root/'target/release/romatlas'),'store','export',str(rom),'--store',str(alias_store),'--output',str(alias)],capture_output=True,text=True)
             assert result.returncode == 1 and 'aliases the input ROM' in result.stderr
             assert rom.read_bytes() == data
         assert call('rom.read', {'offset':256, 'length':3})['bytes'] == [0xc3,0x50,1]
@@ -63,30 +64,72 @@ with tempfile.TemporaryDirectory() as directory:
         assert contextual['total']==5 and not contextual['budget_exhausted']
         assert all('gb.cpu_context' not in item['start']['context'] for item in contextual['candidates'])
         assert contextual['references'][0]['context']['source_cpu_address']==256
-        query = {'entrypoints':[{'offset':256,'cpu_context':{'cpu_address':256,'fixed_bank':0,'switch_bank':1}}], 'budget':50, 'use_observed':False}
-        paged_refs=[]
-        for offset in range(contextual['total_references']):
-            page=call('analysis.discover_context',dict(query,limit=1,reference_offset=offset))
-            paged_refs.extend(page['references'])
-            assert page['next_reference_offset']==offset+1
-        assert paged_refs==contextual['references']
-        assert call('analysis.discover_context',dict(query,reference_offset=10000))['references']==[]
-        assert call('analysis.discover_context',dict(query,limit=0))['next_reference_offset']==0
-        dispatch = {'entrypoints':[{'offset':0x300,'cpu_context':{'cpu_address':0x300,'fixed_bank':0,'switch_bank':1}}], 'budget':10, 'use_observed':False}
-        profile = dict(offset=0x300,cpu_context=dispatch['entrypoints'][0]['cpu_context'],expected_bytes=[0xef],
-                       evidence='synthetic dispatcher consumes the return-site table',scope='all_arrivals_in_context',
-                       effect={'kind':'inline_dispatch'})
-        profiles=dict(rom_sha256=call('rom.info')['sha256'],entries=[profile])
-        assert call('analysis.discover_context',dispatch)['total']==3
-        profiled=call('analysis.discover_context',dict(dispatch,profiles=profiles))
-        assert [r['start']['offset'] for r in profiled['candidates']]==[0x28,0x300]
-        assert all(r['provenance']=='Static' for r in profiled['candidates'])
-        assert 'caller-confirmed' in profiled['diagnostics'][0]['message']
-        assert call('analysis.discover_context',dict(dispatch,profiles=profiles,diagnostic_offset=1))['diagnostics']==[]
-        assert call('analysis.discover_context',dict(dispatch,profiles=profiles,limit=0))['next_diagnostic_offset']==0
-        call('analysis.discover_context',dict(dispatch,profiles=dict(profiles,entries=[dict(profile,scope='one_observation')])),error=True)
-        call('analysis.discover_context',dict(dispatch,profiles=dict(profiles,entries=[profile,profile])),error=True)
+        ref_page=call('analysis.discover_context', {'entrypoints':[{'offset':256,'cpu_context':{'cpu_address':256,'fixed_bank':0,'switch_bank':1}}],'budget':50,'limit':1,'reference_offset':1})
+        assert ref_page['references']==contextual['references'][1:2]
+        assert ref_page['next_reference_offset']==min(2,contextual['total_references'])
+        invalid_roots=[{'offset':address,'cpu_context':{'cpu_address':address,'fixed_bank':0,'switch_bank':1}} for address in [768,769]]
+        diagnostic_all=call('analysis.discover_context', {'entrypoints':invalid_roots,'budget':5})
+        diagnostic_page=call('analysis.discover_context', {'entrypoints':invalid_roots,'budget':5,'limit':1,'diagnostic_offset':1})
+        assert diagnostic_all['total_diagnostics']==2
+        assert diagnostic_page['diagnostics']==diagnostic_all['diagnostics'][1:2]
+        assert diagnostic_page['next_diagnostic_offset']==2
+        profile_context={'cpu_address':0x310,'fixed_bank':0,'switch_bank':1}
+        profile={'image_sha256':call('rom.info')['sha256'],'offset':0x310,'cpu_context':profile_context,
+                 'source_bytes':[0xef],'inline_bytes':[0xdf,0],'evidence':'synthetic all-arrival dispatcher fixture',
+                 'all_arrivals':True,'returns_after_inline':False}
+        profile_request={'entrypoints':[{'offset':0x310,'cpu_context':profile_context}],'budget':20,'use_observed':False,'call_profiles':[profile]}
+        profiled=call('analysis.discover_context',profile_request)
+        assert {c['start']['offset'] for c in profiled['candidates']}=={0x310,0x28}
+        profile['all_arrivals']=False
+        call('analysis.discover_context',profile_request,error=True)
+
+
+
         call('emulator.start')
+        initial = call('emulator.state')
+        call('trace.configure', {'enabled':True,'capacity':100})
+        debug_trace=call('trace.summary')
+        call('emulator.registers.set', {'registers':{'a':42,'pc':49152}})
+        call('emulator.memory.write', {'address':49152,'bytes':[0x3e,99]})
+        assert call('emulator.memory', {'address':49152,'length':2})['bytes']==[0x3e,99]
+        edited = call('emulator.state')
+        assert edited['operations']==initial['operations'] and edited['ppu_cycles']==initial['ppu_cycles']
+        call('emulator.registers.set', {'registers':{'a':7,'sp':65536}}, error=True)
+        call('emulator.memory.write', {'address':65535,'bytes':[1,2]}, error=True)
+        assert call('emulator.state')==edited
+        assert call('trace.summary')==debug_trace
+        call('emulator.step', {'operations':1})
+        assert call('emulator.state')['registers']['a']==99
+        assert all(event['kind']!='Write' for event in call('trace.query')['items'])
+        capture=call('emulator.framebuffer')
+        assert capture['width']==160 and capture['height']==144 and len(capture['pixels'])==160*144*3
+        disk_snapshot=work/'machine.snapshot.json'
+        saved=call('emulator.state')
+        call('emulator.snapshot.export', {'path':str(disk_snapshot)})
+        call('emulator.reset')
+        assert call('emulator.snapshot.import', {'path':str(disk_snapshot)})==saved
+        assert call('emulator.memory', {'address':49152,'length':2})['bytes']==[0x3e,99]
+        call('emulator.snapshot.export', {'path':str(disk_snapshot)}, error=True)
+        envelope=json.loads(disk_snapshot.read_text())
+        for field, invalid in [('format','future-format'),('model','cgb')]:
+            previous=envelope[field]
+            envelope[field]=invalid
+            incompatible=work/'incompatible.snapshot.json'
+            incompatible.write_text(json.dumps(envelope))
+            call('emulator.snapshot.import', {'path':str(incompatible)}, error=True)
+            assert call('emulator.state')==saved
+            envelope[field]=previous
+        envelope['image_sha256']='0'*64
+        bad_snapshot=work/'bad.snapshot.json'
+        bad_snapshot.write_text(json.dumps(envelope))
+        call('emulator.snapshot.import', {'path':str(bad_snapshot)}, error=True)
+        assert call('emulator.state')==saved
+        envelope['image_sha256']=capture['image_sha256']
+        envelope['snapshot']['bytes']=[0,1,2]
+        bad_snapshot.write_text(json.dumps(envelope))
+        call('emulator.snapshot.import', {'path':str(bad_snapshot)}, error=True)
+        assert call('emulator.state')==saved
+        call('emulator.reset')
         caps=call('emulator.capabilities')
         assert caps['platform']=='gb' and caps['clock']=='ppu-ticks'
         assert caps['units']==['operation','cycle','frame']

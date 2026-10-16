@@ -273,7 +273,7 @@ impl Cpu {
     }
 
     #[inline]
-    fn reg_af_write(&mut self, data: u16) {
+    pub(crate) fn reg_af_write(&mut self, data: u16) {
         self.reg_a = (data >> 8) as u8;
         self.reg_f = CpuFlags::from_bits_truncate(data as u8);
     }

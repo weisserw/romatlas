@@ -13,15 +13,13 @@ import tempfile
 
 import archive as archived
 import commentary as phase
-import behavior
 
 ROOT = phase.ROOT
 TEMPLATES = ROOT / "scripts/port-template"
-DISPOSITIONS = {"implemented", "merged", "replaced", "excluded", "preserved"}
+DISPOSITIONS = {"implemented", "merged", "replaced", "excluded"}
 GOAL = ("Port this entire archived game into readable native Rust, following AGENTS.md, "
         "workflow.md and prompts/start.md. Replace the demonstration scaffold. Account for "
-        "all source behavior in ledger.json and inherited behavioral obligations in behavior.json; "
-        "refine ROM understanding using static analysis, implement every gameplay-relevant equivalent, "
+        "all source behavior in ledger.json; implement every gameplay-relevant equivalent, "
         "favor ambiguous cases, and explain obvious exclusions. Load original assets from "
         "the user's ROM at startup, support replacements and added slots, provide player "
         "settings, and write useful headless tests. Implement necessary shared-library "
@@ -30,7 +28,7 @@ GOAL = ("Port this entire archived game into readable native Rust, following AGE
         "through the whole game, not one playable checkpoint. Finish the ledger, checks "
         "and handoff; adapt BUILDING.md with platform build instructions and validation, "
         "and report untested desktop behavior. If blocked, preserve work and "
-        "use the shared incomplete blocked/exhausted contract, record unresolved behaviors and reopen triggers; never mark "
+        "explain concrete unresolved behaviors and what would unblock them; never mark "
         "an incomplete port complete.")
 RESUME_GOAL = ("Resume this entire-game port goal. Read prompts/resume.md and persistent "
                "progress, source ledger, differences and library-change log, preserve "
@@ -60,8 +58,7 @@ def records(review):
     rows = []
     for row in review["regions"]:
         entry = {"id": row["id"], "offset": row["offset"], "length": row["length"],
-                 "kind": row["kind"], "original_treatment": row.get("treatment", "legacy"),
-                 "original_preservation": row.get("preservation", {}), "original_summary": row["summary"],
+                 "kind": row["kind"], "original_summary": row["summary"],
                  "original_source": row["source"], "disposition": "pending", "summary": "",
                  "equivalents": [], "units": []}
         for index, unit in enumerate(row.get("units", [])):
@@ -101,7 +98,7 @@ def prepare(archive, rom, output, binary):
     output.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix=".port-", dir=output.parent) as temporary:
         stage = Path(temporary) / "workspace"
-        for directory in ["input", "reference", "port/src", "prompts", "review", "checks", "examples", "analysis"]:
+        for directory in ["input", "reference", "port/src", "prompts", "review", "checks", "examples"]:
             (stage / directory).mkdir(parents=True, exist_ok=True)
         supplied = stage / "input/game.rom"
         shutil.copyfile(rom, supplied)
@@ -143,15 +140,6 @@ def prepare(archive, rom, output, binary):
             raise ValueError("archive reviewed regions do not cover the whole ROM")
         phase.write_json(stage / "ledger.json", {"version": 1, "rom_sha256": manifest["rom_sha256"],
             "regions": records(review), "completion": {"status": "pending", "notes": ""}})
-        inherited_behavior = behavior.load(reference_archive / "commentary/behavior.json", manifest["rom_sha256"], "commentary")
-        phase.write_json(stage / "behavior.json", behavior.inherit(inherited_behavior, "port"))
-        inherited_refinements = (json.loads((reference_archive / "commentary/refinements.json").read_text())
-                                 if (reference_archive / "commentary/refinements.json").exists()
-                                 else behavior.refinements("port"))
-        inherited_refinements["phase"] = "port"
-        phase.write_json(stage / "refinements.json", inherited_refinements)
-        (stage / "refinements.md").write_text("# ROM understanding refinements\n\nKeep new analysis/maps here or under analysis/. Never edit reference/. Record old/new ranges, bank context, evidence, affected obligations and reconciliation.\n")
-        (stage / "behavior-contract.md").write_text(behavior.GUIDE)
         before = snapshot(stage / "review/toolkit-before")
         phase.write_json(stage / "review/toolkit-before.json", before)
         cargo = (f"[package]\nname = {json.dumps(name + '-port')}\nversion = \"0.1.0\"\nedition = \"2024\"\nrust-version = \"1.90\"\n\n"
@@ -180,9 +168,6 @@ def prepare(archive, rom, output, binary):
 Read workflow.md and prompts/start.md (or prompts/resume.md). The whole-game
 completion contract applies; the demonstration scaffold is not a completed port.
 Toolkit: {json.dumps(str(ROOT))}. Use its AGENTS.md for shared-library changes.
-Read behavior-contract.md and behavior.json; behavioral obligations survive phase
-boundaries. Static analysis may refine ROM understanding via analysis/ and the
-refinements records; affected obligations/dispositions reopen.
 reference/ and review/toolkit-before/ are frozen. Change port/, ledger.json and
 port documentation; implement/log needed shared-library edits directly in the
 toolkit, uncommitted. Do not overwrite pre-existing changes. Never download or
@@ -220,19 +205,6 @@ accounting for all source behavior, not a one-to-one translation or execution pr
 Favor porting unclear cases. Set completion.status=complete and notes at completion.
 Audit checks accounting and builds, not semantic correctness. Unknown classification
 is allowed at preparation; relevant unknown behavior must be resolved for porting.
-Read behavior-contract.md. behavior.json preserves every inherited behavior ID and
-unresolved obligation, including behaviors missing from the source ledger. Each
-item needs accounted status, evidence, dependencies, unresolved=[], equivalents and
-tests describing useful behavioral validation. Review scope and finish outcome only
-when implementation is complete. No byte-classification percentage is required.
-Rows inherited with preserved treatment may use disposition=preserved, with a fresh
-preservation rationale/evidence/reopen_when after checking inherited triage against
-port findings. This creates no requirement to implement opaque bytes, and never
-proves nonuse. Semantic units cannot be dismissed through preservation.
-Newly discovered code/data/asset extents may be analyzed under analysis/ and recorded
-in refinements.json/md. Keep reference/ immutable; use new source units, normal map
-APIs and fresh byte verification for structural changes. Reconcile affected port
-behavior and asset recipes before marking refinements reconciled.
 
 Use progress.md for progress/blockers, differences.md for known behavior differences
 and untested platform/device behavior, and library-changes.md for shared-library
@@ -283,7 +255,7 @@ runpy.run_path(str(toolkit / "scripts/port.py"), run_name="__main__")
         frozen.update({str(p.relative_to(stage)): phase.digest(p) for p in (stage / "review/toolkit-before").rglob("*") if p.is_file()})
         frozen["review/toolkit-before.json"] = phase.digest(stage / "review/toolkit-before.json")
         phase.write_json(stage / "workspace.json", {"version": 1, "name": name,
-            "behavior_contract": 1, "toolkit": str(ROOT), "rom": "input/game.rom", "sha256": manifest["rom_sha256"],
+            "toolkit": str(ROOT), "rom": "input/game.rom", "sha256": manifest["rom_sha256"],
             "archive": str(archive), "archive_sha256": phase.digest(archive / "archive.json"),
             "frozen": frozen, "reference_verification": verification})
         # Reserve the new name before publication; never replace another workspace.
@@ -312,69 +284,12 @@ def workspace(path):
     return work, meta, rom
 
 
-def upgrade(work, meta):
-    """Migrate accounting/prompts only, preserving the port and frozen reference."""
-    names = ["ledger.json", "behavior.json", "refinements.json", "refinements.md",
-             "behavior-contract.md", "prompts/start.md", "prompts/resume.md", "workflow.md", "AGENTS.md", "checks/audit.json"]
-    if any((work / name).is_symlink() for name in names):
-        raise ValueError("refusing to migrate symlinked port metadata")
-    backups = work / "review/setup-backups"
-    backups.mkdir(exist_ok=True)
-    backup = Path(tempfile.mkdtemp(prefix="behavior-", dir=backups))
-    for name in names:
-        if (work / name).exists():
-            target = backup / name
-            target.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copyfile(work / name, target)
-    try:
-        inherited = behavior.load(work / "reference/archive/commentary/behavior.json", meta["sha256"], "commentary")
-        if not (work / "behavior.json").exists():
-            phase.write_json(work / "behavior.json", behavior.inherit(inherited, "port"))
-        if not (work / "refinements.json").exists():
-            path = work / "reference/archive/commentary/refinements.json"
-            phase.write_json(work / "refinements.json", json.loads(path.read_text()) if path.exists() else behavior.refinements("port"))
-        if not (work / "refinements.md").exists():
-            (work / "refinements.md").write_text("# ROM understanding refinements\n\nKeep new analysis and reconciliation here; preserve reference/.\n")
-        (work / "analysis").mkdir(exist_ok=True)
-        ledger = json.loads((work / "ledger.json").read_text())
-        original = records(json.loads((work / "reference/archive/commentary/review.json").read_text()))
-        by_id = {r["id"]: r for r in original}
-        for row in ledger["regions"]:
-            for key in ["original_treatment", "original_preservation"]:
-                row.setdefault(key, by_id[row["id"]][key])
-        ledger["completion"]["status"] = "pending"
-        phase.write_json(work / "ledger.json", ledger)
-        (work / "behavior-contract.md").write_text(behavior.GUIDE)
-        migration_note = ("\nRead behavior-contract.md, behavior.json and refinements.json for the current "
-                          "inherited completion contract. A source ledger alone cannot certify "
-                          "behavioral completeness; later static ROM analysis belongs in analysis/ "
-                          "and reconciled refinements, preserving reference/.\n")
-        for name in ["workflow.md", "AGENTS.md"]:
-            content = (work / name).read_text()
-            if "inherited completion contract" not in content:
-                (work / name).write_text(content + migration_note)
-        prompt = (TEMPLATES / "prompt.md").read_text()
-        (work / "prompts/start.md").write_text(prompt)
-        (work / "prompts/resume.md").write_text("# Resume existing work\n\nPreserve the port and ledger; read progress.md and behavior.json first.\n\n" + prompt)
-        phase.write_json(work / "checks/audit.json", dict(ok=False, reason="Behavioral migration requires fresh accounting audit."))
-    except Exception:
-        for name in names:
-            if (backup / name).exists():
-                shutil.copyfile(backup / name, work / name)
-            elif (work / name).exists():
-                (work / name).unlink()
-        raise
-    return dict(ok=True, backup=str(backup), preserved_port=True, audit_pending=True)
-
-
 def validate_ledger(work, meta):
     ledger = json.loads((work / "ledger.json").read_text())
     if ledger["version"] != 1 or ledger["rom_sha256"] != meta["sha256"]:
         raise ValueError("ledger identity/version mismatch")
     expected = records(json.loads((work / "reference/archive/commentary/review.json").read_text()))
     actual = ledger["regions"]
-    if not (work / "behavior.json").is_file() or not (work / "refinements.json").is_file() or any("original_treatment" not in r for r in actual):
-        raise ValueError("legacy accounting: run scripts/port.py upgrade WORKSPACE before auditing")
     if len(actual) != len(expected):
         raise ValueError("source ledger region inventory changed")
     seen = set()
@@ -388,46 +303,27 @@ def validate_ledger(work, meta):
         equivalents = entry["equivalents"]
         if not isinstance(equivalents, list) or any(not isinstance(e, str) or not e.strip() for e in equivalents):
             raise ValueError("equivalents must be nonempty strings")
-        if entry["disposition"] not in ("excluded", "preserved") and not equivalents:
+        if entry["disposition"] != "excluded" and not equivalents:
             raise ValueError(f"missing port equivalent: {identity}")
         if type(entry["offset"]) is not int or type(entry["length"]) is not int or entry["offset"] < 0 or entry["length"] <= 0 or entry["offset"] + entry["length"] > phase.local(work, meta["rom"]).stat().st_size:
             raise ValueError("source ledger range outside ROM")
     for original, entry in zip(expected, actual):
-        if any(entry[key] != original[key] for key in ["id", "offset", "length", "kind", "original_source", "original_summary", "original_treatment", "original_preservation"]):
+        if any(entry[key] != original[key] for key in ["id", "offset", "length", "kind", "original_source", "original_summary"]):
             raise ValueError("original source region identity changed")
         validate(entry)
-        if entry["disposition"] == "preserved":
-            eligible = original["original_treatment"] == "preserved" or (original["original_treatment"] == "legacy" and original["kind"] == "Unknown")
-            if not eligible or entry["units"]:
-                raise ValueError("preserved disposition requires inherited preservation or newly triaged legacy Unknown, without semantic units")
-            behavior.preservation(entry.get("preservation", {}))
         originals = {u["id"]: u for u in original["units"]}
         for unit in entry["units"]:
             validate(unit)
-            if unit["disposition"] == "preserved":
-                raise ValueError("source units require behavioral accounting, not preservation")
             if unit["id"] in originals:
                 old = originals.pop(unit["id"])
                 if any(unit[key] != old[key] for key in ["offset", "length", "name", "original_source", "original_summary"]):
                     raise ValueError("original source unit identity changed")
         if originals:
             raise ValueError("original source units were removed")
-    # Legacy archives can seed a port, but cannot silently supply complete scope.
-    original_behavior = behavior.load(work / "reference/archive/commentary/behavior.json", meta["sha256"], "commentary")
-    current_behavior = behavior.load(work / "behavior.json", meta["sha256"], "port")
-    behavior_count = behavior.validate(current_behavior, original_behavior, "port")
-    actionable = {r["id"] for r in actual if r["disposition"] in ("implemented", "merged", "replaced")}
-    for item in current_behavior["items"]:
-        if not behavior.strings(item.get("regions")) or not set(item["regions"]).issubset(actionable):
-            raise ValueError("port behavior must link to implemented/merged/replaced source regions")
-    original_refinement_path = work / "reference/archive/commentary/refinements.json"
-    original_refinements = json.loads(original_refinement_path.read_text()) if original_refinement_path.exists() else None
-    refinement_count = behavior.validate_refinements(json.loads((work / "refinements.json").read_text()), original_refinements)
     completion = ledger["completion"]
     if completion["status"] != "complete" or not isinstance(completion["notes"], str) or not completion["notes"].strip():
         raise ValueError("port completion is pending")
-    return {"regions": len(actual), "units": len(seen) - len(actual),
-            "behavior_items": behavior_count, "reconciled_refinements": refinement_count}
+    return {"regions": len(actual), "units": len(seen) - len(actual)}
 
 
 def check(work):
@@ -458,11 +354,11 @@ def main():
         def error(self, message):
             raise ValueError(message)
     parser = Parser(description=__doc__)
-    parser.add_argument("command", choices=["prepare", "upgrade", "instructions", "check", "headless", "desktop", "audit"])
+    parser.add_argument("command", choices=["prepare", "instructions", "check", "headless", "desktop", "audit"])
     parser.add_argument("path", type=Path, help="archive for prepare; port workspace otherwise")
     parser.add_argument("--rom", type=Path)
     parser.add_argument("--out", type=Path)
-    parser.add_argument("--binary", type=Path, default=ROOT / "target/debug/romatlas")
+    parser.add_argument("--binary", type=Path, default=ROOT / "target/release/romatlas")
     parser.add_argument("--frames", type=int, default=120)
     parser.add_argument("--assets", type=Path)
     parser.add_argument("--settings", type=Path)
@@ -479,9 +375,7 @@ def main():
         if args.command == "instructions":
             print(instructions(work))
             return
-        if args.command == "upgrade":
-            result = upgrade(work, meta)
-        elif args.command == "check":
+        if args.command == "check":
             result = check(work)
         elif args.command == "audit":
             phase.write_json(work / "checks/audit.json", {"ok": False})

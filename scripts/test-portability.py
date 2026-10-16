@@ -2,7 +2,7 @@
 """Own synthetic bytes only. Exercise stock tools in a clean recipient directory."""
 import hashlib, pathlib, shutil, subprocess, tempfile
 root = pathlib.Path(__file__).resolve().parents[1]
-cli = root / 'target/debug/romatlas'
+cli = root / 'target/release/romatlas'
 def run(*args, cwd=None):
     subprocess.run([str(a) for a in args], cwd=cwd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 with tempfile.TemporaryDirectory() as work:

@@ -34,9 +34,14 @@ impl CommandAdapter for GbSession {
             "emulator.run",
             "emulator.input",
             "emulator.state",
+            "emulator.framebuffer",
+            "emulator.registers.set",
+            "emulator.memory.write",
             "emulator.capabilities",
             "emulator.test",
             "emulator.snapshot.save",
+            "emulator.snapshot.export",
+            "emulator.snapshot.import",
             "emulator.snapshot.load",
             "emulator.memory",
             "emulator.physical_memory",
@@ -234,6 +239,7 @@ impl GbSession {
                 };
                 serde_json::to_value(state)?
             }
+            "emulator.framebuffer" => self.emulator()?.framebuffer(),
             "emulator.physical_memory" => {
                 let space = string(p, "space")?;
                 let offset = usize::try_from(num(p, "offset", 0)?)?;
@@ -247,6 +253,39 @@ impl GbSession {
                 ensure!(length <= 4096, "memory length exceeds 4096");
                 json!({"bytes":self.emulator()?.peek(address as u16,length as usize)?})
             }
+            "emulator.registers.set" => {
+                let values = p
+                    .get("registers")
+                    .and_then(Value::as_object)
+                    .context("registers must be an object")?;
+                serde_json::to_value(self.emulator()?.set_registers(values)?)?
+            }
+            "emulator.memory.write" => {
+                let address = p
+                    .get("address")
+                    .and_then(Value::as_u64)
+                    .context("address is required")?;
+                ensure!(address <= 65535, "CPU address outside range");
+                let values = p
+                    .get("bytes")
+                    .and_then(Value::as_array)
+                    .context("bytes must be an array")?;
+                ensure!(
+                    !values.is_empty() && values.len() <= 4096,
+                    "bytes must contain 1..4096 entries"
+                );
+                let bytes = values
+                    .iter()
+                    .map(|v| {
+                        v.as_u64()
+                            .filter(|n| *n <= 255)
+                            .map(|n| n as u8)
+                            .context("bytes must be integers in 0..255")
+                    })
+                    .collect::<Result<Vec<_>>>()?;
+                self.emulator()?.write_memory(address as u16, &bytes)?;
+                json!({"ok":true})
+            }
             "emulator.input" => {
                 let pressed = p
                     .get("pressed")
@@ -254,6 +293,13 @@ impl GbSession {
                     .context("pressed must be boolean")?;
                 self.emulator()?.input(string(p, "button")?, pressed)?;
                 json!({"ok":true})
+            }
+            "emulator.snapshot.export" => {
+                self.emulator()?.export_snapshot(&path(p, "path")?)?;
+                json!({"ok":true})
+            }
+            "emulator.snapshot.import" => {
+                serde_json::to_value(self.emulator()?.import_snapshot(&path(p, "path")?)?)?
             }
             "emulator.snapshot.save" => {
                 let name = string(p, "name")?.to_owned();
@@ -356,7 +402,7 @@ impl GbSession {
                 },
             )?,
             "analysis.discover_context" => {
-                use romatlas_gb::discovery::{ContextDecoder, CpuContext};
+                use romatlas_gb::discovery::{ContextDecoder, CpuContext, ProfileDecoder};
                 let rom = self.rom()?;
                 let roots = p
                     .get("entrypoints")
@@ -394,11 +440,11 @@ impl GbSession {
                 }
                 let annotations = self.store()?.regions.values().cloned().collect::<Vec<_>>();
                 let profiles = p
-                    .get("profiles")
-                    .map(|value| serde_json::from_value(value.clone()))
-                    .transpose()?;
-                let decoder =
-                    romatlas_gb::discovery_profiles::ProfiledContextDecoder::new(rom, profiles)?;
+                    .get("call_profiles")
+                    .map(|v| serde_json::from_value(v.clone()))
+                    .transpose()?
+                    .unwrap_or_default();
+                let decoder = ProfileDecoder::new(rom, profiles).map_err(anyhow::Error::msg)?;
                 let result = romatlas_analysis::discovery::discover_with_edges(
                     &decoder,
                     entries,
@@ -413,10 +459,10 @@ impl GbSession {
                 ensure!(limit <= 1000, "discovery page limit exceeds 1000");
                 let total = result.candidates.len();
                 let total_references = result.references.len();
-                let total_diagnostics = result.diagnostics.len();
                 let reference_offset = usize::try_from(num(p, "reference_offset", 0)?)?;
                 let diagnostic_offset = usize::try_from(num(p, "diagnostic_offset", 0)?)?;
-                json!({"candidates":result.candidates.into_iter().skip(offset).take(limit).collect::<Vec<_>>(),"total":total,"next_offset":offset.saturating_add(limit).min(total),"references":result.references.into_iter().skip(reference_offset).take(limit).collect::<Vec<_>>(),"total_references":total_references,"next_reference_offset":reference_offset.saturating_add(limit).min(total_references),"diagnostics":result.diagnostics.into_iter().skip(diagnostic_offset).take(limit).collect::<Vec<_>>(),"total_diagnostics":total_diagnostics,"next_diagnostic_offset":diagnostic_offset.saturating_add(limit).min(total_diagnostics),"visited":result.visited,"budget_exhausted":result.budget_exhausted})
+                let total_diagnostics = result.diagnostics.len();
+                json!({"candidates":result.candidates.into_iter().skip(offset).take(limit).collect::<Vec<_>>(),"total":total,"next_offset":offset.saturating_add(limit).min(total),"references":result.references.into_iter().skip(reference_offset).take(limit).collect::<Vec<_>>(),"total_references":total_references,"next_reference_offset":reference_offset.saturating_add(limit).min(total_references),"next_diagnostic_offset":diagnostic_offset.saturating_add(limit).min(total_diagnostics),"diagnostics":result.diagnostics.into_iter().skip(diagnostic_offset).take(limit).collect::<Vec<_>>(),"total_diagnostics":total_diagnostics,"visited":result.visited,"budget_exhausted":result.budget_exhausted})
             }
             "analysis.discover" | "analysis.references" => {
                 use std::collections::BTreeSet;
@@ -474,9 +520,11 @@ impl GbSession {
                     })?
                 } else {
                     let total = result.candidates.len();
+                    let reference_offset = usize::try_from(num(p, "reference_offset", 0)?)?;
+                    let diagnostic_offset = usize::try_from(num(p, "diagnostic_offset", 0)?)?;
                     let total_diagnostics = result.diagnostics.len();
                     let total_references = result.references.len();
-                    json!({"candidates":result.candidates.into_iter().skip(offset).take(limit).collect::<Vec<_>>(),"total":total,"next_offset":offset.saturating_add(limit).min(total),"diagnostics":result.diagnostics.into_iter().take(limit).collect::<Vec<_>>(),"total_diagnostics":total_diagnostics,"references":result.references.into_iter().take(limit).collect::<Vec<_>>(),"total_references":total_references,"visited":result.visited,"budget_exhausted":result.budget_exhausted})
+                    json!({"candidates":result.candidates.into_iter().skip(offset).take(limit).collect::<Vec<_>>(),"total":total,"next_offset":offset.saturating_add(limit).min(total),"diagnostics":result.diagnostics.into_iter().skip(diagnostic_offset).take(limit).collect::<Vec<_>>(),"total_diagnostics":total_diagnostics,"references":result.references.into_iter().skip(reference_offset).take(limit).collect::<Vec<_>>(),"total_references":total_references,"next_reference_offset":reference_offset.saturating_add(limit).min(total_references),"next_diagnostic_offset":diagnostic_offset.saturating_add(limit).min(total_diagnostics),"visited":result.visited,"budget_exhausted":result.budget_exhausted})
                 }
             }
             "analysis.pointers" => {

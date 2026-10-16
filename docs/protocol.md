@@ -63,7 +63,7 @@ All byte offsets, lengths, addresses, IDs, counts, and budgets are JSON integers
 | analysis.coverage | offset=0, limit=100 (max 1000). Pages physical executed opcode addresses and hit counts. |
 | analysis.edges | offset=0, limit=100 (max 1000). Pages physical observed successors and hit counts. |
 | analysis.discover | entrypoints=[256], budget=1000 (max 100000), use_observed=true, offset=0, limit=100. Returns physical candidates, references and diagnostics. |
-| analysis.discover_context | Required entrypoints with offset/cpu_context (1..1000). Candidate offset, independent reference_offset/diagnostic_offset, common limit. Optional confirmed profiles. Propagates CPU context and observed before/after banks. |
+| analysis.discover_context | Required entrypoints with offset/cpu_context (1..1000). Same budgets/pages as discovery. Propagates CPU context and observed before/after banks. |
 | analysis.references | Same traversal parameters as analysis.discover. Pages reference records. |
 | analysis.pointers | offset=0, count=16 (max 4096 entries), layout=word-le, optional fixed_bank/switch_bank. References page with page_offset=0, limit=100. Returns hypotheses and conflicts. |
 | analysis.structure | offset=256, required cpu_context with cpu_address and optional fixed_bank/switch_bank. Returns one instruction's physical successors, references and diagnostics. |
@@ -75,7 +75,7 @@ Pages use offset=0 and limit=100 (max 1000). Responses include items, total, nex
 
 ## Budgets and errors
 
-Each request line is at most 1 MiB, including newline. The server drains a larger line without growing its buffer, returns an error, then resumes with the next request. Run budgets allow at most one million CPU operations and timeout_ms from 1 to 30000. On timeout, completed operations remain in state. There are at most 16 named snapshots, each name at most 128 bytes. Snapshots stay in memory and vanish on EOF or ROM change.
+Each request line is at most 1 MiB, including newline. The server drains a larger line without growing its buffer, returns an error, then resumes with the next request. Run budgets allow at most one million CPU operations and timeout_ms from 1 to 30000. On timeout, completed operations remain in state. There are at most 16 named snapshots, each name at most 128 bytes. Named snapshots stay in memory and vanish on EOF or ROM change; use snapshot.export/import for local persistence.
 
 Standard error codes: -32700 invalid JSON, -32600 invalid request, -32601 unsupported method/capability, -32602 params must be an object, -32000 operation or parameter error with a message. Requests without id are notifications and get no reply, even on errors. Use requests with id when results matter. The server recovers from malformed requests.
 
@@ -205,50 +205,6 @@ Example: `{"offset":524288,"cpu_context":{"cpu_address":0,"fixed_bank":32,"switc
 
 `analysis.discover_context` accepts `entrypoints` (1..1000 objects with offset and cpu_context), budget (1..100000), offset and limit (max 1000) for candidate pages. It carries fixed/switch banks and successor CPU addresses through each static path. Traversal visits distinct CPU contexts separately, but candidates, coverage tests and data barriers use canonical physical ROM addresses. References retain the asserted CPU context. The result has the same candidate/reference/diagnostic summaries as analysis.discover.
 
-References and diagnostics have independent `reference_offset` and
-`diagnostic_offset` (default zero), with the same `limit`. Responses include
-`next_reference_offset` and `next_diagnostic_offset`; totals, end pages and zero
-limits behave like candidate pagination. Keep the map, profiles and observed
-evidence fixed while paging; each call performs a fresh bounded traversal.
-
-Optional `profiles` reuse explicitly confirmed invariants, without automatically
-inferring register values or game-specific calling conventions. Example shape:
-
-```json
-{
-  "rom_sha256": "<the actual rom.info SHA-256>",
-  "entries": [{
-    "offset": 768,
-    "cpu_context": {"cpu_address": 768, "fixed_bank": 0, "switch_bank": 1},
-    "expected_bytes": [239],
-    "scope": "all_arrivals_in_context",
-    "evidence": "local artifact proving the dispatcher consumes the inline table",
-    "effect": {"kind": "inline_dispatch"}
-  }]
-}
-```
-
-Supply this object as the `profiles` parameter to `analysis.discover_context`.
-The example offsets/opcode describe a synthetic RST, not a game annotation.
-Up to 1000 unique physical/CPU-context entries are allowed. The ROM hash, complete
-instruction bytes, legal source decoding and effective source banks must match.
-Evidence text is required (max 4096 bytes). Scope must cover **all arrivals in the
-specified CPU/bank context**; a single snapshot's HL value is insufficient.
-
-`inline_dispatch` accepts only unconditional CALL/RST and suppresses its ordinary
-return-site fallthrough, retaining the callee. Supply separately reviewed handler
-entrypoints; inline bytes are not silently classified as a table.
-`{"kind":"non_mapper_store","cpu_destination":40960}` accepts a register-indirect
-byte LD store with a confirmed CPU destination at or above 0x8000, allowing its
-fallthrough with unchanged banks. This is an explicit invariant, not automatic
-literal-register dataflow analysis. Unresolved target windows stay unresolved.
-Its memory reference has no physical target: blocked/unmapped RAM or I/O is never
-turned into a physical memory claim. No profile can bypass data/instruction
-barriers, change maps or add execution coverage. Derived candidates remain Static
-unless independently fetched. Profiles appear in diagnostics/references and stay
-in local evidence files, separate from portable .sym maps. Without profiles,
-conservative discovery is unchanged.
-
 Example: `{"entrypoints":[{"offset":524288,"cpu_context":{"cpu_address":0,"fixed_bank":32,"switch_bank":33}}],"budget":1000}`. Controller writes stop static traversal. An observed contextual edge can cross the write; without that evidence, supply a new root with the bank state after it. With use_observed=true (default), this call adds recorded context roots and merges contextual observed edges. Each edge retains source bank state before the operation and target bank state after it. This lets traversal cross an observed controller write without reusing the old bank state. use_observed=false disables both coverage and edge input. Context-free observed edges still belong to analysis.discover. An observed target alone never counts as executed coverage. Neither discovery call edits the map.
 
 Context aggregates retain up to 100000 roots and 100000 edges, independent of event-detail filters and capacity. trace.summary reports unique_contextual_roots and unique_contextual_edges; aggregate_dropped includes their overflow. trace.clear clears these aggregates. ControlFlow detail includes traversal_source/traversal_target with opaque traversal context when the source/target maps to ROM. HALT/STOP retain fetched source roots but do not add traversable edges. Failed opcodes add no context roots. Snapshots can rewind execution while traces retain earlier observations; context keys keep distinct bank states separate. Context roots and edges remain local runtime data and never enter exported .sym files.
@@ -268,3 +224,59 @@ JSON response payloads have a 1-MiB byte limit (excluding the line delimiter). a
 For large maps, use map.export with {"path":"game.sym","include_sym":false}. This writes the complete stock map but returns only a small file summary. Smaller pages/ranges can reduce other replies. The byte limit does not replace execution, trace or metadata-input limits.
 
 map.save and map.export reject output paths that resolve to the input ROM, including Unix hard links. CLI map init and store export use the same check. A rejected alias does not write the output or alter ROM bytes.
+
+Debugger edits: `emulator.registers.set` accepts a nonempty `registers` object
+with any of a/f/b/c/d/e/h/l (0..255), pc/sp (0..65535). F's low nibble must
+be zero. Unknown names and invalid values reject the entire register edit.
+`emulator.memory.write` requires `address` and a `bytes` array of 1..4096 integers
+in 0..255, entirely within the 16-bit CPU address space. It performs mapped,
+unticked bus writes, including I/O and mapper side effects and hardware access
+locks; it does not patch ROM backing storage. Writes may be ignored by hardware.
+Neither command advances time or emits execution/coverage events. Existing trace
+history remains historical evidence; subsequent execution uses the edited state.
+
+`emulator.framebuffer` returns the core's current 160x144 RGB8 framebuffer as
+`pixels` (row-major RGB byte array), with frames, ppu_cycles, operations and
+image_sha256. Inspection does not advance execution. This is the current render
+buffer; a mid-frame capture may contain pixels from different frames.
+
+`analysis.discover_context` and `analysis.discover` accept independent
+`reference_offset` and `diagnostic_offset` (default 0). Each list uses `limit`;
+responses include next_reference_offset and next_diagnostic_offset alongside
+its total. Candidate offset semantics are unchanged. Repeated queries recompute
+discovery; keep maps, inputs and observed traces unchanged while paging.
+
+`emulator.snapshot.export` requires a new `path` and writes the current machine
+snapshot as local JSON. `emulator.snapshot.import` requires `path`, restores it
+and returns state. Files carry a format version, ROM SHA-256 and hardware model;
+incompatible identities/models/formats and malformed core states are rejected.
+Imports are capped at 64 MiB. Format v1 is tied to the current core save schema;
+future schema changes must bump the envelope version. CPU, memory, peripherals,
+mapper, input and counters persist across sessions. Trace history/configuration
+is not restored; existing history remains, as with named snapshot restoration.
+
+Contextual discovery tracks literal BC/DE/HL values along straight-line paths
+through immediate pair loads, pair increments/decrements and LD post-increments.
+It invalidates affected pairs on byte-register loads and forgets facts on
+unsupported effects and control transfers. Arrivals with different facts remain
+separate under the existing traversal budget. A proved indirect destination in
+8000..ffff preserves ROM bank context; uncertain/controller writes still stop.
+Derived facts are traversal state only, excluded from portable regions and
+execution coverage. This is bounded literal tracking, not general interval analysis.
+
+`analysis.discover_context` accepts `call_profiles` (default [], max 1000).
+Each profile requires image_sha256, offset, cpu_context (explicit fixed_bank and
+switch_bank), source_bytes (exact unconditional CALL/RST instruction bytes),
+inline_bytes (exact following bytes, possibly empty), evidence (nonempty durable
+reference), all_arrivals=true, and returns_after_inline (boolean). Source plus
+inline extent is capped at 4096 bytes within one physical bank. Duplicate profiles,
+identity/byte/context mismatches and conditional/non-call sites are rejected.
+Profiles suppress the presumed return continuation only for the matching source
+and CPU/bank context; the dispatcher/callee remains a discovery successor.
+With returns_after_inline=true an explicit continuation follows the inline extent;
+otherwise the profile asserts no ordinary return. Inline extents do not annotate
+the map or infer selector domains/handler execution. Inspect pointer hypotheses
+separately and annotate confirmed tables as Data to protect other traversal roots.
+The caller must supply evidence covering all arrivals in that exact context;
+reachability alone is insufficient. Profiles are local query inputs, never stock
+map directives or execution evidence. No restart number has special defaults.

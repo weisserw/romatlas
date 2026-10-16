@@ -18,4 +18,4 @@ if [ ! -d tools/rgbds/.git ]; then git clone https://github.com/gbdev/rgbds.git 
 git -C tools/rgbds checkout d1829ed92327a9f9210ffd45d865331f24dfa4e6
 make -C tools/rgbds -j2
 "${setup_privilege[@]}" make -C tools/rgbds install
-cargo build --locked
+cargo build --locked --release
