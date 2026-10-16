@@ -23,6 +23,13 @@ all gameplay, all methods or all unknown ranges. Do not stop at raw baseline
 while obvious startup gains remain. Do not repeat failed leads without new evidence.
 
 Save state, export maps/current.sym, validate and create a fresh verified checkpoint.
+At the end of every pass, explicitly print to the user and save in analysis/progress.md:
+"ROM classification: X.XX% (C / T bytes classified; U bytes unknown)."
+Calculate X = 100 * C / T from the internal map: T is the entire physical ROM size,
+C counts unique bytes with evidence-backed structural classification, and U = T - C.
+Unknown gaps, explicit Unknown regions and raw-byte export fallback do not count as
+classified. Execution coverage and commentary review are separate metrics. A rounded
+100.00% does not establish completion while any unknown bytes remain.
 Record per-bank classified/unknown counts, evidence, lead outcomes and verification
 in analysis/progress.md and analysis/investigation.md. Report incomplete unless
 all bytes meet the full evidence-backed classification contract. Preserve and link

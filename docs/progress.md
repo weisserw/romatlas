@@ -440,3 +440,13 @@ reachability and applies the existing easy-gain stop rule to speculative edits.
 Validation: scripts/test-disassemble.py passes, including generated-prompt checks
 and synthetic baseline/code checkpoint rebuilding. git diff --check passes. This
 is a prompt-only change; no runtime behavior or existing workspace was changed.
+
+2026-10-16: Coordinator and disassembly prompts now require an explicit user-facing
+ROM classification percentage after every disassembly pass, before commentary,
+and again in the final handoff. The report includes classified/total/unknown byte
+counts and is also saved in progress.md. Its denominator is the full physical ROM;
+unknown regions/gaps and raw fallback are excluded from classified bytes. Execution
+and editorial coverage stay separate, and rounding cannot establish completion.
+Validation: scripts/test-disassemble.py passes generated-prompt assertions and
+synthetic baseline/code checkpoint verification. git diff --check passes. Existing
+workspaces are not automatically updated; no runtime implementation changed.

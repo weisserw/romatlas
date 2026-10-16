@@ -58,6 +58,9 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
     assert "Stop immediately and report incomplete" in disassembly
     assert "basic menu/gameplay inputs" in disassembly
     assert "analysis/leads.json" in disassembly
+    assert "ROM classification: X.XX% (C / T bytes classified; U bytes unknown)." in disassembly
+    assert "100 * C / T" in disassembly
+    assert "raw-byte export fallback do not count" in disassembly
     for required in ["emulator.memory.write", "emulator.registers.set",
                      "record exact patches", "natural gameplay reachability",
                      "same easy-gain stopping rule"]:
@@ -70,6 +73,9 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
     assert "(??)" in commentary and "(???)" in commentary
     assert "preserve the entire previous commentary" in commentary
     goal = (work / "goal.md").read_text()
+    assert "After every disassembly pass" in goal
+    assert "explicitly print the ROM" in goal
+    assert "recording it only in a file is" in goal
     assert goal.index("1. prompts/disassembly") < goal.index("2. prompts/commentary") < goal.index("3. prompts/redirect")
     assert "no such leads remain" in goal and "report incomplete" in goal
     assert json.loads((work / "analysis/leads.json").read_text()) == {"version": 1, "passes": [], "leads": []}
