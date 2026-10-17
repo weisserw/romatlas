@@ -178,6 +178,60 @@ with tempfile.TemporaryDirectory() as directory:
         call('emulator.snapshot.load', {'name':'held'})
         assert call('emulator.state') == before
         assert call('emulator.run', {'operations':30}) == after
+        # Snapshot input must replace live input, including both joypad rows.
+        buttons = ['right', 'left', 'up', 'down', 'a', 'b', 'select', 'start']
+        for index, button in enumerate(buttons):
+            for other in buttons:
+                call('emulator.input', {'button':other, 'pressed':False})
+            row = 0x20 if index < 4 else 0x10
+            call('emulator.memory.write', {'address':0xff00, 'bytes':[row]})
+            call('emulator.input', {'button':button, 'pressed':True})
+            expected = 0xc0 | row | (0xf ^ (1 << (index % 4)))
+            def joypad():
+                return call('emulator.memory', {'address':0xff00, 'length':1})['bytes'][0]
+            assert joypad() == expected
+            call('emulator.snapshot.save', {'name':'input-held'})
+            input_file = work / f'input-{button}.snapshot.json'
+            call('emulator.snapshot.export', {'path':str(input_file)})
+            for method, params in [('emulator.snapshot.load', {'name':'input-held'}),
+                                   ('emulator.snapshot.import', {'path':str(input_file)})]:
+                for other in buttons:
+                    call('emulator.input', {'button':other, 'pressed':other != button})
+                call('emulator.memory.write', {'address':0xff00, 'bytes':[0x30]})
+                call(method, params)
+                assert joypad() == expected, (button, method, joypad(), expected)
+                replay = call('emulator.run', {'operations':30})
+                assert joypad() == expected
+                call(method, params)
+                assert call('emulator.run', {'operations':30}) == replay
+            call('emulator.input', {'button':button, 'pressed':False})
+            call('emulator.snapshot.save', {'name':'input-released'})
+            call('emulator.input', {'button':button, 'pressed':True})
+            call('emulator.snapshot.load', {'name':'input-released'})
+            assert joypad() == 0xc0 | row | 0xf
+            released_file = work / f'released-{button}.snapshot.json'
+            call('emulator.snapshot.export', {'path':str(released_file)})
+            call('emulator.input', {'button':button, 'pressed':True})
+            call('emulator.snapshot.import', {'path':str(released_file)})
+            assert joypad() == 0xc0 | row | 0xf
+            if index == 0:
+                # Reject the old core layout and roll back a partial core load,
+                # preserving live input and counters in both cases.
+                for failure in ['old-version', 'truncated']:
+                    invalid = json.loads(input_file.read_text())
+                    if failure == 'old-version':
+                        assert invalid['snapshot']['bytes'][4] == 8
+                        invalid['snapshot']['bytes'][4] = 7
+                    else:
+                        invalid['snapshot']['bytes'] = invalid['snapshot']['bytes'][:-8]
+                    rejected_file = work / f'{failure}.snapshot.json'
+                    rejected_file.write_text(json.dumps(invalid))
+                    call('emulator.input', {'button':'left', 'pressed':True})
+                    state_before_rejection = call('emulator.state')
+                    input_before_rejection = joypad()
+                    call('emulator.snapshot.import', {'path':str(rejected_file)}, error=True)
+                    assert call('emulator.state') == state_before_rejection
+                    assert joypad() == input_before_rejection
         cycle_start = call('emulator.state')
         cycle_end = call('emulator.step', {'unit':'cycle','count':100})
         assert 100 <= cycle_end['ppu_cycles']-cycle_start['ppu_cycles'] < 124

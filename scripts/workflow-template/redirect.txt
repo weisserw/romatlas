@@ -11,22 +11,55 @@ explicit unreviewed gaps directly; do not assume missing comments mean there are
 no leads. Use observable-behavior notes and uncertainty questions as starting points,
 confirming them against source and evidence rather than trusting review status alone.
 
+Every redirect pass should investigate promising unresolved questions thoroughly
+but reasonably. Do the groundwork needed to turn a credible question into an
+answer or actionable next step; do not stop at an inventory of uncertainties.
+Follow relevant callers, writers, consumers, bank contexts and downstream tables
+as far as they continue to resolve uncertainty or improve a concrete experiment.
+Small supported findings and useful intermediate understanding count as progress;
+no immediate substantial byte gain or complete global selector domain is required.
+There is no fixed hypothesis count, experiment quota or one-time research allowance.
+
+Prioritize avenues with direct evidence and a credible connection to unknown ROM
+structure or behavior. State the question, missing fact, evidence, planned method
+and what result would change the next step. Revise the method as findings warrant.
+Do not chase rabbit holes, pursue slim chances, brute-force arbitrary states or
+keep expanding scope merely because more questions exist. Stop an avenue when
+results become repetitive, assumptions accumulate without support, or further work
+has little credible prospect of useful progress. Switch to a promising independent
+avenue when available; end the pass when reasonable avenues are exhausted.
+A prior failed attempt may be reopened only with new evidence or a materially
+different justified method. Preserve the original outcome and explain the change.
+Record findings as work proceeds, including negative results and interruption state,
+so later redirects can build on evidence rather than repeat the same search.
+
 Use run.py serve and docs/protocol.md for bounded hypothesis tests when helpful.
 Inspect api.describe. Use emulator.memory.write and emulator.registers.set to
 construct states that load needed pointers/tables, saving/restoring snapshots and
 recording exact patches, effective banks, inputs and budgets. ROM backing remains
 immutable. Debugger mutations prove no execution or natural reachability; clearly
-separate artificial-state observations from ordinary gameplay evidence.
+separate artificial-state observations from ordinary gameplay evidence. Keep each
+runtime call bounded by the documented API limits; choose budgets appropriate to
+the question. Reassert intended buttons after restoration when required by the
+toolkit. These per-call safety limits do not impose an overall research quota.
 
 Write the persistent leads file analysis/leads.json (version 1, passes and leads
 arrays). Each lead needs a stable id, physical ranges and CPU/bank context, source
 locations, hypothesis, evidence/artifact links, a concrete bounded verification
-recipe, expected substantial gain, priority, status and attempt history. Preserve
+recipe, expected useful gain (or the specific missing fact and downstream
+opportunity when gain is not yet measurable), priority, status and attempt history. Preserve
 all previous entries and outcomes. Match by target/hypothesis, not wording.
 Do not reissue a previous lead without additional evidence or an improved actionable
 recipe; append the new information and explain why it reopens the lead. Mark new
 or materially improved actionable leads ready; retain rejected/blocked/verified
 history. Record every pass's input checkpoint and added/updated IDs, including an
 empty result. Summarize unresolved gaps and why remaining ideas are not actionable.
-Do not classify candidates just to create leads. Do not loop internally or attempt
+Do not classify candidates just to create leads. Do not repeat stalled work internally or attempt
 exhaustive game completion. Return the lead list for the next disassembly pass.
+
+Return ready leads when evidence and a concrete recipe provide a useful next step,
+even if the expected byte gain is small or not yet measurable. An unanswered
+question alone does not justify another round. If none remain after reasonable
+investigation, report incomplete and explain the remaining obstacles. Research
+findings belong in durable evidence/lead records; leave classification changes to
+the disassembly phase. Preserve all map, fidelity and completion requirements.

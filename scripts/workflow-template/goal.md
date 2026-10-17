@@ -30,11 +30,22 @@ classification completion percentage to the user; recording it only in a file is
 insufficient. Follow the calculation and report format in prompts/disassembly.txt.
 Include this percentage again in the final handoff.
 
-After redirect, repeat the sequence only when new or materially improved ready
-leads offer an immediate substantial gain. Do not cycle on unchanged leads or
-repeat startup exploration without new evidence. If no such leads remain, stop
-and report incomplete with unknown counts, final checkpoint, commentary and leads
-links and verification results. Workflow termination is not whole-ROM completion.
+Every redirect pass investigates promising unresolved questions thoroughly but
+reasonably, following prompts/redirect.txt. Groundwork and intermediate understanding
+are valid progress without an immediate substantial byte gain. There is no separate
+investigation mode, one-time allowance or fixed hypothesis/experiment quota.
+After redirect, repeat the sequence when new or materially improved ready leads
+provide a concrete useful next step, even if the expected byte gain is small or
+not yet measurable. A ready lead needs evidence, an actionable recipe and a credible
+connection to resolving ROM structure or behavior; an unanswered question alone
+is insufficient. Do not cycle on unchanged leads or repeat startup exploration
+without new evidence or a materially different justified method.
+If redirect has no useful actionable next step after reasonable investigation,
+stop and report incomplete with unknown counts, final checkpoint, commentary and
+leads links and verification results. Workflow termination is not whole-ROM completion.
+Resume interrupted research from recorded findings rather than repeating it. When
+resuming an older easy-gain stop that has not used this redirect policy, run redirect
+again from the existing checkpoint/commentary handoff before deciding to terminate.
 When every byte is classified, address remaining pending review and known editorial
 issues before claiming completion. Reuse valid review credit; do not require a
 whole-source reread. Revisit reviewed material only for changed evidence or concrete

@@ -18,7 +18,8 @@ pub enum JoypadButton {
 }
 
 bitflags! {
-    #[derive(Default)]
+    #[derive(Default, Savable)]
+    #[savable(bitflags)]
     struct JoypadButtons:u8 {
         const START  = 1 << 7;
         const SELECT = 1 << 6;
@@ -48,7 +49,6 @@ impl From<JoypadButton> for JoypadButtons {
 
 #[derive(Savable)]
 pub struct Joypad {
-    #[savable(skip)]
     buttons: JoypadButtons,
     selecting_directions: bool,
     selecting_start: bool,

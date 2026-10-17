@@ -55,7 +55,7 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
     for path in records[0]["prompts"]:
         assert Path(path).is_file()
     disassembly = (work / "prompts/disassembly.txt").read_text()
-    assert "Stop immediately and report incomplete" in disassembly
+    assert "Stop and report incomplete" in disassembly
     assert "normal gameplay scenarios driven with debugger inputs" in disassembly
     assert "Do not limit play to startup or basic inputs" in disassembly
     assert "do not require a preexisting" in disassembly
@@ -66,8 +66,10 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
     assert "raw-byte export fallback do not count" in disassembly
     for required in ["emulator.memory.write", "emulator.registers.set",
                      "record exact patches", "natural gameplay reachability",
-                     "same easy-gain stopping rule"]:
+                     "useful evidence"]:
         assert required in disassembly
+    assert "Follow ready redirect leads" in disassembly
+    assert "Investigation mode:" not in disassembly
     redirect = (work / "prompts/redirect.txt").read_text()
     for required in ["exactly one", "emulator.memory.write", "emulator.registers.set",
                      "Do not reissue", "additional evidence", "attempt history"]:
@@ -83,13 +85,27 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
     for required in ["separate", "worker context", "compact handoff", "Never run competing",
                      "orchestration pending", "targeted final acceptance checks", "do not require a"]:
         assert required in goal
+    for required in ["Every redirect pass investigates", "expected byte gain is small",
+                     "run redirect again", "concrete useful next step"]:
+        assert required in " ".join(goal.split())
+    for required in ["thoroughly but reasonably", "do not stop at an inventory",
+                     "no fixed hypothesis count", "Do not chase rabbit holes",
+                     "pursue slim chances", "materially different justified method",
+                     "Keep each runtime call bounded", "leave classification changes"]:
+        assert required in " ".join(redirect.split())
+    assert "nominate up to three" not in redirect
+    assert "automatically schedule one bounded investigation pass" not in goal
+    workflow = (work / "workflow.md").read_text()
+    assert "Every redirect investigates" in workflow
+    assert "No separate investigation mode or fixed research quota" in " ".join(workflow.split())
+    assert "without an immediate, obvious prospect" not in workflow
     assert "low versus medium" not in goal
     assert "Evaluate reasoning settings" not in goal
     assert "After every disassembly pass" in goal
     assert "explicitly print the ROM" in goal
     assert "recording it only in a file is" in goal
     assert goal.index("1. prompts/disassembly") < goal.index("2. prompts/commentary") < goal.index("3. prompts/redirect")
-    assert "no such leads remain" in goal and "report incomplete" in goal
+    assert "reasonable investigation" in goal and "report incomplete" in goal
     assert json.loads((work / "analysis/leads.json").read_text()) == {"version": 1, "passes": [], "leads": []}
     assert not (work / "prompts/start.md").exists()
     assert "every physical ROM byte" in (work / "workflow.md").read_text()

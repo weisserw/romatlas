@@ -129,7 +129,7 @@ DMG execution now supports ROM-only, MBC1, MBC3 (types 0f–13), and MBC5 (types
 
 The RTC starts at day 0, 00:00:00. It advances from emulated time, including STOP waits; host time and time between API calls do not change it. Game code selects/writes RTC registers through the normal bus. A 0-to-1 latch write captures a stable copy while the live clock runs. Halting freezes the clock; clearing halt resumes it. Day carry stays set until game code clears it. Invalid RAM/RTC selections return open-bus ff and ignore writes instead of crashing.
 
-Snapshots include the live clock, latch, halt/carry bits and fractional-second phase. Version 4 added the RTC payload; the current fork snapshot format is 7. Older external Mizu snapshots are not accepted. Internal map JSON and portable .sym formats are unchanged. MBC30/oversized MBC3 images remain explicit unsupported cases. No MBC3 case is included in the public Mooneye gate; its coverage currently comes from local CPU-bus tests.
+Snapshots include the live clock, latch, halt/carry bits and fractional-second phase. Version 4 added the RTC payload; the current fork snapshot format is 8, which also saves held joypad buttons. Earlier snapshots (including format 7, which omitted held buttons) are rejected; recreate them with the current binary. Internal map JSON and portable .sym formats are unchanged. MBC30/oversized MBC3 images remain explicit unsupported cases. No MBC3 case is included in the public Mooneye gate; its coverage currently comes from local CPU-bus tests.
 
 ## CGB model and DMA
 

@@ -539,3 +539,65 @@ setting comparison guidance; that evaluation is outside this workflow.
 Validation: synthetic commentary and disassembly regressions and git diff --check
 pass. Changes are prompts/docs and matching regression assertions; no runtime,
 existing game workspace or asset changes, and no live-agent quality claim.
+
+2026-10-17: Exhausted easy-gain cycles now automatically schedule one eligible
+bounded investigation pass before final termination, including resumes of older
+stops without a recorded investigation. Coordinator, workflow, disassembly and
+redirect instructions allow groundwork and small supported findings without a
+premeasured substantial byte gain. Each pass selects at most three concrete
+hypotheses, one focused static investigation and at most three runtime tests per
+hypothesis (one million operations/30 seconds each). Durable scope/budgets/outcomes,
+interruption resumption and materially changed retry requirements prevent cycling.
+Artificial-state evidence remains distinct from natural reachability; classification,
+validation, fidelity and final editorial requirements remain unchanged.
+
+Updated the active Castlevania workspace goal/workflow/disassembly/redirect prompts
+and appended a migration note, preserving historical handoffs and all ROM/map/state/
+source artifacts. Its next resume targets one further level/substage descriptor,
+with a known audio command/stream as independent fallback. No game investigation,
+new classification, execution or verification was performed by this migration.
+
+Validation: synthetic scripts/test-disassemble.py passes generation, new prompt
+contracts, baseline and code checkpoint verification. scripts/test-portability.py
+passes deterministic stock generation and exact four-bank rebuilding. Python
+compilation and git diff --check pass. Prompt/docs/test-only change; no Rust runtime
+or dependency changes, commercial ROM/assets added, or live analysis agent launched.
+
+2026-10-17: Superseded the one-off bounded investigation policy above. Every
+redirect now investigates promising unresolved questions thoroughly but reasonably,
+including groundwork, consumer/writer tracing and debugger experiments. No fixed
+hypothesis count, experiment quota or separate disassembly investigation mode
+remains. Evidence, useful learning and credible next steps govern effort; repetitive
+results, accumulating unsupported assumptions and slim prospects end an avenue.
+Per-call emulator execution limits still apply. Further rounds accept concrete
+useful ready leads without requiring immediate substantial byte gains. Retry history,
+interruption records, structural evidence, map fidelity and final acceptance remain
+required. Older easy-gain stops resume redirect under this policy.
+
+Updated active Castlevania goal/workflow/disassembly/redirect instructions and added
+a superseding migration note. Historical evidence, map, state, source and verification
+artifacts remain unchanged. No live research or new classification was performed.
+Validation: synthetic disassembly regression passes prompt contracts, workspace guards,
+baseline and code checkpoint verification; stock portability passes deterministic
+source and exact four-bank rebuilding. Python compilation and git diff --check pass.
+These checks validate generated instructions, not live-agent research judgment.
+
+2026-10-17: Fixed Castlevania toolkit-issues.md T001 (reported in the request as
+T0001): held joypad buttons were explicitly skipped by the core snapshot serializer.
+The bitmask now saves/restores alongside row selection and interrupt-edge history,
+so named and exported snapshots replace live input consistently. Core snapshot
+format advances from 7 to 8; old files are rejected without changing live state
+because their missing input cannot be recovered. Recreate snapshots after restarting
+the server with the rebuilt release binary. The outer JSON envelope is unchanged.
+
+The synthetic session regression reproduced the original Right-held named-load
+failure before the fix. It now checks all eight buttons, both rows, named/file
+restoration over different live buttons and row selection, held-input operation
+replay, released-button restoration, and state/input preservation after old-version
+and truncated-core imports fail. Rust 1.90.0 locked release build, workspace fmt,
+all-target workspace Clippy with warnings denied, workspace tests, nine standalone
+core tests, session and deterministic byte-identical stock portability pass.
+Joypad source formatting and git diff --check pass. A separate vendor lib.rs format
+check still reports existing unrelated formatting; the only change there is the
+version constant. Standalone core tests retain an existing raw_screen_buffer dead
+code warning. No commercial ROM/assets or game-workspace artifacts were changed.

@@ -63,12 +63,13 @@ WORKFLOW = """# Per-game workflow
 Read goal.md. The coordinator gives each separate phase worker only its own prompt
 and compact checkpoint/handoff; workers retrieve relevant evidence as needed. The old provider-specific
 /goal startup/resume workflow is deprecated. Each disassembly pass stops at easy-gain
-exhaustion; the coordinator runs commentary and redirect before considering a new pass.
+exhaustion; the coordinator runs commentary and redirect. Every redirect investigates
+promising questions thoroughly but reasonably before deciding whether to continue.
 
 1. Run `python3 run.py inspect`, then `python3 run.py baseline` once. Baseline
    creates maps/baseline.sym and generated/baseline and verifies the rebuild.
    It marks raw bytes for export only; it is not a classified disassembly.
-   Use targeted Game familiarization below only if it enables an immediate easy gain.
+   Use targeted Game familiarization for an easy gain or a promising redirect investigation.
 2. Run `python3 run.py serve` as a persistent JSON-RPC subprocess. Use
    api.describe. A new session has empty analysis state. Load analysis/state.json
    with map.load when resuming. Do not import the raw baseline as classification.
@@ -97,7 +98,7 @@ exhaustion; the coordinator runs commentary and redirect before considering a ne
 
 ## Game familiarization
 
-When needed for an immediate easy gain, consult available online manuals, walkthroughs, FAQs, gameplay
+When needed for an easy gain or redirect investigation, consult available online manuals, walkthroughs, FAQs, gameplay
 guides and relevant technical resources after identifying the game and likely
 platform/region/revision. Do not rely on training-set familiarity. Record concise,
 actionable findings in analysis/gameplay.md with source URLs, applicable version,
@@ -125,12 +126,15 @@ gameplay scenarios, and bounded verification of specific leads in analysis/leads
 Continue ordinary gameplay while it yields substantial evidence or usable understanding;
 do not restrict it to startup/basic inputs or require a preexisting lead. Record routes
 and gains, try obvious productive alternatives and stop repetitive play when gains diminish.
-Abandon any
-investigation without an immediate, obvious prospect of substantial usable understanding.
-Stop immediately and report incomplete when these opportunities are exhausted, even if
-other concrete investigations remain. No per-range exhaustion proof is required.
+End the disassembly pass when these opportunities are exhausted; every redirect
+then investigates promising questions thoroughly but reasonably, as specified in
+prompts/redirect.txt. Groundwork and intermediate understanding may justify useful
+next steps without premeasured substantial byte gains. Avoid rabbit holes, slim
+chances and repeated stalled work. No separate investigation mode or fixed research
+quota applies. No per-range exhaustion proof is required; the full classification
+contract remains unchanged.
 Maintain analysis/investigation.md with attempted leads, outcomes and remaining unknowns.
-Do not repeat unchanged failed leads. Research gameplay only for an immediate easy gain;
+Do not repeat unchanged failed leads. Research gameplay for an easy gain or a promising redirect question;
 do not require manuals, late-game routes or exhaustive method reviews before stopping.
 
 Complete still means every physical ROM byte has an evidence-backed structural role,
