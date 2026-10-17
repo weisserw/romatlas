@@ -1,39 +1,36 @@
-Perform one commentary pass on the latest verified disassembly. Incomplete
-classification is expected: explain as much as the supplied source permits.
-Use the toolkit's scripts/commentary.py prepare WORKSPACE on the first round,
-then read commentary/AGENTS.md, commentary/workflow.md and commentary/prompt.md.
-Follow their naming, data documentation, inventory and byte-fidelity rules.
-Mark speculative or unknown lines (?) and use (??) or (???) for increasing
-uncertainty. Do not invent semantics or demand full classification to finish.
-Record unresolved dependencies for redirect rather than pursuing difficult analysis.
-On every pass, inspect uncommented sections and generic/generated labels, including
-previously reviewed sections and sections with no uncertainty marker. Read their
-instructions, callers and data consumers; add useful explanations and descriptive
-names wherever supported. Review meaningful routines/structures, not every line
-with a comment quota. Silence must not stand for an investigated unknown.
-Where purpose remains unclear, add a nearby (?) / (??) / (???) comment describing
-observable behavior, what remains unknown and relevant references or a concrete
-question for redirect. A bare uncertainty marker is insufficient. If even the
-behavior cannot be established, identify the range and evidence limitation explicitly.
-Record attempted interpretation and remaining gaps in review.json and uncertainties.md
-with physical ranges and source locations. Leave genuinely unreviewed sections pending
-and explicitly list them in commentary/progress.md and the pass handoff; do not
-claim editorial completion or mark skipped work reviewed merely to pass the audit.
-Run commentary verify, read and audit; report editorial review separately from
-ROM classification. An explained unknown can be reviewed without being resolved.
+Perform one bounded intermediate commentary pass on the latest verified source.
+On the first round use scripts/commentary.py prepare WORKSPACE, then read
+commentary/AGENTS.md, workflow.md and prompt.md. Incomplete classification and
+pending editorial review are expected; do not demand full-ROM review to hand off.
+
+Review new/changed disassembly and earlier interpretations affected by it, following
+callers, callees, tables and shared variables only as needed. On the first pass,
+prioritize useful known code/data and references into unknown areas. Inspect
+uncommented sections and generic/generated labels within that scope. Preserve valid
+prior review credit; do not sweep unchanged unknowns or reset all statuses each round.
+Use the best coherent static interpretation and descriptive symbols. Write clear,
+light prose: short functional comments with useful detail, avoiding compressed
+address-heavy shorthand and mechanical opcode narration.
+Mark material hypotheses with ordinary tentative wording; no graded uncertainty
+markers are required. Rewrite redundant old comments instead of appending duplicates.
+
+Stop when the affected scope is addressed, findings can feed redirect, or additional
+interpretation has diminishing returns. Hand off useful questions immediately;
+do not wait for all semantics or all review entries to be resolved. Record scope,
+changed interpretations, deferred ranges and concrete unresolved dependencies in
+commentary/progress.md, with links to compact review records and source evidence.
+Leave genuinely unreviewed work pending. Verify coherent edit batches and handoff,
+and refresh the reading copy at handoff. Reserve audit for final editorial cleanup
+or archive acceptance; partial passes do not claim editorial completion.
 
 On later rounds compare maps/current.sym and analysis/state.json with the frozen
-commentary baseline. If unchanged, resume existing commentary directly. If changed,
-preserve the entire previous commentary directory under a new analysis/round-N/
-directory before preparing a fresh baseline. Carry prior comments, names, review
-findings and uncertainty forward by physical ROM ranges, checking changed boundaries;
-never blindly copy stale assembly or overwrite the only copy of previous work.
-On every later pass, revisit previous (?), (??) and (???) sections and uncertainties.md
-entries affected by newly available disassembly or evidence. Check callers, callees,
-tables and shared variables, including dependencies outside newly classified ranges.
-Previously reviewed status does not exempt a section from this reassessment.
-Correct or expand explanations, names and uncertainty markers as evidence permits;
-retain uncertainty where unresolved and do not remove markers merely to show progress.
-Record which earlier uncertainties were resolved, revised or remain unresolved in
-commentary/progress.md and keep uncertainties.md and review.json consistent.
-Reverify all carried edits. All generated source/assets remain local.
+baseline. If unchanged, resume existing commentary. If changed, preserve the entire previous commentary
+directory under analysis/round-N/ before preparing a fresh baseline. Carry comments,
+names and review credit by physical ranges and dependencies, checking boundaries
+and changed evidence. Preserve unaffected credit; invalidate affected records only.
+Never blindly copy stale assembly or overwrite the only prior copy. Record carried,
+revised and invalidated ranges and why; reverify carried edits in the new baseline.
+Final acceptance addresses pending review and known editorial issues, reusing valid
+review credit without a mandatory whole-source reread. Full-ROM classification and
+strict final audit requirements remain intact.
+All generated source/assets remain local.

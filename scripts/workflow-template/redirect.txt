@@ -1,6 +1,7 @@
 Run exactly one redirect pass after commentary, including incomplete commentary.
-Read commentary/source/, reading-after.asm, uncertainties.md, review.json,
-analysis/state.json, analysis/investigation.md and analysis/leads.json.
+Start from the compact commentary handoff and analysis/leads.json. Retrieve relevant
+source, uncertainties, review records, state and investigation evidence as needed.
+Accept partial commentary immediately; do not wait for whole-ROM editorial review.
 Search the available commented source for all identifiable leads in this pass:
 missing callees, dispatch paths, table consumers, bank selection, unresolved
 pointers, state-dependent references and unexplained structures. Prefer static

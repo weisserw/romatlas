@@ -14,117 +14,83 @@ import tempfile
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = re.compile(r'^\s*INCLUDE\s+"([^"]+)"\s*(?:;.*)?$', re.I)
 
-PROMPT = """# Phase 2: readable, fully reviewed assembly
+PROMPT = """# Incremental commentary and final editorial review
 
-Read commentary/AGENTS.md and commentary/workflow.md first. Work in this existing
-game workspace; preserve all phase-1 evidence, maps and checkpoints. Read
-analysis/progress.md, analysis/investigation.md, analysis/gameplay.md,
-analysis/toolkit-issues.md and analysis/state.json. The source of truth for this
-phase is commentary/source/, not generated/ or the portable .sym.
+Read commentary/AGENTS.md and workflow.md. Work in commentary/source/, preserving
+phase-1 maps/evidence and the frozen before/ baseline. Read the current checkpoint,
+phase handoff and relevant analysis records; retrieve details only as needed.
 
-Objective: make the entire game's assembly understandable enough for an assembly-
-literate human or agent to answer questions, find bugs and modify it. Review all
-code, data, graphics, headers, padding and unknown intervals. Identify meaningful
-routine entries and extents, alternate entries, shared tails, fallthroughs, loops
-and branches; do not force every fragment into a conventional function model.
+The default is an intermediate research pass, not whole-ROM editorial completion.
+On the first round, prioritize known code/data that explains dispatch, banking,
+formats and references into unknown areas. On later rounds, review newly classified
+or changed ranges and earlier interpretations affected by that evidence. Follow
+callers, callees, tables and shared variables as needed. Inspect uncommented code
+and generic names within this scope. Do not sweep the entire ROM every round or
+reinspect unchanged unknown intervals without a new question or evidence.
+Preserve valid prior review credit. Changed boundaries, changed dependencies or
+contradictory evidence require reassessment; an unchanged checkpoint does not.
 
-On every pass, inspect uncommented sections and generic/generated labels, including
-previously reviewed sections and sections with no uncertainty marker. Read their
-instructions, callers and data consumers; add useful explanations and descriptive
-names wherever supported. Silence must not stand for an investigated unknown.
-If purpose remains unclear, add a nearby (?) / (??) / (???) comment explaining
-observable behavior, what remains unknown and relevant references or a concrete
-question for redirect. A bare uncertainty marker is insufficient. If even behavior
-cannot be established, identify the range and evidence limitation explicitly.
-Record attempted interpretation and remaining gaps in review.json and uncertainties.md
-with physical ranges and source locations. Leave genuinely unreviewed sections pending
-and explicitly list them in commentary/progress.md and the pass handoff. Do not
-claim editorial completion or mark skipped work reviewed merely to pass the audit.
+Use descriptive routine, branch, RAM variable and constant names wherever useful.
+Accept the best coherent static interpretation from instructions, callers and
+consumers; runtime proof and the original author's exact intent are not required.
+Replace numeric operands with symbols when their roles are understood, preserving
+exact values. Keep address-based identifiers where roles remain unknown. Explain
+purpose and algorithms rather than translating instructions. Document formats,
+units, bounds, bank context and consumers once, near the relevant structure.
+Write clear, light prose: short functional comments in natural language, with
+only the detail needed to understand purpose, behavior or a material assumption.
+Avoid compressed address-heavy shorthand and mechanical opcode narration.
+Rewrite existing explanations rather
+than stacking duplicate old/new comments; remove redundant opcode paraphrases.
 
-Use the conventions of well-written retro assembly: descriptive routine, local
-branch, variable and constant names; short functional comments close to the code;
-longer explanations only when complexity merits them. Small helpers may need just
-a name and a few instruction comments. Larger routines may need purpose, important
-inputs/results, side effects and algorithm notes, when useful to their reader.
-Explain WHY and what happens in game terms (e.g. updates ball position), not opcode
-translations (e.g. writes a register). Hardware explanations should describe the
-effect, timing constraint or reason for a sequence. Do not add comment quotas or
-boilerplate headers. Preserve upstream notices.
+Use ordinary tentative prose for material hypotheses, e.g. 'Probably selects the
+landing animation; also called during damage recovery.' Separate exact mechanics
+from inferred purpose. No graded question-mark taxonomy or marker quota is needed;
+preserve useful older uncertainty notes until affected evidence merits revision.
+Record significant assumptions and concrete unresolved questions, not every possible
+doubt. Revise names/comments when contradicted. Do not relabel phase-1 ambiguity
+or weaken evidence-backed structural classification to finish commentary.
 
-Thoroughly document data structures: record size, fields, signedness/endianness,
-units, indexes, bounds, sentinels, pointer/bank interpretation, consumers and game
-meaning where understood. Describe graphics blocks and their users without
-requiring a comment for every pixel byte. Name RAM variables and constants and
-replace numeric operands with them where useful; preserve their exact values.
+Use bounded debugging only for a concrete question likely to clarify useful behavior.
+Stop the intermediate pass when its changed/affected scope is addressed, useful
+findings can feed redirect, or further interpretation has diminishing returns.
+Do not delay redirect for complete semantic resolution or a full-ROM review.
+Unknown purpose and unreviewed ranges may remain; report both honestly.
 
-Trust thoughtful static interpretation. Read callers, callees, neighboring code
-and data consumers to establish coherent meanings; do not demand runtime proof
-for every name. Accept the best coherent interpretation and move on. Mark material
-tentative interpretations and unknown lines with (?) beside the relevant name/comment;
-use (??) for weak hypotheses and (???) for unknown or highly speculative meanings.
-Put longer alternatives in commentary/uncertainties.md only when useful. Contradictory evidence
-requires revisiting a guess. Avoid unsupported certainty and invented specificity.
+Keep review.json's full-ROM scaffold intact. Add compact records for meaningful
+routines/structures with physical ranges, bank context, source locations, status
+and useful summaries. Do not inventory every loop/branch by default or duplicate
+an explanation across progress, inventory and uncertainties. Keep unreviewed work
+pending. Update commentary/progress.md with this pass's scope, names/interpretations
+changed, unresolved dependencies, deferred ranges and actual verification results.
+Publish concrete questions for redirect as soon as available; link supporting
+source/ranges and suggest bounded checks without requiring a full lead dossier.
 
-On later passes, revisit previous (?), (??) and (???) sections and uncertainties.md
-entries affected by new disassembly or evidence, including callers, callees, tables
-and shared variables outside newly classified ranges. Previously reviewed status
-does not exempt a section from reassessment. Update explanations, names and markers
-only as evidence permits; retain unresolved uncertainty. Record resolved, revised
-and remaining uncertainties in commentary/progress.md and keep uncertainties.md
-and review.json consistent.
+Verify after coherent source-edit batches and at phase handoff; refresh the reading
+copy at handoff. Do not repeatedly rebuild after tiny comment edits or run the final
+completion audit while deliberately leaving review pending. A verified partial
+handoff is a successful intermediate pass, not editorial or whole-ROM completion.
 
-Use ROMAtlas debugging only when static reading leaves the role genuinely unclear
-and a concrete bounded experiment could clarify it. Record inputs, budgets and
-outcomes in the existing analysis records; retain physical/CPU/bank distinctions.
-Do not require whole-game execution or debug every plausible interpretation.
-
-Start from commentary/review.json: it inventories every physical byte using
-phase-1 regions plus unknown gaps. These regions are a scaffold, NOT function
-boundaries. Expand each entry's units with every routine, loop, shared tail,
-significant branch and data structure found during reading. Give units stable
-physical ranges/bank context, descriptive names, source locations, review status
-and a short useful summary. Shared/overlapping units are allowed within the
-scaffold; preserve its nonoverlapping full-ROM coverage. Revisit dependencies as
-names and meanings become clearer. Keep statuses honest across interrupted runs.
-
-Keep commentary/progress.md current with reviewed/pending counts, source edits,
-uncertainties and actual verification results. An uncertain unit can be reviewed:
-explain its observable behavior and reasonable competing meanings, methods tried,
-and what remains unavailable in this incomplete disassembly. Unknown purpose
-may remain unknown; mark it (?) or (???) rather than inventing an explanation.
-Preserve phase-1 ambiguity
-honestly; do not relabel it just to finish this phase. Phase-1 classification and
-phase-2 editorial completion are separate outcomes.
-
-After batches, run the verification and reading commands in workflow.md. Before
-completion, perform a whole-source editorial pass: check generic names, missing
-structures, wrong boundaries, stale numeric aliases, contradictory interpretations,
-misleading certainty and redundant comments. Every scaffold entry and discovered
-unit must be reviewed, not just named. Ensure source pointers still match edits.
-The script checks inventory coverage/status and byte identity; it cannot judge
-comment quality or whether an uncommented section was actually investigated.
-You are responsible for the editorial acceptance criteria.
-
-Perform one editorial pass over the supplied disassembly, commenting as much as
-its evidence permits. Accept incomplete workspaces and do not demand missing code
-or semantic resolution before finishing this pass. Documented semantic limits
-are acceptable finished outcomes; missing review, broken builds, unresolved source
-coverage are not. Hand off unresolved investigations to redirect. Report editorial
-completion only with
-the final audit, a fresh byte-identical verification, refreshed reading copy,
-and links to source, inventory, uncertainties and toolkit findings. Do not fix the
-toolkit. All ROMs, assembly, extracted assets and traces remain local.
+At final acceptance, address remaining pending review and known editorial issues:
+missing structures, stale numeric aliases, wrong boundaries, contradictory names,
+redundant comments and misleading certainty. Reuse valid reviews; do not schedule
+a mandatory whole-source reread or cosmetic rewrite. Revisit reviewed material only
+when changed evidence, dependencies or a concrete inconsistency warrants it.
+Every scaffold entry and meaningful discovered unit must then be reviewed; an
+explained unknown may remain unresolved. Run audit for full inventory/editorial
+acceptance plus a fresh byte-identical rebuild and refreshed reading copy.
+The audit cannot judge semantic or prose quality. Preserve upstream notices;
+all ROMs, generated source/assets and traces remain local. Do not fix the toolkit.
 """
 
 PHASE_AGENTS = """# Commentary phase instructions
 
-Read workflow.md and prompt.md in this directory before editing source/.
-This is phase 2 of an existing workspace. For this phase, the commentary completion
-contract replaces phase-1's requirement that every byte have a known structural
-kind. It does not declare phase 1 complete or weaken its recorded evidence.
-Reviewed, clearly documented ambiguity is allowed; unreviewed code/data is not.
-Follow the parent workspace's ROM identity, local artifact, toolkit-reporting and
-bounded runtime rules. Do not regenerate over source/ or edit before/.
+Read workflow.md and prompt.md before editing source/.
+Intermediate passes have bounded incremental scope and may hand off pending review.
+Full editorial acceptance is reserved for final cleanup and archive preparation.
+Neither partial nor full editorial review declares phase-1 classification complete.
+Follow parent ROM identity, local artifact, toolkit-reporting and bounded runtime
+rules. Do not regenerate over source/ or edit before/.
 """
 
 
@@ -264,8 +230,9 @@ source/ is independently maintained, buildable assembly. Never regenerate over i
 The portable .sym carries structural directives and labels, not the final comments.
 To reproduce commentary, preserve source/ and its local assets, not just .sym.
 Phase-1 unknown regions may remain unknown when their ambiguity has been reviewed
-and explained. This phase's goal is editorial completion, not a false declaration
-that phase-1 classification is complete. See prompt.md for the full contract.
+and explained. Intermediate passes improve the changed/affected scope and hand off pending work.
+Final editorial completion is a separate acceptance gate; neither declares
+phase-1 classification complete. See prompt.md for the full contract.
 
 """ + f"""Commands from any working directory:
 
@@ -273,6 +240,7 @@ that phase-1 classification is complete. See prompt.md for the full contract.
 {command.format(command='instructions')}
 {command.format(command='verify')}
 {command.format(command='read')}
+# Final editorial cleanup / archive acceptance only:
 {command.format(command='audit')}
 ```
 
@@ -286,12 +254,15 @@ performs a fresh verification and refreshes the reading copy. It cannot measure
 whether explanations are good: the agent must perform that editorial review.
 
 review.json entries partition the physical ROM. Do not remove or change that
-scaffold. Each needs status=reviewed, a summary and nonempty source locations.
-Add units for meaningful routines/loops/branches/shared tails/data structures:
+scaffold. Intermediate passes preserve valid review credit and leave other work
+pending. At final acceptance each needs status=reviewed, a summary and source locations.
+Add compact units for meaningful routines and data structures:
 name, offset, length, status, summary and source (list of file:line strings).
 Units can overlap, but must lie within the ROM. Split a spanning unit's inventory
-records across scaffold entries if useful. Every discovered unit must be reviewed.
-Set editorial_audit.status=reviewed and notes to the final editorial findings.
+records across scaffold entries if useful. Every discovered unit must be reviewed at final acceptance.
+Keep editorial_audit pending until final cleanup; then record reviewed and findings.
+Verify coherent edit batches and handoffs; refresh the reading copy at handoff.
+Do not repeatedly invoke the final audit during an intentionally partial pass.
 Use uncertainties.md for investigated limitations; ambiguity is not skipped work.
 Keep all source and assets local. Preserve toolkit reports and upstream notices.
 """)

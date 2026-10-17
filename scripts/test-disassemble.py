@@ -73,14 +73,18 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
                      "Do not reissue", "additional evidence", "attempt history"]:
         assert required in redirect
     commentary = (work / "prompts/commentary.txt").read_text()
-    assert "(??)" in commentary and "(???)" in commentary
-    assert "preserve the entire previous commentary" in commentary
-    assert "revisit previous (?), (??) and (???) sections" in commentary
-    assert "Previously reviewed status does not exempt" in commentary
-    assert "inspect uncommented sections and generic/generated labels" in commentary
-    assert "Silence must not stand for an investigated unknown" in commentary
+    for required in ["bounded intermediate", "Preserve valid", "prior review credit",
+                     "preserve the entire previous commentary", "ordinary tentative wording",
+                     "diminishing returns", "Reserve audit", "invalidate affected records only"]:
+        assert required in commentary
+    assert "(???)" not in commentary
     assert "do not assume missing comments mean there are" in redirect
     goal = (work / "goal.md").read_text()
+    for required in ["separate", "worker context", "compact handoff", "Never run competing",
+                     "orchestration pending", "targeted final acceptance checks", "do not require a"]:
+        assert required in goal
+    assert "low versus medium" not in goal
+    assert "Evaluate reasoning settings" not in goal
     assert "After every disassembly pass" in goal
     assert "explicitly print the ROM" in goal
     assert "recording it only in a file is" in goal

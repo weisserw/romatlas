@@ -55,8 +55,9 @@ no obvious substantial gain remains, even if difficult investigations are possib
 The full completion contract still requires evidence-backed classification of every
 byte, annotations, valid maps and byte-identical rebuilding.
 
-Commentary reviews and explains the available disassembly, accepting missing pieces.
-Speculative or unknown lines carry `(?)`, `(??)` or `(???)` with increasing uncertainty.
+Commentary incrementally explains new material and affected dependencies, accepting
+pending review. Significant hypotheses use ordinary tentative prose; no graded
+uncertainty markers are required. Separate phase workers use compact handoffs.
 Redirect searches commented source once for all available leads, using bounded debugger
 experiments and memory/register edits where useful. Artificial states are recorded as
 such, never as proof of natural reachability. `analysis/leads.json` preserves stable
@@ -112,14 +113,35 @@ An investigated phase-1 unknown interval does not prevent starting this phase.
 Preparation refuses an existing commentary directory; it never replaces edits.
 
 The command points to `prompts/commentary.txt` (older workspaces use
-`commentary/prompt.md`). That prompt asks the agent to review the entire game,
-identify routines, loops, shared tails and data structures, introduce meaningful
-symbols, and explain functionality using conventional readable assembly style.
-Comment detail scales with complexity; opcode translations and boilerplate
-headers are discouraged. Static interpretation is the default, tentative meanings
-use `(?)`, `(??)` and `(???)`, and debugging targets genuinely unclear behavior. Completion requires
-full review, documented investigated uncertainties, a final editorial pass and a
-fresh byte-identical rebuild, rather than certainty about every original intent.
+`commentary/prompt.md`). Intermediate commentary reviews newly classified/changed
+material and earlier interpretations affected by it, following dependencies as
+needed. The first pass prioritizes useful known code/data and references into
+unknown regions. Preserve valid prior review credit across rounds; changed boundaries
+or contradictory evidence invalidate affected records, not the entire inventory.
+
+Use descriptive symbols and the best coherent static interpretation. Write clear,
+light prose: short functional comments with useful detail, avoiding compressed
+address-heavy shorthand and mechanical opcode narration.
+Runtime proof or original-author certainty is not required for semantic names.
+Use ordinary tentative prose for significant hypotheses; graded question marks are
+not required. Keep numeric identifiers where roles remain unknown, revise incorrect
+interpretations, and replace redundant comments rather than stacking explanations.
+Structural classification still requires its original evidence standards.
+
+Stop when the affected scope is addressed, useful findings can feed redirect, or
+further interpretation has diminishing returns. A verified partial handoff lists
+scope, changed interpretations, unresolved questions and deferred work. Whole-ROM
+review and complete semantic resolution are not intermediate pass requirements.
+Final acceptance addresses pending review and known editorial issues, then runs
+the strict audit before editorial completion or archive acceptance. Reuse valid
+reviews; there is no mandatory whole-source reread or cosmetic rewrite. Revisit
+reviewed material only for changed evidence, dependencies or concrete inconsistencies.
+
+The coordinator launches sequential separate phase workers with compact handoffs,
+checkpoint identities and only the relevant phase prompt. Workers consult durable
+records as needed; logs do not all need to occupy coordinator context. If separate
+contexts are unavailable, hand off to a separate session and report orchestration
+pending. Do not run concurrent phase writers.
 
 The files to read and compare are:
 
@@ -147,7 +169,10 @@ python3 scripts/commentary.py audit /root/rom-work/game
 
 `instructions` prints the prompt location for a later session. `verify`
 rebuilds the edited source and checks exact equality without `rgbfix` header
-changes. `read` refreshes the after copy. `audit` checks the review inventory,
+changes. `read` refreshes the after copy. Verify coherent editing batches and phase handoffs;
+refresh the reading copy at handoff. Avoid tiny-edit rebuilds and repeated expected
+completion-audit failures. `audit` is reserved for final cleanup/archive acceptance;
+it checks the review inventory,
 requires final editorial notes, performs fresh verification and refreshes the
 reading copy. It checks coverage/status, not comment quality; the agent remains
 responsible for useful and coherent explanations. Reviewed ambiguity can satisfy

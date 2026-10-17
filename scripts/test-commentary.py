@@ -40,13 +40,12 @@ with tempfile.TemporaryDirectory(prefix="romatlas-commentary-") as temporary:
     assert json.loads(result.stdout)["byte_identical"]
     assert "prompts/commentary.txt" in result.stderr and "/goal " not in result.stderr
     prompt = (work / "commentary/prompt.md").read_text()
-    assert "(??)" in prompt and "(???)" in prompt
-    assert "Accept incomplete workspaces" in prompt
-    assert "revisit previous (?), (??) and (???) sections" in prompt
-    assert "does not exempt a section from reassessment" in prompt
-    assert "inspect uncommented sections and generic/generated labels" in prompt
-    assert "Leave genuinely unreviewed sections pending" in prompt
-    assert "A bare uncertainty marker is insufficient" in prompt
+    for required in ["default is an intermediate research pass", "Preserve valid prior review credit",
+                     "clear, light prose", "ordinary tentative prose", "diminishing returns",
+                     "At final acceptance", "mandatory whole-source reread",
+                     "Do not repeatedly rebuild", "Keep unreviewed work"]:
+        assert required in prompt
+    assert "(???)" not in prompt
     assert not (work / "commentary/instructions.txt").exists()
     phase = work / "commentary"
     before = (phase / "reading-before.asm").read_bytes()
@@ -54,7 +53,7 @@ with tempfile.TemporaryDirectory(prefix="romatlas-commentary-") as temporary:
     assert b'INCLUDE "hardware.inc"' in before
     assert (phase / "source/game.asm").is_file()
     assert not (phase / "source/game.o").exists()
-    assert "do not relabel" in (phase / "prompt.md").read_text()
+    assert "Do not relabel" in (phase / "prompt.md").read_text()
     call("python3", SCRIPT, "prepare", work, ok=False)
     assert all((work / name).read_bytes() == value for name, value in preserved.items())
     call("python3", SCRIPT, "audit", work, ok=False)
@@ -62,6 +61,9 @@ with tempfile.TemporaryDirectory(prefix="romatlas-commentary-") as temporary:
     bank.write_text("; Enter the synthetic program.\n" + bank.read_text())
     call("python3", SCRIPT, "verify", work)
     call("python3", SCRIPT, "read", work)
+    # A partial handoff verifies and reads successfully without weakening final acceptance.
+    call("python3", SCRIPT, "audit", work, ok=False)
+    assert not (phase / "audit.json").exists()
     assert b"Enter the synthetic program" in (phase / "reading-after.asm").read_bytes()
     assert (phase / "reading-before.asm").read_bytes() == before
     review = json.loads((phase / "review.json").read_text())

@@ -500,3 +500,42 @@ scripts/test-port.py, stock portability, dependency boundaries and git diff --ch
 pass. No Android SDK/toolchain was installed, APK built, device/GUI launched or
 commercial ROM/assets used. Changes are documentation and generated README text;
 runtime code and dependencies are unchanged.
+
+2026-10-17: Intermediate commentary now has incremental research scope: new/changed
+material and affected dependencies, preserved unaffected review credit, coherent
+provisional names and ordinary tentative prose. It can hand useful findings to
+redirect with pending review, stopping at addressed scope or diminishing returns.
+Prompts require clear, light functional prose, replacement of redundant comments and compact
+routine/structure records rather than exhaustive branch inventories. Changed-map
+carry-forward preserves historical source and invalidates affected records only;
+this remains an agent-directed operation, not automatic semantic migration.
+Verification is requested for coherent batches/handoffs and the reading copy at
+handoff; the unchanged strict audit remains for final editorial cleanup/archive.
+Whole-ROM evidence-backed classification and archive acceptance are not weakened.
+
+Coordinator prompts now require sequential separate phase contexts, phase-specific
+instructions and compact durable handoffs, with an explicit separate-session fallback
+when worker launching is unavailable. Preparation still writes instructions rather
+than launching agents. Active docs and generated workflow agree. Existing game workspaces, including Kirby,
+were not modified or migrated; no ROM or extracted asset was added.
+
+Validation on Rust 1.90.0: locked release build, cargo fmt --check, locked workspace
+all-target Clippy with warnings denied, locked workspace tests, synthetic disassembly
+and commentary regressions, archive regression, stock-tool portability, Python
+compilation and git diff --check pass. The commentary regression demonstrates a
+verified/readable partial handoff while final audit still rejects pending review;
+full synthetic editorial acceptance and altered-scaffold/fidelity rejection remain
+covered. No session/runtime/dependency code changed. Checks validate instructions
+and acceptance behavior, not live agent semantic quality, context isolation or speed.
+
+2026-10-17: Refined commentary's editorial standard to clear, light prose: short
+functional comments with useful detail, avoiding compressed address-heavy shorthand
+and mechanical opcode narration. Final acceptance addresses pending review and known
+editorial issues using existing valid review credit; it no longer prescribes a
+whole-source reread or cosmetic rewrite. Reviewed material is revisited for changed
+evidence/dependencies or concrete inconsistencies. Strict inventory, editorial
+notes and byte-identical archive acceptance remain unchanged. Removed the reasoning
+setting comparison guidance; that evaluation is outside this workflow.
+Validation: synthetic commentary and disassembly regressions and git diff --check
+pass. Changes are prompts/docs and matching regression assertions; no runtime,
+existing game workspace or asset changes, and no live-agent quality claim.

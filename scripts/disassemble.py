@@ -60,7 +60,8 @@ findings and link the report, or explicitly say "no toolkit issues found" if emp
 
 WORKFLOW = """# Per-game workflow
 
-Read goal.md and the three single-pass prompts in prompts/. The old provider-specific
+Read goal.md. The coordinator gives each separate phase worker only its own prompt
+and compact checkpoint/handoff; workers retrieve relevant evidence as needed. The old provider-specific
 /goal startup/resume workflow is deprecated. Each disassembly pass stops at easy-gain
 exhaustion; the coordinator runs commentary and redirect before considering a new pass.
 

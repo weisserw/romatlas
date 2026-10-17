@@ -41,8 +41,11 @@ Run your agent from the game workspace and ask it to read `goal.md`. The generat
 `prompts/disassembly.txt`, `commentary.txt` and `redirect.txt` define single passes.
 Disassembly drives normal gameplay scenarios while they yield substantial gains,
 alongside static discovery and lead verification, then stops incomplete when no
-obvious substantial gain remains. Commentary explains the incomplete source with uncertainty markers; redirect
-finds new leads once. The coordinator repeats only with new actionable information,
+obvious substantial gain remains. Commentary incrementally interprets changed material and affected dependencies,
+preserving valid prior review credit and using readable provisional names. It hands
+off useful findings without waiting for full-ROM editorial review; redirect finds
+new leads once. Separate sequential phase workers exchange compact durable handoffs.
+Full editorial cleanup/audit is reserved for final acceptance and archiving. The coordinator repeats only with new actionable information,
 otherwise reports incomplete. Whole-ROM completion still requires every byte to be
 classified with evidence and a verified rebuild. No agent provider is required.
 
