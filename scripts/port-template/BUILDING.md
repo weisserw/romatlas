@@ -4,7 +4,7 @@ This is the baseline guide generated with the port scaffold. The port agent must
 update it for the finished executable, dependencies, flags and validation.
 Platform instructions below are recipes, not evidence that a platform was tested.
 
-Build on the target operating system and CPU architecture. Install Rust through
+For desktop builds, build on the target operating system and CPU architecture. Install Rust through
 [rustup](https://rustup.rs/), use Rust 1.90.0 and retain port/Cargo.lock.
 
 ## Preserve and transfer source
@@ -112,6 +112,82 @@ Copy-Item "$sdlLib\SDL2.dll" .\target\release\SDL2.dll
 Use forward slashes in the Cargo.toml dependency path. Keep SDL2.dll beside the
 executable. This recipe is for Windows x64; other targets need matching libraries.
 Reference: [Rust SDL2 Windows MSVC linking](https://github.com/Rust-SDL2/rust-sdl2#windows-msvc).
+
+## Android (APK integration required)
+
+The generated project currently has a Rust CLI and an optional desktop SDL2
+shell. It does not include an Android Activity, JNI entry point, Gradle project,
+ROM picker or touch controls. The steps below describe the build integration a
+port developer must add; installing an Android target alone does not produce a
+playable APK. Keep the existing desktop/headless entry points working.
+
+### Toolchain and native-code check
+
+Install Android Studio and, through SDK Manager, Android SDK Platform-Tools,
+a target SDK, NDK (Side by side) and CMake. Use the JDK required by the chosen
+Android Gradle Plugin. Record exact SDK/NDK/JDK/Gradle/CMake versions in the
+finished guide and pin the NDK with Gradle's `ndkVersion`. See the official
+[NDK setup instructions](https://developer.android.com/studio/projects/install-ndk).
+
+Start with `arm64-v8a` (`aarch64-linux-android`) for ARM64 phones. An x86_64
+emulator needs `x86_64-linux-android` and matching SDL libraries. Install the Rust
+targets and check the device-independent code from port/:
+
+```sh
+rustup target add --toolchain 1.90.0 aarch64-linux-android
+cargo +1.90.0 check --release --locked --target aarch64-linux-android
+```
+
+This checks Rust code without linking SDL or packaging an app. It does not
+validate Android execution. Native linking additionally needs the selected NDK's
+Clang linker and ABI/API configuration; use one minimum API consistently across
+Rust, SDL and Gradle. Host Linux SDL libraries cannot be used for Android.
+
+### Add the Android application
+
+1. Copy the `android-project` skeleton from a pinned **SDL2** source release into
+   an android/ directory beside port/. Use the Java glue and native SDL sources
+   from that same release. Follow the
+   [SDL2 Android guide](https://github.com/libsdl-org/SDL/blob/SDL2/docs/README-android.md),
+   rather than SDL3 instructions. Record the release and preserve its notices.
+2. Move reusable game construction into a Rust library, retaining the desktop
+   CLI. Add an Android `cdylib` target and an exported C-compatible `SDL_main`
+   entry point, or a C shim that calls Rust. Match SDLActivity's library names
+   and entry point, contain Rust panics at the FFI boundary, and return errors
+   to the Android UI instead of terminating the process through the CLI.
+3. Build SDL2 for each selected ABI with the skeleton's NDK/CMake integration.
+   Configure Cargo's target linker and SDL search path for those outputs; wire
+   the Rust build into Gradle so changes rebuild the native library. Package
+   both the game shared library and its native dependencies for each ABI.
+   Keep Cargo.lock and use `--release --locked` for Cargo invocations. Update
+   this guide with the actual commands, library names and output locations.
+4. Add a ROM selection screen using Android's
+   [Storage Access Framework](https://developer.android.com/training/data-storage/shared/documents-files).
+   A `content://` URI is not a filesystem path: read it through ContentResolver
+   and copy it into bounded app-private storage before calling `Rom::open`,
+   preserving SHA-256 validation. Keep settings and asset overrides in writable
+   app storage. Never bundle the ROM or extracted original assets in the APK.
+5. Adapt the shell for pause/resume, surface recreation, audio interruption,
+   Android Back, safe screen areas and input rearming. Add usable touch controls
+   and a settings/menu route without F1, or explicitly require a controller.
+   The desktop shell alone does not supply these mobile interactions.
+
+### Build, install and validate
+
+After the application integration above exists, run from android/:
+
+```sh
+./gradlew assembleDebug
+adb install -r app/build/outputs/apk/debug/app-debug.apk
+```
+
+On Windows use `gradlew.bat`. Open the app on the selected device, import your
+matching ROM, and test gameplay, settings persistence, touch/controller input,
+pause/resume and audio recovery. Keep device/API/ABI and results in the validation
+section. Run headless game tests on the host separately. Cross-compilation and
+APK assembly do not establish device behavior; no Android build or device test
+has been performed for this scaffold. Release signing, keystore management and
+store packaging require a separate release setup; keep signing secrets local.
 
 ## Headless builds and checks
 

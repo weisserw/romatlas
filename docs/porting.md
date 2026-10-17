@@ -134,7 +134,11 @@ Preparation also creates BUILDING.md from scripts/port-template/BUILDING.md,
 substituting the port's name/executable and initial toolkit path. The generated
 README links to this guide. It covers private macOS/Linux/Windows source builds,
 SDL prerequisites/linking, source transfers excluding target/, path relocation,
-headless builds and later packaging. The coordinator prompt requires the port agent
+headless builds and later packaging. Its Android section covers toolchain setup,
+a Rust cross-target check, required SDL2/Activity/native-library integration, ROM
+selection, mobile lifecycle/input, and debug APK build/install commands after
+integration. Android app support is not generated or validated by preparation.
+The coordinator prompt requires the port agent
 to adapt it to final dependencies/flags and record actual platform validation.
 The baseline recipes are not platform-test evidence and do not authorize
 distribution. Existing source ports can adopt the guide without regeneration;

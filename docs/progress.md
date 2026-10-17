@@ -483,3 +483,20 @@ Validation: synthetic disassembly and commentary regressions pass prompt contrac
 baseline/code checkpoint rebuilds, source fidelity and inventory audits. git diff
 --check passes. No semantic-comment quality enforcement is claimed: those judgments
 remain agent obligations. Existing workspace prompts are not automatically updated.
+
+2026-10-17: Added Android build/integration guidance to the generated native-port
+BUILDING.md and linked it from generated README and active porting documentation.
+It covers SDK/NDK setup, Rust ARM64 cross-target checking, SDL2 Activity/native
+library packaging, ROM selection through app-private storage, lifecycle/input
+adaptation and debug APK build/install commands after integration. The current
+scaffold still supplies no Android wrapper; the guide explicitly separates required
+implementation from available commands and records Android as unvalidated.
+Official SDL2 and Android documentation support the platform guidance. Existing
+workspaces are not rewritten.
+
+Validation: locked release build, cargo fmt --check, desktop-feature port Clippy
+with warnings denied and all 21 port tests pass under Rust 1.90.0. Synthetic
+scripts/test-port.py, stock portability, dependency boundaries and git diff --check
+pass. No Android SDK/toolchain was installed, APK built, device/GUI launched or
+commercial ROM/assets used. Changes are documentation and generated README text;
+runtime code and dependencies are unchanged.

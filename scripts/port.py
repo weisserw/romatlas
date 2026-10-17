@@ -219,7 +219,7 @@ All ROMs, restored source/assets and generated build products remain local.
         (stage / "README.md").write_text(f"""# {name}: native Rust port workspace
 
 Status: scaffold only. Implement the entire game before claiming completion.
-See [BUILDING.md](BUILDING.md) for local macOS/Linux/Windows source builds and
+See [BUILDING.md](BUILDING.md) for local macOS/Linux/Windows source builds, Android integration guidance and
 transfer instructions. Adapt that guide for the finished port and tested facts.
 Run `python3 run.py headless --frames 120` on this server. On a desktop with SDL2
 installed, `python3 run.py desktop` opens the window; F1 opens saved player settings.
