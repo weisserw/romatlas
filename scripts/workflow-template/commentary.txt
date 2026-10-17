@@ -6,6 +6,19 @@ Follow their naming, data documentation, inventory and byte-fidelity rules.
 Mark speculative or unknown lines (?) and use (??) or (???) for increasing
 uncertainty. Do not invent semantics or demand full classification to finish.
 Record unresolved dependencies for redirect rather than pursuing difficult analysis.
+On every pass, inspect uncommented sections and generic/generated labels, including
+previously reviewed sections and sections with no uncertainty marker. Read their
+instructions, callers and data consumers; add useful explanations and descriptive
+names wherever supported. Review meaningful routines/structures, not every line
+with a comment quota. Silence must not stand for an investigated unknown.
+Where purpose remains unclear, add a nearby (?) / (??) / (???) comment describing
+observable behavior, what remains unknown and relevant references or a concrete
+question for redirect. A bare uncertainty marker is insufficient. If even the
+behavior cannot be established, identify the range and evidence limitation explicitly.
+Record attempted interpretation and remaining gaps in review.json and uncertainties.md
+with physical ranges and source locations. Leave genuinely unreviewed sections pending
+and explicitly list them in commentary/progress.md and the pass handoff; do not
+claim editorial completion or mark skipped work reviewed merely to pass the audit.
 Run commentary verify, read and audit; report editorial review separately from
 ROM classification. An explained unknown can be reviewed without being resolved.
 
@@ -15,4 +28,12 @@ preserve the entire previous commentary directory under a new analysis/round-N/
 directory before preparing a fresh baseline. Carry prior comments, names, review
 findings and uncertainty forward by physical ROM ranges, checking changed boundaries;
 never blindly copy stale assembly or overwrite the only copy of previous work.
+On every later pass, revisit previous (?), (??) and (???) sections and uncertainties.md
+entries affected by newly available disassembly or evidence. Check callers, callees,
+tables and shared variables, including dependencies outside newly classified ranges.
+Previously reviewed status does not exempt a section from this reassessment.
+Correct or expand explanations, names and uncertainty markers as evidence permits;
+retain uncertainty where unresolved and do not remove markers merely to show progress.
+Record which earlier uncertainties were resolved, revised or remain unresolved in
+commentary/progress.md and keep uncertainties.md and review.json consistent.
 Reverify all carried edits. All generated source/assets remain local.

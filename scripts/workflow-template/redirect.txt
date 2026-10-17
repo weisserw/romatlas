@@ -5,6 +5,10 @@ Search the available commented source for all identifiable leads in this pass:
 missing callees, dispatch paths, table consumers, bank selection, unresolved
 pointers, state-dependent references and unexplained structures. Prefer static
 analysis and concrete missing pieces over speculative gameplay exploration.
+Also inspect uncommented sections, generic/generated labels and commentary's
+explicit unreviewed gaps directly; do not assume missing comments mean there are
+no leads. Use observable-behavior notes and uncertainty questions as starting points,
+confirming them against source and evidence rather than trusting review status alone.
 
 Use run.py serve and docs/protocol.md for bounded hypothesis tests when helpful.
 Inspect api.describe. Use emulator.memory.write and emulator.registers.set to

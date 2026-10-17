@@ -28,6 +28,19 @@ code, data, graphics, headers, padding and unknown intervals. Identify meaningfu
 routine entries and extents, alternate entries, shared tails, fallthroughs, loops
 and branches; do not force every fragment into a conventional function model.
 
+On every pass, inspect uncommented sections and generic/generated labels, including
+previously reviewed sections and sections with no uncertainty marker. Read their
+instructions, callers and data consumers; add useful explanations and descriptive
+names wherever supported. Silence must not stand for an investigated unknown.
+If purpose remains unclear, add a nearby (?) / (??) / (???) comment explaining
+observable behavior, what remains unknown and relevant references or a concrete
+question for redirect. A bare uncertainty marker is insufficient. If even behavior
+cannot be established, identify the range and evidence limitation explicitly.
+Record attempted interpretation and remaining gaps in review.json and uncertainties.md
+with physical ranges and source locations. Leave genuinely unreviewed sections pending
+and explicitly list them in commentary/progress.md and the pass handoff. Do not
+claim editorial completion or mark skipped work reviewed merely to pass the audit.
+
 Use the conventions of well-written retro assembly: descriptive routine, local
 branch, variable and constant names; short functional comments close to the code;
 longer explanations only when complexity merits them. Small helpers may need just
@@ -51,6 +64,14 @@ tentative interpretations and unknown lines with (?) beside the relevant name/co
 use (??) for weak hypotheses and (???) for unknown or highly speculative meanings.
 Put longer alternatives in commentary/uncertainties.md only when useful. Contradictory evidence
 requires revisiting a guess. Avoid unsupported certainty and invented specificity.
+
+On later passes, revisit previous (?), (??) and (???) sections and uncertainties.md
+entries affected by new disassembly or evidence, including callers, callees, tables
+and shared variables outside newly classified ranges. Previously reviewed status
+does not exempt a section from reassessment. Update explanations, names and markers
+only as evidence permits; retain unresolved uncertainty. Record resolved, revised
+and remaining uncertainties in commentary/progress.md and keep uncertainties.md
+and review.json consistent.
 
 Use ROMAtlas debugging only when static reading leaves the role genuinely unclear
 and a concrete bounded experiment could clarify it. Record inputs, budgets and
@@ -81,7 +102,8 @@ structures, wrong boundaries, stale numeric aliases, contradictory interpretatio
 misleading certainty and redundant comments. Every scaffold entry and discovered
 unit must be reviewed, not just named. Ensure source pointers still match edits.
 The script checks inventory coverage/status and byte identity; it cannot judge
-comment quality. You are responsible for the editorial acceptance criteria.
+comment quality or whether an uncommented section was actually investigated.
+You are responsible for the editorial acceptance criteria.
 
 Perform one editorial pass over the supplied disassembly, commenting as much as
 its evidence permits. Accept incomplete workspaces and do not demand missing code

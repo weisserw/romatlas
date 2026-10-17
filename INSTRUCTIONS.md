@@ -47,8 +47,10 @@ Read the generated `goal.md` in the game workspace. It coordinates three single-
 prompts in `prompts/`: `disassembly.txt`, `commentary.txt`, and `redirect.txt`.
 The old printed provider-specific goal startup/resume workflow is deprecated.
 
-Disassembly takes substantial easy gains from startup static analysis, basic inputs,
-and bounded verification of supplied leads. It immediately stops **incomplete** when
+Disassembly uses static analysis, normal gameplay driven with debugger inputs,
+and bounded verification of supplied leads. It progresses through ordinary game
+scenarios while they yield substantial new evidence or usable understanding, without
+requiring an existing lead or restricting play to startup/basic inputs. It immediately stops **incomplete** when
 no obvious substantial gain remains, even if difficult investigations are possible.
 The full completion contract still requires evidence-backed classification of every
 byte, annotations, valid maps and byte-identical rebuilding.

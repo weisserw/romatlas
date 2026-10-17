@@ -119,8 +119,12 @@ alone does not prevent taking available local easy gains.
 ## Completion and investigation contract
 
 This is one easy-gain pass, not an exhaustive investigation. Read prompts/disassembly.txt.
-Easy gains are substantial executable regions found by startup static analysis or basic
-inputs, and bounded verification of specific leads in analysis/leads.json. Abandon any
+Easy gains include substantial discoveries from static analysis, debugger-driven normal
+gameplay scenarios, and bounded verification of specific leads in analysis/leads.json.
+Continue ordinary gameplay while it yields substantial evidence or usable understanding;
+do not restrict it to startup/basic inputs or require a preexisting lead. Record routes
+and gains, try obvious productive alternatives and stop repetitive play when gains diminish.
+Abandon any
 investigation without an immediate, obvious prospect of substantial usable understanding.
 Stop immediately and report incomplete when these opportunities are exhausted, even if
 other concrete investigations remain. No per-range exhaustion proof is required.

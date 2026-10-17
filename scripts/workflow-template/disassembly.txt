@@ -4,8 +4,15 @@ Run exactly one disassembly pass. Restore analysis/state.json if present; preser
 existing classifications. Establish the verified baseline only if absent.
 
 Take easy gains: identify and verify substantial executable regions available
-through startup static discovery and basic menu/gameplay inputs. Also verify
+through static discovery and normal gameplay scenarios driven with debugger inputs. Also verify
 specific leads from analysis/leads.json with bounded, targeted experiments.
+Progress through levels, menus, encounters and other ordinary game states while
+these scenarios yield substantial new evidence or usable ROM understanding.
+Do not limit play to startup or basic inputs, and do not require a preexisting
+lead for productive normal gameplay. Use bounded input sequences, inspect results
+and record reproducible routes and gains. When scenarios cease yielding substantial
+gains, try an obvious promising alternative if available; abandon repetitive play
+and difficult progression without a concrete prospect of substantial new gains.
 For concrete lead verification, use emulator.memory.write and emulator.registers.set
 when direct state changes can expose the needed code, pointers or tables immediately.
 Save/restore snapshots and record exact patches, effective banks and execution budgets.
@@ -17,8 +24,9 @@ For each attempted lead preserve its ID, evidence, status (verified, rejected,
 blocked or superseded), result and why it should or should not be retried.
 
 Abandon investigations that do not immediately promise substantial usable new
-understanding. Stop immediately and report incomplete once no obvious easy gain
-remains, even when more difficult investigations are possible. Do not exhaust
+understanding. Stop immediately and report incomplete once normal gameplay no longer
+yields substantial gains and no obvious productive scenario, static investigation or
+actionable lead remains, even when more difficult investigations are possible. Do not exhaust
 all gameplay, all methods or all unknown ranges. Do not stop at raw baseline
 while obvious startup gains remain. Do not repeat failed leads without new evidence.
 

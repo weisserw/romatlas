@@ -39,8 +39,9 @@ python3 run.py baseline
 
 Run your agent from the game workspace and ask it to read `goal.md`. The generated
 `prompts/disassembly.txt`, `commentary.txt` and `redirect.txt` define single passes.
-Disassembly stops incomplete when startup/basic-input and supplied-lead easy gains
-end. Commentary explains the incomplete source with uncertainty markers; redirect
+Disassembly drives normal gameplay scenarios while they yield substantial gains,
+alongside static discovery and lead verification, then stops incomplete when no
+obvious substantial gain remains. Commentary explains the incomplete source with uncertainty markers; redirect
 finds new leads once. The coordinator repeats only with new actionable information,
 otherwise reports incomplete. Whole-ROM completion still requires every byte to be
 classified with evidence and a verified rebuild. No agent provider is required.

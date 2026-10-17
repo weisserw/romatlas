@@ -42,6 +42,11 @@ with tempfile.TemporaryDirectory(prefix="romatlas-commentary-") as temporary:
     prompt = (work / "commentary/prompt.md").read_text()
     assert "(??)" in prompt and "(???)" in prompt
     assert "Accept incomplete workspaces" in prompt
+    assert "revisit previous (?), (??) and (???) sections" in prompt
+    assert "does not exempt a section from reassessment" in prompt
+    assert "inspect uncommented sections and generic/generated labels" in prompt
+    assert "Leave genuinely unreviewed sections pending" in prompt
+    assert "A bare uncertainty marker is insufficient" in prompt
     assert not (work / "commentary/instructions.txt").exists()
     phase = work / "commentary"
     before = (phase / "reading-before.asm").read_bytes()

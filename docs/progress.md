@@ -450,3 +450,36 @@ and editorial coverage stay separate, and rounding cannot establish completion.
 Validation: scripts/test-disassemble.py passes generated-prompt assertions and
 synthetic baseline/code checkpoint verification. git diff --check passes. Existing
 workspaces are not automatically updated; no runtime implementation changed.
+
+2026-10-17: Broadened disassembly from basic startup inputs to debugger-driven
+normal gameplay scenarios. Prompts now require progressing through ordinary game
+states while they yield substantial evidence or usable understanding, without a
+preexisting lead. Bounded input sequences and reproducible routes/gains remain
+required; obvious productive alternatives are considered before stopping, while
+repetitive play and difficult progression without substantial prospects are
+abandoned. Coordinator, generated workflow and active user docs agree.
+Validation: scripts/test-disassemble.py passes generated-prompt assertions and
+synthetic baseline/code checkpoint verification; git diff --check passes. No live
+gameplay agent or commercial ROM was used. Existing workspaces are not migrated.
+
+2026-10-17: Commentary prompts now explicitly require revisiting earlier (?),
+(??), (???) sections and uncertainty entries affected by new disassembly/evidence.
+The review includes callers, callees, tables and shared variables outside new
+classification ranges; previous reviewed status grants no exemption. Explanations,
+names and markers change only with supporting evidence, unresolved uncertainty
+remains explicit, and progress/inventory/uncertainty records must stay consistent.
+Validation: synthetic disassembly and commentary regressions pass, including both
+generated prompt contracts, source fidelity and review audits. git diff --check
+passes. No live agent behavior or existing workspace migration was tested.
+
+2026-10-17: Commentary now explicitly inspects uncommented sections and generic
+labels every pass, including previously reviewed ranges without uncertainty markers.
+Unclear sections need useful nearby notes on observable behavior, remaining unknowns
+and references/questions for redirect, plus range/source-qualified review records;
+a bare marker or silence cannot stand for investigation. Genuinely unreviewed work
+stays pending and must be listed at handoff rather than marked reviewed to satisfy
+the audit. Redirect also inspects uncommented/generic/unreviewed gaps directly.
+Validation: synthetic disassembly and commentary regressions pass prompt contracts,
+baseline/code checkpoint rebuilds, source fidelity and inventory audits. git diff
+--check passes. No semantic-comment quality enforcement is claimed: those judgments
+remain agent obligations. Existing workspace prompts are not automatically updated.

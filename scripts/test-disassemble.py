@@ -56,7 +56,10 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
         assert Path(path).is_file()
     disassembly = (work / "prompts/disassembly.txt").read_text()
     assert "Stop immediately and report incomplete" in disassembly
-    assert "basic menu/gameplay inputs" in disassembly
+    assert "normal gameplay scenarios driven with debugger inputs" in disassembly
+    assert "Do not limit play to startup or basic inputs" in disassembly
+    assert "do not require a preexisting" in disassembly
+    assert "abandon repetitive play" in disassembly
     assert "analysis/leads.json" in disassembly
     assert "ROM classification: X.XX% (C / T bytes classified; U bytes unknown)." in disassembly
     assert "100 * C / T" in disassembly
@@ -72,6 +75,11 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
     commentary = (work / "prompts/commentary.txt").read_text()
     assert "(??)" in commentary and "(???)" in commentary
     assert "preserve the entire previous commentary" in commentary
+    assert "revisit previous (?), (??) and (???) sections" in commentary
+    assert "Previously reviewed status does not exempt" in commentary
+    assert "inspect uncommented sections and generic/generated labels" in commentary
+    assert "Silence must not stand for an investigated unknown" in commentary
+    assert "do not assume missing comments mean there are" in redirect
     goal = (work / "goal.md").read_text()
     assert "After every disassembly pass" in goal
     assert "explicitly print the ROM" in goal

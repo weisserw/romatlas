@@ -8,7 +8,9 @@ Read AGENTS.md and workflow.md. Run these single-pass workflows in order:
 Persist the round number, current phase, input/output checkpoints, verification,
 lead IDs consumed/produced and outcomes in analysis/progress.md. Resume the recorded
 phase after interruption; do not initialize over existing work. Each disassembly
-pass reports incomplete as soon as easy gains end. Continue through commentary
+pass drives normal gameplay scenarios while they yield substantial gains, alongside
+static analysis and lead verification, and reports incomplete when these gains end.
+Do not restrict disassembly to startup or basic inputs. Continue through commentary
 and redirect even when disassembly or semantics remain incomplete. Preserve prior
 commentary and lead history across rounds as described in the prompts.
 
