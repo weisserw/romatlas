@@ -1,0 +1,93 @@
+# Exact residual ledger
+
+64955/65536 classified (99.11346435546875%);581 Unknown/85 ranges. Inclusive physical addresses. All proposed/accepted bytes in this attempt:0.
+
+| Physical | Bank / CPU | Bytes | Group / assessment | Disposition |
+|---|---|---:|---|---|
+| 0728..0728 | 0 / 0728 | 1 | isolated-return / A7 | Retain Unknown; scoped terminal exhaustion. |
+| 0b85..0b8c | 0 / 0b85 | 8 | unrooted-transfer-record / A4 | Retain Unknown; scoped terminal exhaustion. |
+| 2134..213e | 0 / 2134 | 11 | score-effect-amount-slots / A1 | Retain Unknown; scoped terminal exhaustion. |
+| 2140..2142 | 0 / 2140 | 3 | score-effect-amount-slots / A1 | Retain Unknown; scoped terminal exhaustion. |
+| 2144..2147 | 0 / 2144 | 4 | score-effect-amount-slots / A1 | Retain Unknown; scoped terminal exhaustion. |
+| 214b..216b | 0 / 214b | 33 | score-effect-amount-slots / A1 | Retain Unknown; scoped terminal exhaustion. |
+| 21d1..21db | 0 / 21d1 | 11 | score-effect-amount-slots / A1 | Retain Unknown; scoped terminal exhaustion. |
+| 21dd..21df | 0 / 21dd | 3 | score-effect-amount-slots / A1 | Retain Unknown; scoped terminal exhaustion. |
+| 21e1..21e4 | 0 / 21e1 | 4 | score-effect-amount-slots / A1 | Retain Unknown; scoped terminal exhaustion. |
+| 21e8..2210 | 0 / 21e8 | 41 | score-effect-amount-slots / A1 | Retain Unknown; scoped terminal exhaustion. |
+| 2215..2216 | 0 / 2215 | 2 | score-effect-amount-slots / A1 | Retain Unknown; scoped terminal exhaustion. |
+| 252c..252f | 0 / 252c | 4 | shape-action-directories / A2 | Retain Unknown; scoped terminal exhaustion. |
+| 2532..2537 | 0 / 2532 | 6 | shape-action-directories / A2 | Retain Unknown; scoped terminal exhaustion. |
+| 253a..253b | 0 / 253a | 2 | shape-action-directories / A2 | Retain Unknown; scoped terminal exhaustion. |
+| 253e..2543 | 0 / 253e | 6 | shape-action-directories / A2 | Retain Unknown; scoped terminal exhaustion. |
+| 25a2..25b7 | 0 / 25a2 | 22 | shape-action-directories / A2 | Retain Unknown; scoped terminal exhaustion. |
+| 25c3..25e3 | 0 / 25c3 | 33 | shape-action-directories / A2 | Retain Unknown; scoped terminal exhaustion. |
+| 25ef..25fe | 0 / 25ef | 16 | shape-action-directories / A2 | Retain Unknown; scoped terminal exhaustion. |
+| 2611..2614 | 0 / 2611 | 4 | shape-action-directories / A2 | Retain Unknown; scoped terminal exhaustion. |
+| 261f..2620 | 0 / 261f | 2 | shape-action-directories / A2 | Retain Unknown; scoped terminal exhaustion. |
+| 2624..2626 | 0 / 2624 | 3 | shape-action-directories / A2 | Retain Unknown; scoped terminal exhaustion. |
+| 262d..262e | 0 / 262d | 2 | shape-action-directories / A2 | Retain Unknown; scoped terminal exhaustion. |
+| 2f09..2f09 | 0 / 2f09 | 1 | isolated-return / A7 | Retain Unknown; scoped terminal exhaustion. |
+| 33ae..33af | 0 / 33ae | 2 | runtime-dispatch-words / A1 | Retain Unknown; scoped terminal exhaustion. |
+| 33e6..33eb | 0 / 33e6 | 6 | runtime-dispatch-words / A1 | Retain Unknown; scoped terminal exhaustion. |
+| 33f6..33f7 | 0 / 33f6 | 2 | runtime-dispatch-words / A1 | Retain Unknown; scoped terminal exhaustion. |
+| 3406..3407 | 0 / 3406 | 2 | runtime-dispatch-words / A1 | Retain Unknown; scoped terminal exhaustion. |
+| 340c..3415 | 0 / 340c | 10 | runtime-dispatch-words / A1 | Retain Unknown; scoped terminal exhaustion. |
+| 3420..3420 | 0 / 3420 | 1 | isolated-return / A7 | Retain Unknown; scoped terminal exhaustion. |
+| 34af..34af | 0 / 34af | 1 | isolated-return / A7 | Retain Unknown; scoped terminal exhaustion. |
+| 3950..3951 | 0 / 3950 | 2 | layout-transition-descriptor / A5 | Retain Unknown; scoped terminal exhaustion. |
+| 3955..3956 | 0 / 3955 | 2 | layout-transition-descriptor / A5 | Retain Unknown; scoped terminal exhaustion. |
+| 395a..395b | 0 / 395a | 2 | layout-transition-descriptor / A5 | Retain Unknown; scoped terminal exhaustion. |
+| 395f..3960 | 0 / 395f | 2 | layout-transition-descriptor / A5 | Retain Unknown; scoped terminal exhaustion. |
+| 3964..3965 | 0 / 3964 | 2 | layout-transition-descriptor / A5 | Retain Unknown; scoped terminal exhaustion. |
+| 3a63..3a64 | 0 / 3a63 | 2 | layout-transition-descriptor / A5 | Retain Unknown; scoped terminal exhaustion. |
+| 3a68..3a69 | 0 / 3a68 | 2 | layout-transition-descriptor / A5 | Retain Unknown; scoped terminal exhaustion. |
+| 3a6d..3a6e | 0 / 3a6d | 2 | layout-transition-descriptor / A5 | Retain Unknown; scoped terminal exhaustion. |
+| 3a72..3a73 | 0 / 3a72 | 2 | layout-transition-descriptor / A5 | Retain Unknown; scoped terminal exhaustion. |
+| 3a77..3a78 | 0 / 3a77 | 2 | layout-transition-descriptor / A5 | Retain Unknown; scoped terminal exhaustion. |
+| 3b76..3b77 | 0 / 3b76 | 2 | layout-transition-descriptor / A5 | Retain Unknown; scoped terminal exhaustion. |
+| 3b7b..3b7c | 0 / 3b7b | 2 | layout-transition-descriptor / A5 | Retain Unknown; scoped terminal exhaustion. |
+| 3b80..3b81 | 0 / 3b80 | 2 | layout-transition-descriptor / A5 | Retain Unknown; scoped terminal exhaustion. |
+| 3b85..3b86 | 0 / 3b85 | 2 | layout-transition-descriptor / A5 | Retain Unknown; scoped terminal exhaustion. |
+| 3b8a..3b8b | 0 / 3b8a | 2 | layout-transition-descriptor / A5 | Retain Unknown; scoped terminal exhaustion. |
+| 44cb..44cc | 1 / 44cb | 2 | layout-transition-descriptor / A5 | Retain Unknown; scoped terminal exhaustion. |
+| 44dd..44de | 1 / 44dd | 2 | layout-transition-descriptor / A5 | Retain Unknown; scoped terminal exhaustion. |
+| 45ad..45b1 | 1 / 45ad | 5 | layout-transition-descriptor / A5 | Retain Unknown; scoped terminal exhaustion. |
+| 45da..45de | 1 / 45da | 5 | layout-transition-descriptor / A5 | Retain Unknown; scoped terminal exhaustion. |
+| 4781..4788 | 1 / 4781 | 8 | animation-directory-tail / A6 | Retain Unknown; scoped terminal exhaustion. |
+| 5627..5635 | 1 / 5627 | 15 | motion-seed-tail / A6 | Retain Unknown; scoped terminal exhaustion. |
+| 5c98..5c99 | 1 / 5c98 | 2 | excluded-state-word / A1 | Retain Unknown; scoped terminal exhaustion. |
+| 6546..6547 | 1 / 6546 | 2 | excluded-state-word / A1 | Retain Unknown; scoped terminal exhaustion. |
+| 6554..6557 | 1 / 6554 | 4 | excluded-state-word / A1 | Retain Unknown; scoped terminal exhaustion. |
+| 6981..6982 | 1 / 6981 | 2 | excluded-state-word / A1 | Retain Unknown; scoped terminal exhaustion. |
+| 779d..779d | 1 / 779d | 1 | child-command-box-data / A6 | Retain Unknown; scoped terminal exhaustion. |
+| 77b7..77b7 | 1 / 77b7 | 1 | child-command-box-data / A6 | Retain Unknown; scoped terminal exhaustion. |
+| 7a2d..7a2d | 1 / 7a2d | 1 | child-command-box-data / A6 | Retain Unknown; scoped terminal exhaustion. |
+| 7a61..7a61 | 1 / 7a61 | 1 | child-command-box-data / A6 | Retain Unknown; scoped terminal exhaustion. |
+| 7a77..7a77 | 1 / 7a77 | 1 | child-command-box-data / A6 | Retain Unknown; scoped terminal exhaustion. |
+| 7a82..7a83 | 1 / 7a82 | 2 | child-command-box-data / A6 | Retain Unknown; scoped terminal exhaustion. |
+| 7b40..7b42 | 1 / 7b40 | 3 | incoming-contact-amounts / A1 | Retain Unknown; scoped terminal exhaustion. |
+| 7b45..7b45 | 1 / 7b45 | 1 | incoming-contact-amounts / A1 | Retain Unknown; scoped terminal exhaustion. |
+| 7b49..7b49 | 1 / 7b49 | 1 | incoming-contact-amounts / A1 | Retain Unknown; scoped terminal exhaustion. |
+| 7b4b..7b4c | 1 / 7b4b | 2 | incoming-contact-amounts / A1 | Retain Unknown; scoped terminal exhaustion. |
+| 7b52..7b58 | 1 / 7b52 | 7 | incoming-contact-amounts / A1 | Retain Unknown; scoped terminal exhaustion. |
+| 7b5a..7b74 | 1 / 7b5a | 27 | incoming-contact-amounts / A1 | Retain Unknown; scoped terminal exhaustion. |
+| 7b76..7b77 | 1 / 7b76 | 2 | incoming-contact-amounts / A1 | Retain Unknown; scoped terminal exhaustion. |
+| 7fa4..7fa7 | 1 / 7fa4 | 4 | terrain-probe-pair / A2 | Retain Unknown; scoped terminal exhaustion. |
+| 7faa..7fab | 1 / 7faa | 2 | terrain-probe-pair / A2 | Retain Unknown; scoped terminal exhaustion. |
+| 881f..8822 | 2 / 481f | 4 | frequency-words / A3 | Retain Unknown; scoped terminal exhaustion. |
+| 8879..887a | 2 / 4879 | 2 | frequency-words / A3 | Retain Unknown; scoped terminal exhaustion. |
+| 8883..8884 | 2 / 4883 | 2 | frequency-words / A3 | Retain Unknown; scoped terminal exhaustion. |
+| 888f..8890 | 2 / 488f | 2 | frequency-words / A3 | Retain Unknown; scoped terminal exhaustion. |
+| 88af..88dc | 2 / 48af | 46 | frequency-words / A3 | Retain Unknown; scoped terminal exhaustion. |
+| 8912..8915 | 2 / 4912 | 4 | audio-command-wave-pitch / A6 | Retain Unknown; scoped terminal exhaustion. |
+| 8a6d..8a6d | 2 / 4a6d | 1 | audio-command-wave-pitch / A6 | Retain Unknown; scoped terminal exhaustion. |
+| 8aa1..8aaa | 2 / 4aa1 | 10 | audio-command-wave-pitch / A6 | Retain Unknown; scoped terminal exhaustion. |
+| 8ab3..8ab4 | 2 / 4ab3 | 2 | audio-command-wave-pitch / A6 | Retain Unknown; scoped terminal exhaustion. |
+| 8b96..8b9c | 2 / 4b96 | 7 | audio-command-wave-pitch / A6 | Retain Unknown; scoped terminal exhaustion. |
+| 8b9f..8ba4 | 2 / 4b9f | 6 | audio-command-wave-pitch / A6 | Retain Unknown; scoped terminal exhaustion. |
+| 8cc4..8cc6 | 2 / 4cc4 | 3 | audio-command-wave-pitch / A6 | Retain Unknown; scoped terminal exhaustion. |
+| ad6a..ad6a | 2 / 6d6a | 1 | isolated-return / A7 | Retain Unknown; scoped terminal exhaustion. |
+| f500..f50f | 3 / 7500 | 16 | unselected-16byte-block-assets / A4 | Retain Unknown; scoped terminal exhaustion. |
+| fbc0..fc1f | 3 / 7bc0 | 96 | unselected-16byte-block-assets / A4 | Retain Unknown; scoped terminal exhaustion. |
+
+JSON retains exact current neighbors, effective contexts, prior hypotheses and attempt histories, original missing facts and current dispositions. These are physical ranges, not exporter gaps. Bank0 upper-window context remains caller-dependent; banks1..3 require their stated effective bank.

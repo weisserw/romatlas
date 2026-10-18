@@ -734,3 +734,18 @@ compilation, diff checks, release build, fmt and locked all-target workspace Cli
 with warnings denied pass. Tests establish instruction generation and existing
 fidelity behavior, not live-agent loop termination or semantic research quality.
 Locked workspace tests also pass on Rust 1.90.0. No runtime/dependency changes.
+
+2026-10-18: Archived the local Castlevania Adventure workspace under
+atlas/gb/castlevania-adventure/edb101e924f22149bdcbcfe6603801fdb4ec0139a40493d700fa0205f6dab30c/.
+Corrected the workspace and original local ROM filename to castlevania-adventure,
+updating 95 existing UTF-8 files with internal spelling/path references. ROM and
+assembly bytes remain unchanged; historical checkpoint hashes remain historical.
+Reused round025 readability review and inspected source contracts for final
+editorial acceptance; filled seven empty Code-unit inventory lists from existing
+reviewed summaries/source. Final strict audit passes 2807 regions/3007 units.
+Classification remains incomplete: 64955/65536 classified, 581 Unknown in 85 ranges.
+Final method-exhaustion documents and residual ledger retained; scratch excluded.
+Archive validation passes store/map checks, exact-source restoration and byte-identical
+65536-byte rebuilding using the configured release binary. No toolkit code or
+session changes; no commercial ROM, generated assembly or extracted assets added
+to the archive. Archive remains uncommitted.

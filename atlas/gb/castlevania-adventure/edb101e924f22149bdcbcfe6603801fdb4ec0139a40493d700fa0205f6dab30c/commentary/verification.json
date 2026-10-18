@@ -1,0 +1,14 @@
+{
+  "ok": true,
+  "byte_identical": true,
+  "rom_sha256": "edb101e924f22149bdcbcfe6603801fdb4ec0139a40493d700fa0205f6dab30c",
+  "source_sha256": {
+    "bank_000.asm": "63763e173a3b4afa69fb43deb8210275412174677ec077d49d9738118ae4e612",
+    "bank_001.asm": "cc6e512fcdc33ceb5b86112703971c2ad190f24bc5e6cc765b7bf5779eb02b14",
+    "bank_002.asm": "54178881c88cec53c2567cece0bc5af6e84f6d7977093fc762196417c679a6e2",
+    "bank_003.asm": "e74d1e6f62921db90aaddffe08496a8f94fedebdc1a9bef4f4a2c004ee2320d6",
+    "game.asm": "a3222fd8775818508e7b2cd66258a84713df9255626e9796788bc45bcf412d84",
+    "hardware.inc": "491941c0e77f6dbf539124835a8108122eab1a342bafebd4582776ab0500374a",
+    "shared.inc": "97dcc896075bfe1f5cabf7198691509789797c9accc98932b9fbc1f1164f9af6"
+  }
+}

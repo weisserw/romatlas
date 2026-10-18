@@ -1,0 +1,7909 @@
+{
+  "version": 1,
+  "model": "dmg",
+  "warning": "Chronological local RPC actions. T001: snapshot restoration loses held buttons; explicitly reassert desired inputs after import. Historical walk1193 did not sustain Right and is superseded by walkfixed1193. Each emulator.start or snapshot.import selects its recorded route checkpoint. Map-only sessions interleave logs but gameplay sessions are sequential. Debugger FF00 writes are isolated toolkit repros, not natural gameplay classification evidence.",
+  "actions": [
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.start",
+      "params": {},
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 0,
+        "model": "dmg",
+        "operations": 0,
+        "ppu_cycles": 0,
+        "registers": {
+          "a": 1,
+          "b": 0,
+          "c": 19,
+          "d": 0,
+          "e": 216,
+          "f": 176,
+          "h": 1,
+          "l": 77,
+          "pc": 256,
+          "sp": 65534
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 180,
+        "max_operations": 1000000,
+        "timeout_ms": 10000
+      },
+      "result": null,
+      "error": {
+        "code": -32000,
+        "message": "operation budget exhausted before requested frame span; completed state retained"
+      }
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 60,
+        "max_operations": 1000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 151,
+        "model": "dmg",
+        "operations": 1951433,
+        "ppu_cycles": 11054852,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 4,
+          "l": 99,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 50,
+        "max_operations": 1000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 201,
+        "model": "dmg",
+        "operations": 2752831,
+        "ppu_cycles": 14566052,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 4,
+          "l": 99,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 50,
+        "max_operations": 1000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 251,
+        "model": "dmg",
+        "operations": 3554778,
+        "ppu_cycles": 18077252,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 4,
+          "l": 99,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 50,
+        "max_operations": 1000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 301,
+        "model": "dmg",
+        "operations": 4356149,
+        "ppu_cycles": 21588452,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 4,
+          "l": 99,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "start",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 2,
+        "max_operations": 1000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 303,
+        "model": "dmg",
+        "operations": 4379778,
+        "ppu_cycles": 21728880,
+        "registers": {
+          "a": 0,
+          "b": 2,
+          "c": 107,
+          "d": 128,
+          "e": 0,
+          "f": 112,
+          "h": 154,
+          "l": 106,
+          "pc": 731,
+          "sp": 57333
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "start",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 50,
+        "max_operations": 1000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 353,
+        "model": "dmg",
+        "operations": 5139340,
+        "ppu_cycles": 25240100,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 50,
+        "max_operations": 1000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 403,
+        "model": "dmg",
+        "operations": 5941670,
+        "ppu_cycles": 28751300,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 50,
+        "max_operations": 1000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 453,
+        "model": "dmg",
+        "operations": 6743788,
+        "ppu_cycles": 32262500,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 50,
+        "max_operations": 1000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 503,
+        "model": "dmg",
+        "operations": 7546351,
+        "ppu_cycles": 35773700,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 50,
+        "max_operations": 1000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 553,
+        "model": "dmg",
+        "operations": 8348424,
+        "ppu_cycles": 39284900,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "start",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 2,
+        "max_operations": 1000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 555,
+        "model": "dmg",
+        "operations": 8377868,
+        "ppu_cycles": 39425348,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 192,
+          "e": 68,
+          "f": 160,
+          "h": 192,
+          "l": 7,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "start",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 50,
+        "max_operations": 1000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 605,
+        "model": "dmg",
+        "operations": 9111286,
+        "ppu_cycles": 42936548,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 50,
+        "max_operations": 1000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 655,
+        "model": "dmg",
+        "operations": 9847083,
+        "ppu_cycles": 46447748,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 50,
+        "max_operations": 1000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 705,
+        "model": "dmg",
+        "operations": 10459928,
+        "ppu_cycles": 49958948,
+        "registers": {
+          "a": 0,
+          "b": 1,
+          "c": 1,
+          "d": 1,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 50,
+        "max_operations": 1000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 755,
+        "model": "dmg",
+        "operations": 11210364,
+        "ppu_cycles": 53470148,
+        "registers": {
+          "a": 0,
+          "b": 1,
+          "c": 1,
+          "d": 1,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 50,
+        "max_operations": 1000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 805,
+        "model": "dmg",
+        "operations": 11964432,
+        "ppu_cycles": 56981348,
+        "registers": {
+          "a": 0,
+          "b": 1,
+          "c": 1,
+          "d": 1,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 50,
+        "max_operations": 1000000,
+        "timeout_ms": 10000
+      },
+      "result": null,
+      "error": {
+        "code": -32000,
+        "message": "execution timeout; completed state retained"
+      }
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.start",
+      "params": {},
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 0,
+        "model": "dmg",
+        "operations": 0,
+        "ppu_cycles": 0,
+        "registers": {
+          "a": 1,
+          "b": 0,
+          "c": 19,
+          "d": 0,
+          "e": 216,
+          "f": 176,
+          "h": 1,
+          "l": 77,
+          "pc": 256,
+          "sp": 65534
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 60,
+        "max_operations": 1000000,
+        "timeout_ms": 10000
+      },
+      "result": null,
+      "error": {
+        "code": -32000,
+        "message": "execution timeout; completed state retained"
+      }
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 40,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 69,
+        "model": "dmg",
+        "operations": 636921,
+        "ppu_cycles": 5296484,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 4,
+          "l": 99,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 40,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 109,
+        "model": "dmg",
+        "operations": 1278119,
+        "ppu_cycles": 8105444,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 4,
+          "l": 99,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 40,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 149,
+        "model": "dmg",
+        "operations": 1919313,
+        "ppu_cycles": 10914404,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 4,
+          "l": 99,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 40,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 189,
+        "model": "dmg",
+        "operations": 2560636,
+        "ppu_cycles": 13723364,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 4,
+          "l": 99,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 40,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 229,
+        "model": "dmg",
+        "operations": 3201749,
+        "ppu_cycles": 16532324,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 4,
+          "l": 99,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 40,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 269,
+        "model": "dmg",
+        "operations": 3843141,
+        "ppu_cycles": 19341284,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 4,
+          "l": 99,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "start",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 2,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 271,
+        "model": "dmg",
+        "operations": 3866733,
+        "ppu_cycles": 19481712,
+        "registers": {
+          "a": 0,
+          "b": 2,
+          "c": 110,
+          "d": 128,
+          "e": 0,
+          "f": 112,
+          "h": 154,
+          "l": 108,
+          "pc": 732,
+          "sp": 57333
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "start",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 40,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 311,
+        "model": "dmg",
+        "operations": 4465525,
+        "ppu_cycles": 22290692,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "start",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 2,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 313,
+        "model": "dmg",
+        "operations": 4493082,
+        "ppu_cycles": 22431124,
+        "registers": {
+          "a": 5,
+          "b": 74,
+          "c": 1,
+          "d": 91,
+          "e": 26,
+          "f": 0,
+          "h": 66,
+          "l": 203,
+          "pc": 18018,
+          "sp": 57321
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "start",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 40,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 353,
+        "model": "dmg",
+        "operations": 5080377,
+        "ppu_cycles": 25240100,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.snapshot.export",
+      "params": {
+        "path": "analysis/runtime/replay-stage.snapshot.json"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 373,
+        "model": "dmg",
+        "operations": 5375649,
+        "ppu_cycles": 26644580,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 393,
+        "model": "dmg",
+        "operations": 5672000,
+        "ppu_cycles": 28049060,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 128,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 413,
+        "model": "dmg",
+        "operations": 5964364,
+        "ppu_cycles": 29453540,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 433,
+        "model": "dmg",
+        "operations": 6258298,
+        "ppu_cycles": 30858020,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 453,
+        "model": "dmg",
+        "operations": 6471268,
+        "ppu_cycles": 32262480,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 8,
+          "d": 193,
+          "e": 215,
+          "f": 0,
+          "h": 193,
+          "l": 30,
+          "pc": 16387,
+          "sp": 57307
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 473,
+        "model": "dmg",
+        "operations": 6728303,
+        "ppu_cycles": 33666980,
+        "registers": {
+          "a": 0,
+          "b": 1,
+          "c": 1,
+          "d": 1,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 493,
+        "model": "dmg",
+        "operations": 7026488,
+        "ppu_cycles": 35071460,
+        "registers": {
+          "a": 0,
+          "b": 1,
+          "c": 1,
+          "d": 1,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 513,
+        "model": "dmg",
+        "operations": 7325719,
+        "ppu_cycles": 36475940,
+        "registers": {
+          "a": 0,
+          "b": 1,
+          "c": 1,
+          "d": 1,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 533,
+        "model": "dmg",
+        "operations": 7627603,
+        "ppu_cycles": 37880420,
+        "registers": {
+          "a": 0,
+          "b": 1,
+          "c": 1,
+          "d": 1,
+          "e": 0,
+          "f": 128,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.snapshot.export",
+      "params": {
+        "path": "analysis/runtime/stage1-right.snapshot.json"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 553,
+        "model": "dmg",
+        "operations": 7927368,
+        "ppu_cycles": 39284900,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 573,
+        "model": "dmg",
+        "operations": 8242526,
+        "ppu_cycles": 40689380,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 593,
+        "model": "dmg",
+        "operations": 8505035,
+        "ppu_cycles": 42093844,
+        "registers": {
+          "a": 0,
+          "b": 1,
+          "c": 142,
+          "d": 0,
+          "e": 0,
+          "f": 112,
+          "h": 157,
+          "l": 140,
+          "pc": 732,
+          "sp": 57335
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 613,
+        "model": "dmg",
+        "operations": 8643871,
+        "ppu_cycles": 43498328,
+        "registers": {
+          "a": 145,
+          "b": 18,
+          "c": 237,
+          "d": 133,
+          "e": 19,
+          "f": 0,
+          "h": 69,
+          "l": 20,
+          "pc": 2802,
+          "sp": 57323
+        },
+        "switch_bank": 3,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 633,
+        "model": "dmg",
+        "operations": 8780724,
+        "ppu_cycles": 44902808,
+        "registers": {
+          "a": 1,
+          "b": 0,
+          "c": 1,
+          "d": 193,
+          "e": 36,
+          "f": 0,
+          "h": 193,
+          "l": 147,
+          "pc": 16384,
+          "sp": 57305
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 653,
+        "model": "dmg",
+        "operations": 8917981,
+        "ppu_cycles": 46307284,
+        "registers": {
+          "a": 0,
+          "b": 7,
+          "c": 212,
+          "d": 144,
+          "e": 44,
+          "f": 160,
+          "h": 80,
+          "l": 45,
+          "pc": 2804,
+          "sp": 57323
+        },
+        "switch_bank": 3,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 673,
+        "model": "dmg",
+        "operations": 9055354,
+        "ppu_cycles": 47711776,
+        "registers": {
+          "a": 2,
+          "b": 2,
+          "c": 91,
+          "d": 149,
+          "e": 165,
+          "f": 160,
+          "h": 192,
+          "l": 11,
+          "pc": 16475,
+          "sp": 57309
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 693,
+        "model": "dmg",
+        "operations": 9199293,
+        "ppu_cycles": 49116244,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 28,
+          "d": 193,
+          "e": 231,
+          "f": 0,
+          "h": 193,
+          "l": 10,
+          "pc": 16386,
+          "sp": 57319
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 8,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 701,
+        "model": "dmg",
+        "operations": 9257340,
+        "ppu_cycles": 49678036,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 32,
+          "d": 195,
+          "e": 12,
+          "f": 112,
+          "h": 192,
+          "l": 11,
+          "pc": 16550,
+          "sp": 57315
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.start",
+      "params": {},
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 0,
+        "model": "dmg",
+        "operations": 0,
+        "ppu_cycles": 0,
+        "registers": {
+          "a": 1,
+          "b": 0,
+          "c": 19,
+          "d": 0,
+          "e": 216,
+          "f": 176,
+          "h": 1,
+          "l": 77,
+          "pc": 256,
+          "sp": 65534
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.snapshot.import",
+      "params": {
+        "path": "analysis/runtime/replay-stage.snapshot.json"
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 353,
+        "model": "dmg",
+        "operations": 5080377,
+        "ppu_cycles": 25240100,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 373,
+        "model": "dmg",
+        "operations": 5375649,
+        "ppu_cycles": 26644580,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 393,
+        "model": "dmg",
+        "operations": 5672000,
+        "ppu_cycles": 28049060,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 128,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 413,
+        "model": "dmg",
+        "operations": 5964364,
+        "ppu_cycles": 29453540,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 433,
+        "model": "dmg",
+        "operations": 6258298,
+        "ppu_cycles": 30858020,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 453,
+        "model": "dmg",
+        "operations": 6471268,
+        "ppu_cycles": 32262480,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 8,
+          "d": 193,
+          "e": 215,
+          "f": 0,
+          "h": 193,
+          "l": 30,
+          "pc": 16387,
+          "sp": 57307
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 473,
+        "model": "dmg",
+        "operations": 6728303,
+        "ppu_cycles": 33666980,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 493,
+        "model": "dmg",
+        "operations": 7026488,
+        "ppu_cycles": 35071460,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 513,
+        "model": "dmg",
+        "operations": 7325719,
+        "ppu_cycles": 36475940,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 533,
+        "model": "dmg",
+        "operations": 7627603,
+        "ppu_cycles": 37880420,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 128,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 553,
+        "model": "dmg",
+        "operations": 7927368,
+        "ppu_cycles": 39284900,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.snapshot.export",
+      "params": {
+        "path": "analysis/runtime/direct-553.snapshot.json"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.start",
+      "params": {},
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 0,
+        "model": "dmg",
+        "operations": 0,
+        "ppu_cycles": 0,
+        "registers": {
+          "a": 1,
+          "b": 0,
+          "c": 19,
+          "d": 0,
+          "e": 216,
+          "f": 176,
+          "h": 1,
+          "l": 77,
+          "pc": 256,
+          "sp": 65534
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.snapshot.import",
+      "params": {
+        "path": "analysis/runtime/direct-553.snapshot.json"
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 553,
+        "model": "dmg",
+        "operations": 7927368,
+        "ppu_cycles": 39284900,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 573,
+        "model": "dmg",
+        "operations": 8242526,
+        "ppu_cycles": 40689380,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 192,
+          "l": 10,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 593,
+        "model": "dmg",
+        "operations": 8505035,
+        "ppu_cycles": 42093844,
+        "registers": {
+          "a": 0,
+          "b": 1,
+          "c": 142,
+          "d": 0,
+          "e": 0,
+          "f": 112,
+          "h": 157,
+          "l": 140,
+          "pc": 732,
+          "sp": 57335
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 613,
+        "model": "dmg",
+        "operations": 8643871,
+        "ppu_cycles": 43498328,
+        "registers": {
+          "a": 145,
+          "b": 18,
+          "c": 237,
+          "d": 133,
+          "e": 19,
+          "f": 0,
+          "h": 69,
+          "l": 20,
+          "pc": 2802,
+          "sp": 57323
+        },
+        "switch_bank": 3,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 633,
+        "model": "dmg",
+        "operations": 8780724,
+        "ppu_cycles": 44902808,
+        "registers": {
+          "a": 1,
+          "b": 0,
+          "c": 1,
+          "d": 193,
+          "e": 36,
+          "f": 0,
+          "h": 193,
+          "l": 147,
+          "pc": 16384,
+          "sp": 57305
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 653,
+        "model": "dmg",
+        "operations": 8917981,
+        "ppu_cycles": 46307284,
+        "registers": {
+          "a": 0,
+          "b": 7,
+          "c": 212,
+          "d": 144,
+          "e": 44,
+          "f": 160,
+          "h": 80,
+          "l": 45,
+          "pc": 2804,
+          "sp": 57323
+        },
+        "switch_bank": 3,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 673,
+        "model": "dmg",
+        "operations": 9055354,
+        "ppu_cycles": 47711776,
+        "registers": {
+          "a": 2,
+          "b": 2,
+          "c": 91,
+          "d": 149,
+          "e": 165,
+          "f": 160,
+          "h": 192,
+          "l": 11,
+          "pc": 16475,
+          "sp": 57309
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 693,
+        "model": "dmg",
+        "operations": 9199293,
+        "ppu_cycles": 49116244,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 28,
+          "d": 193,
+          "e": 231,
+          "f": 0,
+          "h": 193,
+          "l": 10,
+          "pc": 16386,
+          "sp": 57319
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 713,
+        "model": "dmg",
+        "operations": 9342800,
+        "ppu_cycles": 50520720,
+        "registers": {
+          "a": 144,
+          "b": 2,
+          "c": 32,
+          "d": 195,
+          "e": 8,
+          "f": 0,
+          "h": 75,
+          "l": 202,
+          "pc": 5798,
+          "sp": 57329
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 733,
+        "model": "dmg",
+        "operations": 9486665,
+        "ppu_cycles": 51925200,
+        "registers": {
+          "a": 139,
+          "b": 11,
+          "c": 4,
+          "d": 0,
+          "e": 0,
+          "f": 0,
+          "h": 197,
+          "l": 19,
+          "pc": 13033,
+          "sp": 57331
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 753,
+        "model": "dmg",
+        "operations": 9630526,
+        "ppu_cycles": 53329680,
+        "registers": {
+          "a": 32,
+          "b": 10,
+          "c": 2,
+          "d": 200,
+          "e": 32,
+          "f": 0,
+          "h": 197,
+          "l": 18,
+          "pc": 10663,
+          "sp": 57325
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.snapshot.export",
+      "params": {
+        "path": "analysis/runtime/field753.snapshot.json"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.start",
+      "params": {},
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 0,
+        "model": "dmg",
+        "operations": 0,
+        "ppu_cycles": 0,
+        "registers": {
+          "a": 1,
+          "b": 0,
+          "c": 19,
+          "d": 0,
+          "e": 216,
+          "f": 176,
+          "h": 1,
+          "l": 77,
+          "pc": 256,
+          "sp": 65534
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.snapshot.import",
+      "params": {
+        "path": "analysis/runtime/field753.snapshot.json"
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 753,
+        "model": "dmg",
+        "operations": 9630526,
+        "ppu_cycles": 53329680,
+        "registers": {
+          "a": 32,
+          "b": 10,
+          "c": 2,
+          "d": 200,
+          "e": 32,
+          "f": 0,
+          "h": 197,
+          "l": 18,
+          "pc": 10663,
+          "sp": 57325
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 8,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 761,
+        "model": "dmg",
+        "operations": 9688506,
+        "ppu_cycles": 53891472,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 136,
+          "d": 195,
+          "e": 204,
+          "f": 192,
+          "h": 197,
+          "l": 171,
+          "pc": 13473,
+          "sp": 57333
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 12,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 773,
+        "model": "dmg",
+        "operations": 9775601,
+        "ppu_cycles": 54734160,
+        "registers": {
+          "a": 19,
+          "b": 0,
+          "c": 3,
+          "d": 194,
+          "e": 40,
+          "f": 0,
+          "h": 255,
+          "l": 40,
+          "pc": 16413,
+          "sp": 57301
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 8,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 781,
+        "model": "dmg",
+        "operations": 9834099,
+        "ppu_cycles": 55295964,
+        "registers": {
+          "a": 100,
+          "b": 3,
+          "c": 32,
+          "d": 195,
+          "e": 4,
+          "f": 16,
+          "h": 75,
+          "l": 199,
+          "pc": 5796,
+          "sp": 57329
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 12,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 793,
+        "model": "dmg",
+        "operations": 9921439,
+        "ppu_cycles": 56138644,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 1,
+          "d": 200,
+          "e": 176,
+          "f": 160,
+          "h": 197,
+          "l": 18,
+          "pc": 9186,
+          "sp": 57333
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 8,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 801,
+        "model": "dmg",
+        "operations": 9979457,
+        "ppu_cycles": 56700436,
+        "registers": {
+          "a": 3,
+          "b": 0,
+          "c": 1,
+          "d": 80,
+          "e": 23,
+          "f": 128,
+          "h": 7,
+          "l": 81,
+          "pc": 18014,
+          "sp": 57305
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 12,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 813,
+        "model": "dmg",
+        "operations": 10066908,
+        "ppu_cycles": 57543120,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 35,
+          "d": 193,
+          "e": 2,
+          "f": 0,
+          "h": 193,
+          "l": 76,
+          "pc": 16389,
+          "sp": 57317
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 8,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 821,
+        "model": "dmg",
+        "operations": 10125107,
+        "ppu_cycles": 58104912,
+        "registers": {
+          "a": 0,
+          "b": 4,
+          "c": 32,
+          "d": 195,
+          "e": 2,
+          "f": 0,
+          "h": 75,
+          "l": 198,
+          "pc": 5849,
+          "sp": 57331
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 12,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 833,
+        "model": "dmg",
+        "operations": 10212705,
+        "ppu_cycles": 58947604,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 194,
+          "e": 3,
+          "f": 160,
+          "h": 192,
+          "l": 11,
+          "pc": 2810,
+          "sp": 57323
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 8,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 841,
+        "model": "dmg",
+        "operations": 10270767,
+        "ppu_cycles": 59509392,
+        "registers": {
+          "a": 64,
+          "b": 0,
+          "c": 32,
+          "d": 193,
+          "e": 5,
+          "f": 0,
+          "h": 193,
+          "l": 80,
+          "pc": 16386,
+          "sp": 57309
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 12,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 853,
+        "model": "dmg",
+        "operations": 10357819,
+        "ppu_cycles": 60352084,
+        "registers": {
+          "a": 23,
+          "b": 4,
+          "c": 32,
+          "d": 195,
+          "e": 10,
+          "f": 0,
+          "h": 76,
+          "l": 39,
+          "pc": 5848,
+          "sp": 57331
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 8,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 861,
+        "model": "dmg",
+        "operations": 10416339,
+        "ppu_cycles": 60913872,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 8,
+          "d": 193,
+          "e": 251,
+          "f": 0,
+          "h": 193,
+          "l": 29,
+          "pc": 16389,
+          "sp": 57311
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 12,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 873,
+        "model": "dmg",
+        "operations": 10503361,
+        "ppu_cycles": 61756576,
+        "registers": {
+          "a": 16,
+          "b": 14,
+          "c": 1,
+          "d": 200,
+          "e": 16,
+          "f": 0,
+          "h": 197,
+          "l": 18,
+          "pc": 10663,
+          "sp": 57327
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 8,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 881,
+        "model": "dmg",
+        "operations": 10561248,
+        "ppu_cycles": 62318352,
+        "registers": {
+          "a": 193,
+          "b": 0,
+          "c": 28,
+          "d": 200,
+          "e": 193,
+          "f": 160,
+          "h": 197,
+          "l": 146,
+          "pc": 9328,
+          "sp": 57325
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 12,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 893,
+        "model": "dmg",
+        "operations": 10649067,
+        "ppu_cycles": 63161040,
+        "registers": {
+          "a": 0,
+          "b": 2,
+          "c": 2,
+          "d": 196,
+          "e": 55,
+          "f": 112,
+          "h": 195,
+          "l": 153,
+          "pc": 5634,
+          "sp": 57335
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 8,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 901,
+        "model": "dmg",
+        "operations": 10707052,
+        "ppu_cycles": 63722832,
+        "registers": {
+          "a": 144,
+          "b": 4,
+          "c": 0,
+          "d": 195,
+          "e": 29,
+          "f": 32,
+          "h": 77,
+          "l": 132,
+          "pc": 5827,
+          "sp": 57329
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 12,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 913,
+        "model": "dmg",
+        "operations": 10794341,
+        "ppu_cycles": 64565528,
+        "registers": {
+          "a": 6,
+          "b": 0,
+          "c": 6,
+          "d": 80,
+          "e": 130,
+          "f": 192,
+          "h": 194,
+          "l": 44,
+          "pc": 17991,
+          "sp": 57315
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 8,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 921,
+        "model": "dmg",
+        "operations": 10852681,
+        "ppu_cycles": 65127316,
+        "registers": {
+          "a": 0,
+          "b": 6,
+          "c": 136,
+          "d": 195,
+          "e": 204,
+          "f": 128,
+          "h": 199,
+          "l": 0,
+          "pc": 31671,
+          "sp": 57333
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 12,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 933,
+        "model": "dmg",
+        "operations": 10939733,
+        "ppu_cycles": 65970004,
+        "registers": {
+          "a": 0,
+          "b": 4,
+          "c": 2,
+          "d": 196,
+          "e": 55,
+          "f": 112,
+          "h": 195,
+          "l": 145,
+          "pc": 5636,
+          "sp": 57335
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 8,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 941,
+        "model": "dmg",
+        "operations": 10997853,
+        "ppu_cycles": 66531796,
+        "registers": {
+          "a": 5,
+          "b": 0,
+          "c": 0,
+          "d": 80,
+          "e": 136,
+          "f": 32,
+          "h": 193,
+          "l": 4,
+          "pc": 16691,
+          "sp": 57321
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 12,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 953,
+        "model": "dmg",
+        "operations": 11085442,
+        "ppu_cycles": 67374484,
+        "registers": {
+          "a": 10,
+          "b": 0,
+          "c": 136,
+          "d": 195,
+          "e": 204,
+          "f": 64,
+          "h": 198,
+          "l": 128,
+          "pc": 13023,
+          "sp": 57335
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.snapshot.export",
+      "params": {
+        "path": "analysis/runtime/combat953.snapshot.json"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.start",
+      "params": {},
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 0,
+        "model": "dmg",
+        "operations": 0,
+        "ppu_cycles": 0,
+        "registers": {
+          "a": 1,
+          "b": 0,
+          "c": 19,
+          "d": 0,
+          "e": 216,
+          "f": 176,
+          "h": 1,
+          "l": 77,
+          "pc": 256,
+          "sp": 65534
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.snapshot.import",
+      "params": {
+        "path": "analysis/runtime/combat953.snapshot.json"
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 953,
+        "model": "dmg",
+        "operations": 11085442,
+        "ppu_cycles": 67374484,
+        "registers": {
+          "a": 10,
+          "b": 0,
+          "c": 136,
+          "d": 195,
+          "e": 204,
+          "f": 64,
+          "h": 198,
+          "l": 128,
+          "pc": 13023,
+          "sp": 57335
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 973,
+        "model": "dmg",
+        "operations": 11229337,
+        "ppu_cycles": 68778964,
+        "registers": {
+          "a": 0,
+          "b": 57,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 128,
+          "h": 123,
+          "l": 193,
+          "pc": 19,
+          "sp": 57335
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 993,
+        "model": "dmg",
+        "operations": 11374495,
+        "ppu_cycles": 70183440,
+        "registers": {
+          "a": 255,
+          "b": 0,
+          "c": 196,
+          "d": 195,
+          "e": 203,
+          "f": 112,
+          "h": 197,
+          "l": 171,
+          "pc": 13562,
+          "sp": 57333
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1013,
+        "model": "dmg",
+        "operations": 11518401,
+        "ppu_cycles": 71587920,
+        "registers": {
+          "a": 178,
+          "b": 1,
+          "c": 0,
+          "d": 199,
+          "e": 214,
+          "f": 32,
+          "h": 51,
+          "l": 178,
+          "pc": 12,
+          "sp": 57331
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1033,
+        "model": "dmg",
+        "operations": 11662324,
+        "ppu_cycles": 72992400,
+        "registers": {
+          "a": 5,
+          "b": 0,
+          "c": 2,
+          "d": 195,
+          "e": 230,
+          "f": 64,
+          "h": 197,
+          "l": 18,
+          "pc": 9420,
+          "sp": 57329
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1053,
+        "model": "dmg",
+        "operations": 11807673,
+        "ppu_cycles": 74396880,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 10,
+          "d": 193,
+          "e": 175,
+          "f": 0,
+          "h": 193,
+          "l": 27,
+          "pc": 16388,
+          "sp": 57307
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1073,
+        "model": "dmg",
+        "operations": 11951416,
+        "ppu_cycles": 75801364,
+        "registers": {
+          "a": 0,
+          "b": 8,
+          "c": 2,
+          "d": 195,
+          "e": 234,
+          "f": 128,
+          "h": 197,
+          "l": 12,
+          "pc": 10578,
+          "sp": 57325
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1093,
+        "model": "dmg",
+        "operations": 12095257,
+        "ppu_cycles": 77205840,
+        "registers": {
+          "a": 0,
+          "b": 20,
+          "c": 2,
+          "d": 196,
+          "e": 55,
+          "f": 112,
+          "h": 195,
+          "l": 81,
+          "pc": 5636,
+          "sp": 57335
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1113,
+        "model": "dmg",
+        "operations": 12240896,
+        "ppu_cycles": 78610320,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 198,
+          "e": 32,
+          "f": 128,
+          "h": 72,
+          "l": 45,
+          "pc": 5654,
+          "sp": 57335
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1133,
+        "model": "dmg",
+        "operations": 12384347,
+        "ppu_cycles": 80014812,
+        "registers": {
+          "a": 48,
+          "b": 2,
+          "c": 1,
+          "d": 196,
+          "e": 54,
+          "f": 112,
+          "h": 195,
+          "l": 54,
+          "pc": 932,
+          "sp": 57335
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1153,
+        "model": "dmg",
+        "operations": 12528265,
+        "ppu_cycles": 81419280,
+        "registers": {
+          "a": 192,
+          "b": 0,
+          "c": 0,
+          "d": 199,
+          "e": 160,
+          "f": 0,
+          "h": 72,
+          "l": 45,
+          "pc": 5567,
+          "sp": 57337
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1173,
+        "model": "dmg",
+        "operations": 12673941,
+        "ppu_cycles": 82823764,
+        "registers": {
+          "a": 145,
+          "b": 3,
+          "c": 32,
+          "d": 195,
+          "e": 5,
+          "f": 64,
+          "h": 75,
+          "l": 200,
+          "pc": 5827,
+          "sp": 57329
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1193,
+        "model": "dmg",
+        "operations": 12817673,
+        "ppu_cycles": 84228240,
+        "registers": {
+          "a": 185,
+          "b": 0,
+          "c": 0,
+          "d": 193,
+          "e": 185,
+          "f": 0,
+          "h": 194,
+          "l": 75,
+          "pc": 18173,
+          "sp": 57319
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.snapshot.export",
+      "params": {
+        "path": "analysis/runtime/walk1193.snapshot.json"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.start",
+      "params": {},
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 0,
+        "model": "dmg",
+        "operations": 0,
+        "ppu_cycles": 0,
+        "registers": {
+          "a": 1,
+          "b": 0,
+          "c": 19,
+          "d": 0,
+          "e": 216,
+          "f": 176,
+          "h": 1,
+          "l": 77,
+          "pc": 256,
+          "sp": 65534
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.snapshot.import",
+      "params": {
+        "path": "analysis/runtime/combat953.snapshot.json"
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 953,
+        "model": "dmg",
+        "operations": 11085442,
+        "ppu_cycles": 67374484,
+        "registers": {
+          "a": 10,
+          "b": 0,
+          "c": 136,
+          "d": 195,
+          "e": 204,
+          "f": 64,
+          "h": 198,
+          "l": 128,
+          "pc": 13023,
+          "sp": 57335
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 2,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 955,
+        "model": "dmg",
+        "operations": 11099700,
+        "ppu_cycles": 67514932,
+        "registers": {
+          "a": 0,
+          "b": 4,
+          "c": 2,
+          "d": 196,
+          "e": 55,
+          "f": 112,
+          "h": 195,
+          "l": 145,
+          "pc": 5636,
+          "sp": 57335
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 2,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 957,
+        "model": "dmg",
+        "operations": 11114068,
+        "ppu_cycles": 67655384,
+        "registers": {
+          "a": 32,
+          "b": 0,
+          "c": 136,
+          "d": 195,
+          "e": 204,
+          "f": 128,
+          "h": 197,
+          "l": 192,
+          "pc": 40,
+          "sp": 57335
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.start",
+      "params": {},
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 0,
+        "model": "dmg",
+        "operations": 0,
+        "ppu_cycles": 0,
+        "registers": {
+          "a": 1,
+          "b": 0,
+          "c": 19,
+          "d": 0,
+          "e": 216,
+          "f": 176,
+          "h": 1,
+          "l": 77,
+          "pc": 256,
+          "sp": 65534
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.memory.write",
+      "params": {
+        "address": 65280,
+        "bytes": [
+          32
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.snapshot.save",
+      "params": {
+        "name": "right-held"
+      },
+      "result": {
+        "name": "right-held"
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.snapshot.export",
+      "params": {
+        "path": "analysis/runtime/input-held-repro.snapshot.json"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.snapshot.load",
+      "params": {
+        "name": "right-held"
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 0,
+        "model": "dmg",
+        "operations": 0,
+        "ppu_cycles": 0,
+        "registers": {
+          "a": 1,
+          "b": 0,
+          "c": 19,
+          "d": 0,
+          "e": 216,
+          "f": 176,
+          "h": 1,
+          "l": 77,
+          "pc": 256,
+          "sp": 65534
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.snapshot.import",
+      "params": {
+        "path": "analysis/runtime/input-held-repro.snapshot.json"
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 0,
+        "model": "dmg",
+        "operations": 0,
+        "ppu_cycles": 0,
+        "registers": {
+          "a": 1,
+          "b": 0,
+          "c": 19,
+          "d": 0,
+          "e": 216,
+          "f": 176,
+          "h": 1,
+          "l": 77,
+          "pc": 256,
+          "sp": 65534
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.start",
+      "params": {},
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 0,
+        "model": "dmg",
+        "operations": 0,
+        "ppu_cycles": 0,
+        "registers": {
+          "a": 1,
+          "b": 0,
+          "c": 19,
+          "d": 0,
+          "e": 216,
+          "f": 176,
+          "h": 1,
+          "l": 77,
+          "pc": 256,
+          "sp": 65534
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.snapshot.import",
+      "params": {
+        "path": "analysis/runtime/combat953.snapshot.json"
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 953,
+        "model": "dmg",
+        "operations": 11085442,
+        "ppu_cycles": 67374484,
+        "registers": {
+          "a": 10,
+          "b": 0,
+          "c": 136,
+          "d": 195,
+          "e": 204,
+          "f": 64,
+          "h": 198,
+          "l": 128,
+          "pc": 13023,
+          "sp": 57335
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "left",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "up",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "down",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "start",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "select",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 973,
+        "model": "dmg",
+        "operations": 11229949,
+        "ppu_cycles": 68778960,
+        "registers": {
+          "a": 1,
+          "b": 0,
+          "c": 0,
+          "d": 194,
+          "e": 3,
+          "f": 160,
+          "h": 192,
+          "l": 11,
+          "pc": 178,
+          "sp": 57321
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 993,
+        "model": "dmg",
+        "operations": 11377194,
+        "ppu_cycles": 70183440,
+        "registers": {
+          "a": 32,
+          "b": 0,
+          "c": 0,
+          "d": 195,
+          "e": 32,
+          "f": 208,
+          "h": 72,
+          "l": 93,
+          "pc": 5715,
+          "sp": 57335
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1013,
+        "model": "dmg",
+        "operations": 11522065,
+        "ppu_cycles": 71587920,
+        "registers": {
+          "a": 6,
+          "b": 6,
+          "c": 1,
+          "d": 1,
+          "e": 0,
+          "f": 32,
+          "h": 25,
+          "l": 67,
+          "pc": 9047,
+          "sp": 57331
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1033,
+        "model": "dmg",
+        "operations": 11665943,
+        "ppu_cycles": 72992404,
+        "registers": {
+          "a": 238,
+          "b": 2,
+          "c": 2,
+          "d": 196,
+          "e": 55,
+          "f": 128,
+          "h": 255,
+          "l": 255,
+          "pc": 568,
+          "sp": 57337
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1053,
+        "model": "dmg",
+        "operations": 11811538,
+        "ppu_cycles": 74396880,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 10,
+          "d": 193,
+          "e": 175,
+          "f": 0,
+          "h": 193,
+          "l": 27,
+          "pc": 16388,
+          "sp": 57317
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1073,
+        "model": "dmg",
+        "operations": 11955801,
+        "ppu_cycles": 75801372,
+        "registers": {
+          "a": 19,
+          "b": 12,
+          "c": 1,
+          "d": 200,
+          "e": 19,
+          "f": 0,
+          "h": 197,
+          "l": 18,
+          "pc": 10663,
+          "sp": 57331
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1093,
+        "model": "dmg",
+        "operations": 12100314,
+        "ppu_cycles": 77205852,
+        "registers": {
+          "a": 96,
+          "b": 0,
+          "c": 141,
+          "d": 195,
+          "e": 204,
+          "f": 64,
+          "h": 198,
+          "l": 96,
+          "pc": 13032,
+          "sp": 57335
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1113,
+        "model": "dmg",
+        "operations": 12246299,
+        "ppu_cycles": 78610320,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 199,
+          "e": 214,
+          "f": 0,
+          "h": 72,
+          "l": 249,
+          "pc": 5682,
+          "sp": 57335
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1133,
+        "model": "dmg",
+        "operations": 12391221,
+        "ppu_cycles": 80014804,
+        "registers": {
+          "a": 145,
+          "b": 2,
+          "c": 0,
+          "d": 195,
+          "e": 25,
+          "f": 48,
+          "h": 78,
+          "l": 182,
+          "pc": 5827,
+          "sp": 57329
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1153,
+        "model": "dmg",
+        "operations": 12536240,
+        "ppu_cycles": 81419280,
+        "registers": {
+          "a": 15,
+          "b": 0,
+          "c": 15,
+          "d": 193,
+          "e": 244,
+          "f": 0,
+          "h": 193,
+          "l": 22,
+          "pc": 16390,
+          "sp": 57317
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1173,
+        "model": "dmg",
+        "operations": 12681606,
+        "ppu_cycles": 82823776,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 199,
+          "e": 160,
+          "f": 128,
+          "h": 73,
+          "l": 5,
+          "pc": 5559,
+          "sp": 57337
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1193,
+        "model": "dmg",
+        "operations": 12826055,
+        "ppu_cycles": 84228240,
+        "registers": {
+          "a": 11,
+          "b": 88,
+          "c": 0,
+          "d": 0,
+          "e": 49,
+          "f": 128,
+          "h": 197,
+          "l": 19,
+          "pc": 11984,
+          "sp": 57333
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.snapshot.export",
+      "params": {
+        "path": "analysis/runtime/walkfixed1193.snapshot.json"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.start",
+      "params": {},
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 0,
+        "model": "dmg",
+        "operations": 0,
+        "ppu_cycles": 0,
+        "registers": {
+          "a": 1,
+          "b": 0,
+          "c": 19,
+          "d": 0,
+          "e": 216,
+          "f": 176,
+          "h": 1,
+          "l": 77,
+          "pc": 256,
+          "sp": 65534
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.snapshot.import",
+      "params": {
+        "path": "analysis/runtime/walkfixed1193.snapshot.json"
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1193,
+        "model": "dmg",
+        "operations": 12826055,
+        "ppu_cycles": 84228240,
+        "registers": {
+          "a": 11,
+          "b": 88,
+          "c": 0,
+          "d": 0,
+          "e": 49,
+          "f": 128,
+          "h": 197,
+          "l": 19,
+          "pc": 11984,
+          "sp": 57333
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 8,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1201,
+        "model": "dmg",
+        "operations": 12884318,
+        "ppu_cycles": 84790032,
+        "registers": {
+          "a": 41,
+          "b": 1,
+          "c": 0,
+          "d": 195,
+          "e": 23,
+          "f": 0,
+          "h": 77,
+          "l": 94,
+          "pc": 5854,
+          "sp": 57331
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 12,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1213,
+        "model": "dmg",
+        "operations": 12972305,
+        "ppu_cycles": 85632728,
+        "registers": {
+          "a": 77,
+          "b": 1,
+          "c": 0,
+          "d": 195,
+          "e": 34,
+          "f": 0,
+          "h": 77,
+          "l": 77,
+          "pc": 5848,
+          "sp": 57331
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 8,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1221,
+        "model": "dmg",
+        "operations": 13030387,
+        "ppu_cycles": 86194516,
+        "registers": {
+          "a": 68,
+          "b": 26,
+          "c": 0,
+          "d": 197,
+          "e": 22,
+          "f": 0,
+          "h": 37,
+          "l": 68,
+          "pc": 9281,
+          "sp": 57331
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 12,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1233,
+        "model": "dmg",
+        "operations": 13117749,
+        "ppu_cycles": 87037200,
+        "registers": {
+          "a": 255,
+          "b": 0,
+          "c": 18,
+          "d": 194,
+          "e": 34,
+          "f": 0,
+          "h": 194,
+          "l": 40,
+          "pc": 16416,
+          "sp": 57309
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 8,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1241,
+        "model": "dmg",
+        "operations": 13175953,
+        "ppu_cycles": 87598996,
+        "registers": {
+          "a": 95,
+          "b": 3,
+          "c": 0,
+          "d": 195,
+          "e": 42,
+          "f": 0,
+          "h": 77,
+          "l": 155,
+          "pc": 5848,
+          "sp": 57331
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 12,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1253,
+        "model": "dmg",
+        "operations": 13262452,
+        "ppu_cycles": 88441692,
+        "registers": {
+          "a": 222,
+          "b": 0,
+          "c": 37,
+          "d": 193,
+          "e": 0,
+          "f": 112,
+          "h": 193,
+          "l": 222,
+          "pc": 18162,
+          "sp": 57315
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 8,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1261,
+        "model": "dmg",
+        "operations": 13320570,
+        "ppu_cycles": 89003472,
+        "registers": {
+          "a": 135,
+          "b": 0,
+          "c": 4,
+          "d": 75,
+          "e": 220,
+          "f": 0,
+          "h": 194,
+          "l": 44,
+          "pc": 16577,
+          "sp": 57319
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 12,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1273,
+        "model": "dmg",
+        "operations": 13408004,
+        "ppu_cycles": 89846164,
+        "registers": {
+          "a": 254,
+          "b": 0,
+          "c": 0,
+          "d": 199,
+          "e": 216,
+          "f": 192,
+          "h": 72,
+          "l": 98,
+          "pc": 5741,
+          "sp": 57335
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 8,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1281,
+        "model": "dmg",
+        "operations": 13467388,
+        "ppu_cycles": 90407956,
+        "registers": {
+          "a": 5,
+          "b": 0,
+          "c": 33,
+          "d": 193,
+          "e": 227,
+          "f": 0,
+          "h": 193,
+          "l": 5,
+          "pc": 16387,
+          "sp": 57317
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 12,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1293,
+        "model": "dmg",
+        "operations": 13555622,
+        "ppu_cycles": 91250640,
+        "registers": {
+          "a": 144,
+          "b": 2,
+          "c": 0,
+          "d": 195,
+          "e": 45,
+          "f": 32,
+          "h": 77,
+          "l": 156,
+          "pc": 5827,
+          "sp": 57329
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 8,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1301,
+        "model": "dmg",
+        "operations": 13613146,
+        "ppu_cycles": 91812440,
+        "registers": {
+          "a": 8,
+          "b": 18,
+          "c": 33,
+          "d": 195,
+          "e": 224,
+          "f": 0,
+          "h": 37,
+          "l": 69,
+          "pc": 9293,
+          "sp": 57331
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 12,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1313,
+        "model": "dmg",
+        "operations": 13699619,
+        "ppu_cycles": 92655124,
+        "registers": {
+          "a": 0,
+          "b": 4,
+          "c": 1,
+          "d": 200,
+          "e": 196,
+          "f": 192,
+          "h": 197,
+          "l": 12,
+          "pc": 10613,
+          "sp": 57331
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 8,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1321,
+        "model": "dmg",
+        "operations": 13757571,
+        "ppu_cycles": 93216912,
+        "registers": {
+          "a": 197,
+          "b": 0,
+          "c": 175,
+          "d": 195,
+          "e": 204,
+          "f": 64,
+          "h": 197,
+          "l": 192,
+          "pc": 13028,
+          "sp": 57335
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 12,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1333,
+        "model": "dmg",
+        "operations": 13845196,
+        "ppu_cycles": 94059600,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 10,
+          "d": 193,
+          "e": 27,
+          "f": 0,
+          "h": 193,
+          "l": 175,
+          "pc": 16389,
+          "sp": 57319
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 8,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1341,
+        "model": "dmg",
+        "operations": 13903181,
+        "ppu_cycles": 94621404,
+        "registers": {
+          "a": 0,
+          "b": 26,
+          "c": 1,
+          "d": 200,
+          "e": 196,
+          "f": 0,
+          "h": 197,
+          "l": 70,
+          "pc": 10558,
+          "sp": 57331
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 12,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1353,
+        "model": "dmg",
+        "operations": 13989481,
+        "ppu_cycles": 95464088,
+        "registers": {
+          "a": 199,
+          "b": 0,
+          "c": 0,
+          "d": 199,
+          "e": 64,
+          "f": 0,
+          "h": 72,
+          "l": 250,
+          "pc": 5570,
+          "sp": 57337
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 8,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1361,
+        "model": "dmg",
+        "operations": 14048045,
+        "ppu_cycles": 96025876,
+        "registers": {
+          "a": 78,
+          "b": 0,
+          "c": 6,
+          "d": 193,
+          "e": 31,
+          "f": 0,
+          "h": 193,
+          "l": 179,
+          "pc": 16388,
+          "sp": 57313
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 12,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1373,
+        "model": "dmg",
+        "operations": 14135819,
+        "ppu_cycles": 96868564,
+        "registers": {
+          "a": 252,
+          "b": 0,
+          "c": 36,
+          "d": 193,
+          "e": 76,
+          "f": 0,
+          "h": 193,
+          "l": 2,
+          "pc": 16387,
+          "sp": 57319
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 8,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1381,
+        "model": "dmg",
+        "operations": 14193574,
+        "ppu_cycles": 97430352,
+        "registers": {
+          "a": 2,
+          "b": 0,
+          "c": 3,
+          "d": 200,
+          "e": 180,
+          "f": 0,
+          "h": 197,
+          "l": 18,
+          "pc": 10690,
+          "sp": 57331
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 12,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1393,
+        "model": "dmg",
+        "operations": 14280432,
+        "ppu_cycles": 98273048,
+        "registers": {
+          "a": 128,
+          "b": 0,
+          "c": 164,
+          "d": 195,
+          "e": 204,
+          "f": 0,
+          "h": 198,
+          "l": 0,
+          "pc": 13090,
+          "sp": 57335
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.snapshot.export",
+      "params": {
+        "path": "analysis/runtime/combat1393.snapshot.json"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.start",
+      "params": {},
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 0,
+        "model": "dmg",
+        "operations": 0,
+        "ppu_cycles": 0,
+        "registers": {
+          "a": 1,
+          "b": 0,
+          "c": 19,
+          "d": 0,
+          "e": 216,
+          "f": 176,
+          "h": 1,
+          "l": 77,
+          "pc": 256,
+          "sp": 65534
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.snapshot.import",
+      "params": {
+        "path": "analysis/runtime/combat1393.snapshot.json"
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1393,
+        "model": "dmg",
+        "operations": 14280432,
+        "ppu_cycles": 98273048,
+        "registers": {
+          "a": 128,
+          "b": 0,
+          "c": 164,
+          "d": 195,
+          "e": 204,
+          "f": 0,
+          "h": 198,
+          "l": 0,
+          "pc": 13090,
+          "sp": 57335
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "left",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "up",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "down",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "start",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "select",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1413,
+        "model": "dmg",
+        "operations": 14427042,
+        "ppu_cycles": 99677532,
+        "registers": {
+          "a": 64,
+          "b": 0,
+          "c": 32,
+          "d": 197,
+          "e": 32,
+          "f": 64,
+          "h": 71,
+          "l": 145,
+          "pc": 5651,
+          "sp": 57335
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1433,
+        "model": "dmg",
+        "operations": 14571032,
+        "ppu_cycles": 101082000,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 17,
+          "d": 193,
+          "e": 242,
+          "f": 0,
+          "h": 193,
+          "l": 20,
+          "pc": 16388,
+          "sp": 57313
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1453,
+        "model": "dmg",
+        "operations": 14714358,
+        "ppu_cycles": 102486480,
+        "registers": {
+          "a": 94,
+          "b": 5,
+          "c": 0,
+          "d": 195,
+          "e": 22,
+          "f": 0,
+          "h": 77,
+          "l": 148,
+          "pc": 5848,
+          "sp": 57331
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1473,
+        "model": "dmg",
+        "operations": 14861104,
+        "ppu_cycles": 103890972,
+        "registers": {
+          "a": 32,
+          "b": 0,
+          "c": 101,
+          "d": 195,
+          "e": 204,
+          "f": 0,
+          "h": 198,
+          "l": 32,
+          "pc": 13080,
+          "sp": 57337
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1493,
+        "model": "dmg",
+        "operations": 15006346,
+        "ppu_cycles": 105295444,
+        "registers": {
+          "a": 2,
+          "b": 0,
+          "c": 125,
+          "d": 195,
+          "e": 204,
+          "f": 64,
+          "h": 199,
+          "l": 128,
+          "pc": 13053,
+          "sp": 57337
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1513,
+        "model": "dmg",
+        "operations": 15150699,
+        "ppu_cycles": 106699920,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 30,
+          "d": 193,
+          "e": 118,
+          "f": 0,
+          "h": 193,
+          "l": 7,
+          "pc": 16388,
+          "sp": 57313
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1533,
+        "model": "dmg",
+        "operations": 15297014,
+        "ppu_cycles": 108104416,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 198,
+          "e": 160,
+          "f": 128,
+          "h": 73,
+          "l": 21,
+          "pc": 5559,
+          "sp": 57337
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1553,
+        "model": "dmg",
+        "operations": 15441679,
+        "ppu_cycles": 109508884,
+        "registers": {
+          "a": 96,
+          "b": 1,
+          "c": 2,
+          "d": 196,
+          "e": 55,
+          "f": 32,
+          "h": 195,
+          "l": 80,
+          "pc": 12908,
+          "sp": 57335
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1573,
+        "model": "dmg",
+        "operations": 15586490,
+        "ppu_cycles": 110913368,
+        "registers": {
+          "a": 2,
+          "b": 0,
+          "c": 1,
+          "d": 195,
+          "e": 230,
+          "f": 32,
+          "h": 197,
+          "l": 18,
+          "pc": 10626,
+          "sp": 57325
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1593,
+        "model": "dmg",
+        "operations": 15732212,
+        "ppu_cycles": 112317848,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 198,
+          "e": 224,
+          "f": 128,
+          "h": 73,
+          "l": 33,
+          "pc": 5559,
+          "sp": 57337
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1613,
+        "model": "dmg",
+        "operations": 15876837,
+        "ppu_cycles": 113722336,
+        "registers": {
+          "a": 183,
+          "b": 2,
+          "c": 3,
+          "d": 200,
+          "e": 183,
+          "f": 0,
+          "h": 197,
+          "l": 18,
+          "pc": 10663,
+          "sp": 57325
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1633,
+        "model": "dmg",
+        "operations": 16021469,
+        "ppu_cycles": 115126800,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 198,
+          "e": 96,
+          "f": 128,
+          "h": 73,
+          "l": 29,
+          "pc": 5654,
+          "sp": 57335
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.snapshot.export",
+      "params": {
+        "path": "analysis/runtime/walk1633.snapshot.json"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.start",
+      "params": {},
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 0,
+        "model": "dmg",
+        "operations": 0,
+        "ppu_cycles": 0,
+        "registers": {
+          "a": 1,
+          "b": 0,
+          "c": 19,
+          "d": 0,
+          "e": 216,
+          "f": 176,
+          "h": 1,
+          "l": 77,
+          "pc": 256,
+          "sp": 65534
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.snapshot.import",
+      "params": {
+        "path": "analysis/runtime/walk1633.snapshot.json"
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1633,
+        "model": "dmg",
+        "operations": 16021469,
+        "ppu_cycles": 115126800,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 198,
+          "e": 96,
+          "f": 128,
+          "h": 73,
+          "l": 29,
+          "pc": 5654,
+          "sp": 57335
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "right",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "left",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "up",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "down",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "b",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "select",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "start",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 2,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1635,
+        "model": "dmg",
+        "operations": 16049249,
+        "ppu_cycles": 115267268,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 128,
+          "d": 128,
+          "e": 0,
+          "f": 160,
+          "h": 9,
+          "l": 209,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "start",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 8,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1643,
+        "model": "dmg",
+        "operations": 16171718,
+        "ppu_cycles": 115829060,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "f": 160,
+          "h": 9,
+          "l": 209,
+          "pc": 64,
+          "sp": 57341
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "start",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 2,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1645,
+        "model": "dmg",
+        "operations": 16186426,
+        "ppu_cycles": 115969492,
+        "registers": {
+          "a": 2,
+          "b": 0,
+          "c": 0,
+          "d": 199,
+          "e": 128,
+          "f": 64,
+          "h": 73,
+          "l": 29,
+          "pc": 5582,
+          "sp": 57337
+        },
+        "switch_bank": 1,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.input",
+      "params": {
+        "button": "start",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.run",
+      "params": {
+        "unit": "frame",
+        "count": 8,
+        "max_operations": 1000000,
+        "timeout_ms": 30000
+      },
+      "result": {
+        "double_speed": false,
+        "fixed_bank": 0,
+        "frames": 1653,
+        "model": "dmg",
+        "operations": 16245961,
+        "ppu_cycles": 116531280,
+        "registers": {
+          "a": 0,
+          "b": 0,
+          "c": 17,
+          "d": 193,
+          "e": 20,
+          "f": 0,
+          "h": 193,
+          "l": 95,
+          "pc": 16386,
+          "sp": 57307
+        },
+        "switch_bank": 2,
+        "vram_bank": 0,
+        "wram_bank": 1
+      },
+      "error": null
+    },
+    {
+      "source_log": "analysis/runtime/direct-rpc.jsonl",
+      "method": "emulator.snapshot.export",
+      "params": {
+        "path": "analysis/runtime/pause1653.snapshot.json"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    }
+  ],
+  "constructed_research": [
+    {
+      "id": "round005-resumed-descriptor-function-tests",
+      "natural_gameplay": false,
+      "script": "analysis/redirect/round-005-resumed-probe.py",
+      "rpc": "analysis/redirect/round-005-resumed-api.json",
+      "cases": "analysis/redirect/round-005-resumed-cases.json",
+      "buttons": "Fresh emulator default released; no input commands or snapshot restores.",
+      "patches": "switch1 via2180; stagec02b0..3 and selectedc412; stackdff0 bytes00,c1; pc0968 then262f. Exact values inRPC.",
+      "budgets": "150/200operations per call,1operation per step and1000ms timeout;28returns/1810totaloperations.",
+      "result": "Artificial descriptor behavior verified; natural reachability not established."
+    },
+    {
+      "round": 6,
+      "phase": "redirect",
+      "kind": "artificial function verification, not gameplay",
+      "script": "analysis/redirect/round-006/research.py",
+      "rpc": "analysis/redirect/round-006/rpc.json",
+      "cases": "analysis/redirect/round-006/evidence.json",
+      "inputs": "After each clean session-local snapshot restore explicitly release a,b,start,select,up,down,left,right.2180=1;c02a=selector,c02b=stage;dff0=[00,c1];pc262f,spdff0.",
+      "budget": "200single-operation calls maximum per loader;19cases actually94..98operations each",
+      "result": "c412 matches descriptor nested byte;c40c/c40d equalswidth*32;safe returnc100; no natural gate success or later-stage reachability established"
+    },
+    {
+      "round": 7,
+      "phase": "redirect",
+      "kind": "artificial function tests, no natural gameplay",
+      "scripts": [
+        "analysis/redirect/round-007/research.py",
+        "analysis/redirect/round-007/raw-probe.py"
+      ],
+      "evidence": [
+        "analysis/redirect/round-007/evidence.json",
+        "analysis/redirect/round-007/raw-probe-tests.json"
+      ],
+      "inputs": "All8released explicitly after clean snapshot restore. Loader:2180=1,c02a=selector,c02b=stage,pc262f. Wrappers:2180=1,c00d=0/4/8,c601=0,pc06f1/0702. Both:spdff0,dff0=[00,c1],stopPCc100.",
+      "budget": "Loader200single operations; wrappers10000single operations;1000ms per step. Actually94/96/98 and988/19/279/278operations.",
+      "result": "Nested/width assertions and wrapper safe returns passed; no ordinary reachability. First bulk overshoot preserved separately."
+    },
+    {
+      "round": 8,
+      "kind": "artificial continue wrapper replay",
+      "recipe": "analysis/round-008evidence/raw-probe.py",
+      "rpc": "analysis/round-008evidence/raw-probe-rpc.json",
+      "results": "analysis/round-008evidence/raw-probe-tests.json",
+      "setup": "Fresh emulator clean session-local snapshot; after each load explicitly release a,b,start,select,up,down,left,right (T001). Write2180=01,c00d=0/4/8,c601=0,dff0=[00,c1];PC06f1/0702,SPdff0. Trace clear/configure enabled capacity0; step1/state untilPCc100,cap10000operations.",
+      "results_summary": "988/19/279/278operations; fixed0/switch1 restored on each return. Aggregate physical fetched sets fully paged(total53/19/61/57 each <=1000); detailed trace capacity0. No natural route claimed."
+    },
+    {
+      "round": 8,
+      "phase": "redirect",
+      "descriptor": {
+        "recipe": "analysis/redirect/round-008/research.py",
+        "results": "analysis/redirect/round-008/evidence.json",
+        "cases": 33,
+        "cap_per_call": 200,
+        "inputs": "all8buttons released after every clean session-local snapshot restore(T001)",
+        "patches": "2180=1;c02a=selector,c02b=stage;dff0=[00,c1];PC262f,SPdff0;step1 untilc100"
+      },
+      "audio": {
+        "recipe": "analysis/redirect/round-008/audio.py",
+        "results": "analysis/redirect/round-008/audio-evidence.json",
+        "commands": [
+          5,
+          6,
+          7,
+          21,
+          40,
+          48,
+          49
+        ],
+        "cap_per_call": 1000,
+        "inputs": "all8buttons released after every clean session-local snapshot restore(T001)",
+        "patches": "2180=2;dff0=[00,c3];PC4712,SPdff0,A=command;step1 untilc300"
+      },
+      "scope": "Artificial behavior only, no natural route/reachability or execution classification claims; ROM backing unchanged."
+    }
+  ],
+  "redirect_experiments": [
+    {
+      "round": 9,
+      "evidence": "analysis/redirect/round-009/evidence.json",
+      "replay": "analysis/redirect/round-009/research.py",
+      "rpc": "analysis/redirect/round-009/rpc.json",
+      "kind": "artificial descriptor loaders and direct audio stream parser",
+      "snapshot": "session-local clean only;script recreates;no persistence assumed",
+      "inputs": "all8buttons explicitly released after each restoration(T001)",
+      "patches": "descriptor:2180=1,c02a=selector,c02b=stage;audio:2180=2,c100=command,c101=1,c244=channel,c245=registeroffset,DE=stream;eachcallSPdff0,[dff0]=00c3,PC262f or41a3",
+      "budgets": "descriptor200singleops;audio2000singleops/event,100events/stream",
+      "result": "3descriptor calls and31audio eventcalls pass;commands5/7/21 terminated;no natural reachability claim"
+    },
+    {
+      "id": "round010-descriptors-audio49",
+      "method": "Artificial loader/parser calls only;no natural route",
+      "recipe": "analysis/redirect/round-010/research.py",
+      "results": "analysis/redirect/round-010/evidence.json",
+      "snapshot": "Session-local clean only;releaseall8buttons afterload(T001)",
+      "budgets": "2descriptor calls cap200operations;43audioevents cap2000operations each/eventcap100"
+    }
+  ],
+  "static_verification": [
+    {
+      "round": 10,
+      "id": "R10-BOUNDED-CONSUMER-VERIFICATION",
+      "script": "analysis/round-010evidence/verify.py",
+      "inspection": "analysis/round-010evidence/inspection-rpc.json",
+      "runtime": false,
+      "inputs": [],
+      "snapshots": "None; no session persistence assumed.",
+      "results": "Three stage/selector cases; four exact audio streams. Static finite control interpreter terminates command6 after2875grammar/control steps, repeats253/8. No new CPU execution, natural input route or pointer-target execution. Unchanged stalled gameplay routes not replayed."
+    },
+    {
+      "round": 13,
+      "id": "R13-SOURCE-SELECTED-AUDIO",
+      "script": "analysis/round-013evidence/verify.py",
+      "inspection": "analysis/round-013evidence/inspection-rpc.json",
+      "runtime": false,
+      "inputs": [],
+      "snapshots": "None used; previous redirect snapshots remain session-local.",
+      "results": "18selected channel graphs independently match exact events/edges/states; command20/28 FF-stop, stage37/41/42/43 exact repeated-state cycles. Source05bc conditional0..3 with no local mask;0a1e local&3. Prior11 artificial tests retained in redirect/round-012/evidence.json and research.py, not rerun or described as natural gameplay. No new fetched instruction coverage."
+    },
+    {
+      "round": 14,
+      "phase": "disassembly",
+      "recipe": "analysis/round-014evidence/verify.py and schema.py",
+      "results": "analysis/round-014evidence/verified.json",
+      "scope": "No new emulator execution, snapshot or natural input route. Independently reconstructed40 contexts and98 source links. Historical redirect52 artificial tests retained without rerun.",
+      "prior_runtime_recipe": "analysis/redirect/round-013/probe.py",
+      "prior_runtime_setup": "Fixed0/switch1; restore clean session-local snapshot, release all8buttons(T001),2180=1,SPdff0 with RAMreturnc300.40 directory calls PC5679/c02b=stage/c412=nested stop5684 cap100;7 isolated spawns PC56a5 HLrecord DEcoordinate+1 cap500;5 scans DE1000 cap2000. Equality does not spawn; parameter copies to object+18.",
+      "boundary_scope": "E000 comparison boundary only for nonnegative DE<2000; no global sentinel or sorted coordinates."
+    },
+    {
+      "round": 15,
+      "phase": "disassembly",
+      "recipe": "analysis/round-015evidence/verify.py",
+      "results": "analysis/round-015evidence/verified.json",
+      "scope": "Static-only; no new natural gameplay, emulator execution or snapshot. Historical51 artificial tests retained without rerun.",
+      "prior_runtime_recipe": "analysis/redirect/round-014/research.py",
+      "prior_runtime_setup": "Fixed0/switch2, clean session-local restore, all8buttons released(T001),2180=2,SPdff0 RAMreturnc300.40directory PC3095 includes HL663f,stage c02b/nested c412,stop30a2,cap100:28ops.6isolated spawn PC30ee,E=flag index,D=cb,c3d0/d1 pointer,cap500:171/172ops.5scan PC30a2,HLlist,lower1000/upper10ac,cap3000:30..562ops.",
+      "boundary": "Unsigned coordinate<lower skips; coordinate>=upper stops. E000 boundary only lower/upper<=E000. Stage1/nested15 rows0088,0058 remain unsorted; no natural second-row selection claim.",
+      "retry_history": "Redirect missing HL directory base and missing E index setup errors retained in original findings; not toolkit bugs."
+    },
+    {
+      "round": 16,
+      "phase": "disassembly",
+      "recipe": "analysis/round-016evidence/verify.py",
+      "results": "analysis/round-016evidence/verified.json",
+      "scope": "Static independent source/byte/grammar checks and historical Instruction/Read trace audit; no new emulator execution, natural route or snapshot.",
+      "historical_recipes": [
+        "analysis/redirect/round-015/research.py",
+        "analysis/redirect/round-015/consumer.py",
+        "analysis/redirect/round-015/initial-handlers.py"
+      ],
+      "historical_setup": "Clean session-local snapshot, all8buttons released(T001),2180=1,SPdff0 RAMreturnc300.30dispatch cap100;12conversion cap500;9initializer cap150;44renderer cap1000/timers1,2/LCDdisabled;22state0 wrappers cap100/26ops. Exact RAM/register patches and journals retained in redirect/round-015.",
+      "limitations": "First state targets not fetched; no natural reachability, bank2 sprite inference,2f7e+9 domain or global inline-table extent."
+    }
+  ],
+  "round011_constructed_tests": [
+    {
+      "id": "R11-EA-WORD-READS",
+      "type": "artificial consumer",
+      "replay": "analysis/round-011evidence/word-probe.py",
+      "evidence": "analysis/round-011evidence/word-read-verification.json",
+      "setup": "clean session-local snapshot;release a,b,start,select,up,down,left,right;write2180=2;writec300=parameter;PC42a5,SPdff0,DEc300;step1 untilPC41a2,cap100",
+      "parameters": [
+        22,
+        33,
+        42,
+        32
+      ],
+      "operations": [
+        22,
+        31,
+        31,
+        32
+      ],
+      "natural_reachability": false
+    }
+  ],
+  "round011_redirect_constructed_tests": {
+    "kind": "artificial local consumers only",
+    "replay": "analysis/redirect/round-011/research.py",
+    "evidence": "analysis/redirect/round-011/evidence.json",
+    "bank_context": "fixed0/switch1 loader; fixed0/switch2 audio",
+    "snapshot": "session-local clean; recreate on replay",
+    "inputs": "explicitly release all eight buttons after each restore (T001)",
+    "budgets": {
+      "loader_operations": 200,
+      "control_operations_per_case": 100
+    },
+    "cases": "selector66 plus seven FB/FC/FD/FE branches including counter FF\u219200; no natural route"
+  },
+  "round012_constructed_tests": [
+    {
+      "id": "R12-CONTROL-SEMANTICS",
+      "type": "artificial consumer probes",
+      "replay": "analysis/round-012evidence/verify.py",
+      "evidence": "analysis/round-012evidence/control-tests.json",
+      "setup": "Clean session-local restore; explicitly release a,b,start,select,up,down,left,right;2180=2;c106 and c11b..c11e from recorded before;PC41a3,SPdff0,DEevent;step1 to next41a3,cap100operations",
+      "operations": [
+        23,
+        32,
+        30,
+        31,
+        31,
+        23,
+        32
+      ],
+      "natural_reachability": false
+    }
+  ],
+  "redirect_round013_constructed_objects": {
+    "evidence": "analysis/redirect/round-013/evidence.json",
+    "replay": "analysis/redirect/round-013/probe.py",
+    "rpc": "analysis/redirect/round-013/probe-rpc.json",
+    "tests": "analysis/redirect/round-013/tests.json",
+    "kind": "artificial local-consumer tests; no natural route",
+    "snapshot": "clean session-local only",
+    "inputs": "explicit releases a,b,up,down,left,right,start,select after each restore",
+    "budget": "40 directory cap100,7 spawn cap500,5 scans cap2000",
+    "bank_context": "fixed0/switch1",
+    "return_context": "SPdff0 RAMreturnc300;directory stop5684",
+    "retry_history": "findings.md; equality-tests/equality-rpc;parameter-offset-retry-rpc"
+  },
+  "redirect_round014_constructed_persistent_placements": {
+    "kind": "artificial local consumers only; no natural route",
+    "replay": "analysis/redirect/round-014/research.py",
+    "evidence": "analysis/redirect/round-014/evidence.json",
+    "tests": "analysis/redirect/round-014/tests.json",
+    "rpc": "analysis/redirect/round-014/rpc.json",
+    "bank_context": "fixed0/switch2 explicit2180=2",
+    "snapshot": "clean session-local only, recreated by replay",
+    "inputs": "release a,b,up,down,left,right,start,select after every restore (T001)",
+    "setup": "findings.md exact patches; PC3095 directories,30ee with E=index/D=CB spawn,30a2 lower1000/upper10ac scans;SPdff0 RAMreturnc300",
+    "budgets": "40directory cap100,6spawn cap500,5scan cap3000",
+    "retry_history": "directory-missing-base-rpc.json and spawn-missing-e-rpc.json retained; corrected source contracts"
+  },
+  "redirect_round015_finite_object_consumers": {
+    "artificial": true,
+    "natural_reachability": false,
+    "scripts": [
+      "analysis/redirect/round-015/research.py",
+      "analysis/redirect/round-015/consumer.py",
+      "analysis/redirect/round-015/initial-handlers.py"
+    ],
+    "recipes": "analysis/redirect/round-015/findings.md",
+    "results": "analysis/redirect/round-015/verification.json",
+    "inputs": "Explicitly release a,b,up,down,left,right,start,select after every clean session-local restore (T001); no ordinary gameplay route.",
+    "counts": [
+      51,
+      44,
+      22
+    ]
+  },
+  "round016_redirect_constructed_tests": {
+    "kind": "artificial only",
+    "replay": "analysis/redirect/round-016/probe.py",
+    "findings": "analysis/redirect/round-016/findings.md",
+    "verification": "analysis/redirect/round-016/verification.json",
+    "first_state_cases": 18,
+    "first_state_cap_operations": 1000,
+    "first_state_actual_range": [
+      78,
+      377
+    ],
+    "renderer_cases": 52,
+    "renderer_cap_operations": 1000,
+    "renderer_max_operations": 423,
+    "inputs": "All eight buttons explicitly released after clean session-local snapshot restoration; no natural input route.",
+    "context": "Fixed0/switch1; objectc600 or persistent2c580, playerc500, safe returnc300/SPdff0. Type3 temporarily calls bank2 audio; per-event physical/CPU context retained.",
+    "limitations": "No state1-body execution, global type/state domain, ordinary timing or natural reachability."
+  },
+  "round017_disassembly": {
+    "kind": "historical constructed trace audit; no new runtime",
+    "source": "analysis/redirect/round-016/probe.py and consumer.py",
+    "tests": "18 first-state + 52 renderer",
+    "bounds": "78..377/cap1000 first-state; renderer max423/cap1000",
+    "inputs": "Eight buttons explicitly released after each historical clean session-local restore (T001)",
+    "limitations": "Artificial local contracts only; state1 write is not state1-body execution",
+    "proof": "analysis/round-017evidence/verified.json"
+  },
+  "round017_redirect_constructed_tests": {
+    "kind": "artificial-local-consumers",
+    "natural_route": false,
+    "inputs": "Explicitly release a,b,up,down,left,right,start,select after every restore/import (T001).",
+    "replay": [
+      "analysis/redirect/round-017/probe.py",
+      "analysis/redirect/round-017/parsers.py",
+      "analysis/redirect/round-017/children.py",
+      "analysis/redirect/round-017/bounds.py",
+      "analysis/redirect/round-017/consumer.py"
+    ],
+    "evidence": "analysis/redirect/round-017/findings.md",
+    "accepted_actor_cases": 56,
+    "renderer_cases": 26,
+    "actor_caps": [
+      1000,
+      1500
+    ],
+    "renderer_cap": 1000,
+    "snapshots": [
+      "analysis/redirect/round-017/init25.snapshot.json",
+      "analysis/redirect/round-017/init33.snapshot.json",
+      "analysis/redirect/round-017/init45.snapshot.json",
+      "analysis/redirect/round-017/init46.snapshot.json"
+    ],
+    "warning": "Scripts exporting snapshots require fresh output paths; named snapshots session-local. Forced-current-FF variant cases excluded and retained separately. No natural timing/placement/global allocator inference."
+  },
+  "round018_redirect_constructed_tests": {
+    "kind": "artificial-local-consumers",
+    "natural_route": false,
+    "inputs": "Release all8buttons explicitly after every restore/import(T001).",
+    "replay": [
+      "analysis/redirect/round-018/probe.py",
+      "analysis/redirect/round-018/consumer.py",
+      "analysis/redirect/round-018/audio-probe.py"
+    ],
+    "evidence": "analysis/redirect/round-018/findings.md",
+    "actor_cases": 7,
+    "renderer_cases": 20,
+    "audio_calls": 16,
+    "actor_cap": 1800,
+    "renderer_cap": 1000,
+    "audio_caps": [
+      1000,
+      500
+    ],
+    "persistent_snapshot": "analysis/redirect/round-017/init25.snapshot.json",
+    "patches": "analysis/redirect/round-018/rpc.json",
+    "warning": "No natural scheduling, stage/audio reachability or global selector claims. Named audio clean snapshot session-local."
+  },
+  "round019_redirect_constructed_tests": {
+    "kind": "artificial-local-consumers",
+    "natural_route": false,
+    "inputs": "Release all8buttons explicitly after every restore/import(T001).",
+    "replay": [
+      "analysis/redirect/round-019/probe.py",
+      "analysis/redirect/round-019/consumer.py",
+      "analysis/redirect/round-019/audio-probe.py"
+    ],
+    "evidence": "analysis/redirect/round-019/findings.md",
+    "actor_cases": 34,
+    "renderer_cases": 22,
+    "audio_calls": 6,
+    "actor_cap": 1800,
+    "renderer_cap": 1000,
+    "audio_caps": [
+      1000,
+      500
+    ],
+    "persistent_snapshot": "analysis/redirect/round-017/init25.snapshot.json",
+    "patches": "analysis/redirect/round-019/rpc.json",
+    "warning": "No natural timing,placement,live contact/artwork or wider selector inference.512byte c800 cache00/55 is artificial;exact patches retained;named clean snapshots session-local."
+  },
+  "round020_disassembly_verification": {
+    "new_runtime": false,
+    "evidence": "analysis/round-020evidence/final-verification.json",
+    "reused_routes": [
+      "analysis/redirect/round-019/probe.py",
+      "analysis/redirect/round-019/consumer.py",
+      "analysis/redirect/round-019/audio-probe.py"
+    ],
+    "scope": "34 actor calls,22 renderer cases,6 audio calls,18 output contracts. Exact patches/input release/bank budgets in source scripts and rpc. Constructed local contracts only;377 fetched newCode bytes,24 static. No natural reachability claimed."
+  },
+  "round020_redirect_constructed_tests": {
+    "status": "in_progress_context_checkpoint",
+    "artifacts": "analysis/redirect/round-020",
+    "actor_recipe": "analysis/redirect/round-020/probe.py",
+    "actor_results": "analysis/redirect/round-020/tests.json",
+    "actor_calls": 60,
+    "actor_cap": 1800,
+    "actor_max": 1585,
+    "renderer_recipe": "analysis/redirect/round-020/consumer.py",
+    "renderer_results": "analysis/redirect/round-020/consumer-tests.json",
+    "renderer_cases": 152,
+    "renderer_cap": 1000,
+    "renderer_max": 475,
+    "audio_recipe": "analysis/redirect/round-020/audio-probe.py",
+    "audio_results": "analysis/redirect/round-020/audio-tests.json",
+    "audio_calls": 117,
+    "audio_cap": 1000,
+    "audio_max": 465,
+    "input_sequence": "After EVERY snapshot import/load explicitly release a,b,up,down,left,right,start,select. No subsequent button press in these artificial tests.",
+    "actor_persistent_snapshot": "analysis/redirect/round-017/init25.snapshot.json",
+    "contexts": "fixed0/switch1 actor; sound00bd temporarily maps2/restores1; direct audio2; all exact patches and registers in scripts/RPC",
+    "limits": "Artificial local contracts, no natural scheduling/contact/later-stage/ownership claim; inline/RNG/global domains limited as findings.md.",
+    "verification": "analysis/redirect/round-020/research-checkpoint.json"
+  },
+  "round020_redirect_continuation": {
+    "status": "in_progress_context_checkpoint",
+    "actor_recipe": "analysis/redirect/round-020/alternate-probe.py",
+    "actor_continuation_recipe": "analysis/redirect/round-020/alternate-continuation-probe.py",
+    "actor_results": "analysis/redirect/round-020/alternate-tests.json",
+    "actor_calls": 36,
+    "actor_initial_cap": 1800,
+    "actor_continuation_cap": 6000,
+    "actor_max": 2927,
+    "renderer_recipe": "analysis/redirect/round-020/supplement-renderer.py",
+    "renderer_continuation_recipe": "analysis/redirect/round-020/supplement-renderer-continuation.py",
+    "renderer_cases": 198,
+    "renderer_max": 905,
+    "renderer_cap": 1000,
+    "parameter_recipe": "analysis/redirect/round-020/parameter-probe.py",
+    "parameter_continuation_recipe": "analysis/redirect/round-020/parameter-continuation-probe.py",
+    "parameter_calls": 11,
+    "parameter_cap": 500,
+    "excluded": "pitch8-step5 starts on operand; not semantic/selector evidence",
+    "ee_recipe": "analysis/redirect/round-020/ee-probe.py",
+    "ee_calls": 1,
+    "ee_operations": 152,
+    "ee_cap": 500,
+    "input_sequence": "After every snapshot import/load release a,b,up,down,left,right,start,select(T001); no presses. Actor import persisted round017/init25; parameter/renderer clean session-local snapshots.",
+    "limits": "Artificial local contracts only; no natural stage/completion/contact/audio ownership/reachability; cap hit retained and pending-only rerun.",
+    "verification": "analysis/redirect/round-020/continuation-checkpoint.json"
+  },
+  "round020_redirect_type17_player": {
+    "status": "in_progress_context_checkpoint",
+    "recipes": [
+      "analysis/redirect/round-020/type17-probe.py",
+      "analysis/redirect/round-020/fixed-frontier-probe.py",
+      "analysis/redirect/round-020/player-transition-probe.py",
+      "analysis/redirect/round-020/animation-wrapper-probe.py",
+      "analysis/redirect/round-020/player-renderer.py"
+    ],
+    "results": [
+      "analysis/redirect/round-020/type17-tests.json",
+      "analysis/redirect/round-020/fixed-frontier-tests.json",
+      "analysis/redirect/round-020/player-transition-tests.json",
+      "analysis/redirect/round-020/animation-wrapper-tests.json",
+      "analysis/redirect/round-020/supplement-renderer-tests.json"
+    ],
+    "calls": {
+      "type17": 10,
+      "fixed_frontier": 14,
+      "player": 12,
+      "animation_wrapper": 1
+    },
+    "per_call_cap": 1800,
+    "max_operations": 1434,
+    "new_renderer_cases": 76,
+    "supplement_renderer_total": 274,
+    "renderer_cap": 1000,
+    "input_sequence": "After each persisted round017/init25 import or clean session-local renderer restore release a,b,up,down,left,right,start,select; no presses. Exact extra RAM/register patches in recipes/results.",
+    "limits": "Constructed local contracts only; no natural transition/climb/death/contact/carrier ownership or late-stage claim. Nonlocal1a54barrier excludes1a57..1a6e.",
+    "next": "R20-TYPE38-NESTED1-CONTEXT; no new context runtime yet.",
+    "verification": "analysis/redirect/round-020/continuation-checkpoint.json"
+  },
+  "round020_redirect_nested1": {
+    "kind": "constructed local consumer verification only",
+    "recipe": "analysis/redirect/round-020/nested1.py",
+    "results": "analysis/redirect/round-020/nested1-tests.json",
+    "evidence": "analysis/redirect/round-020/nested1-evidence.json",
+    "calls": 16,
+    "per_call_cap": 1800,
+    "max_operations": 489,
+    "zero_trace_drops": true,
+    "input_sequence": "After every round017/init25 snapshot import release a,b,up,down,left,right,start,select; no presses. Each case exact ROM bank/RAM/register setup recorded.",
+    "limits": "No natural late-stage/proximity/actor selection claim; transition counter domain48*5 distinct from width53; width1 and25celltail excluded."
+  },
+  "round021_redirect": {
+    "kind": "constructed local verification only; no natural gameplay claim",
+    "recipes": [
+      "analysis/redirect/round-021/probe.py",
+      "analysis/redirect/round-021/contact.py"
+    ],
+    "results": [
+      "analysis/redirect/round-021/tests.json",
+      "analysis/redirect/round-021/contact-tests.json"
+    ],
+    "input_sequence": "After every round017/init25 snapshot import release a,b,up,down,left,right,start,select. No hardware presses; exact sampled C418/C41A input-cache/RAM/register patches in recipes/results.",
+    "calls": 11,
+    "player_calls": 2,
+    "player_cap": 600,
+    "player_max_operations": 215,
+    "contact_calls": 9,
+    "contact_cap": 1200,
+    "contact_max_operations": 494,
+    "zero_trace_drops": true,
+    "negative_attempt": "probe-wrong-input-cache-rpc.json writes rawC00C/C00D and fails CheckA; retain as invalid recipe, corrected sampledC418/C41A passes.",
+    "correction": "Older round020 scenario statement Nonlocal1a54barrier excludes1a57 is contradicted. Actual target1a6f returns ordinarily,then final1a6cPOP discards immediate CheckA caller.",
+    "limits": "Source initialized target occupancy/type/shape retained; aligned overlap is artificial. No natural climbing,damage,ending,visibility or stage domain claim."
+  },
+  "round022_redirect": {
+    "kind": "static changed-source and selector prerequisite reassessment",
+    "runtime_calls": 0,
+    "input_sequence": [],
+    "snapshots_restored": 0,
+    "evidence": "analysis/redirect/round-022/findings.md",
+    "limits": "Prior constructed scenarios reused as historical evidence only; no new natural route or selector context. T001 all-eight-button reassertion remains required for future restores."
+  },
+  "round023_redirect": {
+    "kind": "static changed-source and connected closure reassessment",
+    "runtime_calls": 0,
+    "input_sequence": [],
+    "snapshots_restored": 0,
+    "evidence": "analysis/redirect/round-023/findings.md",
+    "limits": "No natural reachability or new selector domain; historical scenarios retained. Future restores explicitly reassert all8buttons for T001."
+  }
+}
