@@ -1,7 +1,9 @@
-Run exactly one redirect pass after commentary, including incomplete commentary.
+Run exactly one redirect phase after the current-source commentary handoff gate is met.
+Incomplete ROM classification is allowed; interrupted commentary must resume first.
 Start from the compact commentary handoff and analysis/leads.json. Retrieve relevant
 source, uncertainties, review records, state and investigation evidence as needed.
-Accept partial commentary immediately; do not wait for whole-ROM editorial review.
+Accept commentary on an incompletely classified ROM; do not wait for final archive
+audit, but require completion of the current-source readability scope.
 Search the available commented source for all identifiable leads in this pass:
 missing callees, dispatch paths, table consumers, bank selection, unresolved
 pointers, state-dependent references and unexplained structures. Prefer static
@@ -19,6 +21,32 @@ as far as they continue to resolve uncertainty or improve a concrete experiment.
 Small supported findings and useful intermediate understanding count as progress;
 no immediate substantial byte gain or complete global selector domain is required.
 There is no fixed hypothesis count, experiment quota or one-time research allowance.
+
+
+Investigate connected behavior as a coherent batch. Follow a productive dispatcher
+through selected handlers, state transitions, shared helpers and associated tables
+or assets while each continuation has concrete support and a useful prospect.
+Finishing the originally supplied range, producing the first ready lead, or reaching
+a handler entry is not by itself a reason to hand off. Inspect that handler and its
+supported continuations in this redirect rather than automatically scheduling each
+successive piece for another full disassembly/commentary/redirect cycle.
+Use bank-aware static decoding and control/data-flow reasoning for ordinary paths;
+actual instruction fetches are not required for every code classification proposal.
+Keep static inference distinct from observed execution and validate exact boundaries,
+inline-data barriers and effective bank context. Use bounded runtime experiments to
+resolve specific uncertainties, not to demand execution of every branch. Reached
+addresses and pointer values alone still do not prove code or execution.
+
+End a connected investigation when evidence runs out, a specific missing prerequisite
+blocks useful continuation, results repeat, or prospects diminish. Do not demand
+recursive closure of every handler/state or a complete global selector domain.
+No minimum byte quota or exhaustive per-range review is required. In the handoff,
+identify the obvious supported continuations and explain why any are deferred:
+missing fact, failed method, diminishing prospects, or interruption. If productive
+work is interrupted, save its exact frontier and resume redirect; do not call the
+research exhausted. Package supported findings together with reusable evidence and
+recipes so disassembly can validate/classify the batch without replaying unchanged
+experiments or splitting known connected pieces into artificial extra rounds.
 
 Prioritize avenues with direct evidence and a credible connection to unknown ROM
 structure or behavior. State the question, missing fact, evidence, planned method
@@ -63,3 +91,10 @@ question alone does not justify another round. If none remain after reasonable
 investigation, report incomplete and explain the remaining obstacles. Research
 findings belong in durable evidence/lead records; leave classification changes to
 the disassembly phase. Preserve all map, fidelity and completion requirements.
+
+Readable, fully commented and labeled assembly is a required final deliverable for
+porting, separate from structural classification. Commentary must explain meaningful
+routines, branches and data structures and use consistent variable/field/constant
+symbols. Each round completes the current readability backlog; final acceptance
+addresses remaining naming/comment gaps even in previously reviewed ranges. Unknown
+meanings must have useful mechanical descriptions and explicit uncertainty.

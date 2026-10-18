@@ -74,14 +74,24 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
     for required in ["exactly one", "emulator.memory.write", "emulator.registers.set",
                      "Do not reissue", "additional evidence", "attempt history"]:
         assert required in redirect
+    for required in ["Investigate connected behavior as a coherent batch",
+                     "producing the first ready lead", "actual instruction fetches are not required",
+                     "explain why any are deferred", "resume redirect",
+                     "No minimum byte quota", "leave classification changes"]:
+        assert required in redirect
+    for required in ["not fixed byte-range ceilings", "Runtime fetch evidence is not mandatory",
+                     "Reuse valid saved evidence"]:
+        assert required in disassembly
     commentary = (work / "prompts/commentary.txt").read_text()
-    for required in ["bounded intermediate", "Preserve valid", "prior review credit",
-                     "preserve the entire previous commentary", "ordinary tentative wording",
-                     "diminishing returns", "Reserve audit", "invalidate affected records only"]:
+    for required in ["ALL currently classified source", "Preserve valid", "prior review credit",
+                     "previous commentary under", "ordinary tentative prose",
+                     "not a small repair pass", "Reserve audit", "invalidate affected records only"]:
         assert required in commentary
     assert "(???)" not in commentary
     assert "do not assume missing comments mean there are" in redirect
     goal = (work / "goal.md").read_text()
+    assert "do not advance to redirect" in goal
+    assert "Context/time interruption is" in goal
     for required in ["separate", "worker context", "compact handoff", "Never run competing",
                      "orchestration pending", "targeted final acceptance checks", "do not require a"]:
         assert required in goal

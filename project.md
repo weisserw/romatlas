@@ -2,11 +2,11 @@
 
 ## Mission
 
-Build **ROMAtlas**, a generic Game Boy reverse engineering toolkit for use by agents. Its first goal is to let an agent examine a user-supplied ROM, identify code and data, and produce a structurally annotated assembly listing that rebuilds byte-for-byte to the original ROM. Structural roles and supporting evidence are required; exhaustive semantic names and instruction explanations are optional. Agents may investigate behavior and name routines wherever useful to establish structure.
+Build **ROMAtlas**, a generic Game Boy reverse engineering toolkit for use by agents. Its first goal is to let an agent examine a user-supplied ROM, identify code and data, and produce a structurally annotated assembly listing that rebuilds byte-for-byte to the original ROM. Structural roles and supporting evidence are required. The agent workflow must also produce fully commented, labeled assembly suitable as the porting agent’s source input, with descriptive routine/branch names, RAM variables, object fields and constants. Explain meaningful behavior and structures; instruction-by-instruction paraphrases are unnecessary. Document unresolved meanings honestly.
 
 The agent must be able to use a controllable, instrumented emulator, build a **portable, ROM-independent mapping file**, and generate the assembly listing from that mapping and the user's own ROM. The toolkit must expose evidence and uncertainty so the agent can check and revise its decisions. Keep its tools generic enough to support other reverse engineering tasks and later work, such as naming symbols and explaining game behavior, without adding those tasks to this phase.
 
-**The mapping file is the principal deliverable.** It must be useful to someone who independently possesses the same ROM, without distributing any original ROM bytes, graphics, audio, or other copyrighted content. Structural and semantic investigation may proceed together; complete gameplay explanations are not required. Prioritize accurately distinguishing executable code, data, padding, pointers, and other structural regions, and identifying bank-aware boundaries and references. Keep role/evidence annotations in local analysis records or the internal store where supported, without inventing stock map directives. Whole-ROM agent completion requires evidence-backed classification of every physical byte, required annotations, valid maps and byte-identical verification. Raw-byte fallback remains essential for fidelity but does not establish classification completion. See the generated workspace contract in scripts/disassemble.py for single-pass easy-gain stopping, incremental commentary on incomplete source, and redirect-driven iteration. Intermediate commentary preserves unaffected review credit and hands off useful findings without whole-ROM editorial acceptance; final editorial cleanup and audit remain separate gates. An exhausted easy-gain pass hands off incomplete; every redirect investigates promising questions thoroughly but reasonably, allowing groundwork and intermediate understanding without premeasured substantial gains. Evidence and useful actionable next steps drive further rounds; rabbit holes, slim chances and repeated stalled work do not. Whole-ROM completion requirements remain unchanged.
+**The portable mapping and the locally retained readable assembly are required deliverables.** It must be useful to someone who independently possesses the same ROM, without distributing any original ROM bytes, graphics, audio, or other copyrighted content. Structural and semantic investigation may proceed together; complete gameplay explanations are not required. Prioritize accurately distinguishing executable code, data, padding, pointers, and other structural regions, and identifying bank-aware boundaries and references. Keep role/evidence annotations in local analysis records or the internal store where supported, without inventing stock map directives. Whole-ROM agent completion requires evidence-backed classification of every physical byte, required annotations, valid maps and byte-identical verification. Raw-byte fallback remains essential for fidelity but does not establish classification completion. See the generated workspace contract in scripts/disassemble.py for single-pass easy-gain stopping, incremental commentary on incomplete source, and redirect-driven iteration. Every commentary invocation completes readability across currently classified source, catching up older gaps while preserving sound prior work; interruptions resume in the same phase before redirect. This is separate from whole-ROM editorial acceptance; final editorial cleanup and audit remain separate gates. An exhausted easy-gain pass hands off incomplete; every redirect investigates promising questions thoroughly but reasonably, allowing groundwork and intermediate understanding without premeasured substantial gains. Evidence and useful actionable next steps drive further rounds; rabbit holes, slim chances and repeated stalled work do not. Whole-ROM completion requirements remain unchanged.
 
 This is an implementation project, not a design-only exercise. Deliver a functioning end-to-end vertical slice early, then improve coverage and accuracy with tests. Do not stop after writing a plan.
 
@@ -39,7 +39,7 @@ Given `game.gb` or `game.gbc`, an agent must be able to:
 ### Out of scope
 
 - A graphical emulator frontend or human-oriented gameplay UI.
-- Automatically discovering the meaning or purpose of routines, variables, or game objects.
+- Requiring the toolkit itself to infer game semantics automatically; investigation, naming and explanation are agent responsibilities.
 - Automatically producing a clean-room behavioral specification or reimplementation.
 - Reproducing original source formatting, labels, macros, or comments.
 - Supporting other consoles in this phase.
@@ -94,7 +94,7 @@ Required behaviors:
 
 - Import existing mgbdis `.sym` files, including community-produced mappings, preserving supported annotations through an import/export round trip.
 - Export deterministic `.sym` files containing only metadata needed for disassembly: bank-aware labels and supported region directives. Do not include ROM bytes, extracted text, image data, or other original assets.
-- Auto-generate stable, syntactically valid, nonsemantic labels as needed; semantic naming is not a goal.
+- Auto-generate stable, syntactically valid, nonsemantic labels as needed; these are intermediate generator fallbacks, not the final commentary naming standard.
 - Track unknown and ambiguous regions internally; do not invent unsupported `.sym` directives to represent them. Use mgbdis defaults or safe explicit annotations only where justified.
 - Detect overlaps, unsupported constructs, unresolved bank identities, and directives that mgbdis cannot faithfully express. Surface actionable diagnostics instead of silently losing information.
 - Treat ROM identity (e.g. SHA-256) as optional *internal or sidecar* validation metadata, since stock `.sym` may not support it. Do not make a custom hash header mandatory in the distributable `.sym`.
@@ -194,7 +194,7 @@ romatlas verify ./game.gb --generated ./build/game
 3. **Observable execution:** every structural claim can be linked to runtime evidence, static reasoning, or explicit assertion.
 4. **Agent-native:** automation, determinism, machine-readable errors, bounded results, and replayability matter more than a GUI.
 5. **Bank-aware correctness:** physical ROM identity must never be lost through CPU address translation.
-6. **Evidence-driven analysis:** investigate semantics and name routines where useful to resolve structure; exhaustive behavioral explanation is not a completion requirement.
+6. **Evidence-driven analysis:** investigate semantics and name routines where useful to resolve structure; readable source with explanations and consistent symbols is a separate final completion requirement.
 7. **Future portability without premature generalization:** keep console-specific logic isolated while making the Game Boy implementation complete and useful.
 
 ## Delivery requirements
@@ -222,3 +222,9 @@ snapshot and change log for separate review before user check-in. Keep original
 assets ROM-backed at startup and out of distributions. Headless Linux validation
 does not claim desktop/other-OS runtime compatibility. Library publication and
 release packaging are later scope. See docs/porting.md for the working contract.
+
+Redirect investigations follow supported connected handlers, state transitions and
+related data before handoff, without byte quotas or exhaustive recursive closure.
+A first ready lead or initial range boundary is not sufficient reason to stop;
+record reasons for deferring obvious continuations. Static evidence may justify
+code without branch-by-branch runtime execution; preserve provenance and bank context.

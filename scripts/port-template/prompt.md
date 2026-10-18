@@ -1,7 +1,10 @@
 # Port the entire archived game
 
 Read AGENTS.md, workflow.md, reference/reading.asm and relevant archive documents
-before coding. Implement this entire game in readable native Rust. The scaffold
+before coding. The commented, labeled reference is intended to explain routines,
+branches, RAM variables and data formats. If it contains gaps, investigate and record
+them rather than assuming classification or editorial status proves understanding.
+Implement this entire game in readable native Rust. The scaffold
 is an arbitrary ROM-backed tile demonstration, not gameplay or identified assets.
 Replace it; do not stop at a working scaffold, first level or playable demo.
 

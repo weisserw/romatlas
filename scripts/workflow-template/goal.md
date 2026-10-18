@@ -21,7 +21,7 @@ phase after interruption; do not initialize over existing work. Each disassembly
 pass drives normal gameplay scenarios while they yield substantial gains, alongside
 static analysis and lead verification, and reports incomplete when these gains end.
 Do not restrict disassembly to startup or basic inputs. Continue through commentary
-and redirect even when disassembly or semantics remain incomplete. Intermediate commentary is incremental and may hand off pending review; reserve
+and redirect even when disassembly or semantics remain incomplete. Commentary must complete current-source readability before handoff; reserve
 targeted final acceptance checks and audit for final acceptance/archive. Preserve prior
 commentary and lead history across rounds as described in the prompts.
 
@@ -54,3 +54,27 @@ Declare complete only when every byte has evidence-backed classification, requir
 annotations, valid maps, final commentary audit and byte-identical verification.
 Do not use the deprecated per-script /goal start/resume instructions. This file
 is the single coordinator prompt; it does not require any particular goal tool.
+
+Readable, fully commented and labeled assembly is a required final deliverable for
+porting, separate from structural classification. Commentary must explain meaningful
+routines, branches and data structures and use consistent variable/field/constant
+symbols. Each round completes the current readability backlog; final acceptance
+addresses remaining naming/comment gaps even in previously reviewed ranges. Unknown
+meanings must have useful mechanical descriptions and explicit uncertainty.
+
+Commentary handoff gate: the worker must finish readable explanations and consistent
+symbols across ALL currently classified source, including older backlog. A small
+repair or ready lead is not completion. Require a scope/readability assessment and
+fresh byte-identical verification plus refreshed reading copy. If the worker leaves
+unreviewed classified source or naming/comment gaps, resume that same phase with its
+remaining-range handoff; do not advance to redirect. Context/time interruption is
+not phase completion. Reuse sound prior work; unresolved meanings need mechanical
+explanations and explicit uncertainty, not indefinite research or invented semantics.
+
+Connected-investigation handoff: redirect should follow productive handlers, state
+transitions and related data before returning a coherent supported batch. A first
+ready lead or the end of its initial range does not alone justify another cycle.
+Require reasons for deferring obvious continuations and resume interrupted productive
+redirect work in that phase. Disassembly may use evidence-backed static code and
+saved experiments; do not require every branch to execute. Preserve uncertainty,
+classification/fidelity gates and avoid byte quotas or exhaustive recursive closure.

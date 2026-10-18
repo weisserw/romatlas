@@ -601,3 +601,59 @@ Joypad source formatting and git diff --check pass. A separate vendor lib.rs for
 check still reports existing unrelated formatting; the only change there is the
 version constant. Standalone core tests retain an existing raw_screen_buffer dead
 code warning. No commercial ROM/assets or game-workspace artifacts were changed.
+
+2026-10-17: Restored readable assembly as an explicit agent-workflow deliverable
+for downstream porting, separate from evidence-backed structural classification.
+Commentary requires explanations of meaningful routines/control flow/data structures,
+consistent routine/branch/RAM/field/constant symbols and useful mechanical descriptions
+where game meaning remains unresolved. Intermediate passes also advance an older
+readability backlog; final acceptance addresses concrete defects in prior reviewed
+material and records an explicit source-quality assessment with examples. Inventory
+audit and byte fidelity alone do not establish readability. Updated project scope,
+generated coordinator/disassembly/commentary/redirect and port prompts, plus the
+paused Castlevania workspace instructions and migration record. No game source,
+ROM, map, review status or classification changed and no paused run was resumed.
+
+Validation: synthetic commentary and disassembly regressions and stock portability
+pass, including deterministic source and exact four-bank rebuild; git diff --check
+passes. Prompt assertions cover readable listing, backlog and separate reporting.
+No Rust/runtime changes; these checks validate instructions and fidelity, not live
+agent prose quality or semantic completeness.
+
+2026-10-17: Superseded commentary's small-backlog-slice stopping policy. Every
+invocation must now complete readable explanations and naming across all currently
+classified source, including older backlog and concrete defects in prior reviews.
+Sound prior work is reusable; unresolved meanings receive mechanical descriptions
+and explicit uncertainty. Useful findings, small repairs and research diminishing
+returns do not end the source-editing task. Context/time interruption records exact
+remaining ranges and resumes commentary. Coordinator handoff explicitly rejects
+remaining classified-source readability gaps before redirect. Updated generated
+phase instructions/workflow, coordinator and project contract and active Castlevania
+instruction files only; no game source, map, classification or review-status edits,
+and no running worker was launched or interrupted. Already-running contexts must
+reread instructions to acquire the changed contract.
+
+Validation: synthetic commentary/disassembly regressions pass, including positive
+completion/resumption wording and rejection of the former early-stop instruction;
+stock portability passes deterministic generation and exact four-bank rebuilding.
+git diff --check passes. No Rust/runtime changes. Prompt tests cannot guarantee
+live-agent judgment or establish semantic quality of a game's assembly.
+
+2026-10-17: Redirect now investigates connected dispatch/handler/state/table/asset
+behavior as a coherent batch while concrete evidence and useful prospects continue.
+An initial range boundary or first ready lead does not justify handoff by itself.
+Ordinary bank-aware static reasoning can support code proposals without executing
+every branch; reached targets/pointers remain insufficient evidence by themselves.
+Handoffs explain deferred obvious continuations; interrupted productive redirect
+work resumes in that phase. Disassembly validates supported connected batches,
+reuses valid experiments and records missing prerequisites rather than treating
+lead ranges as byte ceilings. No byte quota, exhaustive recursive closure or
+weakened classification/fidelity gate. Coordinator and active Castlevania instruction
+files align; redirect also respects the current-source commentary handoff gate.
+No game source, maps, reviews, classification or runtime evidence was changed.
+
+Validation: synthetic disassembly and commentary regressions pass, including new
+connected-batch/static-evidence/deferral/resumption prompt assertions. Stock
+portability passes deterministic source and exact four-bank rebuilding. Python
+compilation and git diff --check pass. Prompt-only changes cannot establish live
+agent investigation quality or speed; no paused run was resumed.

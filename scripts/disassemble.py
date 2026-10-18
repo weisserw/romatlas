@@ -28,7 +28,9 @@ Objective: classify ROM regions with evidence, export a portable stock .sym map,
 and generate a bank-organized assembly listing that rebuilds byte-for-byte.
 Investigate structure and semantics together; name and explain routines where
 useful. Required annotations describe structural role and supporting evidence;
-exhaustive explanations of every instruction are optional.
+instruction-by-instruction paraphrases are unnecessary. The commentary phase must
+produce fully commented, labeled, readable source for porting, including variables
+and branches; structural classification alone does not satisfy final acceptance.
 Do not stop after a raw-byte baseline: fidelity and classification completeness
 are separate results. Report unknown bytes and unresolved bank contexts honestly.
 
@@ -133,6 +135,15 @@ next steps without premeasured substantial byte gains. Avoid rabbit holes, slim
 chances and repeated stalled work. No separate investigation mode or fixed research
 quota applies. No per-range exhaustion proof is required; the full classification
 contract remains unchanged.
+
+Connected-investigation handoff: redirect should follow productive handlers, state
+transitions and related data before returning a coherent supported batch. A first
+ready lead or the end of its initial range does not alone justify another cycle.
+Require reasons for deferring obvious continuations and resume interrupted productive
+redirect work in that phase. Disassembly may use evidence-backed static code and
+saved experiments; do not require every branch to execute. Preserve uncertainty,
+classification/fidelity gates and avoid byte quotas or exhaustive recursive closure.
+
 Maintain analysis/investigation.md with attempted leads, outcomes and remaining unknowns.
 Do not repeat unchanged failed leads. Research gameplay for an easy gain or a promising redirect question;
 do not require manuals, late-game routes or exhaustive method reviews before stopping.

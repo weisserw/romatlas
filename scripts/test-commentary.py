@@ -40,11 +40,15 @@ with tempfile.TemporaryDirectory(prefix="romatlas-commentary-") as temporary:
     assert json.loads(result.stdout)["byte_identical"]
     assert "prompts/commentary.txt" in result.stderr and "/goal " not in result.stderr
     prompt = (work / "commentary/prompt.md").read_text()
-    for required in ["default is an intermediate research pass", "Preserve valid prior review credit",
-                     "clear, light prose", "ordinary tentative prose", "diminishing returns",
+    for required in ["Preserve valid prior review credit",
+                     "fully commented and labeled listing", "ALL currently classified source",
+                     "source readability separately", "clear, light prose", "ordinary tentative prose", "not an early exit",
                      "At final acceptance", "mandatory whole-source reread",
                      "Do not repeatedly rebuild", "Keep unreviewed work"]:
         assert required in prompt
+    assert "A small repair, useful finding or prepared lead is not a stop condition" in prompt
+    assert "report interrupted, not successful or ready for redirect" in prompt
+    assert "Stop the intermediate pass" not in prompt
     assert "(???)" not in prompt
     assert not (work / "commentary/instructions.txt").exists()
     phase = work / "commentary"

@@ -20,15 +20,26 @@ Read commentary/AGENTS.md and workflow.md. Work in commentary/source/, preservin
 phase-1 maps/evidence and the frozen before/ baseline. Read the current checkpoint,
 phase handoff and relevant analysis records; retrieve details only as needed.
 
-The default is an intermediate research pass, not whole-ROM editorial completion.
-On the first round, prioritize known code/data that explains dispatch, banking,
-formats and references into unknown areas. On later rounds, review newly classified
-or changed ranges and earlier interpretations affected by that evidence. Follow
-callers, callees, tables and shared variables as needed. Inspect uncommented code
-and generic names within this scope. Do not sweep the entire ROM every round or
-reinspect unchanged unknown intervals without a new question or evidence.
-Preserve valid prior review credit. Changed boundaries, changed dependencies or
-contradictory evidence require reassessment; an unchanged checkpoint does not.
+Readable assembly is a required deliverable and the porting agent's source input.
+Produce a fully commented and labeled listing: explain every meaningful routine,
+control-flow block and data structure, with descriptive routine and branch labels,
+RAM variable names, object-field offsets and constants used consistently in operands.
+Comments explain purpose, algorithms, inputs/outputs, state changes and relevant
+bank/format constraints; they need not paraphrase every instruction. When game
+meaning is unknown, name the established mechanical role and explain the remaining
+uncertainty nearby. Do not invent meanings or treat an address-only label or raw
+address as an adequate explanation of an understood role.
+
+Every commentary invocation must bring ALL currently classified source up to this
+readability standard before handing off. Catch up the entire existing readability
+backlog, including older uncommented code and concrete defects in reviewed material;
+do not choose a small backlog slice. Unknown ROM regions need honest boundary/role
+and uncertainty notes, not fabricated decoding or invented meanings. Unknown game
+purpose does not excuse skipping explanation of established mechanics.
+Preserve valid prior review credit and good existing prose; later invocations may
+reuse that work and focus edits on changes, affected dependencies and remaining gaps.
+Inspect the full current source inventory for gaps, without cosmetically rewriting
+sound material. Report classification and source readability separately.
 
 Use descriptive routine, branch, RAM variable and constant names wherever useful.
 Accept the best coherent static interpretation from instructions, callers and
@@ -52,10 +63,12 @@ doubt. Revise names/comments when contradicted. Do not relabel phase-1 ambiguity
 or weaken evidence-backed structural classification to finish commentary.
 
 Use bounded debugging only for a concrete question likely to clarify useful behavior.
-Stop the intermediate pass when its changed/affected scope is addressed, useful
-findings can feed redirect, or further interpretation has diminishing returns.
-Do not delay redirect for complete semantic resolution or a full-ROM review.
-Unknown purpose and unreviewed ranges may remain; report both honestly.
+Diminishing returns on semantic research permit an explicit unresolved explanation,
+not an early exit from naming/commenting the rest of the source. Publish redirect
+questions as they arise, then continue commentary until the current-source scope
+is complete. A small repair, useful finding or prepared lead is not a stop condition.
+If interrupted by context/time limits, save exact remaining ranges and resume the
+same commentary phase; report interrupted, not successful or ready for redirect.
 
 Keep review.json's full-ROM scaffold intact. Add compact records for meaningful
 routines/structures with physical ranges, bank context, source locations, status
@@ -68,8 +81,8 @@ source/ranges and suggest bounded checks without requiring a full lead dossier.
 
 Verify after coherent source-edit batches and at phase handoff; refresh the reading
 copy at handoff. Do not repeatedly rebuild after tiny comment edits or run the final
-completion audit while deliberately leaving review pending. A verified partial
-handoff is a successful intermediate pass, not editorial or whole-ROM completion.
+completion audit while deliberately leaving review pending. A verified handoff is successful only after the current-source readability scope
+is complete; this does not establish whole-ROM classification or final acceptance.
 
 At final acceptance, address remaining pending review and known editorial issues:
 missing structures, stale numeric aliases, wrong boundaries, contradictory names,
@@ -86,7 +99,8 @@ all ROMs, generated source/assets and traces remain local. Do not fix the toolki
 PHASE_AGENTS = """# Commentary phase instructions
 
 Read workflow.md and prompt.md before editing source/.
-Intermediate passes have bounded incremental scope and may hand off pending review.
+Every invocation completes readability work across all currently classified source.
+Interrupted work must resume in commentary before redirect; a small repair is not completion.
 Full editorial acceptance is reserved for final cleanup and archive preparation.
 Neither partial nor full editorial review declares phase-1 classification complete.
 Follow parent ROM identity, local artifact, toolkit-reporting and bounded runtime
@@ -230,7 +244,8 @@ source/ is independently maintained, buildable assembly. Never regenerate over i
 The portable .sym carries structural directives and labels, not the final comments.
 To reproduce commentary, preserve source/ and its local assets, not just .sym.
 Phase-1 unknown regions may remain unknown when their ambiguity has been reviewed
-and explained. Intermediate passes improve the changed/affected scope and hand off pending work.
+and explained. Every invocation completes current-source readability; interrupted
+work resumes in this phase before redirect.
 Final editorial completion is a separate acceptance gate; neither declares
 phase-1 classification complete. See prompt.md for the full contract.
 
@@ -254,8 +269,8 @@ performs a fresh verification and refreshes the reading copy. It cannot measure
 whether explanations are good: the agent must perform that editorial review.
 
 review.json entries partition the physical ROM. Do not remove or change that
-scaffold. Intermediate passes preserve valid review credit and leave other work
-pending. At final acceptance each needs status=reviewed, a summary and source locations.
+scaffold. Preserve valid review credit. Pending classified-source readability
+work prevents a successful commentary handoff; interruptions must resume this phase. At final acceptance each needs status=reviewed, a summary and source locations.
 Add compact units for meaningful routines and data structures:
 name, offset, length, status, summary and source (list of file:line strings).
 Units can overlap, but must lie within the ROM. Split a spanning unit's inventory

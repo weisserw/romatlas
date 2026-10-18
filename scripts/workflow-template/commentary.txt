@@ -1,36 +1,26 @@
-Perform one bounded intermediate commentary pass on the latest verified source.
-On the first round use scripts/commentary.py prepare WORKSPACE, then read
-commentary/AGENTS.md, workflow.md and prompt.md. Incomplete classification and
-pending editorial review are expected; do not demand full-ROM review to hand off.
+Complete the commentary phase on the latest verified source. Read
+commentary/AGENTS.md, workflow.md and prompt.md; prepare only when needed.
+This is a complete current-source readability task, not a small repair pass.
+Bring ALL currently classified source up to the naming/comment standard, including
+older backlog and concrete defects in previously reviewed material. Preserve valid
+prior review credit and useful prose; reuse sound work rather than rewrite it.
+Unknown ROM ranges need honest explanatory notes, not invented classification.
+Use descriptive routine/branch/RAM/field/constant symbols, clear, light prose and
+ordinary tentative prose for uncertain interpretations. Explain meaningful routines,
+control flow and data structures in source, not only in research records.
 
-Review new/changed disassembly and earlier interpretations affected by it, following
-callers, callees, tables and shared variables only as needed. On the first pass,
-prioritize useful known code/data and references into unknown areas. Inspect
-uncommented sections and generic/generated labels within that scope. Preserve valid
-prior review credit; do not sweep unchanged unknowns or reset all statuses each round.
-Use the best coherent static interpretation and descriptive symbols. Write clear,
-light prose: short functional comments with useful detail, avoiding compressed
-address-heavy shorthand and mechanical opcode narration.
-Mark material hypotheses with ordinary tentative wording; no graded uncertainty
-markers are required. Rewrite redundant old comments instead of appending duplicates.
-
-Stop when the affected scope is addressed, findings can feed redirect, or additional
-interpretation has diminishing returns. Hand off useful questions immediately;
-do not wait for all semantics or all review entries to be resolved. Record scope,
-changed interpretations, deferred ranges and concrete unresolved dependencies in
-commentary/progress.md, with links to compact review records and source evidence.
-Leave genuinely unreviewed work pending. Verify coherent edit batches and handoff,
-and refresh the reading copy at handoff. Reserve audit for final editorial cleanup
-or archive acceptance; partial passes do not claim editorial completion.
+Do not hand off merely because one batch is done or findings can feed redirect.
+Diminishing returns on research mean document uncertainty and continue through the
+remaining source. If interrupted, record exact remaining ranges and resume the same
+phase. Only hand off after current-source readability is complete, a fresh
+byte-identical verification passes and the reading copy is refreshed. Report covered
+scope, examples, unresolved meanings and any remaining gaps; never call interrupted
+work successful. Reserve audit for final editorial/archive acceptance; whole-ROM
+classification remains a separate requirement.
 
 On later rounds compare maps/current.sym and analysis/state.json with the frozen
-baseline. If unchanged, resume existing commentary. If changed, preserve the entire previous commentary
-directory under analysis/round-N/ before preparing a fresh baseline. Carry comments,
-names and review credit by physical ranges and dependencies, checking boundaries
-and changed evidence. Preserve unaffected credit; invalidate affected records only.
-Never blindly copy stale assembly or overwrite the only prior copy. Record carried,
-revised and invalidated ranges and why; reverify carried edits in the new baseline.
-Final acceptance addresses pending review and known editorial issues, reusing valid
-review credit without a mandatory whole-source reread. Full-ROM classification and
-strict final audit requirements remain intact.
-All generated source/assets remain local.
+baseline. If unchanged, resume existing commentary. If changed, preserve the entire
+previous commentary under analysis/round-N/ before preparing a fresh baseline.
+Carry names/comments/review by physical ranges and dependencies; invalidate affected records only.
+Check source boundaries and evidence and reverify carried edits. Never overwrite the
+only prior copy or blindly copy stale assembly. All generated source/assets stay local.

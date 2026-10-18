@@ -26,6 +26,18 @@ edits are hypotheses, not execution evidence. Keep unsupported bytes unknown.
 For each attempted lead preserve its ID, evidence, status (verified, rejected,
 blocked or superseded), result and why it should or should not be retried.
 
+
+Treat ready leads as starting points, not fixed byte-range ceilings. Validate and
+classify the supported connected batch, including ordinary static paths and already
+established downstream structures, rather than stopping at the original lead range.
+Runtime fetch evidence is not mandatory for statically justified code. Preserve
+provenance, bank context, inline-data barriers and exact boundaries; pointers and
+reached targets alone prove neither code nor execution. Reuse valid saved evidence;
+repeat experiments only for changed conditions or a concrete unresolved question.
+If an obvious productive continuation needs further redirect research, state the
+missing fact and why it cannot usefully be resolved in this pass. No minimum byte
+quota or exhaustive recursive closure is required.
+
 Stop and report incomplete once productive normal gameplay, static investigation
 and actionable leads are exhausted. Hand off unresolved questions and useful
 intermediate findings to commentary/redirect; every redirect may investigate them
