@@ -38,29 +38,28 @@ python3 run.py baseline
 ```
 
 Run your agent from the game workspace and ask it to read `goal.md`. The generated
-`prompts/disassembly.txt`, `commentary.txt` and `redirect.txt` define ordinary passes;
-`prompts/final-investigation.txt` supplies the final investigation.
+`prompts/disassembly.txt`, `commentary.txt` and `redirect.txt` define the three phases.
 Disassembly drives normal gameplay scenarios while they yield substantial gains,
 alongside static discovery and lead verification, then stops incomplete when no
 obvious substantial gain remains. Commentary incrementally interprets changed material and affected dependencies,
 preserving valid prior review credit and using readable provisional names. It hands
-off useful findings without waiting for full-ROM editorial review; redirect finds
-new leads once. Separate sequential phase workers exchange compact durable handoffs.
+off useful findings without waiting for full-ROM editorial review; redirect continues
+structural investigation and develops new leads. Separate sequential phase workers
+exchange compact durable handoffs.
 Structural classification and reachability are separate claims throughout every
 pass. Independent static evidence can establish roles and exact boundaries without
 a live caller or gameplay route; natural use remains explicitly unresolved. Caller
 tracing is useful evidence, rather than a universal classification prerequisite.
 
-A stalled ROM with at most 5% unknown bytes and at most 16 KiB unknown automatically
-receives a final structural investigation before the coordinator stops. You can also
-ask an agent in the game workspace to read and follow `prompts/final-investigation.txt`
-manually. This examines remaining structures, selector producers and targeted debugger
-experiments without weakening classification standards. The phase repeats from its prior handoff and residual ledger after accepted batches,
-and continues directly on useful intermediate findings. Each follow-up develops concrete
-alternative methods; per-attempt history prevents unchanged retries. The loop stops
-when no credible untried method or useful learning remains. Attempts persist across resumes;
-unchanged terminal handoffs are not automatically reopened. Preparation writes
-these instructions; it does not launch an agent or background job.
+Investigation belongs to redirect at every classification percentage, with no
+separate final-investigation phase or percentage threshold. It examines remaining
+structures, selector producers and targeted experiments while supported findings,
+useful constraints or justified next methods continue. Intermediate progress without
+a classification proposal continues redirect directly; ready batches pass through
+disassembly and full current-source commentary. There is no fixed pass quota.
+Attempt history prevents unchanged retries, and rejection review precedes a genuine
+incomplete stop. Older investigation records remain evidence; unfinished research
+resumes as redirect. Preparation writes instructions without launching an agent.
 
 Full editorial cleanup/audit is reserved for final acceptance and archiving. The coordinator repeats only with new actionable information,
 otherwise reports incomplete. Whole-ROM completion still requires every byte to be
@@ -69,6 +68,12 @@ classified with evidence and a verified rebuild. No agent provider is required.
 Scripts write prompts rather than printing goal commands. JSON results remain on
 stdout; prompt locations go to stderr (`--json` suppresses those locations).
 Existing workspaces are not automatically migrated.
+
+Generated `evidence-policy.md` explains how to combine structural evidence, localize
+failed hypotheses and correct rejection reasoning on unchanged ROM evidence. Before
+a terminal stop the worker provides a rejection review and the coordinator checks
+its decisive artifacts. This preserves genuine incomplete stops and all classification
+and rebuild requirements; see [the inference audit](docs/agent-inference-audit.md).
 
 The default parent is the current directory; `--workspace /exact/path` selects a workspace
 for a single ROM. Existing workspaces and paths inside this repository are

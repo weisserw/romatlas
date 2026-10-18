@@ -122,7 +122,7 @@ for the claimed structural role, exact boundaries and effective bank context;
 require reachability evidence only when claiming reachability. A live caller,
 observed instruction fetch, naturally produced selector or ordinary gameplay route
 is useful evidence, not a universal prerequisite for classifying code or data.
-Apply this distinction from the first disassembly pass, not only during final
+Apply this distinction from the first disassembly pass and throughout redirect
 investigation. Independently supported routine contracts, control/data flow and
 bounded record/table formats can justify static classification while natural use
 remains unresolved. Record structural evidence and reachability status separately;
@@ -136,6 +136,24 @@ values, adjacent records, alignment and pattern resemblance alone do not establi
 structure. Artificial execution can test consumer mechanics but does not establish
 intended code, complete table extent or natural reachability by itself. Keep these
 evidence safeguards and all classification, fidelity and editorial completion gates.
+
+Apply the generated workspace's evidence-policy.md when making or rejecting static
+inferences. Independent constraints may jointly establish a role and exact extent;
+no particular observation or encoded declaration is a universal prerequisite.
+Localize counterexamples to the claim they actually falsify, distinguish semantic
+representation from exact recovery of the original generator, and reconsider flawed
+rejections on existing evidence. Before terminal exhaustion, workers and coordinator
+must challenge the decisive rejection premises against primary artifacts. Preserve
+genuine negative results and stop unchanged retries; this review neither weakens
+whole-ROM classification nor requires speculative progress. See
+[the prompt inference audit](docs/agent-inference-audit.md).
+
+Structural investigation is continuous redirect work at every classification
+percentage. Supported proposals go through disassembly and full current-source
+commentary; useful intermediate evidence or justified next methods continue redirect
+without empty phase cycles. No separate final-investigation phase, completion
+threshold or fixed pass quota controls research. Final editorial acceptance and
+byte-identical verification remain distinct completion gates.
 
 - Separate code from non-code based on validated instruction boundaries, known entry points, static analysis, and observed execution; ambiguous areas default to lossless raw bytes.
 - Prefer stock mgbdis output for deterministic filenames, labels, and RGBDS bank/section declarations; do not independently recreate its assembly emitter without demonstrated need.

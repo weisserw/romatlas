@@ -1,5 +1,6 @@
 Complete the commentary phase on the latest verified source. Read
 commentary/AGENTS.md, workflow.md and prompt.md; prepare only when needed.
+Read the workspace evidence-policy.md when raising structural questions for redirect.
 This is a complete current-source readability task, not a small repair pass.
 Bring ALL currently classified source up to the naming/comment standard, including
 older backlog and concrete defects in previously reviewed material. Preserve valid

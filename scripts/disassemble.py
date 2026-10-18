@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 AGENTS = """# ROM disassembly workspace
 
-Read workflow.md, workspace.json, analysis/progress.md, and
+Read evidence-policy.md, workflow.md, workspace.json, analysis/progress.md, and
 analysis/toolkit-issues.md before work.
 Read and maintain analysis/gameplay.md for sourced gameplay familiarity and
 targeted experiment routes, following workflow.md's Game familiarization section.
@@ -65,7 +65,7 @@ findings and link the report, or explicitly say "no toolkit issues found" if emp
 
 WORKFLOW = """# Per-game workflow
 
-Read goal.md. The coordinator gives each separate phase worker only its own prompt
+Read goal.md and evidence-policy.md. The coordinator gives each separate phase worker only its own prompt
 and compact checkpoint/handoff; workers retrieve relevant evidence as needed. The old provider-specific
 /goal startup/resume workflow is deprecated. Each disassembly pass stops at easy-gain
 exhaustion; the coordinator runs commentary and redirect. Every redirect investigates
@@ -130,7 +130,7 @@ for the claimed structural role, exact boundaries and effective bank context;
 require reachability evidence only when claiming reachability. A live caller,
 observed instruction fetch, naturally produced selector or ordinary gameplay route
 is useful evidence, not a universal prerequisite for classifying code or data.
-Apply this distinction from the first disassembly pass, not only during final
+Apply this distinction from the first disassembly pass and throughout redirect
 investigation. Independently supported routine contracts, control/data flow and
 bounded record/table formats can justify static classification while natural use
 remains unresolved. Record structural evidence and reachability status separately;
@@ -190,51 +190,51 @@ Report complete or incomplete, per-bank code/data/unknown counts, annotation cov
 execution coverage separately, checkpoint links, untested hypotheses and toolkit findings.
 Never declare the ROM complete just because a pass or byte-identical rebuild succeeded.
 
-## Final investigation before a near-complete stop
+## Continuous investigation in redirect
 
-After redirect has no useful actionable next step, automatically schedule
-prompts/final-investigation.txt before terminating when 0 < unknown bytes <= 16384
-AND unknown bytes / total physical ROM bytes <= 0.05. Compute these values from
-the current internal map, excluding unknown/raw fallback from classified bytes;
-do not use rounded percentages. These are scheduling thresholds, not evidence
-standards. Explicit user requests may run this prompt at any remaining size.
-This is coordinator scheduling, not a background process launched by run.py.
+Investigation is ordinary redirect work at every classification percentage. There
+is no percentage threshold, separate research phase or fixed number of passes.
+Continue while supported findings, useful new constraints or a justified concrete
+next test provide a credible prospect of progress. A ready redirect lead is not
+required to begin designing methods against residual barriers.
 
-Apply this rule on resume of an older stopped workspace too. Require completed
-current-source commentary first. Track phase, checkpoint identity, attempt IDs,
-methods and outcomes in analysis/progress.md and analysis/final-investigation/.
-Resume an interrupted final investigation in that phase.
+Use the latest commentary/redirect handoffs, exact unknown complement and prior
+accepted/rejected outcomes. Preserve historical investigation records, including
+legacy analysis/final-investigation/ attempts, by reference; never overwrite them.
+On resume, continue any unfinished legacy investigation as redirect from its saved
+frontier, without replaying completed experiments or creating a new baseline.
+Keep new research in unique analysis/redirect/<attempt-id>/ directories and record
+phase, checkpoint identity, method changes and outcomes in analysis/progress.md.
+Completed attempt records remain immutable; interruptions resume the same research.
 
-Final investigation is iterative, not a one-shot allowance. After accepted proposals
-pass through disassembly, commentary and redirect, automatically return to final
-investigation while the threshold still holds and unknown bytes remain. Use the
-latest redirect handoff, previous final-investigation handoff and residual ledger
-as the jumping-off point. Do not require the redirect to have already supplied a
-ready structural lead: the next investigation begins by designing concrete methods
-against its recorded barriers. If a pass produces useful intermediate evidence or
-a concrete improved experiment but no classification proposal, continue final
-investigation directly without an empty disassembly/commentary cycle.
+When proposals are ready after productive connected and independent avenues have
+been investigated, hand the combined batch to disassembly, then full current-source
+commentary and redirect. If useful intermediate evidence or a credible improved
+method exists without a classification proposal, continue redirect directly,
+without an empty disassembly/commentary cycle. Context rollover and a completed
+attempt are checkpoints, not reasons to stop useful research. No minimum byte gain
+or fixed pass quota applies.
 
-Before substantive retries, compare the proposed method and prerequisites with all
-previous attempts. A targeted whole-table extent proof, ending source/bank/copy-length
-trace or graphics-container boundary proof may replace a stalled live-selector search
-when justified by the residual evidence. Develop such alternatives proactively;
-a handoff's missing-fact list is a research starting point, not proof of exhaustion.
-Do not automatically repeat an exhausted method on unchanged evidence. A new round,
-checkpoint, restated question or renamed method alone is insufficient. Every repeat
-must identify new evidence or a materially different concrete method and explain
-which recorded barrier it can resolve and what observation would distinguish outcomes.
+Apply evidence-policy.md before inheriting a rejection or accepting terminal
+exhaustion. Corrected premises, narrower claims and independently justified models
+can reopen reasoning on unchanged ROM evidence; a new experiment is not required.
+Do not automatically repeat an exhausted method: explain the changed inference or
+prerequisite and expected discriminating result. A new round or renamed method alone
+is insufficient. A missing-fact list is a starting point, not proof of exhaustion.
 
-Continue passes while they produce supported proposals, useful new constraints or
-credible untried methods addressing residual structure. No minimum byte gain or
-fixed pass quota applies. When method planning finds no credible untried alternative,
-or results repeat without useful learning or changed prerequisites, stop and report
-incomplete with exact unknown ranges, exhausted methods and missing facts. Do not
-relaunch planning on that unchanged terminal handoff; resume requires new evidence,
-a materially improved concrete method or an explicit user request to reassess.
-If no unknown bytes remain, proceed to final editorial/archive acceptance instead.
-Preserve all evidence, fidelity and completion gates; iteration never authorizes
-speculative classification. This is coordinator scheduling, not a background job.
+Before accepting a terminal incomplete handoff, inspect the worker's compact
+rejection review and its decisive primary artifacts under evidence-policy.md.
+Check the scope of counterexamples, inferred prerequisites and consistency with
+accepted evidence standards; verifying hashes or counting previous attempts does
+not assess the stopping rationale. If the review is missing or exposes a concrete
+corrected inference/test, return that question to redirect yourself. Do not wait for a user
+to propose it. Reuse a sound review on unchanged premises; when it supports exhaustion,
+stop incomplete rather than cycling automatically. Do not relaunch planning on an
+unchanged sound terminal assessment without new evidence, a justified corrected
+inference/method or explicit user reassessment. Report exact residuals, checkpoints,
+readability and verification separately. Workflow termination is not ROM completion.
+If every byte becomes classified, final editorial audit and byte-identical verification
+still precede completion. Preparation writes instructions, not a background process.
 
 
 ## Toolkit issues
@@ -386,10 +386,10 @@ def initialize(source, destination, binary, platform="auto"):
         files = {
             "AGENTS.md": AGENTS.format(toolkit=json.dumps(str(ROOT))),
             "workflow.md": WORKFLOW,
+            "evidence-policy.md": (TEMPLATES / "evidence-policy.md").read_text(),
             "prompts/disassembly.txt": (TEMPLATES / "disassembly.txt").read_text(),
             "prompts/commentary.txt": (TEMPLATES / "commentary.txt").read_text(),
             "prompts/redirect.txt": (TEMPLATES / "redirect.txt").read_text(),
-            "prompts/final-investigation.txt": (TEMPLATES / "final-investigation.txt").read_text(),
             "goal.md": (TEMPLATES / "goal.md").read_text(),
             "analysis/leads.json": json.dumps({"version": 1, "passes": [], "leads": []}, indent=2) + "\n",
             "analysis/progress.md": "# Disassembly progress\n\nWorkspace initialized. Baseline and classification have not run.\n",
@@ -416,7 +416,7 @@ def initialize(source, destination, binary, platform="auto"):
     return {"ok": True, "workspace": str(destination), "sha256": identity,
             "goal_prompt": str(destination / "goal.md"),
             "prompts": [str(destination / "prompts" / name) for name in
-                        ["disassembly.txt", "commentary.txt", "redirect.txt", "final-investigation.txt"]]}
+                        ["disassembly.txt", "commentary.txt", "redirect.txt"]]}
 
 
 def print_prompt_location(record):

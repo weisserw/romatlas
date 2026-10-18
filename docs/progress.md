@@ -862,3 +862,66 @@ dependency boundaries, Game Boy session regression and deterministic byte-identi
 four-bank stock portability pass. Python compilation and git diff --check pass.
 Production test-snes.py also passes LoROM/HiROM RPC paging, snapshots, audio, SRAM,
 exact rebuilding and the preparation/commentary/archive/native-port workflow.
+
+2026-10-18: Audited repeated local goal-agent terminal stops against primary
+investigation artifacts. Prompts allowed static inference but under-specified how
+to combine independent constraints, limit counterexample scope and correct prior
+rejections on unchanged evidence. Whole-gap/whole-generator failures became broad
+vetoes; coordinator preservation checks did not examine rejection sufficiency.
+docs/agent-inference-audit.md distinguishes these observed decisions from a claim
+that prompt wording is their sole cause.
+
+Generated workspaces now include a shared evidence-policy.md referenced by the
+coordinator and phases. It gives a positive structural inference process, separates
+role/extent from historical generator recovery and reachability, localizes uncertain
+subclaims and permits justified correction of prior reasoning without new runtime
+data. Terminal handoffs require a compact rejection review inspected against primary
+artifacts by the coordinator. Sound reviews are reusable and genuine exhaustion
+still stops incomplete; classification, editorial and fidelity gates remain intact.
+Both Game Boy and SNES use the same policy without extra Game Boy context demands.
+
+Migrated only the existing Super Off Road instruction files, retaining originals
+and a hash manifest locally. All135 protected ROM/map/state/commentary/investigation
+files matched before/after migration. No classification, source text, trace, input,
+snapshot, goal status or historical handoff changed; no phase/worker was launched.
+The next coordinator/worker must reread updated instructions. No commercial content
+or game artifacts were added to this repository.
+
+Validation on Rust1.90.0: locked release build, fmt, locked all-target workspace
+Clippy with warnings denied and locked workspace tests pass. Synthetic disassembly
+and commentary regressions, production SNES workflow, deterministic byte-identical
+four-bank stock portability, Python compilation and git diff --check pass. Added
+checks cover policy delivery, references and preserved positive/negative guidance
+in both platform profiles. These tests do not establish live-agent inference quality
+or guarantee that remaining game bytes can be classified; subsequent run behavior
+must supply that evidence. No Rust/session/dependency implementation changed.
+
+2026-10-18: Retired the separate final-investigation phase and its5%/16KiB
+scheduling threshold. Generated workspaces now expose only disassembly, commentary
+and redirect. Redirect incorporates exact residual ledgers, whole-table/container
+and consumer contracts, selector reasoning, targeted bounded experiments and scoped
+rejection review at every classification percentage. Useful intermediate evidence
+or justified next methods continue redirect without an empty classification cycle;
+supported combined proposals pass through disassembly and full current-source
+commentary. There is no fixed pass quota. Genuine reviewed exhaustion still stops
+incomplete; final editorial acceptance and exact verification remain completion gates.
+
+Updated preparation results, both platform profiles, coordinator/workflow/phase
+instructions, project contract, README, inference audit and regression assertions.
+Historical SNES audit references are explicitly marked as historical. Legacy
+final-investigation attempts remain immutable evidence; unfinished research resumes
+as redirect. Migrated the existing Super Off Road instructions after checking the
+prior migration hashes, retaining all original instructions and the retired prompt
+locally. All135 protected ROM/map/state/commentary/investigation files still match;
+no classification, source, runtime, goal-status or historical research changes.
+No agent/worker was launched. Other existing workspaces are not silently rewritten.
+
+Validation on Rust1.90.0 passes locked release build, fmt, locked all-target workspace
+Clippy with warnings denied and locked workspace tests; synthetic disassembly and
+commentary regressions, production SNES workflow, deterministic byte-identical
+four-bank stock portability, Python compilation and git diff --check pass. Tests
+check the three returned/generated prompts, absence of retired scheduling, continued
+research and legacy resumption guidance in both profiles, alongside preserved
+classification/readability/fidelity requirements. They establish instruction delivery
+and tooling behavior, not the number or quality of future live-agent inferences.
+No Rust/session/dependency implementation changed; no commercial content added.

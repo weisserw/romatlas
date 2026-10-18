@@ -48,7 +48,7 @@ def files(original, metadata):
     result['workspace.json']=json.dumps(meta,indent=2)+'\n'
     # This extension is applied only to newly generated SNES profiles.
     for name in ['AGENTS.md','workflow.md','prompts/disassembly.txt','prompts/commentary.txt',
-                 'prompts/redirect.txt','prompts/final-investigation.txt']:
+                 'prompts/redirect.txt']:
         result[name]+=GUIDANCE
     result['run.py']=result['run.py'].replace('call("serve", "--rom", rom)',
         'call("serve", "--rom", rom, "--store", ROOT / "analysis/state.json")')

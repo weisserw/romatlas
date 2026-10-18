@@ -3,7 +3,7 @@ for the claimed structural role, exact boundaries and effective bank context;
 require reachability evidence only when claiming reachability. A live caller,
 observed instruction fetch, naturally produced selector or ordinary gameplay route
 is useful evidence, not a universal prerequisite for classifying code or data.
-Apply this distinction from the first disassembly pass, not only during final
+Apply this distinction from the first disassembly pass and throughout redirect
 investigation. Independently supported routine contracts, control/data flow and
 bounded record/table formats can justify static classification while natural use
 remains unresolved. Record structural evidence and reachability status separately;
@@ -18,7 +18,7 @@ structure. Artificial execution can test consumer mechanics but does not establi
 intended code, complete table extent or natural reachability by itself. Keep these
 evidence safeguards and all classification, fidelity and editorial completion gates.
 
-Read AGENTS.md, workflow.md, workspace.json, analysis/progress.md,
+Read evidence-policy.md, AGENTS.md, workflow.md, workspace.json, analysis/progress.md,
 analysis/investigation.md, analysis/toolkit-issues.md and analysis/leads.json.
 Run exactly one disassembly pass. Restore analysis/state.json if present; preserve
 existing classifications. Establish the verified baseline only if absent.
@@ -66,7 +66,9 @@ Do not require a substantial byte gain to verify a ready lead, or solve every
 selector before proving a supported partial structural slice. Do not exhaust all
 gameplay, all methods or all unknown ranges, and do not stop at raw baseline while
 obvious startup gains remain. Do not repeat failed leads without new evidence or
-a materially different method, recorded with its reopening justification.
+a materially different method, recorded with its reopening justification. Correcting
+an earlier rejection's premise or narrowing its claim can supply that justification
+on unchanged evidence; use evidence-policy.md instead of treating history as a veto.
 
 Save state, export maps/current.sym, validate and create a fresh verified checkpoint.
 At the end of every pass, explicitly print to the user and save in analysis/progress.md:

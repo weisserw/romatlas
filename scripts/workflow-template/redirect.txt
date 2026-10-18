@@ -3,7 +3,7 @@ for the claimed structural role, exact boundaries and effective bank context;
 require reachability evidence only when claiming reachability. A live caller,
 observed instruction fetch, naturally produced selector or ordinary gameplay route
 is useful evidence, not a universal prerequisite for classifying code or data.
-Apply this distinction from the first disassembly pass, not only during final
+Apply this distinction from the first disassembly pass and throughout redirect
 investigation. Independently supported routine contracts, control/data flow and
 bounded record/table formats can justify static classification while natural use
 remains unresolved. Record structural evidence and reachability status separately;
@@ -18,9 +18,9 @@ structure. Artificial execution can test consumer mechanics but does not establi
 intended code, complete table extent or natural reachability by itself. Keep these
 evidence safeguards and all classification, fidelity and editorial completion gates.
 
-Run exactly one redirect phase after the current-source commentary handoff gate is met.
+Run the redirect phase after the current-source commentary handoff gate is met.
 Incomplete ROM classification is allowed; interrupted commentary must resume first.
-Start from the compact commentary handoff and analysis/leads.json. Retrieve relevant
+Read evidence-policy.md. Start from the compact commentary handoff and analysis/leads.json. Retrieve relevant
 source, uncertainties, review records, state and investigation evidence as needed.
 Accept commentary on an incompletely classified ROM; do not wait for final archive
 audit, but require completion of the current-source readability scope.
@@ -100,6 +100,9 @@ has little credible prospect of useful progress. Switch to a promising independe
 avenue when available; end the pass when reasonable avenues are exhausted.
 A prior failed attempt may be reopened only with new evidence or a materially
 different justified method. Preserve the original outcome and explain the change.
+Reassess the reasoning as well as the experiment: evidence-policy.md permits a
+corrected premise, localized counterexample or newly combined independent constraints
+on unchanged evidence. Retrieve the decisive artifact before inheriting a rejection.
 Record findings as work proceeds, including negative results and interruption state,
 so later redirects can build on evidence rather than repeat the same search.
 
@@ -141,11 +144,48 @@ symbols. Each round completes the current readability backlog; final acceptance
 addresses remaining naming/comment gaps even in previously reviewed ranges. Unknown
 meanings must have useful mechanical descriptions and explicit uncertainty.
 
-Before a terminal incomplete handoff, flag eligibility for the final-investigation
-scheduling rule in goal.md. The coordinator runs prompts/final-investigation.txt
-when eligible; do not treat that phase as already exhausted by this redirect.
+Investigation continues at every classification percentage. A ready redirect lead
+is not required: design concrete alternative methods from residual barriers using
+the latest handoffs and accepted/rejected outcomes. Test independent whole-table
+extent proofs, ending source/bank/copy-length contracts, graphics-container bounds
+and other supported alternatives to missing callers/selectors as ordinary redirect
+work. These are hypotheses, not preset classification results.
 
-After accepted final-investigation proposals, provide the residual handoff for the
-iterative final-investigation rule in goal.md. Missing ready redirect leads alone
-do not end that loop; final investigation plans alternate methods against recorded
-barriers before deciding exhaustion. Preserve prior attempts and avoid unchanged retries.
+Maintain the exact unknown complement from the internal map with current counts,
+bank/CPU context, neighbors and evidence-linked dispositions grouped by structure.
+Refresh it after map changes and before terminal assessment; reuse unchanged ledger
+entries rather than repeating a whole-ROM survey. Every remaining range receives
+a disposition, not an exhaustive experiment. Ledger groups are bookkeeping, not
+indivisible candidate objects; split claims when a missing fact or counterexample
+affects only part. Do not infer structure from exporter raw gaps.
+
+Audit boundaries, record strides, terminators, encodings, consumer semantics and
+bank-aware control/stack contracts. Compare independent constraints with known
+structures using evidence-policy.md. Trace missing selectors backward through
+writers, initialization, transformations, gates and bank changes. Separate possible
+and observed values; an excluded selector does not prove an apparent target unused.
+Targeted artificial experiments must discriminate a specific hypothesis; arbitrary
+successful execution establishes neither structure nor natural reachability.
+
+Keep new research in a unique attempt directory analysis/redirect/<attempt-id>/.
+Preserve completed handoffs, ledgers and evidence; never overwrite or discard prior
+attempts, including legacy analysis/final-investigation/ records. Resume an unfinished
+legacy investigation here from its saved frontier. Before a substantive retry record
+the target claim, prior barrier/method/outcome, changed fact or justified inference,
+expected discriminating result and stop condition. Compare decisive artifacts, not
+only prior method labels. No unchanged replay, arbitrary state sweep or fixed pass quota.
+
+Supported proposals return to disassembly for independent review, then full
+current-source commentary and redirect. Useful intermediate evidence or a credible
+improved method without a proposal continues redirect directly, without an empty
+disassembly/commentary cycle. Record the frontier and continue across context
+rollover; do not call an interruption or completed attempt terminal exhaustion.
+
+Before a terminal incomplete handoff, include the compact rejection review required
+by evidence-policy.md for coordinator inspection. A missing-fact list or prior worker's
+exhaustion summary alone does not establish it. Preserve ROM, map, state, source and
+configured binary; redirect changes research/lead records only. State checkpoint
+identity, proposed versus accepted bytes, exact residuals, methods/results, useful
+constraints, concrete next recipes or actual exhaustion reasons in the handoff.
+If no useful revised inference or test survives review, report incomplete. When all
+bytes later become classified, final editorial audit and verification remain required.

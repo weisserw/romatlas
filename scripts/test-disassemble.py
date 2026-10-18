@@ -4,6 +4,7 @@ import hashlib
 import json
 from pathlib import Path
 import subprocess
+import sys
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -51,9 +52,45 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
     assert (workroot / "Game two/input/game.rom").read_bytes() == data
     assert "Do not stop after a raw-byte baseline" in (work / "AGENTS.md").read_text()
     assert Path(records[0]["goal_prompt"]).is_file()
-    assert len(records[0]["prompts"]) == 4
+    assert [Path(p).name for p in records[0]["prompts"]] == [
+        "disassembly.txt", "commentary.txt", "redirect.txt"]
+    assert not (work / "prompts/final-investigation.txt").exists()
     for path in records[0]["prompts"]:
         assert Path(path).is_file()
+    # All phases use one policy, including the SNES profile. These assertions
+    # verify instruction delivery, not an agent's reasoning or classification.
+    evidence = (work / "evidence-policy.md").read_text()
+    assert evidence == (ROOT / "scripts/workflow-template/evidence-policy.md").read_text()
+    sys.path.insert(0, str(ROOT / "scripts"))
+    import snes_workflow
+    assert snes_workflow.profile(evidence) == evidence
+    profiled = snes_workflow.files({
+        "workspace.json": json.dumps(dict(rom="input/game.rom", sha256=identity)),
+        "run.py": "",
+        "evidence-policy.md": evidence,
+        **{name: (work / name).read_text() for name in [
+            "AGENTS.md", "workflow.md", "goal.md", "prompts/disassembly.txt",
+            "prompts/commentary.txt", "prompts/redirect.txt"]},
+    }, dict(size=len(data), sha256=identity))
+    assert profiled["evidence-policy.md"] == evidence
+    for name in ["AGENTS.md", "workflow.md", "goal.md", "prompts/disassembly.txt",
+                 "prompts/commentary.txt", "prompts/redirect.txt"]:
+        assert "evidence-policy.md" in (work / name).read_text(), name
+        assert "evidence-policy.md" in profiled[name], name
+    policy = " ".join(evidence.split())
+    for required in ["Combine independent constraints", "not independent facts",
+                     "particular inference depends on it", "Static provenance",
+                     "does not automatically reject", "already classified or unknown cells",
+                     "Do not fit arbitrary error bands", "independent role and extent evidence",
+                     "not irrevocable vetoes", "materially different method even with unchanged ROM",
+                     "strongest competing interpretation", "coordinator must inspect",
+                     "Reuse a sound completed review", "stop incomplete"]:
+        assert required in policy, required
+    goal_policy = " ".join((work / "goal.md").read_text().split())
+    for required in ["inspect the worker's compact rejection review",
+                     "verifying hashes or counting previous attempts",
+                     "Do not wait for a user", "stop incomplete rather than cycling"]:
+        assert required in goal_policy, required
     disassembly = (work / "prompts/disassembly.txt").read_text()
     assert "Stop and report incomplete" in disassembly
     assert "normal gameplay scenarios driven with debugger inputs" in disassembly
@@ -71,7 +108,7 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
     assert "Follow ready redirect leads" in disassembly
     assert "Investigation mode:" not in disassembly
     redirect = (work / "prompts/redirect.txt").read_text()
-    for required in ["exactly one", "emulator.memory.write", "emulator.registers.set",
+    for required in ["emulator.memory.write", "emulator.registers.set",
                      "Do not reissue", "additional evidence", "attempt history"]:
         assert required in redirect
     for required in ["Investigate connected behavior as a coherent batch",
@@ -86,26 +123,31 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
                      "Continue with actionable", "independent avenues in this same redirect",
                      "outside selected scope", "same redirect phase"]:
         assert required in redirect
-    final = (work / "prompts/final-investigation.txt").read_text()
-    for required in ["Every remaining range receives a disposition", "natural reachability",
-                     "Trace missing selectors backward", "Artificial", "Preserve ROM, map",
-                     "report incomplete", "materially different justified", "final editorial audit"]:
-        assert required in " ".join(final.split()), required
+    redirect_policy = " ".join(redirect.split())
     for required in ["unique attempt directory", "never overwrite or discard",
                      "ready redirect lead is not required", "expected discriminating result",
-                     "whole-table extent proofs", "terminal exhaustion", "latest-attempt index"]:
-        assert required in " ".join(final.split()), required
+                     "whole-table extent proofs", "terminal exhaustion",
+                     "Every remaining range receives a disposition", "natural reachability",
+                     "Trace missing selectors backward", "Preserve ROM, map",
+                     "final editorial audit", "Ledger groups are bookkeeping",
+                     "only prior method labels", "without an empty",
+                     "analysis/redirect/<attempt-id>/", "legacy analysis/final-investigation/",
+                     "every classification percentage", "no fixed hypothesis count"]:
+        assert required in redirect_policy, required
+    assert "prompts/final-investigation.txt" not in profiled
     for name in ["goal.md", "workflow.md"]:
         policy = " ".join((work / name).read_text().split())
-        for required in ["unknown bytes <= 16384", "<= 0.05", "on resume",
-                         "Do not automatically", "Resume an interrupted final investigation",
-                         "Final investigation is iterative", "automatically return",
-                         "designing concrete methods", "without an empty",
+        for required in ["no percentage threshold", "fixed pass quota", "On resume",
+                         "Do not automatically", "unfinished legacy investigation as redirect",
+                         "continue redirect directly", "without an empty",
                          "Do not relaunch planning",
                          "not a background process"]:
             assert required in policy, (name, required)
+        assert "16384" not in policy and "0.05" not in policy
+        assert "prompts/final-investigation.txt" not in policy
+        assert policy == " ".join(profiled[name].split()) or name == "workflow.md"
     for name in ["prompts/disassembly.txt", "prompts/redirect.txt",
-                 "prompts/final-investigation.txt", "goal.md", "workflow.md"]:
+                 "goal.md", "workflow.md"]:
         contract = " ".join((work / name).read_text().split())
         for required in ["Structural classification and reachability are separate claims",
                          "require reachability evidence only when claiming reachability",
@@ -149,7 +191,7 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
     assert "explicitly print the ROM" in goal
     assert "recording it only in a file is" in goal
     assert goal.index("1. prompts/disassembly") < goal.index("2. prompts/commentary") < goal.index("3. prompts/redirect")
-    assert "reasonable investigation" in goal and "report incomplete" in goal
+    assert "rejection review" in goal and "report incomplete" in goal
     assert json.loads((work / "analysis/leads.json").read_text()) == {"version": 1, "passes": [], "leads": []}
     assert not (work / "prompts/start.md").exists()
     assert "every physical ROM byte" in (work / "workflow.md").read_text()

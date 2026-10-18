@@ -3,6 +3,8 @@
 2026-10-18. Read-only audit of current generated agent instructions and their
 supporting scripts. No active Game Boy workspace or production prompt was changed.
 This specifies the required platform split before production SNES integration.
+The later continuous-redirect workflow retired the final-investigation prompt
+named below; its methods now belong to redirect. The audit rows remain historical.
 
 ## Preserve the evidence contract
 
