@@ -44,6 +44,9 @@ retain CPU aliases and effective bank context. Prefer analysis.discover_context.
 Observed instruction fetches prove execution; reached targets and pointer values
 do not. Unexecuted bytes may be classified using static or semantic evidence;
 unsupported bytes stay unknown. Export's raw-byte gaps are not data evidence.
+Structural roles/bounds and reachability are separate claims. A live caller or
+ordinary gameplay route is not required when independent static evidence establishes
+the role, exact bounds and bank context. Record reachability uncertainty separately.
 Inspect candidates before map.annotate. Split existing regions before inserting
 smaller regions. Validate maps after edits. Save internal state with map.save
 to analysis/state.json, and export stock .sym to maps/current.sym.
@@ -120,6 +123,28 @@ plot summaries or exhaustive background collection. If sources or browsing are
 unavailable, record the limitation and continue local analysis; lack of a guide
 alone does not prevent taking available local easy gains.
 
+## Structural evidence and reachability
+
+Structural classification and reachability are separate claims. Require evidence
+for the claimed structural role, exact boundaries and effective bank context;
+require reachability evidence only when claiming reachability. A live caller,
+observed instruction fetch, naturally produced selector or ordinary gameplay route
+is useful evidence, not a universal prerequisite for classifying code or data.
+Apply this distinction from the first disassembly pass, not only during final
+investigation. Independently supported routine contracts, control/data flow and
+bounded record/table formats can justify static classification while natural use
+remains unresolved. Record structural evidence and reachability status separately;
+do not label statically inferred bytes Observed or claim they are unused/dead
+merely because no caller is known.
+
+Caller/selector tracing remains useful for resolving roles, bounds and bank context.
+When selected indices are the only evidence for a table's extent, retain unsupported
+entries as unknown until an independent extent proof exists. Valid decoding, pointer
+values, adjacent records, alignment and pattern resemblance alone do not establish
+structure. Artificial execution can test consumer mechanics but does not establish
+intended code, complete table extent or natural reachability by itself. Keep these
+evidence safeguards and all classification, fidelity and editorial completion gates.
+
 ## Completion and investigation contract
 
 This is one easy-gain pass, not an exhaustive investigation. Read prompts/disassembly.txt.
@@ -164,6 +189,53 @@ export maps/current.sym, validate, and make a new verified checkpoint when possi
 Report complete or incomplete, per-bank code/data/unknown counts, annotation coverage,
 execution coverage separately, checkpoint links, untested hypotheses and toolkit findings.
 Never declare the ROM complete just because a pass or byte-identical rebuild succeeded.
+
+## Final investigation before a near-complete stop
+
+After redirect has no useful actionable next step, automatically schedule
+prompts/final-investigation.txt before terminating when 0 < unknown bytes <= 16384
+AND unknown bytes / total physical ROM bytes <= 0.05. Compute these values from
+the current internal map, excluding unknown/raw fallback from classified bytes;
+do not use rounded percentages. These are scheduling thresholds, not evidence
+standards. Explicit user requests may run this prompt at any remaining size.
+This is coordinator scheduling, not a background process launched by run.py.
+
+Apply this rule on resume of an older stopped workspace too. Require completed
+current-source commentary first. Track phase, checkpoint identity, attempt IDs,
+methods and outcomes in analysis/progress.md and analysis/final-investigation/.
+Resume an interrupted final investigation in that phase.
+
+Final investigation is iterative, not a one-shot allowance. After accepted proposals
+pass through disassembly, commentary and redirect, automatically return to final
+investigation while the threshold still holds and unknown bytes remain. Use the
+latest redirect handoff, previous final-investigation handoff and residual ledger
+as the jumping-off point. Do not require the redirect to have already supplied a
+ready structural lead: the next investigation begins by designing concrete methods
+against its recorded barriers. If a pass produces useful intermediate evidence or
+a concrete improved experiment but no classification proposal, continue final
+investigation directly without an empty disassembly/commentary cycle.
+
+Before substantive retries, compare the proposed method and prerequisites with all
+previous attempts. A targeted whole-table extent proof, ending source/bank/copy-length
+trace or graphics-container boundary proof may replace a stalled live-selector search
+when justified by the residual evidence. Develop such alternatives proactively;
+a handoff's missing-fact list is a research starting point, not proof of exhaustion.
+Do not automatically repeat an exhausted method on unchanged evidence. A new round,
+checkpoint, restated question or renamed method alone is insufficient. Every repeat
+must identify new evidence or a materially different concrete method and explain
+which recorded barrier it can resolve and what observation would distinguish outcomes.
+
+Continue passes while they produce supported proposals, useful new constraints or
+credible untried methods addressing residual structure. No minimum byte gain or
+fixed pass quota applies. When method planning finds no credible untried alternative,
+or results repeat without useful learning or changed prerequisites, stop and report
+incomplete with exact unknown ranges, exhausted methods and missing facts. Do not
+relaunch planning on that unchanged terminal handoff; resume requires new evidence,
+a materially improved concrete method or an explicit user request to reassess.
+If no unknown bytes remain, proceed to final editorial/archive acceptance instead.
+Preserve all evidence, fidelity and completion gates; iteration never authorizes
+speculative classification. This is coordinator scheduling, not a background job.
+
 
 ## Toolkit issues
 
@@ -316,6 +388,7 @@ def initialize(source, destination, binary):
             "prompts/disassembly.txt": (TEMPLATES / "disassembly.txt").read_text(),
             "prompts/commentary.txt": (TEMPLATES / "commentary.txt").read_text(),
             "prompts/redirect.txt": (TEMPLATES / "redirect.txt").read_text(),
+            "prompts/final-investigation.txt": (TEMPLATES / "final-investigation.txt").read_text(),
             "goal.md": (TEMPLATES / "goal.md").read_text(),
             "analysis/leads.json": json.dumps({"version": 1, "passes": [], "leads": []}, indent=2) + "\n",
             "analysis/progress.md": "# Disassembly progress\n\nWorkspace initialized. Baseline and classification have not run.\n",
@@ -339,7 +412,7 @@ def initialize(source, destination, binary):
     return {"ok": True, "workspace": str(destination), "sha256": identity,
             "goal_prompt": str(destination / "goal.md"),
             "prompts": [str(destination / "prompts" / name) for name in
-                        ["disassembly.txt", "commentary.txt", "redirect.txt"]]}
+                        ["disassembly.txt", "commentary.txt", "redirect.txt", "final-investigation.txt"]]}
 
 
 def print_prompt_location(record):

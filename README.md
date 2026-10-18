@@ -38,13 +38,30 @@ python3 run.py baseline
 ```
 
 Run your agent from the game workspace and ask it to read `goal.md`. The generated
-`prompts/disassembly.txt`, `commentary.txt` and `redirect.txt` define single passes.
+`prompts/disassembly.txt`, `commentary.txt` and `redirect.txt` define ordinary passes;
+`prompts/final-investigation.txt` supplies the final investigation.
 Disassembly drives normal gameplay scenarios while they yield substantial gains,
 alongside static discovery and lead verification, then stops incomplete when no
 obvious substantial gain remains. Commentary incrementally interprets changed material and affected dependencies,
 preserving valid prior review credit and using readable provisional names. It hands
 off useful findings without waiting for full-ROM editorial review; redirect finds
 new leads once. Separate sequential phase workers exchange compact durable handoffs.
+Structural classification and reachability are separate claims throughout every
+pass. Independent static evidence can establish roles and exact boundaries without
+a live caller or gameplay route; natural use remains explicitly unresolved. Caller
+tracing is useful evidence, rather than a universal classification prerequisite.
+
+A stalled ROM with at most 5% unknown bytes and at most 16 KiB unknown automatically
+receives a final structural investigation before the coordinator stops. You can also
+ask an agent in the game workspace to read and follow `prompts/final-investigation.txt`
+manually. This examines remaining structures, selector producers and targeted debugger
+experiments without weakening classification standards. The phase repeats from its prior handoff and residual ledger after accepted batches,
+and continues directly on useful intermediate findings. Each follow-up develops concrete
+alternative methods; per-attempt history prevents unchanged retries. The loop stops
+when no credible untried method or useful learning remains. Attempts persist across resumes;
+unchanged terminal handoffs are not automatically reopened. Preparation writes
+these instructions; it does not launch an agent or background job.
+
 Full editorial cleanup/audit is reserved for final acceptance and archiving. The coordinator repeats only with new actionable information,
 otherwise reports incomplete. Whole-ROM completion still requires every byte to be
 classified with evidence and a verified rebuild. No agent provider is required.

@@ -1,3 +1,23 @@
+Structural classification and reachability are separate claims. Require evidence
+for the claimed structural role, exact boundaries and effective bank context;
+require reachability evidence only when claiming reachability. A live caller,
+observed instruction fetch, naturally produced selector or ordinary gameplay route
+is useful evidence, not a universal prerequisite for classifying code or data.
+Apply this distinction from the first disassembly pass, not only during final
+investigation. Independently supported routine contracts, control/data flow and
+bounded record/table formats can justify static classification while natural use
+remains unresolved. Record structural evidence and reachability status separately;
+do not label statically inferred bytes Observed or claim they are unused/dead
+merely because no caller is known.
+
+Caller/selector tracing remains useful for resolving roles, bounds and bank context.
+When selected indices are the only evidence for a table's extent, retain unsupported
+entries as unknown until an independent extent proof exists. Valid decoding, pointer
+values, adjacent records, alignment and pattern resemblance alone do not establish
+structure. Artificial execution can test consumer mechanics but does not establish
+intended code, complete table extent or natural reachability by itself. Keep these
+evidence safeguards and all classification, fidelity and editorial completion gates.
+
 Read AGENTS.md, workflow.md, workspace.json, analysis/progress.md,
 analysis/investigation.md, analysis/toolkit-issues.md and analysis/leads.json.
 Run exactly one disassembly pass. Restore analysis/state.json if present; preserve

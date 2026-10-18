@@ -51,7 +51,7 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
     assert (workroot / "Game two/input/game.rom").read_bytes() == data
     assert "Do not stop after a raw-byte baseline" in (work / "AGENTS.md").read_text()
     assert Path(records[0]["goal_prompt"]).is_file()
-    assert len(records[0]["prompts"]) == 3
+    assert len(records[0]["prompts"]) == 4
     for path in records[0]["prompts"]:
         assert Path(path).is_file()
     disassembly = (work / "prompts/disassembly.txt").read_text()
@@ -86,6 +86,34 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
                      "Continue with actionable", "independent avenues in this same redirect",
                      "outside selected scope", "same redirect phase"]:
         assert required in redirect
+    final = (work / "prompts/final-investigation.txt").read_text()
+    for required in ["Every remaining range receives a disposition", "natural reachability",
+                     "Trace missing selectors backward", "Artificial", "Preserve ROM, map",
+                     "report incomplete", "materially different justified", "final editorial audit"]:
+        assert required in " ".join(final.split()), required
+    for required in ["unique attempt directory", "never overwrite or discard",
+                     "ready redirect lead is not required", "expected discriminating result",
+                     "whole-table extent proofs", "terminal exhaustion", "latest-attempt index"]:
+        assert required in " ".join(final.split()), required
+    for name in ["goal.md", "workflow.md"]:
+        policy = " ".join((work / name).read_text().split())
+        for required in ["unknown bytes <= 16384", "<= 0.05", "on resume",
+                         "Do not automatically", "Resume an interrupted final investigation",
+                         "Final investigation is iterative", "automatically return",
+                         "designing concrete methods", "without an empty",
+                         "Do not relaunch planning",
+                         "not a background process"]:
+            assert required in policy, (name, required)
+    for name in ["prompts/disassembly.txt", "prompts/redirect.txt",
+                 "prompts/final-investigation.txt", "goal.md", "workflow.md"]:
+        contract = " ".join((work / name).read_text().split())
+        for required in ["Structural classification and reachability are separate claims",
+                         "require reachability evidence only when claiming reachability",
+                         "not a universal prerequisite", "from the first disassembly pass",
+                         "structural evidence and reachability status separately",
+                         "When selected indices are the only evidence",
+                         "independent extent proof", "does not establish intended code"]:
+            assert required in contract, (name, required)
     commentary = (work / "prompts/commentary.txt").read_text()
     for required in ["ALL currently classified source", "Preserve valid", "prior review credit",
                      "previous commentary under", "ordinary tentative prose",

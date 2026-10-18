@@ -674,3 +674,63 @@ Validation: synthetic disassembly/commentary regressions and stock portability
 pass, including deterministic exact four-bank rebuilding. Added prompt assertions
 for independent-avenue continuation and coordinator completion. Python compilation
 and git diff --check pass. Instruction checks do not prove live-agent performance.
+
+2026-10-18: Added a final-investigation phase for stalled near-complete ROMs.
+Generated coordinators schedule it after exhausted redirect when the exact unknown
+complement is positive, at most 5% of physical ROM and at most 16 KiB; users can
+invoke its prompt manually at other sizes. It audits every remaining range's
+disposition, structural evidence independent of live callers, selector producers
+and targeted artificial-state experiments. It preserves evidence standards, routes
+proposals through disassembly/commentary/redirect, resumes interruptions and prevents
+automatic repetition without new evidence or materially improved methods. Preparation
+writes prompts only; it launches no background agent.
+
+Migrated the existing Castlevania coordinator/workflow and added the prompt, with
+a progress migration note identifying round022 as eligible. No game investigation,
+ROM/map/state/source/review/verification change was performed. Historical handoffs
+remain intact. Synthetic disassembly and commentary regressions, stock portability,
+Python compilation and git diff --check pass. Tests cover prompt generation,
+threshold/resume instructions and existing byte-identical checkpoint behavior;
+they do not establish live-agent research quality or promise full classification.
+Additional validation on Rust 1.90.0: locked release build, cargo fmt --check,
+locked all-target workspace Clippy with warnings denied and locked workspace tests
+pass. No runtime/session implementation or dependency changes.
+
+2026-10-18: Clarified structural classification versus reachability across the
+project contract, generated workspace instructions/workflow/coordinator and ordinary
+disassembly, redirect and final-investigation prompts. Independent static evidence
+may establish roles, exact bounds and bank context from the first pass without a
+live caller, observed fetch, naturally produced selector or gameplay route. Record
+reachability uncertainty separately; lack of a caller does not establish dead or
+unused status. Caller/selector tracing remains useful evidence, and sparse selected
+entries cannot establish a full table extent without independent support. Artificial
+execution, pattern resemblance and successful decoding alone remain insufficient.
+This is an explicit application of the existing static-evidence policy, not a new
+relaxed final-phase acceptance rule. Existing game workspaces were not migrated.
+
+Validation: synthetic disassembly and commentary regressions, stock portability,
+Python compilation, git diff --check, locked release build, fmt and locked all-target
+workspace Clippy with warnings denied pass. Prompt assertions cover ordinary and
+final phases, separate reachability claims and independent table-extent evidence.
+No runtime/dependency or game-artifact changes; prompt tests do not prove live-agent
+classification quality.
+Locked workspace tests also pass under Rust 1.90.0.
+
+2026-10-18: Final investigation now iterates automatically from prior final and
+redirect handoffs and residual ledgers after accepted batches. A ready redirect
+lead is not required to plan concrete alternative methods against remaining
+barriers. Useful intermediate constraints can continue the phase without an empty
+disassembly/commentary cycle. Each retry records its changed evidence/method and
+discriminating outcome; terminal exhaustion stops unchanged restarts. No minimum
+byte gain or fixed pass quota; full classification/editorial/fidelity gates remain.
+Unique attempt directories preserve handoffs and evidence, including legacy records
+before replacing the top-level handoff with a latest-attempt index.
+
+Updated generated instructions, README and prompt regressions, plus the existing
+Castlevania coordinator/workflow/final prompt and redirect guidance with a migration
+note. No investigation launched or ROM/map/state/source/review/verification artifacts
+changed. Synthetic disassembly/commentary regressions, stock portability, Python
+compilation, diff checks, release build, fmt and locked all-target workspace Clippy
+with warnings denied pass. Tests establish instruction generation and existing
+fidelity behavior, not live-agent loop termination or semantic research quality.
+Locked workspace tests also pass on Rust 1.90.0. No runtime/dependency changes.
