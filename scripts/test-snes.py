@@ -82,6 +82,34 @@ def runtime(work,rom,layout):
         observed=s.rpc('analysis.discover',dict(entrypoints=[entry],max_instructions=8,use_observed=True))
         assert not static['candidates'] and observed['candidates'], 'observed width context lost at zero detail capacity'
         assert all(not c['execution_coverage'] for c in observed['candidates'])
+        # Independent pages must reconstruct the same graph without changing its budget.
+        params=dict(entrypoints=[entry, dict(offset=0, cpu_address=0)],
+                    max_instructions=80, use_observed=True, limit=1000)
+        whole=s.rpc('analysis.discover_context',params)
+        assert whole['candidates'] and whole['references'] and whole['diagnostics']
+        lists=[('candidates','offset','total','next_offset'),
+               ('references','reference_offset','total_references','next_reference_offset'),
+               ('diagnostics','diagnostic_offset','total_diagnostics','next_diagnostic_offset')]
+        for method in ['analysis.discover', 'analysis.discover_context']:
+            for key,offset_key,total_key,next_key in lists:
+                collected=[]
+                while len(collected)<whole[total_key]:
+                    page=s.rpc(method,dict(params, **{offset_key:len(collected), 'limit':1}))
+                    assert page[total_key]==whole[total_key]
+                    assert page[next_key]==len(collected)+1
+                    assert page['visited']==whole['visited']
+                    assert page['budget_exhausted']==whole['budget_exhausted']
+                    assert all(len(page[k])<=1 for k,_,_,_ in lists)
+                    collected.extend(page[key])
+                assert collected==whole[key]
+            empty=s.rpc(method,dict(params,limit=0))
+            assert all(empty[k]==[] and empty[t]==whole[t] for k,_,t,_ in lists)
+            past=s.rpc(method,dict(params,offset=2**64-1,reference_offset=2**64-1,
+                                   diagnostic_offset=2**64-1,limit=1))
+            assert all(past[k]==[] and past[n]==whole[t] for k,_,t,n in lists)
+            for invalid in [dict(limit=1001),dict(limit=-1),dict(offset='0'),
+                            dict(reference_offset=-1),dict(diagnostic_offset=1.5)]:
+                s.rpc(method,dict(params,**invalid),ok=False)
         before=s.rpc('emulator.state')
         peek_before=work/f'{layout}-peek-before.json';s.rpc('emulator.snapshot.export',dict(path=str(peek_before)))
         for space in ['rom','wram','aram','vram','cgram','oam','ipl']:
@@ -239,6 +267,29 @@ def workflow(work, rom):
     script('port.py','audit',port,ok=False)
 
 
+def large_discovery(work, original):
+    rom=work/'large-discovery.sfc'
+    data=bytearray(original.read_bytes())
+    data[:8192]=bytes([0xea])*8192  # Original synthetic NOP graph, no assets.
+    rom.write_bytes(data)
+    session=Session(rom)
+    try:
+        params=dict(entrypoints=[dict(offset=i,context=dict(e=True,m=True,x=True))
+                                 for i in range(100)],
+                    max_instructions=4000,use_observed=True)
+        first=session.rpc('analysis.discover_context',params)
+        assert len(first['candidates'])==100 and first['total']==4000
+        assert first['visited']==4000 and first['budget_exhausted']
+        collected=[]
+        while len(collected)<first['total']:
+            page=session.rpc('analysis.discover_context',dict(params,offset=len(collected),limit=500))
+            assert page['total']==first['total'] and page['budget_exhausted']
+            collected.extend(page['candidates'])
+        assert len({(c['offset'],json.dumps(c['view'],sort_keys=True)) for c in collected})==4000
+        assert collected[:100]==first['candidates']
+    finally:session.close()
+
+
 def main():
     with tempfile.TemporaryDirectory(prefix='romatlas-snes-') as temporary:
         work=Path(temporary)
@@ -257,6 +308,7 @@ def main():
             session.rpc('emulator.step',dict(unit='frame',count=2,timeout_ms=10000))
             assert session.rpc('emulator.memory',dict(address=0x110,length=1))['bytes']==[1]
         finally:session.close()
+        large_discovery(work,work/'lo.sfc')
         workflow(work,work/'lo.sfc')
         print('PASS: production SNES LoROM/HiROM RPC, snapshots, audio, SRAM, bounded traces, maps and exact reconstruction')
 

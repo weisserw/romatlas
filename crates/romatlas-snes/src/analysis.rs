@@ -14,6 +14,20 @@ pub fn discover(
     roots: &BTreeMap<romatlas_core::Address, u64>,
     edges: &BTreeMap<(romatlas_core::Address, romatlas_core::Address), u64>,
 ) -> Result<Value> {
+    let page_number = |name: &str, default: u64| -> Result<usize> {
+        let value = match p.get(name) {
+            Some(value) => value
+                .as_u64()
+                .with_context(|| format!("{name} must be an unsigned integer"))?,
+            None => default,
+        };
+        Ok(usize::try_from(value)?)
+    };
+    let offset = page_number("offset", 0)?;
+    let reference_offset = page_number("reference_offset", 0)?;
+    let diagnostic_offset = page_number("diagnostic_offset", 0)?;
+    let limit = page_number("limit", 100)?;
+    ensure!(limit <= 1000, "discovery page limit exceeds 1000");
     let use_observed = p
         .get("use_observed")
         .and_then(Value::as_bool)
@@ -247,9 +261,23 @@ pub fn discover(
             }
         }
     }
-    Ok(
-        json!({"candidates":candidates,"references":references,"diagnostics":diagnostics,"visited":seen.len().min(budget),"budget_exhausted":truncated||seen.len()>budget||!queue.is_empty(),"observed_edges_merged":use_observed}),
-    )
+    let total = candidates.len();
+    let total_references = references.len();
+    let total_diagnostics = diagnostics.len();
+    Ok(json!({
+        "candidates": candidates.into_iter().skip(offset).take(limit).collect::<Vec<_>>(),
+        "total": total,
+        "next_offset": offset.saturating_add(limit).min(total),
+        "references": references.into_iter().skip(reference_offset).take(limit).collect::<Vec<_>>(),
+        "total_references": total_references,
+        "next_reference_offset": reference_offset.saturating_add(limit).min(total_references),
+        "diagnostics": diagnostics.into_iter().skip(diagnostic_offset).take(limit).collect::<Vec<_>>(),
+        "total_diagnostics": total_diagnostics,
+        "next_diagnostic_offset": diagnostic_offset.saturating_add(limit).min(total_diagnostics),
+        "visited": seen.len().min(budget),
+        "budget_exhausted": truncated || seen.len() > budget || !queue.is_empty(),
+        "observed_edges_merged": use_observed
+    }))
 }
 
 fn observed_view(a: &romatlas_core::Address) -> Option<View> {

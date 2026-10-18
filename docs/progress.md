@@ -845,3 +845,20 @@ downloader to scripts/fetch-snes-cpu-tests.py; production tests no longer depend
 the spike. Updated historical evaluation reproduction instructions to production
 commands. Production SNES workflow regression, pinned CPU-vector tests, Game Boy
 portability, Python compilation and git diff --check pass. No Rust code changed.
+
+2026-10-18: Fixed TI-001 from the local Super Off Road toolkit issue report.
+SNES analysis.discover and analysis.discover_context now independently page
+candidates, references and diagnostics using offset/reference_offset/diagnostic_offset
+and limit (default 100, max 1000). Totals and next offsets describe the full bounded
+search; paging preserves traversal budgets, observed merging and evidence semantics.
+Queries recompute discovery, so callers must retain the same inputs/map/traces.
+Documented the response contract and added synthetic RPC regressions for independent
+list reconstruction, zero/oversized offsets, invalid paging inputs and a 100-root,
+4000-instruction graph. No commercial ROM/assets or live game session changes.
+
+Validation on Rust 1.90.0: locked release build, fmt check, workspace all-target
+Clippy with warnings denied, locked workspace tests, pinned SNES CPU vectors,
+dependency boundaries, Game Boy session regression and deterministic byte-identical
+four-bank stock portability pass. Python compilation and git diff --check pass.
+Production test-snes.py also passes LoROM/HiROM RPC paging, snapshots, audio, SRAM,
+exact rebuilding and the preparation/commentary/archive/native-port workflow.

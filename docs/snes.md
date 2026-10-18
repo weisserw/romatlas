@@ -113,7 +113,16 @@ The examples below are method/params; wrap each in JSON-RPC 2.0 with an id.
 | map.save / export / load / import | SNES JSON via `path`; imported/exported labels, comments, contexts and evidence survive; Game Boy `.sym` is not accepted |
 | disasm.generate / verify | `out` or `generated`, optional timeout_ms; uses the loaded map/image and validates on-disk identity |
 
-Paged analysis/map results use `items`, `total`, `next_offset`. Trace queries use
+Discovery returns independently paged `candidates`, `references` and `diagnostics`.
+Use `offset`, `reference_offset` and `diagnostic_offset` (default 0) with a shared
+`limit` (default 100, max 1000; 0 returns totals only). Responses include `total`,
+`total_references`, `total_diagnostics` and the corresponding `next_offset`,
+`next_reference_offset`, `next_diagnostic_offset`. Traversal summaries describe the
+entire bounded search, regardless of page. Each request recomputes discovery;
+keep entrypoints, budgets, map and observed traces unchanged while paging. Reduce
+`limit` if a page still exceeds the transport byte cap.
+
+Other paged analysis/map results use `items`, `total`, `next_offset`. Trace queries use
 `events`. Event-kind filters use the shared serialized names, e.g. `Instruction`,
 `Read`, `Write`, `Dma`, `Interrupt`, `Frame`, `ControlFlow`.
 
