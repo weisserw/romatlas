@@ -144,6 +144,15 @@ redirect work in that phase. Disassembly may use evidence-backed static code and
 saved experiments; do not require every branch to execute. Preserve uncertainty,
 classification/fidelity gates and avoid byte quotas or exhaustive recursive closure.
 
+
+Redirect phase completion requires more than closure of its first selected graph.
+If its handoff lists other concrete promising actionable avenues, continue redirect
+with those avenues and accumulate findings before one disassembly/commentary cycle.
+Do not accept 'independent investigation' or 'outside selected scope' as a deferral
+reason by itself. Require an actual missing prerequisite, negative evidence or
+reduced prospect. Preserve research across context rollover in the same phase;
+no byte quota, exhaustive unknown sweep or weakening of evidence standards applies.
+
 Maintain analysis/investigation.md with attempted leads, outcomes and remaining unknowns.
 Do not repeat unchanged failed leads. Research gameplay for an easy gain or a promising redirect question;
 do not require manuals, late-game routes or exhaustive method reviews before stopping.

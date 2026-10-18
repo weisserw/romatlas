@@ -82,6 +82,10 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
     for required in ["not fixed byte-range ceilings", "Runtime fetch evidence is not mandatory",
                      "Reuse valid saved evidence"]:
         assert required in disassembly
+    for required in ["checkpoint, not a phase stop condition",
+                     "Continue with actionable", "independent avenues in this same redirect",
+                     "outside selected scope", "same redirect phase"]:
+        assert required in redirect
     commentary = (work / "prompts/commentary.txt").read_text()
     for required in ["ALL currently classified source", "Preserve valid", "prior review credit",
                      "previous commentary under", "ordinary tentative prose",
@@ -90,6 +94,8 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
     assert "(???)" not in commentary
     assert "do not assume missing comments mean there are" in redirect
     goal = (work / "goal.md").read_text()
+    assert "continue redirect" in goal
+    assert "more than closure of its first selected graph" in goal
     assert "do not advance to redirect" in goal
     assert "Context/time interruption is" in goal
     for required in ["separate", "worker context", "compact handoff", "Never run competing",

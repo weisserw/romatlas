@@ -657,3 +657,20 @@ connected-batch/static-evidence/deferral/resumption prompt assertions. Stock
 portability passes deterministic source and exact four-bank rebuilding. Python
 compilation and git diff --check pass. Prompt-only changes cannot establish live
 agent investigation quality or speed; no paused run was resumed.
+
+2026-10-18: Reviewed local Castlevania round019 redirect's 495-byte handoff. It
+closed the selected type6/8 graphs but deferred other accepted actor machines on
+the basis that they were independent investigations. Redirect now treats connected
+graph closure as a checkpoint and continues promising actionable independent
+avenues in the same phase, accumulating proposals before a full workflow cycle.
+Independence/selected-scope boundaries alone no longer justify deferral; require a
+missing prerequisite, negative evidence or diminished prospect. Context rollover
+resumes redirect rather than forcing classification/commentary. No byte quota or
+exhaustive actor/unknown sweep; existing evidence and fidelity standards remain.
+Coordinator/generated workflow and active Castlevania instructions updated. No
+source/map/review/runtime artifacts changed, no live worker launched or interrupted.
+
+Validation: synthetic disassembly/commentary regressions and stock portability
+pass, including deterministic exact four-bank rebuilding. Added prompt assertions
+for independent-avenue continuation and coordinator completion. Python compilation
+and git diff --check pass. Instruction checks do not prove live-agent performance.

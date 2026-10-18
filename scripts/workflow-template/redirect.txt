@@ -48,6 +48,28 @@ research exhausted. Package supported findings together with reusable evidence a
 recipes so disassembly can validate/classify the batch without replaying unchanged
 experiments or splitting known connected pieces into artificial extra rounds.
 
+
+Completing one connected investigation is a checkpoint, not a phase stop condition.
+After closing a graph or packaging ready findings, assess other already-identified
+promising avenues using the evidence now available. Continue with actionable
+independent avenues in this same redirect, accumulating a combined proposal for
+one disassembly/commentary cycle. An avenue being independent, another actor type,
+or outside the first selected graph is not itself a reason to defer it. For example,
+accepted initializers that produce states with unknown handlers warrant inspecting
+those handlers and their prerequisites; do not arbitrarily select only two actors
+and reserve the others for future rounds.
+
+Do not exhaustively enumerate every actor or unknown range. Triage concrete existing
+opportunities; follow those with a credible method and useful prospects, and stop
+ones requiring unsupported assumptions or yielding repetitive results. End redirect
+when no identified promising actionable avenue remains under this standard, not
+merely when one graph closes or a small batch is ready. For each obvious deferred
+avenue, give its actual missing prerequisite, negative evidence or diminished
+prospect; 'independent investigation' or 'outside selected scope' is insufficient.
+Context pressure calls for a compact research checkpoint and a continuation of the
+same redirect phase, not a forced full workflow iteration. This is no byte quota
+and does not require exhaustive game completion or proof for every unknown range.
+
 Prioritize avenues with direct evidence and a credible connection to unknown ROM
 structure or behavior. State the question, missing fact, evidence, planned method
 and what result would change the next step. Revise the method as findings warrant.
