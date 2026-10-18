@@ -1,5 +1,6 @@
 mod output;
 mod session;
+mod snes;
 use anyhow::Result;
 use clap::{Parser, Subcommand};
 use romatlas_gb::Rom;
@@ -8,11 +9,13 @@ use std::path::PathBuf;
 #[derive(Parser)]
 #[command(
     version,
-    about = "ROM-free Game Boy structural maps and exact disassembly checks"
+    about = "ROM-free structural maps, instrumented debugging and exact reconstruction"
 )]
 struct Cli {
     #[command(subcommand)]
     command: Cmd,
+    #[arg(long, global = true, default_value = "auto")]
+    platform: String,
 }
 #[derive(Subcommand)]
 enum Cmd {
@@ -47,6 +50,16 @@ enum Cmd {
         offset: usize,
         #[arg(long, default_value_t = 16)]
         count: usize,
+        #[arg(long, default_value = "main")]
+        cpu: String,
+        #[arg(long)]
+        cpu_address: Option<u32>,
+        #[arg(long)]
+        e: Option<bool>,
+        #[arg(long)]
+        m: Option<bool>,
+        #[arg(long)]
+        x: Option<bool>,
     },
     Store {
         #[command(subcommand)]
@@ -262,7 +275,15 @@ fn main() {
     }
 }
 fn run() -> Result<()> {
-    match Cli::parse().command {
+    let cli = Cli::parse();
+    anyhow::ensure!(
+        matches!(cli.platform.as_str(), "auto" | "gb" | "snes"),
+        "unknown platform"
+    );
+    if cli.platform == "snes" || cli.platform == "auto" && snes::detect(&cli.command) {
+        return snes::run(cli.command);
+    }
+    match cli.command {
         Cmd::TestRom {
             rom,
             model,
@@ -301,7 +322,9 @@ fn run() -> Result<()> {
         Cmd::Inspect { rom } => {
             println!("{}", serde_json::to_string_pretty(&Rom::open(&rom)?.info)?)
         }
-        Cmd::Decode { rom, offset, count } => {
+        Cmd::Decode {
+            rom, offset, count, ..
+        } => {
             anyhow::ensure!(count <= 4096, "decode count exceeds 4096");
             let image = Rom::open(&rom)?;
             anyhow::ensure!(offset < image.bytes.len(), "offset outside ROM");

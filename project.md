@@ -1,8 +1,21 @@
-# Project: ROMAtlas — Agent-Driven Game Boy ROM Mapping
+# Project: ROMAtlas — Agent-Driven ROM Mapping
+
+## SNES baseline extension
+
+The agreed next platform is baseline NTSC SNES (LoROM/HiROM, standard controllers,
+SRAM, SPC700/DSP audio), covering both the agent debugging/reconstruction workflow
+and port-driven native runtime helpers. The initial isolated evaluation is in
+[docs/snes-evaluation.md](docs/snes-evaluation.md); GPLv3 debugger adoption was approved after the isolated spike; production
+baseline commands and measured limits are documented in [docs/snes.md](docs/snes.md). This extends the original
+Game Boy-only phase scope below without weakening its classification, readable
+source, portable mapping or byte-identical rebuild requirements. Game Boy retains
+stock mgbdis .sym; SNES uses a platform-specific portable JSON mapping and Asar backend.
+See [the prompt audit](docs/snes-prompt-audit.md) for preserving static-evidence
+rules and preventing SNES-specific context requirements from affecting SM83.
 
 ## Mission
 
-Build **ROMAtlas**, a generic Game Boy reverse engineering toolkit for use by agents. Its first goal is to let an agent examine a user-supplied ROM, identify code and data, and produce a structurally annotated assembly listing that rebuilds byte-for-byte to the original ROM. Structural roles and supporting evidence are required. The agent workflow must also produce fully commented, labeled assembly suitable as the porting agent’s source input, with descriptive routine/branch names, RAM variables, object fields and constants. Explain meaningful behavior and structures; instruction-by-instruction paraphrases are unnecessary. Document unresolved meanings honestly.
+Build **ROMAtlas**, an extensible ROM reverse engineering toolkit for agents, with Game Boy and baseline SNES adapters. Its first goal is to let an agent examine a user-supplied ROM, identify code and data, and produce a structurally annotated assembly listing that rebuilds byte-for-byte to the original ROM. Structural roles and supporting evidence are required. The agent workflow must also produce fully commented, labeled assembly suitable as the porting agent’s source input, with descriptive routine/branch names, RAM variables, object fields and constants. Explain meaningful behavior and structures; instruction-by-instruction paraphrases are unnecessary. Document unresolved meanings honestly.
 
 The agent must be able to use a controllable, instrumented emulator, build a **portable, ROM-independent mapping file**, and generate the assembly listing from that mapping and the user's own ROM. The toolkit must expose evidence and uncertainty so the agent can check and revise its decisions. Keep its tools generic enough to support other reverse engineering tasks and later work, such as naming symbols and explaining game behavior, without adding those tasks to this phase.
 
@@ -42,7 +55,7 @@ Given `game.gb` or `game.gbc`, an agent must be able to:
 - Requiring the toolkit itself to infer game semantics automatically; investigation, naming and explanation are agent responsibilities.
 - Automatically producing a clean-room behavioral specification or reimplementation.
 - Reproducing original source formatting, labels, macros, or comments.
-- Supporting other consoles in this phase.
+- Supporting additional consoles beyond Game Boy and the baseline SNES extension.
 - Guaranteeing compatibility with every commercial ROM in the initial release.
 - Publishing, bundling, or downloading commercial ROMs.
 
@@ -84,9 +97,9 @@ Provide configurable event capture for instruction fetches, reads, writes, contr
 
 Distinguish direct observations from static deductions. Instrumentation must be disableable for speed and must not change emulated behavior.
 
-## Mapping file: critical contract
+## Game Boy mapping file: critical contract
 
-**The distributable mapping format is mgbdis-compatible `.sym`, not a new custom TOML schema.** Investigate and document the exact supported syntax in the pinned mgbdis version before implementation. Use the existing bank-qualified labels and region directives (`.code`, `.data`, `.text`, `.padding`, `.image`, etc.) where supported; do not assume features not actually implemented by mgbdis. Preserve standard compatibility so that an external user can supply the same ROM and the exported `.sym` file directly to stock mgbdis.
+**The Game Boy distributable mapping format is mgbdis-compatible `.sym`, not a new custom TOML schema.** SNES uses its own ROM-free JSON mapping and Asar backend as documented in docs/snes.md. Investigate and document the exact supported syntax in the pinned mgbdis version before implementation. Use the existing bank-qualified labels and region directives (`.code`, `.data`, `.text`, `.padding`, `.image`, etc.) where supported; do not assume features not actually implemented by mgbdis. Preserve standard compatibility so that an external user can supply the same ROM and the exported `.sym` file directly to stock mgbdis.
 
 The internal analysis store can use Rust structs plus SQLite, JSON, or TOML as appropriate. It may track ROM hash, bank-aware regions, uncertainty, conflicts, coverage, confidence, provenance, candidate pointer tables, entry points, edges, and observations. **Do not leak internal-only metadata into the exported `.sym` in ways that break stock mgbdis.** Keep internal data separate from the portable output; if useful, support optional sidecar export clearly labeled nonessential.
 

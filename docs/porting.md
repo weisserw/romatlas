@@ -3,9 +3,9 @@
 The port phase starts from a reviewed archive and a matching local ROM, creating
 a separate development workspace. It writes goal.md to direct implementation of the
 whole game in readable native Rust. It does not launch an agent or translate the game
-automatically. The initial scaffold supports Game Boy archives. The shared
-library can add other explicit console modules later without imposing a universal
-hardware model.
+automatically. Game Boy and SNES archives select independent platform scaffolds.
+The shared library keeps platform helpers separate without imposing a universal
+hardware model. SNES helpers and current limits are documented in [snes.md](snes.md).
 
 ## Prepare and start
 
@@ -162,7 +162,9 @@ Settings are per-port, under the user configuration directory (`APPDATA` on
 Windows, `~/Library/Application Support` on macOS, and `XDG_CONFIG_HOME` or
 `~/.config` on Linux). `--settings FILE` selects a different path. The default
 Game Boy actions are arrows, Z/X, Return/Backspace, with standard controller
-buttons and left-stick alternatives. Ports may supply different default actions.
+buttons and left-stick alternatives. SNES defaults add X/Y/L/R actions, use
+Z/X/A/S/Q/W keyboard bindings and ordinary SNES controller layout; its scaffold
+uses 256x224 and nominal NTSC cadence. Ports may supply different default actions.
 Controller selection uses an SDL GUID plus an ordinal among identical models,
 allowing selection of two controllers sharing a GUID. Ordinals follow connection
 enumeration and may change when devices reconnect; they are not serial identities.

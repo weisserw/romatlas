@@ -5,7 +5,7 @@ cd "$(dirname "$0")/.."
 setup_privilege=()
 if (( EUID != 0 )); then setup_privilege=(sudo); fi
 "${setup_privilege[@]}" apt-get update
-"${setup_privilege[@]}" apt-get install -y build-essential pkg-config libpng-dev libsdl2-dev bison flex curl git python3
+"${setup_privilege[@]}" apt-get install -y build-essential cmake pkg-config libpng-dev libsdl2-dev bison flex curl git python3
 export PATH="$HOME/.cargo/bin:$PATH"
 if ! command -v rustup >/dev/null; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain 1.90.0
@@ -18,4 +18,5 @@ if [ ! -d tools/rgbds/.git ]; then git clone https://github.com/gbdev/rgbds.git 
 git -C tools/rgbds checkout d1829ed92327a9f9210ffd45d865331f24dfa4e6
 make -C tools/rgbds -j2
 "${setup_privilege[@]}" make -C tools/rgbds install
+bash scripts/setup-snes.sh
 cargo build --locked --release

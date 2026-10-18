@@ -1,6 +1,6 @@
 # ROMAtlas
 
-Rust tools for ROM-free Game Boy maps. The project.md milestone scope is complete; documented hardware limits remain. This build supports ROM inspection, SM83 decoding, stock mgbdis map import/export, raw-data maps, source generation, and exact byte checks. It also supports bounded DMG ROM-only/MBC1/MBC3/MBC5 execution. A persistent JSON-RPC server supports agent sessions. Bounded CPU tracing and coverage are available through the server. The server also proposes code regions with bounded recursive discovery. The 89-case source-built default Mooneye gate and 55-case CGB selection pass. Full hardware compatibility is not claimed.
+Rust tools for ROM-free Game Boy and baseline SNES mapping. The Game Boy pilot milestone is complete within documented hardware limits; the SNES extension and its measured limits are described below. This build supports ROM inspection, SM83 decoding, stock mgbdis map import/export, raw-data maps, source generation, and exact byte checks. It also supports bounded DMG ROM-only/MBC1/MBC3/MBC5 execution. A persistent JSON-RPC server supports agent sessions. Bounded CPU tracing and coverage are available through the server. The server also proposes code regions with bounded recursive discovery. The 89-case source-built default Mooneye gate and 55-case CGB selection pass. Full hardware compatibility is not claimed.
 
 ## Setup
 
@@ -102,7 +102,7 @@ python3 run.py check
 Preparation restores and byte-verifies the commented reference source, creates a
 pending source-behavior ledger and demonstration scaffold, and writes `goal.md`
 with a separate library-review prompt. It does not port gameplay
-or launch an agent. Game Boy is the initial scaffold platform. Incomplete
+or launch an agent. Game Boy and SNES archives have platform-selected scaffolds. Incomplete
 classification is accepted; relevant unknown behavior must be investigated.
 
 The new `romatlas-port` library provides ROM-backed assets, replacement/additional
@@ -177,3 +177,11 @@ original ROM and reconstructs the exact final source in `source/`, plus a
 successful reconstruction; failures preserve the previous archive. Restore output
 must be new and outside the repository. See steps 6–7 for artifact selection and
 options. Test with `python3 scripts/test-archive.py`.
+
+## SNES
+
+Baseline headless SNES support uses pinned jgenesis and Asar, alongside the existing
+Game Boy workflow. See [SNES commands, maps, runtime and limits](docs/snes.md),
+[the prompt audit](docs/snes-prompt-audit.md) and [licensing](LICENSES.md).
+Use locally owned `.sfc`/`.smc` images; no commercial ROMs or extracted assets are
+bundled. Native ports use the independent MIT runtime, with SNES asset helpers.

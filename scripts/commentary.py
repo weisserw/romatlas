@@ -148,16 +148,19 @@ def call(binary, *args):
 def reading(source):
     """Expand assembly includes in their actual order; retain hardware definitions."""
     source = source.resolve()
+    marker = source / "mapping.json"
+    is_snes = marker.is_file() and json.loads(marker.read_text()).get("format") == "romatlas-snes-map"
+    include_pattern = re.compile(r'^\s*incsrc\s+"([^"\n]+)"\s*(?:;.*)?$', re.I) if is_snes else INCLUDE
     def expand(path, active):
         if path in active:
             raise ValueError(f"cyclic assembly include: {path.name}")
         relative = path.relative_to(source)
         result = [f"; ===== BEGIN {relative} =====\n"]
         for line in path.read_text().splitlines(keepends=True):
-            match = INCLUDE.match(line.rstrip("\r\n"))
+            match = include_pattern.match(line.rstrip("\r\n"))
             if match:
                 included = local(source, match[1])
-                if included.suffix.lower() == ".asm":
+                if included.suffix.lower() == ".asm" or is_snes and included.suffix.lower() == ".inc":
                     result.append(expand(included, active | {path}))
                     continue
             result.append(line if line.endswith("\n") else line + "\n")
@@ -167,6 +170,9 @@ def reading(source):
 
 
 def scaffold(state):
+    if state.get("format") == "romatlas-snes-map":
+        import snes_workflow
+        state = snes_workflow.scaffold(state)
     rows = []
     cursor = 0
     size = state["image_size"]
@@ -213,14 +219,16 @@ def prepare(work, meta, rom):
     rows = scaffold(state)
     binary = Path(meta["binary"])
     call(binary, "store", "validate", rom, "--store", state_path)
-    mapping = work / "maps/current.sym"
+    is_snes = meta.get("platform") == "snes"
+    map_name = "baseline.json" if is_snes else "baseline.sym"
+    mapping = work / ("maps/current.json" if is_snes else "maps/current.sym")
     call(binary, "map", "validate", mapping, "--rom", rom)
     with tempfile.TemporaryDirectory(prefix=".commentary-", dir=work) as temporary:
         stage = Path(temporary) / "commentary"
         stage.mkdir()
-        shutil.copyfile(mapping, stage / "baseline.sym")
+        shutil.copyfile(mapping, stage / map_name)
         shutil.copyfile(state_path, stage / "phase1-state.json")
-        call(binary, "generate", rom, "--map", stage / "baseline.sym", "--out", stage / "before")
+        call(binary, "generate", rom, "--map", stage / map_name, "--out", stage / "before")
         verified = call(binary, "verify", rom, "--generated", stage / "before")
         if verified.get("byte_identical") is not True:
             raise ValueError("baseline is not byte-identical")
@@ -229,7 +237,7 @@ def prepare(work, meta, rom):
                         ignore=shutil.ignore_patterns("*.o", "*.gb", "*.gbc", "game.map", "game.sym"))
         write_json(stage / "baseline-verification.json", verified)
         write_json(stage / "manifest.json", {"version": 1, "rom_sha256": meta["sha256"],
-                   "map_sha256": digest(stage / "baseline.sym"),
+                   "map_sha256": digest(stage / map_name),
                    "state_sha256": digest(stage / "phase1-state.json"), "image_size": state["image_size"]})
         write_json(stage / "review.json", {"version": 1, "image_size": state["image_size"],
                    "regions": rows, "editorial_audit": {"status": "pending", "notes": ""}})
@@ -285,6 +293,11 @@ Keep all source and assets local. Preserve toolkit reports and upstream notices.
         (stage / "uncertainties.md").write_text("# Commentary uncertainties\n\nCarry forward relevant phase-1 ambiguities as their regions are reviewed.\n")
         (stage / "reading-before.asm").write_text(reading(stage / "before"))
         (stage / "reading-after.asm").write_text(reading(stage / "source"))
+        if is_snes:
+            import snes_workflow
+            for name in ["prompt.md", "workflow.md"]:
+                file = stage / name
+                file.write_text(snes_workflow.profile(file.read_text()) + snes_workflow.GUIDANCE)
         # Refuse concurrent preparation; retain other workspace files untouched.
         destination.mkdir()
         for item in stage.iterdir():
@@ -310,7 +323,7 @@ def audit(work, meta, rom):
     manifest = json.loads((phase / "manifest.json").read_text())
     if manifest["rom_sha256"] != meta["sha256"]:
         raise ValueError("commentary belongs to another ROM")
-    if digest(phase / "phase1-state.json") != manifest["state_sha256"] or digest(phase / "baseline.sym") != manifest["map_sha256"]:
+    if digest(phase / "phase1-state.json") != manifest["state_sha256"] or digest(phase / ("baseline.json" if meta.get("platform") == "snes" else "baseline.sym")) != manifest["map_sha256"]:
         raise ValueError("frozen phase-1 baseline changed")
     review = json.loads((phase / "review.json").read_text())
     expected = scaffold(json.loads((phase / "phase1-state.json").read_text()))

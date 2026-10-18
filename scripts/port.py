@@ -87,8 +87,8 @@ def prepare(archive, rom, output, binary):
     manifest = json.loads((archive / "archive.json").read_text())
     if manifest.get("version") != 1 or manifest.get("editorial_complete") is not True:
         raise ValueError("port preparation requires a version-1 reviewed archive")
-    if manifest["platform"] != "gb":
-        raise ValueError("initial port scaffolds support Game Boy archives only")
+    if manifest["platform"] not in {"gb", "snes"}:
+        raise ValueError("unsupported port archive platform")
     name = manifest["name"]
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", name):
         raise ValueError("invalid archived game name")
@@ -147,6 +147,14 @@ def prepare(archive, rom, output, binary):
         (stage / "port/rust-toolchain.toml").write_text('[toolchain]\nchannel = "1.90.0"\nprofile = "minimal"\ncomponents = ["rustfmt", "clippy"]\n')
         for filename in ["main.rs", "game.rs"]:
             text = (TEMPLATES / filename).read_text().replace("__ROM_SHA256__", manifest["rom_sha256"]).replace("__GAME_NAME__", name)
+            if manifest["platform"] == "snes":
+                if filename == "game.rs":
+                    text = text.replace(", gb,", ", snes,").replace("gb::tile_2bpp(", "snes::tile(")
+                    text = text.replace('tiles.get("demo-tile").unwrap().bytes)?', 'tiles.get("demo-tile").unwrap().bytes, 2)?')
+                    text = text.replace("Game Boy 2bpp", "SNES 2bpp")
+                    text = text.replace("gb::GRAYSCALE", "[snes::color(0x7fff),snes::color(0x56b5),snes::color(0x294a),snes::color(0)]").replace(",76,68,", ",124,108,")
+                else:
+                    text = text.replace("(160,144)", "(256,224)").replace("TickRate::DMG", "TickRate::SNES_NTSC").replace("romatlas_port::settings::Settings::default()", "romatlas_port::snes::default_settings()")
             (stage / "port/src" / filename).write_text(text)
         # Pin dependencies before publication. Toolkit setup/build must have
         # resolved them; preparation does not require an online registry.

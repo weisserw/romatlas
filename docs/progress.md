@@ -749,3 +749,99 @@ Archive validation passes store/map checks, exact-source restoration and byte-id
 65536-byte rebuilding using the configured release binary. No toolkit code or
 session changes; no commercial ROM, generated assembly or extracted assets added
 to the archive. Archive remains uncommitted.
+
+2026-10-18: Added an isolated SNES feasibility evaluation under
+experiments/snes-spike with a separate Cargo.lock and reproducible pinned setup.
+Production crates, root lockfile/dependencies, current GB prompts and game
+workspaces remain unchanged. Agreed SNES scope and the review gate are linked
+from project.md/architecture.md; docs/snes-evaluation.md records candidates,
+licenses, measured results, prototype limits and remaining implementation.
+Leading technical candidate is GPLv3 jgenesis, pending user license/packaging
+review and broader testing. Super Sabicom MIT compile smoke passes but documented
+standard-PPU gaps remain; RustySNES has source-level review only and an upstream
+open provenance question. No production core choice/adoption is claimed.
+
+jgenesis master b4f943b fails Cargo 1.90 manifest parsing; pinned v0.11.4 7b3cc06
+passes its upstream locked snes-core check. Local evaluation hooks expose immutable
+memory, actual main/SPC fetches/accesses and fixed initial RAM. An ExecutionAdapter
+prototype runs original synthetic LoROM/HiROM fixtures, standard IPL upload,
+serial B input, SRAM and nonzero DSP audio. Snapshot replay matches core state,
+held input, PCM, frame hashes and bounded raw traces; capture does not alter state
+or PCM. Foreign/truncated restores preserve live state, cold reset is deterministic
+and preserves SRAM, and bounded main-CPU instruction stepping ends after exactly
+ten fetched instructions. Each three-frame capture has 2397 stereo frames/4794
+nonzero channel samples in valid 48-kHz PCM16 WAVs. Trace caps/drops are explicit.
+No GUI/audio device or commercial ROM/assets was used.
+
+832 sampled MIT SingleStepTests cases (512 65816, 320 SPC700) pass registers,
+final memory and cycle counts. This does not compare bus order/signals or establish
+a full hardware gate. Asar 1.91 6a6dbda builds; upstream opcode expected streams
+match 601/519 bytes. Two small reconstruction probes regenerate deterministic
+source and exact 64-KiB images from a ROM-free experimental mapping and local ROM,
+preserving width/alias/branch/SPC storage-context cases and invalid checksums.
+Unknown-M immediate remains raw locally; independent fixed-width decoding proceeds.
+Python decoder/emitter is a limited feasibility subset, not completed SNES
+classification, editorial output or production Rust disassembly support.
+
+Read-only prompt/script audit in docs/snes-prompt-audit.md identifies platform
+selection needed for .sym, archive/porter gates, RGBDS and source inventories.
+Proposed SNES-only guidance accepts supported static context and confines ambiguity
+to affected instructions; it adds no runtime-evidence requirement to Game Boy.
+No active prompt was migrated. Production trace/session conversion, per-SPC stepping,
+broader hardware/games, full decoder/maps/backend and native runtime remain pending.
+Representative owned SNES images were requested but have not been supplied.
+
+Validation on Rust 1.90.0: reproducible experiment setup, locked release build,
+fmt check, own-target Clippy with warnings denied, Python compilation and complete
+synthetic/CPU/reconstruction driver pass. Root locked release build, workspace fmt,
+all-target Clippy with warnings denied, workspace tests, dependency boundaries,
+stock GB deterministic byte-identical portability and git diff --check pass.
+All emulator/tool sources, local patches, licensed CPU datasets/notices and generated
+ROMs/source/WAVs/reports remain ignored/local. Original harness/scripts are MIT;
+its locally linked jgenesis executable is subject to GPLv3, not MIT-only.
+
+2026-10-18: Following user approval of GPL adoption, integrated the pinned
+jgenesis v0.11.4 core into production as romatlas-snes. LICENSES.md documents
+GPL-3.0-only combined CLI/SNES licensing and preserved independent MIT runtime
+licensing. The vendored core contains source/notices only; Asar remains a pinned
+external build. docs/snes.md describes the measured baseline and API limits.
+
+Production supports baseline NTSC LoROM/HiROM, optional copier headers, SRAM,
+two ordinary controllers, deterministic reset/snapshots, bounded main/SPC stepping,
+actual fetch/access traces, safe backing-memory inspection, RGB frame exports and
+48-kHz stereo WAV capture. Main/SPC clocks and artificial patches/provenance remain
+explicit. Unsupported cartridge features and unsafe I/O inspection are rejected.
+Both CPU decoders cover all opcode tables; M/X ambiguity is confined to affected
+instructions. ROM-free JSON maps retain alternate CPU views and upload provenance;
+static discovery and observed execution remain distinct. Asar generation/verification
+rebuilds the entire original file byte-identically, including copier headers.
+
+SNES preparation, commentary, reviewed source archives and native-port preparation
+now select platform-specific maps, assembler and instructions. Existing GB prompt
+constants are byte-identical to their previous versions; GB evidence requirements
+are unchanged. Native runtime adds planar tiles, BGR555 palettes, tilemap/Mode7
+helpers, twelve-button defaults and NTSC cadence without an emulator dependency.
+Preparation is not a completed native game, and raw-data reconstruction does not
+satisfy classification or editorial completion contracts.
+
+Validation on Rust 1.90.0 passes: locked release build, fmt check, workspace tests
+and all-target Clippy with warnings denied; desktop-feature runtime Clippy/tests;
+session, portability, dependency-boundary, disassembly, commentary, archive and
+native-port regression scripts. Production test-snes.py passes synthetic LoROM/HiROM
+execution, serial input on both ports, IPL upload, SRAM, audio, deterministic replay,
+rejected transactional edits/restores, bounded traces/context, exact reconstruction,
+copier headers and the preparation/commentary/archive/native scaffold workflow.
+All 256 main opcodes across four M/X combinations plus 256 SPC opcodes rebuild
+exactly (1280 views). The production CPU harness passes 832 pinned sampled
+SingleStepTests cases for registers, memory and cycle counts, not bus-order signals.
+No representative owned SNES games, broad SNES hardware suite, GUI or audio device
+were tested. Rare hardware, enhancement chips and PAL remain outside this baseline.
+No commercial ROMs or extracted assets were downloaded or added; generated binary
+fixtures and evaluation datasets remain local and ignored. Changes are uncommitted.
+
+2026-10-18: Removed the retired experiments directory. Moved the original SNES
+assembly fixture to scripts/fixtures/snes/fixture.asm and the pinned MIT CPU-vector
+downloader to scripts/fetch-snes-cpu-tests.py; production tests no longer depend on
+the spike. Updated historical evaluation reproduction instructions to production
+commands. Production SNES workflow regression, pinned CPU-vector tests, Game Boy
+portability, Python compilation and git diff --check pass. No Rust code changed.

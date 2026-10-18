@@ -70,3 +70,11 @@ M4: MBC3/MBC5 and expanded CGB checks pass. Galactic Armada and Unbricked both r
 The original requirements are met. Broader native-color game coverage, more hardware revisions, peripheral compatibility and faster peeks remain useful later work; the brief explicitly allows incremental hardware and does not require compatibility with every commercial ROM. These limits do not remove any required API, mapping, generation, test or delivery capability.
 
 Local evidence: build/fresh-setup-result.json and build/fresh-setup.log, build/hardware-gate.json (89 passes), build/hardware-cgb-probe.json (55 passes), build/homebrew-results.json, plus current workspace/core and session/API/portability/fidelity checks. Generated evidence remains local and outside the portable mapping.
+
+## SNES extension
+
+The original audit above covers the Game Boy pilot. The later SNES baseline has
+its own [capabilities, measured tests and remaining limits](snes.md), including
+portable JSON/Asar reconstruction and independent native-port helpers. It does
+not establish broad game/hardware compatibility or relax the mapping/classification
+and editorial contracts. See progress.md for actual validation of this extension.

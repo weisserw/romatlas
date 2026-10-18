@@ -360,8 +360,9 @@ if __name__ == "__main__":
 '''
 
 
-def initialize(source, destination, binary):
+def initialize(source, destination, binary, platform="auto"):
     source = source.resolve(strict=True)
+    is_snes = platform == "snes" or platform == "auto" and source.suffix.lower() in {".sfc", ".smc"}
     destination = destination.absolute()
     if destination.exists() or destination.is_symlink():
         raise ValueError(f"workspace already exists: {destination}")
@@ -376,7 +377,7 @@ def initialize(source, destination, binary):
         work.mkdir()
         for directory in ["input", "analysis", "maps", "generated", "prompts", "traces"]:
             (work / directory).mkdir()
-        rom = work / "input/game.rom"
+        rom = work / ("input/game.sfc" if is_snes else "input/game.rom")
         shutil.copyfile(source, rom)
         inspected = subprocess.run([str(binary), "inspect", str(rom)],
                                    check=True, capture_output=True, text=True)
@@ -402,6 +403,9 @@ def initialize(source, destination, binary):
                                           "binary": str(binary), "rom": "input/game.rom",
                                           "sha256": identity, "inspection": metadata}, indent=2) + "\n",
         }
+        if is_snes:
+            import snes_workflow
+            files = snes_workflow.files(files, metadata)
         for name, content in files.items():
             (work / name).write_text(content)
         # Refuse replacement if another initializer created the destination meanwhile.
@@ -422,7 +426,8 @@ def print_prompt_location(record):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("roms", type=Path, nargs="+", help="local owned .gb/.gbc files")
+    parser.add_argument("roms", type=Path, nargs="+", help="local owned ROM files")
+    parser.add_argument("--platform", choices=["auto", "gb", "snes"], default="auto")
     parser.add_argument("--root", type=Path, default=Path.cwd(),
                         help="parent for game workspaces (default: current directory)")
     parser.add_argument("--workspace", type=Path, help="exact directory; only for one ROM")
@@ -437,7 +442,7 @@ def main():
     if len({str(p.resolve()) for p in destinations}) != len(destinations):
         parser.error("ROM filenames produce duplicate workspaces; use distinct names or --workspace")
     for source, destination in zip(args.roms, destinations):
-        record = initialize(source, destination, binary)
+        record = initialize(source, destination, binary, args.platform)
         print(json.dumps(record), flush=True)
         if not args.json:
             print_prompt_location(record)

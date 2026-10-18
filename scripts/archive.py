@@ -51,7 +51,7 @@ def split_comment(line):
     return line, ""
 
 
-def recipe(baseline, final):
+def recipe(baseline, final, platform="gb"):
     """Only editorial literals; all preexisting code/data comes from references."""
     tokens, lines = {}, {}
     texts = {}
@@ -92,7 +92,9 @@ def recipe(baseline, final):
                 continue
             code, comment = split_comment(line)
             constant = bool(re.match(r"\s*(?:DEF\s+)?[\w.]+\s+(?:EQU|SET)\b", code, re.I))
-            include = bool(re.match(r"\s*(?:INCLUDE|INCBIN)\b", code, re.I))
+            if platform == "snes":
+                constant = constant or bool(re.match(r"\s*!?[\w.]+\s*=", code))
+            include = bool(re.match(r"\s*(?:INCLUDE|INCBIN|INCSRC)\b" if platform == "snes" else r"\s*(?:INCLUDE|INCBIN)\b", code, re.I))
             matches = list(TOKEN.finditer(code))
             index = 0
             while index < len(matches):
@@ -105,6 +107,8 @@ def recipe(baseline, final):
                 if token in tokens:
                     copy(tokens[token])
                 elif token.isspace():
+                    operations.append({"format": token})
+                elif platform == "snes" and re.fullmatch(r'[^\w\s"]', token):
                     operations.append({"format": token})
                 elif IDENTIFIER.fullmatch(token):
                     operations.append({"symbol": token})
@@ -202,7 +206,7 @@ def rebuild(archive, rom, output, binary):
             raise ValueError("invalid original ROM filename")
         shutil.copyfile(rom, supplied)
         before = base / "baseline"
-        phase.call(binary, "generate", supplied, "--map", archive / "commentary/baseline.sym", "--out", before)
+        phase.call(binary, "generate", supplied, "--map", archive / ("commentary/baseline.json" if manifest["platform"] == "snes" else "commentary/baseline.sym"), "--out", before)
         render(json.loads((archive / "editorial.json").read_text()), files(before), output)
         phase.reading(output)  # Validate include traversal before invoking the assembler.
         for path in output.rglob("*"):
@@ -237,12 +241,13 @@ def archive(workspace, destination, name, binary, documents=(), omitted_document
     meta = dict(meta, binary=str(binary))
     phase.audit(work, meta, rom)
     phase.call(binary, "store", "validate", rom, "--store", work / "analysis/state.json")
-    phase.call(binary, "map", "validate", work / "maps/current.sym", "--rom", rom)
+    is_snes = meta.get("platform") == "snes"
+    phase.call(binary, "map", "validate", work / ("maps/current.json" if is_snes else "maps/current.sym"), "--rom", rom)
     state = json.loads((work / "analysis/state.json").read_text())
-    platform = state["platform"]
+    platform = "snes" if is_snes else state["platform"]
     # The current adapter identifies itself as gb; the archive hierarchy stays
     # platform-qualified rather than baking this into the reconstruction format.
-    if platform != "gb":
+    if platform not in {"gb", "snes"}:
         raise ValueError(f"unsupported archive platform: {platform}")
     slug = name or work.name
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", slug):
@@ -261,7 +266,7 @@ def archive(workspace, destination, name, binary, documents=(), omitted_document
         stage = base / "archive"
         stage.mkdir()
         included = []
-        selection = list(FINAL)
+        selection = [name.replace(".sym", ".json") if is_snes else name for name in FINAL]
         for document in documents:
             if document == "analysis/toolkit-issues.md" or Path(document).suffix != ".md" or Path(document).parts[0] not in {"analysis", "commentary"} or ".." in Path(document).parts:
                 raise ValueError("--document accepts final analysis/commentary Markdown, excluding toolkit issues")
@@ -289,9 +294,9 @@ def archive(workspace, destination, name, binary, documents=(), omitted_document
         if unselected:
             raise ValueError(f"unrecognized documents; use --document for final documents or --omit-document for scratch: {unselected}")
         before = base / "baseline"
-        phase.call(binary, "generate", rom, "--map", stage / "commentary/baseline.sym", "--out", before)
+        phase.call(binary, "generate", rom, "--map", stage / ("commentary/baseline.json" if is_snes else "commentary/baseline.sym"), "--out", before)
         final = files(work / "commentary/source")
-        write_recipe(stage / "editorial.json", recipe(files(before), final))
+        write_recipe(stage / "editorial.json", recipe(files(before), final, platform))
         (stage / "README.md").write_text("# Archived ROM analysis\n\n"
             "Final maps, review metadata and agent documents are retained verbatim.\n"
             "Phase-one classification and phase-two editorial completion are separate;\n"

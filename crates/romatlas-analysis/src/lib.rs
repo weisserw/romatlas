@@ -81,7 +81,7 @@ impl Trace {
             return;
         }
         *self.counts.entry(event.kind.clone()).or_default() += 1;
-        if event.kind == EventKind::ControlFlow {
+        if matches!(event.kind, EventKind::ControlFlow | EventKind::Instruction) {
             let source = event
                 .context
                 .get("traversal_source")

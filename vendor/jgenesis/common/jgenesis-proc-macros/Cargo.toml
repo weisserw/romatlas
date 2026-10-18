@@ -1,0 +1,22 @@
+[package]
+license = "GPL-3.0-only"
+name = "jgenesis-proc-macros"
+version = "0.7.1"
+edition = "2024"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+proc-macro = true
+
+[dependencies]
+proc-macro2 = "1"
+quote = "1"
+syn = "2"
+
+[dev-dependencies]
+bincode = { workspace = true, features = ["derive"] }
+jgenesis-common = { path = "../jgenesis-common" }
+
+[lints]
+workspace = true

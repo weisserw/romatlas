@@ -67,3 +67,15 @@ Stock mgbdis can reference non-ROM labels without defining them. Generation adds
 - Hardware support is incremental. The public gates, synthetic tests and two pinned licensed games provide measured evidence, not full commercial-ROM or peripheral compatibility.
 
 See README.md for setup/commands, docs/protocol.md for bounds and errors, and docs/hardware-tests.md for test selection. See docs/completion-audit.md for the final requirement review and docs/requirements-review.md for its history.
+
+## SNES evaluation
+
+A separate, pinned feasibility workspace and measured recommendation live in
+[snes-evaluation.md](snes-evaluation.md). No SNES core is a production dependency
+yet. The [prompt audit](snes-prompt-audit.md) records platform-specific workflow
+changes needed before integration, preserving Game Boy evidence and fidelity rules.
+
+SNES production integration now uses romatlas-snes and the pinned core-only fork
+in vendor/jgenesis. Its CLI package is GPLv3; original MIT grants remain, and
+romatlas-port has no emulator dependency. See [snes.md](snes.md) for the platform
+API, portable map, assembler backend, workflow selection and measured limits.

@@ -57,3 +57,21 @@ classification contract intact. Do not write tests needing unavailable GUI/devic
 or launch SDL graphics on the headless server. Run scripts/test-port.py and the
 romatlas-port desktop-feature clippy/tests after relevant changes; these tests
 exercise headless logic and compile desktop code without initializing a window.
+
+
+SNES is a separate baseline adapter using the approved GPLv3 jgenesis fork and
+pinned external Asar. The stock .sym/RGBDS/Mooneye instructions above describe
+Game Boy; they remain unchanged for that platform. Read docs/snes.md for SNES
+JSON maps, CPU/context/address rules, APIs, snapshots, source rebuilding and limits.
+SNES CLI selection is automatic for .sfc/.smc; use --platform snes otherwise.
+Run python3 scripts/test-snes.py and bash scripts/test-snes-cpu.sh after relevant
+SNES changes, alongside workspace checks, Game Boy regressions and portability.
+Shared crates must not import either console adapter/core. The native port library
+remains independent MIT code; do not copy GPL emulator implementation into it.
+SNES-only instruction-width guidance must not add evidence requirements to Game
+Boy. Static context may justify decoding; unresolved context stays local to the
+affected instruction/view. Preserve the existing structural versus reachability,
+whole-ROM classification, full current-source readability and editorial gates.
+New SNES profiles select JSON/Asar; never rewrite existing game workspaces as a
+side effect. Trace RAM execution does not automatically identify immutable ROM
+upload origins or lifetimes. No full hardware/game compatibility claim is supported.

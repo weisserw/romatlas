@@ -280,3 +280,10 @@ separately and annotate confirmed tables as Data to protect other traversal root
 The caller must supply evidence covering all arrivals in that exact context;
 reachability alone is insufficient. Profiles are local query inputs, never stock
 map directives or execution evidence. No restart number has special defaults.
+
+## SNES platform
+
+For the SNES method parameters, address spaces, processor context, portable JSON
+mapping and measured limits, see [snes.md](snes.md). Use `serve --rom owned.sfc`
+or `serve --platform snes` and inspect api.describe. Game Boy parameters above
+remain unchanged. Shared transport/request/response limits apply to both adapters.

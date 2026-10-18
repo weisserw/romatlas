@@ -7,3 +7,9 @@
 
 __pycache__/
 *.pyc
+
+/vendor/jgenesis/target/
+
+*.sfc
+*.smc
+/vendor/jgenesis/Cargo.lock
