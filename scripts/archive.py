@@ -235,11 +235,84 @@ def replace(stage, destination):
         raise
 
 
+def editorial_status(work, meta, rom):
+    """Report editorial completion without making it a prerequisite for archiving."""
+    phase_dir = work / "commentary"
+    manifest = json.loads((phase_dir / "manifest.json").read_text())
+    if manifest["rom_sha256"] != meta["sha256"]:
+        raise ValueError("commentary belongs to another ROM")
+    state_path = phase_dir / "phase1-state.json"
+    map_path = phase_dir / ("baseline.json" if meta.get("platform") == "snes" else "baseline.sym")
+    if phase.digest(state_path) != manifest["state_sha256"] or phase.digest(map_path) != manifest["map_sha256"]:
+        raise ValueError("frozen phase-1 baseline changed")
+    review = json.loads((phase_dir / "review.json").read_text())
+    expected = phase.scaffold(json.loads(state_path.read_text()))
+    if review.get("image_size") != rom.stat().st_size or len(review.get("regions", [])) != len(expected):
+        raise ValueError("review inventory does not cover the baseline")
+
+    pending_regions = pending_units = regions_without_units = 0
+    reviewed_regions = reviewed_units = 0
+
+    def entry_complete(entry):
+        if entry.get("status") != "reviewed" or not entry.get("summary", "").strip() or not entry.get("source"):
+            return False
+        try:
+            for location in entry["source"]:
+                filename, line = location.rsplit(":", 1)
+                source = phase.local(phase_dir / "source", filename)
+                if not source.is_file() or not 1 <= int(line) <= len(source.read_text().splitlines()):
+                    return False
+        except (ValueError, OSError):
+            return False
+        return True
+
+    for entry, original in zip(review["regions"], expected):
+        if any(entry.get(key) != original[key] for key in ["id", "offset", "length", "kind"]):
+            raise ValueError("review scaffold changed")
+        region_ok = entry_complete(entry)
+        reviewed_regions += int(region_ok)
+        if not region_ok:
+            pending_regions += 1
+        units = entry.get("units", [])
+        if entry["kind"] == "Code" and not units:
+            regions_without_units += 1
+        for unit in units:
+            valid_range = (type(unit.get("offset")) is int and type(unit.get("length")) is int
+                           and unit["offset"] >= 0 and unit["length"] > 0
+                           and unit["offset"] + unit["length"] <= rom.stat().st_size)
+            unit_ok = entry_complete(unit) and bool(unit.get("name")) and valid_range
+            reviewed_units += int(unit_ok)
+            if not unit_ok:
+                pending_units += 1
+    editorial = review.get("editorial_audit", {})
+    editorial_ok = editorial.get("status") == "reviewed" and bool(editorial.get("notes", "").strip())
+    reasons = []
+    if pending_regions:
+        reasons.append(f"{pending_regions} regions are pending or have unresolved source locations")
+    if pending_units:
+        reasons.append(f"{pending_units} units are pending or invalid")
+    if regions_without_units:
+        reasons.append(f"{regions_without_units} code regions have no reviewed units")
+    if not editorial_ok:
+        reasons.append("final editorial audit is pending")
+    return {
+        "complete": not reasons,
+        "reviewed_regions": reviewed_regions,
+        "total_regions": len(expected),
+        "reviewed_units": reviewed_units,
+        "total_units": reviewed_units + pending_units,
+        "editorial_audit": editorial_ok,
+        "reasons": reasons,
+    }
+
+
 def archive(workspace, destination, name, binary, documents=(), omitted_documents=()):
     work, meta, rom = phase.workspace(workspace)
     binary = binary or Path(meta["binary"])
     meta = dict(meta, binary=str(binary))
-    phase.audit(work, meta, rom)
+    review_status = editorial_status(work, meta, rom)
+    phase.verify(work, meta, rom)
+    (work / "commentary/reading-after.asm").write_text(phase.reading(work / "commentary/source"))
     phase.call(binary, "store", "validate", rom, "--store", work / "analysis/state.json")
     is_snes = meta.get("platform") == "snes"
     phase.call(binary, "map", "validate", work / ("maps/current.json" if is_snes else "maps/current.sym"), "--rom", rom)
@@ -308,7 +381,8 @@ def archive(workspace, destination, name, binary, documents=(), omitted_document
             "```sh\npython3 scripts/archive.py restore PATH_TO_THIS_DIRECTORY --rom ORIGINAL_ROM --out /tmp/restored-game\n```\n")
         phase.write_json(stage / "archive.json", {"version": 1, "platform": platform,
             "name": slug, "rom_sha256": meta["sha256"], "rom_filename": rom.name,
-            "image_size": rom.stat().st_size, "editorial_complete": True,
+            "image_size": rom.stat().st_size, "editorial_complete": review_status["complete"],
+            "review_status": review_status,
             "omitted_documents": list(omitted_documents),
             "artifacts": {p.relative_to(stage).as_posix(): phase.digest(p)
                           for p in sorted(stage.rglob("*")) if p.is_file()}})
@@ -319,7 +393,8 @@ def archive(workspace, destination, name, binary, documents=(), omitted_document
             raise ValueError("restoration differs from the authoritative final source tree")
         replace(stage, destination)
     return {"ok": True, "archive": str(destination), "byte_identical": True,
-            "exact_source": True, "documents": included}
+            "exact_source": True, "editorial_complete": review_status["complete"],
+            "review_status": review_status, "documents": included}
 
 
 def main():

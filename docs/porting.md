@@ -40,8 +40,11 @@ the toolkit before retrying. Rust 1.90.0 is pinned in the generated project.
 | `reference/source/`, `reference/reading.asm` | Frozen restored, verified source and reading copy. |
 | `port/` | Editable Cargo project with locked dependencies. |
 | `ledger.json` | Original source regions/units and their native behavior equivalents. |
+| `uncertainties.json` | Seeded Unknown intervals plus discovered semantic gaps, consumers, port impact, evidence and validation limits. |
+| `research/working/` | Optional editable disassembly state, source, correction log and local evidence. |
+| `research/revisions/`, `research/current.json` | Verified immutable local corrections and the adopted revision pointer. |
 | `goal.md` | Overall native-port objective and resume instructions. |
-| `prompts/start.md`, `review.md` | Detailed port contract and separate reviewer instructions. |
+| `prompts/start.md`, `reference-updates.md`, `review.md` | Port contract, reference correction procedure and separate reviewer instructions. |
 | `review/toolkit-before/`, `toolkit-before.json` | Initial toolkit files, hashes, Git HEAD and pre-existing status. |
 | `library-changes.md` | Shared changes, requirements, rationale, validation and unresolved findings. |
 | `progress.md`, `differences.md`, `README.md` | Progress/blockers, behavioral differences and editor instructions. |
@@ -52,6 +55,65 @@ The scaffold uses an arbitrary first-ROM tile solely to demonstrate loading. It
 implements no game rules and defaults to silent audio. A successfully built or
 headlessly run scaffold is not a completed port. Its sample manifest does not
 implement a real game's level loader. The port agent must replace both as needed.
+
+## Unfinished disassembly and discoveries during porting
+
+Preparation accepts editorially reviewed archives with incomplete structural
+classification. Unknown bytes remain present in the exact rebuilt source. They
+may be unused capacity, uncertain data fields or missing logic; their size alone
+does not establish porting risk. Classified code/comments can also have unresolved
+meaning. Begin useful implementation without first completing the mapping goal.
+
+Every archived Unknown interval seeds a pending entry in `uncertainties.json`.
+Preserve its identity/range and add semantic ambiguities discovered in other
+regions. As consumers become relevant, record context, impact, interpretations,
+evidence, behavior-ledger links, useful tests and validation limits. Prioritize
+control flow, pointers, bank fields, bounds and rare state transitions. Continue
+independent port work while a bounded investigation is pending.
+
+The statuses are `pending`, `resolved`, `preserved` and `excluded`; impacts are
+`unknown`, `behavior`, `data` and `none`. Preserved is allowed only for data with a
+supported ROM-backed consumer; copying instruction bytes does not implement native
+logic. Excluded needs an explained no-impact assessment. Resolved records the
+supported interpretation and behavior equivalent. The audit requires assessed
+records and valid ledger links but cannot judge their truth. Unresolved gameplay
+behavior prevents completion; storage classification uncertainty need not. Original
+mapping completion retains its stricter every-byte classification requirement.
+
+Use `prompts/reference-updates.md` when porting reveals a correction:
+
+```sh
+python3 run.py reference-init
+# Investigate, edit research/working/source and update its state.json through map APIs.
+# Record cumulative corrections/evidence in research/working/changes.json and evidence/.
+python3 run.py reference-verify --revision findings-001
+```
+
+The initializer creates a working copy once and refuses replacement. The verifier
+snapshots it, exports/validates the map from its state, independently generates and
+verifies structural assembly, and verifies the edited source against the owned ROM.
+It retains evidence, a fresh reading copy and verification in an immutable revision,
+then selects it through `research/current.json`. Failed checks publish no revision
+and keep the prior selection. Subsequent workspace commands check adopted artifact
+hashes as well as frozen baseline hashes. Neither exact rebuilding nor adoption
+proves the interpretation or map/comment consistency; the agent reviews those and
+tests affected native behavior.
+
+Corrections use `version: 1`, the workspace `rom_sha256` and a `changes` array.
+Each record has `id`, `kind` (`commentary` or `classification`), physical `offset`
+and `length`, `before`, `after`, `port_impact` and nonempty `evidence` strings. Keep
+supporting files under the working `evidence/` directory. Verify coherent batches;
+do not rebuild after every prose edit. Original archive/reference and ledger IDs
+remain unchanged; add discovered native-ledger units and link adopted corrections
+in uncertainty/behavior records. The active interpretation is the baseline plus
+its explicit adopted corrections. Resumes inspect both before trusting old prose.
+
+Keep research source/assets local. Upstream correction is an evidence-linked
+handoff of the revision identity, change log, portable map and verification, not an
+automatic overwrite of the original archive or concurrent disassembly workspace.
+Existing port workspaces are not rewritten automatically. Older workspaces without
+uncertainty tracking retain their prior audit contract; adopting new prompts alone
+does not retroactively create the new ledger or frozen metadata.
 
 ## Runtime library
 
@@ -205,7 +267,8 @@ The agent judges obvious irrelevant/unreachable code from the commented source
 without formal proof; favor implementing ambiguous cases. Complete classification
 and exhaustive frame matching are not gates. Useful passing tests, documented
 differences, finished accounting, editor instructions and a handoff are required.
-Set ledger completion status/notes and run `audit`. Audit validates inventory,
+Assess the uncertainty ledger too; new workspaces cannot finish with pending gaps,
+removed original uncertainty entries or preserved unknown behavior. Set ledger completion status/notes and run `audit`. Audit validates inventory,
 dispositions and builds; it cannot assess semantic correctness or test quality.
 Missing desktop runtime validation is recorded but does not alone block completion.
 

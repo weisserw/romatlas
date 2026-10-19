@@ -234,6 +234,14 @@ def workflow(work, rom):
     script('commentary.py','prepare',workspace,'--json')
     script('commentary.py','audit',workspace,ok=False)
     source=workspace/'commentary/source'
+    partial_archive=work/'snes-partial-archive'
+    partial_result=script('archive.py','archive',workspace,'--output',partial_archive,'--name','synthetic-snes')
+    assert not partial_result['editorial_complete']
+    assert json.loads((partial_archive/'archive.json').read_text())['editorial_complete'] is False
+    partial_restore=work/'snes-partial-restored'
+    script('archive.py','restore',partial_archive,'--rom',rom,'--out',partial_restore)
+    assert (partial_restore/'source/game.asm').read_bytes()==(source/'game.asm').read_bytes()
+    script('port.py','prepare',partial_archive,'--rom',rom,'--out',work/'invalid-partial-port','--json',ok=False)
     game=(source/'game.asm').read_text()
     game='incsrc "constants.inc"\n'+game.replace('ldx.w #$1fff','ldx.w #reset_stack')
     (source/'game.asm').write_text(game)
@@ -262,6 +270,22 @@ def workflow(work, rom):
     assert 'snes::tile' in (port/'port/src/game.rs').read_text()
     assert 'gb::' not in (port/'port/src/game.rs').read_text()
     assert 'SNES_NTSC' in (port/'port/src/main.rs').read_text()
+    uncertainties=json.loads((port/'uncertainties.json').read_text())
+    assert uncertainties['entries'] and all(r['status']=='pending' for r in uncertainties['entries'])
+    frozen_source=(port/'reference/source/game.asm').read_bytes()
+    script('port.py','reference-init',port)
+    working=port/'research/working'
+    (working/'source/game.asm').write_text('; Port research: preserve explicit reset widths.\n'+(working/'source/game.asm').read_text())
+    changes=json.loads((working/'changes.json').read_text())
+    changes['changes']=[dict(id='reset-comment',kind='commentary',offset=0,length=1,
+        before='Original reset explanation',after='Clarified native reset widths',
+        port_impact='Preserve reset-state interpretation',evidence=['Synthetic reset fixture'])]
+    (working/'changes.json').write_text(json.dumps(changes))
+    script('port.py','reference-verify',port,'--revision','reset-review')
+    revision=port/'research/revisions/reset-review'
+    assert (revision/'mapping.json').is_file() and not (revision/'mapping.sym').exists()
+    assert json.loads((revision/'revision.json').read_text())['source_verification']['byte_identical']
+    assert (port/'reference/source/game.asm').read_bytes()==frozen_source
     script('port.py','check',port)
     script('port.py','headless',port,'--frames','2')
     script('port.py','audit',port,ok=False)

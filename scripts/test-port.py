@@ -82,6 +82,13 @@ with tempfile.TemporaryDirectory(prefix="romatlas-port-") as temporary:
     before = json.loads((work / "review/toolkit-before.json").read_text())
     assert before["head"] and "crates/romatlas-port/src/assets.rs" in before["files"]
     assert any(row["kind"] == "Unknown" for row in json.loads((work / "ledger.json").read_text())["regions"])
+    uncertainty_file = work / "uncertainties.json"
+    uncertainties = json.loads(uncertainty_file.read_text())
+    unknown = [r for r in review["regions"] if r["kind"] == "Unknown"]
+    assert [(r["offset"], r["length"]) for r in uncertainties["entries"]] == [(r["offset"], r["length"]) for r in unknown]
+    assert all(r["status"] == "pending" and r["impact"] == "unknown" for r in uncertainties["entries"])
+    assert "reference-updates.md" in (work / "prompts/start.md").read_text()
+    assert "preserving code bytes" in (work / "prompts/review.md").read_text().lower()
     for path in ["AGENTS.md","prompts/start.md","workflow.md"]:
         text = (work / path).read_text()
         assert "whole" in text.lower() or "entire" in text.lower()
@@ -90,6 +97,54 @@ with tempfile.TemporaryDirectory(prefix="romatlas-port-") as temporary:
         assert required in prompt,required
     run = ["python3",work / "run.py"]
     frozen = inventory(work / "reference")
+    # Corrections use an independently verified supplement; the frozen baseline
+    # and original source inventory remain unchanged even after a map correction.
+    assert call(*run,"reference-init")[0]["baseline_unchanged"]
+    call(*run,"reference-init",ok=False)
+    call(*run,"reference-verify","--revision","unexplained",ok=False)
+    assert not (work / "research/current.json").exists()
+    assert not (work / "research/revisions/unexplained").exists()
+    working = work / "research/working"
+    bank = working / "source/bank_000.asm"
+    bank.write_text("; Synthetic port discovery: retain original startup jump.\n" + bank.read_text())
+    call(BIN,"store","annotate",owned,"--store",working / "state.json","--offset","512","--length","1",
+         "--kind","data","--provenance","static","--confidence","0.8")
+    changes = json.loads((working / "changes.json").read_text())
+    changes["changes"] = [dict(id="fixture-byte",kind="classification",offset=512,length=1,
+        before="Unknown",after="Synthetic fixture data; source byte remains preserved",
+        port_impact="No synthetic gameplay",evidence=["evidence/fixture.json"])]
+    (working / "changes.json").write_text(json.dumps(changes))
+    (working / "evidence").mkdir()
+    (working / "evidence/fixture.json").write_text(json.dumps(dict(synthetic=True)))
+    corrected = call(*run,"reference-verify","--revision","discovery-001")[0]
+    assert corrected["byte_identical"] and not corrected["semantic_correctness_assessed"]
+    selected = work / "research/current.json"
+    selection = selected.read_bytes()
+    published = work / "research/revisions/discovery-001"
+    assert "Synthetic port discovery" in (published / "reading.asm").read_text()
+    assert (published / "evidence/fixture.json").is_file()
+    assert inventory(work / "reference") == frozen
+    call(*run,"reference-verify","--revision","discovery-001",ok=False)
+    # A broken assembly or foreign mapping neither adopts nor publishes a revision.
+    text = bank.read_text()
+    bank.write_text("INVALID_OPCODE\n" + text)
+    call(*run,"reference-verify","--revision","discovery-002",ok=False)
+    assert selected.read_bytes() == selection and not (work / "research/revisions/discovery-002").exists()
+    bank.write_text(text)
+    state_bytes = (working / "state.json").read_bytes()
+    bad_state = json.loads(state_bytes)
+    bad_state["image_sha256"] = "0" * 64
+    (working / "state.json").write_text(json.dumps(bad_state))
+    call(*run,"reference-verify","--revision","discovery-002",ok=False)
+    assert selected.read_bytes() == selection and not (work / "research/revisions/discovery-002").exists()
+    (working / "state.json").write_bytes(state_bytes)
+    assert call(*run,"reference-verify","--revision","discovery-002")[0]["byte_identical"]
+    assert json.loads((work / "research/revisions/discovery-002/revision.json").read_text())["parent"] == "discovery-001"
+    adopted_reading = work / "research/revisions/discovery-002/reading.asm"
+    saved_reading = adopted_reading.read_bytes()
+    adopted_reading.write_bytes(saved_reading + b"; accidental edit\n")
+    call(*run,"headless","--frames","0",ok=False)
+    adopted_reading.write_bytes(saved_reading)
     call(*prepare,ok=False)
     assert inventory(work / "reference") == frozen
     call("python3",SCRIPT,"prepare",archive,"--rom",rom,"--out",ROOT / "build/disallowed-port",ok=False)
@@ -113,8 +168,31 @@ with tempfile.TemporaryDirectory(prefix="romatlas-port-") as temporary:
                         equivalents=["port/src/game.rs:Port"])
     ledger["completion"] = {"status":"complete","notes":"Synthetic accounting exercise, not a real port"}
     ledger_file.write_text(json.dumps(ledger))
+    # Finished behavior accounting cannot silently drop or waive unassessed gaps.
+    result, _ = call(*run,"audit",ok=False)
+    assert "uncertainty" in result["error"]
+    for row in uncertainties["entries"]:
+        row.update(status="excluded",impact="none",summary="Synthetic fixture has no gameplay consumer",
+                   evidence=["Synthetic fixture generator"],validation=["Fixture bounds and accounting"],
+                   validation_limits="No real gameplay assessed")
+    uncertainty_file.write_text(json.dumps(uncertainties))
+    first_uncertainty = uncertainties["entries"][0]
+    first_uncertainty.update(status="preserved",impact="behavior")
+    uncertainty_file.write_text(json.dumps(uncertainties))
+    result, _ = call(*run,"audit",ok=False)
+    assert "unknown behavior" in result["error"]
+    first_uncertainty.update(status="excluded",impact="none")
+    removed = uncertainties["entries"].pop()
+    uncertainty_file.write_text(json.dumps(uncertainties))
+    result, _ = call(*run,"audit",ok=False)
+    assert "removed" in result["error"]
+    uncertainties["entries"].append(removed)
+    first_uncertainty.update(status="preserved",impact="data",
+        summary="Synthetic accounting: original fixture values remain ROM-backed; no gameplay-equivalence claim")
+    uncertainty_file.write_text(json.dumps(uncertainties))
     audited = call(*run,"audit")[0]
     assert audited["accounting_complete"] and audited["units"] == 1
+    assert audited["uncertainties"] == len(unknown)
     assert not audited["semantic_correctness_assessed"] and not audited["release_ready"]
     old = ledger["regions"][0]["offset"]
     ledger["regions"][0]["offset"] = old + 1

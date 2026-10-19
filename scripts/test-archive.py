@@ -41,8 +41,15 @@ with tempfile.TemporaryDirectory(prefix="romatlas-archive-") as temporary:
     call("python3", ROOT / "scripts/commentary.py", "prepare", work, "--json")
     destination = base / "atlas with spaces" / "gb" / "synthetic" / hashlib.sha256(data).hexdigest()
     save = ["python3", SCRIPT, "archive", work, "--name", "synthetic", "--output", destination]
-    call(*save, ok=False)  # Pending reviews cannot be archived.
-    assert not destination.exists()
+    incomplete = base / "incomplete archive"
+    partial = call("python3", SCRIPT, "archive", work, "--name", "synthetic",
+                   "--output", incomplete)
+    assert not partial["editorial_complete"]
+    assert json.loads((incomplete / "archive.json").read_text())["editorial_complete"] is False
+    partial_restore = base / "partial restored"
+    assert call("python3", SCRIPT, "restore", incomplete, "--rom", rom,
+                "--out", partial_restore)["byte_identical"]
+    assert retained(partial_restore / "source") == retained(work / "commentary/source")
     source = work / "commentary/source"
     bank = source / "bank_000.asm"
     bank.write_text("; A synthetic entry with an intentional uncertainty (?).\n" + bank.read_text().replace("jp $0150", "jp SyntheticEntry"))
@@ -67,7 +74,9 @@ with tempfile.TemporaryDirectory(prefix="romatlas-archive-") as temporary:
     scratch_doc.write_text("Temporary scratch document\n")
     call(*save, ok=False)  # Unknown final documents require explicit inclusion.
     save += ["--document", "commentary/conclusions.md", "--omit-document", "analysis/scratch.md"]
-    assert call(*save)["exact_source"]
+    complete_result = call(*save)
+    assert complete_result["exact_source"] and complete_result["editorial_complete"]
+    assert json.loads((destination / "archive.json").read_text())["editorial_complete"] is True
     archived = retained(destination)
     assert "commentary/conclusions.md" in archived
     assert "analysis/raw-results.json" not in archived

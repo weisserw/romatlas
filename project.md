@@ -155,6 +155,14 @@ without empty phase cycles. No separate final-investigation phase, completion
 threshold or fixed pass quota controls research. Final editorial acceptance and
 byte-identical verification remain distinct completion gates.
 
+Native port preparation may use reviewed, byte-identical archives with incomplete
+classification. Track residual ranges and semantic uncertainties by consumer and
+port impact, preserve original ROM-backed data when justified, and resolve required
+gameplay behavior before claiming a finished port. Discoveries may correct a local
+working disassembly/commentary through evidence-linked, map-validated and exact-rebuild
+verified revisions while the archived baseline and original accounting IDs remain
+frozen. This does not relax the original mapping goal's every-byte contract.
+
 - Separate code from non-code based on validated instruction boundaries, known entry points, static analysis, and observed execution; ambiguous areas default to lossless raw bytes.
 - Prefer stock mgbdis output for deterministic filenames, labels, and RGBDS bank/section declarations; do not independently recreate its assembly emitter without demonstrated need.
 - Preserve every byte in ROM order, including headers, checksums, padding, inaccessible/unused banks, and unknown regions.

@@ -109,6 +109,11 @@ pending source-behavior ledger and demonstration scaffold, and writes `goal.md`
 with a separate library-review prompt. It does not port gameplay
 or launch an agent. Game Boy and SNES archives have platform-selected scaffolds. Incomplete
 classification is accepted; relevant unknown behavior must be investigated.
+New workspaces seed `uncertainties.json` from unknown ranges and carry consumer,
+port-impact and validation assessments. The agent can correct a local reference
+with `reference-init` and `reference-verify --revision NAME`; verified revisions
+supplement the frozen archive without rewriting it. Original mapping completeness
+and native-port behavior completeness remain separate requirements.
 
 The new `romatlas-port` library provides ROM-backed assets, replacement/additional
 slots, console timing, tile/palette rendering, input/settings and an optional SDL2
@@ -174,9 +179,10 @@ python3 scripts/archive.py archive /root/rom-work/game --name game
 python3 scripts/archive.py restore atlas/gb/game/FULL_ROM_SHA256 --rom /path/to/original.gb --out /tmp/game-restored
 ```
 
-Archiving requires a fresh editorial audit and verified rebuild. It saves comments
-and symbol edits separately from `.sym`; it excludes assembly, ROMs, extracted
-assets, scratch evidence and the toolkit-issues report. Restoration checks the
+Archiving supports incomplete worktrees and records whether editorial review is
+complete. It still requires a valid map and a verified, byte-identical source
+rebuild. It saves comments and symbol edits separately from `.sym`; it excludes
+assembly, ROMs, extracted assets, scratch evidence and the toolkit-issues report. Restoration checks the
 original ROM and reconstructs the exact final source in `source/`, plus a
 `reading-after.asm`, with pinned tools. Existing archives are replaced only after
 successful reconstruction; failures preserve the previous archive. Restore output

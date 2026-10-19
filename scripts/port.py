@@ -13,12 +13,16 @@ import tempfile
 
 import archive as archived
 import commentary as phase
+import port_research
 
 ROOT = phase.ROOT
 TEMPLATES = ROOT / "scripts/port-template"
 DISPOSITIONS = {"implemented", "merged", "replaced", "excluded"}
 GOAL = ("Port this entire archived game into readable native Rust, following AGENTS.md, "
-        "workflow.md and prompts/start.md. Replace the demonstration scaffold. Account for "
+        "workflow.md and prompts/start.md. Read uncertainties.json and prompts/reference-updates.md; "
+        "incomplete classification is allowed. Assess gaps by consumer and port impact, and "
+        "correct discoveries in a verified local reference revision without changing the frozen archive. "
+        "Replace the demonstration scaffold. Account for "
         "all source behavior in ledger.json; implement every gameplay-relevant equivalent, "
         "favor ambiguous cases, and explain obvious exclusions. Load original assets from "
         "the user's ROM at startup, support replacements and added slots, provide player "
@@ -30,7 +34,8 @@ GOAL = ("Port this entire archived game into readable native Rust, following AGE
         "and report untested desktop behavior. If blocked, preserve work and "
         "explain concrete unresolved behaviors and what would unblock them; never mark "
         "an incomplete port complete.")
-RESUME = ("Read progress.md, ledger.json, differences.md, library-changes.md and existing "
+RESUME = ("Read progress.md, ledger.json, uncertainties.json, research/current.json if present, "
+          "differences.md, library-changes.md and existing "
           "code first. Preserve work; do not reinitialize. Resume the same objective "
           "and continue unresolved behavior and library work using prompts/start.md.")
 
@@ -137,6 +142,8 @@ def prepare(archive, rom, output, binary):
             raise ValueError("archive reviewed regions do not cover the whole ROM")
         phase.write_json(stage / "ledger.json", {"version": 1, "rom_sha256": manifest["rom_sha256"],
             "regions": records(review), "completion": {"status": "pending", "notes": ""}})
+        phase.write_json(stage / "uncertainties.json", {"version": 1,
+            "rom_sha256": manifest["rom_sha256"], "entries": port_research.seeds(review)})
         before = snapshot(stage / "review/toolkit-before")
         phase.write_json(stage / "review/toolkit-before.json", before)
         cargo = (f"[package]\nname = {json.dumps(name + '-port')}\nversion = \"0.1.0\"\nedition = \"2024\"\nrust-version = \"1.90\"\n\n"
@@ -166,15 +173,18 @@ def prepare(archive, rom, output, binary):
         (stage / "prompts/start.md").write_text(prompt)
         (stage / "goal.md").write_text("# Native port\n\n" + GOAL + "\n\nOn resume: " + RESUME + "\n")
         shutil.copyfile(TEMPLATES / "review.md", stage / "prompts/review.md")
+        shutil.copyfile(TEMPLATES / "reference-updates.md", stage / "prompts/reference-updates.md")
         build_guide = (TEMPLATES / "BUILDING.md").read_text().replace("__GAME_NAME__", name).replace("__TOOLKIT_PATH__", str(ROOT))
         (stage / "BUILDING.md").write_text(build_guide)
         (stage / "AGENTS.md").write_text(f"""# Native port workspace
 
-Read goal.md, workflow.md and prompts/start.md. The whole-game
+Read goal.md, workflow.md, uncertainties.json and prompts/start.md. The whole-game
 completion contract applies; the demonstration scaffold is not a completed port.
 Toolkit: {json.dumps(str(ROOT))}. Use its AGENTS.md for shared-library changes.
 reference/ and review/toolkit-before/ are frozen. Change port/, ledger.json and
-port documentation; implement/log needed shared-library edits directly in the
+uncertainties.json and port documentation. Use prompts/reference-updates.md for
+authorized local disassembly/commentary corrections in research/; preserve the
+frozen baseline and original ledger identities. Implement/log shared-library edits in the
 toolkit, uncommitted. Do not overwrite pre-existing changes. Never download or
 commit commercial ROMs or extracted assets. Keep generated material local.
 Use Rust 1.90.0 and Cargo.lock. Do not launch desktop graphics on this server.
@@ -195,6 +205,8 @@ python3 run.py check
 python3 run.py headless --frames 120
 python3 run.py desktop
 python3 run.py audit
+python3 run.py reference-init
+python3 run.py reference-verify --revision findings-001
 ```
 
 desktop is an explicit human command requiring a graphical session. Do not run
@@ -209,7 +221,21 @@ offset/length, disposition, summary and equivalents. Whole-game completion requi
 accounting for all source behavior, not a one-to-one translation or execution proof.
 Favor porting unclear cases. Set completion.status=complete and notes at completion.
 Audit checks accounting and builds, not semantic correctness. Unknown classification
-is allowed at preparation; relevant unknown behavior must be resolved for porting.
+is allowed; do not require full classification before beginning the port. Assess
+each uncertainty by its consumers, meaning and behavioral consequences in
+uncertainties.json. Add semantic ambiguities discovered in classified source too.
+Preserved ROM-backed data may remain structurally uncertain when its loading/use
+is implemented and supported by evidence. Preserving code bytes does not implement
+unknown behavior; unresolved gameplay-affecting behavior prevents completion.
+Classify no-impact exclusions with an explanation, not from size or lack of traces.
+
+prompts/reference-updates.md defines local corrections: reference-init creates
+research/working from the frozen baseline; edit its source/state with evidence,
+then reference-verify validates and adopts a new immutable research/revisions/
+snapshot. research/current.json selects that supplement; reference/ remains the
+original source of truth for provenance and original ledger IDs. Use the revision's
+fresh reading copy after edits. Never regenerate over maintained commentary.
+No original archive or external analysis workspace is changed automatically.
 
 Use progress.md for progress/blockers, differences.md for known behavior differences
 and untested platform/device behavior, and library-changes.md for shared-library
@@ -255,12 +281,13 @@ if len(sys.argv) < 2:
 sys.argv = [str(toolkit / "scripts/port.py"), sys.argv[1], str(workspace), *sys.argv[2:]]
 runpy.run_path(str(toolkit / "scripts/port.py"), run_name="__main__")
 """)
-        (stage / ".gitignore").write_text("/input/\n/reference/\n/review/toolkit-before/\n/checks/\n/port/target/\n*.gb\n*.gbc\n*.rom\n__pycache__/\n")
+        (stage / ".gitignore").write_text("/input/\n/reference/\n/research/\n/review/toolkit-before/\n/checks/\n/port/target/\n*.gb\n*.gbc\n*.rom\n__pycache__/\n")
         frozen = {str(p.relative_to(stage)): phase.digest(p) for p in (stage / "reference").rglob("*") if p.is_file()}
         frozen.update({str(p.relative_to(stage)): phase.digest(p) for p in (stage / "review/toolkit-before").rglob("*") if p.is_file()})
         frozen["review/toolkit-before.json"] = phase.digest(stage / "review/toolkit-before.json")
         phase.write_json(stage / "workspace.json", {"version": 1, "name": name,
-            "toolkit": str(ROOT), "rom": "input/game.rom", "sha256": manifest["rom_sha256"],
+            "toolkit": str(ROOT), "binary": str(binary), "platform": manifest["platform"],
+            "uncertainty_tracking": 1, "rom": "input/game.rom", "sha256": manifest["rom_sha256"],
             "archive": str(archive), "archive_sha256": phase.digest(archive / "archive.json"),
             "frozen": frozen, "reference_verification": verification})
         # Reserve the new name before publication; never replace another workspace.
@@ -286,6 +313,7 @@ def workspace(path):
     for name, digest in meta["frozen"].items():
         if phase.digest(phase.local(work, name)) != digest:
             raise ValueError(f"frozen reference changed: {name}")
+    port_research.current(work, meta)
     return work, meta, rom
 
 
@@ -328,7 +356,8 @@ def validate_ledger(work, meta):
     completion = ledger["completion"]
     if completion["status"] != "complete" or not isinstance(completion["notes"], str) or not completion["notes"].strip():
         raise ValueError("port completion is pending")
-    return {"regions": len(actual), "units": len(seen) - len(actual)}
+    return {"regions": len(actual), "units": len(seen) - len(actual),
+            **port_research.validate_uncertainties(work, meta, ledger)}
 
 
 def check(work):
@@ -359,7 +388,7 @@ def main():
         def error(self, message):
             raise ValueError(message)
     parser = Parser(description=__doc__)
-    parser.add_argument("command", choices=["prepare", "instructions", "check", "headless", "desktop", "audit"])
+    parser.add_argument("command", choices=["prepare", "instructions", "check", "headless", "desktop", "audit", "reference-init", "reference-verify"])
     parser.add_argument("path", type=Path, help="archive for prepare; port workspace otherwise")
     parser.add_argument("--rom", type=Path)
     parser.add_argument("--out", type=Path)
@@ -368,6 +397,7 @@ def main():
     parser.add_argument("--assets", type=Path)
     parser.add_argument("--settings", type=Path)
     parser.add_argument("--json", action="store_true")
+    parser.add_argument("--revision", help="new name for a verified local reference revision")
     args = parser.parse_args()
     if args.command == "prepare":
         if args.rom is None or args.out is None:
@@ -382,6 +412,10 @@ def main():
             return
         if args.command == "check":
             result = check(work)
+        elif args.command == "reference-init":
+            result = port_research.initialize(work, meta)
+        elif args.command == "reference-verify":
+            result = port_research.verify(work, meta, rom, args.revision)
         elif args.command == "audit":
             phase.write_json(work / "checks/audit.json", {"ok": False})
             counts = validate_ledger(work, meta)

@@ -925,3 +925,55 @@ research and legacy resumption guidance in both profiles, alongside preserved
 classification/readability/fidelity requirements. They establish instruction delivery
 and tooling behavior, not the number or quality of future live-agent inferences.
 No Rust/session/dependency implementation changed; no commercial content added.
+
+2026-10-19: Native-port preparation now seeds uncertainties.json from every reviewed
+Unknown interval, preserving source IDs/ranges and allowing additional semantic
+ambiguities from classified material. Port/start/resume/reviewer prompts assess
+consumer context, behavioral impact, evidence, useful tests and limits as implementation
+proceeds. Full structural classification is not a prerequisite for starting or
+finishing a port; supported ROM-backed data preservation and explained no-impact
+exclusions are allowed. Preserving instruction bytes is not native behavior, and
+unresolved gameplay-affecting behavior still prevents completion. New-workspace
+audits reject pending/dropped seed entries, bad ledger links and preserved behavior;
+they validate accounting, not interpretation truth. Older untracked workspaces
+retain their prior audit contract and are not rewritten automatically.
+
+Added prompts/reference-updates.md and local reference-init/reference-verify commands.
+Working source/state/cumulative corrections/evidence live under ignored research/.
+Verification snapshots the candidate, validates/exports its map, independently
+generates/rebuilds structural source and rebuilds edited commentary byte-identically.
+Successful named immutable revisions include fresh reading copies and verification;
+an atomic pointer adopts the supplement while frozen archive/source and original
+ledger identities remain unchanged. Failed checks retain the old revision and
+publish no candidate; adopted-artifact hash changes are rejected. Updates remain
+local, with an explicit evidence-linked upstream handoff rather than automatic
+overwriting of an archive or active analysis workspace. Rebuilding does not prove
+semantic correctness or map/comment consistency. No commercial workspace was edited
+and no game-port agent was launched.
+
+Validation on Rust 1.90.0: locked release build, workspace fmt, locked all-target
+workspace Clippy with warnings denied and locked workspace tests pass, alongside
+romatlas-port desktop-feature Clippy/tests without initializing a window/device.
+test-port.py passes incomplete-archive preparation, seeded pending gaps, data versus
+behavior disposition checks, removed-entry rejection, named reference corrections,
+evidence retention, parent revisions, failed source/map rollback/retry, tamper
+rejection and unchanged frozen reference; locked headless/desktop scaffold checks
+remain passing. Production test-snes.py also passes SNES reference correction with
+explicit platform selection for input/game.rom, JSON mapping and exact edited-source
+rebuild, plus the existing RPC/replay/reconstruction/archive/port workflow. Stock
+four-bank deterministic byte-identical portability, Python compilation and
+git diff --check pass. These synthetic checks do not establish a real game's
+interpretation or port correctness. No Rust/session/dependency implementation changed.
+
+2026-10-19: Archive creation now accepts incomplete commentary reviews while still
+requiring ROM identity, map validation, exact source reconstruction and a fresh
+byte-identical verify. The archive manifest records editorial completion, reviewed
+counts and concise reasons; native-port preparation continues to reject archives
+whose editorial review is incomplete. The archive regression covers incomplete and
+complete Game Boy archives, and the SNES regression covers incomplete archive,
+restore and port-preparation rejection plus the existing complete archive path.
+`python3 scripts/test-archive.py` and `python3 scripts/test-snes.py` pass. The actual
+Super Off Road workspace archived to `atlas/snes/super-off-road/24b687f95bb9737d223738f13c00aeaa7d697fa9e2fd50597b81d0cfa2160daa/` with
+`editorial_complete=false`, 1,527 pending/unresolved review regions, and
+byte-identical source restoration. Its 289 unselected Markdown notes were explicitly
+omitted as historical/scratch documents. No ROM or extracted assets were archived.

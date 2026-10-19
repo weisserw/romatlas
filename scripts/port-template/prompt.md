@@ -1,6 +1,7 @@
 # Port the entire archived game
 
-Read AGENTS.md, workflow.md, reference/reading.asm and relevant archive documents
+Read AGENTS.md, workflow.md, uncertainties.json, prompts/reference-updates.md,
+reference/reading.asm and relevant archive documents
 before coding. The commented, labeled reference is intended to explain routines,
 branches, RAM variables and data formats. If it contains gaps, investigate and record
 them rather than assuming classification or editorial status proves understanding.
@@ -16,6 +17,35 @@ may merge routines or remove the need for an original mechanism. Judge obviously
 irrelevant junk/unreachable paths from the commented source without a formal
 reachability proof. Favor porting borderline/unclear behavior. Resolve relevant
 unknown regions; editorial review does not prove complete gameplay understanding.
+
+The disassembly may be unfinished, and classified source may still have uncertain
+meanings or incorrect commentary. Begin useful porting without completing whole-ROM
+classification first. Small gaps are not automatically harmless, and an Unknown
+label does not mean the bytes are absent: the reference preserves them exactly.
+Assess each seeded uncertainties.json entry as its consumers become relevant;
+record CPU/bank context, callers/readers, competing interpretations, port impact,
+evidence, useful tests and validation limits. Add uncertainties in classified
+regions as you find them. Prioritize control flow, dispatch, pointer/bank fields,
+record bounds and rare state transitions over storage-only questions. Continue
+independent implementation while an investigation is pending; investigate deeply
+when a concrete port behavior depends on it, rather than restoring an unlimited
+whole-ROM classification task.
+
+For uncertain data, keep original values ROM-backed where a supported consumer
+can interpret them; document/test loading, bounds and affected behavior. Preserved
+data can remain structurally uncertain. Raw instruction bytes are not a native
+implementation: resolve needed logic, implement its equivalent and test meaningful
+branches. Do not silently zero unknown fields, skip handlers, invent semantics or
+label fragments irrelevant merely because no trace selected them. An explained
+no-impact exclusion is allowed under the existing behavior-accounting contract.
+Unresolved gameplay-affecting behavior remains incomplete, even if Rust builds.
+
+When implementation reveals a supported correction or new interpretation, follow
+prompts/reference-updates.md to update the local working disassembly/commentary,
+validate a new reference revision and link it to uncertainties.json and ledger.json.
+Preserve frozen reference/ and original ledger identities; add discovered units
+instead of replacing historical records. On resume inspect research/current.json
+and its verified reading/source supplement before trusting older commentary.
 
 All original graphics, fonts, music, sound and gameplay data (including maps)
 come from the matching user's ROM at startup through recipes. Do not bake ROM
@@ -64,6 +94,7 @@ copy another port's platform success as evidence for this one. Check upstream
 platform setup when needed. Keep packaging/publication as later work.
 Provide an original-content-only example extension manifest. Keep
 progress.md and differences.md current. Completion requires a finished ledger,
+assessed uncertainties with evidence and explicit residual limits,
 implemented gameplay equivalents, useful passing tests and a documented handoff.
 Set ledger completion.status=complete with notes only when this is true, and run
 python3 run.py audit. Audit validates records and builds, not gameplay fidelity.

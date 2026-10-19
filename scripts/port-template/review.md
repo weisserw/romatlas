@@ -1,6 +1,14 @@
 # Review the shared library changes from this port
 
 Read workspace.json, library-changes.md, progress.md, differences.md and ledger.json.
+Read uncertainties.json and research/current.json when present. Inspect the adopted
+reference revision's changes/evidence against the frozen source. Check that unknown
+fragments and semantic ambiguities have consumer-specific port-impact assessments;
+preserving code bytes must not stand in for implementing behavior. Verify original
+ledger identities and frozen provenance remain intact, and local corrections have
+fresh map/source rebuild evidence. A byte-identical revision does not prove its
+interpretation or the native gameplay equivalent correct. Report unresolved behavior
+and weak exclusions; complete original structural classification is not a port gate.
 The toolkit directory is in workspace.json. Compare its current files against
 review/toolkit-before/ and the hashes/status/HEAD in review/toolkit-before.json.
 That snapshot includes tracked and nonignored untracked files from preparation;
