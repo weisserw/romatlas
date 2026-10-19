@@ -241,7 +241,10 @@ def workflow(work, rom):
     partial_restore=work/'snes-partial-restored'
     script('archive.py','restore',partial_archive,'--rom',rom,'--out',partial_restore)
     assert (partial_restore/'source/game.asm').read_bytes()==(source/'game.asm').read_bytes()
-    script('port.py','prepare',partial_archive,'--rom',rom,'--out',work/'invalid-partial-port','--json',ok=False)
+    partial_port=work/'partial-port'
+    partial_port_result=script('port.py','prepare',partial_archive,'--rom',rom,'--out',partial_port,'--json')
+    assert partial_port_result['byte_identical_reference']
+    assert any(row['disposition']=='pending' for row in json.loads((partial_port/'ledger.json').read_text())['regions'])
     game=(source/'game.asm').read_text()
     game='incsrc "constants.inc"\n'+game.replace('ldx.w #$1fff','ldx.w #reset_stack')
     (source/'game.asm').write_text(game)

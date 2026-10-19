@@ -965,15 +965,16 @@ four-bank deterministic byte-identical portability, Python compilation and
 git diff --check pass. These synthetic checks do not establish a real game's
 interpretation or port correctness. No Rust/session/dependency implementation changed.
 
-2026-10-19: Archive creation now accepts incomplete commentary reviews while still
+2026-10-19: Archive creation accepts incomplete commentary reviews while still
 requiring ROM identity, map validation, exact source reconstruction and a fresh
 byte-identical verify. The archive manifest records editorial completion, reviewed
-counts and concise reasons; native-port preparation continues to reject archives
-whose editorial review is incomplete. The archive regression covers incomplete and
-complete Game Boy archives, and the SNES regression covers incomplete archive,
-restore and port-preparation rejection plus the existing complete archive path.
-`python3 scripts/test-archive.py` and `python3 scripts/test-snes.py` pass. The actual
-Super Off Road workspace archived to `atlas/snes/super-off-road/24b687f95bb9737d223738f13c00aeaa7d697fa9e2fd50597b81d0cfa2160daa/` with
-`editorial_complete=false`, 1,527 pending/unresolved review regions, and
-byte-identical source restoration. Its 289 unselected Markdown notes were explicitly
-omitted as historical/scratch documents. No ROM or extracted assets were archived.
+counts and concise reasons. Native-port preparation now accepts incomplete editorial
+review and classification while requiring a valid full-ROM region partition,
+in-range unit records, verified archive artifacts, matching ROM identity and a fresh
+byte-identical source restoration. Pending source entries remain in the generated
+port ledger and uncertainty seed. `python3 scripts/test-port.py` and
+`python3 scripts/test-snes.py` pass, including preparation from synthetic
+incomplete-review GB and SNES archives. The previously blocked Super Off Road archive
+prepares successfully to `/root/rom-ports/super-off-road/` with byte-identical
+reference restoration. Its archive remains unchanged and no ROM or extracted assets
+were added to the repository.

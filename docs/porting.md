@@ -21,8 +21,8 @@ Ask the agent to read the generated `goal.md`; it includes the whole-game
 objective and resume instructions. No goal command is printed. `--json` suppresses human instructions; preparation results are JSON
 on stdout and instructions are on stderr. Use `--binary PATH` to select a toolkit
 binary. Existing destinations and repository-local workspaces are rejected.
-Preparation requires an existing archive; it does not alter the archive or require
-phase-one classification to be complete. It validates archive hashes, restores
+Preparation requires an existing archive; it accepts incomplete editorial review
+and phase-1 classification, without altering the archive. It validates archive hashes, restores
 exact commented source and verifies a byte-identical rebuild before publishing
 the workspace. Failed validation leaves no final workspace.
 
@@ -58,7 +58,7 @@ implement a real game's level loader. The port agent must replace both as needed
 
 ## Unfinished disassembly and discoveries during porting
 
-Preparation accepts editorially reviewed archives with incomplete structural
+Preparation accepts archives with incomplete editorial review or structural
 classification. Unknown bytes remain present in the exact rebuilt source. They
 may be unused capacity, uncertain data fields or missing logic; their size alone
 does not establish porting risk. Classified code/comments can also have unresolved

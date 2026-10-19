@@ -4,6 +4,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import shutil
 import subprocess
 import tempfile
 
@@ -55,6 +56,25 @@ with tempfile.TemporaryDirectory(prefix="romatlas-port-") as temporary:
     archive = base / "archive"
     call("python3",ROOT / "scripts/archive.py","archive",analysis,"--name","synthetic","--output",archive)
     initial_archive = inventory(archive)
+    # Port preparation accepts an archive whose editorial review is still
+    # incomplete, while retaining pending source regions in its accounting.
+    partial_analysis = base / "partial analysis"
+    shutil.copytree(analysis, partial_analysis)
+    partial_review_path = partial_analysis / "commentary/review.json"
+    partial_review = json.loads(partial_review_path.read_text())
+    partial_review["editorial_audit"] = {"status":"pending","notes":""}
+    partial_review["regions"][0].update(status="pending", summary="", source=[])
+    for unit in partial_review["regions"][0].get("units", []):
+        unit.update(status="pending", summary="", source=[])
+    partial_review_path.write_text(json.dumps(partial_review))
+    partial_archive = base / "partial archive"
+    call("python3",ROOT / "scripts/archive.py","archive",partial_analysis,"--name","synthetic","--output",partial_archive)
+    assert json.loads((partial_archive / "archive.json").read_text())["editorial_complete"] is False
+    partial_work = base / "partial port"
+    partial_result, _ = call("python3",SCRIPT,"prepare",partial_archive,"--rom",rom,"--out",partial_work)
+    assert partial_result["byte_identical_reference"]
+    partial_ledger = json.loads((partial_work / "ledger.json").read_text())
+    assert any(row["original_summary"] == "" for row in partial_ledger["regions"])
     work = base / "port workspace with spaces"
     prepare = ["python3",SCRIPT,"prepare",archive,"--rom",rom,"--out",work]
     result, printed = call(*prepare)

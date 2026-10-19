@@ -90,8 +90,8 @@ def prepare(archive, rom, output, binary):
     if output.resolve() == ROOT or ROOT in output.resolve().parents:
         raise ValueError("port workspaces and generated assets must remain outside the repository")
     manifest = json.loads((archive / "archive.json").read_text())
-    if manifest.get("version") != 1 or manifest.get("editorial_complete") is not True:
-        raise ValueError("port preparation requires a version-1 reviewed archive")
+    if manifest.get("version") != 1:
+        raise ValueError("port preparation requires a version-1 archive")
     if manifest["platform"] not in {"gb", "snes"}:
         raise ValueError("unsupported port archive platform")
     name = manifest["name"]
@@ -126,18 +126,26 @@ def prepare(archive, rom, output, binary):
                 path.unlink()
         (stage / "reference/reading.asm").write_text(phase.reading(source))
         review = json.loads((reference_archive / "commentary/review.json").read_text())
-        if review.get("version") != 1 or review.get("image_size") != manifest["image_size"] or review.get("editorial_audit", {}).get("status") != "reviewed":
-            raise ValueError("archive editorial review is incomplete or inconsistent")
+        if review.get("version") != 1 or review.get("image_size") != manifest["image_size"]:
+            raise ValueError("archive review metadata is inconsistent")
+        editorial_status = review.get("editorial_audit", {}).get("status")
+        if editorial_status not in {"pending", "reviewed"}:
+            raise ValueError("archive editorial status is invalid")
         cursor = 0
         identities = set()
         for row in review["regions"]:
-            if type(row["offset"]) is not int or row["offset"] != cursor or type(row["length"]) is not int or row["length"] <= 0 or row["id"] in identities or row["status"] != "reviewed":
-                raise ValueError("archive reviewed regions must partition the ROM")
+            if (type(row["offset"]) is not int or row["offset"] != cursor
+                    or type(row["length"]) is not int or row["length"] <= 0
+                    or row["id"] in identities or row.get("status") not in {"pending", "reviewed"}):
+                raise ValueError("archive regions must validly partition the ROM")
             cursor += row["length"]
             identities.add(row["id"])
             for unit in row.get("units", []):
-                if unit["status"] != "reviewed" or type(unit["offset"]) is not int or type(unit["length"]) is not int or unit["offset"] < 0 or unit["length"] <= 0 or unit["offset"] + unit["length"] > manifest["image_size"]:
-                    raise ValueError("archive unit review is incomplete or outside the ROM")
+                if (unit.get("status") not in {"pending", "reviewed"}
+                        or type(unit.get("offset")) is not int or type(unit.get("length")) is not int
+                        or unit["offset"] < 0 or unit["length"] <= 0
+                        or unit["offset"] + unit["length"] > manifest["image_size"]):
+                    raise ValueError("archive unit review metadata is invalid")
         if cursor != manifest["image_size"]:
             raise ValueError("archive reviewed regions do not cover the whole ROM")
         phase.write_json(stage / "ledger.json", {"version": 1, "rom_sha256": manifest["rom_sha256"],
