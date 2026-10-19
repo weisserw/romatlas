@@ -86,7 +86,11 @@ impl Mapper for Mbc1 {
         }
     }
 
-    fn map_ram_read(&mut self,addr:u16)->MappingResult{self.physical_ram_offset(addr).map(MappingResult::Addr).unwrap_or(MappingResult::NotMapped)}
+    fn map_ram_read(&mut self, addr: u16) -> MappingResult {
+        self.physical_ram_offset(addr)
+            .map(MappingResult::Addr)
+            .unwrap_or(MappingResult::NotMapped)
+    }
     fn map_ram_write(&mut self, addr: u16, _data: u8) -> MappingResult {
         self.map_ram_read(addr)
     }

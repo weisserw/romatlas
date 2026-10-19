@@ -1,6 +1,6 @@
 //! ROMAtlas fork: optional, bounded, thread-local observation of actual core calls.
 //! No callbacks or inspector reads execute emulated bus operations.
-use std::cell::RefCell;
+use std::cell::{Cell, RefCell};
 #[derive(Clone, Debug)]
 pub struct Event {
     pub kind: &'static str,
@@ -23,7 +23,15 @@ struct Probe {
     dropped: u64,
     fetches: [u64; 2],
 }
-thread_local! { static PROBE: RefCell<Probe> = RefCell::default(); }
+thread_local! {
+    static PROBE: RefCell<Probe> = RefCell::default();
+    static SUSPENDED: Cell<bool> = const { Cell::new(false) };
+}
+/// Fast untraced execution deliberately records neither fetch counts nor evidence.
+pub fn suspend(value: bool) {
+    SUSPENDED.set(value);
+}
+
 pub fn begin(enabled: bool, cycle: u64) {
     PROBE.with_borrow_mut(|p| {
         p.enabled = enabled;
@@ -35,6 +43,9 @@ pub fn begin(enabled: bool, cycle: u64) {
     });
 }
 pub fn context(cpu: &'static str, origin: &'static str, cycle: u64) {
+    if SUSPENDED.get() {
+        return;
+    }
     PROBE.with_borrow_mut(|p| {
         p.cpu = cpu;
         p.origin = origin;
@@ -43,6 +54,9 @@ pub fn context(cpu: &'static str, origin: &'static str, cycle: u64) {
     });
 }
 pub fn emit(kind: &'static str, address: u32, value: u8, registers: Option<[u32; 10]>) {
+    if SUSPENDED.get() {
+        return;
+    }
     PROBE.with_borrow_mut(|p| {
         if kind == "instruction" {
             let i = usize::from(p.cpu == "spc700");
@@ -76,5 +90,8 @@ pub fn drain() -> (Vec<Event>, u64) {
 }
 
 pub fn space(space: &'static str) {
+    if SUSPENDED.get() {
+        return;
+    }
     PROBE.with_borrow_mut(|p| p.space = space);
 }

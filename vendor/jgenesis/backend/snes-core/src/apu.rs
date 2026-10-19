@@ -264,7 +264,9 @@ macro_rules! new_spc700_bus {
 }
 
 impl Apu {
-    pub fn debug_ipl(&self,offset:usize)->Option<u8>{bootrom::SPC700_BOOT_ROM.get(offset).copied()}
+    pub fn debug_ipl(&self, offset: usize) -> Option<u8> {
+        bootrom::SPC700_BOOT_ROM.get(offset).copied()
+    }
     pub fn debug_set_registers(&mut self, r: spc700_emu::Registers) {
         self.spc700.debug_set_registers(r);
     }
@@ -338,7 +340,7 @@ impl Apu {
             if self.sample_divider == 0 {
                 self.sample_divider = SAMPLE_DIVIDER;
 
-                jgenesis_common::romatlas_debug::context("spc700","dsp",self.debug_spc_cycles);
+                jgenesis_common::romatlas_debug::context("spc700", "dsp", self.debug_spc_cycles);
                 jgenesis_common::romatlas_debug::space("aram");
                 let (sample_l, sample_r) = self.dsp.clock(&mut self.audio_ram);
                 let sample_l = f64::from(sample_l) / -f64::from(i16::MIN);

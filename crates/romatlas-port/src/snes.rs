@@ -1,5 +1,5 @@
 //! Native-port SNES asset helpers. Original implementation, no emulator dependency.
-//! Ports own layer composition, timing, gameplay and sound behavior.
+//! Ports own game rules and supply layer setup, timing and sound commands.
 use crate::graphics::Color;
 use anyhow::{Result, ensure};
 /// Decode an 8x8 SNES planar tile. Planes are stored in pairs 16 bytes apart.
@@ -134,3 +134,8 @@ mod input_defaults_tests {
         assert_eq!(crate::settings::Settings::default().bindings.len(), 8);
     }
 }
+
+/// Native BRR playback and DSP building blocks; no SPC700 emulator dependency.
+pub mod audio;
+/// Scanline rendering primitives independent of the emulator and game rules.
+pub mod ppu;

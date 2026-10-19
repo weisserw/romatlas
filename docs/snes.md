@@ -91,6 +91,7 @@ The examples below are method/params; wrap each in JSON-RPC 2.0 with an id.
 | emulator.state / emulator.capabilities | both CPUs, emulation clocks and supported spaces/units |
 | emulator.step | `cpu: "main"` or `"spc700"`, `unit: "operation"`, `"cycle"`, `"frame"`, `count`, `max_operations`, `timeout_ms` |
 | emulator.run | same; `operations` aliases count |
+| emulator.run_fast | untraced `frame`/`cycle` runs with partial budget results and optional output capture; see below |
 | emulator.input | complete pressed `buttons` array for selected `port` (1 default, or 2); empty releases it; the other controller is preserved |
 | emulator.reset | deterministic cold reset, preserving SRAM; clears held input and named snapshots |
 | emulator.memory | mapped `space` (default cpu), `address`, `length` (max 4096) |
@@ -256,3 +257,45 @@ The SNES baseline is incremental, like the Game Boy adapter. Live debugger playb
 unsafe I/O inspection, automatic upload attribution, external coprocessors and rare
 hardware remain outside this initial implementation. Do not launch desktop graphics
 on the headless server; desktop-feature tests compile code without opening devices.
+
+## Fast scenario replay
+
+`emulator.run_fast` is an explicitly untraced alternative to `emulator.step`.
+It accepts `unit: "frame"` (default) or `"cycle"`, `count` (default 1),
+`max_operations` (default/max 100000000 core ticks) and `timeout_ms`
+(default 1000, range 1..300000). `capture_frame` and `capture_audio` are strict
+booleans, both false by default. It advances the same CPU/APU/PPU machine, but
+uses lightweight progress counters, suspends debug probes and skips output
+copying/hashing/audio capture unless requested. It still computes emulated PPU
+and DSP behavior. Capture flags do not accelerate the underlying hardware logic.
+Configured tracing is preserved for subsequent ordinary steps.
+
+```json
+{"jsonrpc":"2.0","id":1,"method":"emulator.run_fast","params":{"count":1200,"timeout_ms":30000}}
+```
+
+The result contains `state`, `unit`, `requested`, `completed`, `remaining`, `ticks`,
+`complete`, `stop_reason` (`complete`, `timeout`, `operation_budget`), capture
+flags and `traced:false`. Budget stops are successful partial results, retaining
+the live machine. Resume with `count: remaining` and the same unit/input.
+Cycle counts can overshoot to the next core tick. A zero count completes without
+advancing. Invalid options fail before mutation; actual core errors remain errors.
+Timeout bounds apply to the advance loop, with at most one core-tick overshoot;
+collecting the final response and explicitly exporting a snapshot add host time.
+
+For durable checkpoints, call `emulator.snapshot.export` with a new local path
+after each segment; restart a server on the same ROM and import that path before
+resuming. The existing snapshot includes core progress and held input. To inspect
+RAM or registers, use the ordinary inspection calls after any segment. For a
+framebuffer checkpoint set `capture_frame:true` on that segment, then export it.
+Every fast call clears prior framebuffer capture; a noncapturing call leaves no
+framebuffer, rather than returning a stale picture. Audio uses the existing
+bounded append-only capture; clear/export between capturing segments as needed.
+
+Fast runs add no coverage, contexts, edges or streaming records, and split
+successor chains on entry/exit. Existing evidence remains historical. Use ordinary
+`emulator.step` with `trace.configure` enabled when collecting instruction evidence.
+Never interpret a fast-run final PC as execution coverage.
+
+Native rendering/audio APIs and their accuracy boundaries are documented in
+[native SNES helpers](snes-native.md).

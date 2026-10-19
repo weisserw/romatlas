@@ -60,9 +60,15 @@ pub trait Mapper {
 
     fn map_read_romx(&self, addr: u16) -> usize;
 
-    fn physical_ram_offset(&self,_addr:u16)->Option<usize>{None}
-    fn selected_rtc(&self)->Option<u8>{None}
-    fn rtc_values(&self)->Option<[u8;5]>{None}
+    fn physical_ram_offset(&self, _addr: u16) -> Option<usize> {
+        None
+    }
+    fn selected_rtc(&self) -> Option<u8> {
+        None
+    }
+    fn rtc_values(&self) -> Option<[u8; 5]> {
+        None
+    }
     fn map_ram_read(&mut self, addr: u16) -> MappingResult;
 
     fn map_ram_write(&mut self, addr: u16, data: u8) -> MappingResult;

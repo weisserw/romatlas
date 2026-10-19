@@ -156,22 +156,54 @@ impl GameBoy {
     }
 
     /// ROMAtlas: one CPU operation, including interrupt/HALT/HDMA states.
-    pub fn step_operation(&mut self)->(Result<cpu::CpuState,cpu::RunError>,u32){self.bus.elapsed_ppu_cycles();self.bus.begin_trace_operation();let result=self.cpu.next_instruction(&mut self.bus);let cycles=self.bus.elapsed_ppu_cycles();(result,cycles)}
-    pub fn step_instruction(&mut self)->Result<(cpu::CpuState,u32),cpu::RunError>{let (result,cycles)=self.step_operation();result.map(|state|(state,cycles))}
-    pub fn cartridge_image_hash(&self) -> [u8;32] { self.bus.cartridge_image_hash() }
-    pub fn cartridge_storage_shape(&self)->(u64,u64){self.bus.cartridge_storage_shape()}
-    pub fn physical_memory(&self,space:&str,offset:usize,length:usize)->Option<Vec<u8>>{self.bus.physical_memory(space,offset,length)}
-    pub fn access_location(&self,address:u16)->Option<memory::BusLocation>{self.bus.access_location(address,false,false).0}
-    pub fn hardware_state(&self)->(bool,u8,u8,bool){self.bus.hardware_state()}
-    pub fn frame_count(&self)->u64{self.bus.frame_count()}
-    pub fn configure_trace(&mut self,enabled:bool){self.bus.configure_trace(enabled);}
-    pub fn take_bus_events(&mut self)->Vec<memory::BusEvent>{self.bus.take_bus_events()}
+    pub fn step_operation(&mut self) -> (Result<cpu::CpuState, cpu::RunError>, u32) {
+        self.bus.elapsed_ppu_cycles();
+        self.bus.begin_trace_operation();
+        let result = self.cpu.next_instruction(&mut self.bus);
+        let cycles = self.bus.elapsed_ppu_cycles();
+        (result, cycles)
+    }
+    pub fn step_instruction(&mut self) -> Result<(cpu::CpuState, u32), cpu::RunError> {
+        let (result, cycles) = self.step_operation();
+        result.map(|state| (state, cycles))
+    }
+    pub fn cartridge_image_hash(&self) -> [u8; 32] {
+        self.bus.cartridge_image_hash()
+    }
+    pub fn cartridge_storage_shape(&self) -> (u64, u64) {
+        self.bus.cartridge_storage_shape()
+    }
+    pub fn physical_memory(&self, space: &str, offset: usize, length: usize) -> Option<Vec<u8>> {
+        self.bus.physical_memory(space, offset, length)
+    }
+    pub fn access_location(&self, address: u16) -> Option<memory::BusLocation> {
+        self.bus.access_location(address, false, false).0
+    }
+    pub fn hardware_state(&self) -> (bool, u8, u8, bool) {
+        self.bus.hardware_state()
+    }
+    pub fn frame_count(&self) -> u64 {
+        self.bus.frame_count()
+    }
+    pub fn configure_trace(&mut self, enabled: bool) {
+        self.bus.configure_trace(enabled);
+    }
+    pub fn take_bus_events(&mut self) -> Vec<memory::BusEvent> {
+        self.bus.take_bus_events()
+    }
     /// ROMAtlas: register inspection without hardware accesses.
     pub fn cpu_registers(&self) -> cpu::CpuRegisters {
         cpu::CpuRegisters {
-            a:self.cpu.reg_a,b:self.cpu.reg_b,c:self.cpu.reg_c,d:self.cpu.reg_d,
-            e:self.cpu.reg_e,f:self.cpu.reg_af_read() as u8,h:self.cpu.reg_h,l:self.cpu.reg_l,
-            sp:self.cpu.reg_sp,pc:self.cpu.reg_pc,
+            a: self.cpu.reg_a,
+            b: self.cpu.reg_b,
+            c: self.cpu.reg_c,
+            d: self.cpu.reg_d,
+            e: self.cpu.reg_e,
+            f: self.cpu.reg_af_read() as u8,
+            h: self.cpu.reg_h,
+            l: self.cpu.reg_l,
+            sp: self.cpu.reg_sp,
+            pc: self.cpu.reg_pc,
         }
     }
 
@@ -196,13 +228,16 @@ impl GameBoy {
 
     /// ROMAtlas: mapped read without ticks or OAM bus side effects.
     /// Restore internal state after register reads which may update mapper latches.
-    pub fn debug_peek(&mut self, addr:u16, len:usize) -> Result<Vec<u8>, SaveError> {
-        let mut state=Vec::new(); self.bus.save(&mut state)?;
-        let result=(0..len).map(|i|self.bus.read_not_ticked(addr.wrapping_add(i as u16),None)).collect();
+    pub fn debug_peek(&mut self, addr: u16, len: usize) -> Result<Vec<u8>, SaveError> {
+        let mut state = Vec::new();
+        self.bus.save(&mut state)?;
+        let result = (0..len)
+            .map(|i| self.bus.read_not_ticked(addr.wrapping_add(i as u16), None))
+            .collect();
         self.bus.load(&mut Cursor::new(state))?;
         Ok(result)
     }
-    pub fn physical_rom_offset(&self,addr:u16)->Option<usize> {
+    pub fn physical_rom_offset(&self, addr: u16) -> Option<usize> {
         self.bus.cartridge().physical_rom_offset(addr)
     }
     /// Clocks the Gameboy clock for the duration of one PPU frame.

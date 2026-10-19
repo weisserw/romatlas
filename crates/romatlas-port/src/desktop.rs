@@ -78,54 +78,76 @@ fn physical(
     events: &sdl2::EventPump,
     controllers: &[GameController],
     active: Option<u32>,
-) -> PhysicalInput {
-    let mut input = PhysicalInput::default();
+) -> [PhysicalInput; 4] {
+    let mut inputs: [PhysicalInput; 4] = Default::default();
     for scancode in events.keyboard_state().pressed_scancodes() {
         if let Some(key) = Keycode::from_scancode(scancode) {
-            input.keys.insert(key.name());
+            inputs[0].keys.insert(key.name());
         }
     }
-    if let Some(controller) = controllers
+    let active_controller = controllers
         .iter()
-        .find(|c| Some(c.instance_id()) == active && c.attached())
-    {
-        for button in [
-            Button::A,
-            Button::B,
-            Button::X,
-            Button::Y,
-            Button::Back,
-            Button::Guide,
-            Button::Start,
-            Button::LeftStick,
-            Button::RightStick,
-            Button::LeftShoulder,
-            Button::RightShoulder,
-            Button::DPadUp,
-            Button::DPadDown,
-            Button::DPadLeft,
-            Button::DPadRight,
-        ] {
-            if controller.button(button) {
-                input.buttons.insert(button.string());
-            }
+        .find(|c| Some(c.instance_id()) == active && c.attached());
+    if let Some(controller) = active_controller {
+        read_controller(controller, &mut inputs[0]);
+    }
+    let mut player = 1;
+    for controller in controllers.iter().filter(|c| {
+        c.attached() && Some(c.instance_id()) != active_controller.map(GameController::instance_id)
+    }) {
+        if player == inputs.len() {
+            break;
         }
-        for axis in [
-            Axis::LeftX,
-            Axis::LeftY,
-            Axis::RightX,
-            Axis::RightY,
-            Axis::TriggerLeft,
-            Axis::TriggerRight,
-        ] {
-            let raw = controller.axis(axis);
-            input.axes.insert(
-                axis.string(),
-                f32::from(raw) / if raw < 0 { 32768.0 } else { 32767.0 },
-            );
+        read_controller(controller, &mut inputs[player]);
+        player += 1;
+    }
+    inputs
+}
+
+fn read_controller(controller: &GameController, input: &mut PhysicalInput) {
+    for button in [
+        Button::A,
+        Button::B,
+        Button::X,
+        Button::Y,
+        Button::Back,
+        Button::Guide,
+        Button::Start,
+        Button::LeftStick,
+        Button::RightStick,
+        Button::LeftShoulder,
+        Button::RightShoulder,
+        Button::DPadUp,
+        Button::DPadDown,
+        Button::DPadLeft,
+        Button::DPadRight,
+    ] {
+        if controller.button(button) {
+            input.buttons.insert(button.string());
         }
     }
-    input
+    for axis in [
+        Axis::LeftX,
+        Axis::LeftY,
+        Axis::RightX,
+        Axis::RightY,
+        Axis::TriggerLeft,
+        Axis::TriggerRight,
+    ] {
+        let raw = controller.axis(axis);
+        input.axes.insert(
+            axis.string(),
+            f32::from(raw) / if raw < 0 { 32768.0 } else { 32767.0 },
+        );
+    }
+}
+
+fn filter_players(
+    latches: &mut [InputLatch; 4],
+    physical: [PhysicalInput; 4],
+    dead_zone: f32,
+) -> [PhysicalInput; 4] {
+    std::array::from_fn(|player| latches[player].filter(physical[player].clone(), dead_zone))
 }
 
 /// Aspect-preserving fit, including windows smaller than the original frame.
@@ -218,7 +240,7 @@ pub fn run(
     let mut active_pad = selected(&pads, &settings);
     let mut events = sdl(context.event_pump())?;
     let mut mapper = InputMapper::default();
-    let mut latch = InputLatch::default();
+    let mut latches: [InputLatch; 4] = Default::default();
     let mut menu = Menu::default();
     let mut focused = true;
     let mut paused_before = false;
@@ -363,22 +385,24 @@ pub fn run(
         if boundary || paused != paused_before {
             clock.reset();
             mapper.clear();
-            latch.suppress(&physical);
+            for (latch, player) in latches.iter_mut().zip(&physical) {
+                latch.suppress(player);
+            }
             if let Some(queue) = &audio {
                 queue.clear();
             }
         }
         paused_before = paused;
-        let physical = latch.filter(physical, settings.dead_zone);
+        let physical = filter_players(&mut latches, physical, settings.dead_zone);
         if !paused {
             let advancement = clock.advance(if boundary { Duration::ZERO } else { elapsed });
             for _ in 0..advancement.ticks {
                 let input = if focused {
-                    mapper.sample(&physical, &settings)
+                    mapper.sample_players(&physical, &settings)
                 } else {
-                    mapper.sample(&PhysicalInput::default(), &settings)
+                    mapper.sample_players(&Default::default(), &settings)
                 };
-                game.tick(&input);
+                game.tick_players(&input);
                 let sample_frames = sample_clock.next_tick();
                 let mut samples = Vec::new();
                 game.audio(sample_frames, sample_rate, &mut samples);

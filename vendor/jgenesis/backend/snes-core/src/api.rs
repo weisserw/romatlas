@@ -168,8 +168,12 @@ pub struct SnesEmulator {
 }
 
 impl SnesEmulator {
-    pub fn debug_ipl(&self,offset:usize)->Option<u8>{self.apu.debug_ipl(offset)}
-    pub fn debug_ppu_storage(&self,space:&str,offset:usize)->Option<u8>{self.ppu.debug_storage(space,offset)}
+    pub fn debug_ipl(&self, offset: usize) -> Option<u8> {
+        self.apu.debug_ipl(offset)
+    }
+    pub fn debug_ppu_storage(&self, space: &str, offset: usize) -> Option<u8> {
+        self.ppu.debug_storage(space, offset)
+    }
     pub fn debug_set_main(&mut self, r: wdc65816_emu::core::Registers) {
         self.main_cpu.set_registers(r);
     }
@@ -183,6 +187,11 @@ impl SnesEmulator {
             "aram" => self.apu.debug_write_aram(offset, value),
             _ => unreachable!(),
         }
+    }
+
+    /// Lightweight progress counters, without collecting either CPU's registers.
+    pub fn debug_progress(&self) -> (u64, u64) {
+        (self.total_master_cycles, self.frame_count)
     }
 
     pub fn debug_state(&self) -> (u64, u64, &wdc65816_emu::core::Registers, bool) {

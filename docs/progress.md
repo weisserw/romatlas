@@ -978,3 +978,62 @@ incomplete-review GB and SNES archives. The previously blocked Super Off Road ar
 prepares successfully to `/root/rom-ports/super-off-road/` with byte-identical
 reference restoration. Its archive remains unchanged and no ROM or extracted assets
 were added to the repository.
+
+2026-10-19: Added `MultiInputState` with four independent held/pressed/released
+action sets, an opt-in `Game::tick_players` method that preserves legacy
+`Game::tick`, and `InputMapper::sample_players`. SDL desktop input keeps the
+keyboard and selected controller in player zero and routes up to three other
+controllers to their own slots; latches and edge history remain per-player.
+ROMAtlas port tests (11 unit, 11 runtime), desktop-feature Clippy, the native
+Super Off Road `python3 run.py check`, and `scripts/test-port.py` pass. No
+desktop device was initialized. Game-specific multiplayer behavior is not
+implemented by this toolkit change.
+
+2026-10-19: Added `headless_players`, which accepts scripted four-slot input
+and advances `Game::tick_players` without initializing frontend devices. The
+legacy `headless` function now adapts its input into slot zero and uses the same
+path. A runtime test verifies secondary-slot delivery. `cargo test --locked -p
+romatlas-port` (11 unit, 12 runtime), desktop-feature Clippy,
+`scripts/test-port.py`, and `scripts/test-boundaries.py` pass.
+
+2026-10-19: Implemented toolkit additions requested by the Super Off Road porting
+interview. SNES `emulator.run_fast` advances frame/cycle units with lightweight
+core progress counters, suspended debug probes and opt-in framebuffer/audio
+capture. Timeout/tick-budget stops return partial progress and remaining counts;
+existing snapshot export/import provides durable resumable checkpoints. Ordinary
+stepping still supports traced instruction evidence and now avoids unnecessary
+full CPU-state collection for progress checks. Fast gaps split successor chains,
+produce no coverage, clear stale frame capture and preserve artificial SRAM-change
+provenance. No game workspace or original ROM/assets were changed.
+
+Independent MIT `romatlas-port::snes::ppu` adds wrapped planar BG/tilemap sampling,
+large-tile flips, OAM decoding/sampling and ordered OBJ scanlines, windows, Mode 1
+ranks, main/subscreen selection, five-bit color math and scanline composition.
+Independent native audio adds BRR predictors, validated looping sources, pitched
+voices, ADSR/GAIN, noise, stereo mixing and private-buffer FIR echo. Ports supply
+layer/driver/game timing decisions. docs/snes-native.md documents APIs and limits:
+these are not a full PPU/SPC700/S-DSP implementation; linear audio interpolation,
+non-cycle-exact DSP behavior and unsupported rendering modes remain explicit.
+No GPL implementation was copied into the native runtime.
+
+Synthetic fast/traced regression compares final CPU state, WRAM, framebuffer and
+WAV bytes; checks tick-budget checkpoint export/import/resume, timeout progress,
+zero/invalid requests, cycle advancement, no fast-run evidence and resumed tracing.
+Eight native helper tests cover planar/map/OBJ ordering, windows/math, BRR predictor
+vectors, envelopes/noise, source termination/looping and deterministic echo/mix replay.
+A local synthetic 120-frame sample measured ordinary untraced stepping at 6.458 s
+and fast at 4.960 s during concurrent builds. A separate fast 1200-frame run
+completed in 22.449 s; a 30 s segment under load returned 903/1200 frames with 297
+remaining. These are environment-dependent synthetic observations, not commercial
+game timings, hardware fidelity claims or a promised performance multiplier.
+
+Validation on Rust 1.90.0 passes: locked release build, workspace fmt, all-target
+workspace Clippy with warnings denied and locked workspace tests; native-runtime
+desktop-feature Clippy/tests without devices; test-port.py, test-session.py,
+test-boundaries.py, deterministic stock Game Boy portability, pinned licensed
+homebrew gameplay/replay/rebuild regressions and Python compilation. Full
+production test-snes.py passes both LoROM/HiROM fast replay, durable checkpoint
+resume, artificial SRAM/reset provenance and existing reconstruction/workspace
+flows. test-snes-cpu.sh passes the 832 pinned sampled CPU vectors. All generated
+fixtures, snapshots, audio, framebuffers and game assets remain local/ignored.
+Changes are uncommitted; pre-existing multiplayer and emulator changes remain.

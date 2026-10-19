@@ -11,7 +11,9 @@ use instruction::{Condition, Instruction, Opcode, OperandType};
 pub trait CpuBusProvider {
     fn read(&mut self, addr: u16) -> u8;
     fn write(&mut self, addr: u16, data: u8);
-    fn fetch_read(&mut self, addr:u16)->u8 {self.read(addr)}
+    fn fetch_read(&mut self, addr: u16) -> u8 {
+        self.read(addr)
+    }
     fn mark_opcode(&mut self) {}
     fn idle_cycle(&mut self);
 
@@ -22,7 +24,9 @@ pub trait CpuBusProvider {
 
     fn enter_stop_mode(&mut self);
     fn stopped(&self) -> bool;
-    fn speed_switching(&self) -> bool { false }
+    fn speed_switching(&self) -> bool {
+        false
+    }
 
     /// Triggers oam_bug without clock, this is used for inc/dec instructions
     fn trigger_write_oam_bug(&mut self, addr: u16);
@@ -51,7 +55,7 @@ pub struct CpuRegisters {
 
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum RunError {
-    IllegalInstruction
+    IllegalInstruction,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -161,7 +165,10 @@ impl Cpu {
         cpu
     }
 
-    pub fn next_instruction<P: CpuBusProvider>(&mut self, bus: &mut P) -> Result<CpuState, RunError> {
+    pub fn next_instruction<P: CpuBusProvider>(
+        &mut self,
+        bus: &mut P,
+    ) -> Result<CpuState, RunError> {
         if bus.speed_switching() {
             self.advance_bus(bus);
             return Ok(CpuState::SpeedSwitching);
@@ -183,7 +190,6 @@ impl Cpu {
 
             if bus.peek_next_interrupt().is_some() {
                 self.halt_mode = HaltMode::NotHalting;
-
             } else {
                 return Ok(CpuState::Halting);
             }
@@ -246,7 +252,7 @@ impl Cpu {
                 self.reg_pc = pc;
                 Err(e)
             }
-            Ok(r) => Ok(r)
+            Ok(r) => Ok(r),
         }
     }
 }
@@ -940,7 +946,7 @@ impl Cpu {
             }
             Opcode::Stop => {
                 // STOP consumes its padding byte without adding another CPU operation.
-                self.reg_pc=self.reg_pc.wrapping_add(1);
+                self.reg_pc = self.reg_pc.wrapping_add(1);
                 bus.enter_stop_mode();
                 Ok(0)
             }

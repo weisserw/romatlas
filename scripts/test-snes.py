@@ -317,13 +317,67 @@ def large_discovery(work, original):
     finally:session.close()
 
 
+def fast_runtime(work, rom):
+    work=work/f'fast-{rom.stem}';work.mkdir()
+    s=Session(rom)
+    try:
+        s.rpc('emulator.start')
+        s.rpc('emulator.input',dict(buttons=['B']))
+        s.rpc('emulator.snapshot.save',dict(name='fast-root'))
+        s.rpc('trace.configure',dict(enabled=True,capacity=100))
+        traced=s.rpc('emulator.step',dict(unit='frame',count=3,timeout_ms=10000,max_operations=10000000))
+        memory=s.rpc('emulator.physical_memory',dict(space='wram',length=1024))
+        frame=work/'traced.ppm';s.rpc('emulator.framebuffer',dict(path=str(frame)))
+        audio=work/'traced.wav';s.rpc('emulator.audio.export',dict(path=str(audio)))
+        s.rpc('emulator.snapshot.load',dict(name='fast-root'))
+        s.rpc('trace.clear')
+        fast=s.rpc('emulator.run_fast',dict(count=3,timeout_ms=10000,capture_frame=True,capture_audio=True))
+        assert fast['complete'] and fast['state']==traced and fast['completed']==3
+        assert s.rpc('emulator.physical_memory',dict(space='wram',length=1024))==memory
+        frame2=work/'fast.ppm';s.rpc('emulator.framebuffer',dict(path=str(frame2)))
+        audio2=work/'fast.wav';s.rpc('emulator.audio.export',dict(path=str(audio2)))
+        assert frame.read_bytes()==frame2.read_bytes() and audio.read_bytes()==audio2.read_bytes()
+        assert s.rpc('trace.summary')['retained']==0
+        assert s.rpc('analysis.coverage')['total']==0
+        s.rpc('emulator.snapshot.load',dict(name='fast-root'))
+        part=s.rpc('emulator.run_fast',dict(count=3,max_operations=100,timeout_ms=10000))
+        assert not part['complete'] and part['stop_reason']=='operation_budget' and part['ticks']==100
+        checkpoint=work/'fast-checkpoint.json'
+        s.rpc('emulator.snapshot.export',dict(path=str(checkpoint)))
+        final=s.rpc('emulator.run_fast',dict(count=part['remaining'],timeout_ms=10000))
+        assert final['state']==traced
+        s.rpc('emulator.snapshot.import',dict(path=str(checkpoint)))
+        assert s.rpc('emulator.run_fast',dict(count=part['remaining'],timeout_ms=10000))['state']==traced
+        assert s.rpc('emulator.framebuffer')['pixels']==[]
+        before=s.rpc('emulator.state')
+        s.rpc('emulator.run_fast',dict(unit='operation'),ok=False)
+        s.rpc('emulator.run_fast',dict(capture_audio=1),ok=False)
+        assert s.rpc('emulator.state')==before
+        zero=s.rpc('emulator.run_fast',dict(count=0))
+        assert zero['complete'] and zero['ticks']==0
+        timeout=s.rpc('emulator.run_fast',dict(count=1000000,timeout_ms=1))
+        assert not timeout['complete'] and timeout['stop_reason']=='timeout' and timeout['ticks']>0
+        start=timeout['state']['master_cycles']
+        cycles=s.rpc('emulator.run_fast',dict(unit='cycle',count=100,timeout_ms=1000))
+        assert cycles['complete'] and cycles['state']['master_cycles']>=start+100
+        # Fast mode must not leave the probe disabled for subsequent traced calls.
+        s.rpc('emulator.step',dict(count=10,timeout_ms=1000))
+        assert s.rpc('trace.summary')['retained']>0
+        s.rpc('emulator.start')
+        s.rpc('emulator.memory.write',dict(space='wram',address=0x300,bytes=[42]))
+        artificial=s.rpc('emulator.run_fast',dict(count=2,timeout_ms=10000))
+        assert artificial['state']['artificial_sram']
+        assert s.rpc('emulator.reset')['artificial']
+    finally:s.close()
+
+
 def main():
     with tempfile.TemporaryDirectory(prefix='romatlas-snes-') as temporary:
         work=Path(temporary)
         for layout in ['lo','hi']:
             rom=fixture(work,layout)
             assert call('inspect',rom)['platform']=='snes'
-            runtime(work,rom,layout);reconstruction(work,rom,layout)
+            runtime(work,rom,layout);fast_runtime(work,rom);reconstruction(work,rom,layout)
             # Copier-header identity and preservation (not passed to cartridge).
             headered=work/f'{layout}.smc';headered.write_bytes(bytes([0x42])*512+rom.read_bytes())
             assert call('inspect',headered)['copier_header_size']==512
@@ -337,6 +391,6 @@ def main():
         finally:session.close()
         large_discovery(work,work/'lo.sfc')
         workflow(work,work/'lo.sfc')
-        print('PASS: production SNES LoROM/HiROM RPC, snapshots, audio, SRAM, bounded traces, maps and exact reconstruction')
+        print('PASS: production SNES LoROM/HiROM RPC, fast replay/checkpoints, snapshots, audio, SRAM, bounded traces, maps and exact reconstruction')
 
 if __name__=='__main__':main()

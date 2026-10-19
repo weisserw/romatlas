@@ -382,6 +382,41 @@ fn headless_uses_scripted_game_logic_without_initializing_frontend() -> Result<(
     Ok(())
 }
 
+#[test]
+fn headless_players_delivers_independent_secondary_input() -> Result<()> {
+    use romatlas_port::input::{MultiInputState, PlayerInput};
+    struct Example {
+        secondary: u8,
+    }
+    impl Game for Example {
+        fn tick(&mut self, _: &InputState) {}
+        fn tick_players(&mut self, input: &MultiInputState) {
+            if input.players[1].held("right") {
+                self.secondary += 1;
+            }
+        }
+        fn render(&self, frame: &mut Frame) {
+            frame.pixel(i32::from(self.secondary), 0, [255, 0, 0, 255]);
+        }
+    }
+    let mut game = Example { secondary: 0 };
+    romatlas_port::headless_players(
+        &mut game,
+        3,
+        |_| {
+            let mut input = MultiInputState::default();
+            input.players[1] = PlayerInput {
+                held: ["right".into()].into(),
+                ..Default::default()
+            };
+            input
+        },
+        (4, 1),
+    )?;
+    assert_eq!(game.secondary, 3);
+    Ok(())
+}
+
 #[cfg(feature = "desktop")]
 #[test]
 fn display_fit_calculations_need_no_display_server() {

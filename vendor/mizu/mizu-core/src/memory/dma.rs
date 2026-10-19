@@ -73,7 +73,9 @@ impl Hdma {
         }
     }
 
-    pub fn next_dest_address(&self)->u16{self.dest_addr}
+    pub fn next_dest_address(&self) -> u16 {
+        self.dest_addr
+    }
     pub fn get_next_src_address(&mut self) -> u16 {
         let result = self.source_addr;
         self.source_addr += 1;
@@ -161,7 +163,9 @@ impl OamDma {
         self.in_transfer
     }
 
-    pub fn transferring_byte(&self)->bool {self.in_transfer&&self.starting_delay==0}
+    pub fn transferring_byte(&self) -> bool {
+        self.in_transfer && self.starting_delay == 0
+    }
     pub fn get_next_address(&self) -> u16 {
         self.address
     }

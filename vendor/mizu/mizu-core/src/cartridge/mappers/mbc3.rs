@@ -4,43 +4,79 @@ use save_state::Savable;
 /// ROMAtlas RTC: deterministic oscillator time; no host clock or implicit elapsed-time import.
 #[derive(Default, Savable)]
 struct RtcRegister {
-    sub_second:u32,
-    live:[u8;5],
-    latched:[u8;5],
-    latched_valid:bool,
-    last_latch:u8,
+    sub_second: u32,
+    live: [u8; 5],
+    latched: [u8; 5],
+    latched_valid: bool,
+    last_latch: u8,
 }
 impl RtcRegister {
-    fn read_register(&self,index:u8)->u8 {
-        if self.latched_valid {self.latched[index as usize]}else{self.live[index as usize]}
+    fn read_register(&self, index: u8) -> u8 {
+        if self.latched_valid {
+            self.latched[index as usize]
+        } else {
+            self.live[index as usize]
+        }
     }
-    fn write_register(&mut self,index:u8,data:u8) {
-        self.live[index as usize]=data&match index {0|1=>0x3f,2=>0x1f,3=>0xff,4=>0xc1,_=>0};
-        if index==0 {self.sub_second=0;}
+    fn write_register(&mut self, index: u8, data: u8) {
+        self.live[index as usize] = data
+            & match index {
+                0 | 1 => 0x3f,
+                2 => 0x1f,
+                3 => 0xff,
+                4 => 0xc1,
+                _ => 0,
+            };
+        if index == 0 {
+            self.sub_second = 0;
+        }
     }
-    fn set_latch(&mut self,value:u8) {
-        if self.last_latch==0&&value==1 {self.latched=self.live;self.latched_valid=true;}
-        self.last_latch=value;
+    fn set_latch(&mut self, value: u8) {
+        if self.last_latch == 0 && value == 1 {
+            self.latched = self.live;
+            self.latched_valid = true;
+        }
+        self.last_latch = value;
     }
     fn clock_second_part(&mut self) {
-        if self.live[4]&0x40!=0{return;}
-        self.sub_second+=1;
-        if self.sub_second!=ONE_SECOND_MAPPER_CLOCKS{return;}
-        self.sub_second=0;
-        if self.live[0]!=59 {self.live[0]=(self.live[0]+1)&0x3f;return;}
-        self.live[0]=0;
-        if self.live[1]!=59 {self.live[1]=(self.live[1]+1)&0x3f;return;}
-        self.live[1]=0;
-        if self.live[2]!=23 {self.live[2]=(self.live[2]+1)&0x1f;return;}
-        self.live[2]=0;
-        let days=self.live[3] as u16+((self.live[4] as u16&1)<<8)+1;
-        self.live[3]=days as u8;
+        if self.live[4] & 0x40 != 0 {
+            return;
+        }
+        self.sub_second += 1;
+        if self.sub_second != ONE_SECOND_MAPPER_CLOCKS {
+            return;
+        }
+        self.sub_second = 0;
+        if self.live[0] != 59 {
+            self.live[0] = (self.live[0] + 1) & 0x3f;
+            return;
+        }
+        self.live[0] = 0;
+        if self.live[1] != 59 {
+            self.live[1] = (self.live[1] + 1) & 0x3f;
+            return;
+        }
+        self.live[1] = 0;
+        if self.live[2] != 23 {
+            self.live[2] = (self.live[2] + 1) & 0x1f;
+            return;
+        }
+        self.live[2] = 0;
+        let days = self.live[3] as u16 + ((self.live[4] as u16 & 1) << 8) + 1;
+        self.live[3] = days as u8;
         // Carry is sticky until the program clears day-high bit 7.
-        self.live[4]=(self.live[4]&0xc0)|((days>>8) as u8&1)|if days>511{0x80}else{0};
+        self.live[4] =
+            (self.live[4] & 0xc0) | ((days >> 8) as u8 & 1) | if days > 511 { 0x80 } else { 0 };
     }
-    fn save_battery_size(&self)->usize {self.save_size().unwrap() as usize}
-    fn save_battery(&self)->Vec<u8> {save_state::save_object(self).unwrap()}
-    fn load_battery(&mut self,data:&[u8]) {save_state::load_object(self,data).unwrap();}
+    fn save_battery_size(&self) -> usize {
+        self.save_size().unwrap() as usize
+    }
+    fn save_battery(&self) -> Vec<u8> {
+        save_state::save_object(self).unwrap()
+    }
+    fn load_battery(&mut self, data: &[u8]) {
+        save_state::load_object(self, data).unwrap();
+    }
 }
 
 #[derive(Default, Savable)]
@@ -68,7 +104,7 @@ impl Mbc3 {
             rtc_present: timer,
             rom_bank_4000: 1,
             ram_block_enable: false,
-            is_reading_ram:true,
+            is_reading_ram: true,
 
             ..Self::default()
         }
@@ -119,14 +155,39 @@ impl Mapper for Mbc3 {
         bank as usize * 0x4000 + addr as usize
     }
 
-    fn physical_ram_offset(&self,addr:u16)->Option<usize>{if self.ram_block_enable&&self.is_reading_ram {if let MappingResult::Addr(offset)=self.map_ram(addr){return Some(offset);}}None}
-    fn rtc_values(&self)->Option<[u8;5]>{if self.rtc_present{Some(std::array::from_fn(|i|self.rtc_register.read_register(i as u8)))}else{None}}
-    fn selected_rtc(&self)->Option<u8>{if self.ram_block_enable&&!self.is_reading_ram&&self.rtc_present&&self.current_rtc_register<5{Some(self.current_rtc_register)}else{None}}
+    fn physical_ram_offset(&self, addr: u16) -> Option<usize> {
+        if self.ram_block_enable && self.is_reading_ram {
+            if let MappingResult::Addr(offset) = self.map_ram(addr) {
+                return Some(offset);
+            }
+        }
+        None
+    }
+    fn rtc_values(&self) -> Option<[u8; 5]> {
+        if self.rtc_present {
+            Some(std::array::from_fn(|i| {
+                self.rtc_register.read_register(i as u8)
+            }))
+        } else {
+            None
+        }
+    }
+    fn selected_rtc(&self) -> Option<u8> {
+        if self.ram_block_enable
+            && !self.is_reading_ram
+            && self.rtc_present
+            && self.current_rtc_register < 5
+        {
+            Some(self.current_rtc_register)
+        } else {
+            None
+        }
+    }
     fn map_ram_read(&mut self, addr: u16) -> MappingResult {
         if self.ram_block_enable {
             if self.is_reading_ram {
                 self.map_ram(addr)
-            } else if self.rtc_present && self.current_rtc_register<5 {
+            } else if self.rtc_present && self.current_rtc_register < 5 {
                 MappingResult::Value(self.rtc_read())
             } else {
                 MappingResult::NotMapped
@@ -141,7 +202,7 @@ impl Mapper for Mbc3 {
             if self.is_reading_ram {
                 self.map_ram(addr)
             } else {
-                if self.rtc_present && self.current_rtc_register<5 {
+                if self.rtc_present && self.current_rtc_register < 5 {
                     self.rtc_write(data);
                 }
 
@@ -162,7 +223,11 @@ impl Mapper for Mbc3 {
                 }
             }
             0x4000..=0x5FFF => {
-                if !(data<=3||(8..=12).contains(&data)) {self.is_reading_ram=false;self.current_rtc_register=5;return;}
+                if !(data <= 3 || (8..=12).contains(&data)) {
+                    self.is_reading_ram = false;
+                    self.current_rtc_register = 5;
+                    return;
+                }
                 self.is_reading_ram = data <= 3;
 
                 if self.is_reading_ram {
@@ -203,7 +268,9 @@ impl Mapper for Mbc3 {
     }
 
     fn clock(&mut self) {
-        if self.rtc_present {self.rtc_register.clock_second_part();}
+        if self.rtc_present {
+            self.rtc_register.clock_second_part();
+        }
     }
 
     save_state_fns!();

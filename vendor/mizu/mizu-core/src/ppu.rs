@@ -169,7 +169,7 @@ impl Fetcher {
 
 #[derive(Savable)]
 pub struct Ppu {
-    pub frame_count:u64,
+    pub frame_count: u64,
     lcd_control: LcdControl,
     lcd_status: LcdStatus,
     scroll_y: u8,
@@ -268,7 +268,7 @@ impl Ppu {
         };
 
         Self {
-            frame_count:0,
+            frame_count: 0,
             lcd_control: LcdControl::from_bits_truncate(0),
             // COINCIDENCE_FLAG flag set because LYC and LY are 0 at the beginning
             lcd_status: LcdStatus::from_bits_truncate(4),
@@ -378,20 +378,29 @@ impl Ppu {
     }
 
     pub fn read_vram(&self, addr: u16) -> u8 {
-        if self.is_vram_locked(){return 0xff;}
+        if self.is_vram_locked() {
+            return 0xff;
+        }
         self.read_vram_banked(self.vram_bank, addr)
     }
 
     pub fn is_vram_locked(&self) -> bool {
-        if let Some(mode) = self.speed_switch_mode { return mode == 3; }
+        if let Some(mode) = self.speed_switch_mode {
+            return mode == 3;
+        }
         // CPU access locks start at the normal mode-2 boundary, before the
         // next PPU tick updates STAT. LCD-start line zero is still mode 0.
-        self.get_current_mode() == 3
-            || self.get_current_mode() == 2 && self.cycle == 80
+        self.get_current_mode() == 3 || self.get_current_mode() == 2 && self.cycle == 80
     }
-    pub fn is_vram_write_locked(&self) -> bool { self.speed_switch_mode.unwrap_or(self.get_current_mode()) == 3 }
-    pub fn write_vram(&mut self, addr: u16, data: u8) {if !self.is_vram_write_locked(){self.write_vram_no_lock(addr,data);}}
-    pub fn write_vram_no_lock(&mut self,addr:u16,data:u8){
+    pub fn is_vram_write_locked(&self) -> bool {
+        self.speed_switch_mode.unwrap_or(self.get_current_mode()) == 3
+    }
+    pub fn write_vram(&mut self, addr: u16, data: u8) {
+        if !self.is_vram_write_locked() {
+            self.write_vram_no_lock(addr, data);
+        }
+    }
+    pub fn write_vram_no_lock(&mut self, addr: u16, data: u8) {
         // here since this is the only place vram is written to, no need
         // to make another function `write_vram_banked`
         let offset = addr as usize & 0x1FFF;
@@ -413,8 +422,11 @@ impl Ppu {
         }
     }
     pub fn oam_write_locked(&self) -> bool {
-        if let Some(mode) = self.speed_switch_mode { return (2..=3).contains(&mode); }
-        (2..=3).contains(&self.get_current_mode()) && !(self.get_current_mode() == 2 && self.cycle == 80)
+        if let Some(mode) = self.speed_switch_mode {
+            return (2..=3).contains(&mode);
+        }
+        (2..=3).contains(&self.get_current_mode())
+            && !(self.get_current_mode() == 2 && self.cycle == 80)
     }
 
     /// This is used for DMA only, as it can write when OAM is normally blocked
@@ -623,12 +635,17 @@ impl Ppu {
     }
 
     pub fn read_cgb_bg_palettes_data(&self) -> u8 {
-        if self.is_vram_write_locked() { return 0xff; }
+        if self.is_vram_write_locked() {
+            return 0xff;
+        }
         self.cgb_bg_palettes.read_color_data()
     }
 
     pub fn write_cgb_bg_palettes_data(&mut self, data: u8) {
-        if self.is_vram_write_locked() { self.cgb_bg_palettes.advance_index(); return; }
+        if self.is_vram_write_locked() {
+            self.cgb_bg_palettes.advance_index();
+            return;
+        }
         self.cgb_bg_palettes.write_color_data(data);
     }
 
@@ -641,12 +658,17 @@ impl Ppu {
     }
 
     pub fn read_cgb_sprite_palettes_data(&self) -> u8 {
-        if self.is_vram_write_locked() { return 0xff; }
+        if self.is_vram_write_locked() {
+            return 0xff;
+        }
         self.cgb_sprite_palettes.read_color_data()
     }
 
     pub fn write_cgb_sprite_palettes_data(&mut self, data: u8) {
-        if self.is_vram_write_locked() { self.cgb_sprite_palettes.advance_index(); return; }
+        if self.is_vram_write_locked() {
+            self.cgb_sprite_palettes.advance_index();
+            return;
+        }
         self.cgb_sprite_palettes.write_color_data(data);
     }
 
@@ -673,9 +695,28 @@ impl Ppu {
         self.is_cgb_mode = cgb_mode && !self.config.is_dmg;
     }
 
-    pub fn oam_locked(&self)->bool{self.is_oam_locked()}
-    pub fn physical_memory(&self,space:&str,offset:usize,length:usize)->Option<Vec<u8>>{let end=offset.checked_add(length)?;match space{"vram"=>Some(self.vram[..if self.config.is_dmg{0x2000}else{0x4000}].get(offset..end)?.to_vec()),"oam" if end<=160=>Some((offset..end).map(|n|self.read_oam_no_lock(0xfe00+n as u16)).collect()),_=>None}}
-    pub fn dma_hblank(&self)->bool{self.lcd_control.display_enable()&&self.get_current_mode()==0&&self.cycle>=80}
+    pub fn oam_locked(&self) -> bool {
+        self.is_oam_locked()
+    }
+    pub fn physical_memory(&self, space: &str, offset: usize, length: usize) -> Option<Vec<u8>> {
+        let end = offset.checked_add(length)?;
+        match space {
+            "vram" => Some(
+                self.vram[..if self.config.is_dmg { 0x2000 } else { 0x4000 }]
+                    .get(offset..end)?
+                    .to_vec(),
+            ),
+            "oam" if end <= 160 => Some(
+                (offset..end)
+                    .map(|n| self.read_oam_no_lock(0xfe00 + n as u16))
+                    .collect(),
+            ),
+            _ => None,
+        }
+    }
+    pub fn dma_hblank(&self) -> bool {
+        self.lcd_control.display_enable() && self.get_current_mode() == 0 && self.cycle >= 80
+    }
     pub fn get_current_mode(&self) -> u8 {
         self.lcd_status.current_mode()
     }
@@ -699,9 +740,13 @@ impl Ppu {
     }
     pub fn begin_speed_switch(&mut self) {
         self.speed_switch_mode = Some(self.get_current_mode());
-        if self.get_current_mode() != 3 { self.selected_oam_size = 0; }
+        if self.get_current_mode() != 3 {
+            self.selected_oam_size = 0;
+        }
     }
-    pub fn finish_speed_switch(&mut self) { self.speed_switch_mode = None; }
+    pub fn finish_speed_switch(&mut self) {
+        self.speed_switch_mode = None;
+    }
 
     #[cfg(test)]
     pub fn raw_screen_buffer(&self) -> &[u8] {
@@ -710,7 +755,7 @@ impl Ppu {
 
     pub fn clock<I: InterruptManager>(&mut self, interrupt_manager: &mut I, clocks: u8) {
         let mut new_stat_int_happened = false;
-        let previous_ly=self.ly;
+        let previous_ly = self.ly;
 
         if !self.lcd_control.display_enable() {
             return;
@@ -778,9 +823,12 @@ impl Ppu {
                     new_stat_int_happened || self.lcd_status.mode_1_vblank_interrupt();
             }
             2 => {
-                if self.cycle == 4 { self.load_selected_sprites_oam(); }
+                if self.cycle == 4 {
+                    self.load_selected_sprites_oam();
+                }
                 if !(self.config.is_dmg && self.scanline == 0 && self.cycle == 0) {
-                    new_stat_int_happened = new_stat_int_happened || self.lcd_status.mode_2_oam_interrupt();
+                    new_stat_int_happened =
+                        new_stat_int_happened || self.lcd_status.mode_2_oam_interrupt();
                 }
             }
             3 => {
@@ -790,7 +838,8 @@ impl Ppu {
                         self.lcd_status.current_mode_set(0);
                         self.mode_3_end_cycle = self.cycle;
                         self.enter_hblank();
-                        new_stat_int_happened = new_stat_int_happened || self.lcd_status.mode_0_hblank_interrupt();
+                        new_stat_int_happened =
+                            new_stat_int_happened || self.lcd_status.mode_0_hblank_interrupt();
                         break;
                     }
                 }
@@ -835,7 +884,9 @@ impl Ppu {
             self.ly = self.scanline;
         }
 
-        if self.ly!=previous_ly {self.lcd_status.coincidence_flag_set(false);}
+        if self.ly != previous_ly {
+            self.lcd_status.coincidence_flag_set(false);
+        }
         self.lcd_turned_on = false;
     }
 }
@@ -843,7 +894,9 @@ impl Ppu {
 impl Ppu {
     /// The OAM is locked during mode 2 (OAM Scan), mode 3 (Rendering)
     fn is_oam_locked(&self) -> bool {
-        if let Some(mode) = self.speed_switch_mode { return (2..=3).contains(&mode); }
+        if let Some(mode) = self.speed_switch_mode {
+            return (2..=3).contains(&mode);
+        }
         (2..=3).contains(&self.get_current_mode())
             || self.lcd_control.display_enable() && self.scanline < 144 && self.cycle == 0
     }
@@ -896,7 +949,11 @@ impl Ppu {
         self.vram[bank_start + offset]
     }
     fn read_vram_for_ppu(&self, bank: u8, addr: u16) -> u8 {
-        if matches!(self.speed_switch_mode, Some(0 | 1)) { 0xff } else { self.read_vram_banked(bank, addr) }
+        if matches!(self.speed_switch_mode, Some(0 | 1)) {
+            0xff
+        } else {
+            self.read_vram_banked(bank, addr)
+        }
     }
 
     /// return true, if this is the last draw in the current scanline, and
@@ -938,12 +995,13 @@ impl Ppu {
                 self.bg_fifo.pop();
                 self.sprite_fifo.pop();
             } else {
-
-
                 let color = self.get_next_color();
-                let color = if matches!(self.speed_switch_mode, Some(0 | 1)) { color!(0,0,0) } else { color };
+                let color = if matches!(self.speed_switch_mode, Some(0 | 1)) {
+                    color!(0, 0, 0)
+                } else {
+                    color
+                };
                 self.lcd.push(color, self.scanline);
-
             }
         }
 
@@ -1081,7 +1139,10 @@ impl Ppu {
     }
 
     fn load_selected_sprites_oam(&mut self) {
-        if matches!(self.speed_switch_mode, Some(0 | 1 | 2)) { self.selected_oam_size = 0; return; }
+        if matches!(self.speed_switch_mode, Some(0 | 1 | 2)) {
+            self.selected_oam_size = 0;
+            return;
+        }
         let mut count = 0;
         for (i, &sprite) in self.oam.iter().enumerate() {
             // in range
@@ -1109,7 +1170,9 @@ impl Ppu {
                 .enumerate()
             {
                 let (index, selected_sprite) = selected_sprite;
-                if self.fetched_sprites & (1 << index) != 0 { continue; }
+                if self.fetched_sprites & (1 << index) != 0 {
+                    continue;
+                }
                 let sprite = selected_sprite.sprite();
 
                 // the x index of the sprite is of the left of the display
@@ -1167,7 +1230,11 @@ impl Ppu {
                 }
             }
         }
-        if first_fetch && cost > 0 { cost - 3 } else { cost }
+        if first_fetch && cost > 0 {
+            cost - 3
+        } else {
+            cost
+        }
     }
 
     fn try_enter_window(&mut self) {
@@ -1206,7 +1273,7 @@ impl Ppu {
     }
 
     fn enter_vblank(&mut self) {
-        self.frame_count=self.frame_count.saturating_add(1);
+        self.frame_count = self.frame_count.saturating_add(1);
         // after drawing the screen reset the window y internal counter
         self.window_y_counter = 0;
     }
@@ -1294,7 +1361,13 @@ mod speed_switch_tests {
     }
     #[test]
     fn palette_access_and_blocked_write_index_wrap() {
-        let mut ppu = Ppu::new_skip_boot_rom(true, GameBoyConfig {is_dmg:false,..Default::default()});
+        let mut ppu = Ppu::new_skip_boot_rom(
+            true,
+            GameBoyConfig {
+                is_dmg: false,
+                ..Default::default()
+            },
+        );
         ppu.write_lcd_control(0);
         ppu.write_cgb_bg_palettes_index(63);
         ppu.write_cgb_sprite_palettes_index(63);

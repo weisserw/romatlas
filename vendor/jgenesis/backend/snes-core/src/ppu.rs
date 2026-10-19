@@ -437,9 +437,15 @@ const END_RENDER_LINE_MCLK: u64 = RENDER_LINE_MCLK + 256 * 4 - 3 * 4;
 const MODE_7_LATCH_MCLK: u64 = 40;
 
 impl Ppu {
-    pub fn debug_storage(&self,space:&str,offset:usize)->Option<u8>{
-        let word=match space {"vram"=>self.vram.get(offset/2),"cgram"=>self.cgram.get(offset/2),"oam" if offset<512=>self.oam_low.get(offset/2),"oam"=>return self.oam_high.get(offset.checked_sub(512)?).copied(),_=>return None}?;
-        Some(word.to_le_bytes()[offset&1])
+    pub fn debug_storage(&self, space: &str, offset: usize) -> Option<u8> {
+        let word = match space {
+            "vram" => self.vram.get(offset / 2),
+            "cgram" => self.cgram.get(offset / 2),
+            "oam" if offset < 512 => self.oam_low.get(offset / 2),
+            "oam" => return self.oam_high.get(offset.checked_sub(512)?).copied(),
+            _ => return None,
+        }?;
+        Some(word.to_le_bytes()[offset & 1])
     }
 
     pub fn new(timing_mode: TimingMode, config: SnesEmulatorConfig) -> Self {

@@ -364,7 +364,10 @@ impl Voice {
             .wrapping_add(u16::from(self.instrument_number) << 2) as usize;
 
         // First 2 bytes of table entry hold start address
-        let start_addr = u16::from_le_bytes([debug_read_ram(audio_ram,table_addr), debug_read_ram(audio_ram,table_addr + 1)]);
+        let start_addr = u16::from_le_bytes([
+            debug_read_ram(audio_ram, table_addr),
+            debug_read_ram(audio_ram, table_addr + 1),
+        ]);
         self.brr_block_address = start_addr;
         self.pitch_counter = 0;
 
@@ -378,7 +381,7 @@ impl Voice {
     fn decode_brr_group(&mut self, sample_table_address: u16, audio_ram: &AudioRam) {
         if self.brr_decoder_idx == 16 {
             // Advance to next block
-            let prev_block_header = debug_read_ram(audio_ram,self.brr_block_address as usize);
+            let prev_block_header = debug_read_ram(audio_ram, self.brr_block_address as usize);
             let prev_block_end_flag = prev_block_header.bit(0);
             if prev_block_end_flag {
                 self.end_flag_seen = true;
@@ -387,8 +390,10 @@ impl Voice {
                 let table_addr = sample_table_address
                     .wrapping_add(u16::from(self.instrument_number) << 2)
                     as usize;
-                let loop_addr =
-                    u16::from_le_bytes([debug_read_ram(audio_ram,table_addr + 2), debug_read_ram(audio_ram,table_addr + 3)]);
+                let loop_addr = u16::from_le_bytes([
+                    debug_read_ram(audio_ram, table_addr + 2),
+                    debug_read_ram(audio_ram, table_addr + 3),
+                ]);
                 self.brr_block_address = loop_addr;
             } else {
                 self.brr_block_address = self.brr_block_address.wrapping_add(BRR_BLOCK_LEN);
@@ -397,7 +402,7 @@ impl Voice {
             self.brr_decoder_idx = 0;
         }
 
-        let header = debug_read_ram(audio_ram,self.brr_block_address as usize);
+        let header = debug_read_ram(audio_ram, self.brr_block_address as usize);
         let shift = header >> 4;
         let filter = (header >> 2) & 0x03;
         let loop_flag = header.bit(1);
@@ -415,7 +420,7 @@ impl Voice {
             let sample_addr = self
                 .brr_block_address
                 .wrapping_add(1 + (decoder_idx >> 1) + i);
-            let sample_pair = debug_read_ram(audio_ram,sample_addr as usize);
+            let sample_pair = debug_read_ram(audio_ram, sample_addr as usize);
 
             // High nibble stores the first sample, low nibble stores the second sample
             // Treat both as signed 4-bit integers
@@ -768,17 +773,22 @@ impl EchoFilter {
 }
 
 fn read_echo_sample(audio_ram: &AudioRam, address: u16) -> i16 {
-    let lsb = debug_read_ram(audio_ram,address as usize);
-    let msb = debug_read_ram(audio_ram,address.wrapping_add(1) as usize);
+    let lsb = debug_read_ram(audio_ram, address as usize);
+    let msb = debug_read_ram(audio_ram, address.wrapping_add(1) as usize);
     i16::from_le_bytes([lsb, msb]) >> 1
 }
 
 fn write_echo_sample(audio_ram: &mut AudioRam, address: u16, value: i16) {
     let [value_lsb, value_msb] = value.to_le_bytes();
     audio_ram[address as usize] = value_lsb;
-    jgenesis_common::romatlas_debug::emit("write",u32::from(address),value_lsb,None);
+    jgenesis_common::romatlas_debug::emit("write", u32::from(address), value_lsb, None);
     audio_ram[address.wrapping_add(1) as usize] = value_msb;
-    jgenesis_common::romatlas_debug::emit("write",u32::from(address.wrapping_add(1)),value_msb,None);
+    jgenesis_common::romatlas_debug::emit(
+        "write",
+        u32::from(address.wrapping_add(1)),
+        value_msb,
+        None,
+    );
 }
 
 #[derive(Debug, Clone, Encode, Decode)]
@@ -1210,6 +1220,8 @@ impl AudioDsp {
 }
 
 // ROMAtlas: observe DSP sample/directory/echo reads and echo writes in ARAM.
-fn debug_read_ram(audio_ram:&AudioRam,index:usize)->u8 {
-    let value=audio_ram[index];jgenesis_common::romatlas_debug::emit("read",index as u32,value,None);value
+fn debug_read_ram(audio_ram: &AudioRam, index: usize) -> u8 {
+    let value = audio_ram[index];
+    jgenesis_common::romatlas_debug::emit("read", index as u32, value, None);
+    value
 }

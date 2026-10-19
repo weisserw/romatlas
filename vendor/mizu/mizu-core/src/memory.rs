@@ -209,18 +209,34 @@ impl std::ops::IndexMut<usize> for UnknownRegisters {
 }
 
 /// ROMAtlas: real CPU bus operation, sampled before peripheral time advances.
-#[derive(Clone,Debug)]
-pub struct BusEvent {pub kind:u8,pub address:u16,pub value:u8,pub rom_offset:Option<usize>,pub cycles:u32,pub banks:Option<(usize,usize)>,pub fixed_banks:Option<(usize,usize)>,pub target:Option<u16>,pub location:Option<BusLocation>,pub target_location:Option<BusLocation>,pub blocked:bool}
-#[derive(Clone,Debug)]
-pub struct BusLocation{pub space:&'static str,pub offset:usize,pub bank:Option<usize>}
+#[derive(Clone, Debug)]
+pub struct BusEvent {
+    pub kind: u8,
+    pub address: u16,
+    pub value: u8,
+    pub rom_offset: Option<usize>,
+    pub cycles: u32,
+    pub banks: Option<(usize, usize)>,
+    pub fixed_banks: Option<(usize, usize)>,
+    pub target: Option<u16>,
+    pub location: Option<BusLocation>,
+    pub target_location: Option<BusLocation>,
+    pub blocked: bool,
+}
+#[derive(Clone, Debug)]
+pub struct BusLocation {
+    pub space: &'static str,
+    pub offset: usize,
+    pub bank: Option<usize>,
+}
 #[derive(Savable)]
 pub struct Bus {
     #[savable(skip)]
-    trace_enabled:bool,
+    trace_enabled: bool,
     #[savable(skip)]
-    last_fetch:Option<usize>,
+    last_fetch: Option<usize>,
     #[savable(skip)]
-    bus_events:Vec<BusEvent>,
+    bus_events: Vec<BusEvent>,
     cartridge: Cartridge,
     ppu: Ppu,
     wram: Wram,
@@ -264,7 +280,9 @@ impl Bus {
         lock.finish_boot();
 
         Self {
-            trace_enabled:false, last_fetch:None,bus_events:Vec::new(),
+            trace_enabled: false,
+            last_fetch: None,
+            bus_events: Vec::new(),
             cartridge,
             ppu: Ppu::new_skip_boot_rom(cgb_mode, config),
             wram: Wram::default(),
@@ -319,37 +337,154 @@ impl Bus {
         s
     }
 
-    pub fn configure_trace(&mut self,enabled:bool){self.trace_enabled=enabled;self.bus_events.clear();}
-    pub fn begin_trace_operation(&mut self){self.bus_events.clear();self.last_fetch=None;}
-    pub fn take_bus_events(&mut self)->Vec<BusEvent>{std::mem::take(&mut self.bus_events)}
-    pub fn cartridge_image_hash(&self) -> [u8;32] { self.cartridge.image_hash() }
-    pub fn cartridge_storage_shape(&self)->(u64,u64){self.cartridge.storage_shape()}
-    pub fn physical_memory(&self,space:&str,offset:usize,length:usize)->Option<Vec<u8>>{let end=offset.checked_add(length)?;match space{"wram"=>Some(self.wram.data[..if self.config.is_dmg{0x2000}else{0x8000}].get(offset..end)?.to_vec()),"hram"=>Some(self.hram.get(offset..end)?.to_vec()),"vram"|"oam"=>self.ppu.physical_memory(space,offset,length),_=>self.cartridge.physical_memory(space,offset,length)}}
-    pub fn access_location(&self,address:u16,dma:bool,write:bool)->(Option<BusLocation>,bool){
-        let addr=if (0xe000..=0xfdff).contains(&address){0xc000|(address&0x1fff)}else{address};
-        let conflict=if dma{None}else{self.oam_dma.conflicting_bus()};
-        let blocked=match addr {0..=0x7fff=>matches!(conflict,Some(BusType::External)),0x8000..=0x9fff=>matches!(conflict,Some(BusType::Video))||((!dma||!write)&&if write { self.ppu.is_vram_write_locked() } else { self.ppu.is_vram_locked() }),0xa000..=0xdfff=>self.config.is_dmg&&matches!(conflict,Some(BusType::External)),0xfe00..=0xfe9f=>(!dma||!write)&&(conflict.is_some()||if write { self.ppu.oam_write_locked() } else { self.ppu.oam_locked() }),0xff69|0xff6b=>self.lock.is_cgb_mode()&&self.ppu.is_vram_write_locked(),_=>false};
-        if blocked{return (None,true);}
-        let mapped=|space,offset,bank|Some(BusLocation{space,offset,bank});
-        let location=match addr {
-            0..=0x7fff if write=>mapped("cartridge-controller",addr as usize,None),
-            0..=0x7fff=>self.cartridge.physical_rom_offset(addr).and_then(|n|mapped("cartridge-rom",n,Some(n/0x4000))),
-            0x8000..=0x9fff=>{let bank=(self.ppu.read_vram_bank()&1) as usize;mapped("vram",bank*0x2000+(addr as usize&0x1fff),Some(bank))},
-            0xa000..=0xbfff=>self.cartridge.physical_ram_offset(addr).and_then(|n|mapped("cartridge-ram",n,Some(n/0x2000))).or_else(||self.cartridge.selected_rtc().and_then(|n|mapped("cartridge-rtc",n as usize,None))),
-            0xc000..=0xcfff=>mapped("wram",addr as usize&0xfff,Some(0)),
-            0xd000..=0xdfff=>{let bank=self.wram.bank as usize;mapped("wram",bank*0x1000+(addr as usize&0xfff),Some(bank))},
-            0xfe00..=0xfe9f=>mapped("oam",addr as usize-0xfe00,None),
-            0xff80..=0xfffe=>mapped("hram",addr as usize-0xff80,None),
-            0xff00..=0xff7f=>mapped("io",addr as usize-0xff00,None),0xffff=>mapped("io",0xff,None),_=>None};(location,false)
+    pub fn configure_trace(&mut self, enabled: bool) {
+        self.trace_enabled = enabled;
+        self.bus_events.clear();
     }
-    fn record_access(&mut self,kind:u8,address:u16,value:u8){
-        if self.trace_enabled && self.bus_events.len()<32 {
-            let (location,blocked)=self.access_location(address,kind==5,kind==3||kind==4);
-            self.bus_events.push(BusEvent{kind,address,value,rom_offset:if kind!=5&&matches!(self.oam_dma.conflicting_bus(),Some(BusType::External)){None}else{self.cartridge.physical_rom_offset(address)},cycles:self.elapsed_ppu_cycles,banks:None,fixed_banks:None,target:None,location,target_location:None,blocked});
+    pub fn begin_trace_operation(&mut self) {
+        self.bus_events.clear();
+        self.last_fetch = None;
+    }
+    pub fn take_bus_events(&mut self) -> Vec<BusEvent> {
+        std::mem::take(&mut self.bus_events)
+    }
+    pub fn cartridge_image_hash(&self) -> [u8; 32] {
+        self.cartridge.image_hash()
+    }
+    pub fn cartridge_storage_shape(&self) -> (u64, u64) {
+        self.cartridge.storage_shape()
+    }
+    pub fn physical_memory(&self, space: &str, offset: usize, length: usize) -> Option<Vec<u8>> {
+        let end = offset.checked_add(length)?;
+        match space {
+            "wram" => Some(
+                self.wram.data[..if self.config.is_dmg { 0x2000 } else { 0x8000 }]
+                    .get(offset..end)?
+                    .to_vec(),
+            ),
+            "hram" => Some(self.hram.get(offset..end)?.to_vec()),
+            "vram" | "oam" => self.ppu.physical_memory(space, offset, length),
+            _ => self.cartridge.physical_memory(space, offset, length),
         }
     }
-    pub fn hardware_state(&self)->(bool,u8,u8,bool){(self.config.is_dmg,self.wram.bank,self.ppu.read_vram_bank()&1,self.speed_controller.current_speed()==Speed::Double)}
-    pub fn frame_count(&self)->u64{self.ppu.frame_count}
+    pub fn access_location(
+        &self,
+        address: u16,
+        dma: bool,
+        write: bool,
+    ) -> (Option<BusLocation>, bool) {
+        let addr = if (0xe000..=0xfdff).contains(&address) {
+            0xc000 | (address & 0x1fff)
+        } else {
+            address
+        };
+        let conflict = if dma {
+            None
+        } else {
+            self.oam_dma.conflicting_bus()
+        };
+        let blocked = match addr {
+            0..=0x7fff => matches!(conflict, Some(BusType::External)),
+            0x8000..=0x9fff => {
+                matches!(conflict, Some(BusType::Video))
+                    || ((!dma || !write)
+                        && if write {
+                            self.ppu.is_vram_write_locked()
+                        } else {
+                            self.ppu.is_vram_locked()
+                        })
+            }
+            0xa000..=0xdfff => self.config.is_dmg && matches!(conflict, Some(BusType::External)),
+            0xfe00..=0xfe9f => {
+                (!dma || !write)
+                    && (conflict.is_some()
+                        || if write {
+                            self.ppu.oam_write_locked()
+                        } else {
+                            self.ppu.oam_locked()
+                        })
+            }
+            0xff69 | 0xff6b => self.lock.is_cgb_mode() && self.ppu.is_vram_write_locked(),
+            _ => false,
+        };
+        if blocked {
+            return (None, true);
+        }
+        let mapped = |space, offset, bank| {
+            Some(BusLocation {
+                space,
+                offset,
+                bank,
+            })
+        };
+        let location = match addr {
+            0..=0x7fff if write => mapped("cartridge-controller", addr as usize, None),
+            0..=0x7fff => self
+                .cartridge
+                .physical_rom_offset(addr)
+                .and_then(|n| mapped("cartridge-rom", n, Some(n / 0x4000))),
+            0x8000..=0x9fff => {
+                let bank = (self.ppu.read_vram_bank() & 1) as usize;
+                mapped("vram", bank * 0x2000 + (addr as usize & 0x1fff), Some(bank))
+            }
+            0xa000..=0xbfff => self
+                .cartridge
+                .physical_ram_offset(addr)
+                .and_then(|n| mapped("cartridge-ram", n, Some(n / 0x2000)))
+                .or_else(|| {
+                    self.cartridge
+                        .selected_rtc()
+                        .and_then(|n| mapped("cartridge-rtc", n as usize, None))
+                }),
+            0xc000..=0xcfff => mapped("wram", addr as usize & 0xfff, Some(0)),
+            0xd000..=0xdfff => {
+                let bank = self.wram.bank as usize;
+                mapped("wram", bank * 0x1000 + (addr as usize & 0xfff), Some(bank))
+            }
+            0xfe00..=0xfe9f => mapped("oam", addr as usize - 0xfe00, None),
+            0xff80..=0xfffe => mapped("hram", addr as usize - 0xff80, None),
+            0xff00..=0xff7f => mapped("io", addr as usize - 0xff00, None),
+            0xffff => mapped("io", 0xff, None),
+            _ => None,
+        };
+        (location, false)
+    }
+    fn record_access(&mut self, kind: u8, address: u16, value: u8) {
+        if self.trace_enabled && self.bus_events.len() < 32 {
+            let (location, blocked) =
+                self.access_location(address, kind == 5, kind == 3 || kind == 4);
+            self.bus_events.push(BusEvent {
+                kind,
+                address,
+                value,
+                rom_offset: if kind != 5
+                    && matches!(self.oam_dma.conflicting_bus(), Some(BusType::External))
+                {
+                    None
+                } else {
+                    self.cartridge.physical_rom_offset(address)
+                },
+                cycles: self.elapsed_ppu_cycles,
+                banks: None,
+                fixed_banks: None,
+                target: None,
+                location,
+                target_location: None,
+                blocked,
+            });
+        }
+    }
+    pub fn hardware_state(&self) -> (bool, u8, u8, bool) {
+        (
+            self.config.is_dmg,
+            self.wram.bank,
+            self.ppu.read_vram_bank() & 1,
+            self.speed_controller.current_speed() == Speed::Double,
+        )
+    }
+    pub fn frame_count(&self) -> u64 {
+        self.ppu.frame_count
+    }
     pub fn cartridge(&self) -> &Cartridge {
         &self.cartridge
     }
@@ -420,9 +555,11 @@ impl Bus {
         }
 
         // PPU stays at the same speed even if CPU is in double speed
-        let frame_before=self.ppu.frame_count;
+        let frame_before = self.ppu.frame_count;
         self.ppu.clock(&mut self.interrupts, t_clocks);
-        if self.ppu.frame_count!=frame_before{self.record_access(6,0xff44,144);}
+        if self.ppu.frame_count != frame_before {
+            self.record_access(6, 0xff44, 144);
+        }
 
         // APU stays at the same speed even if CPU is in double speed,
         // the APU will handle clocking to stay in the same speed regardless
@@ -436,13 +573,33 @@ impl Bus {
             let mut values = [0; 2];
             let addr = self.hdma.get_next_src_address();
             values[0] = self.read_not_ticked(addr, None);
-            let index=self.bus_events.len();self.record_access(5,addr,values[0]);if let Some(event)=self.bus_events.get_mut(index){event.target=Some(self.hdma.next_dest_address());}let location=self.access_location(self.hdma.next_dest_address(),true,true).0;if let Some(event)=self.bus_events.get_mut(index){event.target_location=location;}
+            let index = self.bus_events.len();
+            self.record_access(5, addr, values[0]);
+            if let Some(event) = self.bus_events.get_mut(index) {
+                event.target = Some(self.hdma.next_dest_address());
+            }
+            let location = self
+                .access_location(self.hdma.next_dest_address(), true, true)
+                .0;
+            if let Some(event) = self.bus_events.get_mut(index) {
+                event.target_location = location;
+            }
             let mut values_len = 1;
             if !double_speed {
                 values_len = 2;
                 let addr = self.hdma.get_next_src_address();
                 values[1] = self.read_not_ticked(addr, None);
-                let index=self.bus_events.len();self.record_access(5,addr,values[1]);if let Some(event)=self.bus_events.get_mut(index){event.target=Some(self.hdma.next_dest_address().wrapping_add(1));}let location=self.access_location(self.hdma.next_dest_address().wrapping_add(1),true,true).0;if let Some(event)=self.bus_events.get_mut(index){event.target_location=location;}
+                let index = self.bus_events.len();
+                self.record_access(5, addr, values[1]);
+                if let Some(event) = self.bus_events.get_mut(index) {
+                    event.target = Some(self.hdma.next_dest_address().wrapping_add(1));
+                }
+                let location = self
+                    .access_location(self.hdma.next_dest_address().wrapping_add(1), true, true)
+                    .0;
+                if let Some(event) = self.bus_events.get_mut(index) {
+                    event.target_location = location;
+                }
             }
 
             self.hdma
@@ -455,7 +612,9 @@ impl Bus {
             self.timer.clock_divider(&mut self.interrupts);
         } else {
             self.speed_controller.settling_cycles -= 1;
-            if self.speed_controller.settling_cycles == 0 { self.ppu.finish_speed_switch(); }
+            if self.speed_controller.settling_cycles == 0 {
+                self.ppu.finish_speed_switch();
+            }
         }
         self.joypad.update_interrupts(&mut self.interrupts);
 
@@ -473,9 +632,20 @@ impl Bus {
         }
 
         if self.oam_dma.in_transfer() {
-            let source=self.oam_dma.get_next_address();
+            let source = self.oam_dma.get_next_address();
             let value = self.read_not_ticked(source, None);
-            if self.oam_dma.transferring_byte(){let index=self.bus_events.len();self.record_access(5,source,value);if let Some(event)=self.bus_events.get_mut(index){event.target=Some(0xfe00|(source&0xff));event.target_location=Some(BusLocation{space:"oam",offset:(source&0xff) as usize,bank:None});}}
+            if self.oam_dma.transferring_byte() {
+                let index = self.bus_events.len();
+                self.record_access(5, source, value);
+                if let Some(event) = self.bus_events.get_mut(index) {
+                    event.target = Some(0xfe00 | (source & 0xff));
+                    event.target_location = Some(BusLocation {
+                        space: "oam",
+                        offset: (source & 0xff) as usize,
+                        bank: None,
+                    });
+                }
+            }
             self.oam_dma.transfer_clock(&mut self.ppu, value);
         }
     }
@@ -645,7 +815,9 @@ impl Bus {
 
 impl CpuBusProvider for Bus {
     /// Advance time without inventing a memory access.
-    fn idle_cycle(&mut self) { self.on_cpu_machine_cycle(); }
+    fn idle_cycle(&mut self) {
+        self.on_cpu_machine_cycle();
+    }
     /// each time the cpu reads, clock the components on the bus
     fn read(&mut self, addr: u16) -> u8 {
         let result = self.read_no_oam_bug(addr);
@@ -659,18 +831,69 @@ impl CpuBusProvider for Bus {
 
     /// each time the cpu writes, clock the components on the bus
     fn write(&mut self, addr: u16, data: u8) {
-        self.record_access(3,addr,data);
-        let bank_before=if addr==0xff4f{Some((self.ppu.read_vram_bank()&1) as usize*0x2000)}else if addr==0xff70{Some(self.wram.bank as usize*0x1000)}else{None};
-        let fixed_before=self.cartridge.physical_rom_offset(0).unwrap_or(0);
-        let before=self.cartridge.physical_rom_offset(0x4000).unwrap_or(0);
+        self.record_access(3, addr, data);
+        let bank_before = if addr == 0xff4f {
+            Some((self.ppu.read_vram_bank() & 1) as usize * 0x2000)
+        } else if addr == 0xff70 {
+            Some(self.wram.bank as usize * 0x1000)
+        } else {
+            None
+        };
+        let fixed_before = self.cartridge.physical_rom_offset(0).unwrap_or(0);
+        let before = self.cartridge.physical_rom_offset(0x4000).unwrap_or(0);
         self.write_not_ticked(addr, data, self.oam_dma.conflicting_bus());
-        if self.trace_enabled && addr<0x8000 && !self.access_location(addr,false,true).1 && self.bus_events.len()<32 {
-            let after=self.cartridge.physical_rom_offset(0x4000).unwrap_or(0);
-            self.bus_events.push(BusEvent{kind:4,address:addr,value:data,rom_offset:None,cycles:self.elapsed_ppu_cycles,banks:Some((before,after)),fixed_banks:Some((fixed_before,self.cartridge.physical_rom_offset(0).unwrap_or(0))),target:None,location:Some(BusLocation{space:"cartridge-controller",offset:addr as usize,bank:None}),target_location:None,blocked:false});
+        if self.trace_enabled
+            && addr < 0x8000
+            && !self.access_location(addr, false, true).1
+            && self.bus_events.len() < 32
+        {
+            let after = self.cartridge.physical_rom_offset(0x4000).unwrap_or(0);
+            self.bus_events.push(BusEvent {
+                kind: 4,
+                address: addr,
+                value: data,
+                rom_offset: None,
+                cycles: self.elapsed_ppu_cycles,
+                banks: Some((before, after)),
+                fixed_banks: Some((
+                    fixed_before,
+                    self.cartridge.physical_rom_offset(0).unwrap_or(0),
+                )),
+                target: None,
+                location: Some(BusLocation {
+                    space: "cartridge-controller",
+                    offset: addr as usize,
+                    bank: None,
+                }),
+                target_location: None,
+                blocked: false,
+            });
         }
-        if self.trace_enabled&&self.lock.is_cgb_mode()&&self.bus_events.len()<32&&bank_before.is_some(){
-            let target=if addr==0xff4f{0x8000}else{0xd000};let location=self.access_location(target,true,true).0;let after=location.as_ref().map(|a|a.offset).unwrap_or(0);
-            self.bus_events.push(BusEvent{kind:4,address:addr,value:data,rom_offset:None,cycles:self.elapsed_ppu_cycles,banks:Some((bank_before.unwrap(),after)),fixed_banks:None,target:Some(target),location:Some(BusLocation{space:"io",offset:addr as usize-0xff00,bank:None}),target_location:location,blocked:false});
+        if self.trace_enabled
+            && self.lock.is_cgb_mode()
+            && self.bus_events.len() < 32
+            && bank_before.is_some()
+        {
+            let target = if addr == 0xff4f { 0x8000 } else { 0xd000 };
+            let location = self.access_location(target, true, true).0;
+            let after = location.as_ref().map(|a| a.offset).unwrap_or(0);
+            self.bus_events.push(BusEvent {
+                kind: 4,
+                address: addr,
+                value: data,
+                rom_offset: None,
+                cycles: self.elapsed_ppu_cycles,
+                banks: Some((bank_before.unwrap(), after)),
+                fixed_banks: None,
+                target: Some(target),
+                location: Some(BusLocation {
+                    space: "io",
+                    offset: addr as usize - 0xff00,
+                    bank: None,
+                }),
+                target_location: location,
+                blocked: false,
+            });
         }
         self.on_cpu_machine_cycle();
 
@@ -679,11 +902,24 @@ impl CpuBusProvider for Bus {
         }
     }
 
-    fn fetch_read(&mut self,addr:u16)->u8 {
-        let index=self.bus_events.len();let value=self.read(addr);
-        self.last_fetch=if let Some(event)=self.bus_events.get_mut(index){event.kind=1;Some(index)}else{None};value
+    fn fetch_read(&mut self, addr: u16) -> u8 {
+        let index = self.bus_events.len();
+        let value = self.read(addr);
+        self.last_fetch = if let Some(event) = self.bus_events.get_mut(index) {
+            event.kind = 1;
+            Some(index)
+        } else {
+            None
+        };
+        value
     }
-    fn mark_opcode(&mut self){if let Some(index)=self.last_fetch{if let Some(event)=self.bus_events.get_mut(index){event.kind=0;}}}
+    fn mark_opcode(&mut self) {
+        if let Some(index) = self.last_fetch {
+            if let Some(event) = self.bus_events.get_mut(index) {
+                event.kind = 0;
+            }
+        }
+    }
 
     // gets the interrupt type and remove it
     fn take_next_interrupt(&mut self) -> Option<InterruptType> {
@@ -716,7 +952,9 @@ impl CpuBusProvider for Bus {
             // self.apu.enter_stop_mode(); ?
         }
     }
-    fn speed_switching(&self) -> bool { self.speed_controller.settling_cycles > 0 }
+    fn speed_switching(&self) -> bool {
+        self.speed_controller.settling_cycles > 0
+    }
 
     fn stopped(&self) -> bool {
         self.stopped
@@ -736,7 +974,7 @@ impl CpuBusProvider for Bus {
 
     fn read_no_oam_bug(&mut self, addr: u16) -> u8 {
         let result = self.read_not_ticked(addr, self.oam_dma.conflicting_bus());
-        self.record_access(2,addr,result);
+        self.record_access(2, addr, result);
         self.on_cpu_machine_cycle();
         result
     }

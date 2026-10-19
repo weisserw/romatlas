@@ -56,12 +56,16 @@ impl Mapper for Mbc5 {
             None
         } else {
             let addr = addr & 0x1FFF;
-            let bank = (self.ram_bank & if self._rumble {7}else{15}) % self.ram_banks;
+            let bank = (self.ram_bank & if self._rumble { 7 } else { 15 }) % self.ram_banks;
             Some(bank as usize * 0x2000 + addr as usize)
         }
     }
 
-    fn map_ram_read(&mut self,addr:u16)->MappingResult{self.physical_ram_offset(addr).map(MappingResult::Addr).unwrap_or(MappingResult::NotMapped)}
+    fn map_ram_read(&mut self, addr: u16) -> MappingResult {
+        self.physical_ram_offset(addr)
+            .map(MappingResult::Addr)
+            .unwrap_or(MappingResult::NotMapped)
+    }
     fn map_ram_write(&mut self, addr: u16, _data: u8) -> MappingResult {
         self.map_ram_read(addr)
     }

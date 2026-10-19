@@ -37,6 +37,7 @@ pub struct Output {
     pub height: u32,
     pub pixels: Vec<u8>,
     pub frame_hashes: Vec<String>,
+    pub discard: bool,
 }
 impl Renderer for Output {
     type Err = std::io::Error;
@@ -46,6 +47,9 @@ impl Renderer for Output {
         size: FrameSize,
         _: RenderFrameOptions,
     ) -> Result<(), Self::Err> {
+        if self.discard {
+            return Ok(());
+        }
         self.width = size.width;
         self.height = size.height;
         self.pixels.clear();
@@ -76,6 +80,13 @@ impl AudioOutput for Audio {
         for s in [l, r] {
             self.0.push((s.clamp(-1.0, 1.0) * 32767.0).round() as i16);
         }
+        Ok(())
+    }
+}
+struct AudioDiscard;
+impl AudioOutput for AudioDiscard {
+    type Err = std::io::Error;
+    fn push_sample(&mut self, _: f64, _: f64) -> Result<(), Self::Err> {
         Ok(())
     }
 }
@@ -207,6 +218,87 @@ impl Emulator {
             sequence: 0,
         })
     }
+    /// Untraced frame/cycle advancement. Budget exhaustion is resumable progress.
+    /// Frame capture starts fresh; disabled capture leaves no stale framebuffer.
+    pub fn run_fast(
+        &mut self,
+        r: StepRequest,
+        capture_frame: bool,
+        capture_audio: bool,
+    ) -> Result<serde_json::Value> {
+        ensure!(
+            matches!(r.unit, StepUnit::Frame | StepUnit::Cycle),
+            "fast runs support frame or cycle units"
+        );
+        ensure!(
+            r.max_operations <= MAX_TICKS && (1..=300000).contains(&r.timeout_ms),
+            "execution budget exceeds limits"
+        );
+        // Untraced writes must not lose persistent artificial-state provenance.
+        let initial_sram = if self.artificial {
+            self.core.debug_sram().map(<[u8]>::to_vec)
+        } else {
+            None
+        };
+        let initial = self.core.debug_progress();
+        let start = Instant::now();
+        let mut ticks = 0;
+        self.previous = [None, None];
+        probe::begin(false, initial.0);
+        self.output = Output::default();
+        self.output.discard = !capture_frame;
+        probe::suspend(true);
+        let mut silent = AudioDiscard;
+        let result = (|| -> Result<_> {
+            loop {
+                let now = self.core.debug_progress();
+                let completed = match r.unit {
+                    StepUnit::Frame => now.1 - initial.1,
+                    _ => now.0 - initial.0,
+                };
+                let reason = if completed >= r.count {
+                    Some("complete")
+                } else if ticks == r.max_operations {
+                    Some("operation_budget")
+                } else if start.elapsed().as_millis() >= u128::from(r.timeout_ms) {
+                    Some("timeout")
+                } else {
+                    None
+                };
+                if let Some(reason) = reason {
+                    return Ok((completed, reason));
+                }
+                if capture_audio {
+                    self.core.tick(
+                        &mut self.output,
+                        &mut self.audio,
+                        &self.inputs,
+                        &mut self.saves,
+                    )?;
+                } else {
+                    self.core
+                        .tick(&mut self.output, &mut silent, &self.inputs, &mut self.saves)?;
+                }
+                ticks += 1;
+            }
+        })();
+        probe::suspend(false);
+        self.output.discard = false;
+        self.previous = [None, None];
+        if let Some(before) = initial_sram
+            && self.core.debug_sram() != Some(before.as_slice())
+        {
+            self.artificial_sram = true;
+        }
+        let (completed, reason) = result?;
+        Ok(
+            serde_json::json!({"state":self.state(), "unit":r.unit, "requested":r.count,
+            "completed":completed,"remaining":r.count.saturating_sub(completed),
+            "ticks":ticks,"stop_reason":reason,"complete":reason=="complete",
+            "capture_frame":capture_frame,"capture_audio":capture_audio,"traced":false}),
+        )
+    }
+
     pub fn run(&mut self, count: u64, timeout_ms: u64) -> Result<State> {
         self.execute(StepRequest {
             unit: StepUnit::Operation,
@@ -281,7 +373,7 @@ impl Emulator {
         .map_err(|e| anyhow::anyhow!(e.message))
     }
     fn tick(&mut self) -> Result<()> {
-        let master = self.state().master_cycles;
+        let master = self.core.debug_progress().0;
         probe::begin(self.trace.config.enabled, master);
         self.core.tick(
             &mut self.output,
@@ -636,15 +728,15 @@ impl ExecutionAdapter for Emulator {
         let fetches = probe::fetches()[index];
         let start = Instant::now();
         for tick in 0..=r.max_operations {
-            let now = self.state();
+            let counters = self.core.debug_progress();
             let progress = match r.unit {
-                StepUnit::Frame => now.frames - initial.frames,
-                StepUnit::Cycle => now.master_cycles - initial.master_cycles,
+                StepUnit::Frame => counters.1 - initial.frames,
+                StepUnit::Cycle => counters.0 - initial.master_cycles,
                 StepUnit::Operation => {
                     let mid = if index == 0 {
-                        now.main.mid_instruction
+                        self.core.debug_state().3
                     } else {
-                        now.spc700.mid_instruction
+                        self.core.debug_spc_state().2
                     };
                     if mid && r.count != 0 {
                         0
@@ -654,7 +746,7 @@ impl ExecutionAdapter for Emulator {
                 }
             };
             if progress >= r.count {
-                return Ok(now);
+                return Ok(self.state());
             }
             if tick == r.max_operations {
                 return Err(invalid("operation budget exhausted"));

@@ -72,6 +72,7 @@ impl CommandAdapter for SnesSession {
             "emulator.capabilities",
             "emulator.state",
             "emulator.step",
+            "emulator.run_fast",
             "emulator.run",
             "emulator.reset",
             "emulator.input",
@@ -222,6 +223,32 @@ impl SnesSession {
                     .map_err(|e| anyhow::anyhow!(e.message))?;
                 self.snapshots.clear();
                 serde_json::to_value(self.emu()?.state())?
+            }
+            "emulator.run_fast" => {
+                let unit = match p.get("unit").and_then(Value::as_str).unwrap_or("frame") {
+                    "frame" => StepUnit::Frame,
+                    "cycle" => StepUnit::Cycle,
+                    _ => anyhow::bail!("fast runs support frame or cycle units"),
+                };
+                let flag = |key: &str| -> Result<bool> {
+                    match p.get(key) {
+                        None => Ok(false),
+                        Some(Value::Bool(v)) => Ok(*v),
+                        _ => anyhow::bail!("{key} must be boolean"),
+                    }
+                };
+                let frame = flag("capture_frame")?;
+                let audio = flag("capture_audio")?;
+                self.emu()?.run_fast(
+                    StepRequest {
+                        unit,
+                        count: num(p, "count", 1)?,
+                        max_operations: num(p, "max_operations", 100_000_000)?,
+                        timeout_ms: num(p, "timeout_ms", 1000)?,
+                    },
+                    frame,
+                    audio,
+                )?
             }
             "emulator.step" | "emulator.run" => {
                 let cpu = cpu(p)?;
