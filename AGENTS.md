@@ -123,3 +123,62 @@ independent MIT code; never copy GPL core implementation into them. HuCard only,
 no CD/SuperGrafx or esoteric peripherals/uncommon boards. Preserve structural versus
 reachability, whole-ROM classification, full current-source readability and
 editorial gates. No full hardware/game fidelity claim is supported.
+
+Before falling back to generic data, make a practical attempt to identify its role:
+inspect available references and consumers, nearby code and labels, and obvious
+formats or repeated record layouts. Use supported specific region types, meaningful
+labels and concise format/role explanations when the evidence permits. Generic data
+is a fallback after this bounded inspection, not the default shortcut. Record briefly
+what was checked and what remains unresolved; reuse prior sound inspection rather
+than repeating it. Follow concrete promising leads, but do not require exhaustive
+semantic research or block classification when further investigation is unproductive.
+Never invent a specific meaning or label just to avoid the generic fallback.
+
+Disassembly classification primarily separates code from data. Clear non-code regions,
+including repeated patterns and uniform runs, may be unlabeled generic data blocks
+after boundary inspection and checking for conflicting code evidence. Record a brief
+rationale and Static provenance with map.annotate; these bytes count as classified
+and complete without recovering their format, consumer or meaning. Unknown data
+semantics must not cause a blocked handoff. Lack of execution alone is insufficient
+to prove data; retain unknown for material code-versus-data or boundary ambiguity.
+Commentary needs only a short uncertainty note for generic data, without invented
+labels or meanings. Preserve byte-identical rebuilding and code readability gates.
+
+## Broad gameplay progression
+
+Basic gameplay means broad progression through the game, not just startup, menus
+or the first encounter. Make a deliberate effort to visit later levels/areas,
+distinct gameplay mechanics, bosses, major transitions and the ending/credits or
+other terminal screens where present. Discovering these states is useful even
+before a specific unknown ROM range or measurable byte gain is identified.
+Avoid exhaustive permutations of collisions, rare interactions or every possible
+state; representative visits to distinct systems and progression milestones suffice.
+
+Use emulator.memory.write proactively to bypass slow or difficult progression:
+identify level/stage, position, checkpoint, health/lives, inventory/key or progression
+flags from source, watches and bounded experiments, then patch suitable RAM values.
+Prefer a supported stage/checkpoint transition so dependent state is initialized;
+use emulator.registers.set only with an understood entry contract. Do not require a
+preexisting classification lead or proof that normal button inputs can reach a state
+before trying this. Keep ROM backing unchanged. Save a clean snapshot before edits,
+record exact addresses/values, bank context, inputs and budgets, and restore before
+trying an alternative. Inspect state/frame output and actual execution after the
+patch; a written stage number alone does not demonstrate a successful level visit.
+Exercise representative mechanics and transitions in each reached state with bounded
+inputs rather than merely displaying it. Actual accepted instruction fetches after
+patching establish observed execution in that artificial scenario, not natural
+reachability; edits themselves and reached targets prove neither execution nor code.
+
+Maintain a progression checklist in analysis/scenarios.json with milestone, route
+or patch recipe, observed result, evidence links and status (visited, attempted,
+unavailable or deferred with reason). Reuse successful snapshots/routes across rounds.
+Before declaring gameplay exhausted or handing off terminally, review unvisited
+later-game and ending milestones and attempt a practical shortcut where possible.
+Early-game repetition or difficult manual play alone is not grounds to stop while
+an obvious state edit or supported shortcut remains. If the necessary RAM contract
+is unknown, investigate it in redirect rather than retrying long button sequences.
+Do not brute-force arbitrary RAM or spend indefinitely forcing a broken state;
+record specific obstacles and try another representative milestone. Aim to reach
+the ending, but documented unsuccessful attempts or unavailable transitions do not
+require endless experimentation. Preserve classification, fidelity and readability
+gates; this is broad best-effort exploration, not an exhaustive gameplay/fidelity gate.

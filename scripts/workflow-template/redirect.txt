@@ -10,11 +10,35 @@ remains unresolved. Record structural evidence and reachability status separatel
 do not label statically inferred bytes Observed or claim they are unused/dead
 merely because no caller is known.
 
+Before falling back to generic data, make a practical attempt to identify its role:
+inspect available references and consumers, nearby code and labels, and obvious
+formats or repeated record layouts. Use supported specific region types, meaningful
+labels and concise format/role explanations when the evidence permits. Generic data
+is a fallback after this bounded inspection, not the default shortcut. Record briefly
+what was checked and what remains unresolved; reuse prior sound inspection rather
+than repeating it. Follow concrete promising leads, but do not require exhaustive
+semantic research or block classification when further investigation is unproductive.
+Never invent a specific meaning or label just to avoid the generic fallback.
+
 Caller/selector tracing remains useful for resolving roles, bounds and bank context.
-When selected indices are the only evidence for a table's extent, retain unsupported
-entries as unknown until an independent extent proof exists. Valid decoding, pointer
-values, adjacent records, alignment and pattern resemblance alone do not establish
-structure. Artificial execution can test consumer mechanics but does not establish
+The primary classification task is separating code from data. Anything reasonably
+identified as non-code may be an unlabeled generic data block; its format, consumer,
+precise table layout and game meaning need not be understood. Clear repeated byte
+patterns, uniform runs and visibly non-instruction content can justify generic data
+classification after inspecting boundaries and checking for conflicting code evidence.
+Record the physical range, brief rationale and Static provenance through map.annotate;
+count these bytes as classified and complete. No semantic label is required.
+Do not leave such bytes unknown or report blocked merely because their meaning,
+references or original organization cannot be recovered. Revisit a data block if
+later code evidence contradicts it. Lack of execution alone does not prove data;
+retain unknown only where the code-versus-data decision or physical bounds remain
+materially ambiguous. Raw export fallback alone still does not classify bytes.
+
+When selected indices are the only evidence for a table's extent, an
+independent extent proof is needed to claim that specific table layout, not to classify surrounding non-code
+bytes as generic data. Valid decoding and pointer values alone do not prove code;
+pattern evidence for generic data need not establish a specific structure.
+Artificial execution can test consumer mechanics but does not establish
 intended code, complete table extent or natural reachability by itself. Keep these
 evidence safeguards and all classification, fidelity and editorial completion gates.
 
@@ -108,7 +132,8 @@ so later redirects can build on evidence rather than repeat the same search.
 
 Use run.py serve and docs/protocol.md for bounded hypothesis tests when helpful.
 Inspect api.describe. Use emulator.memory.write and emulator.registers.set to
-construct states that load needed pointers/tables, saving/restoring snapshots and
+advance levels, positions and progression flags or expose needed pointers/tables,
+saving/restoring snapshots and
 recording exact patches, effective banks, inputs and budgets. ROM backing remains
 immutable. Debugger mutations prove no execution or natural reachability; clearly
 separate artificial-state observations from ordinary gameplay evidence. Keep each
@@ -189,3 +214,42 @@ identity, proposed versus accepted bytes, exact residuals, methods/results, usef
 constraints, concrete next recipes or actual exhaustion reasons in the handoff.
 If no useful revised inference or test survives review, report incomplete. When all
 bytes later become classified, final editorial audit and verification remain required.
+
+## Broad gameplay progression
+
+Basic gameplay means broad progression through the game, not just startup, menus
+or the first encounter. Make a deliberate effort to visit later levels/areas,
+distinct gameplay mechanics, bosses, major transitions and the ending/credits or
+other terminal screens where present. Discovering these states is useful even
+before a specific unknown ROM range or measurable byte gain is identified.
+Avoid exhaustive permutations of collisions, rare interactions or every possible
+state; representative visits to distinct systems and progression milestones suffice.
+
+Use emulator.memory.write proactively to bypass slow or difficult progression:
+identify level/stage, position, checkpoint, health/lives, inventory/key or progression
+flags from source, watches and bounded experiments, then patch suitable RAM values.
+Prefer a supported stage/checkpoint transition so dependent state is initialized;
+use emulator.registers.set only with an understood entry contract. Do not require a
+preexisting classification lead or proof that normal button inputs can reach a state
+before trying this. Keep ROM backing unchanged. Save a clean snapshot before edits,
+record exact addresses/values, bank context, inputs and budgets, and restore before
+trying an alternative. Inspect state/frame output and actual execution after the
+patch; a written stage number alone does not demonstrate a successful level visit.
+Exercise representative mechanics and transitions in each reached state with bounded
+inputs rather than merely displaying it. Actual accepted instruction fetches after
+patching establish observed execution in that artificial scenario, not natural
+reachability; edits themselves and reached targets prove neither execution nor code.
+
+Maintain a progression checklist in analysis/scenarios.json with milestone, route
+or patch recipe, observed result, evidence links and status (visited, attempted,
+unavailable or deferred with reason). Reuse successful snapshots/routes across rounds.
+Before declaring gameplay exhausted or handing off terminally, review unvisited
+later-game and ending milestones and attempt a practical shortcut where possible.
+Early-game repetition or difficult manual play alone is not grounds to stop while
+an obvious state edit or supported shortcut remains. If the necessary RAM contract
+is unknown, investigate it in redirect rather than retrying long button sequences.
+Do not brute-force arbitrary RAM or spend indefinitely forcing a broken state;
+record specific obstacles and try another representative milestone. Aim to reach
+the ending, but documented unsuccessful attempts or unavailable transitions do not
+require endless experimentation. Preserve classification, fidelity and readability
+gates; this is broad best-effort exploration, not an exhaustive gameplay/fidelity gate.

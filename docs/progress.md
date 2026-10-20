@@ -1511,3 +1511,41 @@ No GUI/audio device was initialized. Generated images, source, captures, snapsho
 and native workspaces remain local; no commercial ROMs or extracted assets were
 downloaded or committed. Changes remain uncommitted. Detailed hardware/native
 fidelity limits are documented in docs/pce.md and docs/pce-native.md.
+
+2026-10-20: Revised disassembly agent instructions to prioritize code-versus-data
+classification. Inspected repeated patterns, uniform runs and other clear non-code
+regions may be unlabeled generic data, with physical bounds and a short static
+rationale, without proving a consumer, schema or game meaning. Such bytes count
+as classified; unknown semantics alone must not block completion. Commentary
+accepts a short uncertainty note for generic data. Material code/data ambiguity
+still remains unknown; lack of execution and raw rebuilding alone are insufficient.
+Updated repository instructions, project contract, generated workflow/goal/phase
+prompts and evidence policy consistently. Existing game workspaces were not rewritten.
+Validation: scripts/test-disassemble.py, scripts/test-commentary.py and
+scripts/test-portability.py pass using the existing release binary and local
+synthetic ROMs; stock four-bank reconstruction remains deterministic and exact.
+No Rust or session implementation changed.
+
+2026-10-20: Revised gameplay exploration instructions in repository guidance,
+project contract and generated disassembly/redirect/goal/workflow prompts, and
+applied the same policy to the existing /root/rygar instruction files. Basic
+gameplay now means deliberate broad progression through later areas, distinct
+mechanics, bosses, transitions and ending screens, using proactive documented RAM
+shortcuts when manual progression is slow or difficult. A progression checklist
+tracks actual visits and concrete obstacles; arbitrary RAM brute force and exhaustive
+collision/state permutations are excluded. Actual fetches after edits establish
+execution in an artificial scenario, without claiming natural reachability.
+Validation: Python compilation, disassembly workspace integration, commentary
+regression, deterministic stock four-bank portability and git diff checks pass.
+No runtime, maps, ROM bytes, assembly or archived Rygar records were changed.
+
+2026-10-20: Clarified generic-data fallback ordering throughout repository
+instructions, generated workflow/phase/evidence prompts and active /root/rygar
+instructions. Agents must first inspect available references/consumers, nearby
+code/labels and obvious formats, use supported specific roles and meaningful names
+when justified, and briefly record unresolved questions before falling back. Prior
+sound inspection may be reused; exhaustive semantic research remains unnecessary
+and unknown meaning alone still does not block classification. Validation passes:
+Python compilation, disassembly workspace integration, commentary regression,
+stock deterministic four-bank portability and git diff checks. Only instructions
+and this progress record changed; no ROM, mapping or assembly edits were made.

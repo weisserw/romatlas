@@ -24,10 +24,28 @@ that dependency instead of making any one evidence source a universal requiremen
 For a static routine, distinguish a supported calling precondition from a claim
 that an actual caller supplies it; legal decoding alone still does not prove code.
 
-An inferred bounded table or fill region is acceptable when the combined evidence
-supports its role, exact extent and bank context. Pattern or successful rebuilding
-alone remains insufficient. Use Static provenance, explain the inference and its
-limits, and leave unsupported competing interpretations unknown. Confidence scores
+Before falling back to generic data, make a practical attempt to identify its role:
+inspect available references and consumers, nearby code and labels, and obvious
+formats or repeated record layouts. Use supported specific region types, meaningful
+labels and concise format/role explanations when the evidence permits. Generic data
+is a fallback after this bounded inspection, not the default shortcut. Record briefly
+what was checked and what remains unresolved; reuse prior sound inspection rather
+than repeating it. Follow concrete promising leads, but do not require exhaustive
+semantic research or block classification when further investigation is unproductive.
+Never invent a specific meaning or label just to avoid the generic fallback.
+
+Classify code versus data before trying to recover data semantics. Generic unlabeled
+data is a sufficient structural role and counts toward whole-ROM completion. Clear
+repeated byte patterns, uniform runs or visibly non-instruction content can support
+that decision after boundary inspection and a check for conflicting code evidence.
+Record exact physical ranges, a brief rationale and Static provenance with map.annotate.
+No known consumer, semantic label, table schema, fill purpose or original generator
+is required. Unknown meaning is not unknown classification and must not cause a
+blocked handoff. Lack of execution or successful rebuilding alone is insufficient.
+An inferred bounded table or fill region needs stronger evidence only to claim that
+specific role; if that inference fails, retain generic data where non-code is clear.
+Explain the inference and its limits; retain unknown where code versus data remains
+materially ambiguous. Confidence scores
 do not substitute for the evidence. Independent disassembly review may reject it.
 
 ## Localize uncertainty and counterexamples
@@ -35,7 +53,8 @@ do not substitute for the evidence. Independent disassembly review may reject it
 Split a rejected claim into independently testable subclaims when its evidence has
 different scopes. An unresolved prefix does not automatically reject a later
 uniform bank-tail candidate; evaluate its boundary and fill role separately without
-assuming a trailer or treating uniformity alone as proof. A failed full-table or
+assuming a trailer. Uniformity may justify generic data without proving a fill role.
+A failed full-table or
 whole-gap proposal does not reject every supported subinterval. Conversely, a
 supported subinterval does not establish the rest of the object.
 
@@ -48,11 +67,13 @@ criterion consistently across both. An exact rounding test may falsify that roun
 algorithm without falsifying a bounded quantized table. Do not fit arbitrary error
 bands or piecewise exceptions to make unknown cells pass; if a revised model lacks
 independent justification or fails relevant constraints, keep the claim unresolved.
-Semantic consistency still needs independent role and extent evidence.
+A specific semantic interpretation still needs independent role and extent evidence;
+generic data does not require that interpretation.
 
 For example, a failed reconstruction of an exact waveform generator does not alone
 reject a consumer-anchored, bounded quantized waveform table. A long uniform suffix
-after an unresolved tag is a separate fill hypothesis, not an automatic fill claim.
+after an unresolved tag may be generic data even when its specific fill role remains
+unproven.
 An unreferenced return opcode or plausible pointer sequence still lacks sufficient
 structure on its own. Apply the same reasoning to unfamiliar representations.
 

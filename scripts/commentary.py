@@ -30,6 +30,21 @@ meaning is unknown, name the established mechanical role and explain the remaini
 uncertainty nearby. Do not invent meanings or treat an address-only label or raw
 address as an adequate explanation of an understood role.
 
+Before falling back to generic data, make a practical attempt to identify its role:
+inspect available references and consumers, nearby code and labels, and obvious
+formats or repeated record layouts. Use supported specific region types, meaningful
+labels and concise format/role explanations when the evidence permits. Generic data
+is a fallback after this bounded inspection, not the default shortcut. Record briefly
+what was checked and what remains unresolved; reuse prior sound inspection rather
+than repeating it. Follow concrete promising leads, but do not require exhaustive
+semantic research or block classification when further investigation is unproductive.
+Never invent a specific meaning or label just to avoid the generic fallback.
+
+Generic data blocks may remain unlabeled when their format or purpose is unknown.
+A short boundary/uncertainty note is sufficient for these blocks; semantic research,
+consumer identification and per-byte commentary are not completion prerequisites.
+Preserve established useful data names and explanations.
+
 Every commentary invocation must bring ALL currently classified source up to this
 readability standard before handing off. Catch up the entire existing readability
 backlog, including older uncommented code and concrete defects in reviewed material;
