@@ -273,6 +273,13 @@ def workflow(work, rom):
     assert 'snes::tile' in (port/'port/src/game.rs').read_text()
     assert 'gb::' not in (port/'port/src/game.rs').read_text()
     assert 'SNES_NTSC' in (port/'port/src/main.rs').read_text()
+    assert (port/'architecture.md').is_file()
+    for path in ['goal.md','AGENTS.md','workflow.md','prompts/start.md']:
+        text=(port/path).read_text()
+        assert 'architecture.md' in text and 'Runtime fidelity validation is outside' in text
+        assert 'stop when' in text or 'after it passes, stop' in text
+    assert 'implementation assumption' in (port/'prompts/reference-updates.md').read_text()
+
     uncertainties=json.loads((port/'uncertainties.json').read_text())
     assert uncertainties['entries'] and all(r['status']=='pending' for r in uncertainties['entries'])
     frozen_source=(port/'reference/source/game.asm').read_bytes()

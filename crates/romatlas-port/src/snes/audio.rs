@@ -361,6 +361,7 @@ pub struct Mixer {
     pub echo: Option<Echo>,
     pub mute: bool,
     noise: Noise,
+    buffered_noise: Option<i16>,
     clock: u32,
 }
 impl Default for Mixer {
@@ -372,15 +373,30 @@ impl Default for Mixer {
             echo: None,
             mute: false,
             noise: Noise::default(),
+            buffered_noise: None,
             clock: 0,
         }
     }
 }
 impl Mixer {
+    /// Start with held power-on noise (-32768), mixing before decrementing the
+    /// global counter and generating the next noise value. Unlike `default`,
+    /// this models drivers which already have a held DSP output at time zero.
+    /// The generator still runs during silence, mute, and noise-rate changes.
+    pub fn with_buffered_noise() -> Self {
+        Self {
+            buffered_noise: Some(i16::MIN),
+            ..Self::default()
+        }
+    }
+
     /// Advance exactly one native 32-kHz stereo sample. All state is cloneable
     /// for deterministic checkpoints; output conversion/resampling belongs to the port.
     pub fn sample(&mut self) -> [i16; 2] {
-        let noise = self.noise.tick(self.clock, self.noise_rate);
+        let noise = match self.buffered_noise {
+            Some(value) => value,
+            None => self.noise.tick(self.clock, self.noise_rate),
+        };
         let mut dry = [0i32; 2];
         let mut send = [0i32; 2];
         for voice in &mut self.voices {
@@ -414,6 +430,9 @@ impl Mixer {
         } else {
             self.clock - 1
         };
+        if self.buffered_noise.is_some() {
+            self.buffered_noise = Some(self.noise.tick(self.clock, self.noise_rate));
+        }
         output
     }
     pub fn render(&mut self, frames: usize, output: &mut Vec<f32>) {

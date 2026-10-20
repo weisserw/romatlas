@@ -20,7 +20,7 @@ cargo build --locked --release
 
 Success returns JSON `{"ok":true}`; verification adds `"byte_identical":true`. Errors return JSON on stderr and exit 1. Inspection returns metadata including hash and controller. For map cleanup, use `map normalize input.sym --output output.sym`. Use supported stock directives only. Split existing regions before adding a smaller region to avoid overlap.
 
-The intended agent workflow will open a ROM, run bounded input sequences, inspect bank-aware traces, propose code regions, confirm map changes through APIs, export .sym, and verify. Use `serve --rom ROM` and the JSON-RPC calls in docs/protocol.md for persistent runtime and map APIs. Use `run ROM --operations N --timeout-ms MS` for bounded DMG ROM-only/MBC1/MBC3/MBC5 execution. The Rust emulator adapter now supports reset, input, state, snapshots, and peeks. Use trace.configure, trace.summary, trace.query, trace.clear and analysis.coverage as documented in docs/protocol.md. See docs/hardware-tests.md for the measured 89-case Mooneye gate. CGB DMA events are available; do not claim full hardware compatibility. Use `decode ROM --offset DECIMAL --count N` for bounded physical-ROM decoding. The decoder does not resolve switchable-bank targets without bank context. The internal store Rust API now supports identity checks and transactional annotations. Use `store init`, `store annotate` (with `--id` for edits), `store get`, `store remove`, `store validate`, and `store export` as shown in README.md. These commands validate the local ROM identity and preserve the file on rejected edits. Use analysis.discover and analysis.references to inspect code candidates; confirm them with map.annotate. Unvisited bytes remain unknown. Use emulator.step unit cycle/frame with count, max_operations and timeout_ms for bounded advancement. Trace streaming, observed edges and cycle/frame stepping are available. See docs/completion-audit.md for completed scope and documented limits.
+The mapping/analysis agent workflow will open a ROM, run bounded input sequences, inspect bank-aware traces, propose code regions, confirm map changes through APIs, export .sym, and verify. Use `serve --rom ROM` and the JSON-RPC calls in docs/protocol.md for persistent runtime and map APIs. Use `run ROM --operations N --timeout-ms MS` for bounded DMG ROM-only/MBC1/MBC3/MBC5 execution. The Rust emulator adapter now supports reset, input, state, snapshots, and peeks. Use trace.configure, trace.summary, trace.query, trace.clear and analysis.coverage as documented in docs/protocol.md. See docs/hardware-tests.md for the measured 89-case Mooneye gate. CGB DMA events are available; do not claim full hardware compatibility. Use `decode ROM --offset DECIMAL --count N` for bounded physical-ROM decoding. The decoder does not resolve switchable-bank targets without bank context. The internal store Rust API now supports identity checks and transactional annotations. Use `store init`, `store annotate` (with `--id` for edits), `store get`, `store remove`, `store validate`, and `store export` as shown in README.md. These commands validate the local ROM identity and preserve the file on rejected edits. Use analysis.discover and analysis.references to inspect code candidates; confirm them with map.annotate. Unvisited bytes remain unknown. Use emulator.step unit cycle/frame with count, max_operations and timeout_ms for bounded advancement. Trace streaming, observed edges and cycle/frame stepping are available. See docs/completion-audit.md for completed scope and documented limits.
 
 Run `python3 scripts/test-session.py` after session changes. The script is a full sample agent workflow using only a local synthetic ROM. Shared agent logic must use CommandAdapter and must not import the Game Boy adapter.
 
@@ -51,8 +51,15 @@ it is not a ported game. Original assets load from the ROM at startup, with file
 replacements/additional slots. The port agent may implement needed romatlas-port
 library changes directly here, uncommitted, with a change log and preservation of
 the initial repository state for separate review. Native-port completion uses
-explained gameplay-behavior accounting and useful tests, not frame equivalence or
-phase-one classification completion. Keep the original mapping goal's stricter
+explained whole-game best-effort implementations, a source-informed architecture
+plan/coherent code, focused unit tests and required format/static/build checks.
+Runtime fidelity validation is outside the port goal: no native-versus-ROM frame,
+audio, state or scenario comparisons. Debugger use is limited to a specific
+unresolved source question with a bounded experiment/stopping condition.
+Implemented documented assumptions and unverified fidelity do not block completion;
+missing required code does. After the administrative ledger/build audit passes,
+stop. Fidelity/device auditing requires a separate user request. Phase-one
+classification completion is not a native-port gate. Keep the original mapping goal's stricter
 classification contract intact. Do not write tests needing unavailable GUI/devices
 or launch SDL graphics on the headless server. Run scripts/test-port.py and the
 romatlas-port desktop-feature clippy/tests after relevant changes; these tests

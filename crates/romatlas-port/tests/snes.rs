@@ -241,3 +241,36 @@ fn nonlooping_source_stops_and_zero_pitch_holds() {
     assert!(!mixer.voices[0].active());
     assert_eq!(mixer.sample(), [0; 2]);
 }
+
+#[test]
+fn buffered_mixer_noise_preserves_held_output_and_counter_through_silence() {
+    use romatlas_port::snes::audio::{Mixer, Noise, Sample};
+    let mut mixer = Mixer::with_buffered_noise();
+    mixer.voices[0].key_on(Sample::new(&[3, 0, 0, 0, 0, 0, 0, 0, 0], 0).unwrap());
+    mixer.voices[0].noise = true;
+    mixer.voices[0].gain = 127;
+    let mut noise = Noise::default();
+    let mut held = i16::MIN;
+    let mut clock = 0;
+    for frame in 0..4000 {
+        let rate = [0, 31, 0x13, 2][frame / 1000];
+        mixer.noise_rate = rate;
+        // Silent and muted intervals must preserve the global generator history.
+        let volume = if (400..700).contains(&frame) { 0 } else { 127 };
+        mixer.voices[0].volume = [volume; 2];
+        mixer.mute = (1500..1700).contains(&frame);
+        let value = ((i32::from(held) * 2032) >> 11) & !1;
+        let expected = if mixer.mute {
+            0
+        } else {
+            (((value * i32::from(volume)) >> 7) * 127) >> 7
+        };
+        assert_eq!(mixer.sample(), [expected as i16; 2], "frame {frame}");
+        clock = if clock == 0 { 30719 } else { clock - 1 };
+        held = noise.tick(clock, rate);
+    }
+    let mut replay = mixer.clone();
+    for _ in 0..100 {
+        assert_eq!(mixer.sample(), replay.sample());
+    }
+}

@@ -2,7 +2,7 @@
 
 The port phase starts from a reviewed archive and a matching local ROM, creating
 a separate development workspace. It writes goal.md to direct implementation of the
-whole game in readable native Rust. It does not launch an agent or translate the game
+whole game as maintainable best-effort native Rust. It does not launch an agent or translate the game
 automatically. Game Boy and SNES archives select independent platform scaffolds.
 The shared library keeps platform helpers separate without imposing a universal
 hardware model. SNES helpers and current limits are documented in [snes.md](snes.md).
@@ -44,6 +44,7 @@ the toolkit before retrying. Rust 1.90.0 is pinned in the generated project.
 | `research/working/` | Optional editable disassembly state, source, correction log and local evidence. |
 | `research/revisions/`, `research/current.json` | Verified immutable local corrections and the adopted revision pointer. |
 | `goal.md` | Overall native-port objective and resume instructions. |
+| `architecture.md` | Source-informed module/state/algorithm plan, maintained during implementation. |
 | `prompts/start.md`, `reference-updates.md`, `review.md` | Port contract, reference correction procedure and separate reviewer instructions. |
 | `review/toolkit-before/`, `toolkit-before.json` | Initial toolkit files, hashes, Git HEAD and pre-existing status. |
 | `library-changes.md` | Shared changes, requirements, rationale, validation and unresolved findings. |
@@ -55,6 +56,42 @@ The scaffold uses an arbitrary first-ROM tile solely to demonstrate loading. It
 implements no game rules and defaults to silent audio. A successfully built or
 headlessly run scaffold is not a completed port. Its sample manifest does not
 implement a real game's level loader. The port agent must replace both as needed.
+
+## Architecture and implementation boundary
+
+Before substantial coding, read representative startup, gameplay, rendering and
+sound source paths and write a short actionable `architecture.md`: modules/files,
+responsibilities, state owners, interfaces, algorithms, scheduling, shared platform
+helpers and implementation order. This survey is bounded; exhaustive source
+understanding and user approval are not prerequisites. Organize code around game
+concepts. Keep algorithms readable and modules cohesive; avoid both a growing
+monolithic game file and cosmetic splitting of tightly coupled code. No arbitrary
+file/line quotas apply. Inspect affected boundaries after substantial features,
+fix concrete design problems and update the plan when decisions change. Finish
+with one bounded maintainability pass, not repeated redesign/audit cycles.
+
+The native goal implements the whole game on a source-informed best-effort basis.
+Focused unit tests check intended logic; formatting, static checks and compilation
+complete the required implementation checks. **Runtime fidelity validation is
+outside this porting goal.** Do not compare native frames, animation, screenshots,
+audio, state trajectories or gameplay scenarios against emulator/ROM execution.
+Do not create exhaustive scenario matrices, confidence-building replay loops,
+playthrough requirements or device tests as completion criteria. A later fidelity
+or device audit requires an explicit user request.
+
+Debugger use is for a specific unresolved source-understanding question that
+static inspection cannot reasonably answer. Record the needed observation and
+stopping condition, perform a bounded experiment and return to implementation.
+Stop at that bound even if unanswered; do not repeat inconclusive runs without
+new evidence.
+If inconclusive, choose and document a reasonable source-informed implementation
+assumption where possible. Do not reopen the question without new contradictory
+evidence. Lack of similarity evidence or an untested screen is not such a question.
+Once whole-game implementation/accounting and a coherent architecture are ready,
+required checks pass and the handoff is written, run the administrative audit and
+stop when it passes. Assume the implemented/unit-tested behavior works for this
+handoff without claiming independent fidelity. More time/budget is not a reason
+to expand acceptance criteria or repeat passing checks.
 
 ## Unfinished disassembly and discoveries during porting
 
@@ -74,13 +111,19 @@ independent port work while a bounded investigation is pending.
 The statuses are `pending`, `resolved`, `preserved` and `excluded`; impacts are
 `unknown`, `behavior`, `data` and `none`. Preserved is allowed only for data with a
 supported ROM-backed consumer; copying instruction bytes does not implement native
-logic. Excluded needs an explained no-impact assessment. Resolved records the
-supported interpretation and behavior equivalent. The audit requires assessed
-records and valid ledger links but cannot judge their truth. Unresolved gameplay
-behavior prevents completion; storage classification uncertainty need not. Original
+logic. Excluded needs an explained no-impact assessment. Resolved records an implemented behavior equivalent based on source reasoning or
+an explicit reasonable implementation assumption. Record its basis, alternatives
+and residual source/fidelity uncertainty; resolved does not mean original-game
+semantics were proven. The audit requires assessed
+records and valid ledger links but cannot judge their truth. Missing required implementations prevent completion. Implemented assumptions and
+unverified fidelity do not; assess them honestly rather than repeatedly seeking
+confirmation. Preserving bytes cannot substitute for missing code. Original
 mapping completion retains its stricter every-byte classification requirement.
 
-Use `prompts/reference-updates.md` when porting reveals a correction:
+Use `prompts/reference-updates.md` when a supported source correction helps
+implementation. This optional procedure is not native fidelity validation;
+implementation assumptions need not become source revisions:
+
 
 ```sh
 python3 run.py reference-init
@@ -97,7 +140,7 @@ then selects it through `research/current.json`. Failed checks publish no revisi
 and keep the prior selection. Subsequent workspace commands check adopted artifact
 hashes as well as frozen baseline hashes. Neither exact rebuilding nor adoption
 proves the interpretation or map/comment consistency; the agent reviews those and
-tests affected native behavior.
+updates focused unit tests of affected native logic.
 
 Corrections use `version: 1`, the workspace `rom_sha256` and a `changes` array.
 Each record has `id`, `kind` (`commentary` or `classification`), physical `offset`
@@ -201,7 +244,7 @@ a Rust cross-target check, required SDL2/Activity/native-library integration, RO
 selection, mobile lifecycle/input, and debug APK build/install commands after
 integration. Android app support is not generated or validated by preparation.
 The coordinator prompt requires the port agent
-to adapt it to final dependencies/flags and record actual platform validation.
+to adapt it to final dependencies/flags and record actual build/unit-test results.
 The baseline recipes are not platform-test evidence and do not authorize
 distribution. Existing source ports can adopt the guide without regeneration;
 preserve their source and edited library when adding later build automation.
@@ -243,7 +286,6 @@ From the generated workspace:
 
 ```sh
 python3 run.py instructions
-python3 run.py headless --frames 120
 python3 run.py check
 python3 run.py audit
 ```
@@ -254,7 +296,9 @@ desktop build, all with the generated lockfile where applicable. Output is in
 check does not leave a success result. `desktop` requires a graphical session and
 is an explicit user command; it is rejected on Linux without DISPLAY/WAYLAND_DISPLAY.
 Do not create tests requiring displays/GPUs/controllers unavailable on this server.
-Normal useful tests cover game behavior and CPU-side utilities instead.
+Focused unit tests cover intended game logic and CPU-side utilities. The optional
+headless command remains available for later requested work; executing it is not
+a required validation phase.
 
 For each original region and unit, set ledger disposition to `implemented`,
 `merged`, `replaced` or `excluded`, give a summary and list equivalents (except
@@ -265,12 +309,18 @@ replace entire original routines without a line-to-line translation.
 
 The agent judges obvious irrelevant/unreachable code from the commented source
 without formal proof; favor implementing ambiguous cases. Complete classification
-and exhaustive frame matching are not gates. Useful passing tests, documented
-differences, finished accounting, editor instructions and a handoff are required.
+is not a gate, and runtime fidelity comparisons are outside the goal. A coherent
+architecture/plan, focused passing unit tests, documented assumptions/differences,
+finished accounting, editor instructions and a handoff are required.
 Assess the uncertainty ledger too; new workspaces cannot finish with pending gaps,
-removed original uncertainty entries or preserved unknown behavior. Set ledger completion status/notes and run `audit`. Audit validates inventory,
+removed original uncertainty entries or preserved unknown behavior. Documented
+implemented assumptions can be assessed without fidelity proof. Set ledger
+completion status/notes and run `audit`. Audit validates inventory,
 dispositions and builds; it cannot assess semantic correctness or test quality.
-Missing desktop runtime validation is recorded but does not alone block completion.
+Unassessed gameplay/audiovisual fidelity and device behavior are recorded without
+blocking completion or creating another investigation phase. After a successful
+administrative audit, stop. Rerun checks only after relevant edits, failures or a
+concrete new defect.
 
 The agent may edit the shared library directly in ROMAtlas, uncommitted, logging
 the actual changes and validation and preserving pre-existing work. It runs the

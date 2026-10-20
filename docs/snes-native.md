@@ -52,7 +52,7 @@ let rgba = composition.compose(main, sub);
 
 These are explicit composition primitives, not a complete PPU register machine.
 Mode 7 transforms, direct color, mosaic, offset-per-tile, hires/interlace,
-32-object/34-tile overflow and bus timing are not implemented here. Ports must
+bus timing are not implemented here. Ports must
 implement required behavior or record it as unresolved. Priority ranks for modes
 other than Mode 1 and per-scanline/window configuration remain caller supplied.
 
@@ -103,3 +103,38 @@ Hardware reference: Martin Korth's original
 PPU backgrounds/objects/windows/color math and APU DSP BRR/envelopes/echo.
 Implementation is independent of the GPL emulator and does not copy its code.
 Tests use original synthetic tiles, OAM and BRR vectors, without game assets.
+
+For a caller with an already held initial noise sample, `Mixer::with_buffered_noise()`
+starts with -32768 and counter zero, mixes the held value, then decrements the
+counter (zero wraps to 30719) and generates the next value. Silent/muted frames and
+noise-rate changes preserve this pipeline. `Mixer::default()` keeps its existing
+pre-mix generation order. Both modes clone for deterministic replay.
+
+
+`ppu::object_scanline_limited` optionally applies 32-object range selection and
+34-sliver fetching, returning `ObjectScanline { pixels, range_over, time_over }`.
+The existing `object_scanline` remains unbounded. Pass objects in rotated hardware
+priority order (at most 128). Transparent slivers consume fetches. Range selection
+keeps early objects; fetching visits that set backwards, and normal overlapping
+pixels still favor early objects. X=-256 consumes range/fetch budget despite being
+invisible; other clipped columns consume none. Flags are line summaries, not
+STAT77 frame latches or timed register behavior. Interlace is outside this API.
+
+The helper retains screen-left columns on partial overflow, including flipped
+objects. An original synthetic ROM run through the local SNES adapter confirms
+unflipped partial overflow exactly, but flipped partial overflow differs: native
+keeps the left column and that adapter keeps the right. This specific hardware/
+adapter disagreement is unresolved; synthetic expectations are not hardware
+measurements. No GPL core source was read or copied to implement this utility.
+The Nintendo development manual, Book I sections 20.1/20.2, documents opposing
+range/fetch priorities: [manual](https://floating.muncher.se/bot/manual/book1_text.pdf).
+The flip discrepancy requires stronger hardware evidence before a full parity claim.
+
+`color_with_brightness(BGR555, level)` keeps five-bit component precision through
+rounded RGBA8 conversion (level0..15, clamped). `color` remains its level15
+convenience. PPU Composition applies this after five-bit color math instead of
+scaling already-rounded RGBA8, avoiding double quantization/truncation at partial
+brightness. This defines linear digital output; gamma/display analog behavior is
+separate. Independent synthetic tests cover endpoints, partial levels, clamp and
+forced blank. Local native-port fade captures additionally exercise the API;
+no console core implementation is imported.

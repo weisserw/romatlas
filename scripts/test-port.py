@@ -115,6 +115,26 @@ with tempfile.TemporaryDirectory(prefix="romatlas-port-") as temporary:
     prompt = (work / "prompts/start.md").read_text()
     for required in ["startup","added", "uncommitted","headless","useful","borderline", "No check-in"]:
         assert required in prompt,required
+    # Check the delivered contract, not only the template: every entrypoint must
+    # retain the same implementation boundary and the architecture plan must ship.
+    architecture = (work / "architecture.md").read_text()
+    assert "state owners" in architecture and "algorithms" in architecture
+    for path in ["goal.md", "AGENTS.md", "workflow.md", "prompts/start.md"]:
+        text = (work / path).read_text()
+        assert "architecture.md" in text, path
+        assert "Runtime fidelity validation is outside" in text, path
+        assert "stopping condition" in text or "stopping\ncondition" in text, path
+        assert "stop when" in text or "after it passes, stop" in text, path
+        assert "unresolved gameplay-affecting behavior prevents completion" not in text.lower(), path
+    assert "implemented assumptions" in prompt
+    assert "bounded maintainability pass" in " ".join(prompt.split())
+    assert "Do not add more validation" in prompt
+    assert "source-informed" in prompt and "file-count" in prompt
+    references = (work / "prompts/reference-updates.md").read_text()
+    assert "implementation assumption" in references and "This procedure is optional" in references
+    reviewer = (work / "prompts/review.md").read_text()
+    assert "architecture.md" in reviewer and "validation is outside this review" in reviewer
+    assert "later explicitly requested device audit" in build_guide
     run = ["python3",work / "run.py"]
     frozen = inventory(work / "reference")
     # Corrections use an independently verified supplement; the frozen baseline
@@ -209,6 +229,13 @@ with tempfile.TemporaryDirectory(prefix="romatlas-port-") as temporary:
     uncertainties["entries"].append(removed)
     first_uncertainty.update(status="preserved",impact="data",
         summary="Synthetic accounting: original fixture values remain ROM-backed; no gameplay-equivalence claim")
+    # A source-informed implemented assumption needs no new runtime-fidelity field
+    # or comparison artifact to pass the administrative accounting contract.
+    first_uncertainty.update(status="resolved", impact="behavior",
+        summary="Implemented synthetic fixture interpretation; boundary behavior uses an explicit source-informed assumption",
+        evidence=["Synthetic fixture consumer reasoning; interpretation is an implementation assumption"],
+        validation=["Focused synthetic bounds unit test"],
+        validation_limits="Original-game fidelity has not been independently assessed")
     uncertainty_file.write_text(json.dumps(uncertainties))
     audited = call(*run,"audit")[0]
     assert audited["accounting_complete"] and audited["units"] == 1

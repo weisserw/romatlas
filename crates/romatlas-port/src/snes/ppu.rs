@@ -266,12 +266,7 @@ impl Composition {
             let half = self.half && !self.clip_main && (!self.use_subscreen || sub.layer != 5);
             color = color_math(color, operand, self.subtract, half);
         }
-        let brightness = u32::from(self.brightness.min(15));
-        let mut rgba = super::color(color);
-        for c in &mut rgba[..3] {
-            *c = (u32::from(*c) * brightness / 15) as u8;
-        }
-        rgba
+        super::color_with_brightness(color, self.brightness)
     }
 }
 
@@ -338,4 +333,101 @@ pub fn object_scanline(
         }
     }
     Ok(line)
+}
+
+/// Non-interlaced OBJ pixels after range and tile-fetch evaluation. Overflow
+/// booleans describe this line, not the timing or frame latches of STAT77.
+#[derive(Clone, Debug)]
+pub struct ObjectScanline {
+    pub pixels: [Option<Pixel>; 256],
+    pub range_over: bool,
+    pub time_over: bool,
+}
+
+/// Apply the 32-object and 34-sliver limits in caller-supplied OAM rotation
+/// order. Range evaluation takes the first 32 intersecting objects. Fetches
+/// visit those objects backwards, with screen-left columns first even when
+/// flipped. Transparent tiles consume fetches. X=-256 consumes range and all
+/// of its columns despite being invisible. Other fully offscreen objects do not.
+/// This does not model interlace, bus timing or overflow-register latch timing.
+pub fn object_scanline_limited(
+    objects: &[Object],
+    vram: &[u8; 65536],
+    cgram: &[u16; 256],
+    obsel: u8,
+    y: u8,
+    ranks: [u8; 4],
+) -> Result<ObjectScanline> {
+    ensure!(objects.len() <= 128, "more than 128 hardware objects");
+    let mut selected = [0; 32];
+    let mut count = 0;
+    let mut range_over = false;
+    for (index, object) in objects.iter().enumerate() {
+        ensure!(
+            object.palette < 8 && object.priority < 4 && (-256..=255).contains(&object.x),
+            "invalid OBJ palette, priority or X"
+        );
+        let (width, height) = object_size(obsel >> 5, object.large);
+        if y.wrapping_sub(object.y) >= height
+            || (object.x != -256 && object.x + i16::from(width) <= 0)
+        {
+            continue;
+        }
+        if count == 32 {
+            range_over = true;
+        } else {
+            selected[count] = index;
+            count += 1;
+        }
+    }
+    let mut columns = [0_u8; 32];
+    let mut fetched = 0;
+    let mut time_over = false;
+    'fetch: for slot in (0..count).rev() {
+        let object = &objects[selected[slot]];
+        let (width, _) = object_size(obsel >> 5, object.large);
+        for column in 0..width / 8 {
+            let left = object.x + i16::from(column) * 8;
+            if object.x != -256 && !(-7..=255).contains(&left) {
+                continue;
+            }
+            if fetched == 34 {
+                time_over = true;
+                break 'fetch;
+            }
+            fetched += 1;
+            columns[slot] |= 1 << column;
+        }
+    }
+    let mut pixels = [None; 256];
+    let base = u16::from(obsel & 7).wrapping_mul(16384);
+    for slot in 0..count {
+        let object = &objects[selected[slot]];
+        let (width, _) = object_size(obsel >> 5, object.large);
+        for (x, pixel) in pixels.iter_mut().enumerate() {
+            let relative = x as i16 - object.x;
+            if pixel.is_some()
+                || relative < 0
+                || relative >= i16::from(width)
+                || columns[slot] & (1 << (relative / 8)) == 0
+            {
+                continue;
+            }
+            if let Some(index) =
+                object.sample(vram, base, (obsel >> 3) & 3, obsel >> 5, x as u8, y)?
+            {
+                *pixel = Some(Pixel {
+                    color: cgram[usize::from(index)],
+                    rank: ranks[usize::from(object.priority)],
+                    layer: 4,
+                    math: object.palette >= 4,
+                });
+            }
+        }
+    }
+    Ok(ObjectScanline {
+        pixels,
+        range_over,
+        time_over,
+    })
 }

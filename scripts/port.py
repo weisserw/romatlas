@@ -18,26 +18,29 @@ import port_research
 ROOT = phase.ROOT
 TEMPLATES = ROOT / "scripts/port-template"
 DISPOSITIONS = {"implemented", "merged", "replaced", "excluded"}
-GOAL = ("Port this entire archived game into readable native Rust, following AGENTS.md, "
-        "workflow.md and prompts/start.md. Read uncertainties.json and prompts/reference-updates.md; "
-        "incomplete classification is allowed. Assess gaps by consumer and port impact, and "
-        "correct discoveries in a verified local reference revision without changing the frozen archive. "
-        "Replace the demonstration scaffold. Account for "
-        "all source behavior in ledger.json; implement every gameplay-relevant equivalent, "
-        "favor ambiguous cases, and explain obvious exclusions. Load original assets from "
-        "the user's ROM at startup, support replacements and added slots, provide player "
-        "settings, and write useful headless tests. Implement necessary shared-library "
-        "changes directly in ROMAtlas, preserve unrelated work, leave edits uncommitted "
-        "and log requirements, rationale and validation for a separate reviewer. Continue "
-        "through the whole game, not one playable checkpoint. Finish the ledger, checks "
-        "and handoff; adapt BUILDING.md with platform build instructions and validation, "
-        "and report untested desktop behavior. If blocked, preserve work and "
-        "explain concrete unresolved behaviors and what would unblock them; never mark "
-        "an incomplete port complete.")
-RESUME = ("Read progress.md, ledger.json, uncertainties.json, research/current.json if present, "
-          "differences.md, library-changes.md and existing "
-          "code first. Preserve work; do not reinitialize. Resume the same objective "
-          "and continue unresolved behavior and library work using prompts/start.md.")
+GOAL = ("Port this entire archived game into maintainable best-effort native Rust, following "
+        "AGENTS.md, workflow.md and prompts/start.md. First survey representative source paths "
+        "and write the high-level module/state/algorithm plan in architecture.md; maintain it "
+        "during implementation. Use shared platform helpers. Assess uncertainties by consumer "
+        "and port impact; implement reasonable source-informed assumptions and document them. "
+        "Preserve the frozen reference and original ledger identities. Replace the scaffold "
+        "and implement/account for the whole game, including ROM-backed startup assets, "
+        "replacements/added slots and player settings. Validate native logic with focused unit "
+        "tests and required format/static/build checks. Runtime fidelity validation is outside "
+        "this porting goal: no native-versus-ROM frame/audio/state/scenario comparisons. "
+        "Use the debugger only for a specific unresolved source question with a bounded "
+        "experiment and stopping condition, never to validate the port. Complete necessary "
+        "shared-library changes uncommitted, preserve unrelated work and log changes/checks "
+        "for the separate reviewer. Finish architecture, accounting, required checks, "
+        "BUILDING.md and handoff; run the administrative ledger/build audit and stop when "
+        "it passes. Do not expand acceptance criteria or repeat validation for confidence. "
+        "Unverified fidelity and documented implemented assumptions do not block completion; "
+        "missing required implementations do. Report a concrete blocker if implementation "
+        "cannot proceed. Fidelity/device auditing and release work require a later request.")
+RESUME = ("Read architecture.md, progress.md, ledger.json, uncertainties.json, "
+          "research/current.json if present, differences.md, library-changes.md and existing "
+          "code first. Preserve work; do not reinitialize. Resume implementation under "
+          "prompts/start.md's debugger and stopping boundaries; do not start a fidelity audit.")
 
 
 def git(*args):
@@ -180,14 +183,23 @@ def prepare(archive, rom, output, binary):
         prompt = (TEMPLATES / "prompt.md").read_text()
         (stage / "prompts/start.md").write_text(prompt)
         (stage / "goal.md").write_text("# Native port\n\n" + GOAL + "\n\nOn resume: " + RESUME + "\n")
+        shutil.copyfile(TEMPLATES / "architecture.md", stage / "architecture.md")
         shutil.copyfile(TEMPLATES / "review.md", stage / "prompts/review.md")
         shutil.copyfile(TEMPLATES / "reference-updates.md", stage / "prompts/reference-updates.md")
         build_guide = (TEMPLATES / "BUILDING.md").read_text().replace("__GAME_NAME__", name).replace("__TOOLKIT_PATH__", str(ROOT))
         (stage / "BUILDING.md").write_text(build_guide)
         (stage / "AGENTS.md").write_text(f"""# Native port workspace
 
-Read goal.md, workflow.md, uncertainties.json and prompts/start.md. The whole-game
-completion contract applies; the demonstration scaffold is not a completed port.
+Read goal.md, workflow.md, architecture.md, uncertainties.json and prompts/start.md.
+The whole-game best-effort implementation contract applies. Survey source and plan
+module/state ownership before substantial coding; maintain coherent Rust design.
+Runtime fidelity validation is outside this porting goal. Use the debugger only
+for a specific unresolved source question with a bounded experiment and stopping
+condition. No native-versus-ROM comparisons or confidence-building replay loops.
+Use focused unit tests and required format/static/build checks, then finish
+accounting/handoff, run the administrative audit and stop when it passes.
+Implemented documented assumptions and unverified fidelity do not block completion;
+missing required code does. The scaffold is not a completed port.
 Toolkit: {json.dumps(str(ROOT))}. Use its AGENTS.md for shared-library changes.
 reference/ and review/toolkit-before/ are frozen. Change port/, ledger.json and
 uncertainties.json and port documentation. Use prompts/reference-updates.md for
@@ -201,70 +213,100 @@ No agent launch, check-in or publication is authorized by this workspace.
 """)
         (stage / "workflow.md").write_text("""# Port workflow
 
-This is a new phase from a reviewed archive. Reference source was restored and
-rebuilt byte-identically. That proves source recovery, not gameplay equivalence.
-The Rust scaffold displays an arbitrary tile; no gameplay has been implemented.
+Implement the whole game as a maintainable best-effort native Rust port.
+The restored byte-identical reference establishes source integrity only.
+The arbitrary-tile scaffold implements no gameplay.
 
-Commands from this directory:
+1. Read the full prompts/start.md contract and representative startup, gameplay,
+   rendering and sound source paths. Write a short actionable architecture.md with
+   modules, state ownership, interfaces, algorithms, scheduling and implementation
+   order. Do not require exhaustive analysis or approval before implementing.
+2. Implement the whole game using shared platform helpers. Maintain architecture.md
+   when decisions change and fix concrete design problems after substantial
+   features. Avoid monolithic code and cosmetic file splitting. No size quotas
+   or repeated whole-project architecture audits are required.
+3. Account for original source behavior in ledger.json and assess uncertainties
+   as consumers become relevant. Preserve IDs, ranges and original source records.
+   Implement reasonable source-informed assumptions, documenting their basis and
+   limits. A missing implementation remains incomplete; lack of fidelity proof
+   for an implemented interpretation does not. ROM-backed data may remain
+   structurally uncertain; preserving code bytes does not implement behavior.
+4. Validate intended native logic with focused unit tests. Run python3 run.py check
+   for formatting, clippy, tests and desktop compilation. Recheck only after a
+   relevant change, failure or concrete new defect. Document actual check results.
+5. Finish accounting, assessed uncertainties, a coherent architecture and handoff
+   (README.md, BUILDING.md, progress.md, differences.md, library-changes.md).
+   Make one bounded maintainability pass. Set completion.status=complete with
+   notes describing this scope, run python3 run.py audit and stop when it passes.
+   Do not create more work to fill the remaining goal budget.
+
+Runtime fidelity validation is outside this porting goal. No native-versus-ROM
+frame, screenshot, animation, audio, state or gameplay-scenario comparisons,
+playthrough requirements or confidence-building replay loops are authorized.
+Unit tests check intended logic; they need not establish original-game equivalence.
+Debugger use is limited to a named unresolved source question that static reading
+cannot reasonably answer. Record its needed observation and stopping condition;
+perform a bounded experiment and return to implementation. Stop at the declared
+bound even if unanswered; do not repeat inconclusive runs without new evidence.
+Document a reasonable
+assumption if inconclusive. Do not reopen it without new contradictory evidence.
+A later fidelity/device audit requires an explicit user request. This boundary
+applies to both Game Boy and SNES and to the entire generated instruction set.
+
+Available commands (availability does not make each command a required phase):
 
 ```sh
 python3 run.py instructions
 python3 run.py check
-python3 run.py headless --frames 120
-python3 run.py desktop
 python3 run.py audit
 python3 run.py reference-init
 python3 run.py reference-verify --revision findings-001
 ```
 
-desktop is an explicit human command requiring a graphical session. Do not run
-it on this headless server. check builds desktop code and tests without a display.
-All build/test output is retained in checks/latest.log; results are JSON.
+The audit checks accounting and builds, not gameplay fidelity. Do not run it while
+ledger completion is pending. check retains logs in checks/latest.log and JSON
+results. desktop and headless execution remain available for later user-requested
+work; neither is a required implementation-validation step. Never launch desktop
+graphics on this server. Unit tests initialize no display or audio device.
 
-ledger.json preserves every original region and unit ID/offset/length. Set each
-disposition to implemented, merged, replaced or excluded, with a summary and
-equivalents (locations or named port/framework mechanisms). Exclusions need an
-explanation but no equivalent. Add discovered units with unique IDs, source
-offset/length, disposition, summary and equivalents. Whole-game completion requires
-accounting for all source behavior, not a one-to-one translation or execution proof.
-Favor porting unclear cases. Set completion.status=complete and notes at completion.
-Audit checks accounting and builds, not semantic correctness. Unknown classification
-is allowed; do not require full classification before beginning the port. Assess
-each uncertainty by its consumers, meaning and behavioral consequences in
-uncertainties.json. Add semantic ambiguities discovered in classified source too.
-Preserved ROM-backed data may remain structurally uncertain when its loading/use
-is implemented and supported by evidence. Preserving code bytes does not implement
-unknown behavior; unresolved gameplay-affecting behavior prevents completion.
-Classify no-impact exclusions with an explanation, not from size or lack of traces.
+Ledger dispositions are implemented, merged, replaced or excluded, with a summary
+and equivalents except for explained exclusions. Add discovered units with unique
+IDs and source ranges. Favor implementing unclear behavior over dropping it.
+Assess each uncertainty's consumers and consequences; distinguish established
+source facts from implemented assumptions. Do not require complete classification,
+source-proof exhaustion or a runtime trace for every assessment. The original
+mapping goal retains its stricter classification/evidence requirements.
 
-prompts/reference-updates.md defines local corrections: reference-init creates
-research/working from the frozen baseline; edit its source/state with evidence,
-then reference-verify validates and adopts a new immutable research/revisions/
-snapshot. research/current.json selects that supplement; reference/ remains the
-original source of truth for provenance and original ledger IDs. Use the revision's
-fresh reading copy after edits. Never regenerate over maintained commentary.
-No original archive or external analysis workspace is changed automatically.
+prompts/reference-updates.md describes optional source corrections. Use
+reference-init only when a correction is useful; edit the working source/state
+and evidence, then reference-verify a coherent correction batch. Its map and
+byte-identical rebuild checks protect reference integrity, not native fidelity.
+research/current.json selects adopted supplements; reference/ and original ledger
+identities remain frozen. Never regenerate over maintained commentary or publish
+an implementation assumption as confirmed source classification.
 
-Use progress.md for progress/blockers, differences.md for known behavior differences
-and untested platform/device behavior, and library-changes.md for shared-library
-requirements, actual changes, interface rationale, tests and unresolved findings.
-BUILDING.md contains baseline platform recipes. Adapt it to the finished port's
-dependencies/executable/flags, link it from README.md and record actual validation.
-The initial repository files are copied to review/toolkit-before/, with hashes,
-HEAD and pre-existing status in review/toolkit-before.json. Another agent reviews
-the actual changes using prompts/review.md before the user checks them in.
+Keep progress.md for implementation status and concrete blockers, differences.md
+for assumptions/approximations/unassessed fidelity, and library-changes.md for
+shared changes, interface rationale, unit tests/checks and limits. Adapt BUILDING.md
+to actual dependencies/executable/flags; other-OS/device recipes are optional
+user instructions, not testing obligations. The initial toolkit snapshot and
+hashes/status/HEAD in review/toolkit-before.json preserve pre-existing work for
+separate review using prompts/review.md. No review agent is launched automatically.
 
-The local library path dependency is editable and not frozen by Cargo.lock.
-Reproducible release pinning/packaging comes after review/check-in in a later step.
-All ROMs, restored source/assets and generated build products remain local.
+Library changes remain uncommitted. A local path dependency is not frozen by
+Cargo.lock; release pinning, packaging and publication are later work. Keep
+ROMs, restored source/assets and generated products local. Source incompleteness
+is not permission to silently omit required game behavior; report actual
+implementation blockers without presenting unverified fidelity as a blocker.
 """)
         (stage / "README.md").write_text(f"""# {name}: native Rust port workspace
 
 Status: scaffold only. Implement the entire game before claiming completion.
 See [BUILDING.md](BUILDING.md) for local macOS/Linux/Windows source builds, Android integration guidance and
 transfer instructions. Adapt that guide for the finished port and tested facts.
-Run `python3 run.py headless --frames 120` on this server. On a desktop with SDL2
-installed, `python3 run.py desktop` opens the window; F1 opens saved player settings.
+The implementation goal uses focused unit tests and build/static checks. Runtime
+fidelity/device auditing is separate later work. On a desktop with SDL2 installed,
+`python3 run.py desktop` opens the window; F1 opens saved player settings.
 The executable accepts --rom, --assets, --settings and --headless (frame count).
 After implementing the real collections, document replacement formats, adding a
 level and game-rule source locations here. See examples/asset-extension.json for
@@ -275,9 +317,9 @@ must be developer-authored; do not distribute extracted originals.
         phase.write_json(stage / "examples/asset-extension.json", {"version": 1,
             "entries": [{"id": "level-01", "file": "levels/replacement-01.json"},
                         {"id": "level-16", "file": "levels/new-16.json"}], "order": []})
-        (stage / "library-changes.md").write_text("# Library changes\n\nNo port-driven changes recorded yet. For each change record requirement, files, reusable contract, validation and unresolved findings; explicitly report no findings if none.\n")
-        (stage / "progress.md").write_text("# Port progress\n\nPrepared reference and demonstration scaffold. Every source-ledger entry is pending. No gameplay is ported.\n")
-        (stage / "differences.md").write_text("# Differences and validation limits\n\nScaffold implements no gameplay or original audio. Desktop rendering/playback/controllers and other operating systems are untested. Replace this with specific findings as work proceeds.\n")
+        (stage / "library-changes.md").write_text("# Library changes\n\nNo port-driven changes recorded yet. Record requirements, files, reusable contracts, focused unit tests/checks and limits. Runtime fidelity auditing is outside the implementation goal.\n")
+        (stage / "progress.md").write_text("# Port progress\n\nPrepared reference and demonstration scaffold. Every source-ledger entry is pending. Read representative source and complete architecture.md before substantial implementation. No gameplay is ported.\n")
+        (stage / "differences.md").write_text("# Differences and validation limits\n\nScaffold implements no gameplay or original audio. Record implemented assumptions and known differences as work proceeds. Runtime fidelity/device auditing is outside this goal; its absence does not block implementation completion.\n")
         (stage / "run.py").write_text(f"""#!/usr/bin/env python3
 import runpy, sys
 from pathlib import Path

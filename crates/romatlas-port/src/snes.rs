@@ -26,7 +26,14 @@ pub fn tile(bytes: &[u8], bits_per_pixel: u8) -> Result<[u8; 64]> {
 /// Convert a little-endian CGRAM BGR555 value to linear full-range RGBA8.
 /// Display-specific gamma/color correction is a separate frontend policy.
 pub fn color(value: u16) -> Color {
-    let expand = |v: u16| ((v * 255 + 15) / 31) as u8;
+    color_with_brightness(value, 15)
+}
+
+/// Apply the display level to five-bit components before rounded RGBA8
+/// conversion, avoiding intermediate eight-bit quantization. Gamma is separate.
+pub fn color_with_brightness(value: u16, brightness: u8) -> Color {
+    let level = u32::from(brightness.min(15));
+    let expand = |v: u16| ((u32::from(v) * 255 * level + 232) / 465) as u8;
     [
         expand(value & 31),
         expand((value >> 5) & 31),

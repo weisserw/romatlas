@@ -124,8 +124,13 @@ Normal tests and headless execution need no display or audio device. On a deskto
 settings. Never run that command on the headless server.
 
 Original assets must load from the ROM at startup and stay out of distributions.
-Code/data behavior accounting and useful passing tests establish the agent's
-completion contract; automated audit cannot assess gameplay fidelity. Release
+The agent first writes a source-informed architecture plan, then implements the
+whole game as maintainable best-effort Rust. Focused unit tests and required
+format/static/build checks establish implementation checks. Runtime fidelity
+validation is outside the porting goal; debugger use answers bounded source
+questions only. Document implemented assumptions, finish behavior accounting and
+the handoff, run the administrative audit and stop. Fidelity auditing requires a
+separate request; automated audit cannot assess gameplay fidelity. Release
 packaging and library publication/pinning are later work. See [porting guide](docs/porting.md)
 and [agreed design](docs/port-workflow-design.md). Test with `python3 scripts/test-port.py`.
 

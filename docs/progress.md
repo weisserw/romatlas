@@ -1037,3 +1037,93 @@ resume, artificial SRAM/reset provenance and existing reconstruction/workspace
 flows. test-snes-cpu.sh passes the 832 pinned sampled CPU vectors. All generated
 fixtures, snapshots, audio, framebuffers and game assets remain local/ignored.
 Changes are uncommitted; pre-existing multiplayer and emulator changes remain.
+
+2026-10-19, Super Off Road Plan 02: added opt-in native
+`Mixer::with_buffered_noise()` to preserve a caller's initial held noise output
+and decrement-before-generation phase. The default constructor is unchanged.
+The original MIT test compares 4000 frames against the standalone Noise helper,
+including four rates, mute/silent intervals and clone replay. No adapter/core
+or dependency changed. Rust 1.90.0 locked release build, workspace fmt/Clippy/tests,
+desktop-feature native-runtime Clippy/tests, test-port.py, stock portability and
+boundary checks pass. No devices were initialized. Edits remain uncommitted.
+
+
+2026-10-19, Super Off Road Plan 03: independent MIT optional
+ppu::object_scanline_limited now selects 32 objects and fetches 34 tile columns,
+with reverse fetch priority, transparent fetch consumption, X=-256 budget behavior
+and per-line overflow summaries. Original unlimited API is preserved. New original
+synthetic tests/snes_obj_limits.rs covers four boundary/ordering cases; no GPL
+console implementation or game assets were read/copied into this implementation.
+An original synthetic 35-sliver ROM compares exactly for unflipped partial
+overflow; flipped partial overflow disagrees by 128 pixels (helper left column,
+local adapter right column). This specific hardware/adapter question remains
+unresolved; no hardware equivalence claim follows from synthetic expectations.
+Interlace and timed/frame-latched STAT77 flags remain outside the API.
+
+Rust 1.90.0 locked release build, workspace fmt/Clippy/tests, romatlas-port desktop
+Clippy/tests, test-port.py, test-portability.py, test-boundaries.py, production
+SNES RPC regression, pinned CPU vectors, licensed homebrew replay/rebuild and
+89-case hardware regression pass. No device or desktop graphics initialized.
+Existing audio.rs, tests/snes.rs and documentation edits are preserved; all edits
+remain uncommitted. See docs/snes-native.md and the game library-changes.md.
+
+2026-10-19 native SNES brightness precision: new independent MIT
+color_with_brightness retains five-bit components until rounded output conversion;
+color remains unchanged at full brightness. Composition now uses it after color
+math, replacing RGBA8 truncation. A native game highscore fade exposed the gap:
+54 natural-source images including fade/scroll/closure now match, plus90 paired
+window states. New snes_brightness test covers partial levels, endpoints/clamp and
+forced blank. Locked release, workspace fmt/Clippy/tests and desktop-feature
+Clippy/tests pass; additional relevant scripts are running and will be recorded
+in the game handoff. Prior audio/OBJ-limit edits are preserved and uncommitted.
+Brightness follow-up validation complete: native-port integration, portability,
+dependency boundaries, production SNES, SNES CPU, licensed homebrew and hardware
+scripts all pass in addition to release/workspace/desktop-feature checks. Logs
+and commands are retained in the game workspace checks/plan-03-toolkit-brightness.
+No desktop graphics run; prior audio/OBJ changes remain preserved/uncommitted.
+
+2026-10-20: Revised the complete generated native-port instruction set for
+maintainable best-effort implementation, applying the same contract to Game Boy
+and SNES. Preparation now includes architecture.md: a bounded representative
+source survey and actionable module/state/interface/algorithm plan before substantial
+coding, maintained when decisions change. Feature work includes brief affected-design
+checks and one bounded final maintainability pass, without arbitrary file/line
+quotas, cosmetic splitting or repeated architecture audits.
+
+Goal/resume text, generated AGENTS/workflow/README/status documents, start/reviewer/
+reference-correction/build templates and active port design/project documentation
+now agree that runtime fidelity validation is outside the implementation goal.
+No native-versus-ROM frame/audio/state/scenario comparisons, exhaustive replay
+matrices or device/playthrough gates. Debugger access answers a named unresolved
+source question with a declared bound/stopping condition; inconclusive experiments
+do not justify endless retries. Focused native unit tests plus required format,
+static and build checks establish implementation checks. Finish whole-game
+implementation/accounting and handoff, run the administrative ledger/build audit
+and stop once it passes. Existing passing checks are repeated only for relevant
+changes, failures or concrete defects, not confidence or remaining goal budget.
+
+Uncertainty accounting distinguishes missing required code from an implemented,
+reasonable source-informed assumption. The latter can be assessed as resolved
+for port accounting while explicitly retaining its basis and unverified source/
+fidelity limits; no new schema or runtime proof gate was introduced. Assumptions
+cannot be published as confirmed source classification. Original mapping evidence,
+classification/editorial and exact-reference-rebuild contracts remain intact and
+are explicitly scoped separately. Optional reference corrections protect source
+integrity; they are not a native fidelity-validation phase. Existing game workspaces
+and prior migration plans were not rewritten. Pre-existing runtime-library work
+was preserved; no native gameplay or console implementation changed in this task.
+
+Validation passes: locked release build, workspace fmt, Python compilation,
+test-port.py (including generated architecture/policy delivery and administrative
+acceptance of documented implemented assumptions), test-snes.py (the same policy
+in generated SNES ports plus existing workflow regressions), stock deterministic
+Game Boy portability, dependency boundaries and git diff --check. The port
+regression runs generated locked headless unit tests, Clippy and desktop builds
+without devices. These checks establish instruction delivery/tooling behavior,
+not that every future model will follow the stopping or maintainability rules.
+Changes remain uncommitted.
+
+2026-10-20: Added one sentence to the shared native-port unit-test guidance reserving
+tests for complex/error-prone behavior and excluding trivial arithmetic, obvious
+getters/setters and implementation restatements. Documentation-only change;
+`git diff --check` passes. No tests run.

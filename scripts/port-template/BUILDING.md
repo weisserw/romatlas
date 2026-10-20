@@ -2,7 +2,11 @@
 
 This is the baseline guide generated with the port scaffold. The port agent must
 update it for the finished executable, dependencies, flags and validation.
-Platform instructions below are recipes, not evidence that a platform was tested.
+Platform instructions below are recipes for a human developer, not evidence that
+a platform was tested. The porting agent's checks are focused unit tests plus
+format/static/build checks. Runtime fidelity/device auditing and optional Android
+integration require a later user request; do not execute these recipes to expand
+the implementation goal.
 
 For desktop builds, build on the target operating system and CPU architecture. Install Rust through
 [rustup](https://rustup.rs/), use Rust 1.90.0 and retain port/Cargo.lock.
@@ -118,7 +122,7 @@ Reference: [Rust SDL2 Windows MSVC linking](https://github.com/Rust-SDL2/rust-sd
 The generated project currently has a Rust CLI and an optional desktop SDL2
 shell. It does not include an Android Activity, JNI entry point, Gradle project,
 ROM picker or touch controls. The steps below describe the build integration a
-port developer must add; installing an Android target alone does not produce a
+port developer may add in separately requested work; installing an Android target alone does not produce a
 playable APK. Keep the existing desktop/headless entry points working.
 
 ### Toolchain and native-code check
@@ -172,7 +176,7 @@ Rust, SDL and Gradle. Host Linux SDL libraries cannot be used for Android.
    and a settings/menu route without F1, or explicitly require a controller.
    The desktop shell alone does not supply these mobile interactions.
 
-### Build, install and validate
+### Optional later build, install and device audit
 
 After the application integration above exists, run from android/:
 
@@ -181,10 +185,9 @@ After the application integration above exists, run from android/:
 adb install -r app/build/outputs/apk/debug/app-debug.apk
 ```
 
-On Windows use `gradlew.bat`. Open the app on the selected device, import your
-matching ROM, and test gameplay, settings persistence, touch/controller input,
-pause/resume and audio recovery. Keep device/API/ABI and results in the validation
-section. Run headless game tests on the host separately. Cross-compilation and
+On Windows use `gradlew.bat`. Device play, settings/input/lifecycle/audio testing
+belongs to a later explicitly requested device audit. Record any user-reported
+results separately from the implementation's unit-test/build results. Cross-compilation and
 APK assembly do not establish device behavior; no Android build or device test
 has been performed for this scaffold. Release signing, keystore management and
 store packaging require a separate release setup; keep signing secrets local.
@@ -211,8 +214,9 @@ physical devices or other operating systems have been validated for this port.
 The port agent must replace this section with actual build/test evidence,
 distinguishing compilation, headless execution, desktop play and user-reported
 results. Keep untested platforms/device behavior explicit; instructions do not
-establish compatibility. Missing desktop validation alone does not block port
-completion, and must not cause a server graphics launch.
+establish compatibility. Runtime fidelity/device validation is outside the implementation goal and its
+absence does not block completion. Do not start playthroughs, emulator comparisons
+or a server graphics launch to complete this section.
 
 ## Later packaging
 

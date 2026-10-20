@@ -157,8 +157,9 @@ byte-identical verification remain distinct completion gates.
 
 Native port preparation may use reviewed, byte-identical archives with incomplete
 classification. Track residual ranges and semantic uncertainties by consumer and
-port impact, preserve original ROM-backed data when justified, and resolve required
-gameplay behavior before claiming a finished port. Discoveries may correct a local
+port impact and preserve original ROM-backed data when justified. Implement required
+gameplay behavior before claiming a finished best-effort port. Reasonable source-informed implementation assumptions may remain documented;
+original-game equivalence need not be proven. Discoveries may correct a local
 working disassembly/commentary through evidence-linked, map-validated and exact-rebuild
 verified revisions while the archived baseline and original accounting IDs remain
 frozen. This does not relax the original mapping goal's every-byte contract.
@@ -274,15 +275,22 @@ optional SDL2 desktop frontend with player configuration.
 The agent accounts for all original source behavior and implements gameplay
 equivalents using modern techniques; obvious irrelevant paths may be excluded
 with explanations, favoring ambiguous cases. Completion requires finished
-accounting, useful passing tests and a documented handoff, not exact frame matching
-or a line-by-line translation. The scaffold is not gameplay completion. Agents
+accounting, a source-informed architecture plan and coherent maintainable code,
+focused passing unit tests, required format/static/build checks and a documented
+handoff. Runtime fidelity validation is outside the porting goal: no native-versus-ROM
+frame/audio/state/scenario comparisons or exhaustive replays. Debugger use answers
+a specific unresolved source question with a bounded experiment and stopping
+condition; inconclusive results may lead to documented reasonable implementation
+assumptions. Missing code blocks completion; unverified fidelity does not. After
+the administrative accounting/build audit passes, stop. A fidelity/device audit
+requires a separate user request. No line-by-line translation is required. The scaffold is not gameplay completion. Agents
 may evolve the library directly in ROMAtlas, uncommitted, with an initial-file
 snapshot and change log for separate review before user check-in. Keep original
 assets ROM-backed at startup and out of distributions. Headless Linux validation
 does not claim desktop/other-OS runtime compatibility. Library publication and
 release packaging are later scope. See docs/porting.md for the working contract.
 
-Redirect investigations follow supported connected handlers, state transitions and
+Mapping-phase redirect investigations follow supported connected handlers, state transitions and
 related data before handoff, without byte quotas or exhaustive recursive closure.
 A first ready lead or initial range boundary is not sufficient reason to stop;
 record reasons for deferring obvious continuations. Static evidence may justify

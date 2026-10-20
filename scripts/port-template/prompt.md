@@ -1,108 +1,161 @@
-# Port the entire archived game
+# Implement the entire game as a maintainable best-effort native port
 
-Read AGENTS.md, workflow.md, uncertainties.json, prompts/reference-updates.md,
-reference/reading.asm and relevant archive documents
-before coding. The commented, labeled reference is intended to explain routines,
-branches, RAM variables and data formats. If it contains gaps, investigate and record
-them rather than assuming classification or editorial status proves understanding.
-Implement this entire game in readable native Rust. The scaffold
-is an arbitrary ROM-backed tile demonstration, not gameplay or identified assets.
-Replace it; do not stop at a working scaffold, first level or playable demo.
+Read AGENTS.md, goal.md, workflow.md, uncertainties.json and
+prompts/reference-updates.md. Use reference/reading.asm and relevant archive
+documents while surveying and implementing the source; reading the entire source
+before starting is not required.
+On resume read architecture.md, progress.md, differences.md, library-changes.md,
+ledger.json and existing code. Inspect research/current.json and its adopted
+reading/source supplement when present. Preserve work; do not reinitialize.
+The scaffold is an arbitrary ROM-backed tile demonstration. Replace it with the
+whole game; a scaffold, first level or playable demo is not completion.
 
-Use ledger.json to account for every archived region and meaningful unit. Record
-implemented, merged, replaced or excluded, a behavior explanation, and port
-equivalents. Add units as you discover them. Every gameplay-relevant behavior
-needs an equivalent; source lines need not translate one-for-one. Modern methods
-may merge routines or remove the need for an original mechanism. Judge obviously
-irrelevant junk/unreachable paths from the commented source without a formal
-reachability proof. Favor porting borderline/unclear behavior. Resolve relevant
-unknown regions; editorial review does not prove complete gameplay understanding.
+## Source-informed architecture before substantial implementation
 
-The disassembly may be unfinished, and classified source may still have uncertain
-meanings or incorrect commentary. Begin useful porting without completing whole-ROM
-classification first. Small gaps are not automatically harmless, and an Unknown
-label does not mean the bytes are absent: the reference preserves them exactly.
-Assess each seeded uncertainties.json entry as its consumers become relevant;
-record CPU/bank context, callers/readers, competing interpretations, port impact,
-evidence, useful tests and validation limits. Add uncertainties in classified
-regions as you find them. Prioritize control flow, dispatch, pointer/bank fields,
-record bounds and rare state transitions over storage-only questions. Continue
-independent implementation while an investigation is pending; investigate deeply
-when a concrete port behavior depends on it, rather than restoring an unlimited
-whole-ROM classification task.
+Read representative source paths for startup, gameplay, rendering and sound.
+Identify major systems, state ownership, update order and dependencies on original
+data or hardware. This is a bounded initial survey, not exhaustive source analysis.
+Write a short high-level plan in architecture.md before substantial implementation:
+proposed modules/files, responsibilities, public interfaces, state owners, data
+flow, scheduling, shared-library use, uncertainties and an implementation order.
+Choose boundaries around game concepts rather than assembly banks or routine lists.
+Proceed with implementation once the plan is actionable; no approval is required.
 
-For uncertain data, keep original values ROM-backed where a supported consumer
-can interpret them; document/test loading, bounds and affected behavior. Preserved
-data can remain structurally uncertain. Raw instruction bytes are not a native
-implementation: resolve needed logic, implement its equivalent and test meaningful
-branches. Do not silently zero unknown fields, skip handlers, invent semantics or
-label fragments irrelevant merely because no trace selected them. An explained
-no-impact exclusion is allowed under the existing behavior-accounting contract.
-Unresolved gameplay-affecting behavior remains incomplete, even if Rust builds.
+Maintain that plan as understanding changes. Keep modules cohesive, state ownership
+explicit and interfaces small. Express algorithms with clear names, focused
+functions and understandable control/data flow. Avoid one growing game.rs containing
+simulation, assets, rendering, audio and UI. Splitting a tangled implementation
+across files without improving ownership/coupling does not satisfy this requirement.
+There are no arbitrary file-count, line-count or abstraction quotas.
 
-When implementation reveals a supported correction or new interpretation, follow
-prompts/reference-updates.md to update the local working disassembly/commentary,
-validate a new reference revision and link it to uncertainties.json and ledger.json.
-Preserve frozen reference/ and original ledger identities; add discovered units
-instead of replacing historical records. On resume inspect research/current.json
-and its verified reading/source supplement before trusting older commentary.
+After a substantial feature, briefly inspect the affected design against the plan;
+fix concrete coupling, duplication or unclear algorithms before building on them.
+This is part of implementation, not a new review phase or repeated whole-project
+audit. Update the plan only when decisions change. At completion, make one bounded
+maintainability pass; do not keep redesigning a coherent working implementation.
 
-All original graphics, fonts, music, sound and gameplay data (including maps)
-come from the matching user's ROM at startup through recipes. Do not bake ROM
-bytes or decoded originals into Rust constants or distributable files. Support
-validated file overrides and added named slots: original ROM-backed levels plus
-additional file-backed levels must work together without a fixed level count.
-Keep decoded originals and regenerated assembly local. Never download commercial
-ROMs or commit ROMs/extracted assets. Developer-authored content may ship.
+## Implementation and behavior accounting
 
-Use romatlas-port for common mechanisms and platform-specific effects. Keep game
-rules and unusual tricks in the game when appropriate. Simulate at the original
-console cadence independently of monitor refresh. Exact frame compatibility is
-not promised; document known differences and aim for accurate gameplay.
+Use ledger.json to account for every archived region and meaningful unit as
+implemented, merged, replaced or excluded, with a behavior explanation and native
+equivalents. Add discovered units while preserving original IDs and ranges.
+Implement every gameplay-relevant equivalent; modern methods may merge routines
+or remove original mechanisms. Judge obvious irrelevant junk/unreachable paths
+from source without a formal reachability proof. Favor implementing borderline
+or unclear behavior. Lack of observed execution alone does not justify exclusion.
 
-You are authorized to implement necessary library changes directly in the toolkit
-directory recorded in workspace.json. Read its AGENTS.md, project.md and
-docs/progress.md. Leave edits uncommitted, preserve unrelated work, and distinguish
-the initial state recorded in review/toolkit-before.json and review/toolkit-before/.
-For each shared change log the game requirement, files, game-independent interface
-rationale and tested evidence in library-changes.md. Two consumers are not required
-to justify a reusable utility. Keep uncertain abstractions local. Complete needed
-library work during porting; do not defer it merely by filing an issue. Record
-unresolved findings and workarounds as well.
+Incomplete disassembly/classification is allowed. Assess unknown ranges and
+semantic ambiguities by their consumers and port impact as implementation reaches
+them. Do not complete the whole-ROM mapping task as a port prerequisite. Prefer
+source reading, data inspection and existing documentation. Where a reasonable
+source-informed implementation is possible, implement it, record the assumption,
+basis and residual uncertainty, and continue. Distinguish an implementation
+assumption from an established fact about the original. Do not demand proof of
+every interpretation or runtime confirmation of every branch.
+
+For uncertain data, keep original values ROM-backed when a supported consumer can
+interpret them; unit-test loading/bounds where useful. Preserving code bytes is
+not native behavior. Do not silently skip handlers, zero unknown fields or label
+behavior irrelevant to finish accounting. Missing required implementations remain
+incomplete; implemented best-effort behavior with documented assumptions does not
+remain blocked merely because fidelity has not been independently confirmed.
+Use prompts/reference-updates.md for supported source corrections; its map and
+byte-identical rebuild requirements protect reference integrity only. Never publish
+an assumption as confirmed classification. Frozen reference/ stays unchanged.
+
+## Runtime library, assets and player interface
+
+Use romatlas-port for common mechanisms and platform-specific effects, including
+available audio/video helpers. Review their documented limits. Keep game rules,
+sequence interpretation and unusual tricks in the game when appropriate. Simulate
+at the console cadence independently of monitor refresh. Implement the intended
+behavior from source using the available facilities; document approximations.
+
+All original graphics, fonts, music, sound and gameplay data, including maps,
+come from the matching user's ROM at startup through recipes. Do not embed
+extracted originals in code/distributable files. Support validated file overrides
+and added named slots: original ROM-backed levels and added file-backed levels
+must work together without a fixed level count. Keep decoded originals and
+regenerated assembly local. Never download commercial ROMs or commit ROMs/assets.
+Developer-authored content may ship.
+
+Implement needed shared-library changes directly in the toolkit recorded in
+workspace.json. Read its AGENTS.md, project.md and docs/progress.md. Leave edits
+uncommitted, preserve unrelated work and distinguish the initial state in
+review/toolkit-before.json and review/toolkit-before/. Log each change's requirement,
+files, reusable interface rationale, focused tests and limits in library-changes.md.
+Two consumers are not required to justify a reusable utility. Keep uncertain
+abstractions local. Complete needed library work during implementation rather than
+merely filing an issue. Known library limitations do not authorize fidelity audits.
 
 Supply persisted keyboard/gamepad mapping, controller selection, dead zones,
 window/fullscreen/scaling and volume settings through a usable in-game menu.
-Share simulation between desktop play and scripted headless tests. Headless mode
-must initialize neither a window nor an audio device. Write a normal useful amount
-of tests that run in this headless Linux environment. Do not write tests needing
-unavailable displays, GPUs or physical controllers. Report untested desktop and
-other-platform behavior. Missing desktop runtime validation alone does not block
-completion. Compile the desktop target; do not launch it on this server.
+Keep simulation independent of frontend devices so headless unit tests need neither a
+window nor an audio device. Compile desktop code; do not launch it on this server.
 
-Run python3 run.py check for formatting, clippy, tests and desktop compilation.
-After toolkit changes run its required relevant checks, including portability and
-dependency boundaries, and update its docs/progress.md with tested facts. Never
-interpret tests or the ledger audit as proof of semantic correctness.
+## Checks and debugger boundary
 
-Update README.md with how to run the port, replace assets, add a level and find
-game rules. Adapt the generated BUILDING.md to the finished port and link it from
-README.md. Include macOS/Linux/Windows prerequisites and build/run commands,
-source transfer excluding target/ binaries, the exact shared-library source and
-lockfiles required, path-dependency relocation, and game-specific dependencies or
-flags. Record actual validation separately from untested build recipes; never
-copy another port's platform success as evidence for this one. Check upstream
-platform setup when needed. Keep packaging/publication as later work.
-Provide an original-content-only example extension manifest. Keep
-progress.md and differences.md current. Completion requires a finished ledger,
-assessed uncertainties with evidence and explicit residual limits,
-implemented gameplay equivalents, useful passing tests and a documented handoff.
-Set ledger completion.status=complete with notes only when this is true, and run
-python3 run.py audit. Audit validates records and builds, not gameplay fidelity.
-Leave shared-library edits for the separate reviewer; provide the actual diff,
-requirements and validation. No check-in, publication or agent launch is authorized.
+Validate the native implementation with focused unit tests of its intended logic.
+Reserve unit tests for complex or error-prone behavior that benefits from explicit
+verification; skip trivial arithmetic, obvious getters/setters and tests that merely
+restate the implementation.
+Write a useful normal amount of tests for meaningful branches, bounds and system
+interfaces; assertions should explain the intended behavior, not merely mirror
+implementation details. Do not turn the source inventory into an exhaustive test
+matrix. Use synthetic fixtures or local ROM data without distributing originals.
 
-If blocked, preserve work, identify unresolved behaviors and concrete attempts,
-and explain what would unblock them. Do not mark an incomplete port complete.
-Release packaging and immutable library dependency pinning happen later, after
-user review and check-in. A local path dependency and Cargo.lock do not freeze
-the edited library source.
+Runtime fidelity validation is outside this porting goal. Do not compare native
+frames, screenshots, animation sequences, audio, state trajectories or gameplay
+scenarios against emulator/ROM runs to validate the port. Do not construct or repeat
+scenario replays, frame captures or debugger sessions to accumulate confidence.
+There is no pixel-perfect, audio-equivalence, frame-by-frame or exhaustive-scenario
+acceptance requirement. Native playthroughs, image/golden comparisons, cross-runtime
+differential tests and device testing are not completion gates. A separate fidelity
+audit requires a later explicit user request.
+
+The debugger is available only to answer a specific unresolved question about the
+source when static reading/data inspection cannot reasonably answer it. Before a
+run, record the question, needed observation and stopping condition. Run a bounded
+experiment, record its answer, then return to implementation. Stop at the declared
+bound even if unanswered; do not repeat inconclusive runs without new evidence.
+If the result remains
+inconclusive, make a reasonable documented implementation assumption and proceed
+where possible. Do not reopen an answered question without new contradictory
+evidence. Missing confidence, desired similarity or an untested screen is not a
+source-understanding question. A genuine missing input/tool may be reported as a
+blocker; lack of runtime fidelity evidence is not one.
+
+Run python3 run.py check for formatting, clippy, unit tests and desktop compilation.
+After shared-library changes run the toolkit's required relevant regression checks,
+including portability/dependency boundaries, and update its docs/progress.md with
+tested facts. Those toolkit checks protect library/tool behavior; they do not
+expand the native game's acceptance criteria into emulator comparisons. Once a
+relevant check passes, rerun it only after a pertinent change, failure or concrete
+new defect. Do not add more validation simply because time or goal budget remains.
+
+## Completion and stopping rule
+
+Maintain README.md with running/controls, asset replacement, added levels and game
+rule locations. Adapt BUILDING.md with build recipes, exact source/lockfile/path
+requirements and actual build/unit-test results. Other-platform/device execution
+and gameplay fidelity remain unassessed unless separately requested. Provide an
+original-content-only extension manifest. Keep progress.md and differences.md
+current, recording assumptions, library limits and known differences without a
+checklist of fidelity experiments to perform before completion.
+
+Finish when the whole game's best-effort implementations and behavior accounting
+are complete, uncertainty entries are assessed (including implemented assumptions),
+the architecture is coherent and documented, required checks pass and the handoff
+is written. Set ledger completion.status=complete with notes describing that scope;
+run python3 run.py audit once to check accounting/builds. It is an administrative
+check, not a fidelity audit. Fix actual failures; after it passes, stop. Assume
+the implemented and unit-tested behavior works for this handoff; do not claim
+independent gameplay or audiovisual equivalence. Remaining unverified similarity
+must not trigger another investigation, replay, audit or polishing cycle.
+
+Leave shared-library edits for the separate reviewer with the actual diff,
+requirements and check results. No check-in, publication or agent launch is
+authorized. Release packaging and immutable dependency pinning are later work;
+Cargo.lock does not freeze a local path dependency. If actual required code cannot
+be implemented, preserve work and report the concrete blocker; do not mark absent
+behavior implemented. Fidelity uncertainty alone does not make the port incomplete.

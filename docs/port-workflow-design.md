@@ -39,6 +39,18 @@ unknowns into the port ledger and investigate gaps that could affect gameplay.
 An archived editorial review is a useful starting point, not proof of semantic
 correctness or complete gameplay understanding.
 
+## Source-informed architecture
+
+Before substantial implementation, inspect representative startup, gameplay,
+rendering and sound source paths and write architecture.md with modules, state
+owners, interfaces, algorithms, scheduling, library use and an implementation order.
+Keep the survey bounded and proceed once the plan is actionable. Maintain coherent
+modules/readable algorithms as features land; update decisions when they change.
+No exhaustive initial analysis, approval, file-count or line-count quota is needed.
+After substantial features fix concrete boundary problems. One bounded final
+maintainability pass completes this obligation; repeated architectural audits or
+cosmetic file splitting do not improve it.
+
 ## Completion and fidelity
 
 The agent pursues the whole game, not merely a scaffold, one level or a runnable
@@ -54,12 +66,27 @@ junk, unreachable elements and non-gameplay paths may be excluded without a
 formal reachability proof. Favor implementing borderline or unclear behavior.
 Unvisited execution alone does not explain an exclusion.
 
-Completion requires no unexplained ledger entries, implemented gameplay
-equivalents, a useful normal amount of passing tests, and a documented handoff.
-Document known behavioral differences. Exact frame compatibility is not a
-requirement and cannot be promised for all original hardware tricks. Missing
-desktop runtime validation on this server is reported and does not itself block
-completion. The ledger cannot mechanically establish semantic correctness.
+Completion requires explained ledger entries, whole-game best-effort gameplay
+implementations, a coherent documented architecture, focused passing unit tests,
+required format/static/build checks and a handoff. Implement reasonable
+source-informed assumptions and record their basis and limits; unverified fidelity
+does not mean implemented behavior is missing. Required absent code still blocks
+completion. Do not hide missing behavior under preservation or exclusions.
+
+Runtime fidelity validation is outside this porting goal. No native-versus-ROM
+frame, audio, state or scenario comparisons, exhaustive replays, playthroughs or
+device audits are required or authorized as implementation validation. The
+debugger may answer a specific unresolved source question static inspection
+cannot reasonably resolve: record the observation sought and stopping condition,
+run a bounded experiment and return to coding. If inconclusive, implement a
+reasonable documented assumption where possible. Do not reopen answered questions
+without new contradictory evidence. A later fidelity audit requires an explicit
+user request. Record known differences and unassessed fidelity honestly.
+
+Finish the implementation and required records/checks, run the administrative
+ledger/build audit and stop when it passes. Do not expand acceptance criteria or
+repeat passing checks to accumulate confidence or consume a goal budget. The
+ledger and unit tests do not establish independent original-game equivalence.
 
 If blocked, preserve progress and identify concrete unresolved behaviors,
 attempts and what would unblock the work. Do not mark an incomplete port complete
@@ -165,13 +192,15 @@ at the original platform's intended cadence independently of monitor refresh;
 display vsync paces presentation. Support finer scheduling for console effects
 where a port needs it.
 
-## Headless testing and validation
+## Unit tests and required checks
 
 The same game logic supports desktop play and scripted headless execution.
 Allow inspection of game state, fixed-step advancement and deterministic seeds
-where relevant. Headless execution must not initialize windows or audio devices.
+where relevant. These facilities support unit tests and optional later work;
+headless scenario execution is not a required port-validation phase. Unit tests
+must not initialize windows or audio devices.
 
-Write normal useful tests that run on this server, including asset loading,
+Write focused unit tests of intended logic that run on this server, including asset loading,
 overrides/extensions, simulation, timing, settings, bindings and CPU-side image
 composition where applicable. Do not write tests requiring unavailable display,
 GPU or controller environments. Do not spend effort on virtual displays or
