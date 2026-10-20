@@ -1,0 +1,21 @@
+[package]
+name = "romatlas-nes"
+version.workspace = true
+edition.workspace = true
+license = "GPL-3.0-only"
+
+[dependencies]
+anyhow.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+romatlas-core = { path = "../romatlas-core" }
+romatlas-analysis = { path = "../romatlas-analysis" }
+romatlas-map = { path = "../romatlas-map" }
+romatlas-disasm = { path = "../romatlas-disasm" }
+nes-core = { path = "../../vendor/jgenesis/backend/nes-core" }
+jgenesis-common = { path = "../../vendor/jgenesis/common/jgenesis-common" }
+bincode = "=2.0.1"
+
+nes-config = { path = "../../vendor/jgenesis/config/nes-config" }
+mos6502-emu = { path = "../../vendor/jgenesis/cpu/mos6502-emu" }

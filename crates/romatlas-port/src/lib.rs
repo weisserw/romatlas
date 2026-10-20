@@ -7,6 +7,7 @@ pub mod desktop;
 pub mod gb;
 pub mod graphics;
 pub mod input;
+pub mod nes;
 pub mod settings;
 pub mod snes;
 pub mod timing;

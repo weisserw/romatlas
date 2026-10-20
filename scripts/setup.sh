@@ -19,4 +19,5 @@ git -C tools/rgbds checkout d1829ed92327a9f9210ffd45d865331f24dfa4e6
 make -C tools/rgbds -j2
 "${setup_privilege[@]}" make -C tools/rgbds install
 bash scripts/setup-snes.sh
+bash scripts/setup-nes.sh
 cargo build --locked --release

@@ -362,6 +362,7 @@ if __name__ == "__main__":
 
 def initialize(source, destination, binary, platform="auto"):
     source = source.resolve(strict=True)
+    is_nes = platform == "nes" or platform == "auto" and source.suffix.lower() == ".nes"
     is_snes = platform == "snes" or platform == "auto" and source.suffix.lower() in {".sfc", ".smc"}
     destination = destination.absolute()
     if destination.exists() or destination.is_symlink():
@@ -377,7 +378,7 @@ def initialize(source, destination, binary, platform="auto"):
         work.mkdir()
         for directory in ["input", "analysis", "maps", "generated", "prompts", "traces"]:
             (work / directory).mkdir()
-        rom = work / ("input/game.sfc" if is_snes else "input/game.rom")
+        rom = work / ("input/game.sfc" if is_snes else "input/game.nes" if is_nes else "input/game.rom")
         shutil.copyfile(source, rom)
         inspected = subprocess.run([str(binary), "inspect", str(rom)],
                                    check=True, capture_output=True, text=True)
@@ -406,6 +407,9 @@ def initialize(source, destination, binary, platform="auto"):
         if is_snes:
             import snes_workflow
             files = snes_workflow.files(files, metadata)
+        if is_nes:
+            import nes_workflow
+            files = nes_workflow.files(files, metadata)
         for name, content in files.items():
             (work / name).write_text(content)
         # Refuse replacement if another initializer created the destination meanwhile.
@@ -427,7 +431,7 @@ def print_prompt_location(record):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("roms", type=Path, nargs="+", help="local owned ROM files")
-    parser.add_argument("--platform", choices=["auto", "gb", "snes"], default="auto")
+    parser.add_argument("--platform", choices=["auto", "gb", "snes", "nes"], default="auto")
     parser.add_argument("--root", type=Path, default=Path.cwd(),
                         help="parent for game workspaces (default: current directory)")
     parser.add_argument("--workspace", type=Path, help="exact directory; only for one ROM")

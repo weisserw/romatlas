@@ -18,6 +18,11 @@ impl TickRate {
         numerator: 21_477_272,
         denominator: 357_366,
     };
+    /// NTSC PPU cadence averaged over the rendering-enabled odd-frame skipped dot.
+    pub const NES_NTSC: Self = Self {
+        numerator: 10_738_636,
+        denominator: 178_683,
+    };
     pub fn validate(self) -> Result<()> {
         ensure!(
             self.denominator > 0

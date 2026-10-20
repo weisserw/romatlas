@@ -58,7 +58,7 @@ validation.
    is modified. Only one writer should edit/adopt a reference revision at a time.
 2. Record the discovery and inspect the original bytes/consumers with effective bank
    context. Read the toolkit's project.md, scripts/workflow-template/evidence-policy.md and platform
-   documentation (docs/sym.md for Game Boy, docs/snes.md for SNES). Distinguish a
+   documentation (docs/sym.md for Game Boy, docs/nes.md for NES, docs/snes.md for SNES). Distinguish a
    structural inference, observed execution and a conditional calling contract.
    Useful static evidence does not require a natural caller; valid decoding or a
    plausible pattern alone is insufficient. If evidence is still weak, retain the
@@ -66,7 +66,7 @@ validation.
 3. Edit maintained assembly comments, labels and symbols in research/working/source/.
    For structural changes, use the toolkit map APIs against research/working/state.json:
    open a dedicated `serve` process with the configured binary, explicit --platform
-   gb or snes and --rom input/game.rom; map.load the working state, inspect/annotate,
+   gb, nes or snes and --rom input/game.rom; map.load the working state, inspect/annotate,
    map.validate and map.save back to that file. Split regions before inserting
    smaller ones. Keep annotations/provenance and edited assembly consistent. The
    verify command exports the map from this state; no hand-edited second map is needed.

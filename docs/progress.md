@@ -1127,3 +1127,59 @@ Changes remain uncommitted.
 tests for complex/error-prone behavior and excluding trivial arithmetic, obvious
 getters/setters and implementation restatements. Documentation-only change;
 `git diff --check` passes. No tests run.
+
+2026-10-20: Added the NTSC NES platform alongside Game Boy and SNES. Selected
+jgenesis v0.11.4 at the existing pinned fork revision after source review of
+jgenesis, TetaNES and pinky; docs/nes-evaluation.md explains the integration choice
+and distinguishes source findings from measured compatibility. No non-Rust core
+port was needed. Preserved upstream GPL notices and added ca65/ld65 V2.19 setup
+pinned to 555282497c3ecf8b313d87d5973093af19c35bd5. Shared/native crates remain
+independent of console adapters/cores; the native runtime retains MIT licensing.
+
+romatlas-nes adds cartridge inspection, iNES/NES 2.0 section parsing, automatic
+.nes/explicit platform selection, persistent CommandAdapter RPC, bounded
+instruction/cycle/frame advancement, two controllers, CPU state/edits, backing
+RAM edits, immutable CPU/PPU inspection, framebuffer/WAV output, reset and
+identity/checksummed transactional same-build snapshots. Actual opcode/bus/backing
+hooks distinguish physical PRG/CHR/RAM from CPU aliases and unmapped accesses;
+interrupt dummy fetches do not become executed instructions. Trace filters,
+streaming, aggregates, observed edges, effective PRG-slot contexts, static
+hypotheses, barriers and transactional maps use the existing workflow contracts.
+Baseline execution accepts mappers 0/1/2/3/4/7 with explicit unsupported-feature
+errors. Other mappers, nonzero submappers, trainer execution, PAL and rare
+peripherals are outside this baseline. Snapshot files retain a local raw image
+copy and must remain local.
+
+The complete 256-encoding NMOS decoder preserves lengths, operands and addressing
+widths. ROM-free JSON maps carry physical roles separately from CPU/bank views.
+ca65/ld65 reconstruct whole images, including headers/trainers/CHR/trailing data;
+unofficial aliases and wrapping branches retain exact bytes with decoded mnemonic
+comments. Empty/raw maps remain unknown and do not satisfy classification. New
+NES disassembly/commentary/archive/port profiles preserve structural versus
+reachability, whole-ROM classification, full current-source readability and
+editorial gates; existing workspaces are not rewritten.
+
+Independent MIT romatlas-port::nes helpers implement planar CHR, banked background
+sampling, nametable mirroring/attributes/scroll, 8x8/8x16 sprites/flips/selection,
+clipping/priority/zero-hit composition, grayscale/emphasis, and NTSC pulse/triangle/
+noise/DMC primitives with envelopes, sweeps, counters, frame IRQs, sample callbacks
+and nonlinear mixing. Ports own game rules, mapper/raster scheduling and drivers.
+Analog/composite fidelity, expansion audio, hardware sprite-overflow bugs and
+cycle-exact DMA interactions are documented limits, not completed hardware gates.
+
+Validation on Rust 1.90.0 passes: locked release build; workspace fmt, all-target
+Clippy with warnings denied and locked workspace tests; desktop-feature native
+Clippy/tests; NES synthetic CLI/RPC/replay/capture/trace/map tests, all 256 opcode
+rebuilds, 1 MiB reconstruction, trainer/trailer retention, executed MMC1/MMC3/UxROM
+bank writes, debugger edits and new-workspace/commentary/archive/native-port flows.
+Three NES structural tests and four independent native-helper tests pass. Existing
+session, stock four-bank portability, disassembly, commentary, archive, native-port,
+production SNES, pinned SNES CPU-vector, licensed homebrew, dependency-boundary
+and 89-case Game Boy hardware regressions pass. Python compilation and
+git diff --check pass. Parallel scaffold builds pressed local disk capacity;
+cleared only generated assembler-library/CLI-debug build artifacts, and all
+checks completed successfully. No display/audio device was initialized. All
+synthetic images, captures, snapshots and generated workspaces remain local;
+no commercial ROM or extracted game assets were downloaded or committed.
+These results do not establish broad NES hardware or commercial-game fidelity.
+Changes remain uncommitted.

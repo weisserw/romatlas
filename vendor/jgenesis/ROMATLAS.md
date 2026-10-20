@@ -13,3 +13,12 @@ Local changes: deterministic initial WRAM, typed optional bounded instrumentatio
 actual opcode hooks, immutable debugger inspection and state access. Instrumentation
 is outside hardware snapshots. The adapter owns identity/versioning and transactional
 restore. See docs/snes.md for capabilities and measured limits.
+
+
+NES extension (same upstream revision): backend/nes-core, backend/ym-opll,
+config/nes-config and cpu/mos6502-emu. Local changes initialize CPU RAM to zero,
+observe actual opcode/bus/backing accesses with optional bounded probes, expose
+immutable baseline mapper inspection, detached PPU peeks, backing storage and
+CPU register access. The adapter owns cycle/frame counts, ROM identity,
+transactional snapshots, effective bank views and output limits. See docs/nes.md.
+No GPL implementation was copied into the independent MIT romatlas-port helpers.

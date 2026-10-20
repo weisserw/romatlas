@@ -95,7 +95,7 @@ def prepare(archive, rom, output, binary):
     manifest = json.loads((archive / "archive.json").read_text())
     if manifest.get("version") != 1:
         raise ValueError("port preparation requires a version-1 archive")
-    if manifest["platform"] not in {"gb", "snes"}:
+    if manifest["platform"] not in {"gb", "snes", "nes"}:
         raise ValueError("unsupported port archive platform")
     name = manifest["name"]
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", name):
@@ -173,6 +173,13 @@ def prepare(archive, rom, output, binary):
                     text = text.replace("gb::GRAYSCALE", "[snes::color(0x7fff),snes::color(0x56b5),snes::color(0x294a),snes::color(0)]").replace(",76,68,", ",124,108,")
                 else:
                     text = text.replace("(160,144)", "(256,224)").replace("TickRate::DMG", "TickRate::SNES_NTSC").replace("romatlas_port::settings::Settings::default()", "romatlas_port::snes::default_settings()")
+            if manifest["platform"] == "nes":
+                if filename == "game.rs":
+                    text = text.replace(", gb,", ", nes,").replace("gb::tile_2bpp(", "nes::tile(")
+                    text = text.replace("Game Boy 2bpp", "NES 2bpp")
+                    text = text.replace("gb::GRAYSCALE", "[[255,255,255,255],[170,170,170,255],[85,85,85,255],[0,0,0,255]]").replace(",76,68,", ",124,116,")
+                else:
+                    text = text.replace("(160,144)", "(256,240)").replace("TickRate::DMG", "TickRate::NES_NTSC").replace("romatlas_port::settings::Settings::default()", "romatlas_port::nes::default_settings()")
             (stage / "port/src" / filename).write_text(text)
         # Pin dependencies before publication. Toolkit setup/build must have
         # resolved them; preparation does not require an online registry.

@@ -1,0 +1,26 @@
+[package]
+name = "nes-core"
+version = "0.7.1"
+edition = "2024"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+dsp = { path = "../../common/dsp" }
+jgenesis-common = { path = "../../common/jgenesis-common" }
+jgenesis-proc-macros = { path = "../../common/jgenesis-proc-macros" }
+
+nes-config = { path = "../../config/nes-config" }
+
+mos6502-emu = { path = "../../cpu/mos6502-emu" }
+
+ym-opll = { path = "../ym-opll" }
+
+bincode = { workspace = true }
+crc = { workspace = true }
+log = { workspace = true }
+rand = { workspace = true }
+thiserror = { workspace = true }
+
+[lints]
+workspace = true

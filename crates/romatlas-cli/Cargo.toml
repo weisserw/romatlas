@@ -22,3 +22,5 @@ romatlas-analysis = { path = "../romatlas-analysis" }
 romatlas-snes = { path = "../romatlas-snes" }
 
 romatlas-disasm = { path = "../romatlas-disasm" }
+
+romatlas-nes = { path = "../romatlas-nes" }

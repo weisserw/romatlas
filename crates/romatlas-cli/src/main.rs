@@ -1,3 +1,4 @@
+mod nes;
 mod output;
 mod session;
 mod snes;
@@ -277,9 +278,12 @@ fn main() {
 fn run() -> Result<()> {
     let cli = Cli::parse();
     anyhow::ensure!(
-        matches!(cli.platform.as_str(), "auto" | "gb" | "snes"),
+        matches!(cli.platform.as_str(), "auto" | "gb" | "snes" | "nes"),
         "unknown platform"
     );
+    if cli.platform == "nes" || cli.platform == "auto" && nes::detect(&cli.command) {
+        return nes::run(cli.command);
+    }
     if cli.platform == "snes" || cli.platform == "auto" && snes::detect(&cli.command) {
         return snes::run(cli.command);
     }

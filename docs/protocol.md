@@ -287,3 +287,13 @@ For the SNES method parameters, address spaces, processor context, portable JSON
 mapping and measured limits, see [snes.md](snes.md). Use `serve --rom owned.sfc`
 or `serve --platform snes` and inspect api.describe. Game Boy parameters above
 remain unchanged. Shared transport/request/response limits apply to both adapters.
+
+## NES adapter
+
+Use `romatlas serve --rom owned.nes` or `--platform nes` for another extension.
+The NES adapter implements the shared persistent transport through CommandAdapter;
+`api.describe` gives the precise method list. CPU names are main/6502/2a03.
+Clock values are NTSC CPU cycles. See [NES methods, address rules and limits](nes.md)
+for stepping, actual-access traces, effective PRG bank contexts, immutable peeks,
+versioned snapshots, maps, 6502 analysis, frame/WAV output and reconstruction.
+NES portable maps use JSON/ca65; Game Boy .sym/RGBDS and SNES JSON/Asar stay separate.

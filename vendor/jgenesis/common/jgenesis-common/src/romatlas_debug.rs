@@ -3,6 +3,7 @@
 use std::cell::{Cell, RefCell};
 #[derive(Clone, Debug)]
 pub struct Event {
+    pub physical: Option<(&'static str, u64)>,
     pub kind: &'static str,
     pub cpu: &'static str,
     pub origin: &'static str,
@@ -25,6 +26,7 @@ struct Probe {
 }
 thread_local! {
     static PROBE: RefCell<Probe> = RefCell::default();
+    static PHYSICAL: Cell<Option<(&'static str, u64)>> = const { Cell::new(None) };
     static SUSPENDED: Cell<bool> = const { Cell::new(false) };
 }
 /// Fast untraced execution deliberately records neither fetch counts nor evidence.
@@ -71,6 +73,7 @@ pub fn emit(kind: &'static str, address: u32, value: u8, registers: Option<[u32;
             return;
         }
         p.events.push(Event {
+            physical: PHYSICAL.get(),
             kind,
             cpu: p.cpu,
             origin: p.origin,
@@ -94,4 +97,34 @@ pub fn space(space: &'static str) {
         return;
     }
     PROBE.with_borrow_mut(|p| p.space = space);
+}
+
+/// NES: binding captured by actual backing-storage access, never byte matching.
+pub fn binding(value: Option<(&'static str, u64)>) {
+    PHYSICAL.set(value);
+}
+pub fn last_binding() -> Option<(&'static str, u64)> {
+    PHYSICAL.get()
+}
+
+/// Emit a bus event with a local origin, preserving the caller's probe context.
+pub fn bus_event(kind: &'static str, origin: &'static str, address: u32, value: u8) {
+    let previous = PROBE.with_borrow_mut(|p| {
+        let old = p.origin;
+        p.origin = origin;
+        old
+    });
+    emit(kind, address, value, None);
+    PROBE.with_borrow_mut(|p| p.origin = previous);
+}
+
+pub fn with_origin<T>(origin: &'static str, f: impl FnOnce() -> T) -> T {
+    let previous = PROBE.with_borrow_mut(|p| {
+        let old = p.origin;
+        p.origin = origin;
+        old
+    });
+    let result = f();
+    PROBE.with_borrow_mut(|p| p.origin = previous);
+    result
 }

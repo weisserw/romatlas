@@ -142,7 +142,7 @@ def verify(work, meta, rom, revision):
             shutil.copytree(working / "evidence", stage / "evidence")
         (stage / "reading.asm").write_text(phase.reading(stage / "source"))
         call("store", "validate", rom, "--store", stage / "state.json")
-        mapping = stage / ("mapping.json" if manifest["platform"] == "snes" else "mapping.sym")
+        mapping = stage / ("mapping.json" if manifest["platform"] in {"snes", "nes"} else "mapping.sym")
         call("store", "export", rom, "--store", stage / "state.json", "--output", mapping)
         call("map", "validate", mapping, "--rom", rom)
         call("generate", rom, "--map", mapping, "--out", stage / "structural")

@@ -75,6 +75,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f2032f911046de80f0a198e0901378627c33f59ea0ac00e363d481118bd70a53"
 
 [[package]]
+name = "base64"
+version = "0.22.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "72b3254f16251a8381aa12e40e3c4d2f0199f8c6508fbecb9d91f575e0fbb8c6"
+
+[[package]]
 name = "bincode"
 version = "2.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -485,6 +491,41 @@ dependencies = [
 ]
 
 [[package]]
+name = "mos6502-emu"
+version = "0.7.1"
+dependencies = [
+ "bincode",
+ "jgenesis-common",
+]
+
+[[package]]
+name = "nes-config"
+version = "0.1.0"
+dependencies = [
+ "base64",
+ "bincode",
+ "jgenesis-common",
+ "jgenesis-proc-macros",
+]
+
+[[package]]
+name = "nes-core"
+version = "0.7.1"
+dependencies = [
+ "bincode",
+ "crc",
+ "dsp",
+ "jgenesis-common",
+ "jgenesis-proc-macros",
+ "log",
+ "mos6502-emu",
+ "nes-config",
+ "rand",
+ "thiserror",
+ "ym-opll",
+]
+
+[[package]]
 name = "num"
 version = "0.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -695,6 +736,7 @@ dependencies = [
  "romatlas-disasm",
  "romatlas-gb",
  "romatlas-map",
+ "romatlas-nes",
  "romatlas-snes",
  "serde_json",
 ]
@@ -738,6 +780,25 @@ dependencies = [
  "romatlas-core",
  "serde",
  "serde_json",
+]
+
+[[package]]
+name = "romatlas-nes"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "bincode",
+ "jgenesis-common",
+ "mos6502-emu",
+ "nes-config",
+ "nes-core",
+ "romatlas-analysis",
+ "romatlas-core",
+ "romatlas-disasm",
+ "romatlas-map",
+ "serde",
+ "serde_json",
+ "sha2",
 ]
 
 [[package]]
@@ -1140,6 +1201,15 @@ name = "wit-bindgen"
 version = "0.57.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1ebf944e87a7c253233ad6766e082e3cd714b5d03812acc24c318f549614536e"
+
+[[package]]
+name = "ym-opll"
+version = "0.1.0"
+dependencies = [
+ "bincode",
+ "jgenesis-common",
+ "log",
+]
 
 [[package]]
 name = "zerocopy"

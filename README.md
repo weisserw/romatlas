@@ -201,3 +201,8 @@ Game Boy workflow. See [SNES commands, maps, runtime and limits](docs/snes.md),
 [the prompt audit](docs/snes-prompt-audit.md) and [licensing](LICENSES.md).
 Use locally owned `.sfc`/`.smc` images; no commercial ROMs or extracted assets are
 bundled. Native ports use the independent MIT runtime, with SNES asset helpers.
+
+NES support: see [usage and supported limits](docs/nes.md),
+[core selection](docs/nes-evaluation.md), and [native graphics/audio helpers](docs/nes-native.md).
+Use `.nes` or `--platform nes`, JSON maps and pinned ca65/ld65; Game Boy and SNES
+commands and formats remain platform-specific.
