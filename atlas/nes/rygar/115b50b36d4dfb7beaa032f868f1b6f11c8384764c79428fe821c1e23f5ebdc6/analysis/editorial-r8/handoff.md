@@ -1,0 +1,26 @@
+# Final editorial handoff — round 8
+
+ROM classification: **100.00% (131088 / 131088 bytes classified; 0 Unknown)**. Full current-source readability and targeted final editorial review are complete. The required final audit passes after the metadata-corrected authoritative checkpoint **pass-008-editorial**. Coordinator independent acceptance/goal completion remains separate.
+
+## Actual gates and outputs
+
+- Manual editorial assessment: `commentary/editorial-audit.md`, mirrored here as `editorial-audit.md`. Preserved valid full prior review credit and reviewed concrete new-entry/branch/RAM/bank contracts, stale numeric aliases, names/bounds/contradictory prose, generic-data uncertainty and copyright/local-only notices.
+- Final configured `python3 /root/romatlas/scripts/commentary.py audit /root/rygar`: **ok=true, byte_identical=true, editorial_audit=true, reviewed_regions=1873, reviewed_units=1936**. `reviewed_units` counts per-region unit records; the functional code-unit catalog has349units. The audit freshly reassembled/linked all131088bytes and refreshed reading-after.asm. Results: `commentary/audit.json`, `commentary/verification.json` and copies `audit.json`, `verification.json` here. `commentary/review.json` records actual final findings and status=reviewed.
+- Fresh `python3 run.py checkpoint pass-008-editorial`: map validation/generation/ca65+ld65 byte-identical rebuild succeeded; map `maps/pass-008-editorial.json`, report `analysis/pass-008-editorial-verification.json`, generated comparison `generated/pass-008-editorial`. The maintained source was not regenerated.
+- `maps/current.json`, `analysis/state.json`, `maps/pass-008-editorial.json`, `commentary/baseline.json` and `commentary/phase1-state.json` are identical. New frozen comparison tree/reading-before and manifest match this checkpoint; previous comparisons and complete pre-final phase are preserved under `analysis/editorial-r8/before-editorial` and `previous-before`.
+- Final source hashes exactly match the audit and verification. `source-hashes.json` records every local source/asset hash plus reading-after, findings, review, manifest and audit hashes. `preservation.json` proves all11451instruction lines unchanged except the37documented operand-alias substitutions,3330source labels unchanged, original symbol definitions retained,7assets identical, and exact structural map identity. `coverage.json`/`scope-inventory.json`:1873reviewed entries,349functional code units,11451starts,22881Code,108182Data including16header,25Text; no pending readability/editorial ranges.
+- ROM SHA256 unchanged: `115b50b36d4dfb7beaa032f868f1b6f11c8384764c79428fe821c1e23f5ebdc6`. Current map/state/checkpoint SHA256: `f96f6908cab8a8ec1f89a4510375620d8fbeba7eea0023278851f30f86c6ca65`. Existing configured release used; no toolkit changes/rebuilds.
+
+## Concrete editorial changes
+
+Replaced25active address-alias names across37operands using established CPU aliases or explicit field offsets; kept historical aliases. Corrected two `Work31` comments/metadata to `WorldObjectCount`, ending-threshold “positive” to “unsigned” with boundary uncertainty retained, and explicitly scoped the no-new-gameplay sentence to Round2commentary. All instruction bytes remain unchanged. Intermediate rebuilds caught an editorial BF70-vs-BF6E entry-alias mistake; fixed four affected calls to the precise caller-X `$BF70` entry and preserved the original full-entry calls. Subsequent final audit passes; this was a local editing error, not a toolkit defect.
+
+Coordinator-authorized map-only corrections: ID534 physical118046/$CD0E `QueueSecondarySound` -> `FindFreeObjectSlot`; ID535 physical118725/$CFB5 `UpdatePlayerObjectControl` -> `QuantizeSignedPlayerVector`. Configured serve/map.annotate preserved IDs, offsets, lengths, kind, confidence, provenance, views and all other metadata except the intended label/comment/evidence updates; all1871other objects identical. Concise mechanics/evidence appended. Old names remain in immutable checkpoints/historical crosswalks. `map-label-corrections.json` contains exact before/after and API results. There is no byte reclassification.
+
+## Genuine limitations and next action
+
+Natural callers of the static alternate entries, exact enemy identities, original schemas/layouts and generic-data meanings remain unresolved. Seventy generic Data blocks need no invented semantics and remain unlabeled with short uncertainty notes. Gameplay remains artificial best effort: five later areas, successful spell, two boss attacks without damage/victory, full22-step ending to visibleEND. No natural completion, rope traversal or full hardware compatibility claim. No new runtime replay/redirect occurred during final review.
+
+Coordinator should independently inspect the final audit, metadata-only map diff, editorial findings and preservation/hash records before declaring the goal complete. No worker gate remains pending. No separate compressed archive or publication is required. Deliverables are local readable bank-organized source and portable NES JSON; only the map is distributable. ROM/source/assets/internal state/snapshots/traces remain local.
+
+No toolkit issues found; see `analysis/toolkit-issues.md`.

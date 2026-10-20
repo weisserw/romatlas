@@ -1,0 +1,1716 @@
+{
+  "version": 1,
+  "pass": "pass-001",
+  "platform": "NES NTSC mapper2",
+  "input_replaces_complete_button_set": true,
+  "default_step": {
+    "unit": "frame",
+    "max_operations": 20000000,
+    "timeout_ms": 60000
+  },
+  "evidence_note": "S001..S005 retained natural routes; round8 S006..S013 are explicitly artificial supported RAM shortcuts. Inputs replace complete button set. Snapshots persist machine/input, not trace history/configuration; all local ROM-containing snapshots stay local.",
+  "scenarios": [
+    {
+      "id": "S001-title-start",
+      "from": "emulator.start",
+      "steps": [
+        {
+          "buttons": [],
+          "frames": 90
+        },
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 2
+        },
+        {
+          "buttons": [],
+          "frames": 90
+        }
+      ],
+      "end_frame": 182,
+      "snapshot": "analysis/pass-001/replay-game.snapshot.json",
+      "evidence": [
+        "analysis/pass-001/replay-game-contexts.json",
+        "analysis/pass-001/replay-game.png"
+      ]
+    },
+    {
+      "id": "S002-sueru-combat",
+      "from_snapshot": "analysis/pass-001/replay-game.snapshot.json",
+      "steps": [
+        {
+          "buttons": [
+            "right",
+            "b"
+          ],
+          "frames": 120
+        },
+        {
+          "buttons": [
+            "right",
+            "a",
+            "b"
+          ],
+          "frames": 60
+        },
+        {
+          "buttons": [
+            "right",
+            "b"
+          ],
+          "frames": 60
+        },
+        {
+          "repeat": 2,
+          "steps": [
+            {
+              "buttons": [
+                "right",
+                "a",
+                "b"
+              ],
+              "frames": 20
+            },
+            {
+              "buttons": [
+                "right"
+              ],
+              "frames": 20
+            },
+            {
+              "buttons": [
+                "right",
+                "b"
+              ],
+              "frames": 20
+            }
+          ]
+        }
+      ],
+      "end_frame": 542,
+      "snapshot": "analysis/pass-001/frontier.snapshot.json",
+      "evidence": [
+        "analysis/pass-001/right1-contexts.json",
+        "analysis/pass-001/right2-contexts.json",
+        "analysis/pass-001/frontier-contexts.json",
+        "analysis/pass-001/combat1-route.json"
+      ],
+      "interruption_note": "Client killed during sixth 20-frame pulse; emulator completed it at frame542, state/snapshot inspected. Partial route file ends522; sixth right+B pulse is explicitly restored here."
+    },
+    {
+      "id": "S003-game-over-continue",
+      "from_snapshot": "analysis/pass-001/frontier.snapshot.json",
+      "steps": [
+        {
+          "buttons": [
+            "right",
+            "a",
+            "b"
+          ],
+          "frames": 30
+        },
+        {
+          "buttons": [
+            "right",
+            "b"
+          ],
+          "frames": 240,
+          "trace_enabled": false
+        },
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 2,
+          "trace_enabled": true
+        },
+        {
+          "buttons": [],
+          "frames": 30
+        },
+        {
+          "buttons": [],
+          "frames": 90,
+          "trace_enabled": false
+        },
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 10
+        },
+        {
+          "buttons": [],
+          "frames": 90
+        }
+      ],
+      "result": "Natural death/game-over at frame812. Initial continue press too early; later Start returns to game, frame1034. No later-area progression established.",
+      "evidence": [
+        "analysis/pass-001/progress-sueru1.png",
+        "analysis/pass-001/continue-contexts.json",
+        "analysis/pass-001/continue-late-release.ppm"
+      ]
+    },
+    {
+      "id": "S004-status-selection-pause",
+      "from_snapshot": "analysis/pass-001/right1.snapshot.json",
+      "trace_enabled": true,
+      "steps": [
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 2
+        },
+        {
+          "buttons": [],
+          "frames": 30
+        },
+        {
+          "buttons": [
+            "down",
+            "a",
+            "b"
+          ],
+          "frames": 10
+        },
+        {
+          "buttons": [],
+          "frames": 10
+        },
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 2
+        },
+        {
+          "buttons": [],
+          "frames": 30
+        },
+        {
+          "buttons": [
+            "select"
+          ],
+          "frames": 2
+        },
+        {
+          "buttons": [],
+          "frames": 10
+        }
+      ],
+      "end_frame": 398,
+      "snapshot": "analysis/pass-001/status.snapshot.json (earlier frame334 before selection)",
+      "result": "Status screen visually confirmed; selection and pause exercised. No successful magic activation claimed (Mind=0).",
+      "evidence": [
+        "analysis/pass-001/status-contexts.json",
+        "analysis/pass-001/status-select-contexts.json",
+        "analysis/pass-001/pause-contexts.json",
+        "analysis/pass-001/status-open.png"
+      ]
+    },
+    {
+      "id": "S005-startup-graphics-contract",
+      "from": "emulator.reset",
+      "attempt": "r1-20261020",
+      "patches": [],
+      "natural": true,
+      "variants": [
+        {
+          "buttons": [],
+          "frames": 30,
+          "captures": [
+            "analysis/redirect/r1-20261020/startup-queue.jsonl",
+            "analysis/redirect/r1-20261020/startup-ppu-writes.jsonl"
+          ],
+          "note": "Separate deterministic resets, matching CPU cycles; stream drops0 in both captures."
+        },
+        {
+          "buttons": [],
+          "frames": [
+            30,
+            30,
+            30
+          ],
+          "capture": "analysis/redirect/r1-20261020/startup-rom-reads.jsonl",
+          "note": "16MiB cap60448 records,111701 later drops; all8192 upload read/write pairs retained."
+        }
+      ],
+      "step_budget": {
+        "max_operations": 5000000,
+        "timeout_ms": 60000
+      },
+      "result": "Four startup graphics descriptors,8192 source bytes paired to equal-valued CPU $2007 writes4 cycles later; no later-area reachability claim.",
+      "operations": [
+        "analysis/redirect/r1-20261020/graphics-trace-operations.json",
+        "analysis/redirect/r1-20261020/queue-trace-operations.json",
+        "analysis/redirect/r1-20261020/ppu-trace-operations.json"
+      ]
+    },
+    {
+      "id": "S006-artificial-destination-12",
+      "pass": "pass-008-reviewed",
+      "natural": false,
+      "status": "visited",
+      "from_snapshot": "analysis/disassembly-r8/clean.snapshot.json",
+      "clean_source": "analysis/pass-001/replay-game.snapshot.json",
+      "patch_recipe": {
+        "from": "analysis/disassembly-r8/clean.snapshot.json",
+        "patches": [
+          {
+            "address": 768,
+            "bytes": [
+              1,
+              6,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "address": 29,
+            "bytes": [
+              18
+            ]
+          },
+          {
+            "address": 65,
+            "bytes": [
+              0
+            ]
+          },
+          {
+            "address": 202,
+            "bytes": [
+              48,
+              48
+            ]
+          }
+        ],
+        "entry_contract": "MainState6 existing scheduler entry85ED clears area task/object slots and builds destination descriptors, then pipeline4->3->2->1->0 initializes area/camera and gameplay tasks; no PC edit",
+        "before": {
+          "artificial": true,
+          "context": {
+            "prg_banks": [
+              6,
+              7,
+              14,
+              15
+            ]
+          },
+          "cpu_cycles": 5417794,
+          "frames": 182,
+          "main": {
+            "a": 176,
+            "frozen": false,
+            "mid_instruction": true,
+            "p": 164,
+            "pc": 49297,
+            "stack": 255,
+            "x": 168,
+            "y": 248
+          }
+        }
+      },
+      "steps": [
+        {
+          "buttons": [],
+          "frames": 30,
+          "repeat": 3
+        },
+        {
+          "buttons": [
+            "right",
+            "b"
+          ],
+          "frames": 30
+        },
+        {
+          "buttons": [
+            "right",
+            "a",
+            "b"
+          ],
+          "frames": 20
+        },
+        {
+          "buttons": [],
+          "frames": 10
+        }
+      ],
+      "budget": {
+        "max_operations": 5000000,
+        "timeout_ms": 30000
+      },
+      "end_frame": 332,
+      "observed_area_id": 3,
+      "observed_destination_id": 18,
+      "observed_MainState": 0,
+      "observed_GameplaySubstate": 2,
+      "confirmation": {
+        "tag": "destination-12",
+        "from_snapshot": "analysis/disassembly-r8/destination-12-mechanics.snapshot.json",
+        "before": {
+          "artificial": true,
+          "context": {
+            "prg_banks": [
+              6,
+              7,
+              14,
+              15
+            ]
+          },
+          "cpu_cycles": 9884882,
+          "frames": 332,
+          "main": {
+            "a": 177,
+            "frozen": false,
+            "mid_instruction": true,
+            "p": 164,
+            "pc": 49296,
+            "stack": 255,
+            "x": 88,
+            "y": 248
+          }
+        },
+        "actions": [
+          {
+            "buttons": [
+              "b"
+            ],
+            "frames": 3,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  6,
+                  7,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 9974223,
+              "frames": 335,
+              "main": {
+                "a": 2,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 36,
+                "pc": 57885,
+                "stack": 247,
+                "x": 2,
+                "y": 8
+              }
+            }
+          },
+          {
+            "buttons": [],
+            "frames": 2,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  6,
+                  7,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 10033784,
+              "frames": 337,
+              "main": {
+                "a": 3,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 36,
+                "pc": 57883,
+                "stack": 247,
+                "x": 2,
+                "y": 7
+              }
+            }
+          }
+        ],
+        "budget": {
+          "max_operations": 1000000,
+          "timeout_ms": 10000
+        },
+        "fetch_roots": 1843
+      },
+      "result": "Distinct rendered area and active initialized gameplay, movement/attack/jump inputs followed by complete short actual-fetch confirmation. Area names not independently matched. ",
+      "evidence": [
+        "analysis/disassembly-r8/destination-12-mechanics.png",
+        "analysis/disassembly-r8/destination-12-mechanics-ram.json",
+        "analysis/disassembly-r8/destination-12-confirmation-contexts.json",
+        "analysis/disassembly-r8/destination-12-confirmation-summary.json"
+      ]
+    },
+    {
+      "id": "S007-artificial-destination-17",
+      "pass": "pass-008-reviewed",
+      "natural": false,
+      "status": "visited",
+      "from_snapshot": "analysis/disassembly-r8/clean.snapshot.json",
+      "clean_source": "analysis/pass-001/replay-game.snapshot.json",
+      "patch_recipe": {
+        "from": "analysis/disassembly-r8/clean.snapshot.json",
+        "patches": [
+          {
+            "address": 768,
+            "bytes": [
+              1,
+              6,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "address": 29,
+            "bytes": [
+              23
+            ]
+          },
+          {
+            "address": 65,
+            "bytes": [
+              0
+            ]
+          },
+          {
+            "address": 202,
+            "bytes": [
+              48,
+              48
+            ]
+          }
+        ],
+        "entry_contract": "MainState6 existing scheduler entry85ED clears area task/object slots and builds destination descriptors, then pipeline4->3->2->1->0 initializes area/camera and gameplay tasks; no PC edit",
+        "before": {
+          "artificial": true,
+          "context": {
+            "prg_banks": [
+              6,
+              7,
+              14,
+              15
+            ]
+          },
+          "cpu_cycles": 5417794,
+          "frames": 182,
+          "main": {
+            "a": 176,
+            "frozen": false,
+            "mid_instruction": true,
+            "p": 164,
+            "pc": 49297,
+            "stack": 255,
+            "x": 168,
+            "y": 248
+          }
+        }
+      },
+      "steps": [
+        {
+          "buttons": [],
+          "frames": 30,
+          "repeat": 3
+        },
+        {
+          "buttons": [
+            "right",
+            "b"
+          ],
+          "frames": 30
+        },
+        {
+          "buttons": [
+            "right",
+            "a",
+            "b"
+          ],
+          "frames": 20
+        },
+        {
+          "buttons": [],
+          "frames": 10
+        }
+      ],
+      "budget": {
+        "max_operations": 5000000,
+        "timeout_ms": 30000
+      },
+      "end_frame": 332,
+      "observed_area_id": 7,
+      "observed_destination_id": 23,
+      "observed_MainState": 0,
+      "observed_GameplaySubstate": 1,
+      "confirmation": {
+        "tag": "destination-17",
+        "from_snapshot": "analysis/disassembly-r8/destination-17-mechanics.snapshot.json",
+        "before": {
+          "artificial": true,
+          "context": {
+            "prg_banks": [
+              6,
+              7,
+              14,
+              15
+            ]
+          },
+          "cpu_cycles": 9884882,
+          "frames": 332,
+          "main": {
+            "a": 176,
+            "frozen": false,
+            "mid_instruction": true,
+            "p": 164,
+            "pc": 49297,
+            "stack": 255,
+            "x": 148,
+            "y": 248
+          }
+        },
+        "actions": [
+          {
+            "buttons": [
+              "b"
+            ],
+            "frames": 3,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  6,
+                  7,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 9974224,
+              "frames": 335,
+              "main": {
+                "a": 3,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 37,
+                "pc": 49480,
+                "stack": 251,
+                "x": 3,
+                "y": 16
+              }
+            }
+          },
+          {
+            "buttons": [],
+            "frames": 2,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  6,
+                  7,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 10033785,
+              "frames": 337,
+              "main": {
+                "a": 162,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 37,
+                "pc": 57401,
+                "stack": 249,
+                "x": 4,
+                "y": 8
+              }
+            }
+          }
+        ],
+        "budget": {
+          "max_operations": 1000000,
+          "timeout_ms": 10000
+        },
+        "fetch_roots": 1959
+      },
+      "result": "Distinct rendered area and active initialized gameplay, movement/attack/jump inputs followed by complete short actual-fetch confirmation. Area names not independently matched. ",
+      "evidence": [
+        "analysis/disassembly-r8/destination-17-mechanics.png",
+        "analysis/disassembly-r8/destination-17-mechanics-ram.json",
+        "analysis/disassembly-r8/destination-17-confirmation-contexts.json",
+        "analysis/disassembly-r8/destination-17-confirmation-summary.json"
+      ]
+    },
+    {
+      "id": "S008-artificial-destination-24",
+      "pass": "pass-008-reviewed",
+      "natural": false,
+      "status": "visited",
+      "from_snapshot": "analysis/disassembly-r8/clean.snapshot.json",
+      "clean_source": "analysis/pass-001/replay-game.snapshot.json",
+      "patch_recipe": {
+        "from": "analysis/disassembly-r8/clean.snapshot.json",
+        "patches": [
+          {
+            "address": 768,
+            "bytes": [
+              1,
+              6,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "address": 29,
+            "bytes": [
+              36
+            ]
+          },
+          {
+            "address": 65,
+            "bytes": [
+              0
+            ]
+          },
+          {
+            "address": 202,
+            "bytes": [
+              48,
+              48
+            ]
+          }
+        ],
+        "entry_contract": "MainState6 existing scheduler entry85ED clears area task/object slots and builds destination descriptors, then pipeline4->3->2->1->0 initializes area/camera and gameplay tasks; no PC edit",
+        "before": {
+          "artificial": true,
+          "context": {
+            "prg_banks": [
+              6,
+              7,
+              14,
+              15
+            ]
+          },
+          "cpu_cycles": 5417794,
+          "frames": 182,
+          "main": {
+            "a": 176,
+            "frozen": false,
+            "mid_instruction": true,
+            "p": 164,
+            "pc": 49297,
+            "stack": 255,
+            "x": 168,
+            "y": 248
+          }
+        }
+      },
+      "steps": [
+        {
+          "buttons": [],
+          "frames": 30,
+          "repeat": 3
+        },
+        {
+          "buttons": [
+            "right",
+            "b"
+          ],
+          "frames": 30
+        },
+        {
+          "buttons": [
+            "right",
+            "a",
+            "b"
+          ],
+          "frames": 20
+        },
+        {
+          "buttons": [],
+          "frames": 10
+        }
+      ],
+      "budget": {
+        "max_operations": 5000000,
+        "timeout_ms": 30000
+      },
+      "end_frame": 332,
+      "observed_area_id": 13,
+      "observed_destination_id": 36,
+      "observed_MainState": 0,
+      "observed_GameplaySubstate": 1,
+      "confirmation": {
+        "tag": "destination-24",
+        "from_snapshot": "analysis/disassembly-r8/destination-24-mechanics.snapshot.json",
+        "before": {
+          "artificial": true,
+          "context": {
+            "prg_banks": [
+              10,
+              11,
+              14,
+              15
+            ]
+          },
+          "cpu_cycles": 9884883,
+          "frames": 332,
+          "main": {
+            "a": 36,
+            "frozen": false,
+            "mid_instruction": true,
+            "p": 37,
+            "pc": 44918,
+            "stack": 247,
+            "x": 14,
+            "y": 18
+          }
+        },
+        "actions": [
+          {
+            "buttons": [
+              "b"
+            ],
+            "frames": 3,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  6,
+                  7,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 9974224,
+              "frames": 335,
+              "main": {
+                "a": 176,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 164,
+                "pc": 49296,
+                "stack": 255,
+                "x": 80,
+                "y": 248
+              }
+            }
+          },
+          {
+            "buttons": [],
+            "frames": 2,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  6,
+                  7,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 10033785,
+              "frames": 337,
+              "main": {
+                "a": 176,
+                "frozen": false,
+                "mid_instruction": false,
+                "p": 164,
+                "pc": 49295,
+                "stack": 255,
+                "x": 104,
+                "y": 248
+              }
+            }
+          }
+        ],
+        "budget": {
+          "max_operations": 1000000,
+          "timeout_ms": 10000
+        },
+        "fetch_roots": 2141
+      },
+      "result": "Distinct rendered area and active initialized gameplay, movement/attack/jump inputs followed by complete short actual-fetch confirmation. Area names not independently matched. Rope/water scenery seen; rope climbing and water traversal not established.",
+      "evidence": [
+        "analysis/disassembly-r8/destination-24-mechanics.png",
+        "analysis/disassembly-r8/destination-24-mechanics-ram.json",
+        "analysis/disassembly-r8/destination-24-confirmation-contexts.json",
+        "analysis/disassembly-r8/destination-24-confirmation-summary.json"
+      ]
+    },
+    {
+      "id": "S009-artificial-destination-3a",
+      "pass": "pass-008-reviewed",
+      "natural": false,
+      "status": "visited",
+      "from_snapshot": "analysis/disassembly-r8/clean.snapshot.json",
+      "clean_source": "analysis/pass-001/replay-game.snapshot.json",
+      "patch_recipe": {
+        "from": "analysis/disassembly-r8/clean.snapshot.json",
+        "patches": [
+          {
+            "address": 768,
+            "bytes": [
+              1,
+              6,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "address": 29,
+            "bytes": [
+              58
+            ]
+          },
+          {
+            "address": 65,
+            "bytes": [
+              0
+            ]
+          },
+          {
+            "address": 202,
+            "bytes": [
+              48,
+              48
+            ]
+          }
+        ],
+        "entry_contract": "MainState6 existing scheduler entry85ED clears area task/object slots and builds destination descriptors, then pipeline4->3->2->1->0 initializes area/camera and gameplay tasks; no PC edit",
+        "before": {
+          "artificial": true,
+          "context": {
+            "prg_banks": [
+              6,
+              7,
+              14,
+              15
+            ]
+          },
+          "cpu_cycles": 5417794,
+          "frames": 182,
+          "main": {
+            "a": 176,
+            "frozen": false,
+            "mid_instruction": true,
+            "p": 164,
+            "pc": 49297,
+            "stack": 255,
+            "x": 168,
+            "y": 248
+          }
+        }
+      },
+      "steps": [
+        {
+          "buttons": [],
+          "frames": 30,
+          "repeat": 3
+        },
+        {
+          "buttons": [
+            "right",
+            "b"
+          ],
+          "frames": 30
+        },
+        {
+          "buttons": [
+            "right",
+            "a",
+            "b"
+          ],
+          "frames": 20
+        },
+        {
+          "buttons": [],
+          "frames": 10
+        }
+      ],
+      "budget": {
+        "max_operations": 5000000,
+        "timeout_ms": 30000
+      },
+      "end_frame": 332,
+      "observed_area_id": 22,
+      "observed_destination_id": 58,
+      "observed_MainState": 0,
+      "observed_GameplaySubstate": 1,
+      "confirmation": {
+        "tag": "destination-3a",
+        "from_snapshot": "analysis/disassembly-r8/destination-3a-mechanics.snapshot.json",
+        "before": {
+          "artificial": true,
+          "context": {
+            "prg_banks": [
+              12,
+              13,
+              14,
+              15
+            ]
+          },
+          "cpu_cycles": 9884883,
+          "frames": 332,
+          "main": {
+            "a": 0,
+            "frozen": false,
+            "mid_instruction": true,
+            "p": 39,
+            "pc": 40882,
+            "stack": 243,
+            "x": 252,
+            "y": 1
+          }
+        },
+        "actions": [
+          {
+            "buttons": [
+              "b"
+            ],
+            "frames": 3,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  6,
+                  7,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 9974224,
+              "frames": 335,
+              "main": {
+                "a": 176,
+                "frozen": false,
+                "mid_instruction": false,
+                "p": 164,
+                "pc": 49295,
+                "stack": 255,
+                "x": 52,
+                "y": 248
+              }
+            }
+          },
+          {
+            "buttons": [],
+            "frames": 2,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  6,
+                  7,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 10033785,
+              "frames": 337,
+              "main": {
+                "a": 176,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 164,
+                "pc": 49296,
+                "stack": 255,
+                "x": 172,
+                "y": 248
+              }
+            }
+          }
+        ],
+        "budget": {
+          "max_operations": 1000000,
+          "timeout_ms": 10000
+        },
+        "fetch_roots": 2135
+      },
+      "result": "Distinct rendered area and active initialized gameplay, movement/attack/jump inputs followed by complete short actual-fetch confirmation. Area names not independently matched. ",
+      "evidence": [
+        "analysis/disassembly-r8/destination-3a-mechanics.png",
+        "analysis/disassembly-r8/destination-3a-mechanics-ram.json",
+        "analysis/disassembly-r8/destination-3a-confirmation-contexts.json",
+        "analysis/disassembly-r8/destination-3a-confirmation-summary.json"
+      ]
+    },
+    {
+      "id": "S010-artificial-destination-47",
+      "pass": "pass-008-reviewed",
+      "natural": false,
+      "status": "visited",
+      "from_snapshot": "analysis/disassembly-r8/clean.snapshot.json",
+      "clean_source": "analysis/pass-001/replay-game.snapshot.json",
+      "patch_recipe": {
+        "from": "analysis/disassembly-r8/clean.snapshot.json",
+        "patches": [
+          {
+            "address": 768,
+            "bytes": [
+              1,
+              6,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "address": 29,
+            "bytes": [
+              71
+            ]
+          },
+          {
+            "address": 65,
+            "bytes": [
+              0
+            ]
+          },
+          {
+            "address": 202,
+            "bytes": [
+              48,
+              48
+            ]
+          }
+        ],
+        "entry_contract": "MainState6 existing scheduler entry85ED clears area task/object slots and builds destination descriptors, then pipeline4->3->2->1->0 initializes area/camera and gameplay tasks; no PC edit",
+        "before": {
+          "artificial": true,
+          "context": {
+            "prg_banks": [
+              6,
+              7,
+              14,
+              15
+            ]
+          },
+          "cpu_cycles": 5417794,
+          "frames": 182,
+          "main": {
+            "a": 176,
+            "frozen": false,
+            "mid_instruction": true,
+            "p": 164,
+            "pc": 49297,
+            "stack": 255,
+            "x": 168,
+            "y": 248
+          }
+        }
+      },
+      "steps": [
+        {
+          "buttons": [],
+          "frames": 30,
+          "repeat": 3
+        },
+        {
+          "buttons": [
+            "right",
+            "b"
+          ],
+          "frames": 30
+        },
+        {
+          "buttons": [
+            "right",
+            "a",
+            "b"
+          ],
+          "frames": 20
+        },
+        {
+          "buttons": [],
+          "frames": 10
+        }
+      ],
+      "budget": {
+        "max_operations": 5000000,
+        "timeout_ms": 30000
+      },
+      "end_frame": 332,
+      "observed_area_id": 27,
+      "observed_destination_id": 71,
+      "observed_MainState": 0,
+      "observed_GameplaySubstate": 1,
+      "confirmation": {
+        "tag": "destination-47",
+        "from_snapshot": "analysis/disassembly-r8/destination-47-mechanics.snapshot.json",
+        "before": {
+          "artificial": true,
+          "context": {
+            "prg_banks": [
+              10,
+              11,
+              14,
+              15
+            ]
+          },
+          "cpu_cycles": 9884883,
+          "frames": 332,
+          "main": {
+            "a": 211,
+            "frozen": false,
+            "mid_instruction": true,
+            "p": 164,
+            "pc": 49117,
+            "stack": 239,
+            "x": 4,
+            "y": 0
+          }
+        },
+        "actions": [
+          {
+            "buttons": [
+              "b"
+            ],
+            "frames": 3,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  6,
+                  7,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 9974224,
+              "frames": 335,
+              "main": {
+                "a": 176,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 164,
+                "pc": 49297,
+                "stack": 255,
+                "x": 140,
+                "y": 248
+              }
+            }
+          },
+          {
+            "buttons": [],
+            "frames": 2,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  6,
+                  7,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 10033785,
+              "frames": 337,
+              "main": {
+                "a": 176,
+                "frozen": false,
+                "mid_instruction": false,
+                "p": 164,
+                "pc": 49295,
+                "stack": 255,
+                "x": 224,
+                "y": 248
+              }
+            }
+          }
+        ],
+        "budget": {
+          "max_operations": 1000000,
+          "timeout_ms": 10000
+        },
+        "fetch_roots": 2300
+      },
+      "result": "Distinct rendered area and active initialized gameplay, movement/attack/jump inputs followed by complete short actual-fetch confirmation. Area names not independently matched. Boss rendered; follow-up combat attempts recorded inS013, not defeated.",
+      "evidence": [
+        "analysis/disassembly-r8/destination-47-mechanics.png",
+        "analysis/disassembly-r8/destination-47-mechanics-ram.json",
+        "analysis/disassembly-r8/destination-47-confirmation-contexts.json",
+        "analysis/disassembly-r8/destination-47-confirmation-summary.json"
+      ]
+    },
+    {
+      "id": "S011-artificial-ending",
+      "pass": "pass-008-reviewed",
+      "natural": false,
+      "status": "visited",
+      "milestone": "ending/terminal END",
+      "from_snapshot": "analysis/disassembly-r8/clean.snapshot.json",
+      "initial_recipe": {
+        "from": "analysis/disassembly-r8/clean.snapshot.json",
+        "patches": [
+          {
+            "address": 769,
+            "bytes": [
+              10
+            ]
+          },
+          {
+            "address": 65,
+            "bytes": [
+              0
+            ]
+          }
+        ],
+        "entry_contract": "MainState10 dispatch ending StateStep0 InitializeEndingTaskSet clears32tasks and reinstates main10/player1/timer1; subsequent timer gate sets destination4A",
+        "before": {
+          "artificial": true,
+          "context": {
+            "prg_banks": [
+              6,
+              7,
+              14,
+              15
+            ]
+          },
+          "cpu_cycles": 5417794,
+          "frames": 182,
+          "main": {
+            "a": 176,
+            "frozen": false,
+            "mid_instruction": true,
+            "p": 164,
+            "pc": 49297,
+            "stack": 255,
+            "x": 168,
+            "y": 248
+          }
+        }
+      },
+      "initial_steps": [
+        {
+          "buttons": [],
+          "frames": 30,
+          "repeat": 12
+        },
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 2
+        },
+        {
+          "buttons": [],
+          "frames": 30
+        }
+      ],
+      "initial_budget": {
+        "max_operations": 5000000,
+        "timeout_ms": 30000
+      },
+      "clean_before_acceleration": "analysis/disassembly-r8/ending-before-timer-edits.snapshot.json",
+      "acceleration_log": "analysis/disassembly-r8/ending-timer-log.json",
+      "supported_shortcuts": {
+        "step8": "0533=FF allows known threshold comparison; exact iteration values inlog",
+        "steps6and13": "2B=00 then DEC yieldsFF and exits established signed delay",
+        "step15": "held Start advances initialized sprite cycle"
+      },
+      "result": "Full22-step ending initializer/graphics/camera/sprite/fade flow progressed to main task0. Rendered white END on purple confirmed; no natural boss victory or completion route claimed.",
+      "terminal_frame": 685,
+      "evidence": [
+        "analysis/disassembly-r8/ending-terminal.png",
+        "analysis/disassembly-r8/ending-terminal-ram.json",
+        "analysis/disassembly-r8/ending-terminal-contexts-all.json",
+        "analysis/disassembly-r8/ending-terminal-trace.json"
+      ]
+    },
+    {
+      "id": "S012-artificial-status-spell",
+      "pass": "pass-008-reviewed",
+      "natural": false,
+      "status": "visited",
+      "milestone": "successful spell activation",
+      "recipe": {
+        "from": "analysis/pass-001/status.snapshot.json",
+        "clean_export": "analysis/disassembly-r8/spell-clean.snapshot.json",
+        "patches": [
+          {
+            "address": 195,
+            "bytes": [
+              20
+            ]
+          },
+          {
+            "address": 38,
+            "bytes": [
+              1
+            ]
+          }
+        ],
+        "actions": [
+          {
+            "buttons": [],
+            "frames": 2,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  6,
+                  7,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 10003994,
+              "frames": 336,
+              "main": {
+                "a": 177,
+                "frozen": false,
+                "mid_instruction": false,
+                "p": 164,
+                "pc": 49295,
+                "stack": 255,
+                "x": 1,
+                "y": 8
+              }
+            }
+          },
+          {
+            "buttons": [
+              "a"
+            ],
+            "frames": 2,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  6,
+                  7,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 10063555,
+              "frames": 338,
+              "main": {
+                "a": 177,
+                "frozen": false,
+                "mid_instruction": false,
+                "p": 164,
+                "pc": 49295,
+                "stack": 255,
+                "x": 1,
+                "y": 8
+              }
+            }
+          },
+          {
+            "buttons": [],
+            "frames": 5,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  6,
+                  7,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 10212457,
+              "frames": 343,
+              "main": {
+                "a": 177,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 164,
+                "pc": 49297,
+                "stack": 255,
+                "x": 1,
+                "y": 8
+              }
+            }
+          }
+        ],
+        "budget": {
+          "max_operations": 1000000,
+          "timeout_ms": 10000
+        },
+        "contract": "Status menu selector1 affords spell using Mind20; freshA deducts cost and sets ConsumableEffectCount10"
+      },
+      "result": "Fresh A at menu main7/step6, selector1, Mind20 consumes cost5: Mind15 and ConsumableEffectCount10. Actual affordability/effect handler fetches captured. Not a natural Mind acquisition or later attack charge-use claim.",
+      "evidence": [
+        "analysis/disassembly-r8/spell.png",
+        "analysis/disassembly-r8/spell-before-ram.json",
+        "analysis/disassembly-r8/spell-after-ram.json",
+        "analysis/disassembly-r8/spell-contexts.json"
+      ]
+    },
+    {
+      "id": "S013-artificial-boss-combat",
+      "pass": "pass-008-reviewed",
+      "natural": false,
+      "status": "attempted",
+      "milestone": "boss interaction/victory",
+      "from_snapshot": "analysis/disassembly-r8/destination-47-mechanics.snapshot.json",
+      "clean_export": "analysis/disassembly-r8/boss-clean.snapshot.json",
+      "first_recipe": "analysis/disassembly-r8/boss-actions.json",
+      "second_clean_export": "analysis/disassembly-r8/boss-close-clean.snapshot.json",
+      "second_recipe": "analysis/disassembly-r8/boss-close-actions.json",
+      "result": "Approach, fresh attack and jump attempts executed with attack initialization atphysical90480 fetched; AttackActive changed0->1 and projectile/chain visibly emitted. First route player(x,y)38,162->64,108. Separate restored close-position shortcut0512=B0/0502=00 shows weapon at boss. Boss slot8 health05E2 remained15 and playerhealthCB48, no hit/damage/defeat claimed; close attempt did not establish a jump. Stop bounded attempts rather than force victory. Ending tested independently via supported initializer.",
+      "evidence": [
+        "analysis/disassembly-r8/boss.png",
+        "analysis/disassembly-r8/boss-close.png",
+        "analysis/disassembly-r8/boss-actions.json",
+        "analysis/disassembly-r8/boss-close-actions.json",
+        "analysis/disassembly-r8/boss-contexts.json",
+        "analysis/disassembly-r8/boss-close-contexts.json"
+      ]
+    }
+  ],
+  "early_aborted_attempt": {
+    "startup_request": {
+      "unit": "frame",
+      "count": 180,
+      "max_operations": 10000000,
+      "timeout_ms": 20000
+    },
+    "actual_timeout_state": {
+      "frames": 91,
+      "cpu_cycles": 2714607
+    },
+    "followup": [
+      {
+        "buttons": [
+          "start"
+        ],
+        "frames": 1
+      },
+      {
+        "buttons": [],
+        "frames": 30
+      },
+      {
+        "buttons": [
+          "start"
+        ],
+        "frames": 10
+      },
+      {
+        "buttons": [],
+        "frames": 60
+      }
+    ],
+    "evidence": "analysis/pass-001/startup-contexts.json",
+    "note": "Wall-clock timeout is nondeterministic; clean replay S001 is the practical reproducible route."
+  },
+  "latest_pass": "pass-008-reviewed",
+  "progression_checklist": [
+    {
+      "milestone": "startup/title/initial-area combat/status/pause/death/continue",
+      "status": "visited",
+      "route": "S001..S005",
+      "evidence": [
+        "analysis/pass-001/replay-game.snapshot.json",
+        "analysis/scenarios.json"
+      ]
+    },
+    {
+      "milestone": "different orientation/area03",
+      "status": "visited",
+      "route": "S006",
+      "evidence": [
+        "analysis/disassembly-r8/destination-12-mechanics.png"
+      ]
+    },
+    {
+      "milestone": "later areas07/0D/16 and representative move/attack/jump",
+      "status": "visited",
+      "route": "S007..S009",
+      "evidence": [
+        "analysis/disassembly-r8/gameplay-log.json",
+        "analysis/disassembly-r8/scene-confirmation-log.json"
+      ]
+    },
+    {
+      "milestone": "rope/water traversal as a distinct ability",
+      "status": "deferred",
+      "reason": "Area0Dscenery rendered, representative ordinary mechanics exercised; exact rope equipment/contact traversal contract not tested. No traversal claim and no arbitrary inventory brute force. Additional optional gameplay, not a classification or full-game compatibility claim.",
+      "route": "S008",
+      "evidence": [
+        "analysis/disassembly-r8/destination-24-mechanics.png"
+      ]
+    },
+    {
+      "milestone": "successful spell",
+      "status": "visited",
+      "route": "S012",
+      "evidence": [
+        "analysis/disassembly-r8/spell-recipe.json",
+        "analysis/disassembly-r8/spell-after-ram.json"
+      ]
+    },
+    {
+      "milestone": "late boss arena",
+      "status": "visited",
+      "route": "S010",
+      "evidence": [
+        "analysis/disassembly-r8/destination-47-mechanics.png"
+      ]
+    },
+    {
+      "milestone": "representative boss combat/victory",
+      "status": "attempted",
+      "route": "S013",
+      "observed": "AttackActive/weapon creation and two bounded close/distant attempts; boss health unchanged, no victory.",
+      "evidence": [
+        "analysis/disassembly-r8/boss-actions.json",
+        "analysis/disassembly-r8/boss-close-actions.json"
+      ]
+    },
+    {
+      "milestone": "major ending transitions and terminal screen",
+      "status": "visited",
+      "route": "S011",
+      "evidence": [
+        "analysis/disassembly-r8/ending-terminal.png",
+        "analysis/disassembly-r8/ending-timer-log.json"
+      ]
+    }
+  ]
+}

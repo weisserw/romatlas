@@ -6,6 +6,8 @@ from pathlib import Path
 import subprocess
 import tempfile
 
+import archive
+
 ROOT = Path(__file__).resolve().parents[1]
 BIN = ROOT / "target/release/romatlas"
 SCRIPT = ROOT / "scripts/archive.py"
@@ -74,9 +76,27 @@ with tempfile.TemporaryDirectory(prefix="romatlas-archive-") as temporary:
     scratch_doc.write_text("Temporary scratch document\n")
     call(*save, ok=False)  # Unknown final documents require explicit inclusion.
     save += ["--document", "commentary/conclusions.md", "--omit-document", "analysis/scratch.md"]
+    # Commentary assets are reconstructed from metadata-only ROM slices.
+    extracted = source / "extracted.bin"
+    extracted.write_bytes(data[0x100:0x103])
     complete_result = call(*save)
     assert complete_result["exact_source"] and complete_result["editorial_complete"]
     assert json.loads((destination / "archive.json").read_text())["editorial_complete"] is True
+    plan = json.loads((destination / "editorial.json").read_text())
+    assert plan["version"] == 2
+    assert plan["files"]["extracted.bin"]["rom_slice"] == [0x100, 3]
+    assert not (destination / "extracted.bin").exists()
+    # Bounds and type errors fail before creating the asset.
+    for bounds in [[-1, 3], [0, 0], [len(data), 1], [True, 3], [0], "bad"]:
+        invalid = {"version": 2, "baseline_sha256": {}, "files": {
+            "asset.bin": {"sha256": archive.sha(bytes(data[:3])), "rom_slice": bounds}}}
+        try:
+            archive.render(invalid, {}, base / "bad-slice", bytes(data))
+        except ValueError:
+            pass
+        else:
+            raise AssertionError(f"accepted invalid ROM slice: {bounds}")
+        assert not (base / "bad-slice/asset.bin").exists()
     archived = retained(destination)
     assert "commentary/conclusions.md" in archived
     assert "analysis/raw-results.json" not in archived

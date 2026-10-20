@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "rom_sha256": "115b50b36d4dfb7beaa032f868f1b6f11c8384764c79428fe821c1e23f5ebdc6",
+  "map_sha256": "f96f6908cab8a8ec1f89a4510375620d8fbeba7eea0023278851f30f86c6ca65",
+  "state_sha256": "f96f6908cab8a8ec1f89a4510375620d8fbeba7eea0023278851f30f86c6ca65",
+  "image_size": 131088,
+  "round": 8,
+  "prior_archive": "analysis/round-8/commentary-r7",
+  "checkpoint": "pass-008-editorial",
+  "editorial_prior_archive": "analysis/editorial-r8/before-editorial"
+}

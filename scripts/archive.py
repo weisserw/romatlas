@@ -51,7 +51,7 @@ def split_comment(line, platform=None):
     return line, ""
 
 
-def recipe(baseline, final, platform="gb"):
+def recipe(baseline, final, platform="gb", rom=None):
     """Only editorial literals; all preexisting code/data comes from references."""
     tokens, lines = {}, {}
     texts = {}
@@ -77,7 +77,11 @@ def recipe(baseline, final, platform="gb"):
             output[name] = {"sha256": sha(data), "baseline": name}
             continue
         if Path(name).suffix not in {".asm", ".inc"}:
-            raise ValueError(f"changed non-assembly asset cannot be archived: {name}")
+            offset = rom.find(data) if rom is not None and data else -1
+            if offset < 0:
+                raise ValueError(f"changed non-assembly asset cannot be archived: {name}")
+            output[name] = {"sha256": sha(data), "rom_slice": [offset, len(data)]}
+            continue
         operations = []
         def copy(reference):
             if operations and "copy" in operations[-1]:
@@ -139,12 +143,12 @@ def recipe(baseline, final, platform="gb"):
             if comment:
                 operations.append({"comment": comment})
         output[name] = {"sha256": sha(data), "operations": operations}
-    return {"version": 1, "baseline_sha256": {name: sha(data) for name, data in baseline.items()},
+    return {"version": 2 if any("rom_slice" in entry for entry in output.values()) else 1, "baseline_sha256": {name: sha(data) for name, data in baseline.items()},
             "files": output}
 
 
-def render(plan, baseline, output):
-    if plan["version"] != 1:
+def render(plan, baseline, output, rom=None):
+    if plan["version"] not in {1, 2}:
         raise ValueError("unsupported reconstruction version")
     if {name: sha(data) for name, data in baseline.items()} != plan["baseline_sha256"]:
         raise ValueError("baseline differs; use the documented pinned tools and original ROM filename")
@@ -152,6 +156,15 @@ def render(plan, baseline, output):
         destination = phase.local(output, name)
         if "baseline" in entry:
             data = baseline[entry["baseline"]]
+        elif "rom_slice" in entry:
+            bounds = entry["rom_slice"]
+            if (plan["version"] != 2 or rom is None or not isinstance(bounds, list)
+                    or len(bounds) != 2 or any(type(value) is not int for value in bounds)):
+                raise ValueError("invalid ROM slice reference")
+            start, length = bounds
+            if start < 0 or length <= 0 or start + length > len(rom):
+                raise ValueError("invalid ROM slice reference")
+            data = rom[start:start + length]
         else:
             pieces = []
             for operation in entry["operations"]:
@@ -207,7 +220,7 @@ def rebuild(archive, rom, output, binary):
         shutil.copyfile(rom, supplied)
         before = base / "baseline"
         phase.call(binary, "generate", supplied, "--map", archive / ("commentary/baseline.json" if manifest["platform"] in {"snes", "nes", "sms", "gg", "genesis", "pce"} else "commentary/baseline.sym"), "--out", before)
-        render(json.loads((archive / "editorial.json").read_text()), files(before), output)
+        render(json.loads((archive / "editorial.json").read_text()), files(before), output, supplied.read_bytes())
         phase.reading(output)  # Validate include traversal before invoking the assembler.
         for path in output.rglob("*"):
             if path.suffix in {".asm", ".inc"}:
@@ -369,7 +382,7 @@ def archive(workspace, destination, name, binary, documents=(), omitted_document
         before = base / "baseline"
         phase.call(binary, "generate", rom, "--map", stage / ("commentary/baseline.json" if is_snes else "commentary/baseline.sym"), "--out", before)
         final = files(work / "commentary/source")
-        write_recipe(stage / "editorial.json", recipe(files(before), final, platform))
+        write_recipe(stage / "editorial.json", recipe(files(before), final, platform, rom.read_bytes()))
         (stage / "README.md").write_text("# Archived ROM analysis\n\n"
             "Final maps, review metadata and agent documents are retained verbatim.\n"
             "Phase-one classification and phase-two editorial completion are separate;\n"

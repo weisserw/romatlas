@@ -53,7 +53,7 @@ complete reviewed archive. An archive is not a resumable runtime/debug workspace
 An editorial audit does not prove semantic correctness or complete phase-one
 classification. Both phases' recorded statuses and uncertainties remain intact.
 
-## Editorial recipe version 1
+## Editorial recipes
 
 The recipe holds `baseline_sha256`, a filename-to-hash inventory of regenerated
 baseline source/assets, and `files`, the exact final file inventory. An unchanged
@@ -89,3 +89,10 @@ and incomplete source recovery, comments/constants/includes, reviewed unknown
 regions, scratch/toolkit exclusions, extra documents, completion status,
 replacement/stale-file removal, binary-asset rejection, failed-replacement
 preservation, wrong-ROM rejection, archive integrity and existing-output rejection.
+
+Recipe version 2 additionally supports extracted binary assets that exactly match
+a contiguous slice of the independently supplied original ROM. Each asset entry
+stores only `sha256` and `rom_slice: [physical_file_offset, length]`; no asset bytes
+are retained in the archive. Restoration checks integer bounds and the resulting
+asset hash. Changed binary assets without an exact ROM match remain rejected.
+Recipes without slice references retain version 1; both versions can be restored.

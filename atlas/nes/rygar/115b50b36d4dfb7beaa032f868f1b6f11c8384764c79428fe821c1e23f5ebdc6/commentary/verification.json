@@ -1,0 +1,18 @@
+{
+  "byte_identical": true,
+  "ok": true,
+  "rom_sha256": "115b50b36d4dfb7beaa032f868f1b6f11c8384764c79428fe821c1e23f5ebdc6",
+  "source_sha256": {
+    "bank_00.asm": "137c8608ea2c66969d81cde8e3103d62714227208d5f9d87adeb0244b2e2419b",
+    "bank_01.asm": "2137b0acbe42d65c3ab6e85f59b177eff08f09f16f19ec201af127d14e35bf0c",
+    "bank_02.asm": "888d5c8b8c972e47d3d10266d4c672fc99a7526e1ced8147b5f1436f8a510198",
+    "bank_03.asm": "d315000a68ea0c6e3c2e055a9a60898ef79dabe02ce541c7401549b1fa8822bf",
+    "bank_04.asm": "28d9abcc015df222e3943f9fb18008b29b8469b74c093a5daa5b0554bda4abb2",
+    "bank_05.asm": "b3386cf3ec90975ae334fbcd804efa79652081ad90ff46784c3534cdd4bb676c",
+    "bank_06.asm": "cb87a9f48726f835916d0eaae4db2f6fc0d7bd16c289af890e4b6fde4e498226",
+    "bank_07.asm": "f9992d08912cade3939aee97722f8ccbb05c54232e9e135d665f390a78deb164",
+    "game.asm": "2a230acd9c5f9725bfe053e86944484859d86d2f0db5cbe4e9d3504c79dee2c3",
+    "header.asm": "ee533903d6c6a08d0ecc905b07c76d6096cf64ad4c46030131e9eb5eec676c7d",
+    "symbols.inc": "b4daaad1bc5c158f57d716cd0e7768a5dc2a6014c3ae89d26804912c39e67651"
+  }
+}

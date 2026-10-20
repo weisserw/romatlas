@@ -1549,3 +1549,26 @@ and unknown meaning alone still does not block classification. Validation passes
 Python compilation, disassembly workspace integration, commentary regression,
 stock deterministic four-bank portability and git diff checks. Only instructions
 and this progress record changed; no ROM, mapping or assembly edits were made.
+
+2026-10-20: Attempted the requested reviewed-result archive for local /root/rygar
+with the configured existing release binary. Source byte-identical verification,
+store validation and portable map validation passed before recipe creation failed:
+`changed non-assembly asset cannot be archived: assets/chr-source-000010.bin`.
+All seven maintained CHR assets independently match their named physical slices
+of the supplied ROM; they are extracted commentary assets absent from the stock
+generated baseline. Recipe v1 supports unchanged baseline binary files, not new
+ROM-slice assets. No archive was published, no ROM/assets were copied into atlas,
+and no source/map/runtime implementation changed. Exact source archival requires
+metadata-only asset reconstruction support; completed disassembly remains intact.
+
+2026-10-20: Fixed ARCHIVE-001: editorial recipe v2 reconstructs new/changed
+binary assets only when they exactly match a contiguous original-ROM slice.
+Archives store offsets, lengths and SHA-256 only; restoration validates integer
+bounds and asset hashes. Version 1 recipes remain supported; nonmatching assets
+remain rejected. Synthetic archive lifecycle tests now cover slice reconstruction,
+metadata-only retention and malformed/out-of-range references. Archive, commentary,
+stock portability, Python compilation and git diff checks pass. No Rust/session
+implementation changed; existing configured release retained. Rygar archive now
+passes exact-source restoration and byte-identical rebuilding with editorial
+completion true (1873 regions, 1936 unit records), seven slice assets and no
+ROM/extracted binary/assembly files retained. Archive remains local and uncommitted.
