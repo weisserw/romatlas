@@ -430,3 +430,29 @@ impl Sn76489 {
         (sample_l, sample_r)
     }
 }
+
+// ROMAtlas: immutable decoded PSG settings. This getter does not advance hardware.
+impl Sn76489 {
+    pub fn romatlas_settings(&self) -> ([u16; 3], [u8; 4], u8, u16) {
+        let tones = self.square_wave_channels.map(|c| c.tone);
+        let levels = [
+            self.square_wave_channels[0].attenuation,
+            self.square_wave_channels[1].attenuation,
+            self.square_wave_channels[2].attenuation,
+            self.noise_channel.attenuation,
+        ];
+        let rate = match self.noise_channel.counter_reload {
+            NoiseReload::Value(16) => 0,
+            NoiseReload::Value(32) => 1,
+            NoiseReload::Value(_) => 2,
+            NoiseReload::Tone2 => 3,
+        };
+        let noise = rate
+            | if self.noise_channel.noise_type == NoiseType::White {
+                4
+            } else {
+                0
+            };
+        (tones, levels, noise, self.noise_channel.lfsr)
+    }
+}

@@ -1292,3 +1292,100 @@ five-minute harness timeout; serial reruns with a shared local Cargo cache pass.
 No display/audio device was initialized. All fixtures, snapshots, captures and
 generated workspaces remain local; no commercial ROM or extracted game assets
 were downloaded or committed. Changes remain uncommitted.
+
+2026-10-20: Added Genesis/Mega Drive alongside SMS, Game Gear, Game Boy, NES and
+SNES. The debugger uses the existing approved GPLv3 jgenesis revision, adding its
+genesis-core, genesis-config and m68000-emu sources with upstream notices intact.
+Accepted 68000 instruction hooks distinguish interrupt/STOP/DMA waits from code;
+prefetch backing/context survives mapper changes and snapshots. Actual main/Z80
+bus operations, committed VDP writes, DMA and interrupts feed bounded traces,
+streaming, coverage, contextual roots and observed edges. Z80 bridge reads and
+ignored ROM writes do not invent CPU aliases or immutable backing writes.
+
+The adapter supplies bounded operation/master-cycle/frame stepping for either CPU,
+two standard six-button pads, full main/Z80 register state and edits, backing RAM/
+VRAM/CRAM/VSRAM/cartridge RAM edits, immutable mapped/physical inspection, detached
+I/O peeks, reset, guarded snapshots, framebuffer and WAV capture. Snapshot replay
+preserves partially rendered frames and interlace history rather than relying on
+upstream's omitted framebuffer. The exact cartridge constructor avoids automatic
+format conversion and game-specific ROM rewrites. Baseline is region-selected NTSC/PAL cartridge
+hardware, linear ROM/SRAM and Sega SSF banking; recognized unsupported enhancements
+and 32X are rejected for execution. Exotic peripherals, SVP, Sega CD/32X, uncommon
+boards and full hardware/game compatibility remain outside the baseline.
+
+Inspection retains complete original-file SHA-256, headers/titles/serial/regions,
+reset vectors, ROM/SRAM layout, checksum and explicit mapper/save-hardware
+identification basis. Canonical physical backing is the unchanged copier prefix
+followed by normalized big-endian payload; original-file positions/encoding remain
+separate and reversible. Big-endian, word-swapped and SMD images reconstruct exactly.
+ROM-free Genesis JSON mappings separate physical roles from main/Z80 execution
+views, effective SSF 512 KiB banks, SRAM overlays/byte lanes and Z80 32 KiB main-bus
+windows. Unknown/EEPROM overlays remain local and unresolved. Annotation validation
+is transactional; references, discovery and explicit big-endian absolute/signed
+relative or Z80 little-endian pointers remain hypotheses, never execution coverage
+or automatic classification.
+
+Selected external GNU binutils 2.42 for complete 68000 instruction decoding and
+as/ld/objcopy reconstruction after evaluating available open-source alternatives.
+Setup pins upstream release/SHA-256 or accepts the tested 2.42 cross package.
+DeZ80/WLA-DX retain their existing pins for independently rebuilt Z80 source units.
+CPU virtual addresses and physical load placement are separate; file encoding is
+restored after linking without header/checksum repair. GNU bare-hex indexed
+operands are made explicit; ignored extension bits/canonicalization and relative
+transfers retain exact bytes with decoded comments where needed. A/F-line exception
+opwords remain 68000 traps, not later-family coprocessor instructions. Generation
+shares one tool deadline and publishes only an exact rebuild; verification rebuilds
+objects. Tool evaluation and limits are in docs/genesis-evaluation.md and genesis.md.
+
+New Genesis agent/workspace/classification/commentary/archive/reference-correction/
+native-port profiles preserve structural versus reachability, whole-ROM
+classification, full current-source readability and editorial gates. Reading copies
+include separate Z80 source units. Existing game workspaces are not rewritten.
+Archives reconstruct local original bytes from an independently supplied ROM;
+preparation initializes pending behavior accounting and a native scaffold, not a
+ported game. Generated defaults use Genesis buttons, 320x224 and NTSC cadence.
+
+Independent MIT romatlas-port::genesis helpers implement packed tiles, 9-bit CRAM,
+planes A/B/window, scrolling, palettes/priority/transparency/backdrop, H32/H40,
+interlace patterns, linked/column-major/flipped sprites, line limits/collision,
+shadow/highlight and explicit VDP port/DMA helpers. Original six-channel four-operator
+YM2612-oriented synthesis supplies eight algorithms, feedback, envelopes, LFO,
+special frequencies, timers/status, SSG/CSM-style controls, stereo and DAC, combined
+with the independent clocked PSG and fractional sample clocks. Source scheduling
+and drivers remain game-owned. Exact bus/FIFO/raster quirks, Yamaha tables/slot
+phase, analog filters/ladder and hardware fidelity remain documented limits; no GPL
+emulator implementation was copied into the native library.
+
+Validation passes on Rust 1.90.0: locked release build; workspace format, release
+all-target Clippy with warnings denied and locked release workspace tests; native
+runtime desktop-feature Clippy/tests without devices; focused Genesis structural
+and native-helper tests. Synthetic Genesis integration passes dual-CPU execution,
+input, deterministic snapshot/trace/frame replay, audio, backing edits, immutable
+I/O, zero-detail contextual traces, bank writes, pointers, rejected annotation/
+snapshot edits, stale-object rebuilding, main instruction families and Z80 source
+reconstruction, prefix/swapped/SMD/5 MiB SSF layouts, generated workspace/commentary,
+archive restoration, evidence-linked reference corrections and locked headless/
+desktop scaffold checks. These are toolkit behavior checks, not broad game fidelity.
+
+Existing Game Boy session, deterministic stock four-bank portability, disassembly,
+commentary, archive, native-port accounting/build, SMS and GG shared 1,792-encoding
+regressions, NES, production SNES, pinned sampled SNES CPU vectors, licensed
+homebrew, 89-case hardware and dependency-boundary checks pass. Python compilation
+and git diff checks pass. Only generated debug build artifacts were cleared to
+retain disk space; all generated fixtures, source trees, captures, snapshots and
+native workspaces remain local. No commercial ROM or extracted game assets were
+downloaded or committed, and no display/audio device was initialized. Edits remain
+uncommitted. Detailed platform/helper limits are in docs/genesis.md and
+docs/genesis-native.md.
+
+Genesis debugger state also includes immutable decoded VDP register groups and
+PSG tone/attenuation/noise/LFSR values, plus detached YM2612 status and explicit
+last-write shadow metadata for its write-only registers. The shadow remains in
+snapshots; it is not presented as hardware readback.
+Final Genesis follow-up: the complete synthetic gate also passes PAL region
+selection/cadence with a Mega Drive header, while retaining jgenesis's documented
+Genesis-brand header precedence. Latest locked release build, all-target workspace
+Clippy, workspace tests, focused adapter tests, native desktop-feature Clippy/tests,
+Genesis workflow/reference/native-scaffold regression and repeated SMS/GG gates
+pass. Final format, Python compilation, boundary and diff checks pass. Native
+scaffolds use the shared 64-index tile interface; no devices were initialized.

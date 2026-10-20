@@ -16,6 +16,7 @@ js-sys = "0.3"
 log = "0.4"
 num = "0.4"
 rand = "0.9"
+regex = "1"
 serde = { version = "1", features = ["derive"] }
 thiserror = "2"
 time = "=0.3.41"

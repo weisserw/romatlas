@@ -3,6 +3,15 @@
 version = 4
 
 [[package]]
+name = "aho-corasick"
+version = "1.1.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c982642fa9e8606056828ee9a8505737230110bb1099153c79efe865c59d12ba"
+dependencies = [
+ "memchr",
+]
+
+[[package]]
 name = "anstream"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -373,6 +382,35 @@ dependencies = [
 ]
 
 [[package]]
+name = "genesis-config"
+version = "0.1.0"
+dependencies = [
+ "bincode",
+ "jgenesis-common",
+ "jgenesis-proc-macros",
+ "log",
+]
+
+[[package]]
+name = "genesis-core"
+version = "0.7.1"
+dependencies = [
+ "bincode",
+ "crc",
+ "dsp",
+ "genesis-config",
+ "jgenesis-common",
+ "jgenesis-proc-macros",
+ "log",
+ "m68000-emu",
+ "regex",
+ "smsgg-config",
+ "smsgg-core",
+ "thiserror",
+ "z80-emu",
+]
+
+[[package]]
 name = "getrandom"
 version = "0.3.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -484,6 +522,16 @@ name = "log"
 version = "0.4.34"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f9f8bd3e56ce4dfc153cf470fffbfa98c7620958b312ca5c3a4b8d5181fd13c6"
+
+[[package]]
+name = "m68000-emu"
+version = "0.7.1"
+dependencies = [
+ "bincode",
+ "jgenesis-common",
+ "jgenesis-proc-macros",
+ "log",
+]
 
 [[package]]
 name = "memchr"
@@ -722,6 +770,35 @@ dependencies = [
 ]
 
 [[package]]
+name = "regex"
+version = "1.13.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f020237b6c8eed93db2e2cb53c00c60a8e1bc73da7d073199a1180401450218d"
+dependencies = [
+ "aho-corasick",
+ "memchr",
+ "regex-automata",
+ "regex-syntax",
+]
+
+[[package]]
+name = "regex-automata"
+version = "0.4.18"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ad8553b9b26413251cbf30e620595c7a41b3887f03da04579c0e6b0d6a06b4b2"
+dependencies = [
+ "aho-corasick",
+ "memchr",
+ "regex-syntax",
+]
+
+[[package]]
+name = "regex-syntax"
+version = "0.8.11"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d6f6ff9a378485b298a5286656da665ba74413d36db0979633275d2e708145d4"
+
+[[package]]
 name = "romatlas-agent"
 version = "0.1.0"
 dependencies = [
@@ -749,6 +826,7 @@ dependencies = [
  "romatlas-core",
  "romatlas-disasm",
  "romatlas-gb",
+ "romatlas-genesis",
  "romatlas-map",
  "romatlas-nes",
  "romatlas-sms",
@@ -785,6 +863,29 @@ dependencies = [
  "serde",
  "serde_json",
  "sha2",
+]
+
+[[package]]
+name = "romatlas-genesis"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "bincode",
+ "dez80",
+ "genesis-config",
+ "genesis-core",
+ "jgenesis-common",
+ "romatlas-analysis",
+ "romatlas-core",
+ "romatlas-disasm",
+ "romatlas-map",
+ "romatlas-sms",
+ "serde",
+ "serde_json",
+ "sha2",
+ "smsgg-config",
+ "smsgg-core",
+ "z80-emu",
 ]
 
 [[package]]

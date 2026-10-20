@@ -91,3 +91,20 @@ Run python3 scripts/test-gg.py after relevant changes alongside SMS/workspace/
 port/session/portability regressions. Existing workspaces and classification,
 reachability, current-source readability and editorial gates remain unchanged.
 Do not copy GPL emulator implementation into the MIT native runtime.
+
+Genesis/Mega Drive uses romatlas-genesis and the same pinned GPLv3 jgenesis fork.
+Read docs/genesis.md, docs/genesis-evaluation.md and docs/genesis-native.md.
+Select .md/.gen/.smd/.bin or --platform genesis. Use romatlas-genesis-map JSON,
+GNU binutils 2.42 for 68000 and pinned DeZ80/WLA-DX for Z80. Canonical ROM backing
+is big-endian with the original copier prefix; original-file SHA-256 and reversible
+encoding metadata preserve word-swapped/SMD identity. Keep original file positions,
+CPU aliases, SRAM lanes, SSF 512 KiB windows and Z80 32 KiB windows distinct.
+Cycle stepping uses master clocks; operation stepping selects an accepted main or
+Z80 instruction while the complete console advances. Never turn prefetches,
+blocked bus accesses, RAM uploads or reached targets into ROM execution claims.
+Run python3 scripts/test-genesis.py, workspace checks and portability, alongside
+existing platform/session/port regressions after relevant changes. Native VDP,
+YM2612 and PSG helpers remain independent MIT code; never copy GPL implementation
+into them. Preserve classification, reachability, current-source readability and
+editorial gates. SVP, Sega CD/32X, exotic peripherals and uncommon boards are outside
+the cartridge baseline; no full hardware/game compatibility claim is supported.

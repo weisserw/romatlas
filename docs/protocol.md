@@ -323,3 +323,17 @@ Sega methods above apply with GameGear hardware, one controller and Start,
 64-byte CRAM, stereo PSG and a 160x144 framebuffer. Start polls I/O $00; it does
 not cause SMS Pause NMI. Map format is romatlas-gg-map; source uses WLA-DX.
 See [Game Gear protocol and limits](gg.md) for contexts, snapshots and workflows.
+
+## Genesis / Mega Drive platform
+
+Use `serve --rom owned.md` or `--platform genesis` with another extension.
+Genesis provides the common CommandAdapter method set, ROM-free Genesis JSON
+maps, 68000 and Z80 register/memory control, bounded traces/streams, snapshots,
+framebuffer/WAV capture and GNU/WLA reconstruction. `cpu:"main"`/`"m68k"` selects
+the 68000; `cpu:"z80"` selects the sound CPU. Cycle units are master clocks;
+operations count accepted instructions of the selected CPU while all devices advance.
+Use `z80_cpu` for mapped sound-bus peeks and physical `zram` for its backing.
+Pointers are big-endian 32-bit or explicitly based signed 16-bit for main, and
+little-endian 16-bit for Z80. Canonical ROM backing and original-file encoding
+are distinct; do not mix SMD file positions with CPU addresses. See
+[Genesis API details and limits](genesis.md). Existing platform contracts remain.

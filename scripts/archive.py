@@ -23,7 +23,7 @@ FINAL = [
     "commentary/verification.json", "commentary/progress.md",
     "commentary/uncertainties.md", "commentary/editorial-audit.md",
 ]
-PRODUCTS = {"game.o", "game.gb", "game.gbc", "romatlas-rebuilt.gb", "game.map", "game.sym", "rebuilt.nes"}
+PRODUCTS = {"game.o", "game.gb", "game.gbc", "romatlas-rebuilt.gb", "game.map", "game.sym", "rebuilt.nes", "rebuilt.bin", "game.elf"}
 
 
 def sha(data):
@@ -35,17 +35,17 @@ def files(root):
     for path in sorted(root.rglob("*")):
         if path.is_symlink():
             raise ValueError(f"symlinks are unsupported: {path}")
-        if path.is_file() and path.name not in PRODUCTS:
+        if path.is_file() and path.name not in PRODUCTS and not re.fullmatch(r"z80-\d+\.(?:bin|o)", path.name):
             result[path.relative_to(root).as_posix()] = path.read_bytes()
     return result
 
 
-def split_comment(line):
+def split_comment(line, platform=None):
     quoted = escaped = False
     for index, char in enumerate(line):
         if char == '"' and not escaped:
             quoted = not quoted
-        if char == ";" and not quoted:
+        if (char == ";" or platform == "genesis" and char == "|") and not quoted:
             return line[:index], line[index:]
         escaped = char == "\\" and not escaped
     return line, ""
@@ -90,11 +90,11 @@ def recipe(baseline, final, platform="gb"):
             if line in lines:
                 copy(lines[line])
                 continue
-            code, comment = split_comment(line)
+            code, comment = split_comment(line, platform)
             constant = bool(re.match(r"\s*(?:DEF\s+)?[\w.]+\s+(?:EQU|SET)\b", code, re.I))
-            if platform in {"snes", "nes", "sms", "gg"}:
+            if platform in {"snes", "nes", "sms", "gg", "genesis"}:
                 constant = constant or bool(re.match(r"\s*!?[\w.]+\s*=", code))
-            include = bool(re.match(r"\s*(?:\.?INCLUDE|\.?INCBIN|INCSRC)\b" if platform in {"snes", "nes", "sms", "gg"} else r"\s*(?:\.?INCLUDE|\.?INCBIN)\b", code, re.I))
+            include = bool(re.match(r"\s*(?:\.?INCLUDE|\.?INCBIN|INCSRC)\b" if platform in {"snes", "nes", "sms", "gg", "genesis"} else r"\s*(?:\.?INCLUDE|\.?INCBIN)\b", code, re.I))
             matches = list(TOKEN.finditer(code))
             index = 0
             while index < len(matches):
@@ -108,7 +108,7 @@ def recipe(baseline, final, platform="gb"):
                     copy(tokens[token])
                 elif token.isspace():
                     operations.append({"format": token})
-                elif platform in {"snes", "nes", "sms", "gg"} and re.fullmatch(r'[^\w\s"]', token):
+                elif platform in {"snes", "nes", "sms", "gg", "genesis"} and re.fullmatch(r'[^\w\s"]', token):
                     operations.append({"format": token})
                 elif IDENTIFIER.fullmatch(token):
                     operations.append({"symbol": token})
@@ -206,13 +206,13 @@ def rebuild(archive, rom, output, binary):
             raise ValueError("invalid original ROM filename")
         shutil.copyfile(rom, supplied)
         before = base / "baseline"
-        phase.call(binary, "generate", supplied, "--map", archive / ("commentary/baseline.json" if manifest["platform"] in {"snes", "nes", "sms", "gg"} else "commentary/baseline.sym"), "--out", before)
+        phase.call(binary, "generate", supplied, "--map", archive / ("commentary/baseline.json" if manifest["platform"] in {"snes", "nes", "sms", "gg", "genesis"} else "commentary/baseline.sym"), "--out", before)
         render(json.loads((archive / "editorial.json").read_text()), files(before), output)
         phase.reading(output)  # Validate include traversal before invoking the assembler.
         for path in output.rglob("*"):
             if path.suffix in {".asm", ".inc"}:
                 for line in path.read_text().splitlines():
-                    code, _ = split_comment(line)
+                    code, _ = split_comment(line, manifest["platform"])
                     match = re.match(r'\s*(?:\.?INCLUDE|\.?INCBIN)\s+"([^"]+)"', code, re.I)
                     if match:
                         phase.local(output, match[1])
@@ -242,7 +242,7 @@ def editorial_status(work, meta, rom):
     if manifest["rom_sha256"] != meta["sha256"]:
         raise ValueError("commentary belongs to another ROM")
     state_path = phase_dir / "phase1-state.json"
-    map_path = phase_dir / ("baseline.json" if meta.get("platform") in {"snes", "nes", "sms", "gg"} else "baseline.sym")
+    map_path = phase_dir / ("baseline.json" if meta.get("platform") in {"snes", "nes", "sms", "gg", "genesis"} else "baseline.sym")
     if phase.digest(state_path) != manifest["state_sha256"] or phase.digest(map_path) != manifest["map_sha256"]:
         raise ValueError("frozen phase-1 baseline changed")
     review = json.loads((phase_dir / "review.json").read_text())
@@ -314,13 +314,13 @@ def archive(workspace, destination, name, binary, documents=(), omitted_document
     phase.verify(work, meta, rom)
     (work / "commentary/reading-after.asm").write_text(phase.reading(work / "commentary/source"))
     phase.call(binary, "store", "validate", rom, "--store", work / "analysis/state.json")
-    is_snes = meta.get("platform") in {"snes", "nes", "sms", "gg"}
+    is_snes = meta.get("platform") in {"snes", "nes", "sms", "gg", "genesis"}
     phase.call(binary, "map", "validate", work / ("maps/current.json" if is_snes else "maps/current.sym"), "--rom", rom)
     state = json.loads((work / "analysis/state.json").read_text())
     platform = meta["platform"] if is_snes else state["platform"]
     # The current adapter identifies itself as gb; the archive hierarchy stays
     # platform-qualified rather than baking this into the reconstruction format.
-    if platform not in {"gb", "snes", "nes", "sms", "gg"}:
+    if platform not in {"gb", "snes", "nes", "sms", "gg", "genesis"}:
         raise ValueError(f"unsupported archive platform: {platform}")
     slug = name or work.name
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", slug):

@@ -1,0 +1,25 @@
+[package]
+name = "romatlas-genesis"
+version.workspace = true
+edition.workspace = true
+license = "GPL-3.0-only"
+
+[dependencies]
+anyhow.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+romatlas-core = { path = "../romatlas-core" }
+romatlas-analysis = { path = "../romatlas-analysis" }
+romatlas-map = { path = "../romatlas-map" }
+romatlas-disasm = { path = "../romatlas-disasm" }
+smsgg-core = { path = "../../vendor/jgenesis/backend/smsgg-core" }
+jgenesis-common = { path = "../../vendor/jgenesis/common/jgenesis-common" }
+bincode = "=2.0.1"
+smsgg-config = { path = "../../vendor/jgenesis/config/smsgg-config" }
+z80-emu = { path = "../../vendor/jgenesis/cpu/z80-emu" }
+dez80 = { path = "../../vendor/dez80" }
+
+genesis-core = { path = "../../vendor/jgenesis/backend/genesis-core" }
+genesis-config = { path = "../../vendor/jgenesis/config/genesis-config" }
+romatlas-sms = { path = "../romatlas-sms" }

@@ -95,7 +95,7 @@ def prepare(archive, rom, output, binary):
     manifest = json.loads((archive / "archive.json").read_text())
     if manifest.get("version") != 1:
         raise ValueError("port preparation requires a version-1 archive")
-    if manifest["platform"] not in {"gb", "snes", "nes", "sms", "gg"}:
+    if manifest["platform"] not in {"gb", "snes", "nes", "sms", "gg", "genesis"}:
         raise ValueError("unsupported port archive platform")
     name = manifest["name"]
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", name):
@@ -187,6 +187,13 @@ def prepare(archive, rom, output, binary):
                     text = text.replace("gb::GRAYSCALE", "std::array::from_fn::<_,16,_>(|i| sms::color((i as u8)*4))").replace(",76,68,", ",124,92,")
                 else:
                     text = text.replace("(160,144)", "(256,192)").replace("TickRate::DMG", "TickRate::SMS_NTSC").replace("romatlas_port::settings::Settings::default()", "romatlas_port::sms::default_settings()")
+            if manifest["platform"] == "genesis":
+                if filename == "game.rs":
+                    text = text.replace("length: 16", "length: 32").replace("bytes.len() == 16", "bytes.len() == 32").replace("16-byte Game Boy 2bpp", "32-byte Genesis packed 4bpp")
+                    text = text.replace(", gb,", ", genesis,").replace("gb::tile_2bpp(", "genesis::tile(")
+                    text = text.replace("gb::GRAYSCALE", "std::array::from_fn::<_,16,_>(|i| genesis::color((i as u16)*0x222, genesis::Brightness::Normal))").replace(",76,68,", ",156,108,")
+                if filename == "main.rs":
+                    text = text.replace("(160,144)", "(320,224)").replace("TickRate::DMG", "TickRate::GENESIS_NTSC").replace("romatlas_port::settings::Settings::default()", "romatlas_port::genesis::default_settings()")
             if manifest["platform"] == "gg":
                 if filename == "game.rs":
                     text = text.replace(", gb,", ", gg,").replace("gb::tile_2bpp(", "gg::tile(")
@@ -202,6 +209,8 @@ def prepare(archive, rom, output, binary):
             raise ValueError("cannot lock scaffold dependencies; build the toolkit first:\n" + result.stderr)
         subprocess.run(["cargo", "fmt", "--manifest-path", str(stage / "port/Cargo.toml")], check=True, capture_output=True, text=True)
         prompt = (TEMPLATES / "prompt.md").read_text()
+        if manifest["platform"] == "genesis":
+            prompt += "\nGenesis: read " + str(ROOT / "docs/genesis-native.md") + ". Use independent romatlas_port::genesis VDP, YM2612 and PSG helpers. Ports own raster scheduling, sound drivers and gameplay.\n"
         if manifest["platform"] == "gg":
             prompt += "\nGame Gear helpers: read " + str(ROOT / "docs/gg-native.md") + ". Use romatlas_port::gg for 12-bit CRAM/LCD Mode 4 and stereo PSG; Start is polled, and no FM unit exists. The native scaffold is not implemented gameplay.\n"
         (stage / "prompts/start.md").write_text(prompt)
@@ -210,6 +219,8 @@ def prepare(archive, rom, output, binary):
         shutil.copyfile(TEMPLATES / "review.md", stage / "prompts/review.md")
         shutil.copyfile(TEMPLATES / "reference-updates.md", stage / "prompts/reference-updates.md")
         build_guide = (TEMPLATES / "BUILDING.md").read_text().replace("__GAME_NAME__", name).replace("__TOOLKIT_PATH__", str(ROOT))
+        if manifest["platform"]=="genesis":
+            build_guide=build_guide.replace("game.gb", "game.md")
         if manifest["platform"]=="gg":
             build_guide=build_guide.replace("game.gb", "game.gg")
         if manifest["platform"]=="sms":
@@ -358,7 +369,7 @@ if len(sys.argv) < 2:
 sys.argv = [str(toolkit / "scripts/port.py"), sys.argv[1], str(workspace), *sys.argv[2:]]
 runpy.run_path(str(toolkit / "scripts/port.py"), run_name="__main__")
 """)
-        (stage / ".gitignore").write_text("/input/\n/reference/\n/research/\n/review/toolkit-before/\n/checks/\n/port/target/\n*.gb\n*.gbc\n*.sms\n*.gg\n*.rom\n__pycache__/\n")
+        (stage / ".gitignore").write_text("/input/\n/reference/\n/research/\n/review/toolkit-before/\n/checks/\n/port/target/\n*.gb\n*.gbc\n*.sms\n*.gg\n*.md.bin\n*.gen\n*.smd\n*.rom\n__pycache__/\n")
         frozen = {str(p.relative_to(stage)): phase.digest(p) for p in (stage / "reference").rglob("*") if p.is_file()}
         frozen.update({str(p.relative_to(stage)): phase.digest(p) for p in (stage / "review/toolkit-before").rglob("*") if p.is_file()})
         frozen["review/toolkit-before.json"] = phase.digest(stage / "review/toolkit-before.json")

@@ -222,3 +222,14 @@ byte-identical WLA-DX reconstruction through the shared Sega Z80 adapter. Native
 helpers include Mode 4 LCD graphics, 12-bit colors and stereo PSG. See
 [usage and limits](docs/gg.md), [tool selection](docs/gg-evaluation.md) and
 [native helpers](docs/gg-native.md). Run `python3 scripts/test-gg.py`.
+
+## Sega Genesis / Mega Drive
+
+Genesis support includes the pinned jgenesis 68000/Z80 debugger, Genesis JSON
+maps and contextual analysis, GNU binutils + DeZ80/WLA source reconstruction,
+agent/commentary/archive/reference/native-port workflows and independent MIT
+VDP/YM2612/PSG helpers. `.md`/`.gen`/`.smd`/`.bin` or `--platform genesis` selects it.
+See [Genesis usage](docs/genesis.md), [tool evaluation](docs/genesis-evaluation.md)
+and [native helpers](docs/genesis-native.md). Run `python3 scripts/test-genesis.py`.
+NTSC/PAL cartridge baseline excludes exotic peripherals, SVP, Sega CD/32X and uncommon
+boards. Tests use original synthetic cartridges; broad hardware fidelity is not claimed.

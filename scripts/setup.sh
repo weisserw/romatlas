@@ -21,4 +21,5 @@ make -C tools/rgbds -j2
 bash scripts/setup-snes.sh
 bash scripts/setup-nes.sh
 bash scripts/setup-sms.sh
+bash scripts/setup-genesis.sh
 cargo build --locked --release

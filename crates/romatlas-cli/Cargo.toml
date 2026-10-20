@@ -26,3 +26,5 @@ romatlas-disasm = { path = "../romatlas-disasm" }
 romatlas-nes = { path = "../romatlas-nes" }
 
 romatlas-sms = { path = "../romatlas-sms" }
+
+romatlas-genesis = { path = "../romatlas-genesis" }

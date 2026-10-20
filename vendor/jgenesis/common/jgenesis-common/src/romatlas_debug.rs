@@ -12,6 +12,7 @@ pub struct Event {
     pub value: u8,
     pub space: &'static str,
     pub registers: Option<[u32; 10]>,
+    pub platform_context: Option<[u32; 10]>,
 }
 #[derive(Default)]
 struct Probe {
@@ -23,6 +24,7 @@ struct Probe {
     events: Vec<Event>,
     dropped: u64,
     fetches: [u64; 2],
+    platform_context: Option<[u32; 10]>,
 }
 thread_local! {
     static PROBE: RefCell<Probe> = RefCell::default();
@@ -41,6 +43,7 @@ pub fn begin(enabled: bool, cycle: u64) {
         p.origin = "cpu";
         p.cycle = cycle;
         p.events.clear();
+        p.platform_context = None;
         p.dropped = 0;
     });
 }
@@ -61,7 +64,7 @@ pub fn emit(kind: &'static str, address: u32, value: u8, registers: Option<[u32;
     }
     PROBE.with_borrow_mut(|p| {
         if kind == "instruction" {
-            let i = usize::from(p.cpu == "spc700");
+            let i = usize::from(p.cpu == "spc700" || p.cpu == "z80");
             p.fetches[i] = p.fetches[i].saturating_add(1);
         }
         // Fetch observations also feed bounded coverage/edges with detail disabled.
@@ -81,6 +84,7 @@ pub fn emit(kind: &'static str, address: u32, value: u8, registers: Option<[u32;
             address,
             value,
             registers,
+            platform_context: p.platform_context,
             space: p.space,
         });
     });
@@ -127,4 +131,11 @@ pub fn with_origin<T>(origin: &'static str, f: impl FnOnce() -> T) -> T {
     let result = f();
     PROBE.with_borrow_mut(|p| p.origin = previous);
     result
+}
+
+/// Optional adapter-owned bank state sampled at the actual bus/instruction hook.
+pub fn platform_context(value: Option<[u32; 10]>) {
+    if !SUSPENDED.get() {
+        PROBE.with_borrow_mut(|p| p.platform_context = value);
+    }
 }

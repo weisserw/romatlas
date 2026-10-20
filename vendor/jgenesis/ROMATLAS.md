@@ -33,3 +33,13 @@ Game Gear extension (same revision): SMS/GG adapter now selects GameGear hardwar
 VDP probes report both committed CRAM bytes on an odd-address write; even writes
 remain latch-only and are retained in core snapshots. Peripheral timing is unchanged.
 See docs/gg.md for hardware selection, Start, stereo PSG and deferred link support.
+
+Genesis extension (same pinned revision): backend/genesis-core,
+config/genesis-config and cpu/m68000-emu. Local hooks record accepted 68000
+instructions after STOP/interrupt handling and retain the opcode prefetch's
+backing identity/context. CPU buses, Z80, committed VDP backing writes, DMA,
+interrupts and effective mapper states use optional bounded probes. Debugger
+inspection/edits and detached I/O reads are exposed without live read side effects.
+Snapshot changes include instrumentation-independent prefetch metadata and elapsed
+master clocks. Native runtime helpers are separately authored MIT code; no GPL
+implementation was copied. See docs/genesis.md and docs/genesis-evaluation.md.

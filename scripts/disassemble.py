@@ -362,6 +362,7 @@ if __name__ == "__main__":
 
 def initialize(source, destination, binary, platform="auto"):
     source = source.resolve(strict=True)
+    is_genesis = platform == "genesis" or platform == "auto" and source.suffix.lower() in {".md", ".gen", ".smd", ".bin"}
     is_gg = platform == "gg" or platform == "auto" and source.suffix.lower() == ".gg"
     is_sms = platform == "sms" or platform == "auto" and source.suffix.lower() == ".sms"
     is_nes = platform == "nes" or platform == "auto" and source.suffix.lower() == ".nes"
@@ -380,7 +381,7 @@ def initialize(source, destination, binary, platform="auto"):
         work.mkdir()
         for directory in ["input", "analysis", "maps", "generated", "prompts", "traces"]:
             (work / directory).mkdir()
-        rom = work / ("input/game.sfc" if is_snes else "input/game.nes" if is_nes else "input/game.gg" if is_gg else "input/game.sms" if is_sms else "input/game.rom")
+        rom = work / ("input/game.md" if is_genesis else "input/game.sfc" if is_snes else "input/game.nes" if is_nes else "input/game.gg" if is_gg else "input/game.sms" if is_sms else "input/game.rom")
         shutil.copyfile(source, rom)
         inspected = subprocess.run([str(binary), "--platform", platform, "inspect", str(rom)],
                                    check=True, capture_output=True, text=True)
@@ -415,6 +416,9 @@ def initialize(source, destination, binary, platform="auto"):
         if is_snes:
             import snes_workflow
             files = snes_workflow.files(files, metadata)
+        if is_genesis:
+            import genesis_workflow
+            files = genesis_workflow.files(files, metadata)
         if is_gg:
             import gg_workflow
             files = gg_workflow.files(files, metadata)
@@ -445,7 +449,7 @@ def print_prompt_location(record):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("roms", type=Path, nargs="+", help="local owned ROM files")
-    parser.add_argument("--platform", choices=["auto", "gb", "snes", "nes", "sms", "gg"], default="auto")
+    parser.add_argument("--platform", choices=["auto", "gb", "snes", "nes", "sms", "gg", "genesis"], default="auto")
     parser.add_argument("--root", type=Path, default=Path.cwd(),
                         help="parent for game workspaces (default: current directory)")
     parser.add_argument("--workspace", type=Path, help="exact directory; only for one ROM")

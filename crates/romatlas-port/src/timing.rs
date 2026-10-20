@@ -28,6 +28,14 @@ impl TickRate {
         numerator: 53_693_175,
         denominator: 896_040,
     };
+    pub const GENESIS_NTSC: Self = Self {
+        numerator: 53_693_175,
+        denominator: 3420 * 262,
+    };
+    pub const GENESIS_PAL: Self = Self {
+        numerator: 53_203_424,
+        denominator: 3420 * 313,
+    };
     pub const GG_NTSC: Self = Self::SMS_NTSC;
     pub const SMS_PAL: Self = Self {
         numerator: 53_203_424,
