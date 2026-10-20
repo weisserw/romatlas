@@ -32,3 +32,5 @@ CGB speed-switch video access stays fixed during the CPU pause. Synthetic pixel 
 CpuBusProvider now requires idle_cycle. The Game Boy bus clocks hardware without issuing a read. Internal CPU cycles no longer create artificial ROM-zero data events.
 
 CGB HALT wake no longer adds an extra machine cycle. The source-verified 55-case CGB selection and default 89-case hardware gate pass; both selections run in CI.
+
+CGB follow-up: immutable raw BG/OBJ palette storage inspection; lossily decoded header title metadata including the sixteenth DMG title byte; snapshot version 9 retains completed and partially rendered LCD buffers for immediate framebuffer restore/replay. Public wrapper APIs remain unchanged.

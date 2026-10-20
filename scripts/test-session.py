@@ -220,8 +220,8 @@ with tempfile.TemporaryDirectory() as directory:
                 for failure in ['old-version', 'truncated']:
                     invalid = json.loads(input_file.read_text())
                     if failure == 'old-version':
-                        assert invalid['snapshot']['bytes'][4] == 8
-                        invalid['snapshot']['bytes'][4] = 7
+                        assert invalid['snapshot']['bytes'][4] == 9
+                        invalid['snapshot']['bytes'][4] = 8
                     else:
                         invalid['snapshot']['bytes'] = invalid['snapshot']['bytes'][:-8]
                     rejected_file = work / f'{failure}.snapshot.json'

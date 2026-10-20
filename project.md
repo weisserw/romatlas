@@ -1,5 +1,10 @@
 # Project: ROMAtlas — Agent-Driven ROM Mapping
 
+Game Boy Color extends the existing `gb` platform and MIT Mizu core, retaining
+stock .sym/RGBDS reconstruction and existing DMG/native helper APIs. See
+[docs/gbc.md](docs/gbc.md) for native-color rendering helpers, palette backing
+inspection, snapshot behavior, tests and measured limits.
+
 ## Sega Genesis extension
 
 Genesis/Mega Drive joins the existing platforms: pinned jgenesis dual-CPU

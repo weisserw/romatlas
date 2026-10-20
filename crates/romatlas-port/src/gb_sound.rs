@@ -1,4 +1,4 @@
-//! Selected DMG register-driven sound generation, without a CPU or audio device.
+//! Selected Game Boy register-driven sound generation, without a CPU or audio device.
 //! This is a native-port component, not a claim of cycle-exact APU emulation.
 #[derive(Clone)]
 pub struct Sound {
@@ -233,7 +233,8 @@ impl Sound {
             self.calculate_sweep(); // Second overflow check does not write back.
         }
     }
-    /// Advance DMG master-clock ticks. No host clock or device is consulted.
+    /// Advance 4,194,304 Hz APU ticks on DMG or CGB. CGB CPU double speed does
+    /// not double this clock. No host clock or device is consulted.
     pub fn advance(&mut self, cycles: u32) {
         if self.registers[22] & 128 == 0 {
             return;

@@ -101,6 +101,19 @@ impl Default for ColorPalettesCollection {
 }
 
 impl ColorPalettesCollection {
+    /// Immutable backing bytes; does not touch the CPU data port/index or locks.
+    pub fn physical_bytes(&self, offset: usize, length: usize) -> Option<Vec<u8>> {
+        let end = offset.checked_add(length)?;
+        if end > 64 {
+            return None;
+        }
+        Some(
+            (offset..end)
+                .map(|i| self.palettes[i / 8].get_color_data((i % 8) as u8))
+                .collect(),
+        )
+    }
+
     pub fn read_index(&self) -> u8 {
         ((self.auto_increment as u8) << 7) | 0x40 | self.index
     }

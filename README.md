@@ -233,3 +233,5 @@ See [Genesis usage](docs/genesis.md), [tool evaluation](docs/genesis-evaluation.
 and [native helpers](docs/genesis-native.md). Run `python3 scripts/test-genesis.py`.
 NTSC/PAL cartridge baseline excludes exotic peripherals, SVP, Sega CD/32X and uncommon
 boards. Tests use original synthetic cartridges; broad hardware fidelity is not claimed.
+
+Game Boy Color shares the existing `gb` platform, stock .sym/RGBDS and Mizu core. See [docs/gbc.md](docs/gbc.md) for hardware models, immutable palette inspection, native color helpers and validation.

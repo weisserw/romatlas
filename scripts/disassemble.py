@@ -413,6 +413,8 @@ def initialize(source, destination, binary, platform="auto"):
                                           "binary": str(binary), "rom": "input/game.rom",
                                           "sha256": identity, "inspection": metadata}, indent=2) + "\n",
         }
+        if not any([is_snes, is_genesis, is_gg, is_sms, is_nes]):
+            files["AGENTS.md"] += "\nGame Boy / Color uses the same gb platform, stock .sym and RGBDS. Read " + str(ROOT / "docs/gbc.md") + ". Model auto follows header $143 even for input/game.rom. Query capabilities for physical VRAM/WRAM and CGB palette backing. Preserve physical banks separately from CPU aliases; double speed does not change LCD frame cadence.\n"
         if is_snes:
             import snes_workflow
             files = snes_workflow.files(files, metadata)

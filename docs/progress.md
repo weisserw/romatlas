@@ -1389,3 +1389,47 @@ Clippy, workspace tests, focused adapter tests, native desktop-feature Clippy/te
 Genesis workflow/reference/native-scaffold regression and repeated SMS/GG gates
 pass. Final format, Python compilation, boundary and diff checks pass. Native
 scaffolds use the shared 64-index tile interface; no devices were initialized.
+
+2026-10-20: Expanded Game Boy Color support on the existing MIT Mizu/gb platform;
+no emulator migration, new map format or assembler dependency. Added immutable
+64-byte CGB BG/OBJ palette backing spaces to execution capabilities/inspection;
+CPU port locks and index side effects remain separate. Cartridge title bytes are
+lossy display metadata rather than a UTF-8 execution gate. LCD snapshots now retain
+both completed/partial buffers and their selection/position (core snapshot version
+9, under the existing same-build snapshot contract). The session regression checks
+version-8 rejection and transactional recovery; public RPC signatures are unchanged.
+
+Independent MIT romatlas-port::gb::cgb adds palette RAM/index behavior and a banked
+native-color BG/window/object compositor: signed/unsigned tile addressing, palette/
+bank/flip attributes, scroll wrap, explicit window-line state, 8x8/8x16 objects,
+ten-object selection including hidden entries, OAM/coordinate priority and CGB
+BG/OBJ masking. Raster scheduling, window triggering and gameplay remain port-owned.
+TickRate::CGB preserves the normal LCD cadence; existing DMG graphics, sound and
+all port helper signatures/default behavior remain unchanged. Shared APU synthesis
+uses normal-speed oscillator ticks; revision-specific CGB wave/bus/analog quirks
+and FIFO/dot-exact native rendering are documented limits, not completed claims.
+
+New mapping/native workspaces link docs/gbc.md while retaining platform gb,
+stock .sym/RGBDS, archive identity and every classification/reachability/current-
+source readability/editorial gate. Existing workspaces are not rewritten.
+The new test-gbc.py is in CI and builds only an authored synthetic cartridge.
+It passes CGB-only automatic selection/rejected DMG override, CGB-enhanced explicit
+DMG/reset behavior and cross-model snapshot rejection; bank-2 execution coverage/
+edges, MBC5 switching, banked VRAM/WRAM, actual DMA, speed switching, rendered color,
+immutable palette inspection and exact immediate/mid-frame snapshot replay.
+CGB-enhanced and CGB-only images rebuild byte-identically with both toolkit and
+independent stock-recipient .sym/RGBDS paths including code banks and RAM labels.
+CGB mapping/commentary/archive/native preparation and locked scaffold checks pass.
+
+Validation passes on Rust 1.90.0: locked release build, workspace format/all-target
+release Clippy with warnings denied and locked release workspace tests; focused
+CGB helper tests, native desktop-feature Clippy/tests without devices, standalone
+Mizu tests (nine pass), session, deterministic four-bank stock portability, fidelity,
+API, disassembly, commentary, archive, native-port accounting/headless/desktop,
+dependency boundaries, setup-homebrew-tests.sh and both licensed homebrew input/
+replay/exact-rebuild regressions. Hardware gates pass 89/89 default and 55/55 selected
+CGB cases. Final Python compilation, core/workspace formatting and git diff checks
+pass. These measurements do not establish broad commercial-game or full hardware
+compatibility. Generated synthetic images, snapshots, captures, source and native
+workspaces remain local; no commercial ROMs or extracted assets were downloaded
+or committed, and no display/audio device was initialized. Changes are uncommitted.

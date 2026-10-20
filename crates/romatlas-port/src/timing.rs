@@ -13,6 +13,8 @@ impl TickRate {
         numerator: 4_194_304,
         denominator: 70_224,
     };
+    /// CGB double speed changes CPU throughput, not the LCD frame cadence.
+    pub const CGB: Self = Self::DMG;
     /// Nominal non-interlaced NTSC frame cadence (master clock / frame clocks).
     pub const SNES_NTSC: Self = Self {
         numerator: 21_477_272,

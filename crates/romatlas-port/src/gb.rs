@@ -1,4 +1,7 @@
 //! Selected Game Boy graphics effects, independent of the emulator adapter.
+/// Additive native-color helpers; existing DMG objects and sound APIs remain available.
+#[path = "gb_cgb.rs"]
+pub mod cgb;
 #[path = "gb_objects.rs"]
 pub mod objects;
 #[path = "gb_sound.rs"]

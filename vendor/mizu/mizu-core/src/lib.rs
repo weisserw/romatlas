@@ -35,7 +35,7 @@ pub use serial::SerialDevice;
 ///
 /// Loading a state that is not compatible with this version, results
 /// in [`SaveError::UnmatchedSaveErrorVersion`]
-pub const SAVE_STATE_VERSION: usize = 8;
+pub const SAVE_STATE_VERSION: usize = 9;
 const SAVE_STATE_MAGIC: &[u8; 4] = b"MST\xee";
 const SAVE_STATE_ZSTD_COMPRESSION_LEVEL: i32 = 0; // default compression
 

@@ -243,14 +243,19 @@ impl Cartridge {
 
         // ROMAtlas skips boot ROM execution, so the logo is not an execution gate.
 
-        let game_title = String::from_utf8(
-            data[0x134..=0x142]
-                .iter()
-                .copied()
-                .take_while(|e| e != &0)
-                .collect::<Vec<u8>>(),
-        )
-        .map_err(|_| CartridgeError::InvalidGameTitle)?;
+        // The CGB flag is not a title byte. Header text is display metadata,
+        // never an execution gate; retain the original ROM bytes and hash.
+        let title_end = if data[0x143] & 0x80 != 0 {
+            0x143
+        } else {
+            0x144
+        };
+        let title = &data[0x134..title_end];
+        let title_end = title
+            .iter()
+            .position(|&byte| byte == 0)
+            .unwrap_or(title.len());
+        let game_title = String::from_utf8_lossy(&title[..title_end]).into_owned();
 
         let target_device = if data[0x143] & 0x80 != 0 {
             TargetDevice::Color

@@ -209,6 +209,9 @@ def prepare(archive, rom, output, binary):
             raise ValueError("cannot lock scaffold dependencies; build the toolkit first:\n" + result.stderr)
         subprocess.run(["cargo", "fmt", "--manifest-path", str(stage / "port/Cargo.toml")], check=True, capture_output=True, text=True)
         prompt = (TEMPLATES / "prompt.md").read_text()
+        if manifest["platform"] == "gb":
+            prompt += "\nGame Boy / Color: read " + str(ROOT / "docs/gbc.md") + ". Both use the gb platform and stock .sym/RGBDS. Inspect header byte $143: bit 7 selects native color; bits 7/6 mark CGB-only. Use gb::cgb for banked color rendering and palette RAM; keep DMG APIs for DMG behavior. CPU double speed does not double the LCD/APU cadence. The scaffold's grayscale tile is an arbitrary demonstration, not the game's rendering.\n"
+
         if manifest["platform"] == "genesis":
             prompt += "\nGenesis: read " + str(ROOT / "docs/genesis-native.md") + ". Use independent romatlas_port::genesis VDP, YM2612 and PSG helpers. Ports own raster scheduling, sound drivers and gameplay.\n"
         if manifest["platform"] == "gg":

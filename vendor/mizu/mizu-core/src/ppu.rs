@@ -706,6 +706,12 @@ impl Ppu {
                     .get(offset..end)?
                     .to_vec(),
             ),
+            "cgb-bg-palette" if !self.config.is_dmg => {
+                self.cgb_bg_palettes.physical_bytes(offset, length)
+            }
+            "cgb-obj-palette" if !self.config.is_dmg => {
+                self.cgb_sprite_palettes.physical_bytes(offset, length)
+            }
             "oam" if end <= 160 => Some(
                 (offset..end)
                     .map(|n| self.read_oam_no_lock(0xfe00 + n as u16))

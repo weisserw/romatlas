@@ -337,3 +337,5 @@ Pointers are big-endian 32-bit or explicitly based signed 16-bit for main, and
 little-endian 16-bit for Z80. Canonical ROM backing and original-file encoding
 are distinct; do not mix SMD file positions with CPU addresses. See
 [Genesis API details and limits](genesis.md). Existing platform contracts remain.
+
+CGB hardware also exposes immutable `cgb-bg-palette` and `cgb-obj-palette` physical spaces (64 bytes each; size zero/unavailable on DMG). Reads bypass CPU palette-port locks without modifying the index or adding bus evidence. See [gbc.md](gbc.md).

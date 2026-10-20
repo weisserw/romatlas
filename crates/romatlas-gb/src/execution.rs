@@ -73,6 +73,16 @@ impl ExecutionAdapter for Emulator {
                     if state.model == "dmg" { 8192 } else { 16384 },
                     serde_json::json!({"bank_bytes":8192}),
                 ),
+                space(
+                    "cgb-bg-palette",
+                    if state.model == "cgb" { 64 } else { 0 },
+                    serde_json::json!({"inspection":"immutable-backing"}),
+                ),
+                space(
+                    "cgb-obj-palette",
+                    if state.model == "cgb" { 64 } else { 0 },
+                    serde_json::json!({"inspection":"immutable-backing"}),
+                ),
                 space("oam", 160, serde_json::Value::Null),
                 space("hram", 127, serde_json::Value::Null),
             ],
@@ -155,7 +165,7 @@ impl ExecutionAdapter for Emulator {
             "cartridge-rom" => Some(16384),
             "cartridge-ram" | "vram" => Some(8192),
             "wram" => Some(4096),
-            "oam" | "hram" | "cartridge-rtc" => None,
+            "oam" | "hram" | "cartridge-rtc" | "cgb-bg-palette" | "cgb-obj-palette" => None,
             _ => return Err(ApiError::unsupported("physical memory space")),
         };
         if address.context.keys().any(|k| k != "bank") {

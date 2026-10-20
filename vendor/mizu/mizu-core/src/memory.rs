@@ -363,7 +363,9 @@ impl Bus {
                     .to_vec(),
             ),
             "hram" => Some(self.hram.get(offset..end)?.to_vec()),
-            "vram" | "oam" => self.ppu.physical_memory(space, offset, length),
+            "vram" | "oam" | "cgb-bg-palette" | "cgb-obj-palette" => {
+                self.ppu.physical_memory(space, offset, length)
+            }
             _ => self.cartridge.physical_memory(space, offset, length),
         }
     }

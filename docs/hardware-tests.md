@@ -94,3 +94,13 @@ Background/object palette data reads return ff while rendering owns the port. Wr
 Run `python3 scripts/test-hardware.py --all-cgb`. The runner selects every acceptance source whose pass list names CGB or CGBABCDE, requires all selected builds and forces model cgb. It adds the two boot cases. Source-verified CGB0-only cases and DMG-specific expectations do not apply to this model. This is a 55-case selection, not a complete CGB compatibility claim.
 
 Five interrupt-relative PPU tests exposed an extra HALT-wake machine cycle in the CGB CPU path. Removing that cycle passes all 55 cases; the 89-case default gate remains green. CI runs both. Native-color games and broader peripheral checks remain open.
+
+## CGB workflow follow-up
+
+The 2026-10-20 CGB expansion retains 89/89 default and 55/55 selected CGB passes.
+`python3 scripts/test-gbc.py` additionally checks an authored color cartridge's
+MBC5 banked execution, VRAM/WRAM, palettes, DMA, double speed, color output and
+mid-frame framebuffer replay. Snapshot version 9 includes both LCD buffers;
+version-8 rejection and transactional recovery are covered by test-session.py.
+These are bounded hardware/toolkit checks, not broad commercial-game validation.
+See [gbc.md](gbc.md) for the native helper and reconstruction contracts.

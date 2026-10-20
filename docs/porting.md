@@ -354,3 +354,5 @@ Native scaffolds select 160x144 / GG_NTSC, button1/button2/start and four-plane
 tiles. Runtime helpers add 12-bit CRAM, the Mode 4 LCD viewport and stereo PSG.
 Reference corrections preserve exact reconstruction and the frozen reference.
 See [gg.md](gg.md) and [gg-native.md](gg-native.md).
+
+Game Boy Color uses the existing GB archive/platform and adds `gb::cgb` banked BG/window/object rendering and palette RAM helpers without changing DMG APIs. See [gbc.md](gbc.md) for contracts, scheduling and documented limits.

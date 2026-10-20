@@ -4,18 +4,40 @@ use save_state::Savable;
 pub const LCD_WIDTH: usize = 160;
 pub const LCD_HEIGHT: usize = 144;
 
-#[derive(Savable)]
 pub struct Lcd {
-    // x is the only attribute that should be saved, just to be in sync
-    // with the PPU rendering, even though the fram will contain half pixels
-    // from the state before the load
+    // Keep both completed and partially rendered buffers for exact replay.
     x: u8,
-    #[savable(skip)]
     buf: Box<[[u8; LCD_WIDTH * LCD_HEIGHT * 3]; 2]>,
-    #[savable(skip)]
     selected_buffer: usize,
-    #[savable(skip)]
     raw_buf: Box<[u8; LCD_WIDTH * LCD_HEIGHT * 3]>,
+}
+
+impl Savable for Lcd {
+    fn save<W: std::io::Write>(&self, writer: &mut W) -> save_state::Result<()> {
+        self.x.save(writer)?;
+        self.selected_buffer.save(writer)?;
+        for buffer in self.buf.iter() {
+            writer.write_all(buffer)?;
+        }
+        writer.write_all(self.raw_buf.as_ref())?;
+        Ok(())
+    }
+    fn load<R: std::io::Read>(&mut self, reader: &mut R) -> save_state::Result<()> {
+        self.x.load(reader)?;
+        self.selected_buffer.load(reader)?;
+        if self.x as usize > LCD_WIDTH || self.selected_buffer > 1 {
+            return Err(std::io::Error::new(
+                std::io::ErrorKind::InvalidData,
+                "invalid LCD snapshot position",
+            )
+            .into());
+        }
+        for buffer in self.buf.iter_mut() {
+            reader.read_exact(buffer)?;
+        }
+        reader.read_exact(self.raw_buf.as_mut())?;
+        Ok(())
+    }
 }
 
 impl Default for Lcd {

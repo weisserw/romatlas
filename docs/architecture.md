@@ -42,7 +42,7 @@ The model defaults from the cartridge flag. Explicit DMG/CGB choice survives res
 
 Instruction, fetch, read, write, control-flow, interrupt, bank, DMA and frame records use bank-aware locations and CPU aliases. Denied accesses do not become physical ROM/RAM claims. Capture can be disabled. Detail buffers, aggregates, traversal and streams have limits. Streaming writes complete bounded records and stays outside hardware snapshots; replay can rewind virtual cycles while stream sequence continues.
 
-Snapshot format is version 7. It includes pending sprite-fetch state and frozen speed-switch video access. Older external core states fail the version check. Session replay uses snapshots from the same running binary. No serial/link/printer device is attached; external-device state is outside supported replay.
+Snapshot format is version 9. It preserves completed and partially rendered LCD buffers. It includes pending sprite-fetch state and frozen speed-switch video access. Older external core states fail the version check. Session replay uses snapshots from the same running binary. No serial/link/printer device is attached; external-device state is outside supported replay.
 
 CGB tests cover banks, KEY1, general/HBlank DMA, palette data access and CPU/video speed-switch pauses. The 2050-M-cycle pause freezes DIV and holds video access state. Synthetic pixel tests cover all four starting PPU modes. Palette writes denied during rendering preserve data but still advance an enabled index. Full peripheral timing, native-color game coverage and early CGB revisions remain unproven.
 
@@ -58,7 +58,7 @@ Stock mgbdis can reference non-ROM labels without defining them. Generation adds
 
 ## Operating limits
 
-- Generation accepts complete 16-KiB banks, at least 32 KiB. Emulation additionally requires a valid header checksum and a title its core can parse as UTF-8.
+- Generation accepts complete 16-KiB banks, at least 32 KiB. Emulation additionally requires a valid header checksum; title bytes are display metadata and decode lossily.
 - Invalid instructions, nonstandard STOP encoding, lossy directives and unsupported external charmaps require corrected annotations or raw data. External charmap files are not loaded by the generator.
 - Default bank decoding is conservative. Supply CPU-window context for aliases and banked pointer hypotheses. A 16-bit literal alone does not establish a ROM bank.
 - Metadata inputs, JSON messages, trace detail/aggregates, stream files, traversal, peeks and runs have separate documented limits. A response-budget error can follow a completed command; inspect state before retrying writes.
@@ -79,3 +79,5 @@ SNES production integration now uses romatlas-snes and the pinned core-only fork
 in vendor/jgenesis. Its CLI package is GPLv3; original MIT grants remain, and
 romatlas-port has no emulator dependency. See [snes.md](snes.md) for the platform
 API, portable map, assembler backend, workflow selection and measured limits.
+
+Game Boy Color workflow, additive native helpers and immutable palette inspection are documented in [gbc.md](gbc.md).
