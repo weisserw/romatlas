@@ -315,3 +315,11 @@ I/O return value. Rendering reads are not a cycle-exact PPU bus trace.
 Maps use `romatlas-sms-map` JSON; source uses pinned WLA-DX, separate from other
 platform formats. No new structural/reachability/editorial requirements are added
 to Game Boy, NES or SNES by this profile.
+
+## Game Gear platform
+
+Use `serve --rom owned.gg` or `--platform gg` for another extension. The shared
+Sega methods above apply with GameGear hardware, one controller and Start,
+64-byte CRAM, stereo PSG and a 160x144 framebuffer. Start polls I/O $00; it does
+not cause SMS Pause NMI. Map format is romatlas-gg-map; source uses WLA-DX.
+See [Game Gear protocol and limits](gg.md) for contexts, snapshots and workflows.

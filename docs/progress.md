@@ -1240,3 +1240,55 @@ desktop Clippy/tests. Pinned SMS setup builds wla-z80/wlalink successfully.
 The pinned SNES CPU-vector gate also passes. No GUI/audio device was initialized.
 All requested toolkit changes and validation are complete within the documented
 baseline limits; no commercial-game or full-hardware fidelity claim is made.
+
+2026-10-20: Added Game Gear alongside SMS, Game Boy, NES and SNES through the
+shared Sega adapter. `.gg`/`--platform gg` selects the existing pinned GPLv3
+jgenesis GameGear hardware, 160x144 LCD, Start polling, stereo PSG and 64-byte
+CRAM without the SMS FM unit. Separate map/snapshot format identities preserve
+platform validation. Existing register/shadow-state edits, immutable mapped and
+physical inspection, I/O/backing edits, actual fetch/bus/interrupt/VDP traces,
+contextual coverage/edges, bounded operation/cycle/frame stepping, reset, guarded
+snapshots and image/audio capture are available. Both committed CRAM bytes are
+traced on an odd-address write; even-address writes remain latch-only.
+
+Inspection retains whole-file identity, optional copier prefix, TMR SEGA metadata,
+layout and explicit mapper-identification basis. Shared effective-bank analysis,
+references, pointer hypotheses, data barriers and transactional annotation/import/
+export validation apply to romatlas-gg-map JSON. The existing pinned DeZ80 decoder
+and external WLA-DX assembler/linker reconstruct complete images, including exact
+fallback encodings and unchanged headers/checksums. Tool selection also reviewed
+crater's primary documentation; see docs/gg-evaluation.md. No new instruction
+table, assembler dependency or GPL implementation in the native library was added.
+
+New Game Gear workspace, classification, commentary, archive, reference-correction
+and native-port profiles retain structural versus reachability, whole-ROM
+classification, full current-source readability and editorial requirements.
+Header-identified GG images using .sms also select the GG workspace profile;
+explicit platform selection is honored. Source generation preserves annotation
+text mentioning SMS filenames. Existing game workspaces are not rewritten.
+Independent MIT romatlas-port::gg supplies four-plane tiles, Mode 4 effects and
+sprite selection before LCD cropping, 12-bit palette conversion (including the
+full-line gg::vdp::rgba API), 224-line viewport adjustment, stereo PSG routing,
+fractional sample clocks, buttons, dimensions and cadence. Ports own game rules,
+raster scheduling and music drivers. Serial/EXT link peripherals, uncommon boards,
+BIOS boot, exact analog/subscanline native output and broad hardware/game fidelity
+remain documented limits; runtime execution still requires power-of-two payloads.
+
+Validation passes on Rust 1.90.0: locked release build; workspace format,
+all-target Clippy with warnings denied and locked release workspace tests;
+final native desktop-feature Clippy/tests without devices; Game Gear synthetic
+CLI/RPC/replay/input/CRAM/trace/context/banking tests, all 1,792 shared Z80
+encoding samples and exact reconstruction, prefix/Codemasters/1 MiB images,
+headerless explicit selection, cross-platform map rejection, annotation text
+preservation, generated workspace/commentary/archive/restore/reference-correction/
+native-scaffold flows. Native helper tests cover LCD palette/cropping, full-line
+palette validation, stereo routing and deterministic replay. Final SMS and NES
+integrations and production SNES integration pass. Existing session, stock
+four-bank portability, dependency boundaries, disassembly/commentary/archive,
+native-port accounting/build, pinned licensed homebrew, 89-case Game Boy hardware
+and pinned sampled SNES CPU-vector gates pass. Python compilation and git diff
+checks pass. Two initial concurrent SMS/NES scaffold builds exceeded their
+five-minute harness timeout; serial reruns with a shared local Cargo cache pass.
+No display/audio device was initialized. All fixtures, snapshots, captures and
+generated workspaces remain local; no commercial ROM or extracted game assets
+were downloaded or committed. Changes remain uncommitted.

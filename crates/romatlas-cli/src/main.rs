@@ -281,12 +281,17 @@ fn run() -> Result<()> {
     anyhow::ensure!(
         matches!(
             cli.platform.as_str(),
-            "auto" | "gb" | "snes" | "nes" | "sms"
+            "auto" | "gb" | "snes" | "nes" | "sms" | "gg"
         ),
         "unknown platform"
     );
-    if cli.platform == "sms" || cli.platform == "auto" && sms::detect(&cli.command) {
-        return sms::run(cli.command);
+    if matches!(cli.platform.as_str(), "sms" | "gg")
+        || cli.platform == "auto" && sms::detect(&cli.command)
+    {
+        return sms::run(
+            cli.command,
+            (cli.platform != "auto").then_some(cli.platform.as_str()),
+        );
     }
     if cli.platform == "nes" || cli.platform == "auto" && nes::detect(&cli.command) {
         return nes::run(cli.command);

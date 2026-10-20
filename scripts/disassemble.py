@@ -362,6 +362,7 @@ if __name__ == "__main__":
 
 def initialize(source, destination, binary, platform="auto"):
     source = source.resolve(strict=True)
+    is_gg = platform == "gg" or platform == "auto" and source.suffix.lower() == ".gg"
     is_sms = platform == "sms" or platform == "auto" and source.suffix.lower() == ".sms"
     is_nes = platform == "nes" or platform == "auto" and source.suffix.lower() == ".nes"
     is_snes = platform == "snes" or platform == "auto" and source.suffix.lower() in {".sfc", ".smc"}
@@ -379,11 +380,17 @@ def initialize(source, destination, binary, platform="auto"):
         work.mkdir()
         for directory in ["input", "analysis", "maps", "generated", "prompts", "traces"]:
             (work / directory).mkdir()
-        rom = work / ("input/game.sfc" if is_snes else "input/game.nes" if is_nes else "input/game.sms" if is_sms else "input/game.rom")
+        rom = work / ("input/game.sfc" if is_snes else "input/game.nes" if is_nes else "input/game.gg" if is_gg else "input/game.sms" if is_sms else "input/game.rom")
         shutil.copyfile(source, rom)
-        inspected = subprocess.run([str(binary), "inspect", str(rom)],
+        inspected = subprocess.run([str(binary), "--platform", platform, "inspect", str(rom)],
                                    check=True, capture_output=True, text=True)
         metadata = json.loads(inspected.stdout)
+        if metadata.get("platform") == "gg" and not is_gg:
+            # A Sega header can identify GG even when a file uses the SMS suffix.
+            renamed = work / "input/game.gg"
+            rom.rename(renamed)
+            rom = renamed
+            is_gg, is_sms = True, False
         identity = hashlib.sha256(rom.read_bytes()).hexdigest()
         files = {
             "AGENTS.md": AGENTS.format(toolkit=json.dumps(str(ROOT))),
@@ -408,6 +415,9 @@ def initialize(source, destination, binary, platform="auto"):
         if is_snes:
             import snes_workflow
             files = snes_workflow.files(files, metadata)
+        if is_gg:
+            import gg_workflow
+            files = gg_workflow.files(files, metadata)
         if is_sms:
             import sms_workflow
             files = sms_workflow.files(files, metadata)
@@ -435,7 +445,7 @@ def print_prompt_location(record):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("roms", type=Path, nargs="+", help="local owned ROM files")
-    parser.add_argument("--platform", choices=["auto", "gb", "snes", "nes", "sms"], default="auto")
+    parser.add_argument("--platform", choices=["auto", "gb", "snes", "nes", "sms", "gg"], default="auto")
     parser.add_argument("--root", type=Path, default=Path.cwd(),
                         help="parent for game workspaces (default: current directory)")
     parser.add_argument("--workspace", type=Path, help="exact directory; only for one ROM")

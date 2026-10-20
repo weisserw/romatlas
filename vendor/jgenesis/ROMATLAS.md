@@ -28,3 +28,8 @@ cpu/z80-emu. Local hooks expose architectural/shadow CPU registers, deterministi
 backing inspection/edits, actual first-fetch/memory/I/O/interrupt probes and T-cycle
 progress. SMS adapter owns contexts, snapshots and output budgets. Upstream
 instruction-driven timing remains unchanged; no cycle-exact hardware claim.
+
+Game Gear extension (same revision): SMS/GG adapter now selects GameGear hardware.
+VDP probes report both committed CRAM bytes on an odd-address write; even writes
+remain latch-only and are retained in core snapshots. Peripheral timing is unchanged.
+See docs/gg.md for hardware selection, Start, stereo PSG and deferred link support.

@@ -214,3 +214,11 @@ SMS joins Game Boy, NES and SNES. Use `.sms` or `--platform sms`, JSON maps,
 `bash scripts/setup-sms.sh`; see [SMS usage and limits](docs/sms.md),
 [tool selection](docs/sms-evaluation.md) and [native helpers](docs/sms-native.md).
 Run `python3 scripts/test-sms.py` for original synthetic regressions.
+
+## Sega Game Gear
+
+Use `.gg` or `--platform gg` for jgenesis debugging, bank-aware JSON maps and
+byte-identical WLA-DX reconstruction through the shared Sega Z80 adapter. Native
+helpers include Mode 4 LCD graphics, 12-bit colors and stereo PSG. See
+[usage and limits](docs/gg.md), [tool selection](docs/gg-evaluation.md) and
+[native helpers](docs/gg-native.md). Run `python3 scripts/test-gg.py`.

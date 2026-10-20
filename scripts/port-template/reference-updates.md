@@ -58,7 +58,7 @@ validation.
    is modified. Only one writer should edit/adopt a reference revision at a time.
 2. Record the discovery and inspect the original bytes/consumers with effective bank
    context. Read the toolkit's project.md, scripts/workflow-template/evidence-policy.md and platform
-   documentation (docs/sym.md for Game Boy, docs/nes.md for NES, docs/snes.md for SNES). Distinguish a
+   documentation (docs/sym.md for Game Boy, docs/nes.md for NES, docs/snes.md for SNES, docs/sms.md for SMS, docs/gg.md for Game Gear). Distinguish a
    structural inference, observed execution and a conditional calling contract.
    Useful static evidence does not require a natural caller; valid decoding or a
    plausible pattern alone is insufficient. If evidence is still weak, retain the

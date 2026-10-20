@@ -21,6 +21,7 @@ use std::{
 };
 #[derive(Default)]
 pub struct SmsSession {
+    pub platform_override: Option<String>,
     path: Option<PathBuf>,
     rom: Option<Rom>,
     map: Option<Mapping>,
@@ -58,7 +59,11 @@ where
 }
 impl CommandAdapter for SmsSession {
     fn platform(&self) -> &str {
-        "sms"
+        self.rom
+            .as_ref()
+            .map(|r| r.info.platform.as_str())
+            .or(self.platform_override.as_deref())
+            .unwrap_or("sms")
     }
     fn methods(&self) -> Vec<String> {
         [
@@ -178,7 +183,7 @@ impl SmsSession {
         Ok(())
     }
     pub fn open(&mut self, path: PathBuf) -> Result<Value> {
-        let rom = Rom::open(&path)?;
+        let rom = Rom::open_as(&path, self.platform_override.as_deref())?;
         let info = serde_json::to_value(&rom.info)?;
         let map = Mapping::new(&rom);
         self.path = Some(path);
@@ -190,7 +195,7 @@ impl SmsSession {
     }
     fn dispatch(&mut self, m: &str, p: &Value) -> Result<Value> {
         Ok(match m {
-            "api.describe" => json!({"platform":"sms","methods":self.methods()}),
+            "api.describe" => json!({"platform":self.platform(),"methods":self.methods()}),
             "rom.open" => self.open(path(p)?)?,
             "rom.info" => serde_json::to_value(&self.rom()?.info)?,
             "rom.read" => {
@@ -533,7 +538,10 @@ impl SmsSession {
             "disasm.generate" => {
                 self.identity()?;
                 let out = PathBuf::from(string(p, "out")?);
-                Backend.generate(
+                Backend {
+                    platform: Some(self.rom()?.info.platform.clone()),
+                }
+                .generate(
                     self.path.as_ref().unwrap(),
                     self.map()?,
                     &out,
@@ -543,7 +551,10 @@ impl SmsSession {
             }
             "disasm.verify" => {
                 self.identity()?;
-                Backend.verify(
+                Backend {
+                    platform: Some(self.rom()?.info.platform.clone()),
+                }
+                .verify(
                     self.path.as_ref().unwrap(),
                     &PathBuf::from(string(p, "generated")?),
                     num(p, "timeout_ms", 120000)?,

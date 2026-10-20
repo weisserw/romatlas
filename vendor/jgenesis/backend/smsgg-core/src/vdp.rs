@@ -534,6 +534,20 @@ impl Registers {
                         } else {
                             cram[(cram_addr & !1) as usize] = self.cram_write_latch;
                             cram[cram_addr as usize] = value;
+                            for (offset, byte) in
+                                [(cram_addr & !1, self.cram_write_latch), (cram_addr, value)]
+                            {
+                                jgenesis_common::romatlas_debug::binding(Some((
+                                    "cram",
+                                    offset.into(),
+                                )));
+                                jgenesis_common::romatlas_debug::bus_event(
+                                    "write",
+                                    "vdp",
+                                    offset.into(),
+                                    byte,
+                                );
+                            }
                         }
                     }
                     SmsGgHardware::Sg1000 => {

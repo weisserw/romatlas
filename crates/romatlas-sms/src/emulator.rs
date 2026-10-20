@@ -1,4 +1,4 @@
-//! Bounded NTSC SMS execution with actual bus observations and transactional snapshots.
+//! Bounded SMS/Game Gear execution with actual bus observations and transactional snapshots.
 use crate::{
     Rom,
     decode::{Context, Cpu},
@@ -166,7 +166,14 @@ pub struct Emulator {
     previous: Option<Address>,
     artificial: bool,
 }
-fn config() -> SmsEmulatorConfig {
+fn hardware(rom: &Rom) -> SmsGgHardware {
+    if rom.is_gg() {
+        SmsGgHardware::GameGear
+    } else {
+        SmsGgHardware::MasterSystem
+    }
+}
+fn config(rom: &Rom) -> SmsEmulatorConfig {
     SmsEmulatorConfig {
         sms_timing_mode: TimingMode::Ntsc,
         sms_model: smsgg_config::SmsModel::Sms2,
@@ -179,7 +186,7 @@ fn config() -> SmsEmulatorConfig {
         sms_crop_left_border: false,
         gg_frame_blending: false,
         gg_use_sms_resolution: false,
-        fm_sound_unit_enabled: true,
+        fm_sound_unit_enabled: !rom.is_gg(),
         z80_divider: std::num::NonZeroU32::new(15).unwrap(),
     }
 }
@@ -189,10 +196,6 @@ impl Emulator {
         Self::from_rom(Rom::open(path)?)
     }
     pub fn from_rom(rom: Rom) -> Result<Self> {
-        ensure!(
-            !rom.info.region_code.is_some_and(|r| matches!(r, 5..=7)),
-            "Game Gear cartridge is outside SMS baseline"
-        );
         // Restrict runtime to unambiguous backing sizes; source rebuilding accepts all valid image sizes.
         ensure!(
             rom.info.rom_size.is_power_of_two(),
@@ -202,8 +205,8 @@ impl Emulator {
         let mut core = SmsEmulator::create(
             Some(rom.data().to_vec()),
             None,
-            SmsGgHardware::MasterSystem,
-            config(),
+            hardware(&rom),
+            config(&rom),
             &mut saves,
         );
         core.update_audio_output_frequency(48000);
@@ -356,17 +359,22 @@ impl Emulator {
     }
     pub fn input_port(&mut self, port: u8, buttons: &[String]) -> Result<()> {
         ensure!(matches!(port, 1 | 2), "controller port must be 1 or 2");
+        ensure!(
+            !self.rom.is_gg() || port == 1,
+            "Game Gear has one built-in controller"
+        );
         let mut input = SmsInputs::default();
         for button in buttons {
             match button.to_ascii_lowercase().as_str() {
                 "1" | "button1" => input.p1.button1 = true,
                 "2" | "button2" => input.p1.button2 = true,
-                "pause" => input.pause = true,
+                "pause" if !self.rom.is_gg() => input.pause = true,
+                "start" if self.rom.is_gg() => input.pause = true,
                 "up" => input.p1.up = true,
                 "down" => input.p1.down = true,
                 "left" => input.p1.left = true,
                 "right" => input.p1.right = true,
-                _ => anyhow::bail!("unknown SMS button {button}"),
+                _ => anyhow::bail!("unknown {} button {button}", self.rom.info.platform),
             }
         }
         self.inputs.pause = input.pause;
@@ -510,7 +518,7 @@ impl ExecutionAdapter for Emulator {
     }
     fn capabilities(&self) -> ExecutionCapabilities {
         ExecutionCapabilities {
-            platform: "sms".into(),
+            platform: self.rom.info.platform.clone(),
             clock: "cpu_cycles".into(),
             units: vec![StepUnit::Operation, StepUnit::Cycle, StepUnit::Frame],
             address_spaces: [
@@ -519,7 +527,7 @@ impl ExecutionAdapter for Emulator {
                 ("io", 65536),
                 ("ram", 8192),
                 ("vram", 16384),
-                ("cram", 32),
+                ("cram", if self.rom.is_gg() { 64 } else { 32 }),
                 ("cart_ram", 32768),
             ]
             .into_iter()
@@ -600,8 +608,8 @@ impl ExecutionAdapter for Emulator {
         self.core = SmsEmulator::create(
             Some(self.rom.data().to_vec()),
             None,
-            SmsGgHardware::MasterSystem,
-            config(),
+            hardware(&self.rom),
+            config(&self.rom),
             &mut self.saves,
         );
         self.core.update_audio_output_frequency(48000);
@@ -621,7 +629,7 @@ impl ExecutionAdapter for Emulator {
         let core =
             bincode::encode_to_vec(&self.core, bincode::config::standard()).map_err(invalid)?;
         Ok(Snapshot {
-            format: "romatlas-sms-state".into(),
+            format: format!("romatlas-{}-state", self.rom.info.platform),
             version: 1,
             rom_sha256: self.rom.info.sha256.clone(),
             core_sha256: format!("{:x}", Sha256::digest(&core)),
@@ -634,7 +642,7 @@ impl ExecutionAdapter for Emulator {
         })
     }
     fn restore(&mut self, s: &Snapshot) -> Result<(), ApiError> {
-        if s.format != "romatlas-sms-state"
+        if s.format != format!("romatlas-{}-state", self.rom.info.platform)
             || s.version != 1
             || s.rom_sha256 != self.rom.info.sha256
             || s.core_sha256 != format!("{:x}", Sha256::digest(&s.core))

@@ -1,4 +1,4 @@
-//! SMS platform adapter; GPL core remains outside shared/native-port crates.
+//! SMS/Game Gear platform adapter; GPL core remains outside shared/native-port crates.
 pub mod image;
 pub use image::Rom;
 pub mod analysis;

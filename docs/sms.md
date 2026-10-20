@@ -120,3 +120,6 @@ buttons, cadence and 4bpp helpers. Preparing a scaffold does not implement a gam
 Run `python3 scripts/test-sms.py` for synthetic integration checks, plus the workspace,
 port desktop/headless, session, portability and other-platform regression checks.
 No full hardware or commercial-game compatibility claim is supported by these tests.
+
+Game Gear uses the same Z80 adapter backend with explicit GameGear hardware,
+separate JSON maps and native LCD/stereo helpers; see [gg.md](gg.md).

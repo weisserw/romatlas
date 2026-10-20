@@ -3,7 +3,7 @@
 The port phase starts from a reviewed archive and a matching local ROM, creating
 a separate development workspace. It writes goal.md to direct implementation of the
 whole game as maintainable best-effort native Rust. It does not launch an agent or translate the game
-automatically. Game Boy, SMS, NES and SNES archives select independent platform scaffolds.
+automatically. Game Boy, SMS, Game Gear, NES and SNES archives select independent platform scaffolds.
 The shared library keeps platform helpers separate without imposing a universal
 hardware model. SNES helpers and current limits are documented in [snes.md](snes.md).
 
@@ -348,3 +348,9 @@ SMS archives use JSON maps, WLA-DX source recipes and a 256x192 / SMS_NTSC
 native scaffold with SMS button names and four-plane tile decoding. Reference
 corrections follow the existing exact-rebuild workflow. See [sms.md](sms.md) and
 [sms-native.md](sms-native.md) for address rules, helper APIs and precision limits.
+
+Game Gear archives use romatlas-gg-map JSON and the shared Sega WLA-DX recipes.
+Native scaffolds select 160x144 / GG_NTSC, button1/button2/start and four-plane
+tiles. Runtime helpers add 12-bit CRAM, the Mode 4 LCD viewport and stereo PSG.
+Reference corrections preserve exact reconstruction and the frozen reference.
+See [gg.md](gg.md) and [gg-native.md](gg-native.md).

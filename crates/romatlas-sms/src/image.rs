@@ -1,4 +1,4 @@
-//! Raw SMS cartridges, optional 512-byte copier prefix and immutable file identity.
+//! Raw SMS/Game Gear cartridges, optional 512-byte copier prefix and immutable file identity.
 use anyhow::{Context, Result, ensure};
 use romatlas_core::{Address, ImageAdapter};
 use serde::{Deserialize, Serialize};
@@ -36,14 +36,21 @@ pub fn address(space: &str, offset: u64) -> Address {
 }
 impl Rom {
     pub fn open(path: &Path) -> Result<Self> {
-        Self::from_bytes(std::fs::read(path)?)
+        let mut rom = Self::from_bytes(std::fs::read(path)?)?;
+        if path
+            .extension()
+            .is_some_and(|e| e.eq_ignore_ascii_case("gg"))
+        {
+            rom.info.platform = "gg".into();
+        }
+        Ok(rom)
     }
     pub fn from_bytes(bytes: Vec<u8>) -> Result<Self> {
         let prefix = if bytes.len() % 8192 == 512 { 512 } else { 0 };
         let data = &bytes[prefix..];
         ensure!(
             data.len() >= 8192 && data.len() <= 4 * 1024 * 1024 && data.len().is_multiple_of(8192),
-            "expected SMS ROM in 8 KiB units, up to 4 MiB, with optional 512-byte copier prefix"
+            "expected SMS/Game Gear ROM in 8 KiB units, up to 4 MiB, with optional 512-byte copier prefix"
         );
         let header = [0x7ff0, 0x3ff0, 0x1ff0]
             .into_iter()
@@ -56,7 +63,7 @@ impl Rom {
             rom_size: data.len(),
             banks: data.len().div_ceil(16384),
             mapper: "sega".into(),
-            mapper_basis: "default hypothesis: SMS headers do not encode a mapper".into(),
+            mapper_basis: "default hypothesis: Sega headers do not encode a mapper".into(),
             header_offset: header.map(|i| i + prefix),
             checksum: None,
             checksum_valid: None,
@@ -110,7 +117,24 @@ impl Rom {
                 );
             }
         }
+        if info.region_code.is_some_and(|r| matches!(r, 5..=7)) {
+            info.platform = "gg".into();
+        }
         Ok(Self { bytes, info })
+    }
+    pub fn open_as(path: &Path, platform: Option<&str>) -> Result<Self> {
+        let mut rom = Self::open(path)?;
+        if let Some(platform) = platform {
+            ensure!(matches!(platform, "sms" | "gg"), "invalid Sega platform");
+            rom.info.platform = platform.into();
+        }
+        Ok(rom)
+    }
+    pub fn is_gg(&self) -> bool {
+        self.info.platform == "gg"
+    }
+    pub fn map_format(&self) -> String {
+        format!("romatlas-{}-map", self.info.platform)
     }
     pub fn data(&self) -> &[u8] {
         &self.bytes[self.info.rom_offset..]
@@ -154,7 +178,7 @@ impl Rom {
 }
 impl ImageAdapter for Rom {
     fn platform(&self) -> &str {
-        "sms"
+        &self.info.platform
     }
     fn image_size(&self) -> u64 {
         self.bytes.len() as u64

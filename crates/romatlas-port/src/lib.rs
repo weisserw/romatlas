@@ -5,6 +5,7 @@ pub mod audio;
 #[cfg(feature = "desktop")]
 pub mod desktop;
 pub mod gb;
+pub mod gg;
 pub mod graphics;
 pub mod input;
 pub mod nes;

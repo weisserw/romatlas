@@ -82,25 +82,26 @@ impl Psg {
         }
     }
     pub fn sample(&self) -> f32 {
-        (0..4)
-            .map(|c| {
-                if self.attenuation[c] >= 15 {
-                    return 0.0;
+        self.channels().into_iter().sum::<f32>() * 0.25
+    }
+    /// Unmixed PSG channels for independent handheld stereo routing.
+    pub fn channels(&self) -> [f32; 4] {
+        std::array::from_fn(|c| {
+            if self.attenuation[c] >= 15 {
+                return 0.0;
+            }
+            let amplitude = 10f32.powf(-f32::from(self.attenuation[c]) / 10.0);
+            amplitude
+                * if if c == 3 {
+                    self.lfsr & 1 != 0
+                } else {
+                    self.polarity[c]
+                } {
+                    1.0
+                } else {
+                    -1.0
                 }
-                let amplitude = 10f32.powf(-f32::from(self.attenuation[c]) / 10.0);
-                amplitude
-                    * if if c == 3 {
-                        self.lfsr & 1 != 0
-                    } else {
-                        self.polarity[c]
-                    } {
-                        1.0
-                    } else {
-                        -1.0
-                    }
-            })
-            .sum::<f32>()
-            * 0.25
+        })
     }
 }
 /// Eight OPLL instrument register bytes. Supply a reviewed hardware patch bank or

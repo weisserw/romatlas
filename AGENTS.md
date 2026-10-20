@@ -82,3 +82,12 @@ whole-ROM classification, full current-source readability and editorial gates.
 New SNES profiles select JSON/Asar; never rewrite existing game workspaces as a
 side effect. Trace RAM execution does not automatically identify immutable ROM
 upload origins or lifetimes. No full hardware/game compatibility claim is supported.
+
+Game Gear shares the Sega adapter/Z80 backend with SMS and uses the pinned
+jgenesis GameGear hardware. Read docs/gg.md, docs/gg-native.md and
+docs/gg-evaluation.md. Select .gg or --platform gg; use romatlas-gg-map JSON and
+WLA-DX, 160x144 LCD, 64-byte CRAM, Start input and stereo PSG without SMS FM.
+Run python3 scripts/test-gg.py after relevant changes alongside SMS/workspace/
+port/session/portability regressions. Existing workspaces and classification,
+reachability, current-source readability and editorial gates remain unchanged.
+Do not copy GPL emulator implementation into the MIT native runtime.

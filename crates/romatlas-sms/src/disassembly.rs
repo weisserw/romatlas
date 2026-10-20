@@ -24,7 +24,10 @@ fn tool(name: &str) -> PathBuf {
         .join("../../tools/wla-dx/build/binaries")
         .join(name)
 }
-pub struct Backend;
+#[derive(Default)]
+pub struct Backend {
+    pub platform: Option<String>,
+}
 struct Stage(PathBuf);
 impl Drop for Stage {
     fn drop(&mut self) {
@@ -67,7 +70,7 @@ impl DisassemblyBackend for Backend {
     type Mapping = Mapping;
     fn generate(&self, image: &Path, map: &Mapping, out: &Path, timeout_ms: u64) -> Result<()> {
         let budget = Budget::new(timeout_ms)?;
-        let rom = Rom::open(image)?;
+        let rom = Rom::open_as(image, self.platform.as_deref())?;
         map.validate(&rom)?;
         ensure!(
             !out.exists() && !out.is_symlink(),
@@ -80,7 +83,12 @@ impl DisassemblyBackend for Backend {
         std::fs::create_dir_all(parent)?;
         let stage = Stage(temporary(parent, "sms-generate"));
         std::fs::create_dir(&stage.0)?;
-        std::fs::write(stage.0.join("image.sms"), &rom.bytes)?;
+        std::fs::write(
+            stage
+                .0
+                .join(if rom.is_gg() { "image.gg" } else { "image.sms" }),
+            &rom.bytes,
+        )?;
         let (source, diagnostics) = render(&rom, map, &budget)?;
         std::fs::write(stage.0.join("game.asm"), source)?;
         std::fs::write(stage.0.join("linkfile"), "[objects]\ngame.o\n")?;
@@ -115,8 +123,10 @@ impl DisassemblyBackend for Backend {
 pub fn render(rom: &Rom, map: &Mapping, budget: &Budget) -> Result<(String, Vec<String>)> {
     map.validate(rom)?;
     let prefix = rom.info.rom_offset;
-    let mut source = String::from(
-        "; ROMAtlas SMS / WLA-DX. Local data only; no automatic checksum repair.\n.memorymap\n defaultslot 0\n slotsize $2000\n",
+    let image_name = if rom.is_gg() { "image.gg" } else { "image.sms" };
+    let platform_name = if rom.is_gg() { "Game Gear" } else { "SMS" };
+    let mut source = format!(
+        "; ROMAtlas {platform_name} / WLA-DX. Local data only; no automatic checksum repair.\n.memorymap\n defaultslot 0\n slotsize $2000\n",
     );
     for slot in 0..6 {
         source.push_str(&format!(" slot {slot} ${:04x}\n", slot * 8192));
@@ -148,7 +158,14 @@ pub fn render(rom: &Rom, map: &Mapping, budget: &Budget) -> Result<(String, Vec<
         };
         source.push_str(&format!(".bank {bank} slot {slot}\n.org {offset}\n"));
     }
-    fn raw(source: &mut String, mut start: usize, end: usize, prefix: usize, pc: Option<u32>) {
+    fn raw(
+        source: &mut String,
+        mut start: usize,
+        end: usize,
+        prefix: usize,
+        pc: Option<u32>,
+        image_name: &str,
+    ) {
         let original = start;
         while start < end {
             let next = if start < prefix {
@@ -164,7 +181,7 @@ pub fn render(rom: &Rom, map: &Mapping, budget: &Budget) -> Result<(String, Vec<
                 prefix,
             );
             source.push_str(&format!(
-                ".incbin \"image.sms\" SKIP {start} READ {length}\n"
+                ".incbin \"{image_name}\" SKIP {start} READ {length}\n"
             ));
             start += length;
         }
@@ -175,7 +192,7 @@ pub fn render(rom: &Rom, map: &Mapping, budget: &Budget) -> Result<(String, Vec<
     let mut diagnostics = Vec::new();
     for entry in regions {
         budget.check()?;
-        raw(&mut source, cursor, entry.offset, prefix, None);
+        raw(&mut source, cursor, entry.offset, prefix, None, image_name);
         source.push_str(&format!(
             "\n; {:?}; {:?}; physical {}..{}\n",
             entry.kind,
@@ -218,7 +235,7 @@ pub fn render(rom: &Rom, map: &Mapping, budget: &Budget) -> Result<(String, Vec<
                         "; {} (instruction crosses physical assembler banks)\n",
                         i.text
                     ));
-                    raw(&mut source, at, at + i.length, prefix, Some(pc));
+                    raw(&mut source, at, at + i.length, prefix, Some(pc), image_name);
                     diagnostics.push(format!("bank-crossing exact encoding at {at}: {}", i.text));
                 }
                 pc = (pc + i.length as u32) & 65535;
@@ -230,10 +247,18 @@ pub fn render(rom: &Rom, map: &Mapping, budget: &Budget) -> Result<(String, Vec<
                 entry.offset + entry.length,
                 prefix,
                 None,
+                image_name,
             );
         }
         cursor = entry.offset + entry.length;
     }
-    raw(&mut source, cursor, rom.bytes.len(), prefix, None);
+    raw(
+        &mut source,
+        cursor,
+        rom.bytes.len(),
+        prefix,
+        None,
+        image_name,
+    );
     Ok((source, diagnostics))
 }

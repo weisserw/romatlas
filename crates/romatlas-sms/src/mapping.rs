@@ -56,7 +56,7 @@ pub struct Mapping {
 impl Mapping {
     pub fn new(rom: &Rom) -> Self {
         Self {
-            format: "romatlas-sms-map".into(),
+            format: rom.map_format(),
             version: 1,
             image_sha256: rom.info.sha256.clone(),
             image_size: rom.bytes.len(),
@@ -90,8 +90,9 @@ impl Mapping {
     }
     pub fn validate(&self, rom: &Rom) -> Result<()> {
         ensure!(
-            self.format == "romatlas-sms-map" && self.version == 1,
-            "unsupported SMS map format"
+            self.format == rom.map_format() && self.version == 1,
+            "unsupported map format for {}",
+            rom.info.platform
         );
         ensure!(
             self.image_sha256 == rom.info.sha256 && self.image_size == rom.bytes.len(),
