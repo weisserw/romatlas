@@ -149,7 +149,7 @@ def reading(source):
     """Expand assembly includes in their actual order; retain hardware definitions."""
     source = source.resolve()
     marker = source / "mapping.json"
-    is_snes = marker.is_file() and json.loads(marker.read_text()).get("format") in {"romatlas-snes-map", "romatlas-nes-map"}
+    is_snes = marker.is_file() and json.loads(marker.read_text()).get("format") in {"romatlas-snes-map", "romatlas-nes-map", "romatlas-sms-map"}
     include_pattern = re.compile(r'^\s*(?:incsrc|\.include)\s+"([^"\n]+)"\s*(?:;.*)?$', re.I) if is_snes else INCLUDE
     def expand(path, active):
         if path in active:
@@ -170,7 +170,7 @@ def reading(source):
 
 
 def scaffold(state):
-    if state.get("format") in {"romatlas-snes-map", "romatlas-nes-map"}:
+    if state.get("format") in {"romatlas-snes-map", "romatlas-nes-map", "romatlas-sms-map"}:
         import snes_workflow
         state = snes_workflow.scaffold(state)
     rows = []
@@ -219,7 +219,7 @@ def prepare(work, meta, rom):
     rows = scaffold(state)
     binary = Path(meta["binary"])
     call(binary, "store", "validate", rom, "--store", state_path)
-    is_snes = meta.get("platform") in {"snes", "nes"}
+    is_snes = meta.get("platform") in {"snes", "nes", "sms"}
     map_name = "baseline.json" if is_snes else "baseline.sym"
     mapping = work / ("maps/current.json" if is_snes else "maps/current.sym")
     call(binary, "map", "validate", mapping, "--rom", rom)
@@ -294,7 +294,9 @@ Keep all source and assets local. Preserve toolkit reports and upstream notices.
         (stage / "reading-before.asm").write_text(reading(stage / "before"))
         (stage / "reading-after.asm").write_text(reading(stage / "source"))
         if is_snes:
-            if meta.get("platform") == "nes":
+            if meta.get("platform") == "sms":
+                import sms_workflow as snes_workflow
+            elif meta.get("platform") == "nes":
                 import nes_workflow as snes_workflow
             else:
                 import snes_workflow
@@ -326,7 +328,7 @@ def audit(work, meta, rom):
     manifest = json.loads((phase / "manifest.json").read_text())
     if manifest["rom_sha256"] != meta["sha256"]:
         raise ValueError("commentary belongs to another ROM")
-    if digest(phase / "phase1-state.json") != manifest["state_sha256"] or digest(phase / ("baseline.json" if meta.get("platform") in {"snes", "nes"} else "baseline.sym")) != manifest["map_sha256"]:
+    if digest(phase / "phase1-state.json") != manifest["state_sha256"] or digest(phase / ("baseline.json" if meta.get("platform") in {"snes", "nes", "sms"} else "baseline.sym")) != manifest["map_sha256"]:
         raise ValueError("frozen phase-1 baseline changed")
     review = json.loads((phase / "review.json").read_text())
     expected = scaffold(json.loads((phase / "phase1-state.json").read_text()))

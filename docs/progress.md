@@ -1183,3 +1183,60 @@ synthetic images, captures, snapshots and generated workspaces remain local;
 no commercial ROM or extracted game assets were downloaded or committed.
 These results do not establish broad NES hardware or commercial-game fidelity.
 Changes remain uncommitted.
+
+2026-10-20: Added the SMS platform alongside Game Boy, NES and SNES. The debugger
+uses the existing pinned GPLv3 jgenesis revision (smsgg-core, smsgg-config, z80-emu,
+PSG and YM2413), with actual fetch/memory/I/O/VDP-port/interrupt probes, immutable
+backing inspection, detached I/O peeks, register/RAM/VRAM/CRAM/I/O edits, physical
+CPU aliases, contextual coverage/edges, bounded stepping and deterministic guarded
+snapshots. Instruction-driven peripheral timing remains upstream behavior; events
+share instruction-start cycles. Baseline is NTSC SMS2, standard pads and Sega/
+Codemasters boards; rare peripherals/boards, BIOS boot, GG/SG-1000 and broad hardware
+compatibility are not claimed. Runtime currently requires power-of-two ROM payloads.
+
+ROM inspection preserves complete-file SHA-256 identity, optional copier prefix,
+TMR SEGA metadata/checksum and explicit heuristic mapper-identification basis.
+ROM-free SMS JSON maps separate physical roles from CPU execution views; static
+analysis retains unresolved windows, data barriers and uncertainty. Explicit
+little-endian pointers remain hypotheses. DeZ80 4.0.1 (MIT, pinned source) supplies
+Z80 decoding instead of another instruction table. Pinned WLA-DX 10.6 reconstructs
+complete images with six CPU slots and fixed physical banks; ignored prefixes,
+aliases and assembler-boundary instructions retain exact encodings with decoded
+comments. Raw reconstruction does not establish classification completion.
+
+New SMS agent, commentary, archive, reference-correction and native-port profiles
+retain whole-ROM classification, structural versus reachability, full current-source
+readability and editorial gates. No existing workspace is rewritten. Native
+scaffolds use SMS buttons, dimensions/cadence and four-plane tile loading.
+Independent MIT native helpers provide Mode 4 tilemap/scroll/priority/sprite/zoom/
+mask/palette/line-counter effects, clocked Sega PSG and approximate nine-voice OPLL
+FM/custom/preset/rhythm synthesis with audio gating. Only MIT emu2413 instrument
+preset data is reused, with its notice; no GPL emulator implementation enters the
+native library. FM key scaling/slot timing/exact rhythm wiring, legacy VDP modes,
+SMS1 masking and analog/cycle-exact output remain explicit limits.
+
+Validation recorded so far: Rust 1.90.0 locked release build, workspace tests and
+all-target Clippy with warnings denied; native desktop-feature Clippy/tests without
+devices; SMS synthetic debugger/replay/capture/context/banking, all 1,792 opcode-family
+samples and byte-identical reconstruction, prefix/Codemasters/1 MiB images, 300
+annotations, generated-workspace/commentary/archive/restore/native-scaffold flows.
+Game Boy session, stock deterministic four-bank portability, disassembly, commentary,
+archive, licensed homebrew and 89-case hardware checks pass. Final follow-up results are recorded below.
+No commercial ROM or extracted game assets were downloaded or committed; generated
+fixtures, captures, snapshots and workspaces remain local. Changes are uncommitted.
+
+Final SMS follow-up: the latest locked release build and SMS release-mode
+Clippy/unit tests pass. The synthetic integration gate passes actual Sega SRAM
+bank switching and backing values, known-bank SRAM pointer resolution, Codemasters
+writes, disabled-cartridge CPU identity, VDP physical writes, immutable I/O peeks,
+VRAM/I/O debugger edits and mapped RAM translation. The complete new SMS workflow
+still reconstructs byte-identically. An evidence-linked SMS JSON reference
+correction independently rebuilds structural and edited source while preserving
+the frozen baseline. New SMS build instructions use game.sms and local ignores
+include SMS images. Final workspace formatting, Python compilation, dependency
+boundaries and git diff checks pass. Existing native-port preparation/accounting/
+headless/desktop, NES and production SNES integrations pass, as do native-runtime
+desktop Clippy/tests. Pinned SMS setup builds wla-z80/wlalink successfully.
+The pinned SNES CPU-vector gate also passes. No GUI/audio device was initialized.
+All requested toolkit changes and validation are complete within the documented
+baseline limits; no commercial-game or full-hardware fidelity claim is made.

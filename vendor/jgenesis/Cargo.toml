@@ -5,6 +5,7 @@ members = ["common/*", "cpu/*", "config/*", "backend/*"]
 [workspace.package]
 version = "0.11.4"
 [workspace.dependencies]
+arrayvec = "0.7"
 base64 = "0.22"
 bincode = { version = "=2.0.1", features = ["derive"] }
 bytemuck = { version = "1", features = ["derive"] }

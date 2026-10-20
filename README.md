@@ -1,6 +1,6 @@
 # ROMAtlas
 
-Rust tools for ROM-free Game Boy and baseline SNES mapping. The Game Boy pilot milestone is complete within documented hardware limits; the SNES extension and its measured limits are described below. This build supports ROM inspection, SM83 decoding, stock mgbdis map import/export, raw-data maps, source generation, and exact byte checks. It also supports bounded DMG ROM-only/MBC1/MBC3/MBC5 execution. A persistent JSON-RPC server supports agent sessions. Bounded CPU tracing and coverage are available through the server. The server also proposes code regions with bounded recursive discovery. The 89-case source-built default Mooneye gate and 55-case CGB selection pass. Full hardware compatibility is not claimed.
+Rust tools for ROM-free Game Boy, Sega Master System, NES and SNES mapping. The Game Boy pilot milestone is complete within documented hardware limits; the SNES extension and its measured limits are described below. This build supports ROM inspection, SM83 decoding, stock mgbdis map import/export, raw-data maps, source generation, and exact byte checks. It also supports bounded DMG ROM-only/MBC1/MBC3/MBC5 execution. A persistent JSON-RPC server supports agent sessions. Bounded CPU tracing and coverage are available through the server. The server also proposes code regions with bounded recursive discovery. The 89-case source-built default Mooneye gate and 55-case CGB selection pass. Full hardware compatibility is not claimed.
 
 ## Setup
 
@@ -107,7 +107,7 @@ python3 run.py check
 Preparation restores and byte-verifies the commented reference source, creates a
 pending source-behavior ledger and demonstration scaffold, and writes `goal.md`
 with a separate library-review prompt. It does not port gameplay
-or launch an agent. Game Boy and SNES archives have platform-selected scaffolds. Incomplete
+or launch an agent. Game Boy, SMS, NES and SNES archives have platform-selected scaffolds. Incomplete
 classification is accepted; relevant unknown behavior must be investigated.
 New workspaces seed `uncertainties.json` from unknown ranges and carry consumer,
 port-impact and validation assessments. The agent can correct a local reference
@@ -206,3 +206,11 @@ NES support: see [usage and supported limits](docs/nes.md),
 [core selection](docs/nes-evaluation.md), and [native graphics/audio helpers](docs/nes-native.md).
 Use `.nes` or `--platform nes`, JSON maps and pinned ca65/ld65; Game Boy and SNES
 commands and formats remain platform-specific.
+
+## Sega Master System
+
+SMS joins Game Boy, NES and SNES. Use `.sms` or `--platform sms`, JSON maps,
+`serve` debugging and WLA-DX exact reconstruction. Install with
+`bash scripts/setup-sms.sh`; see [SMS usage and limits](docs/sms.md),
+[tool selection](docs/sms-evaluation.md) and [native helpers](docs/sms-native.md).
+Run `python3 scripts/test-sms.py` for original synthetic regressions.

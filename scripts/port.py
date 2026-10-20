@@ -95,7 +95,7 @@ def prepare(archive, rom, output, binary):
     manifest = json.loads((archive / "archive.json").read_text())
     if manifest.get("version") != 1:
         raise ValueError("port preparation requires a version-1 archive")
-    if manifest["platform"] not in {"gb", "snes", "nes"}:
+    if manifest["platform"] not in {"gb", "snes", "nes", "sms"}:
         raise ValueError("unsupported port archive platform")
     name = manifest["name"]
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", name):
@@ -180,6 +180,13 @@ def prepare(archive, rom, output, binary):
                     text = text.replace("gb::GRAYSCALE", "[[255,255,255,255],[170,170,170,255],[85,85,85,255],[0,0,0,255]]").replace(",76,68,", ",124,116,")
                 else:
                     text = text.replace("(160,144)", "(256,240)").replace("TickRate::DMG", "TickRate::NES_NTSC").replace("romatlas_port::settings::Settings::default()", "romatlas_port::nes::default_settings()")
+            if manifest["platform"] == "sms":
+                if filename == "game.rs":
+                    text = text.replace(", gb,", ", sms,").replace("gb::tile_2bpp(", "sms::tile(")
+                    text = text.replace("length: 16", "length: 32").replace("bytes.len() == 16", "bytes.len() == 32").replace("16-byte Game Boy 2bpp", "32-byte SMS 4bpp")
+                    text = text.replace("gb::GRAYSCALE", "std::array::from_fn::<_,16,_>(|i| sms::color((i as u8)*4))").replace(",76,68,", ",124,92,")
+                else:
+                    text = text.replace("(160,144)", "(256,192)").replace("TickRate::DMG", "TickRate::SMS_NTSC").replace("romatlas_port::settings::Settings::default()", "romatlas_port::sms::default_settings()")
             (stage / "port/src" / filename).write_text(text)
         # Pin dependencies before publication. Toolkit setup/build must have
         # resolved them; preparation does not require an online registry.
@@ -194,6 +201,8 @@ def prepare(archive, rom, output, binary):
         shutil.copyfile(TEMPLATES / "review.md", stage / "prompts/review.md")
         shutil.copyfile(TEMPLATES / "reference-updates.md", stage / "prompts/reference-updates.md")
         build_guide = (TEMPLATES / "BUILDING.md").read_text().replace("__GAME_NAME__", name).replace("__TOOLKIT_PATH__", str(ROOT))
+        if manifest["platform"]=="sms":
+            build_guide=build_guide.replace("game.gb", "game.sms")
         (stage / "BUILDING.md").write_text(build_guide)
         (stage / "AGENTS.md").write_text(f"""# Native port workspace
 
@@ -258,7 +267,7 @@ bound even if unanswered; do not repeat inconclusive runs without new evidence.
 Document a reasonable
 assumption if inconclusive. Do not reopen it without new contradictory evidence.
 A later fidelity/device audit requires an explicit user request. This boundary
-applies to both Game Boy and SNES and to the entire generated instruction set.
+applies to Game Boy, SMS, NES and SNES and to the entire generated instruction set.
 
 Available commands (availability does not make each command a required phase):
 
@@ -338,7 +347,7 @@ if len(sys.argv) < 2:
 sys.argv = [str(toolkit / "scripts/port.py"), sys.argv[1], str(workspace), *sys.argv[2:]]
 runpy.run_path(str(toolkit / "scripts/port.py"), run_name="__main__")
 """)
-        (stage / ".gitignore").write_text("/input/\n/reference/\n/research/\n/review/toolkit-before/\n/checks/\n/port/target/\n*.gb\n*.gbc\n*.rom\n__pycache__/\n")
+        (stage / ".gitignore").write_text("/input/\n/reference/\n/research/\n/review/toolkit-before/\n/checks/\n/port/target/\n*.gb\n*.gbc\n*.sms\n*.rom\n__pycache__/\n")
         frozen = {str(p.relative_to(stage)): phase.digest(p) for p in (stage / "reference").rglob("*") if p.is_file()}
         frozen.update({str(p.relative_to(stage)): phase.digest(p) for p in (stage / "review/toolkit-before").rglob("*") if p.is_file()})
         frozen["review/toolkit-before.json"] = phase.digest(stage / "review/toolkit-before.json")

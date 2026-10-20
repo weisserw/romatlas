@@ -1,6 +1,6 @@
 # Licensing
 
-The combined `romatlas` CLI and the NES/SNES adapters are distributed under GPLv3
+The combined `romatlas` CLI and the SMS/NES/SNES adapters are distributed under GPLv3
 because they link the GPLv3 jgenesis core. See
 [vendor/jgenesis/LICENSE](vendor/jgenesis/LICENSE) for the full license and
 [vendor/jgenesis/ROMATLAS.md](vendor/jgenesis/ROMATLAS.md) for revision and local
@@ -30,3 +30,10 @@ ca65/ld65 V2.19 (cc65 revision 555282497c3ecf8b313d87d5973093af19c35bd5) are
 external assembler/linker tools under the upstream permissive, three-restriction
 license retained in tools/cc65/LICENSE. Preserve its attribution and notices when
 redistributing the tools. No game ROMs or extracted assets are bundled.
+
+SMS uses the same pinned GPLv3 jgenesis fork: smsgg-core, smsgg-config,
+z80-emu and YM-OPLL. DeZ80 decoding is separately MIT, with its notice at
+vendor/dez80/LICENSE.txt. Native SMS helpers do not depend on either library.
+Only OPLL instrument preset data comes from MIT emu2413; its notice is included
+at crates/romatlas-port/src/sms/LICENSE-emu2413.txt. WLA-DX is an external GPL
+assembler/linker pinned by scripts/setup-sms.sh; it is not linked into native ports.

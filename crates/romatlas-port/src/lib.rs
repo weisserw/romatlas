@@ -9,6 +9,7 @@ pub mod graphics;
 pub mod input;
 pub mod nes;
 pub mod settings;
+pub mod sms;
 pub mod snes;
 pub mod timing;
 

@@ -1,6 +1,7 @@
 mod nes;
 mod output;
 mod session;
+mod sms;
 mod snes;
 use anyhow::Result;
 use clap::{Parser, Subcommand};
@@ -278,9 +279,15 @@ fn main() {
 fn run() -> Result<()> {
     let cli = Cli::parse();
     anyhow::ensure!(
-        matches!(cli.platform.as_str(), "auto" | "gb" | "snes" | "nes"),
+        matches!(
+            cli.platform.as_str(),
+            "auto" | "gb" | "snes" | "nes" | "sms"
+        ),
         "unknown platform"
     );
+    if cli.platform == "sms" || cli.platform == "auto" && sms::detect(&cli.command) {
+        return sms::run(cli.command);
+    }
     if cli.platform == "nes" || cli.platform == "auto" && nes::detect(&cli.command) {
         return nes::run(cli.command);
     }

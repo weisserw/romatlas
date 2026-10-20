@@ -1,0 +1,26 @@
+[package]
+name = "smsgg-core"
+version = "0.7.1"
+edition = "2024"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+dsp = { path = "../../common/dsp" }
+jgenesis-proc-macros = { path = "../../common/jgenesis-proc-macros" }
+jgenesis-common = { path = "../../common/jgenesis-common" }
+
+smsgg-config = { path = "../../config/smsgg-config" }
+
+z80-emu = { path = "../../cpu/z80-emu", features = ["bincode"] }
+
+ym-opll = { path = "../ym-opll" }
+
+arrayvec = { workspace = true }
+bincode = { workspace = true }
+crc = { workspace = true }
+log = { workspace = true }
+thiserror = { workspace = true }
+
+[lints]
+workspace = true

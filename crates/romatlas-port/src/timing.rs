@@ -23,6 +23,15 @@ impl TickRate {
         numerator: 10_738_636,
         denominator: 178_683,
     };
+    /// SMS NTSC master clock / (342 dots * 10 clocks * 262 lines).
+    pub const SMS_NTSC: Self = Self {
+        numerator: 53_693_175,
+        denominator: 896_040,
+    };
+    pub const SMS_PAL: Self = Self {
+        numerator: 53_203_424,
+        denominator: 1_070_460,
+    };
     pub fn validate(self) -> Result<()> {
         ensure!(
             self.denominator > 0

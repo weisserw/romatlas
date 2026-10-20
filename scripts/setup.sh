@@ -20,4 +20,5 @@ make -C tools/rgbds -j2
 "${setup_privilege[@]}" make -C tools/rgbds install
 bash scripts/setup-snes.sh
 bash scripts/setup-nes.sh
+bash scripts/setup-sms.sh
 cargo build --locked --release

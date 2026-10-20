@@ -22,3 +22,9 @@ immutable baseline mapper inspection, detached PPU peeks, backing storage and
 CPU register access. The adapter owns cycle/frame counts, ROM identity,
 transactional snapshots, effective bank views and output limits. See docs/nes.md.
 No GPL implementation was copied into the independent MIT romatlas-port helpers.
+
+SMS extension (same pinned revision): backend/smsgg-core, config/smsgg-config,
+cpu/z80-emu. Local hooks expose architectural/shadow CPU registers, deterministic
+backing inspection/edits, actual first-fetch/memory/I/O/interrupt probes and T-cycle
+progress. SMS adapter owns contexts, snapshots and output budgets. Upstream
+instruction-driven timing remains unchanged; no cycle-exact hardware claim.

@@ -297,3 +297,21 @@ Clock values are NTSC CPU cycles. See [NES methods, address rules and limits](ne
 for stepping, actual-access traces, effective PRG bank contexts, immutable peeks,
 versioned snapshots, maps, 6502 analysis, frame/WAV output and reconstruction.
 NES portable maps use JSON/ca65; Game Boy .sym/RGBDS and SNES JSON/Asar stay separate.
+
+## Sega Master System
+
+Use `romatlas serve --rom owned.sms`, or `--platform sms` for another extension.
+The same persistent CommandAdapter transport exposes the SMS method set through
+`api.describe`. See [SMS protocol details](sms.md). Operation stepping advances a
+core instruction/interrupt/HALT quantum; cycle stepping ends at an instruction
+boundary. Context uses effective 16 KiB `rom_banks`, optional `ram_enabled`,
+`ram_bank` and `cartridge_enabled`. File offsets include any copier prefix.
+`emulator.translate` resolves a CPU address to its current backing identity.
+`emulator.memory` supports mapped CPU, detached I/O peeks and backing inspection;
+`physical_memory` requires a backing space. Explicit debugger I/O/VRAM/CRAM/RAM
+writes and register edits mark subsequent evidence artificial. VDP data-port
+prefetch/write hooks report actual VRAM/CRAM accesses separately from the buffered
+I/O return value. Rendering reads are not a cycle-exact PPU bus trace.
+Maps use `romatlas-sms-map` JSON; source uses pinned WLA-DX, separate from other
+platform formats. No new structural/reachability/editorial requirements are added
+to Game Boy, NES or SNES by this profile.

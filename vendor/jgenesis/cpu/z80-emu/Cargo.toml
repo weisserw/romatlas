@@ -1,0 +1,22 @@
+[package]
+name = "z80-emu"
+version = "0.7.1"
+edition = "2024"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+default = []
+bincode = ["dep:bincode"]
+
+[dependencies]
+jgenesis-common = { path = "../../common/jgenesis-common" }
+
+bincode = { workspace = true, optional = true }
+log = { workspace = true }
+
+[dev-dependencies]
+rand = { workspace = true }
+
+[lints]
+workspace = true

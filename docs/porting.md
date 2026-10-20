@@ -3,7 +3,7 @@
 The port phase starts from a reviewed archive and a matching local ROM, creating
 a separate development workspace. It writes goal.md to direct implementation of the
 whole game as maintainable best-effort native Rust. It does not launch an agent or translate the game
-automatically. Game Boy and SNES archives select independent platform scaffolds.
+automatically. Game Boy, SMS, NES and SNES archives select independent platform scaffolds.
 The shared library keeps platform helpers separate without imposing a universal
 hardware model. SNES helpers and current limits are documented in [snes.md](snes.md).
 
@@ -343,3 +343,8 @@ without testing it. Dependencies are pinned and checked with Rust 1.90.0 here.
 - [Macroquad input](https://docs.rs/macroquad/latest/macroquad/input/)
 - [ggez gamepads](https://docs.rs/ggez/latest/ggez/input/gamepad/)
 - [Cargo dependencies](https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html)
+
+SMS archives use JSON maps, WLA-DX source recipes and a 256x192 / SMS_NTSC
+native scaffold with SMS button names and four-plane tile decoding. Reference
+corrections follow the existing exact-rebuild workflow. See [sms.md](sms.md) and
+[sms-native.md](sms-native.md) for address rules, helper APIs and precision limits.

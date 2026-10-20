@@ -1,0 +1,210 @@
+//! Implementation of the Z80's bus interface, which connects it to all other components
+
+use crate::input::InputState;
+use crate::memory::Memory;
+use crate::psg::Sn76489;
+use crate::vdp::Vdp;
+use crate::{SmsGgHardware, VdpVersion};
+use jgenesis_common::num::GetBit;
+use smsgg_config::SmsGgRegion;
+use ym_opll::Ym2413;
+use z80_emu::traits::{BusInterface, InterruptLine};
+
+pub struct Bus<'a> {
+    version: VdpVersion,
+    memory: &'a mut Memory,
+    vdp: &'a mut Vdp,
+    psg: &'a mut Sn76489,
+    ym2413: Option<&'a mut Ym2413>,
+    input: &'a mut InputState,
+}
+
+impl<'a> Bus<'a> {
+    pub fn new(
+        version: VdpVersion,
+        memory: &'a mut Memory,
+        vdp: &'a mut Vdp,
+        psg: &'a mut Sn76489,
+        ym2413: Option<&'a mut Ym2413>,
+        input: &'a mut InputState,
+    ) -> Self {
+        Self {
+            version,
+            memory,
+            vdp,
+            psg,
+            ym2413,
+            input,
+        }
+    }
+}
+
+impl BusInterface for Bus<'_> {
+    fn read_memory(&mut self, address: u16) -> u8 {
+        let value = self.memory.read(address);
+        jgenesis_common::romatlas_debug::binding(self.memory.debug_binding(address));
+        jgenesis_common::romatlas_debug::emit("read", address.into(), value, None);
+        value
+    }
+
+    fn write_memory(&mut self, address: u16, value: u8) {
+        let binding = self.memory.debug_binding(address).filter(|b| b.0 != "rom");
+        jgenesis_common::romatlas_debug::binding(binding);
+        jgenesis_common::romatlas_debug::emit("write", address.into(), value, None);
+        self.memory.write(address, value);
+    }
+
+    fn read_io(&mut self, address: u16) -> u8 {
+        let value = (|| {
+            let address = address & 0xFF;
+            if self.version == VdpVersion::GameGear && address <= 0x06 {
+                // TODO Game Gear serial port / EXT registers
+                return match address {
+                    0x00 => {
+                        // Start/Pause button and region
+                        (u8::from(!self.input.pause_pressed()) << 7)
+                            | (u8::from(self.input.region() == SmsGgRegion::International) << 6)
+                    }
+                    0x01 => self.memory.gg_registers().ext_port,
+                    0x02 => self.memory.gg_registers().parallel_port,
+                    0x04 | 0x06 => 0xFF,
+                    0x03 | 0x05 => 0x00,
+                    _ => unreachable!("value is <= 0x06"),
+                };
+            }
+
+            if self.ym2413.is_some() && address == 0xF2 {
+                return self.memory.read_audio_control();
+            }
+
+            match (address.bit(7), address.bit(6), address.bit(0)) {
+                (false, false, _) => {
+                    // Invalid read addresses
+                    0xFF
+                }
+                (false, true, false) => {
+                    if self.version.hardware() != SmsGgHardware::Sg1000 {
+                        log::trace!("V counter read");
+                        self.vdp.v_counter()
+                    } else {
+                        // Invalid read
+                        0xFF
+                    }
+                }
+                (false, true, true) => {
+                    if self.version.hardware() != SmsGgHardware::Sg1000 {
+                        log::trace!("H counter read");
+                        self.vdp.h_counter()
+                    } else {
+                        // Invalid read
+                        0xFF
+                    }
+                }
+                (true, false, false) => {
+                    log::trace!("VDP data read");
+                    self.vdp.read_data()
+                }
+                (true, false, true) => {
+                    log::trace!("VDP control read");
+                    self.vdp.read_control()
+                }
+                (true, true, false) => {
+                    log::trace!("I/O A/B read");
+                    self.input.port_dc()
+                }
+                (true, true, true) => {
+                    log::trace!("I/O B/misc. read");
+                    self.input.port_dd()
+                }
+            }
+        })();
+        jgenesis_common::romatlas_debug::binding(Some(("io", (address & 255).into())));
+        jgenesis_common::romatlas_debug::bus_event("read", "io", address.into(), value);
+        value
+    }
+
+    fn write_io(&mut self, address: u16, value: u8) {
+        jgenesis_common::romatlas_debug::binding(Some(("io", (address & 255).into())));
+        jgenesis_common::romatlas_debug::bus_event("write", "io", address.into(), value);
+        let address = address & 0xFF;
+        if self.version == VdpVersion::GameGear && address <= 0x06 {
+            match address {
+                0x01 => self.memory.gg_registers().ext_port = value & 0x7F,
+                0x02 => self.memory.gg_registers().parallel_port = value,
+                0x06 => self.psg.write_stereo_control(value),
+                _ => {}
+            }
+            return;
+        }
+
+        if let Some(ym2413) = &mut self.ym2413 {
+            match address {
+                0xF0 => {
+                    ym2413.select_register(value);
+                    return;
+                }
+                0xF1 => {
+                    ym2413.write_data(value);
+                    return;
+                }
+                0xF2 => {
+                    self.memory.write_audio_control(value);
+                    return;
+                }
+                _ => {}
+            }
+        }
+
+        match (address.bit(7), address.bit(6), address.bit(0)) {
+            (false, false, false) => {
+                let memory_control = self.memory.memory_control();
+                memory_control.cartridge_enabled =
+                    !value.bit(6) || self.version == VdpVersion::GameGear;
+                memory_control.bios_enabled = !value.bit(3);
+                // TODO other memory control bits? expansion, card, WRAM, I/O
+                log::debug!("Memory control write: {value:02X}");
+            }
+            (false, false, true) => {
+                log::debug!("I/O control write: {value:02X}");
+                self.input.write_control(value, self.vdp);
+            }
+            (false, true, _) => {
+                log::trace!("PSG write: {value:02X}");
+                self.psg.write(value);
+            }
+            (true, false, false) => {
+                log::trace!("VDP data write: {value:02X}");
+                self.vdp.write_data(value);
+            }
+            (true, false, true) => {
+                log::trace!("VDP control write: {value:02X}");
+                self.vdp.write_control(value);
+            }
+            (true, true, _) => {}
+        }
+    }
+
+    fn nmi(&self) -> InterruptLine {
+        if matches!(
+            self.version.hardware(),
+            SmsGgHardware::MasterSystem | SmsGgHardware::Sg1000
+        ) && self.input.pause_pressed()
+        {
+            InterruptLine::Low
+        } else {
+            InterruptLine::High
+        }
+    }
+
+    fn int(&self) -> InterruptLine {
+        self.vdp.interrupt_line()
+    }
+
+    fn busreq(&self) -> bool {
+        false
+    }
+
+    fn reset(&self) -> bool {
+        false
+    }
+}

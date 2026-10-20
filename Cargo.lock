@@ -69,6 +69,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "arrayvec"
+version = "0.7.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d3fb67a6e08acf24fdeccbac2cb6ac4305825bd1f117462e0e6f2f193345ad56"
+
+[[package]]
 name = "autocfg"
 version = "1.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -291,6 +297,14 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9c9e6a11ca8224451684bc0d7d5a7adbf8f2fd6887261a1cfc3c0432f9d4068e"
 dependencies = [
  "powerfmt",
+]
+
+[[package]]
+name = "dez80"
+version = "4.0.1"
+dependencies = [
+ "strum",
+ "strum_macros",
 ]
 
 [[package]]
@@ -737,6 +751,7 @@ dependencies = [
  "romatlas-gb",
  "romatlas-map",
  "romatlas-nes",
+ "romatlas-sms",
  "romatlas-snes",
  "serde_json",
 ]
@@ -810,6 +825,26 @@ dependencies = [
  "serde",
  "serde_json",
  "sha2",
+]
+
+[[package]]
+name = "romatlas-sms"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "bincode",
+ "dez80",
+ "jgenesis-common",
+ "romatlas-analysis",
+ "romatlas-core",
+ "romatlas-disasm",
+ "romatlas-map",
+ "serde",
+ "serde_json",
+ "sha2",
+ "smsgg-config",
+ "smsgg-core",
+ "z80-emu",
 ]
 
 [[package]]
@@ -948,6 +983,32 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0c790de23124f9ab44544d7ac05d60440adc586479ce501c1d6d7da3cd8c9cf5"
 
 [[package]]
+name = "smsgg-config"
+version = "0.1.0"
+dependencies = [
+ "bincode",
+ "jgenesis-common",
+ "jgenesis-proc-macros",
+]
+
+[[package]]
+name = "smsgg-core"
+version = "0.7.1"
+dependencies = [
+ "arrayvec",
+ "bincode",
+ "crc",
+ "dsp",
+ "jgenesis-common",
+ "jgenesis-proc-macros",
+ "log",
+ "smsgg-config",
+ "thiserror",
+ "ym-opll",
+ "z80-emu",
+]
+
+[[package]]
 name = "snes-config"
 version = "0.1.0"
 dependencies = [
@@ -1003,6 +1064,25 @@ name = "strsim"
 version = "0.11.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7da8b5736845d9f2fcb837ea5d9e2628564b3b043a70948a3f0b778838c5fb4f"
+
+[[package]]
+name = "strum"
+version = "0.26.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8fec0f0aef304996cf250b31b5a10dee7980c85da9d759361292b8bca5a18f06"
+
+[[package]]
+name = "strum_macros"
+version = "0.26.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4c6bee85a5a24955dc440386795aa378cd9cf82acd5f764469152d2270e581be"
+dependencies = [
+ "heck",
+ "proc-macro2",
+ "quote",
+ "rustversion",
+ "syn 2.0.119",
+]
 
 [[package]]
 name = "syn"
@@ -1205,6 +1285,15 @@ checksum = "1ebf944e87a7c253233ad6766e082e3cd714b5d03812acc24c318f549614536e"
 [[package]]
 name = "ym-opll"
 version = "0.1.0"
+dependencies = [
+ "bincode",
+ "jgenesis-common",
+ "log",
+]
+
+[[package]]
+name = "z80-emu"
+version = "0.7.1"
 dependencies = [
  "bincode",
  "jgenesis-common",

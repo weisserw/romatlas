@@ -1,0 +1,8 @@
+[package]
+name="dez80"
+version="4.0.1"
+edition="2021"
+license="MIT"
+[dependencies]
+strum="0.26"
+strum_macros="0.26"

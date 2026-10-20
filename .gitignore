@@ -13,3 +13,5 @@ __pycache__/
 *.sfc
 *.smc
 /vendor/jgenesis/Cargo.lock
+
+*.sms

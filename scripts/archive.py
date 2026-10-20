@@ -92,9 +92,9 @@ def recipe(baseline, final, platform="gb"):
                 continue
             code, comment = split_comment(line)
             constant = bool(re.match(r"\s*(?:DEF\s+)?[\w.]+\s+(?:EQU|SET)\b", code, re.I))
-            if platform in {"snes", "nes"}:
+            if platform in {"snes", "nes", "sms"}:
                 constant = constant or bool(re.match(r"\s*!?[\w.]+\s*=", code))
-            include = bool(re.match(r"\s*(?:\.?INCLUDE|\.?INCBIN|INCSRC)\b" if platform in {"snes", "nes"} else r"\s*(?:\.?INCLUDE|\.?INCBIN)\b", code, re.I))
+            include = bool(re.match(r"\s*(?:\.?INCLUDE|\.?INCBIN|INCSRC)\b" if platform in {"snes", "nes", "sms"} else r"\s*(?:\.?INCLUDE|\.?INCBIN)\b", code, re.I))
             matches = list(TOKEN.finditer(code))
             index = 0
             while index < len(matches):
@@ -108,7 +108,7 @@ def recipe(baseline, final, platform="gb"):
                     copy(tokens[token])
                 elif token.isspace():
                     operations.append({"format": token})
-                elif platform in {"snes", "nes"} and re.fullmatch(r'[^\w\s"]', token):
+                elif platform in {"snes", "nes", "sms"} and re.fullmatch(r'[^\w\s"]', token):
                     operations.append({"format": token})
                 elif IDENTIFIER.fullmatch(token):
                     operations.append({"symbol": token})
@@ -206,7 +206,7 @@ def rebuild(archive, rom, output, binary):
             raise ValueError("invalid original ROM filename")
         shutil.copyfile(rom, supplied)
         before = base / "baseline"
-        phase.call(binary, "generate", supplied, "--map", archive / ("commentary/baseline.json" if manifest["platform"] in {"snes", "nes"} else "commentary/baseline.sym"), "--out", before)
+        phase.call(binary, "generate", supplied, "--map", archive / ("commentary/baseline.json" if manifest["platform"] in {"snes", "nes", "sms"} else "commentary/baseline.sym"), "--out", before)
         render(json.loads((archive / "editorial.json").read_text()), files(before), output)
         phase.reading(output)  # Validate include traversal before invoking the assembler.
         for path in output.rglob("*"):
@@ -242,7 +242,7 @@ def editorial_status(work, meta, rom):
     if manifest["rom_sha256"] != meta["sha256"]:
         raise ValueError("commentary belongs to another ROM")
     state_path = phase_dir / "phase1-state.json"
-    map_path = phase_dir / ("baseline.json" if meta.get("platform") in {"snes", "nes"} else "baseline.sym")
+    map_path = phase_dir / ("baseline.json" if meta.get("platform") in {"snes", "nes", "sms"} else "baseline.sym")
     if phase.digest(state_path) != manifest["state_sha256"] or phase.digest(map_path) != manifest["map_sha256"]:
         raise ValueError("frozen phase-1 baseline changed")
     review = json.loads((phase_dir / "review.json").read_text())
@@ -314,13 +314,13 @@ def archive(workspace, destination, name, binary, documents=(), omitted_document
     phase.verify(work, meta, rom)
     (work / "commentary/reading-after.asm").write_text(phase.reading(work / "commentary/source"))
     phase.call(binary, "store", "validate", rom, "--store", work / "analysis/state.json")
-    is_snes = meta.get("platform") in {"snes", "nes"}
+    is_snes = meta.get("platform") in {"snes", "nes", "sms"}
     phase.call(binary, "map", "validate", work / ("maps/current.json" if is_snes else "maps/current.sym"), "--rom", rom)
     state = json.loads((work / "analysis/state.json").read_text())
     platform = meta["platform"] if is_snes else state["platform"]
     # The current adapter identifies itself as gb; the archive hierarchy stays
     # platform-qualified rather than baking this into the reconstruction format.
-    if platform not in {"gb", "snes", "nes"}:
+    if platform not in {"gb", "snes", "nes", "sms"}:
         raise ValueError(f"unsupported archive platform: {platform}")
     slug = name or work.name
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", slug):

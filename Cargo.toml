@@ -1,7 +1,7 @@
 [workspace]
 resolver = "2"
 members = ["crates/*"]
-exclude = ["vendor/jgenesis", "vendor/mizu/mizu-core", "vendor/mizu/save_state", "vendor/mizu/save_state_derive"]
+exclude = ["vendor/dez80", "vendor/jgenesis", "vendor/mizu/mizu-core", "vendor/mizu/save_state", "vendor/mizu/save_state_derive"]
 [workspace.package]
 version = "0.1.0"
 edition = "2024"
