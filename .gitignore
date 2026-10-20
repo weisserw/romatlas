@@ -17,3 +17,7 @@ __pycache__/
 *.sms
 
 *.gg
+
+# Local HuCard images and products
+*.pce
+*.tg16

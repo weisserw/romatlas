@@ -1,6 +1,7 @@
 mod genesis;
 mod nes;
 mod output;
+mod pce;
 mod session;
 mod sms;
 mod snes;
@@ -282,10 +283,13 @@ fn run() -> Result<()> {
     anyhow::ensure!(
         matches!(
             cli.platform.as_str(),
-            "auto" | "gb" | "snes" | "nes" | "sms" | "gg" | "genesis"
+            "auto" | "gb" | "snes" | "nes" | "sms" | "gg" | "genesis" | "pce"
         ),
         "unknown platform"
     );
+    if cli.platform == "pce" || cli.platform == "auto" && pce::detect(&cli.command) {
+        return pce::run(cli.command);
+    }
     if cli.platform == "genesis" || cli.platform == "auto" && genesis::detect(&cli.command) {
         return genesis::run(cli.command, Some("genesis"));
     }

@@ -5,6 +5,16 @@ stock .sym/RGBDS reconstruction and existing DMG/native helper APIs. See
 [docs/gbc.md](docs/gbc.md) for native-color rendering helpers, palette backing
 inspection, snapshot behavior, tests and measured limits.
 
+## TurboGrafx-16 / PC Engine HuCard extension
+
+PC Engine joins all existing platforms: isolated pinned jgenesis v0.13.0 Rust
+debugger, contextual HuC6280 decoding and ca65/ld65 exact reconstruction, portable
+ROM-free JSON maps and agent/commentary/archive/native-port workflows. Independent
+MIT VDC/VCE/PSG helpers support native ports. HuCard only; CD, SuperGrafx,
+esoteric peripherals and uncommon boards are deferred. All classification,
+reachability, current-source readability and editorial contracts remain intact.
+See docs/pce.md, docs/pce-evaluation.md and docs/pce-native.md.
+
 ## Sega Genesis extension
 
 Genesis/Mega Drive joins the existing platforms: pinned jgenesis dual-CPU
@@ -56,7 +66,7 @@ rules and preventing SNES-specific context requirements from affecting SM83.
 
 ## Mission
 
-Build **ROMAtlas**, an extensible ROM reverse engineering toolkit for agents, with Game Boy, baseline Genesis, SMS, Game Gear, NES and SNES adapters. Its first goal is to let an agent examine a user-supplied ROM, identify code and data, and produce a structurally annotated assembly listing that rebuilds byte-for-byte to the original ROM. Structural roles and supporting evidence are required. The agent workflow must also produce fully commented, labeled assembly suitable as the porting agent’s source input, with descriptive routine/branch names, RAM variables, object fields and constants. Explain meaningful behavior and structures; instruction-by-instruction paraphrases are unnecessary. Document unresolved meanings honestly.
+Build **ROMAtlas**, an extensible ROM reverse engineering toolkit for agents, with Game Boy, baseline Genesis, SMS, Game Gear, NES, PC Engine HuCard and SNES adapters. Its first goal is to let an agent examine a user-supplied ROM, identify code and data, and produce a structurally annotated assembly listing that rebuilds byte-for-byte to the original ROM. Structural roles and supporting evidence are required. The agent workflow must also produce fully commented, labeled assembly suitable as the porting agent’s source input, with descriptive routine/branch names, RAM variables, object fields and constants. Explain meaningful behavior and structures; instruction-by-instruction paraphrases are unnecessary. Document unresolved meanings honestly.
 
 The agent must be able to use a controllable, instrumented emulator, build a **portable, ROM-independent mapping file**, and generate the assembly listing from that mapping and the user's own ROM. The toolkit must expose evidence and uncertainty so the agent can check and revise its decisions. Keep its tools generic enough to support other reverse engineering tasks and later work, such as naming symbols and explaining game behavior, without adding those tasks to this phase.
 
@@ -96,7 +106,7 @@ Given `game.gb` or `game.gbc`, an agent must be able to:
 - Requiring the toolkit itself to infer game semantics automatically; investigation, naming and explanation are agent responsibilities.
 - Automatically producing a clean-room behavioral specification or reimplementation.
 - Reproducing original source formatting, labels, macros, or comments.
-- Supporting additional consoles beyond Game Boy, baseline Genesis, SMS, Game Gear, NES and SNES.
+- Supporting additional consoles beyond Game Boy, baseline Genesis, SMS, Game Gear, NES, PC Engine HuCard and SNES.
 - Guaranteeing compatibility with every commercial ROM in the initial release.
 - Publishing, bundling, or downloading commercial ROMs.
 

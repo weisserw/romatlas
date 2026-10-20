@@ -38,6 +38,10 @@ impl TickRate {
         numerator: 53_203_424,
         denominator: 3420 * 313,
     };
+    pub const PCE_NTSC: Self = Self {
+        numerator: 236_250_000,
+        denominator: 11 * 1365 * 262,
+    };
     pub const GG_NTSC: Self = Self::SMS_NTSC;
     pub const SMS_PAL: Self = Self {
         numerator: 53_203_424,

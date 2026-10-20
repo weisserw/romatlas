@@ -72,8 +72,8 @@ name = "arm7tdmi-emu"
 version = "0.1.0"
 dependencies = [
  "bincode",
- "jgenesis-common",
- "jgenesis-proc-macros",
+ "jgenesis-common 0.7.1",
+ "jgenesis-proc-macros 0.7.1",
  "log",
 ]
 
@@ -336,6 +336,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "dsp"
+version = "0.13.0"
+dependencies = [
+ "bincode",
+ "log",
+ "num",
+]
+
+[[package]]
 name = "find-msvc-tools"
 version = "0.1.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -386,8 +395,8 @@ name = "genesis-config"
 version = "0.1.0"
 dependencies = [
  "bincode",
- "jgenesis-common",
- "jgenesis-proc-macros",
+ "jgenesis-common 0.7.1",
+ "jgenesis-proc-macros 0.7.1",
  "log",
 ]
 
@@ -397,10 +406,10 @@ version = "0.7.1"
 dependencies = [
  "bincode",
  "crc",
- "dsp",
+ "dsp 0.1.0",
  "genesis-config",
- "jgenesis-common",
- "jgenesis-proc-macros",
+ "jgenesis-common 0.7.1",
+ "jgenesis-proc-macros 0.7.1",
  "log",
  "m68000-emu",
  "regex",
@@ -451,6 +460,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2304e00983f87ffb38b55b444b5e3b60a884b5d30c0fca7d82fe33449bbe55ea"
 
 [[package]]
+name = "huc6280-emu"
+version = "0.13.0"
+dependencies = [
+ "bincode",
+ "jgenesis-common 0.13.0",
+ "log",
+ "rand",
+]
+
+[[package]]
 name = "is_terminal_polyfill"
 version = "1.70.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -469,9 +488,23 @@ dependencies = [
  "bincode",
  "bytemuck",
  "cfg-if",
- "jgenesis-proc-macros",
+ "jgenesis-proc-macros 0.7.1",
  "js-sys",
  "log",
+ "time",
+]
+
+[[package]]
+name = "jgenesis-common"
+version = "0.13.0"
+dependencies = [
+ "bincode",
+ "bytemuck",
+ "jgenesis-proc-macros 0.13.0",
+ "js-sys",
+ "log",
+ "rand",
+ "rustc-hash",
  "time",
 ]
 
@@ -481,6 +514,16 @@ version = "0.7.1"
 dependencies = [
  "proc-macro2",
  "quote",
+ "syn 2.0.119",
+]
+
+[[package]]
+name = "jgenesis-proc-macros"
+version = "0.13.0"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "serde",
  "syn 2.0.119",
 ]
 
@@ -528,8 +571,8 @@ name = "m68000-emu"
 version = "0.7.1"
 dependencies = [
  "bincode",
- "jgenesis-common",
- "jgenesis-proc-macros",
+ "jgenesis-common 0.7.1",
+ "jgenesis-proc-macros 0.7.1",
  "log",
 ]
 
@@ -557,7 +600,7 @@ name = "mos6502-emu"
 version = "0.7.1"
 dependencies = [
  "bincode",
- "jgenesis-common",
+ "jgenesis-common 0.7.1",
 ]
 
 [[package]]
@@ -566,8 +609,8 @@ version = "0.1.0"
 dependencies = [
  "base64",
  "bincode",
- "jgenesis-common",
- "jgenesis-proc-macros",
+ "jgenesis-common 0.7.1",
+ "jgenesis-proc-macros 0.7.1",
 ]
 
 [[package]]
@@ -576,9 +619,9 @@ version = "0.7.1"
 dependencies = [
  "bincode",
  "crc",
- "dsp",
- "jgenesis-common",
- "jgenesis-proc-macros",
+ "dsp 0.1.0",
+ "jgenesis-common 0.7.1",
+ "jgenesis-proc-macros 0.7.1",
  "log",
  "mos6502-emu",
  "nes-config",
@@ -682,6 +725,30 @@ name = "paste"
 version = "1.0.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "57c0d7b74b563b49d38dae00a0c37d4d6de9b432382b2892f0574ddcae73fd0a"
+
+[[package]]
+name = "pce-config"
+version = "0.13.0"
+dependencies = [
+ "bincode",
+ "jgenesis-common 0.13.0",
+ "jgenesis-proc-macros 0.13.0",
+]
+
+[[package]]
+name = "pce-core"
+version = "0.13.0"
+dependencies = [
+ "bincode",
+ "crc",
+ "dsp 0.13.0",
+ "huc6280-emu",
+ "jgenesis-common 0.13.0",
+ "jgenesis-proc-macros 0.13.0",
+ "log",
+ "pce-config",
+ "thiserror",
+]
 
 [[package]]
 name = "pin-project-lite"
@@ -829,6 +896,7 @@ dependencies = [
  "romatlas-genesis",
  "romatlas-map",
  "romatlas-nes",
+ "romatlas-pce",
  "romatlas-sms",
  "romatlas-snes",
  "serde_json",
@@ -874,7 +942,7 @@ dependencies = [
  "dez80",
  "genesis-config",
  "genesis-core",
- "jgenesis-common",
+ "jgenesis-common 0.7.1",
  "romatlas-analysis",
  "romatlas-core",
  "romatlas-disasm",
@@ -904,10 +972,30 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "bincode",
- "jgenesis-common",
+ "jgenesis-common 0.7.1",
  "mos6502-emu",
  "nes-config",
  "nes-core",
+ "romatlas-analysis",
+ "romatlas-core",
+ "romatlas-disasm",
+ "romatlas-map",
+ "serde",
+ "serde_json",
+ "sha2",
+]
+
+[[package]]
+name = "romatlas-pce"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "bincode",
+ "crc",
+ "huc6280-emu",
+ "jgenesis-common 0.13.0",
+ "pce-config",
+ "pce-core",
  "romatlas-analysis",
  "romatlas-core",
  "romatlas-disasm",
@@ -935,7 +1023,7 @@ dependencies = [
  "anyhow",
  "bincode",
  "dez80",
- "jgenesis-common",
+ "jgenesis-common 0.7.1",
  "romatlas-analysis",
  "romatlas-core",
  "romatlas-disasm",
@@ -954,7 +1042,7 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "bincode",
- "jgenesis-common",
+ "jgenesis-common 0.7.1",
  "romatlas-analysis",
  "romatlas-core",
  "romatlas-disasm",
@@ -966,6 +1054,12 @@ dependencies = [
  "spc700-emu",
  "wdc65816-emu",
 ]
+
+[[package]]
+name = "rustc-hash"
+version = "2.1.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6b1e7f9a428571be2dc5bc0505c13fb6bf936822b894ec87abf8a08a4e51742d"
 
 [[package]]
 name = "rustversion"
@@ -1088,8 +1182,8 @@ name = "smsgg-config"
 version = "0.1.0"
 dependencies = [
  "bincode",
- "jgenesis-common",
- "jgenesis-proc-macros",
+ "jgenesis-common 0.7.1",
+ "jgenesis-proc-macros 0.7.1",
 ]
 
 [[package]]
@@ -1099,9 +1193,9 @@ dependencies = [
  "arrayvec",
  "bincode",
  "crc",
- "dsp",
- "jgenesis-common",
- "jgenesis-proc-macros",
+ "dsp 0.1.0",
+ "jgenesis-common 0.7.1",
+ "jgenesis-proc-macros 0.7.1",
  "log",
  "smsgg-config",
  "thiserror",
@@ -1114,8 +1208,8 @@ name = "snes-config"
 version = "0.1.0"
 dependencies = [
  "bincode",
- "jgenesis-common",
- "jgenesis-proc-macros",
+ "jgenesis-common 0.7.1",
+ "jgenesis-proc-macros 0.7.1",
 ]
 
 [[package]]
@@ -1125,8 +1219,8 @@ dependencies = [
  "arm7tdmi-emu",
  "bincode",
  "bytemuck",
- "jgenesis-common",
- "jgenesis-proc-macros",
+ "jgenesis-common 0.7.1",
+ "jgenesis-proc-macros 0.7.1",
  "log",
  "thiserror",
  "time",
@@ -1139,9 +1233,9 @@ version = "0.7.1"
 dependencies = [
  "bincode",
  "crc",
- "dsp",
- "jgenesis-common",
- "jgenesis-proc-macros",
+ "dsp 0.1.0",
+ "jgenesis-common 0.7.1",
+ "jgenesis-proc-macros 0.7.1",
  "log",
  "rand",
  "snes-config",
@@ -1156,7 +1250,7 @@ name = "spc700-emu"
 version = "0.7.1"
 dependencies = [
  "bincode",
- "jgenesis-common",
+ "jgenesis-common 0.7.1",
  "log",
 ]
 
@@ -1358,7 +1452,7 @@ name = "wdc65816-emu"
 version = "0.7.1"
 dependencies = [
  "bincode",
- "jgenesis-common",
+ "jgenesis-common 0.7.1",
  "log",
 ]
 
@@ -1388,7 +1482,7 @@ name = "ym-opll"
 version = "0.1.0"
 dependencies = [
  "bincode",
- "jgenesis-common",
+ "jgenesis-common 0.7.1",
  "log",
 ]
 
@@ -1397,7 +1491,7 @@ name = "z80-emu"
 version = "0.7.1"
 dependencies = [
  "bincode",
- "jgenesis-common",
+ "jgenesis-common 0.7.1",
  "log",
 ]
 

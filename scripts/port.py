@@ -95,7 +95,7 @@ def prepare(archive, rom, output, binary):
     manifest = json.loads((archive / "archive.json").read_text())
     if manifest.get("version") != 1:
         raise ValueError("port preparation requires a version-1 archive")
-    if manifest["platform"] not in {"gb", "snes", "nes", "sms", "gg", "genesis"}:
+    if manifest["platform"] not in {"gb", "snes", "nes", "sms", "gg", "genesis", "pce"}:
         raise ValueError("unsupported port archive platform")
     name = manifest["name"]
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", name):
@@ -187,6 +187,13 @@ def prepare(archive, rom, output, binary):
                     text = text.replace("gb::GRAYSCALE", "std::array::from_fn::<_,16,_>(|i| sms::color((i as u8)*4))").replace(",76,68,", ",124,92,")
                 else:
                     text = text.replace("(160,144)", "(256,192)").replace("TickRate::DMG", "TickRate::SMS_NTSC").replace("romatlas_port::settings::Settings::default()", "romatlas_port::sms::default_settings()")
+            if manifest["platform"] == "pce":
+                if filename == "game.rs":
+                    text = text.replace("length: 16", "length: 32").replace("bytes.len() == 16", "bytes.len() == 32").replace("16-byte Game Boy 2bpp", "32-byte PC Engine planar 4bpp")
+                    text = text.replace(", gb,", ", pce,").replace("gb::tile_2bpp(", "pce::tile(")
+                    text = text.replace("gb::GRAYSCALE", "std::array::from_fn::<_,16,_>(|i| pce::color((i as u16)*0x24, false))").replace(",76,68,", ",124,108,")
+                if filename == "main.rs":
+                    text = text.replace("(160,144)", "(256,240)").replace("TickRate::DMG", "TickRate::PCE_NTSC").replace("romatlas_port::settings::Settings::default()", "romatlas_port::pce::default_settings()")
             if manifest["platform"] == "genesis":
                 if filename == "game.rs":
                     text = text.replace("length: 16", "length: 32").replace("bytes.len() == 16", "bytes.len() == 32").replace("16-byte Game Boy 2bpp", "32-byte Genesis packed 4bpp")
@@ -212,6 +219,8 @@ def prepare(archive, rom, output, binary):
         if manifest["platform"] == "gb":
             prompt += "\nGame Boy / Color: read " + str(ROOT / "docs/gbc.md") + ". Both use the gb platform and stock .sym/RGBDS. Inspect header byte $143: bit 7 selects native color; bits 7/6 mark CGB-only. Use gb::cgb for banked color rendering and palette RAM; keep DMG APIs for DMG behavior. CPU double speed does not double the LCD/APU cadence. The scaffold's grayscale tile is an arbitrary demonstration, not the game's rendering.\n"
 
+        if manifest["platform"] == "pce":
+            prompt += "\nPC Engine HuCard: read " + str(ROOT / "docs/pce-native.md") + ". Use independent MIT pce::Vdc, Vce and Psg helpers; ports own raster scheduling, music drivers and gameplay. CD/SuperGrafx are out of scope.\n"
         if manifest["platform"] == "genesis":
             prompt += "\nGenesis: read " + str(ROOT / "docs/genesis-native.md") + ". Use independent romatlas_port::genesis VDP, YM2612 and PSG helpers. Ports own raster scheduling, sound drivers and gameplay.\n"
         if manifest["platform"] == "gg":
@@ -222,6 +231,8 @@ def prepare(archive, rom, output, binary):
         shutil.copyfile(TEMPLATES / "review.md", stage / "prompts/review.md")
         shutil.copyfile(TEMPLATES / "reference-updates.md", stage / "prompts/reference-updates.md")
         build_guide = (TEMPLATES / "BUILDING.md").read_text().replace("__GAME_NAME__", name).replace("__TOOLKIT_PATH__", str(ROOT))
+        if manifest["platform"]=="pce":
+            build_guide=build_guide.replace("game.gb", "game.pce")
         if manifest["platform"]=="genesis":
             build_guide=build_guide.replace("game.gb", "game.md")
         if manifest["platform"]=="gg":

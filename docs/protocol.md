@@ -339,3 +339,12 @@ are distinct; do not mix SMD file positions with CPU addresses. See
 [Genesis API details and limits](genesis.md). Existing platform contracts remain.
 
 CGB hardware also exposes immutable `cgb-bg-palette` and `cgb-obj-palette` physical spaces (64 bytes each; size zero/unavailable on DMG). Reads bypass CPU palette-port locks without modifying the index or adding bus evidence. See [gbc.md](gbc.md).
+
+## PC Engine HuCards
+
+Select .pce/.tg16 or --platform pce. The adapter implements the shared RPC names
+through CommandAdapter; api.describe returns its supported methods. Read
+[pce.md](pce.md) for exact MPR contexts, physical file/bus/backing addresses,
+HuC6280 stepping, register/memory edits, snapshots, traces, mapping/analysis and
+ca65 reconstruction. Port 1 uses I/II/Run/Select/directions. CD/SuperGrafx are
+outside this profile. Existing platform-specific contracts remain unchanged.

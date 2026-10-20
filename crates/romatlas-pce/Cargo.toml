@@ -1,0 +1,22 @@
+[package]
+name = "romatlas-pce"
+version.workspace = true
+edition.workspace = true
+license = "GPL-3.0-only"
+
+[dependencies]
+anyhow.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+romatlas-core = { path = "../romatlas-core" }
+romatlas-analysis = { path = "../romatlas-analysis" }
+romatlas-map = { path = "../romatlas-map" }
+romatlas-disasm = { path = "../romatlas-disasm" }
+pce-core = { path = "../../vendor/jgenesis-pce/backend/pce-core" }
+jgenesis-common = { path = "../../vendor/jgenesis-pce/common/jgenesis-common" }
+bincode = "=2.0.1"
+
+pce-config = { path = "../../vendor/jgenesis-pce/config/pce-config" }
+huc6280-emu = { path = "../../vendor/jgenesis-pce/cpu/huc6280-emu", features = ["test-apis"] }
+crc = "3"

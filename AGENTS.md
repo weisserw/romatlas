@@ -108,3 +108,18 @@ YM2612 and PSG helpers remain independent MIT code; never copy GPL implementatio
 into them. Preserve classification, reachability, current-source readability and
 editorial gates. SVP, Sega CD/32X, exotic peripherals and uncommon boards are outside
 the cartridge baseline; no full hardware/game compatibility claim is supported.
+
+PC Engine / TurboGrafx-16 HuCard uses romatlas-pce and isolated GPLv3 jgenesis
+v0.13.0 sources in vendor/jgenesis-pce; never migrate existing cores implicitly.
+Read docs/pce.md, docs/pce-evaluation.md and docs/pce-native.md. Select .pce/.tg16
+or --platform pce. Use romatlas-pce-map JSON, explicit eight-page MPR contexts,
+physical file offsets including optional copier prefix and pinned ca65/ld65.
+MPR bus pages are not immutable physical ROM banks. Keep CPU aliases, 21-bit bus,
+RAM/I/O/CD/unmapped pages and mirrored HuCard backing distinct. Only accepted
+instruction fetches establish coverage; block-transfer continuations/interrupt
+entry do not. Run python3 scripts/test-pce.py and workspace/port/session/platform/
+portability regressions after relevant changes. Native VDC/VCE/PSG helpers remain
+independent MIT code; never copy GPL core implementation into them. HuCard only,
+no CD/SuperGrafx or esoteric peripherals/uncommon boards. Preserve structural versus
+reachability, whole-ROM classification, full current-source readability and
+editorial gates. No full hardware/game fidelity claim is supported.

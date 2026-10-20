@@ -81,3 +81,13 @@ romatlas-port has no emulator dependency. See [snes.md](snes.md) for the platfor
 API, portable map, assembler backend, workflow selection and measured limits.
 
 Game Boy Color workflow, additive native helpers and immutable palette inspection are documented in [gbc.md](gbc.md).
+
+## PC Engine HuCard extension
+
+The PCE adapter uses an isolated GPLv3 jgenesis v0.13.0 core fork in
+vendor/jgenesis-pce, leaving existing instrumented cores on their original pin.
+See pce-evaluation.md for emulator/assembler/disassembler selection. Shared crates
+remain platform-neutral; CPU, MPR bus mapping, file-bank mirroring and execution
+views belong to romatlas-pce. The original MIT native VDC/VCE/PSG helpers have no
+emulator dependency. Only accepted HuC6280 fetches establish execution coverage;
+block transfer continuation, interrupt entry and reached targets are distinct.

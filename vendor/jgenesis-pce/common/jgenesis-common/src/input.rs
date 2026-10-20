@@ -1,0 +1,223 @@
+use crate::frontend::{DisplayInfo, Rotation};
+
+#[non_exhaustive]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+pub enum Player {
+    One,
+    Two,
+}
+
+#[inline]
+#[must_use]
+pub fn viewport_position_to_frame_position(
+    x: f32,
+    y: f32,
+    DisplayInfo {
+        frame_size,
+        display_area,
+        rotation,
+    }: DisplayInfo,
+) -> Option<(u16, u16)> {
+    let display_left = display_area.x as f32;
+    let display_right = display_left + display_area.width as f32;
+    let display_top = display_area.y as f32;
+    let display_bottom = display_top + display_area.height as f32;
+
+    if !(display_left..display_right).contains(&x) || !(display_top..display_bottom).contains(&y) {
+        return None;
+    }
+
+    let x: f64 = x.into();
+    let y: f64 = y.into();
+    let display_left: f64 = display_left.into();
+    let display_width: f64 = display_area.width.into();
+    let frame_width: f64 = frame_size.width.into();
+    let display_top: f64 = display_top.into();
+    let display_height: f64 = display_area.height.into();
+    let frame_height: f64 = frame_size.height.into();
+
+    let normalized_x = (x - display_left) / display_width;
+    let normalized_y = (y - display_top) / display_height;
+
+    let (rotated_x, rotated_y) = match rotation {
+        Rotation::None => (normalized_x, normalized_y),
+        Rotation::Clockwise => (normalized_y, 1.0 - normalized_x),
+        Rotation::OneEighty => (1.0 - normalized_x, 1.0 - normalized_y),
+        Rotation::Counterclockwise => (1.0 - normalized_y, normalized_x),
+    };
+
+    let frame_x = (rotated_x * frame_width).round() as u16;
+    let frame_y = (rotated_y * frame_height).round() as u16;
+
+    log::trace!(
+        "Mapped mouse position ({x}, {y}) to ({frame_x}, {frame_y}) (frame size {frame_size:?}, display_area {display_area:?})"
+    );
+
+    Some((frame_x, frame_y))
+}
+
+#[macro_export]
+macro_rules! define_controller_inputs {
+    (
+        buttons: $button_enum:ident {
+            $($button:ident -> $button_field:ident $button_label:literal),* $(,)?
+        }
+        $(, non_gamepad_buttons: [$($non_gamepad_button:ident $non_gamepad_label:literal),* $(,)?])?
+        , joypad: $joypad_struct:ident $(impl $with_allow_opposing_directions:ident)?
+        $(
+            , inputs: $inputs_struct:ident {
+                players: {
+                    $($player_field:ident: Player::$player_value:ident),* $(,)?
+                }
+                $(, buttons: [$($ex_button:ident -> $ex_button_field:ident),* $(,)?])?
+                $(,)?
+            }
+        )?
+        $(,)?
+    ) => {
+        #[derive(
+            Debug,
+            Clone,
+            Copy,
+            PartialEq,
+            Eq,
+            ::std::hash::Hash,
+            ::bincode::Encode,
+            ::bincode::Decode,
+            ::jgenesis_proc_macros::EnumAll,
+            ::jgenesis_proc_macros::EnumDisplay,
+            ::jgenesis_proc_macros::EnumFromStr,
+        )]
+        pub enum $button_enum {
+            $(
+                $button,
+            )*
+            $($(
+                $non_gamepad_button,
+            )*)?
+        }
+
+        impl $button_enum {
+            #[must_use]
+            pub fn label(self) -> &'static str {
+                match self {
+                    $(
+                        Self::$button => $button_label,
+                    )*
+                    $($(
+                        Self::$non_gamepad_button => $non_gamepad_label,
+                    )*)?
+                }
+            }
+        }
+
+        #[derive(
+            Debug,
+            Clone,
+            Copy,
+            PartialEq,
+            Eq,
+            Default,
+            ::std::hash::Hash,
+            ::bincode::Encode,
+            ::bincode::Decode,
+        )]
+        pub struct $joypad_struct {
+            $(
+                pub $button_field: bool,
+            )*
+        }
+
+        impl $joypad_struct {
+            #[inline]
+            pub fn set_button(&mut self, button: $button_enum, pressed: bool) {
+                match button {
+                    $(
+                        $button_enum::$button => self.$button_field = pressed,
+                    )*
+                    $(
+                        $(
+                            $button_enum::$non_gamepad_button => {}
+                        )*
+                    )?
+                }
+            }
+
+            #[inline]
+            pub fn with_button(mut self, button: $button_enum, pressed: bool) -> Self {
+                self.set_button(button, pressed);
+                self
+            }
+
+            $(
+                #[inline]
+                #[must_use]
+                pub fn $with_allow_opposing_directions(mut self, allow_opposing_directions: bool) -> Self {
+                    if allow_opposing_directions {
+                        return self;
+                    }
+
+                    if self.left && self.right {
+                        self.left = false;
+                        self.right = false;
+                    }
+
+                    if self.up && self.down {
+                        self.up = false;
+                        self.down = false;
+                    }
+
+                    self
+                }
+            )?
+        }
+
+        $(
+            #[derive(
+                Debug,
+                Clone,
+                Copy,
+                PartialEq,
+                Eq,
+                Default,
+                ::std::hash::Hash,
+                ::bincode::Encode,
+                ::bincode::Decode,
+            )]
+            pub struct $inputs_struct {
+                $(
+                    pub $player_field: $joypad_struct,
+                )*
+                $($(
+                    pub $ex_button_field: bool,
+                )*)?
+            }
+
+            impl ::jgenesis_common::frontend::MappableInputs<$button_enum> for $inputs_struct {
+                #[inline]
+                fn set_field(
+                    &mut self,
+                    button: $button_enum,
+                    player: ::jgenesis_common::input::Player,
+                    pressed: bool,
+                ) {
+                    match (button, player) {
+                        $($(
+                            ($button_enum::$ex_button, _) => {
+                                self.$ex_button_field = pressed;
+                            }
+                        )*)?
+                        $(
+                            (button, ::jgenesis_common::input::Player::$player_value) => {
+                                self.$player_field.set_button(button, pressed);
+                            }
+                        )*
+                        _ => {}
+                    }
+                }
+            }
+        )?
+    }
+}
+
+pub use define_controller_inputs;

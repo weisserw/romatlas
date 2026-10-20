@@ -235,3 +235,7 @@ NTSC/PAL cartridge baseline excludes exotic peripherals, SVP, Sega CD/32X and un
 boards. Tests use original synthetic cartridges; broad hardware fidelity is not claimed.
 
 Game Boy Color shares the existing `gb` platform, stock .sym/RGBDS and Mizu core. See [docs/gbc.md](docs/gbc.md) for hardware models, immutable palette inspection, native color helpers and validation.
+
+PC Engine / TurboGrafx-16 HuCards: use `.pce`/`.tg16` or `--platform pce`.
+See [toolkit/API](docs/pce.md), [core/tool evaluation](docs/pce-evaluation.md) and
+[independent native VDC/VCE/PSG helpers](docs/pce-native.md). CD and SuperGrafx are outside scope.

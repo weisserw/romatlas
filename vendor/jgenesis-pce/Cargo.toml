@@ -1,0 +1,35 @@
+# Minimal core-only workspace from jgenesis v0.13.0; see ROMATLAS.md.
+[workspace]
+resolver = "3"
+members = ["common/*", "cpu/*", "config/*", "backend/*"]
+[workspace.package]
+version = "0.13.0"
+[workspace.dependencies]
+arrayvec = "0.7"
+base64 = "0.22"
+bincode = { version = "=2.0.1", features = ["derive"] }
+bytemuck = { version = "1", features = ["derive"] }
+cfg-if = "1"
+clap = { version = "4", features = ["derive"] }
+crc = "3"
+js-sys = "0.3"
+log = "0.4"
+num = "0.4"
+rand = "0.9"
+regex = "1"
+serde = { version = "1", features = ["derive"] }
+thiserror = "2"
+time = "=0.3.41"
+rustc-hash = "2"
+test-log = "0.2"
+toml = "0.8"
+dsp = { path = "common/dsp" }
+jgenesis-common = { path = "common/jgenesis-common" }
+jgenesis-proc-macros = { path = "common/jgenesis-proc-macros" }
+huc6280-emu = { path = "cpu/huc6280-emu" }
+pce-config = { path = "config/pce-config" }
+[workspace.lints.rust]
+rust_2018_idioms = "warn"
+[workspace.lints.clippy]
+all = { level = "warn", priority = -1 }
+

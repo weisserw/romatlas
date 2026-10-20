@@ -1433,3 +1433,81 @@ pass. These measurements do not establish broad commercial-game or full hardware
 compatibility. Generated synthetic images, snapshots, captures, source and native
 workspaces remain local; no commercial ROMs or extracted assets were downloaded
 or committed, and no display/audio device was initialized. Changes are uncommitted.
+
+2026-10-20: Added TurboGrafx-16 / PC Engine HuCard support alongside all existing
+platforms. The debugger uses an isolated GPLv3 jgenesis v0.13.0 commit
+94bc43c8a375fc83be121658a0c520e6fd0999fb in vendor/jgenesis-pce. Existing
+instrumented platform cores remain unchanged. The Rust alternative evaluated
+currently documents missing PSG audio, so no emulator replacement was proposed.
+Pinned ca65/ld65 supplies assembly; bounded HuC6280 decoding reuses the selected
+core's mnemonic table after evaluating the existing Go huc6280disasm and WLA-DX.
+See docs/pce-evaluation.md for selection and attribution.
+
+The adapter provides actual accepted-fetch/bus/interrupt/backing/DMA observations,
+MPR-aware coverage/contexts/edges and bounded JSONL streaming, operation/master-
+cycle/frame stepping, register/MPR/backing edits, immutable mapped/physical peeks,
+regional pad input, reset, guarded snapshots, framebuffer and stereo WAV capture.
+Instruction accounting excludes interrupt entry and incremental block-transfer
+continuation. Original-file identity includes the optional copier prefix; mirrored
+runtime expansion stays separate. HuCards have no universal cartridge header or
+mapper field: inspection explicitly reports size/CRC-based identification basis.
+384/512 KiB chip aliases and incomplete-chip mirroring are explicit; SRAM, I/O,
+CD/unmapped windows never become immutable ROM claims. Mapper identification is
+performed before runtime expansion. CPU aliases and effective bus pages remain
+separate from original physical file-bank identity.
+
+ROM-free romatlas-pce-map JSON separates physical annotations and CPU/MPR execution
+views; transactional validation/import/export, references, data barriers, bounded
+static/observed discovery and explicit little-endian/bank-field pointer hypotheses
+are available. Unknown context remains local; targets do not prove code/execution.
+ca65 generation retains exact encodings, original prefix and all unknown bytes;
+verification rebuilds stale objects. Raw fidelity does not complete classification.
+New workspace/commentary/archive/reference-correction/native preparation profiles
+preserve structural versus reachability, whole-ROM classification, full current-
+source readability and editorial gates, without rewriting existing workspaces.
+
+Independent MIT romatlas-port::pce implements planar background/sprite tiles,
+GRB333 palettes, VCE palette ports/greyscale/dot clocks/262-263 line cadence,
+VDC tilemaps/scroll/priority/flips/size/CG plane masks/collision/line limits,
+raster IRQ/status, explicit VRAM and SATB DMA, and clocked six-channel wavetable/
+DDA/noise/LFO/stereo PSG with fractional sample clocks. Defaults are I/II/Run/
+Select/directions and 256x240. Ports own raster/music scheduling and gameplay;
+no GPL implementation enters the native runtime. CD, SuperGrafx, esoteric
+peripherals and uncommon boards are outside scope; exact bus/raster/analog quirks
+and broad hardware/game fidelity remain documented limits.
+
+Initial validation passes: Rust 1.90 locked release builds, release all-target
+workspace Clippy with warnings denied, locked release workspace tests; four focused
+native helper tests and four structural/context/identity tests; synthetic PC Engine
+inspect/RPC/immutable-peek/replay/trace/backing-edit/mapping checks, all 256 opcode
+encodings reconstructed exactly, special chip layouts/prefixes and independent
+workspace/commentary/archive/restore/native headless/desktop scaffold flows.
+Existing session, stock portability, disassembly, commentary, archive, native-port
+and Genesis regressions pass. Follow-up results are recorded below. All fixtures,
+captures, snapshots and generated workspaces remain local; no commercial ROM or
+extracted asset was downloaded or committed, and no GUI/audio device was started.
+
+Final PC Engine follow-up: locked release build, all-target workspace release
+Clippy with warnings denied, workspace release tests and native desktop-feature
+Clippy/tests pass. Five adapter tests and five independent native-helper tests
+pass, including invalid SF2 selectors remaining unresolved, chip backing markers,
+CG plane masks, partial wide-sprite line selection and VDC register-byte/read-latch
+behavior. The expanded synthetic gate passes TurboGrafx/PCE regional input/reset/
+cross-region snapshot rejection, real PSG/WAV output, pad polling, immutable peeks,
+exact replay, block-transfer fetch accounting, bounded trace streaming, MPR
+translation, explicit pointer layouts/conflicts and transactional edits. Known
+SRAM/SF2 board behavior is tested using CRC-forged authored synthetic fixtures,
+not commercial ROMs. All 256 opcode encodings and special chip/prefix layouts
+rebuild byte-identically, including direct stock ca65/ld65 recipient reconstruction.
+Agent/commentary/archive/restore/native preparation and evidence-linked reference
+corrections pass while preserving the frozen reference.
+
+Existing Game Boy session, stock portability, disassembly, commentary, archive,
+native-port accounting/headless/desktop, Genesis, SMS, Game Gear, NES, production
+SNES, pinned SNES CPU vectors, CGB, fidelity/API, both pinned licensed homebrew
+regressions and the 89/89 Game Boy hardware gate pass. Final Python compilation,
+workspace/vendor formatting, dependency boundaries and git diff checks pass.
+No GUI/audio device was initialized. Generated images, source, captures, snapshots
+and native workspaces remain local; no commercial ROMs or extracted assets were
+downloaded or committed. Changes remain uncommitted. Detailed hardware/native
+fidelity limits are documented in docs/pce.md and docs/pce-native.md.
