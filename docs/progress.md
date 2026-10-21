@@ -1630,3 +1630,14 @@ compilation and git diff checks pass. Two full browser smoke runs timed out at
 the existing post-rebinding pixel assertion before their public-server step;
 that broader browser result is not claimed as passing for this change. No Rust,
 ROM, asset or existing port-workspace source was changed.
+2026-10-21: Native port build/runtime commands no longer require frozen assembly,
+review snapshots or adopted research artifacts. port.py restricts those integrity
+checks to audit/reference commands; workspace/toolkit and original-ROM identity
+checks remain. check recreates its output directory for transferred source trees.
+This fixes Alleyway builds with the original ROM and no reference/reading.asm.
+scripts/test-port.py passes, including changed adopted/frozen assembly, absent
+reference/review/checks directories, successful checks/headless execution and
+continued audit/foreign-ROM rejection. Stock portability, dependency boundaries,
+Python compilation and diff checks pass. Alleyway's standard check passes fmt,
+Clippy, 66 tests and desktop compilation; its 120-frame ROM-backed headless run
+passes. No Rust/dependency changes or desktop launch; edits remain uncommitted.

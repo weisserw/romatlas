@@ -183,7 +183,8 @@ with tempfile.TemporaryDirectory(prefix="romatlas-port-") as temporary:
     adopted_reading = work / "research/revisions/discovery-002/reading.asm"
     saved_reading = adopted_reading.read_bytes()
     adopted_reading.write_bytes(saved_reading + b"; accidental edit\n")
-    call(*run,"headless","--frames","0",ok=False)
+    assert call(*run,"headless","--frames","0")[0]["ok"]
+    call(*run,"audit",ok=False)
     adopted_reading.write_bytes(saved_reading)
     call(*prepare,ok=False)
     assert inventory(work / "reference") == frozen
@@ -259,12 +260,23 @@ with tempfile.TemporaryDirectory(prefix="romatlas-port-") as temporary:
     assert call(*run,"headless","--frames","1","--assets",assets)[0]["ok"]
     (assets / "tile.bin").write_bytes(b"bad")
     call(*run,"headless","--assets",assets,ok=False)
-    # Frozen source and local ROM identity are checked before execution/build.
+    # Runtime/build commands need the ROM, not source-accounting artifacts.
     reading = work / "reference/reading.asm"
     original = reading.read_bytes()
     reading.write_bytes(original + b"; changed\n")
-    call(*run,"headless",ok=False)
+    assert call(*run,"headless","--frames","1")[0]["ok"]
+    call(*run,"audit",ok=False)
     reading.write_bytes(original)
+    reference_backup = work / "reference-backup"
+    (work / "reference").rename(reference_backup)
+    review_backup = work / "review-backup"
+    (work / "review").rename(review_backup)
+    shutil.rmtree(work / "checks")
+    assert call(*run,"check")[0]["ok"]
+    assert call(*run,"headless","--frames","1")[0]["ok"]
+    call(*run,"audit",ok=False)
+    reference_backup.rename(work / "reference")
+    review_backup.rename(work / "review")
     (work / "input/game.rom").write_bytes(bytes([1]) + data[1:])
     call(*run,"headless",ok=False)
     wrong = base / "wrong.gb"

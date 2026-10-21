@@ -137,7 +137,7 @@ snapshots it, exports/validates the map from its state, independently generates 
 verifies structural assembly, and verifies the edited source against the owned ROM.
 It retains evidence, a fresh reading copy and verification in an immutable revision,
 then selects it through `research/current.json`. Failed checks publish no revision
-and keep the prior selection. Subsequent workspace commands check adopted artifact
+and keep the prior selection. Subsequent source-accounting audit/reference commands check adopted artifact
 hashes as well as frozen baseline hashes. Neither exact rebuilding nor adoption
 proves the interpretation or map/comment consistency; the agent reviews those and
 updates focused unit tests of affected native logic.
@@ -296,6 +296,10 @@ desktop build, all with the generated lockfile where applicable. Output is in
 check does not leave a success result. `desktop` requires a graphical session and
 is an explicit user command; it is rejected on Linux without DISPLAY/WAYLAND_DISPLAY.
 Do not create tests requiring displays/GPUs/controllers unavailable on this server.
+Build/check, instructions, headless, desktop and web commands validate the workspace
+and original ROM identity without requiring frozen reference or research files.
+Only audit and reference-management commands validate those development artifacts;
+they are not runtime assets. Missing checks/ output directories are recreated.
 Focused unit tests cover intended game logic and CPU-side utilities. The optional
 headless command remains available for later requested work; executing it is not
 a required validation phase.

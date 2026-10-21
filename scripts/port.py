@@ -411,7 +411,7 @@ runpy.run_path(str(toolkit / "scripts/port.py"), run_name="__main__")
             "start_prompt": str(output / "prompts/start.md"), "review_prompt": str(output / "prompts/review.md")}
 
 
-def workspace(path):
+def workspace(path, *, reference=True):
     work = path.resolve(strict=True)
     meta = json.loads((work / "workspace.json").read_text())
     if meta["version"] != 1 or Path(meta["toolkit"]).resolve() != ROOT:
@@ -419,10 +419,11 @@ def workspace(path):
     rom = phase.local(work, meta["rom"])
     if phase.digest(rom) != meta["sha256"]:
         raise ValueError("workspace ROM identity changed")
-    for name, digest in meta["frozen"].items():
-        if phase.digest(phase.local(work, name)) != digest:
-            raise ValueError(f"frozen reference changed: {name}")
-    port_research.current(work, meta)
+    if reference:
+        for name, digest in meta["frozen"].items():
+            if phase.digest(phase.local(work, name)) != digest:
+                raise ValueError(f"frozen reference changed: {name}")
+        port_research.current(work, meta)
     return work, meta, rom
 
 
@@ -482,6 +483,7 @@ def check(work):
         ])
     results = []
     report = work / "checks/latest.json"
+    report.parent.mkdir(parents=True, exist_ok=True)
     phase.write_json(report, {"ok": False, "checks": []})
     with (work / "checks/latest.log").open("w") as log:
         for command in checks:
@@ -522,7 +524,9 @@ def main():
         if not args.json:
             print(instructions(args.out.absolute()), file=sys.stderr)
     else:
-        work, meta, rom = workspace(args.path)
+        work, meta, rom = workspace(args.path, reference=args.command in {
+            "audit", "reference-init", "reference-verify",
+        })
         if args.command in {"web-build", "web"}:
             bundle = port_web.build(work)
             if args.command == "web":
