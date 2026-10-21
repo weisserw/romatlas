@@ -11,62 +11,34 @@ import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 
-AGENTS = """# ROM disassembly workspace
+AGENTS = """# ROM analysis workspace rules
 
-Read evidence-policy.md, workflow.md, workspace.json, analysis/progress.md, and
-analysis/toolkit-issues.md before work.
-Read and maintain analysis/gameplay.md for sourced gameplay familiarity and
-targeted experiment routes, following workflow.md's Game familiarization section.
-The toolkit repository is {toolkit}. Read its project.md, docs/progress.md,
-docs/protocol.md and docs/sym.md. Use its existing binary; this workspace is
-for disassembling this game, not changing the toolkit.
-New workspaces default to target/release/romatlas. Rebuild the configured release
-binary with `cargo build --locked --release` after toolkit changes; restart live
-servers to load a rebuilt binary. Do not silently substitute another build.
+These rules apply to every task in this workspace. The user's requested task
+selects the workflow; this file does not start or resume a goal.
 
-Objective: classify ROM regions with evidence, export a portable stock .sym map,
-and generate a bank-organized assembly listing that rebuilds byte-for-byte.
-Investigate structure and semantics together; name and explain routines where
-useful. Required annotations describe structural role and supporting evidence;
-instruction-by-instruction paraphrases are unnecessary. The commentary phase must
-produce fully commented, labeled, readable source for porting, including variables
-and branches; structural classification alone does not satisfy final acceptance.
-Do not stop after a raw-byte baseline: fidelity and classification completeness
-are separate results. Report unknown bytes and unresolved bank contexts honestly.
-
-Use python3 run.py inspect/baseline/serve/checkpoint as described in workflow.md.
-Keep input/game.rom unchanged. Never download ROMs. Keep input, internal state,
-traces, source and extracted assets local; only stock .sym is distributable.
-Never commit the entire workspace. .gitignore is a guard, not authorization.
-
-Use bounded execution, discovery and paged queries. Trace addresses are physical;
-retain CPU aliases and effective bank context. Prefer analysis.discover_context.
-Observed instruction fetches prove execution; reached targets and pointer values
-do not. Unexecuted bytes may be classified using static or semantic evidence;
-unsupported bytes stay unknown. Export's raw-byte gaps are not data evidence.
-Structural roles/bounds and reachability are separate claims. A live caller or
-ordinary gameplay route is not required when independent static evidence establishes
-the role, exact bounds and bank context. Record reachability uncertainty separately.
-Inspect candidates before map.annotate. Split existing regions before inserting
-smaller regions. Validate maps after edits. Save internal state with map.save
-to analysis/state.json, and export stock .sym to maps/current.sym.
-
-Record evidence, confidence, scenario input sequences, remaining unknown ranges,
-and exact tested verification results in analysis/progress.md after each batch.
-Snapshots are session-local; save replayable input sequences for later sessions.
-Use snapshot export/import for persistence; do not assume named snapshots persist. Do not invent unsupported snapshot persistence or claim full hardware compatibility.
-
-Maintain analysis/toolkit-issues.md as you encounter toolkit bugs or missing
-features, following workflow.md's reporting requirements. Preserve findings
-across sessions. Continue ROM analysis using workarounds unless blocked; do not
-fix the toolkit in this workspace. At the end of every pass, summarize toolkit
-findings and link the report, or explicitly say "no toolkit issues found" if empty.
+- Keep input/game.rom unchanged. Never download commercial ROMs or extracted
+  assets. Keep input, internal state, traces, restored source and assets local.
+  Only the platform's supported ROM-free portable mapping is a sharing deliverable;
+  do not publish internal state as a portable map.
+- Preserve existing work, evidence, checkpoints and historical investigation
+  records. Never commit the entire workspace; .gitignore is not authorization.
+- Toolkit repository: {toolkit}. Use the binary configured in workspace.json;
+  new workspaces default to target/release/romatlas. Do not silently substitute
+  another build. After separately authorized toolkit changes, rebuild the
+  configured release binary with `cargo build --locked --release` and restart
+  live servers to load it.
+- Toolkit edits are outside ordinary ROM analysis. Report bugs/missing features
+  in analysis/toolkit-issues.md; do not modify the toolkit without authorization.
+- Keep runs, discovery, queries and captures bounded. Preserve deterministic
+  replay, physical storage identities, CPU aliases and effective bank context.
+- Do not claim full hardware/game compatibility or invent unsupported APIs.
 """
 
 WORKFLOW = """# Per-game workflow
 
-Read goal.md and evidence-policy.md. The coordinator gives each separate phase worker only its own prompt
-and compact checkpoint/handoff; workers retrieve relevant evidence as needed. The old provider-specific
+Follow evidence-policy.md and the prompt for the assigned phase. The coordinator
+gives each separate phase worker only its own prompt and compact checkpoint/handoff;
+workers retrieve relevant evidence as needed. The old provider-specific
 /goal startup/resume workflow is deprecated. Each disassembly pass stops at easy-gain
 exhaustion; the coordinator runs commentary and redirect. Every redirect investigates
 promising questions thoroughly but reasonably before deciding whether to continue.
@@ -100,6 +72,36 @@ promising questions thoroughly but reasonably before deciding whether to continu
    scenarios exercised, verification evidence, and concrete next tasks.
    Include a summary of toolkit findings and a link to analysis/toolkit-issues.md;
    explicitly say "no toolkit issues found" when the report has no findings.
+
+## Workspace context and session discipline
+
+Before starting or resuming a phase, read workspace.json, analysis/progress.md,
+analysis/toolkit-issues.md and the relevant saved handoff. Read and maintain
+analysis/gameplay.md as described below. Locate the toolkit through workspace.json;
+consult its project.md, current docs/progress.md, docs/protocol.md and docs/sym.md
+for scope, APIs and map rules. Follow this workspace's platform guidance when it
+selects a different mapping/source backend.
+
+Classify ROM regions with evidence and export a portable stock .sym map with a
+bank-organized byte-identical assembly rebuild. A raw-byte baseline is not a
+classified disassembly. Required annotations explain structural role and evidence;
+commentary supplies readable routine/branch/variable labels and meaningful behavior
+explanations rather than instruction-by-instruction paraphrases. Completion and
+phase stopping criteria are defined below and in the assigned prompt.
+
+Use immutable physical reads for backing storage and mapped reads for CPU aliases.
+Observed instruction fetches prove execution; pointer values and reached targets
+do not. Inspect candidates before map.annotate, split existing regions before
+inserting smaller ones and validate maps after edits. Save with map.save to
+analysis/state.json and export maps/current.sym. Record evidence, confidence,
+scenario inputs, remaining unknown ranges and exact verification results in
+analysis/progress.md after each batch. Raw export gaps are not data evidence.
+
+Named snapshots are session-local. Use supported snapshot export/import for
+persistence and retain replayable input sequences; do not assume named snapshots
+survive a new server. Report toolkit findings according to the Toolkit issues
+section, including the required end-of-pass summary. Continue with bounded
+workarounds unless blocked; toolkit implementation is a separate task.
 
 ## Game familiarization
 
@@ -478,7 +480,7 @@ def initialize(source, destination, binary, platform="auto"):
                                           "sha256": identity, "inspection": metadata}, indent=2) + "\n",
         }
         if not any([is_pce, is_snes, is_genesis, is_gg, is_sms, is_nes]):
-            files["AGENTS.md"] += "\nGame Boy / Color uses the same gb platform, stock .sym and RGBDS. Read " + str(ROOT / "docs/gbc.md") + ". Model auto follows header $143 even for input/game.rom. Query capabilities for physical VRAM/WRAM and CGB palette backing. Preserve physical banks separately from CPU aliases; double speed does not change LCD frame cadence.\n"
+            files["workflow.md"] += "\nGame Boy / Color uses the same gb platform, stock .sym and RGBDS. Read " + str(ROOT / "docs/gbc.md") + ". Model auto follows header $143 even for input/game.rom. Query capabilities for physical VRAM/WRAM and CGB palette backing. Preserve physical banks separately from CPU aliases; double speed does not change LCD frame cadence.\n"
         if is_snes:
             import snes_workflow
             files = snes_workflow.files(files, metadata)

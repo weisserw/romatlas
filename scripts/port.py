@@ -14,13 +14,14 @@ import tempfile
 import archive as archived
 import commentary as phase
 import port_research
+import port_debug
 import port_web
 
 ROOT = phase.ROOT
 TEMPLATES = ROOT / "scripts/port-template"
 DISPOSITIONS = {"implemented", "merged", "replaced", "excluded"}
 GOAL = ("Port this entire archived game into maintainable best-effort native Rust, following "
-        "AGENTS.md, workflow.md and prompts/start.md. First survey representative source paths "
+        "workflow.md and prompts/start.md. First survey representative source paths "
         "and write the high-level module/state/algorithm plan in architecture.md; maintain it "
         "during implementation. Use shared platform helpers. Assess uncertainties by consumer "
         "and port impact; implement reasonable source-informed assumptions and document them. "
@@ -81,7 +82,8 @@ def records(review):
 
 def instructions(work):
     return (f"Read {work / 'goal.md'} to start or resume the port.\n"
-            f"For a separate library reviewer, read {work / 'prompts/review.md'}.\n")
+            f"For a separate library reviewer, read {work / 'prompts/review.md'}.\n"
+            f"For separately requested QA, read {work / 'debug/goal.md'}.\n")
 
 
 def prepare(archive, rom, output, binary):
@@ -244,33 +246,23 @@ def prepare(archive, rom, output, binary):
         (stage / "BUILDING.md").write_text(build_guide)
         (stage / "AGENTS.md").write_text(f"""# Native port workspace
 
-Read goal.md, workflow.md, architecture.md, uncertainties.json and prompts/start.md.
-The whole-game best-effort implementation contract applies. Survey source and plan
-module/state ownership before substantial coding; maintain coherent Rust design.
-Runtime fidelity validation is outside this porting goal. Use the debugger only
-for a specific unresolved source question with a bounded experiment and stopping
-condition. No native-versus-ROM comparisons or confidence-building replay loops.
-Use focused unit tests and required format/static/build checks, then finish
-accounting/handoff, run the administrative audit and stop when it passes.
-Implemented documented assumptions and unverified fidelity do not block completion;
-missing required code does. The scaffold is not a completed port.
-Default to a faithful representation of the source game with no extra game features.
-Do not add visible debug artifacts, level selects, sound tests, cheats or developer
-menus unless specifically instructed by the user. Preserve original features and
-access conditions; required frontend settings/asset support remain supported.
-See prompts/start.md for the player-interface contract.
-Toolkit: {json.dumps(str(ROOT))}. Use its AGENTS.md for shared-library changes.
-reference/ and review/toolkit-before/ are frozen. Change port/, ledger.json and
-uncertainties.json and port documentation. Use prompts/reference-updates.md for
-authorized local disassembly/commentary corrections in research/; preserve the
-frozen baseline and original ledger identities. Implement/log shared-library edits in the
-toolkit, uncommitted. Do not overwrite pre-existing changes. Never download or
-commit commercial ROMs or extracted assets. Keep generated material local.
-Use Rust 1.90.0 and Cargo.lock. Do not launch desktop graphics on this server.
-Use shared Game APIs for desktop/browser rendering, audio, controls and original
-battery saves. Keep identity, dimensions, cadence and defaults in config.rs.
-Run python3 run.py check; run python3 run.py audit only after finishing the ledger.
-No agent launch, check-in or publication is authorized by this workspace.
+These rules apply to every task in this workspace. The user's requested task
+selects the workflow; this file does not start or resume a goal.
+
+- Use Rust 1.90.0 and Cargo.lock. Do not launch desktop graphics on this
+  headless server; compile desktop code without opening a window.
+- Never download or commit commercial ROMs or extracted assets. Keep ROMs,
+  restored source/assets, build products and generated comparisons local.
+- Preserve reference/, review/toolkit-before/, original ledger identities,
+  deployment backups and unrelated existing changes. Keep QA records separate
+  from implementation accounting and preserve superseded records.
+- Use the shared Game APIs for desktop/browser rendering, audio, controls and
+  original battery saves. Keep identity, dimensions, cadence and defaults in
+  config.rs where present. Keep game rules shared across frontends.
+- Toolkit: {json.dumps(str(ROOT))}. For edits there, follow that repository's applicable
+  instructions. Leave shared-library edits uncommitted and log their changes
+  and check results in library-changes.md; preserve pre-existing work.
+- No agent launch, check-in or publication is authorized by this workspace.
 """)
         (stage / "workflow.md").write_text("""# Port workflow
 
@@ -375,8 +367,12 @@ The executable accepts --rom, --assets, --settings and --headless (frame count).
 After implementing the real collections, document replacement formats, adding a
 level and game-rule source locations here. See examples/asset-extension.json for
 an illustrative manifest: original ROM levels plus a replacement and added slot.
-It is documentation, not a working game-level loader. Generated example content
-must be developer-authored; do not distribute extracted originals.
+The illustrative manifest is documentation, not a working game-level loader.
+Generated example content must be developer-authored; do not distribute originals.
+
+For a separately requested debugging/QA run, tell the agent: "Read debug/goal.md."
+That file links all required instructions and records. It is preinstalled; no
+manual installation or automatic QA launch occurs during port preparation.
 """)
         phase.write_json(stage / "examples/asset-extension.json", {"version": 1,
             "entries": [{"id": "level-01", "file": "levels/replacement-01.json"},
@@ -395,7 +391,7 @@ if len(sys.argv) < 2:
 sys.argv = [str(toolkit / "scripts/port.py"), sys.argv[1], str(workspace), *sys.argv[2:]]
 runpy.run_path(str(toolkit / "scripts/port.py"), run_name="__main__")
 """)
-        (stage / ".gitignore").write_text("/input/\n/reference/\n/research/\n/review/toolkit-before/\n/checks/\n/port/target/\n/web-dist/\n*.gb\n*.gbc\n*.sms\n*.gg\n*.md.bin\n*.gen\n*.smd\n*.rom\n__pycache__/\n")
+        (stage / ".gitignore").write_text("/input/\n/reference/\n/research/\n/review/toolkit-before/\n/checks/\n/port/target/\n/web-dist/\n/debug/artifacts/\n*.gb\n*.gbc\n*.sms\n*.gg\n*.md.bin\n*.gen\n*.smd\n*.rom\n__pycache__/\n")
         frozen = {str(p.relative_to(stage)): phase.digest(p) for p in (stage / "reference").rglob("*") if p.is_file()}
         frozen.update({str(p.relative_to(stage)): phase.digest(p) for p in (stage / "review/toolkit-before").rglob("*") if p.is_file()})
         frozen["review/toolkit-before.json"] = phase.digest(stage / "review/toolkit-before.json")
@@ -404,6 +400,9 @@ runpy.run_path(str(toolkit / "scripts/port.py"), run_name="__main__")
             "uncertainty_tracking": 1, "rom": "input/game.rom", "sha256": manifest["rom_sha256"],
             "archive": str(archive), "archive_sha256": phase.digest(archive / "archive.json"),
             "frozen": frozen, "reference_verification": verification})
+        # Install QA instructions in staging so every platform publishes the same
+        # complete workspace atomically; preparation never starts QA.
+        port_debug.install(stage)
         # Reserve the new name before publication; never replace another workspace.
         output.mkdir()
         try:
@@ -413,7 +412,8 @@ runpy.run_path(str(toolkit / "scripts/port.py"), run_name="__main__")
             raise
     return {"ok": True, "workspace": str(output), "sha256": manifest["rom_sha256"],
             "byte_identical_reference": True, "scaffold": True,
-            "start_prompt": str(output / "prompts/start.md"), "review_prompt": str(output / "prompts/review.md")}
+            "start_prompt": str(output / "prompts/start.md"), "review_prompt": str(output / "prompts/review.md"),
+            "debug_goal": str(output / "debug/goal.md"), "debug_installed": True}
 
 
 def workspace(path, *, reference=True):
@@ -509,7 +509,7 @@ def main():
         def error(self, message):
             raise ValueError(message)
     parser = Parser(description=__doc__)
-    parser.add_argument("command", choices=["prepare", "instructions", "check", "headless", "desktop", "audit", "reference-init", "reference-verify", "web-build", "web"])
+    parser.add_argument("command", choices=["prepare", "instructions", "check", "headless", "desktop", "audit", "reference-init", "reference-verify", "web-build", "web", "debug"])
     parser.add_argument("path", type=Path, help="archive for prepare; port workspace otherwise")
     parser.add_argument("--rom", type=Path)
     parser.add_argument("--out", type=Path)
@@ -538,6 +538,17 @@ def main():
                 port_web.serve(work, rom, bundle, args.assets, args.port, args.host)
                 return
             print(json.dumps({"ok": True, "bundle": str(bundle)}))
+            return
+        if args.command == "debug":
+            if args.settings:
+                raise ValueError("debug uses logical input; --settings is not supported")
+            command = ["cargo", "run", "--quiet", "--locked", "--manifest-path", str(work / "port/Cargo.toml"),
+                       "--", "--rom", str(rom), "--debug-stdio"]
+            if args.assets:
+                command.extend(["--assets", str(args.assets.resolve(strict=True))])
+            result = subprocess.run(command, cwd=work)
+            if result.returncode:
+                raise ValueError("native debug process exited with code " + str(result.returncode))
             return
         if args.command == "instructions":
             print(instructions(work))

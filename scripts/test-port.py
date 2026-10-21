@@ -3,6 +3,7 @@
 import hashlib
 import json
 import os
+import re
 from pathlib import Path
 import shutil
 import subprocess
@@ -88,6 +89,21 @@ with tempfile.TemporaryDirectory(prefix="romatlas-port-") as temporary:
     assert str(work) in printed.stderr
     assert inventory(archive) == initial_archive and rom.read_bytes() == data
     assert (work / "port/Cargo.lock").is_file()
+    assert result["debug_installed"] and result["debug_goal"] == str(work / "debug/goal.md")
+    for name in ["DEBUGGING.md", "debug/goal.md", "debug/acceptance.json", "debug/plan.json", "debug/qa.json"]:
+        assert (work / name).is_file(), name
+    debug_goal = (work / "debug/goal.md").read_text()
+    assert "Execute or resume" in debug_goal and "Read debug/goal.md." in debug_goal
+    assert "python3 run.py debug" in debug_goal
+    for target in re.findall(r"\]\(([^)]+)\)", debug_goal):
+        assert (work / "debug" / target).exists(), target
+    assert json.loads((work / "debug/acceptance.json").read_text())["required_passes"] == 2
+    assert json.loads((work / "debug/plan.json").read_text())["status"] == "planning"
+    assert json.loads((work / "debug/qa.json").read_text())["status"] == "not_started"
+    assert "Read debug/goal.md." in (work / "README.md").read_text()
+    assert str(work / "debug/goal.md") in printed.stderr
+    assert "/debug/artifacts/" in (work / ".gitignore").read_text()
+
     build_guide = (work / "BUILDING.md").read_text()
     assert "synthetic-port.exe" in build_guide and "./target/release/synthetic-port" in build_guide
     assert "__GAME_NAME__" not in build_guide and "__TOOLKIT_PATH__" not in build_guide
@@ -109,17 +125,17 @@ with tempfile.TemporaryDirectory(prefix="romatlas-port-") as temporary:
     assert all(r["status"] == "pending" and r["impact"] == "unknown" for r in uncertainties["entries"])
     assert "reference-updates.md" in (work / "prompts/start.md").read_text()
     assert "preserving code bytes" in (work / "prompts/review.md").read_text().lower()
-    for path in ["AGENTS.md","prompts/start.md","workflow.md"]:
+    for path in ["prompts/start.md","workflow.md"]:
         text = (work / path).read_text()
         assert "whole" in text.lower() or "entire" in text.lower()
     prompt = (work / "prompts/start.md").read_text()
     for required in ["startup","added", "uncommitted","headless","useful","borderline", "No check-in"]:
         assert required in prompt,required
-    # Check the delivered contract, not only the template: every entrypoint must
+    # Check the delivered contract, not only the template: implementation documents must
     # retain the same implementation boundary and the architecture plan must ship.
     architecture = (work / "architecture.md").read_text()
     assert "state owners" in architecture and "algorithms" in architecture
-    for path in ["goal.md", "AGENTS.md", "workflow.md", "prompts/start.md"]:
+    for path in ["goal.md", "workflow.md", "prompts/start.md"]:
         text = (work / path).read_text()
         assert "architecture.md" in text, path
         assert "Runtime fidelity validation is outside" in text, path

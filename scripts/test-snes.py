@@ -274,7 +274,7 @@ def workflow(work, rom):
     assert 'gb::' not in (port/'port/src/game.rs').read_text()
     assert 'SNES_NTSC' in (port/'port/src/config.rs').read_text()
     assert (port/'architecture.md').is_file()
-    for path in ['goal.md','AGENTS.md','workflow.md','prompts/start.md']:
+    for path in ['goal.md','workflow.md','prompts/start.md']:
         text=(port/path).read_text()
         assert 'architecture.md' in text and 'Runtime fidelity validation is outside' in text
         assert 'stop when' in text or 'after it passes, stop' in text

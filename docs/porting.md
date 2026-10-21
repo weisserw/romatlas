@@ -18,8 +18,12 @@ codex -C /root/rom-ports/game
 ```
 
 Ask the agent to read the generated `goal.md`; it includes the whole-game
-objective and resume instructions. No goal command is printed. `--json` suppresses human instructions; preparation results are JSON
-on stdout and instructions are on stderr. Use `--binary PATH` to select a toolkit
+objective and resume instructions. The separate QA workflow is also preinstalled;
+when explicitly requested later, tell the agent **Read debug/goal.md.** That file
+links all QA instructions and records and supports starting or resuming. QA does
+not start during preparation or become part of initial port completion.
+No goal command is printed. `--json` suppresses human instructions; preparation
+results are JSON on stdout and instructions are on stderr. Use `--binary PATH` to select a toolkit
 binary. Existing destinations and repository-local workspaces are rejected.
 Preparation requires an existing archive; it accepts incomplete editorial review
 and phase-1 classification, without altering the archive. It validates archive hashes, restores
@@ -44,6 +48,8 @@ the toolkit before retrying. Rust 1.90.0 is pinned in the generated project.
 | `research/working/` | Optional editable disassembly state, source, correction log and local evidence. |
 | `research/revisions/`, `research/current.json` | Verified immutable local corrections and the adopted revision pointer. |
 | `goal.md` | Overall native-port objective and resume instructions. |
+| `debug/goal.md`, `DEBUGGING.md` | Preinstalled, separately invoked two-pass QA workflow and API guide. |
+| `debug/acceptance.json`, `plan.json`, `qa.json` | QA acceptance contract, editable test plan and results. |
 | `architecture.md` | Source-informed module/state/algorithm plan, maintained during implementation. |
 | `prompts/start.md`, `reference-updates.md`, `review.md` | Port contract, reference correction procedure and separate reviewer instructions. |
 | `review/toolkit-before/`, `toolkit-before.json` | Initial toolkit files, hashes, Git HEAD and pre-existing status. |
@@ -451,3 +457,18 @@ overrides, settings, battery reload and storage failures. No display/audio devic
 commercial ROM or native-versus-ROM fidelity comparison is needed. Setup pins
 wasm-bindgen 0.2.129 (library/CLI match) and Playwright 1.56.0. Python handles build
 and serving; no npm or JavaScript bundler is required.
+
+## Separately requested autonomous debugging
+
+[Native debug control and workflow](port-debugging.md) provides an opt-in persistent
+headless API and a separate two-pass QA goal. New port workspaces include it
+automatically; invoke it by asking the agent to
+read `debug/goal.md`. For older workspaces use
+`python3 scripts/port_debug.py install WORKSPACE`; those ports also need the small
+launcher adapter described there. The agreed debugging contract is a
+source-informed QA plan and two complete
+successful passes. Failed/inaccessible checks block progress; holistic code or
+plan changes restart QA. Resource limits interrupt as incomplete, not success.
+Installation does not activate a fidelity audit or change initial implementation
+completion. Future scaffolds expose --debug-stdio
+with optional game-specific read-only inspection.

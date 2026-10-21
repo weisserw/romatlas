@@ -52,7 +52,7 @@ def files(original, metadata):
     meta.update(platform='gg',rom='input/game.gg')
     result['workspace.json']=json.dumps(meta,indent=2)+'\n'
     # This extension is applied only to newly generated Game Gear profiles.
-    for name in ['AGENTS.md','workflow.md','prompts/disassembly.txt','prompts/commentary.txt',
+    for name in ['workflow.md','prompts/disassembly.txt','prompts/commentary.txt',
                  'prompts/redirect.txt']:
         result[name]+=GUIDANCE
     result['run.py']=result['run.py'].replace('call("serve", "--rom", rom)',

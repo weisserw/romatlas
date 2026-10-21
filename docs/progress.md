@@ -1652,3 +1652,157 @@ workspaces were not rewritten. Validation: Python compilation, scripts/test-port
 (preparation, reference fidelity, headless/desktop/Wasm checks, overrides, accounting
 and rejections), stock deterministic four-bank portability and git diff checks pass.
 No runtime or dependency changes were made.
+
+2026-10-21: Added independent MIT native-port debug control in romatlas-port::debug:
+persistent device-free JSON-RPC logical input, bounded tick/audio advancement,
+read-only state callbacks, RGBA frame capture, paged bounded audio, reset and
+transactional deterministic-replay checkpoints. Replay binds executable, ROM
+identity and asset contents; verifies frame/audio output on a candidate before
+adopting it. It assumes deterministic initialization/observational rendering and
+is not arbitrary state serialization or original battery persistence. Runtime
+limits and reset/replay costs are documented in docs/port-debugging.md. No console
+emulator code/dependencies were imported into the native library.
+
+Added a bounded Unix Python client with process deadlines, request/evidence caps,
+private transport logs and local PPM capture. Added an opt-in run.py debug command
+and scaffold launcher, plus a separate workflow installer/prompt. The autonomous
+goal's acceptance scope/resource contract remains deliberately unconfigured
+pending the user's decision; no debugging goal or native-versus-ROM audit ran.
+Initial port implementation instructions retain their fidelity-validation boundary.
+
+Deployed native adapters, read-only observations and separate instructions to
+/root/alleyway-port and /root/rygar. Original modified source/instruction files and
+hashes are preserved in each debug/deployment-before/; deployment manifests and
+check results remain local. Alleyway exposes its existing summary plus ball 8.8
+positions/velocities. Rygar exposes mode/destination/camera/player/health/inventory
+and shares its public game module between native and library/browser entrypoints.
+No gameplay rules, frozen references, ROMs/assets, or original ledger completion
+records were changed. Replay histories are build-specific, not portable ROM maps.
+
+Validation passes: locked release build, workspace fmt, native-runtime all-target
+desktop-feature Clippy and tests, Python compilation, scripts/test-port.py,
+platform dependency boundaries, deterministic stock Game Boy portability and
+git diff --check. Both deployed run.py check commands pass format/Clippy/unit
+tests/desktop and Wasm builds without devices. Both native adapters pass live
+protocol input/state/frame/audio/reset and checkpoint replay/rejection smoke checks.
+A synthetic hung-child experiment confirms client deadline/process-group cleanup;
+a native client probe confirms local frame artifacts. These validate control and
+deployment, not gameplay fidelity or autonomous debugging quality. Changes remain
+uncommitted; generated captures/checkpoints and commercial content remain local.
+
+2026-10-21: Applied the user-agreed native QA acceptance contract to the toolkit
+and both Alleyway/Rygar deployments. Agents first derive a source-informed ordered
+plan of game areas, major mechanics and transitions, with concrete applicable
+visual/behavior/audio checks and reproducible routes. Execute A-to-Z fixing every
+failed/inaccessible check before advancing, then execute the entire plan again.
+Two complete valid successful passes and no blockers are required; recording
+failures, deferring checks, a stagnation heuristic or exhausting a budget cannot
+establish successful QA. Fundamental implementation problems or mistaken plans
+require correction and restart at pass one, preserving superseded attempts.
+Local fixes recheck failed/affected earlier checks; stale results do not count.
+An external resource ceiling interrupts as incomplete; no numerical ceiling was
+invented and no gameplay QA/agent launch was performed.
+
+Added plan/result templates and a separate administrative port_debug.py audit.
+It validates ready coverage-linked plans, exact plan hashes, two ordered complete
+passing result sets, local evidence/report files and no blockers. It cannot judge
+coverage sufficiency, code-impact assessments or evidence truth. Installation
+preserves existing working plans/results. Both deployed acceptance files now say
+agreed; previous policy files/hashes are retained under policy-before-two-pass/.
+Updated guides, goals and scoped AGENTS instructions without changing original
+implementation completion, game code, frozen references or ledger identities.
+
+Validation: three synthetic contract tests pass, including rejected partial,
+failed/inaccessible/inconclusive/deferred, out-of-order, budget-limited, stale-plan,
+uncovered and missing-evidence records, successful complete records and preservation
+on reinstall. Both deployed installs/status checks expose the agreed contract;
+unstarted/empty plans correctly fail the QA audit. Locked release build, Python
+compilation and git diff --check pass. No Rust/runtime changes in this update;
+no claim that either game's QA plan has been authored or passed. Changes remain
+uncommitted; generated evidence/backups stay local.
+
+2026-10-21: Native port preparation now installs the separate QA guide, goal,
+acceptance contract and plan/result templates in staging before publishing every
+platform's workspace. Preparation results include debug_goal/debug_installed and
+printed instructions/README point to the single start/resume invocation:
+Read debug/goal.md. Generated AGENTS instructions distinguish preinstallation
+from invoking QA; initial best-effort implementation completion gains no QA gate.
+Debug artifact directories are ignored by default. No agent or QA is launched.
+
+debug/goal.md now directs execution/resumption and links workspace instructions,
+API/client guide, acceptance, plan/results, identity/source metadata, ledger,
+differences, progress and applicable architecture/library/code references. It
+explains working-directory/toolkit paths and that the two-pass contract is already
+agreed, so no additional installation or plan/acceptance approval is needed.
+Updated Alleyway/Rygar copies, preserving prior instructions/hashes locally under
+entrypoint-before-auto-install/ and retaining live acceptance/plan/result bytes.
+Existing native code, completion ledgers and QA state were not rewritten.
+
+Validation passes: locked release build, Python compilation, three synthetic
+QA-contract tests (including preserved working plans/results), scripts/test-port.py
+with automatic-install metadata/file/link checks and unstarted QA assertions,
+stock deterministic portability and git diff --check. The full port regression
+also passes generated native format/Clippy/tests/desktop and Wasm checks. Both
+live installs are idempotent with preserved QA records and the new single entry
+point. No Rust/runtime changes, gameplay QA, devices or commercial-content
+changes in this update. Changes remain uncommitted.
+
+## 2026-10-21 — Separate workspace rules from port goals
+
+Generated port AGENTS.md and the Alleyway/Rygar deployed copies now contain
+shared toolchain, data hygiene, preservation, frontend and repository rules only.
+They do not select a goal or repeat implementation/QA acceptance procedures.
+Implementation and debug entrypoints no longer redundantly direct agents to read
+the automatically loaded workspace AGENTS.md. Toolkit AGENTS.md links the native
+workflow documentation instead of repeating its acceptance contracts; mapping
+instructions are unchanged. Added Alleyway's missing root implementation entrypoint
+as a link to its existing implementation documents. Updated existing preparation
+assertions to reflect task-specific rule ownership. QA records were preserved;
+no game execution or QA run was started. Python compilation and git diff --check
+passed; runtime tests were not run for this instruction-only cleanup.
+
+## 2026-10-21 — Consolidate toolkit repository instructions
+
+Replaced the accumulated root AGENTS.md with shared repository rules and a short
+entrypoint index. Removed API recipes, historical hardware/test counts, per-platform
+implementation summaries and game-disassembly procedures from automatic startup
+instructions. No disassembly, native implementation or QA acceptance criteria were
+changed. Verified that generic-data inspection, broad gameplay progression, RAM
+shortcuts and scenarios.json accounting already remain in the coordinator,
+disassembly and redirect templates; no duplicate policy file was introduced.
+
+Added docs/development.md as the owner of development check commands, platform/API
+links and architecture/compatibility guidance. Existing protocol, sym and platform
+guides remain the owners of API details. The root file now applies console-neutral
+boundaries consistently, links all supported platforms through the guide and does
+not direct unrelated toolkit work into per-game exploration. Removed an obsolete
+"no SNES production dependency yet" claim from docs/architecture.md that contradicted
+its immediately following production integration paragraph.
+
+Checks: all 35 local Markdown links in AGENTS.md/docs/development.md resolve;
+existing policy coverage in the three owning phase/coordinator prompts was checked;
+git diff --check passes. No executable code or workflow templates changed, so no
+build, runtime tests, game execution or QA was run for this documentation cleanup.
+Existing uncommitted work and deployed game workspaces were preserved.
+
+## 2026-10-21 — Clean up generated disassembly AGENTS.md
+
+The embedded disassembly AGENTS template now contains workspace-wide preservation,
+ROM/asset hygiene, binary identity, bounded tool use and repository-edit rules only.
+It does not activate a goal or repeat classification/phase stopping criteria.
+Moved session/context, map-edit/persistence and reporting guidance into workflow.md;
+existing evidence, progression, readability and completion contracts remain in the
+workflow, coordinator and phase prompts. Removed redundant references back to the
+automatically loaded root workspace AGENTS.md from goal/disassembly prompts, and
+removed workflow.md's instruction to send every phase worker back to the coordinator
+goal. The coordinator still delegates sequential phases under its existing contract.
+
+All six non-GB platform generators retain detailed guidance in workflow/phase
+prompts rather than appending it to AGENTS.md. Game Boy Color guidance likewise
+now lives in workflow.md. Updated existing regression expectations for the new
+instruction locations, including the native SNES expectation left over from the
+prior port AGENTS cleanup. Existing game workspaces were not rewritten.
+
+Python compilation of all modified generators/regression scripts and git diff
+--check pass. No tests, builds, emulator execution or agents were launched for this
+instruction-template cleanup; generated workflow behavior has not been exercised.

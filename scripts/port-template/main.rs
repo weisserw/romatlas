@@ -13,6 +13,7 @@ fn main() {
     }
 }
 fn run() -> Result<()> {
+    let mut debug_stdio = false;
     let mut rom = None;
     let mut assets = None;
     let mut settings = None;
@@ -20,18 +21,30 @@ fn run() -> Result<()> {
     let mut args = std::env::args().skip(1);
     while let Some(arg) = args.next() {
         match arg.as_str() {
+            "--debug-stdio" => debug_stdio = true,
             "--rom" => rom = Some(PathBuf::from(args.next().context("--rom needs a file")?)),
             "--assets" => assets = Some(PathBuf::from(args.next().context("--assets needs a directory")?)),
             "--settings" => settings = Some(PathBuf::from(args.next().context("--settings needs a file")?)),
             "--headless" => frames = Some(args.next().context("--headless needs a frame count")?.parse()?),
             "--help" => {
-                println!("Usage: __GAME_NAME__ --rom FILE [--assets DIR] [--settings FILE] [--headless FRAMES]\nF1 opens desktop settings. This scaffold is not a ported game.");
+                println!("Usage: __GAME_NAME__ --rom FILE [--assets DIR] [--settings FILE] [--debug-stdio] [--headless FRAMES]\nF1 opens desktop settings. This scaffold is not a ported game.");
                 return Ok(());
             }
             _ => bail!("unknown argument: {arg}"),
         }
     }
     let rom = Rom::open(&rom.context("supply your matching ROM with --rom")?,ROM_SHA256)?;
+    if debug_stdio {
+        anyhow::ensure!(frames.is_none() && settings.is_none(), "--debug-stdio cannot combine with --headless/--settings");
+        let identity = romatlas_port::debug::identity(ROM_SHA256, assets.as_deref())?;
+        return romatlas_port::debug::serve(
+            || {
+                anyhow::ensure!(romatlas_port::debug::identity(ROM_SHA256, assets.as_deref())? == identity, "debug assets/build changed; restart session");
+                game::Port::load(&rom, assets.as_deref())
+            }, config::SIZE, config::RATE, config::settings().bindings.keys().cloned().collect(),
+            identity.clone(), |_| serde_json::Value::Null,
+        );
+    }
     let mut port = game::Port::load(&rom,assets.as_deref())?;
     if let Some(frames) = frames {
         let frame = romatlas_port::headless(&mut port,frames,|_| InputState::default(),config::SIZE)?;

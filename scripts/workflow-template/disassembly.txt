@@ -42,7 +42,7 @@ Artificial execution can test consumer mechanics but does not establish
 intended code, complete table extent or natural reachability by itself. Keep these
 evidence safeguards and all classification, fidelity and editorial completion gates.
 
-Read evidence-policy.md, AGENTS.md, workflow.md, workspace.json, analysis/progress.md,
+Read evidence-policy.md, workflow.md, workspace.json, analysis/progress.md,
 analysis/investigation.md, analysis/toolkit-issues.md and analysis/leads.json.
 Run exactly one disassembly pass. Restore analysis/state.json if present; preserve
 existing classifications. Establish the verified baseline only if absent.

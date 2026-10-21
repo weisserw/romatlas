@@ -3,6 +3,8 @@
 pub mod assets;
 pub mod audio;
 pub mod browser;
+#[cfg(not(target_arch = "wasm32"))]
+pub mod debug;
 #[cfg(feature = "desktop")]
 pub mod desktop;
 pub mod gb;

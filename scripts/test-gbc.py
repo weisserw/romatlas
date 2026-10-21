@@ -265,7 +265,7 @@ SECTION "Retain bank three", ROMX[$7fff], BANK[3]
     assert cli("run", rom, "--operations", 1)["model"] == "cgb"
     analysis = work / "analysis"
     run("python3", ROOT / "scripts/disassemble.py", rom, "--workspace", analysis, "--json")
-    assert "docs/gbc.md" in (analysis / "AGENTS.md").read_text()
+    assert "docs/gbc.md" in (analysis / "workflow.md").read_text()
     cli("store", "init", analysis / "input/game.rom", "--output", analysis / "analysis/state.json")
     cli("store", "annotate", analysis / "input/game.rom", "--store", analysis / "analysis/state.json", "--offset", 256, "--length", 3, "--kind", "code")
     cli("store", "export", analysis / "input/game.rom", "--store", analysis / "analysis/state.json", "--output", analysis / "maps/current.sym")

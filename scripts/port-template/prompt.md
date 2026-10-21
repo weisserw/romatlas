@@ -1,6 +1,6 @@
 # Implement the entire game as a maintainable best-effort native port
 
-Read AGENTS.md, goal.md, workflow.md, uncertainties.json and
+Read workflow.md, uncertainties.json and
 prompts/reference-updates.md. Use reference/reading.asm and relevant archive
 documents while surveying and implementing the source; reading the entire source
 before starting is not required.

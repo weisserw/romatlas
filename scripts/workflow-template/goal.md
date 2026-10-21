@@ -1,6 +1,6 @@
 # Iterative disassembly, commentary and redirect
 
-Read evidence-policy.md, AGENTS.md and workflow.md. Act as a small coordinator: launch a separate
+Read evidence-policy.md and workflow.md. Act as a small coordinator: launch a separate
 worker context for each phase, sequentially, with only its phase prompt, checkpoint
 and compact handoff. Do not feed all phase prompts or the entire investigation
 history into every worker. Workers retrieve relevant durable evidence as needed.

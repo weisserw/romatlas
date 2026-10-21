@@ -50,7 +50,7 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
     assert meta["sha256"] == identity
     assert (work / "input/game.rom").read_bytes() == data
     assert (workroot / "Game two/input/game.rom").read_bytes() == data
-    assert "Do not stop after a raw-byte baseline" in (work / "AGENTS.md").read_text()
+    assert "A raw-byte baseline is not a" in (work / "workflow.md").read_text()
     assert Path(records[0]["goal_prompt"]).is_file()
     assert [Path(p).name for p in records[0]["prompts"]] == [
         "disassembly.txt", "commentary.txt", "redirect.txt"]
@@ -73,7 +73,7 @@ with tempfile.TemporaryDirectory(prefix="romatlas-workspaces-") as temporary:
             "prompts/commentary.txt", "prompts/redirect.txt"]},
     }, dict(size=len(data), sha256=identity))
     assert profiled["evidence-policy.md"] == evidence
-    for name in ["AGENTS.md", "workflow.md", "goal.md", "prompts/disassembly.txt",
+    for name in ["workflow.md", "goal.md", "prompts/disassembly.txt",
                  "prompts/commentary.txt", "prompts/redirect.txt"]:
         assert "evidence-policy.md" in (work / name).read_text(), name
         assert "evidence-policy.md" in profiled[name], name
