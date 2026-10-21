@@ -1,17 +1,17 @@
 # ROMAtlas
 
-This project contains tools, libraries and prompts for custom AI agents which can decompile and recompile games from second-generation cartridge-based consoles. The main implementation language
-is Rust, with some scripts written in Python. The overall goal is to enable users to go from a ROM file to a finished port in modern Rust code.
+This project contains tools, libraries and prompts for custom AI agents which can decompile and recompile games from 8- and 16-bit cartridge-based consoles. The main implementation language
+is Rust, with some scripts written in Python. The overall goal is to enable users to go from a ROM file to a finished port in modern Rust code with little intervention.
 
 The current consoles supported are:
 
-* Game Boy
+* Game Boy / Game Boy Color
 * NES
 * SNES
 * Game Gear
 * Master System
 * Genesis
-* TurboGrafx-16
+* TurboGrafx-16 / PC Engine (HuCard)
 
 The current build targets for Rust ports are:
 
@@ -36,7 +36,7 @@ packed code and data together in ways which are difficult to reverse engineer.
 
 Once successfully disassembled, an assembly-based game can be easily modified by an agent in place ("rom hacking"), or can be read and understood to find, e.g., cheats, easter eggs, or glitches for speed running. But recompiling such a game as a straight assembly language translation will always have the disadvantage that assembly is not a very good platform in terms of maintainability or flexibility. Fixing bugs and adding enhancements and new features will be difficult as long as the game remains in its original form.
 
-That's why this project takes an unusual step: once a game is disasssembled, we recompile it not to an assembly language equivalent, but to a modern, high-level language (Rust). While this will inevitably lose some fidelity compared to the original, it means that these games which would otherwise remain ossified forever can now be given new life in surprising and interesting ways, because their code is now truly platform-independant, easy to reason about and easy to extend and modify.
+That's why this project takes an unusual step: once a game is disassembled, we recompile it not to an assembly language equivalent, but to a modern, high-level language (Rust). While this will inevitably lose some fidelity compared to the original, it means that these games which would otherwise remain ossified forever can now be given new life in surprising and interesting ways, because their code is now truly platform-independent, easy to reason about and easy to extend and modify.
 
 At least, that's the theory. This project is still in heavy development and should be regarded partially as an experiment. That said, we've already gotten quite a few ports working as part of our testing, and more will continue to be added. Hopefully, in time, the feasibility of porting early Nintendo, Sega and similar platform's games to Rust will be proven out.
 
@@ -50,7 +50,7 @@ lower tier / last generation models will produce poor output and end up wasting 
 
 ### Decompiling / Disassembling a ROM
 
-Before a ROM can be recompiled, it needs to be disassembled. For this proccess, ROMAtlas runs three subagents in sequence:
+Before a ROM can be recompiled, it needs to be disassembled. For this process, ROMAtlas runs three subagents in sequence:
 
 * A disassemble agent plays the game in the debugger and tries to determine based on accessed regions of memory which parts of the ROM file are code and which are data. It writes these mappings
 to a file that a disassembler can use to produce an uncommented source listing for the game.
@@ -63,7 +63,7 @@ This process continues until the goal reaches a "BLOCKED" state (no more leads) 
 
 To start the process, build the Rust code (see "Setup" below), then run this command:
 
-`python3 scripts/disassembly.py <rom>`
+`python3 scripts/disassemble.py <rom>`
 
 Or ask an agent to do it for you. This creates a working directory under the root (the default root is the current directory) with the rom file and a set of prompts / scaffolding in it. Open a
 new instance of your agent in that directory and type:
@@ -80,13 +80,13 @@ Archiving a game copies its disassembly artifacts into the `atlas/` directory wh
 
 ### Porting
 
-The `scripts/port.py` script initializes a workspace for porting an archived game (or just tell your agent, "initialize the port for X"). By default it creates a directory named `rom-ports/<romfile>`. Inside this directory, run an agent and type `/goal Read goal.md` to begin the porting process to Rust.
+The `scripts/port.py` script initializes a workspace for porting an archived game (or just tell your agent, "initialize the port for X"). Specify the output directory with `python3 scripts/port.py prepare /path/to/archive --rom /path/to/game.gb --out /path/to/rom-ports/game`. Inside this directory, run an agent and type `/goal Read goal.md` to begin the porting process to Rust.
 
 ### Debugging
 
-The porting goal does minimal checking of its own work; it is concerned mainly with reproducing the original game logic. Once a port is complete, it needs to be tested and compared with the original game to find defects. To do this, run `/goal debug/goal.md` in the port directory. The porting agent is instructed to include headless / scripted interaction in the port's feature set so that the agent can play the game and compare the result to the emulated copy using the toolkit's built-in emulator.
+The porting goal checks its work with focused unit tests, build checks and a bounded startup/first-area smoke test; it is concerned mainly with reproducing the original game logic. Once a port is complete, it needs to be tested and compared with the original game to find defects. To do this, run `/goal Read debug/goal.md` in the port directory. The porting agent is instructed to include headless / scripted interaction in the port's feature set so that the agent can play the game and compare the result to the emulated copy using the toolkit's built-in emulator.
 
-Debugging works by first generating a test plan unique to the game, then running through the entire test plan twice and fixing all issues found. Additional debugging cycles may be neccessary for large and complex games.
+Debugging works by first generating a test plan unique to the game, then running through the entire test plan twice and fixing all issues found. Repairs continue within the current pass without restarting completed work; incomplete runs resume from their recorded position.
 
 ### Running a Port in The Browser
 
@@ -94,11 +94,11 @@ Run:
 
 `python3 run.py web`
 
-To run a local web server on port 8000 which hosts the WebAsssembly build of the port. You must press the "Start" button on the web site to initialize sound and input before you can begin playing.
+To run a local web server on port 8000 which hosts the WebAssembly build of the port. You must press the "Start" button on the web site to initialize sound and input before you can begin playing.
 
 ### Caveats / Issues
 
-A persistent issue with goal-based workflows in today's AI agents is their tendency to "go down rabbit holes" or run forever in loops if they can't solve a problem. The prompts in this repository have been engineered to attempt to avoid this behavior as much as possible, but they also do not run under any "budget" by default. Users should periodically check on the processes or instruct their agents to operate under a time or token budget if neccessary.
+A persistent issue with goal-based workflows in today's AI agents is their tendency to "go down rabbit holes" or run forever in loops if they can't solve a problem. The prompts in this repository have been engineered to attempt to avoid this behavior as much as possible, but they also do not run under any "budget" by default. Users should periodically check on the processes or instruct their agents to operate under a time or token budget if necessary.
 
 Some 8- and 16-bit era games were simple and some were not. Because testing on large games is time consuming and expensive, this project is likely to have trouble with the most complex games for the time being, but work is ongoing.
 
@@ -109,7 +109,15 @@ All the rest of the information below is automatically generated and meant for A
 
 ## Setup
 
-On a new Ubuntu/Debian VM, run `bash scripts/setup.sh` as your normal user with sudo access (running directly as root is also supported). Then add `$HOME/.cargo/bin` to PATH. The script installs Rust 1.90.0, pinned mgbdis, RGBDS 0.9.4, SDL2 development libraries, the Wasm target and pinned wasm-bindgen tooling for ports. Only system package installation and RGBDS installation use sudo; Rust and local builds stay under the invoking user. Do not wrap the whole script in sudo when using an existing user Rust installation.
+On a new Ubuntu/Debian VM, run `bash scripts/setup.sh` as your normal user with sudo
+access (running directly as root is also supported). Then add `$HOME/.cargo/bin` to
+PATH. The script installs Rust 1.90.0, pinned mgbdis, RGBDS 0.9.4, the other supported
+platforms’ assembler tools, SDL2 development libraries, the Wasm target and pinned
+wasm-bindgen tooling for ports. Only system package installation and RGBDS installation
+use sudo; Rust and local builds stay under the invoking user. Do not wrap the whole
+script in sudo when using an existing user Rust installation.
+
+The following CLI example is for Game Boy / Game Boy Color:
 
 ```sh
 cargo build --locked --release
@@ -121,11 +129,27 @@ cargo build --locked --release
 ./target/release/romatlas verify game.gb --generated build/game
 ```
 
+Game Boy / Color uses stock mgbdis-compatible `.sym` maps and RGBDS. All other supported
+platforms use ROM-free JSON maps with platform-specific backends:
+
+| Platform | Map | Reconstruction tools |
+|---|---|---|
+| [Game Boy / Color](docs/sym.md) | `.sym` | mgbdis / RGBDS |
+| [NES](docs/nes.md) | JSON | ca65 / ld65 |
+| [SNES](docs/snes.md) | JSON | Asar |
+| [Master System](docs/sms.md), [Game Gear](docs/gg.md) | JSON | DeZ80 / WLA-DX |
+| [Genesis / Mega Drive](docs/genesis.md) | JSON | GNU 68000 binutils + DeZ80 / WLA-DX |
+| [PC Engine](docs/pce.md) | JSON | ca65 / ld65 |
+
+Workspace scripts select the platform from the ROM extension or `--platform`. See each
+platform guide for direct CLI commands and supported hardware limits.
+
 Use a new output folder for each generation. Maps contain labels and region directives, never ROM bytes. Initial maps mark every bank as raw data for lossless output; this does not claim that unexecuted bytes are data. Source and assets stay local and are not shareable map files.
 
-Checks: `cargo fmt --check`, `cargo clippy --workspace --all-targets -- -D warnings`, `cargo test --locked`, `python3 scripts/test-portability.py`.
+For toolkit checks, see the [development guide](docs/development.md).
 
-See [progress](docs/progress.md), [architecture and limits](docs/architecture.md), and [map syntax](docs/sym.md).
+See [progress](docs/progress.md), [architecture and limits](docs/architecture.md), and
+[Game Boy map syntax](docs/sym.md).
 
 ## Agent disassembly workspaces
 
@@ -145,16 +169,16 @@ python3 run.py baseline
 Run your agent from the game workspace and ask it to read `goal.md`. The generated
 `prompts/disassembly.txt`, `commentary.txt` and `redirect.txt` define the three phases.
 Disassembly drives normal gameplay scenarios while they yield substantial gains,
-alongside static discovery and lead verification, then stops incomplete when no
-obvious substantial gain remains. Commentary incrementally interprets changed material and affected dependencies,
-preserving valid prior review credit and using readable provisional names. It hands
-off useful findings without waiting for full-ROM editorial review; redirect continues
-structural investigation and develops new leads. Separate sequential phase workers
-exchange compact durable handoffs.
-Structural classification and reachability are separate claims throughout every
-pass. Independent static evidence can establish roles and exact boundaries without
-a live caller or gameplay route; natural use remains explicitly unresolved. Caller
-tracing is useful evidence, rather than a universal classification prerequisite.
+alongside static discovery and lead verification, then stops incomplete when no obvious
+substantial gain remains. Every commentary invocation brings all currently classified
+source up to the naming/comment standard, including older gaps, while preserving sound
+prior work. It hands off useful findings without waiting for full-ROM editorial review;
+redirect continues structural investigation and develops new leads. Separate sequential
+phase workers exchange compact durable handoffs. Structural classification and
+reachability are separate claims throughout every pass. Independent static evidence can
+establish roles and exact boundaries without a live caller or gameplay route; natural
+use remains explicitly unresolved. Caller tracing is useful evidence, rather than a
+universal classification prerequisite.
 
 Investigation belongs to redirect at every classification percentage, with no
 separate final-investigation phase or percentage threshold. It examines remaining
@@ -188,14 +212,16 @@ Batch initialization stops on the first error; earlier successful workspaces
 remain available. Resolve the error and rerun only the remaining ROMs.
 
 The agent uses `python3 run.py serve` for persistent JSON-RPC. After saving
-`analysis/state.json` and exporting `maps/current.sym`, run
-`python3 run.py checkpoint pass-001` to save the exact map used, generate assembly,
-and record byte-identical verification. Choose a new checkpoint name each time.
-Failed checkpoints may retain their map or generated source for inspection; use
-a new name for the next attempt. Baseline is raw-byte output and does not complete
-classification. All ROMs, traces, internal state, generated source and extracted
-assets stay local; `.gitignore` ignores the entire workspace. Only exported stock
-maps are intended for sharing. Test with `python3 scripts/test-disassemble.py`.
+`analysis/state.json` and exporting the current portable map (`maps/current.sym` for
+Game Boy/Color, `maps/current.json` otherwise), run `python3 run.py checkpoint pass-001`
+to save the exact map used, generate assembly, and record byte-identical verification.
+Choose a new checkpoint name each time. Failed checkpoints may retain their map or
+generated source for inspection; use a new name for the next attempt. Baseline is
+raw-byte output and does not complete classification. All ROMs, traces, internal state,
+generated source and extracted assets stay local; `.gitignore` ignores the entire
+workspace. Only ROM-free mapping metadata is intended for sharing; reviewed archives
+also preserve editorial metadata without distributing source or assets. Test with
+`python3 scripts/test-disassemble.py`.
 
 ## Native port workspaces
 
@@ -238,22 +264,24 @@ are not supported. New-workspace audits lint/build Wasm alongside desktop.
 Existing workspaces are not migrated. See the [browser and save guide](docs/porting.md#browser-ports-and-battery-saves)
 for setup, storage, limits and the synthetic Chromium regression.
 
-Original assets must load from the ROM at startup and stay out of distributions.
-The agent first writes a source-informed architecture plan, then implements the
-whole game as maintainable best-effort Rust. Focused unit tests and required
-format/static/build checks establish implementation checks. Runtime fidelity
-validation is outside the porting goal; debugger use answers bounded source
-questions only. Document implemented assumptions, finish behavior accounting and
-the handoff, run the administrative audit and stop. Fidelity auditing requires a
-separate request; automated audit cannot assess gameplay fidelity. Release
-packaging and library publication/pinning are later work. See [porting guide](docs/porting.md)
-and [agreed design](docs/port-workflow-design.md). Test with `python3 scripts/test-port.py`.
+Original assets must load from the ROM at startup and stay out of distributions. The
+agent first writes a source-informed architecture plan, then implements the whole game
+as maintainable best-effort Rust. Focused unit tests and required format/static/build
+checks establish implementation checks. A device-free startup/first-area smoke test is
+required; results go in `checks/smoke-test.md`. Broader fidelity validation is a
+separately invoked workflow. Debugger use supports the smoke test and bounded source
+questions. Document implemented assumptions, finish behavior accounting and the handoff,
+run the administrative audit and stop. Broader fidelity auditing requires a separate
+request; automated audit cannot assess gameplay fidelity. Release packaging and library
+publication/pinning are later work. See [porting guide](docs/porting.md) and [agreed
+design](docs/port-workflow-design.md). Test with `python3 scripts/test-port.py`.
 
 ## Internal analysis store
 
-Export `.sym` for stock-tool portability. Final analysis metadata can also be
-preserved by the reviewed-result archive workflow below. Offsets and lengths
-below use decimal physical ROM offsets.
+For Game Boy/Color, export `.sym` for stock-tool portability. Other platforms export
+their platform-specific JSON maps. The examples below use Game Boy. Final analysis
+metadata can also be preserved by the reviewed-result archive workflow below. Offsets
+and lengths below use decimal physical ROM offsets.
 
 ```sh
 ./target/release/romatlas store init game.gb --output analysis.json
@@ -265,7 +293,7 @@ below use decimal physical ROM offsets.
 
 Use `--id N` on annotate to edit a region. Use `store remove analysis.json --id N` to remove it. Region kinds: code, data, text, padding, image, unknown. Provenance: manual, static, observed. User-supplied provenance is an assertion; it is not proof of execution. Export fills gaps with lossless raw data and creates stable labels for code starts. The store keeps those gaps unknown. Failed edits leave the file unchanged.
 
-## Headless execution
+## Game Boy / Color headless execution
 
 ```sh
 ./target/release/romatlas run game.gb --operations 10000 --timeout-ms 1000
@@ -291,8 +319,9 @@ The final requirement review is in [docs/completion-audit.md](docs/completion-au
 
 ## Archive and restore reviewed commentary
 
-After the two-phase workflow in [INSTRUCTIONS.md](INSTRUCTIONS.md), retain final
-maps, commentary metadata, reviews and documents in `atlas/<platform>/<game>/<sha256>/`:
+After the disassembly/commentary workflow in [INSTRUCTIONS.md](INSTRUCTIONS.md), retain
+final maps, commentary metadata, reviews and documents in
+`atlas/<platform>/<game>/<sha256>/`:
 
 ```sh
 python3 scripts/archive.py archive /root/rom-work/game --name game
@@ -300,14 +329,15 @@ python3 scripts/archive.py restore atlas/gb/game/FULL_ROM_SHA256 --rom /path/to/
 ```
 
 Archiving supports incomplete worktrees and records whether editorial review is
-complete. It still requires a valid map and a verified, byte-identical source
-rebuild. It saves comments and symbol edits separately from `.sym`; it excludes
-assembly, ROMs, extracted assets, scratch evidence and the toolkit-issues report. Restoration checks the
-original ROM and reconstructs the exact final source in `source/`, plus a
-`reading-after.asm`, with pinned tools. Existing archives are replaced only after
-successful reconstruction; failures preserve the previous archive. Restore output
-must be new and outside the repository. See steps 6–7 for artifact selection and
-options. Test with `python3 scripts/test-archive.py`.
+complete. It still requires a valid map and a verified, byte-identical source rebuild.
+It saves comments and symbol edits separately from the portable map; it excludes
+assembly, ROMs, extracted assets, scratch evidence and the toolkit-issues report.
+Restoration checks the original ROM and reconstructs the exact final source in
+`source/`, plus a `reading-after.asm`, with pinned tools. Existing archives are replaced
+only after successful reconstruction; failures preserve the previous archive. Restore
+output must be new and outside the repository. See [INSTRUCTIONS.md, steps
+6–7](INSTRUCTIONS.md#6-archive-the-reviewed-result) for artifact selection and options.
+Test with `python3 scripts/test-archive.py`.
 
 ## SNES
 

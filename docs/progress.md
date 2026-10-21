@@ -1919,3 +1919,28 @@ Updated Rygar goal/guide/acceptance and deployment hashes; prepended a handoff
 correction explicitly resuming attempt-008 without restarting. Previous policy
 text is retained in a small local backup; plan.json and qa.json were verified
 byte-for-byte unchanged. Other game workspaces were not migrated.
+
+## 2026-10-21 — Refresh README and workflow instructions
+
+Reviewed README.md and INSTRUCTIONS.md against setup, workspace generators,
+commentary/archive scripts and the current native implementation/QA contracts.
+Scoped stock mgbdis .sym/RGBDS to Game Boy/Color; documented other platforms'
+ROM-free JSON maps, current.json workspace paths and reconstruction backends.
+Fixed the disassembly script name, explicit port preparation output, provider-neutral
+start/resume wording, platform/archive paths and setup coverage. Updated commentary
+to require all currently classified source readability, documented incomplete archive
+support, required startup/first-area smoke testing, Wasm checks and preinstalled,
+separately invoked continuous two-pass QA. Removed stale model recommendations,
+corrected console-era wording and typos, and wrapped prose for readability.
+Preserved the preexisting README goal wording about little intervention.
+
+Validation: all 43 local Markdown file links and anchors in the two documents
+resolve; documented command names/options and map paths were checked against their
+owning scripts; git diff --check passes. Documentation only: no builds, runtime
+tests, game execution, workspace migration or QA were performed.
+
+README follow-up: restored the author's handwritten wording, personal agent/model
+recommendations and original paragraph layout after the cleanup changed too much
+of its voice. Retained targeted factual/command corrections and spelling fixes;
+removed incidental rewrapping of unchanged README paragraphs. Whitespace check
+passes; no executable changes or runtime tests.
