@@ -177,6 +177,23 @@ pub fn run(
     settings_path: &Path,
     defaults: Settings,
 ) -> Result<()> {
+    run_with_save(game, title, size, rate, settings_path, defaults, None)
+}
+
+/// Battery-enabled frontend; failures are returned visibly to the caller.
+#[allow(clippy::too_many_arguments)]
+pub fn run_with_save(
+    game: &mut impl Game,
+    title: &str,
+    size: (u32, u32),
+    rate: TickRate,
+    settings_path: &Path,
+    defaults: Settings,
+    battery: Option<(&str, &Path)>,
+) -> Result<()> {
+    if let Some((identity, path)) = battery {
+        crate::saves::load(game, identity, path)?;
+    }
     defaults.validate()?;
     let mut settings = if settings_path.try_exists()? {
         Settings::load(settings_path)?
@@ -425,6 +442,9 @@ pub fn run(
                 }
             }
         }
+        if let Some((identity, path)) = battery {
+            crate::saves::flush(game, identity, path)?;
+        }
         canvas.set_draw_color(sdl2::pixels::Color::RGB(0, 0, 0));
         canvas.clear();
         let output = sdl(canvas.output_size())?;
@@ -445,6 +465,9 @@ pub fn run(
         std::thread::sleep(Duration::from_millis(1));
     }
     settings.save(settings_path)?;
+    if let Some((identity, path)) = battery {
+        crate::saves::flush(game, identity, path)?;
+    }
     Ok(())
 }
 

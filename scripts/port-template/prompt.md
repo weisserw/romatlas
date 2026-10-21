@@ -159,3 +159,22 @@ authorized. Release packaging and immutable dependency pinning are later work;
 Cargo.lock does not freeze a local path dependency. If actual required code cannot
 be implemented, preserve work and report the concrete blocker; do not mark absent
 behavior implemented. Fidelity uncertainty alone does not make the port incomplete.
+
+## Desktop and browser contract
+
+Future ports must build for both desktop SDL2 and browser Wasm. Keep game rules,
+ROM-backed startup extraction (`Port::load_assets`), decoded defaults, asset
+validation and battery-save representation shared. Use the generic Game API;
+frontends translate input, rendering, audio and persistence automatically. Do not
+introduce browser/SDL branches into game rules. Keep dimensions, TickRate and settings defaults in shared config.rs when replacing
+the scaffold; both entrypoints use that configuration automatically. Use MemoryAssets::collection for fetched or filesystem overrides;
+load only game-owned manifests on desktop. Never embed original ROM data.
+
+If the original supported battery saves, implement optional Game save hooks with
+versioned persistent data, transactional validation and dirty/acknowledgement.
+The desktop frontend loads/stores ROM-bound files; browser localStorage uses the
+same envelope. No full runtime save states are required or supported. Explain
+original saving behavior and save format in the port documentation. No-battery
+originals keep the default hooks. Run check/audit including Wasm compilation;
+no per-game browser/device/fidelity audit is added to this implementation goal.
+Document `python3 run.py web` in BUILDING.md. Existing ports are not migrated.

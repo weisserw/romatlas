@@ -23,4 +23,5 @@ bash scripts/setup-nes.sh
 bash scripts/setup-sms.sh
 bash scripts/setup-genesis.sh
 bash scripts/setup-pce.sh
+bash scripts/setup-web.sh
 cargo build --locked --release

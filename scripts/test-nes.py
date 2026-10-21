@@ -98,7 +98,7 @@ def main():
  with tempfile.TemporaryDirectory(prefix='romatlas-nes-workflow-') as temporary:
   work=pathlib.Path(temporary);rom=work/'synthetic.nes';rom.write_bytes(fixture()[0])
   def script(name,*args,ok=True):
-   result=subprocess.run(['python3',str(ROOT/'scripts'/name),*map(str,args)],capture_output=True,text=True,timeout=300)
+   result=subprocess.run(['python3',str(ROOT/'scripts'/name),*map(str,args)],capture_output=True,text=True,timeout=900 if name=="port.py" and args and args[0] in {"check","audit"} else 300)
    if ok:assert result.returncode==0,(name,result.stdout,result.stderr);return json.loads(result.stdout)
    assert result.returncode!=0;return None
   workspace=work/'workspace';script('disassemble.py',rom,'--workspace',workspace,'--json')

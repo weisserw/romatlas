@@ -1,9 +1,10 @@
 mod game;
+mod config;
+use config::ROM_SHA256;
 use anyhow::{Context, Result, bail};
 use romatlas_port::{assets::Rom, input::InputState};
 use std::path::PathBuf;
 
-const ROM_SHA256: &str = "__ROM_SHA256__";
 
 fn main() {
     if let Err(error) = run() {
@@ -33,7 +34,7 @@ fn run() -> Result<()> {
     let rom = Rom::open(&rom.context("supply your matching ROM with --rom")?,ROM_SHA256)?;
     let mut port = game::Port::load(&rom,assets.as_deref())?;
     if let Some(frames) = frames {
-        let frame = romatlas_port::headless(&mut port,frames,|_| InputState::default(),(160,144))?;
+        let frame = romatlas_port::headless(&mut port,frames,|_| InputState::default(),config::SIZE)?;
         println!("{}",serde_json::json!({"ok":true,"scaffold":true,"frames":frames,"width":frame.width,"height":frame.height}));
         return Ok(());
     }
@@ -43,8 +44,9 @@ fn run() -> Result<()> {
             Some(path) => path,
             None => romatlas_port::settings::default_path("__GAME_NAME__")?,
         };
-        romatlas_port::desktop::run(&mut port,"__GAME_NAME__ - PORT NOT IMPLEMENTED (F1 SETTINGS)",
-            (160,144),romatlas_port::timing::TickRate::DMG,&path,romatlas_port::settings::Settings::default())?;
+        let battery = path.with_file_name(format!("battery-{}.json", ROM_SHA256));
+        romatlas_port::desktop::run_with_save(&mut port,"__GAME_NAME__ - PORT NOT IMPLEMENTED (F1 SETTINGS)",
+            config::SIZE,config::RATE,&path,config::settings(),Some((ROM_SHA256,&battery)))?;
         Ok(())
     }
     #[cfg(not(feature = "desktop"))]

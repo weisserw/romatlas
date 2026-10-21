@@ -164,32 +164,36 @@ impl Settings {
     }
     pub fn save(&self, path: &Path) -> Result<()> {
         self.validate()?;
-        let parent = path
-            .parent()
-            .filter(|p| !p.as_os_str().is_empty())
-            .unwrap_or(Path::new("."));
-        fs::create_dir_all(parent)?;
-        static SERIAL: AtomicU64 = AtomicU64::new(0);
-        let temp = parent.join(format!(
-            ".romatlas-settings-{}-{}",
-            std::process::id(),
-            SERIAL.fetch_add(1, Ordering::Relaxed)
-        ));
-        let mut file = OpenOptions::new()
-            .write(true)
-            .create_new(true)
-            .open(&temp)?;
-        let result = (|| {
-            file.write_all(&serde_json::to_vec_pretty(self)?)?;
-            file.sync_all()?;
-            fs::rename(&temp, path).context("publish settings")?;
-            Ok(())
-        })();
-        if result.is_err() {
-            let _ = fs::remove_file(temp);
-        }
-        result
+        write_atomic(path, &serde_json::to_vec_pretty(self)?)
     }
+}
+
+pub(crate) fn write_atomic(path: &Path, bytes: &[u8]) -> Result<()> {
+    let parent = path
+        .parent()
+        .filter(|p| !p.as_os_str().is_empty())
+        .unwrap_or(Path::new("."));
+    fs::create_dir_all(parent)?;
+    static SERIAL: AtomicU64 = AtomicU64::new(0);
+    let temp = parent.join(format!(
+        ".romatlas-settings-{}-{}",
+        std::process::id(),
+        SERIAL.fetch_add(1, Ordering::Relaxed)
+    ));
+    let mut file = OpenOptions::new()
+        .write(true)
+        .create_new(true)
+        .open(&temp)?;
+    let result = (|| {
+        file.write_all(bytes)?;
+        file.sync_all()?;
+        fs::rename(&temp, path).context("publish settings")?;
+        Ok(())
+    })();
+    if result.is_err() {
+        let _ = fs::remove_file(temp);
+    }
+    result
 }
 
 #[derive(Clone, Copy)]

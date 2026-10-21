@@ -10,7 +10,8 @@ pub enum Binding {
     Button { name: String },
     Axis { name: String, direction: i8 },
 }
-#[derive(Debug, Clone, Default)]
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct PhysicalInput {
     pub keys: BTreeSet<String>,
     pub buttons: BTreeSet<String>,

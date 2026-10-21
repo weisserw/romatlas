@@ -1572,3 +1572,50 @@ implementation changed; existing configured release retained. Rygar archive now
 passes exact-source restoration and byte-identical rebuilding with editorial
 completion true (1873 regions, 1936 unit records), seven slice assets and no
 ROM/extracted binary/assembly files retained. Archive remains local and uncommitted.
+
+2026-10-21: Added browser/Wasm support for future native-port workspaces across
+all existing console profiles, preserving SDL2 desktop and the shared Game API.
+A shared config module supplies identity, dimensions, cadence and defaults to both
+entrypoints. Pinned wasm-bindgen 0.2.129 and Rust 1.90.0 produce single-threaded
+wasm32-unknown-unknown bundles; Python web-build/web commands build and serve on
+localhost with a configurable port. ROM backing remains server-local, fetched and
+hash-validated before shared in-memory extraction. Original ROM/assets are never
+copied into bundles. Fetched and filesystem overrides share collection validation,
+ordering and schemas; only referenced bounded files are served, with path/symlink
+escape rejection. New-workspace check/audit includes Wasm Clippy and release build;
+existing workspaces are not migrated or given new gates.
+
+The browser shell translates frames/audio/input into Canvas, Web Audio, keyboard
+and standard gamepads with four player slots, rebinding/assignment and persisted
+settings. Start enables audio; focus/visibility/menu/device boundaries clear queued
+audio, reset time debt and rearm held inputs. Optional versioned Game battery-save
+hooks persist original in-game progress through ROM-bound browser localStorage or
+atomic desktop files, with dirty acknowledgement only after successful writes.
+Malformed/foreign/version-mismatched saves are rejected; browser failures are
+visible. There are no save states or emulator/GPL dependencies in this runtime.
+Origin/browser/profile changes create separate localStorage namespaces. Firefox
+is an implementation target, not a browser-tested compatibility claim; mobile,
+WASI, public hosting and broad game-fidelity validation remain outside scope.
+
+Validation passes on Rust 1.90.0: locked release build; workspace format, release
+all-target Clippy with warnings denied and locked release tests; desktop-feature
+release Clippy/tests without devices; focused browser clock/input, fetched-asset
+validation and battery round-trip/rejection/failed-write tests; dependency boundary,
+Python compilation, JavaScript syntax and shell syntax/diff checks. Full port
+preparation, frozen-reference/accounting/audit, locked headless/desktop/Wasm builds
+and override regressions pass. The actual localhost Chromium regression passes
+scaffold compilation, ROM/override loading, RGBA output, tick/input progression,
+audio startup, rebinding/settings and battery reload, independent player gamepads,
+quota-failure recovery and the public run.py web command. Toolkit CI includes this
+synthetic regression; setup-web-tests.sh installs its separate pinned dependencies.
+Portability, session, disassembly, commentary, archive, CGB and NES regressions pass.
+Final SNES, SMS, Game Gear, Genesis and PC Engine regressions also pass, including
+new desktop/Wasm scaffold checks. Cold multi-target port checks have a bounded
+900-second integration-test budget (other script budgets and ROM generation/
+verification deadlines are unchanged); the first concurrent cold SNES build exceeded
+the previous 300-second harness budget, then passed with the corrected budget.
+Browser input tests hold controls until observed and explicitly test pending-save
+retry after simulated localStorage quota failure. Final browser and port suites pass.
+Only generated debug artifacts were cleared for disk space; generated fixtures,
+bundles and captures remain local. No commercial ROM or extracted original asset
+was downloaded or committed; no SDL window or physical audio device was started.

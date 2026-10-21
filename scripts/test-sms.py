@@ -28,7 +28,7 @@ def fixture(banks=4,prefix=False,codemasters=False):
  return (bytes(512)+data if prefix else bytes(data)),len(code)
 
 def script(name,*args,ok=True):
- p=subprocess.run(['python3',str(ROOT/'scripts'/name),*map(str,args)],capture_output=True,text=True,timeout=300)
+ p=subprocess.run(['python3',str(ROOT/'scripts'/name),*map(str,args)],capture_output=True,text=True,timeout=900 if name=="port.py" and args and args[0] in {"check","audit"} else 300)
  if ok:assert p.returncode==0,(name,p.stdout,p.stderr);return json.loads(p.stdout)
  assert p.returncode!=0,(name,p.stdout)
 

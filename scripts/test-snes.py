@@ -215,7 +215,7 @@ def reconstruction(work,rom,layout):
 
 def workflow(work, rom):
     def script(name,*args,ok=True):
-        r=subprocess.run(['python3',str(ROOT/'scripts'/name),*map(str,args)],capture_output=True,text=True,timeout=300)
+        r=subprocess.run(['python3',str(ROOT/'scripts'/name),*map(str,args)],capture_output=True,text=True,timeout=900 if name=="port.py" and args and args[0] in {"check","audit"} else 300)
         if ok and r.returncode: raise AssertionError(f'{name}: {r.stderr}')
         if not ok: assert r.returncode != 0;return
         return json.loads(r.stdout)
@@ -272,7 +272,7 @@ def workflow(work, rom):
     script('port.py','prepare',archive,'--rom',rom,'--out',port,'--json')
     assert 'snes::tile' in (port/'port/src/game.rs').read_text()
     assert 'gb::' not in (port/'port/src/game.rs').read_text()
-    assert 'SNES_NTSC' in (port/'port/src/main.rs').read_text()
+    assert 'SNES_NTSC' in (port/'port/src/config.rs').read_text()
     assert (port/'architecture.md').is_file()
     for path in ['goal.md','AGENTS.md','workflow.md','prompts/start.md']:
         text=(port/path).read_text()

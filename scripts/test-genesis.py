@@ -51,7 +51,7 @@ loop: addq.b #1,0xff0000
  return b,len(code),sound
 
 def script(name,*args,ok=True):
- p=subprocess.run(['python3',str(ROOT/'scripts'/name),*map(str,args)],capture_output=True,text=True,timeout=300)
+ p=subprocess.run(['python3',str(ROOT/'scripts'/name),*map(str,args)],capture_output=True,text=True,timeout=900 if name=="port.py" and args and args[0] in {"check","audit"} else 300)
  if (p.returncode==0)!=ok and name=="port.py" and len(args)>1:
   log=pathlib.Path(args[1])/"checks/latest.log"
   if log.is_file():print(log.read_text(),flush=True)
@@ -196,7 +196,7 @@ def main():
   archive=root/'archive';script('archive.py','archive',workspace,'--output',archive,'--name','synthetic-genesis');assert not list(archive.rglob('*.bin'))
   script('archive.py','restore',archive,'--rom',rom,'--out',root/'restored')
   port=root/'port';assert script('port.py','prepare',archive,'--rom',rom,'--out',port,'--json')['byte_identical_reference'];script('port.py','check',port);script('port.py','headless',port,'--frames',2)
-  assert 'GENESIS_NTSC' in (port/'port/src/main.rs').read_text();assert 'genesis::tile' in (port/'port/src/game.rs').read_text()
+  assert 'GENESIS_NTSC' in (port/'port/src/config.rs').read_text();assert 'genesis::tile' in (port/'port/src/game.rs').read_text()
   frozen=(port/'reference/source/game.asm').read_bytes();script('port.py','reference-init',port);working=port/'research/working';src=working/'source/game.asm';src.write_text('| Clarify the original synthetic reset.\n'+src.read_text());changes=json.loads((working/'changes.json').read_text());changes['changes']=[dict(id='genesis-reset-comment',kind='commentary',offset=512,length=2,before='Original reset note',after='Clarified reset entry',port_impact='Document initialization',evidence=['Original synthetic fixture'])];(working/'changes.json').write_text(json.dumps(changes));script('port.py','reference-verify',port,'--revision','genesis-reset');assert (port/'reference/source/game.asm').read_bytes()==frozen
  print('PASS Genesis: dual CPU/debugger/replay/maps/layout rebuilds/agent/archive/reference/native scaffold')
 if __name__=='__main__':main()

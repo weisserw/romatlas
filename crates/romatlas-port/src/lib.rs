@@ -2,6 +2,7 @@
 //! Platform modules reproduce selected effects; this is not a console emulator.
 pub mod assets;
 pub mod audio;
+pub mod browser;
 #[cfg(feature = "desktop")]
 pub mod desktop;
 pub mod gb;
@@ -9,6 +10,7 @@ pub mod gg;
 pub mod graphics;
 pub mod input;
 pub mod nes;
+pub mod saves;
 pub mod settings;
 pub mod sms;
 pub mod snes;
@@ -21,6 +23,22 @@ use input::{InputState, MultiInputState};
 /// A port owns its rules/state and can run identically with or without a window.
 pub trait Game {
     fn tick(&mut self, input: &InputState);
+    /// Original in-game battery persistence only, never a full runtime snapshot.
+    /// Increment the version when the game-owned persistent representation changes.
+    fn save_version(&self) -> Option<u32> {
+        None
+    }
+    fn load_save(&mut self, _bytes: &[u8]) -> Result<()> {
+        anyhow::bail!("this port does not support battery saves")
+    }
+    fn save_data(&self) -> Result<Vec<u8>> {
+        Ok(Vec::new())
+    }
+    /// Remains true until the frontend successfully stores and acknowledges data.
+    fn save_dirty(&self) -> bool {
+        false
+    }
+    fn save_acknowledged(&mut self) {}
     /// Advance with independent controller slots. Existing ports continue to
     /// receive the primary player's actions until they opt in to multiplayer.
     fn tick_players(&mut self, input: &MultiInputState) {

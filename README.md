@@ -4,7 +4,7 @@ Rust tools for ROM-free Game Boy, Sega Master System, NES and SNES mapping. The 
 
 ## Setup
 
-On a new Ubuntu/Debian VM, run `bash scripts/setup.sh` as your normal user with sudo access (running directly as root is also supported). Then add `$HOME/.cargo/bin` to PATH. The script installs Rust 1.90.0, pinned mgbdis, RGBDS 0.9.4 and SDL2 development libraries for native ports. Only system package installation and RGBDS installation use sudo; Rust and local builds stay under the invoking user. Do not wrap the whole script in sudo when using an existing user Rust installation.
+On a new Ubuntu/Debian VM, run `bash scripts/setup.sh` as your normal user with sudo access (running directly as root is also supported). Then add `$HOME/.cargo/bin` to PATH. The script installs Rust 1.90.0, pinned mgbdis, RGBDS 0.9.4, SDL2 development libraries, the Wasm target and pinned wasm-bindgen tooling for ports. Only system package installation and RGBDS installation use sudo; Rust and local builds stay under the invoking user. Do not wrap the whole script in sudo when using an existing user Rust installation.
 
 ```sh
 cargo build --locked --release
@@ -107,7 +107,7 @@ python3 run.py check
 Preparation restores and byte-verifies the commented reference source, creates a
 pending source-behavior ledger and demonstration scaffold, and writes `goal.md`
 with a separate library-review prompt. It does not port gameplay
-or launch an agent. Game Boy, SMS, NES and SNES archives have platform-selected scaffolds. Incomplete
+or launch an agent. Game Boy/Color, SMS, Game Gear, NES, SNES, Genesis and PC Engine archives have platform-selected scaffolds. Incomplete
 classification is accepted; relevant unknown behavior must be investigated.
 New workspaces seed `uncertainties.json` from unknown ranges and carry consumer,
 port-impact and validation assessments. The agent can correct a local reference
@@ -122,6 +122,16 @@ uncommitted, with a change log and an initial-file snapshot for separate review.
 Normal tests and headless execution need no display or audio device. On a desktop,
 `python3 run.py desktop` opens the game; F1 or the controller Guide button opens
 settings. Never run that command on the headless server.
+
+New workspaces also use the same Game API with a Canvas/Web Audio frontend:
+`python3 run.py web --port 8000` builds and serves the bundle on localhost.
+The server supplies the configured ROM and optional `--assets` overrides for
+identity-checked startup extraction; original assets are never bundled.
+Browser controls/settings persist locally. Original battery saves use optional
+shared game-owned hooks, with browser localStorage or desktop files; save states
+are not supported. New-workspace audits lint/build Wasm alongside desktop.
+Existing workspaces are not migrated. See the [browser and save guide](docs/porting.md#browser-ports-and-battery-saves)
+for setup, storage, limits and the synthetic Chromium regression.
 
 Original assets must load from the ROM at startup and stay out of distributions.
 The agent first writes a source-informed architecture plan, then implements the

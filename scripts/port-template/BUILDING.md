@@ -225,3 +225,36 @@ source ports later. Retain exact port/library source and lockfiles as their
 inputs. Bundling SDL/runtime dependencies, signing/notarization, immutable
 library pinning and clean-machine release testing are separate later work.
 These development instructions do not authorize publishing or distributing games.
+
+## Browser / WebAssembly
+
+For this future-workspace scaffold, game logic and ROM asset extraction are shared
+between SDL2 desktop and Canvas/Web Audio frontends. After toolkit setup:
+
+```sh
+python3 run.py web-build
+python3 run.py web --port 8000
+# Optional server-hosted replacement/additional assets:
+python3 run.py web --assets /path/to/assets --port 8000
+```
+
+Open the printed localhost URL and press Start for audio/gameplay. The configured
+ROM must remain on the server; it is fetched, identity-checked and decoded at
+startup, never embedded into the bundle. `web-dist/` contains generated Wasm,
+bindings and shell only. Original assets must stay ROM-backed. Keep generated
+files local. Existing workspaces are not upgraded automatically.
+
+Browser settings support keyboard/standard gamepad rebinding, four player device
+assignments, volume, scaling, dimensions and fullscreen. Settings and versioned
+battery saves use browser localStorage keyed by ROM hash; keep the same localhost
+port/browser/profile to retain them. Start resumes after focus/visibility/menu
+pauses. No touch/mobile or save-state support is provided. Current desktop
+Chromium is tested; Firefox uses the same browser APIs but requires separate
+compatibility confirmation. Builds are single-threaded and require no cross-origin
+isolation. See the toolkit's docs/porting.md for the save contract and test setup.
+
+Implement originally supported battery saving through the optional shared Game
+hooks. Desktop saves live next to settings in a ROM-hash-named JSON file. The game
+validates payloads and owns save-format versions; frontends store and acknowledge
+only successful writes. New port check/audit requires locked Wasm compilation;
+the toolkit's synthetic browser smoke test is separate from game fidelity work.

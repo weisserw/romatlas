@@ -14,6 +14,7 @@ import tempfile
 import archive as archived
 import commentary as phase
 import port_research
+import port_web
 
 ROOT = phase.ROOT
 TEMPLATES = ROOT / "scripts/port-template"
@@ -25,7 +26,7 @@ GOAL = ("Port this entire archived game into maintainable best-effort native Rus
         "and port impact; implement reasonable source-informed assumptions and document them. "
         "Preserve the frozen reference and original ledger identities. Replace the scaffold "
         "and implement/account for the whole game, including ROM-backed startup assets, "
-        "replacements/added slots and player settings. Validate native logic with focused unit "
+        "replacements/added slots, player settings, desktop/browser frontends and original battery saves where present. Validate native logic with focused unit "
         "tests and required format/static/build checks. Runtime fidelity validation is outside "
         "this porting goal: no native-versus-ROM frame/audio/state/scenario comparisons. "
         "Use the debugger only for a specific unresolved source question with a bounded "
@@ -158,12 +159,13 @@ def prepare(archive, rom, output, binary):
         before = snapshot(stage / "review/toolkit-before")
         phase.write_json(stage / "review/toolkit-before.json", before)
         cargo = (f"[package]\nname = {json.dumps(name + '-port')}\nversion = \"0.1.0\"\nedition = \"2024\"\nrust-version = \"1.90\"\n\n"
-                 "[workspace]\n\n[features]\ndefault = []\ndesktop = [\"romatlas-port/desktop\"]\n\n[dependencies]\n"
+                 "[workspace]\n\n[features]\ndefault = []\ndesktop = [\"romatlas-port/desktop\"]\nweb = [\"dep:wasm-bindgen\"]\n\n[lib]\ncrate-type = [\"cdylib\", \"rlib\"]\n\n[dependencies]\n"
                  f"romatlas-port = {{ path = {json.dumps(str(ROOT / 'crates/romatlas-port'))} }}\n"
-                 "anyhow = \"1.0\"\nserde_json = \"1.0\"\n")
+                 "anyhow = \"1.0\"\nserde_json = \"1.0\"\nwasm-bindgen = { version = \"=0.2.129\", optional = true }\n")
         (stage / "port/Cargo.toml").write_text(cargo)
-        (stage / "port/rust-toolchain.toml").write_text('[toolchain]\nchannel = "1.90.0"\nprofile = "minimal"\ncomponents = ["rustfmt", "clippy"]\n')
-        for filename in ["main.rs", "game.rs"]:
+        (stage / "port/web-enabled").write_text("1\n")
+        (stage / "port/rust-toolchain.toml").write_text('[toolchain]\nchannel = "1.90.0"\nprofile = "minimal"\ncomponents = ["rustfmt", "clippy"]\ntargets = ["wasm32-unknown-unknown"]\n')
+        for filename in ["main.rs", "game.rs", "lib.rs", "config.rs"]:
             text = (TEMPLATES / filename).read_text().replace("__ROM_SHA256__", manifest["rom_sha256"]).replace("__GAME_NAME__", name)
             if manifest["platform"] == "snes":
                 if filename == "game.rs":
@@ -192,14 +194,14 @@ def prepare(archive, rom, output, binary):
                     text = text.replace("length: 16", "length: 32").replace("bytes.len() == 16", "bytes.len() == 32").replace("16-byte Game Boy 2bpp", "32-byte PC Engine planar 4bpp")
                     text = text.replace(", gb,", ", pce,").replace("gb::tile_2bpp(", "pce::tile(")
                     text = text.replace("gb::GRAYSCALE", "std::array::from_fn::<_,16,_>(|i| pce::color((i as u16)*0x24, false))").replace(",76,68,", ",124,108,")
-                if filename == "main.rs":
+                if filename in {"main.rs", "lib.rs", "config.rs"}:
                     text = text.replace("(160,144)", "(256,240)").replace("TickRate::DMG", "TickRate::PCE_NTSC").replace("romatlas_port::settings::Settings::default()", "romatlas_port::pce::default_settings()")
             if manifest["platform"] == "genesis":
                 if filename == "game.rs":
                     text = text.replace("length: 16", "length: 32").replace("bytes.len() == 16", "bytes.len() == 32").replace("16-byte Game Boy 2bpp", "32-byte Genesis packed 4bpp")
                     text = text.replace(", gb,", ", genesis,").replace("gb::tile_2bpp(", "genesis::tile(")
                     text = text.replace("gb::GRAYSCALE", "std::array::from_fn::<_,16,_>(|i| genesis::color((i as u16)*0x222, genesis::Brightness::Normal))").replace(",76,68,", ",156,108,")
-                if filename == "main.rs":
+                if filename in {"main.rs", "lib.rs", "config.rs"}:
                     text = text.replace("(160,144)", "(320,224)").replace("TickRate::DMG", "TickRate::GENESIS_NTSC").replace("romatlas_port::settings::Settings::default()", "romatlas_port::genesis::default_settings()")
             if manifest["platform"] == "gg":
                 if filename == "game.rs":
@@ -260,6 +262,8 @@ frozen baseline and original ledger identities. Implement/log shared-library edi
 toolkit, uncommitted. Do not overwrite pre-existing changes. Never download or
 commit commercial ROMs or extracted assets. Keep generated material local.
 Use Rust 1.90.0 and Cargo.lock. Do not launch desktop graphics on this server.
+Use shared Game APIs for desktop/browser rendering, audio, controls and original
+battery saves. Keep identity, dimensions, cadence and defaults in config.rs.
 Run python3 run.py check; run python3 run.py audit only after finishing the ledger.
 No agent launch, check-in or publication is authorized by this workspace.
 """)
@@ -284,7 +288,7 @@ The arbitrary-tile scaffold implements no gameplay.
    for an implemented interpretation does not. ROM-backed data may remain
    structurally uncertain; preserving code bytes does not implement behavior.
 4. Validate intended native logic with focused unit tests. Run python3 run.py check
-   for formatting, clippy, tests and desktop compilation. Recheck only after a
+   for formatting, clippy, tests and desktop/Wasm compilation. Recheck only after a
    relevant change, failure or concrete new defect. Document actual check results.
 5. Finish accounting, assessed uncertainties, a coherent architecture and handoff
    (README.md, BUILDING.md, progress.md, differences.md, library-changes.md).
@@ -359,6 +363,9 @@ transfer instructions. Adapt that guide for the finished port and tested facts.
 The implementation goal uses focused unit tests and build/static checks. Runtime
 fidelity/device auditing is separate later work. On a desktop with SDL2 installed,
 `python3 run.py desktop` opens the window; F1 opens saved player settings.
+`python3 run.py web` builds and serves the browser frontend on localhost.
+Game logic and asset extraction stay shared; implement original battery saving
+through the optional Game hooks. See BUILDING.md for storage and browser limits.
 The executable accepts --rom, --assets, --settings and --headless (frame count).
 After implementing the real collections, document replacement formats, adding a
 level and game-rule source locations here. See examples/asset-extension.json for
@@ -383,7 +390,7 @@ if len(sys.argv) < 2:
 sys.argv = [str(toolkit / "scripts/port.py"), sys.argv[1], str(workspace), *sys.argv[2:]]
 runpy.run_path(str(toolkit / "scripts/port.py"), run_name="__main__")
 """)
-        (stage / ".gitignore").write_text("/input/\n/reference/\n/research/\n/review/toolkit-before/\n/checks/\n/port/target/\n*.gb\n*.gbc\n*.sms\n*.gg\n*.md.bin\n*.gen\n*.smd\n*.rom\n__pycache__/\n")
+        (stage / ".gitignore").write_text("/input/\n/reference/\n/research/\n/review/toolkit-before/\n/checks/\n/port/target/\n/web-dist/\n*.gb\n*.gbc\n*.sms\n*.gg\n*.md.bin\n*.gen\n*.smd\n*.rom\n__pycache__/\n")
         frozen = {str(p.relative_to(stage)): phase.digest(p) for p in (stage / "reference").rglob("*") if p.is_file()}
         frozen.update({str(p.relative_to(stage)): phase.digest(p) for p in (stage / "review/toolkit-before").rglob("*") if p.is_file()})
         frozen["review/toolkit-before.json"] = phase.digest(stage / "review/toolkit-before.json")
@@ -468,6 +475,11 @@ def check(work):
               [cargo[0], "clippy", *cargo[1:], "--all-targets", "--features", "desktop", "--locked", "--", "-D", "warnings"],
               [cargo[0], "test", *cargo[1:], "--locked"],
               [cargo[0], "build", *cargo[1:], "--features", "desktop", "--locked"]]
+    if (work / "port/web-enabled").exists():
+        checks.extend([
+            [cargo[0], "clippy", *cargo[1:], "--lib", "--features", "web", "--target", "wasm32-unknown-unknown", "--locked", "--", "-D", "warnings"],
+            [cargo[0], "build", *cargo[1:], "--lib", "--features", "web", "--target", "wasm32-unknown-unknown", "--release", "--locked"],
+        ])
     results = []
     report = work / "checks/latest.json"
     phase.write_json(report, {"ok": False, "checks": []})
@@ -480,7 +492,7 @@ def check(work):
             phase.write_json(report, {"ok": False, "checks": results})
             if result.returncode:
                 raise ValueError(f"{command[1]} failed; see {work / 'checks/latest.log'}")
-    result = {"ok": True, "checks": results, "desktop_runtime_tested": False}
+    result = {"ok": True, "checks": results, "desktop_runtime_tested": False, "wasm_compiled": (work / "port/web-enabled").exists(), "browser_runtime_tested": False}
     phase.write_json(report, result)
     return result
 
@@ -490,11 +502,12 @@ def main():
         def error(self, message):
             raise ValueError(message)
     parser = Parser(description=__doc__)
-    parser.add_argument("command", choices=["prepare", "instructions", "check", "headless", "desktop", "audit", "reference-init", "reference-verify"])
+    parser.add_argument("command", choices=["prepare", "instructions", "check", "headless", "desktop", "audit", "reference-init", "reference-verify", "web-build", "web"])
     parser.add_argument("path", type=Path, help="archive for prepare; port workspace otherwise")
     parser.add_argument("--rom", type=Path)
     parser.add_argument("--out", type=Path)
     parser.add_argument("--binary", type=Path, default=ROOT / "target/release/romatlas")
+    parser.add_argument("--port", type=int, default=8000, help="localhost web server port (0 selects a free port)")
     parser.add_argument("--frames", type=int, default=120)
     parser.add_argument("--assets", type=Path)
     parser.add_argument("--settings", type=Path)
@@ -509,6 +522,13 @@ def main():
             print(instructions(args.out.absolute()), file=sys.stderr)
     else:
         work, meta, rom = workspace(args.path)
+        if args.command in {"web-build", "web"}:
+            bundle = port_web.build(work)
+            if args.command == "web":
+                port_web.serve(work, rom, bundle, args.assets, args.port)
+                return
+            print(json.dumps({"ok": True, "bundle": str(bundle)}))
+            return
         if args.command == "instructions":
             print(instructions(work))
             return

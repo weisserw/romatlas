@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ROMAtlas port</title>
+<style>
+body{background:#181b23;color:#eee;font:16px system-ui;margin:2rem}button,input,select{font:inherit;margin:.3rem}canvas{display:block;image-rendering:pixelated;background:#000;max-width:100%;margin:1rem 0}fieldset{margin:1rem 0}#error{color:#ffb4ab;white-space:pre-wrap}label{display:inline-block;margin:.4rem}#bindings label{display:block}dialog{background:#242936;color:#eee;max-height:80vh;overflow:auto;border:1px solid #999}small{display:block}
+</style>
+<h1 id="title">ROMAtlas port</h1><button id="start" disabled>Start</button><button id="pause" disabled>Pause</button><button id="settings" disabled>Settings (F1)</button>
+<p id="status" role="status">Loading local ROM and Wasm…</p><p id="error" role="alert"></p><canvas id="screen" aria-label="Game display"></canvas>
+<dialog id="preferences"><h2>Settings</h2><form id="options">
+<label>Volume <input id="volume" type="range" min="0" max="1" step=".05"></label>
+<label>Stick dead zone <input id="dead_zone" type="range" min="0" max=".95" step=".05"></label>
+<label>Width <input id="width" type="number" min="160" max="8192"></label><label>Height <input id="height" type="number" min="144" max="8192"></label>
+<label>Integer scale <input id="integer_scale" type="checkbox"></label>
+<label>Fullscreen <input id="fullscreen" type="checkbox"></label>
+<fieldset id="players"><legend>Controller assignment (keyboard also controls player 1)</legend></fieldset>
+<fieldset id="bindings"><legend>Bindings shared across players</legend></fieldset>
+<small>Choose a binding, then press a key, gamepad button or stick direction. Escape cancels capture. Controls held during transitions must be released.</small>
+<button type="submit">Save and close</button><button id="cancel" type="button">Cancel</button></form></dialog>
+<script type="module" src="/shell.js"></script></html>

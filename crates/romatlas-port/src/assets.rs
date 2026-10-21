@@ -3,7 +3,7 @@ use anyhow::{Context, Result, ensure};
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 use std::{
-    collections::BTreeSet,
+    collections::{BTreeMap, BTreeSet},
     fs::File,
     io::Read,
     path::{Path, PathBuf},
@@ -141,8 +141,32 @@ impl Collection {
     /// startup, allowing editors to use that same format for overrides/new slots.
     /// The validator can also distinguish original/file schemas using origin.
     pub fn with_overrides(
-        mut assets: Vec<Asset>,
+        assets: Vec<Asset>,
         overlay: Option<(&Manifest, &Path)>,
+        validate: impl Fn(&Asset) -> Result<()>,
+    ) -> Result<Self> {
+        let root = overlay.map(|(_, root)| root.canonicalize()).transpose()?;
+        Self::with_reader(
+            assets,
+            overlay.map(|(manifest, _)| manifest),
+            |file| {
+                let root = root.as_ref().context("missing override root")?;
+                let path = root.join(file).canonicalize()?;
+                ensure!(
+                    path.starts_with(root),
+                    "asset path escapes override directory"
+                );
+                Ok((read_bounded(&path, MAX_ASSET_BYTES)?, path))
+            },
+            validate,
+        )
+    }
+
+    /// Same validation and collection ordering for fetched and filesystem assets.
+    pub fn with_reader(
+        mut assets: Vec<Asset>,
+        manifest: Option<&Manifest>,
+        mut read: impl FnMut(&Path) -> Result<(Vec<u8>, PathBuf)>,
         validate: impl Fn(&Asset) -> Result<()>,
     ) -> Result<Self> {
         let mut seen = BTreeSet::new();
@@ -162,9 +186,8 @@ impl Collection {
             ensure!(total <= MAX_ROM_BYTES, "collection exceeds 64 MiB");
             validate(asset)?;
         }
-        if let Some((manifest, root)) = overlay {
+        if let Some(manifest) = manifest {
             ensure!(manifest.version == 1, "unsupported asset manifest version");
-            let root = root.canonicalize()?;
             let mut overrides = BTreeSet::new();
             for entry in &manifest.entries {
                 ensure!(
@@ -179,12 +202,8 @@ impl Collection {
                             .all(|c| matches!(c, std::path::Component::Normal(_))),
                     "asset file must be relative within override directory"
                 );
-                let path = root.join(&entry.file).canonicalize()?;
-                ensure!(
-                    path.starts_with(&root),
-                    "asset path escapes override directory"
-                );
-                let bytes = read_bounded(&path, MAX_ASSET_BYTES)?;
+                let (bytes, path) = read(&entry.file)?;
+                ensure!(bytes.len() <= MAX_ASSET_BYTES, "asset exceeds size limit");
                 let asset = Asset {
                     id: entry.id.clone(),
                     bytes,
@@ -221,5 +240,98 @@ impl Collection {
     }
     pub fn get(&self, id: &str) -> Option<&Asset> {
         self.assets.iter().find(|asset| asset.id == id)
+    }
+}
+
+/// Assets fetched from the local server. Original defaults are still extracted
+/// from the validated ROM by the game's ordinary startup code.
+#[derive(Default, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct MemoryAssets {
+    #[serde(default)]
+    pub enabled: bool,
+    pub manifests: BTreeMap<String, Manifest>,
+    pub files: BTreeMap<String, Vec<u8>>,
+}
+impl MemoryAssets {
+    /// Load just the collections requested by a game; no directory scan required.
+    pub fn from_directory(root: &Path, collections: &[&str]) -> Result<Self> {
+        let root = root.canonicalize()?;
+        let mut result = Self {
+            enabled: true,
+            ..Self::default()
+        };
+        for name in collections {
+            let manifest_path = root.join(name).canonicalize()?;
+            ensure!(
+                manifest_path.starts_with(&root),
+                "manifest escapes asset root"
+            );
+            let manifest = Manifest::load(&manifest_path)?;
+            for entry in &manifest.entries {
+                ensure!(
+                    !entry.file.is_absolute()
+                        && entry
+                            .file
+                            .components()
+                            .all(|c| matches!(c, std::path::Component::Normal(_))),
+                    "invalid asset path"
+                );
+                let path = root.join(&entry.file).canonicalize()?;
+                ensure!(
+                    path.starts_with(&root),
+                    "asset path escapes override directory"
+                );
+                let key = entry
+                    .file
+                    .to_str()
+                    .context("asset path must be UTF-8")?
+                    .to_owned();
+                result
+                    .files
+                    .insert(key, read_bounded(&path, MAX_ASSET_BYTES)?);
+                result.validate()?;
+            }
+            result.manifests.insert((*name).into(), manifest);
+        }
+        Ok(result)
+    }
+    pub fn validate(&self) -> Result<()> {
+        let mut total = 0usize;
+        for bytes in self.files.values() {
+            ensure!(bytes.len() <= MAX_ASSET_BYTES, "asset exceeds size limit");
+            total = total
+                .checked_add(bytes.len())
+                .context("asset size overflow")?;
+            ensure!(total <= MAX_ROM_BYTES, "assets exceed 64 MiB");
+        }
+        Ok(())
+    }
+    pub fn collection(
+        &self,
+        name: &str,
+        defaults: Vec<Asset>,
+        validate: impl Fn(&Asset) -> Result<()>,
+    ) -> Result<Collection> {
+        self.validate()?;
+        let manifest = self.manifests.get(name);
+        ensure!(
+            !self.enabled || manifest.is_some(),
+            "missing asset collection manifest: {name}"
+        );
+        Collection::with_reader(
+            defaults,
+            manifest,
+            |file| {
+                let key = file.to_str().context("asset path must be UTF-8")?;
+                let bytes = self
+                    .files
+                    .get(key)
+                    .context("missing fetched asset")?
+                    .clone();
+                Ok((bytes, file.to_owned()))
+            },
+            validate,
+        )
     }
 }

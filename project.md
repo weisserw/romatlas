@@ -340,6 +340,16 @@ Deliver runnable Rust source, documented CLI and agent protocol, mgbdis `.sym` c
 
 ## Additional native port workflow scope
 
+Future port workspaces also build a single-threaded WebAssembly browser frontend.
+The shared Game API drives SDL2 desktop or Canvas/Web Audio without game-rule
+branches. A small localhost server supplies the user's ROM and override manifests;
+original assets are extracted in memory at load, never bundled. Browser controls,
+settings and versioned original battery-save data persist locally; desktop battery
+saves use the same optional game-owned contract. Save states are outside scope.
+New-workspace checks include Wasm lint/build; synthetic toolkit browser tests verify
+the served workflow independently of game-fidelity acceptance. Existing workspaces
+are not migrated. See docs/porting.md for commands and measured browser limits.
+
 The confirmed extension in docs/port-workflow-design.md adds a final native-port
 workflow beyond the original M1–M4 mapping scope. Starting from a reviewed archive
 and matching local ROM, prepare a separate Rust workspace and print whole-game

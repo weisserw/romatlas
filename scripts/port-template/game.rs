@@ -1,17 +1,31 @@
 //! Replace this demonstration with the game's readable, native rules and state.
 //! This tile is arbitrary ROM data, not an identified gameplay asset.
 use anyhow::{Result, ensure};
-use romatlas_port::{Game, assets::{Collection, Manifest, Rom, RomAsset}, gb,
+use romatlas_port::{Game, assets::{Asset, MemoryAssets, Origin, Rom, RomAsset}, gb,
     graphics::{Frame, TileStyle, tile}, input::InputState};
+#[cfg(not(target_arch = "wasm32"))]
 use std::path::Path;
 
 pub struct Port { tile: [u8;64] }
 impl Port {
+    #[cfg(not(target_arch = "wasm32"))]
     pub fn load(rom: &Rom, overrides: Option<&Path>) -> Result<Self> {
+        let memory;
+        let overrides = if let Some(root) = overrides {
+            memory = MemoryAssets::from_directory(root, &["tiles.json"])?;
+            &memory
+        } else { &MemoryAssets::default() };
+        Self::load_assets(rom, overrides)
+    }
+    /// Shared startup extraction for desktop and browser, including overrides.
+    pub fn load_assets(rom: &Rom, overrides: &MemoryAssets) -> Result<Self> {
         let defaults = [RomAsset { id: "demo-tile".into(), offset: 0, length: 16 }];
-        let manifest = overrides.map(|root| Manifest::load(&root.join("tiles.json"))).transpose()?;
-        let overlay = manifest.as_ref().zip(overrides);
-        let tiles = Collection::load(rom,&defaults,overlay,|_,bytes| {
+        let assets = defaults.iter().map(|entry| Ok(Asset {
+            id: entry.id.clone(), bytes: rom.read(entry.offset, entry.length)?.to_vec(),
+            origin: Origin::Rom { offset: entry.offset, length: entry.length },
+        })).collect::<Result<Vec<_>>>()?;
+        let tiles = overrides.collection("tiles.json", assets, |asset| {
+            let bytes = &asset.bytes;
             ensure!(bytes.len() == 16,"demo tiles must be 16-byte Game Boy 2bpp data"); Ok(())
         })?;
         let tile = gb::tile_2bpp(&tiles.get("demo-tile").unwrap().bytes)?;

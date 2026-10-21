@@ -356,3 +356,83 @@ Reference corrections preserve exact reconstruction and the frozen reference.
 See [gg.md](gg.md) and [gg-native.md](gg-native.md).
 
 Game Boy Color uses the existing GB archive/platform and adds `gb::cgb` banked BG/window/object rendering and palette RAM helpers without changing DMG APIs. See [gbc.md](gbc.md) for contracts, scheduling and documented limits.
+
+## Browser ports and battery saves
+
+New workspaces include a `cdylib` browser entry point beside the desktop executable.
+Game rules implement the same `Game` trait for SDL2 and Canvas/Web Audio; browser
+builds do not enable SDL2. `Port::load_assets` performs shared ROM-backed startup
+extraction using `MemoryAssets`; `Port::load` loads desktop override files then
+calls that same constructor. Game-owned decompression and schema validation stay
+in this shared path. `MemoryAssets::collection` and filesystem collections share
+replacement, addition, ordering, ID, size and schema validation. The server exposes
+one top-level JSON manifest per collection and only its referenced override files.
+
+Run toolkit setup (`bash scripts/setup.sh`, Rust 1.90.0), then in a newly prepared
+port workspace:
+
+```sh
+python3 run.py web-build
+python3 run.py web --port 8000
+python3 run.py web --assets /path/to/replacements --port 8000
+```
+
+`web-build` writes bindings, Wasm and the shared shell into local `web-dist/`.
+`web` builds and serves at `http://127.0.0.1:8000/`; port 0 requests a free port.
+The server reads the configured local ROM, without copying it into the bundle,
+and serves it to the browser for SHA-256 validation and in-memory extraction.
+The bundle alone requires equivalent `/config.json`, `/rom` and override routes;
+it is not a self-contained game distribution. No commercial ROM or extracted
+original asset may be committed or bundled. No existing workspaces are migrated.
+
+Press Start to enable audio. The shell uses Canvas RGBA frames, stereo Web Audio,
+keyboard and standard-mapping Gamepad APIs for four independent player slots.
+Settings provide rebinding, controller assignment, volume/dead zone, dimensions,
+integer scaling and fullscreen. Keyboard bindings use the shared SDL-style names;
+the shell translates browser keys and standard controller buttons/axes. Browser
+controller identities are separate from SDL GUIDs. Settings and assignments live
+in localStorage under the ROM hash. This storage is also scoped to the browser's
+origin: changing server port/browser/profile gives a separate storage location.
+Keep the same origin to retain saves; clearing site storage removes them.
+
+Focus loss, hidden tabs, menus and device changes reset the rational clock and
+input edges, discard queued audio and suppress held controls until neutral.
+Resume requires Start after pausing; missed wall time is not replayed. Catch-up
+is bounded to eight ticks. The desktop-browser baseline is current Chromium and
+Firefox with single-threaded Wasm; Chromium is exercised automatically. Firefox
+support is currently an implementation target, not a measured compatibility claim.
+Touch/mobile, WASI, deployment and offline/PWA support are outside this change.
+
+Battery persistence is optional and game-owned. For originals that saved progress,
+implement `Game::save_version`, `load_save`, `save_data`, `save_dirty` and
+`save_acknowledged`. Save only originally persistent data, never full live state.
+A port may serialize a clean persistent representation; it need not reproduce the
+original cartridge's byte layout. Validate an entire loaded payload before mutation.
+Increment the format version for incompatible changes; automatic migration is not provided.
+The default hooks declare no battery support, not an implemented saving feature.
+Future port agents must implement original in-game saves when present.
+
+The shared `BatterySave` envelope binds payload/version to the ROM hash and caps
+payloads at 1 MiB. Mark dirty when original in-game saving changes persistent data;
+keep it dirty until acknowledged. Frontends write promptly after advancement and
+at pause/exit boundaries. Browser writes use localStorage (versioned ROM key);
+SDL uses an atomic JSON file named `battery-<ROM hash>.json` beside settings.
+Restoration happens before the first gameplay tick. Failed writes do not acknowledge
+pending data; browser errors remain visible, desktop errors reach the CLI. Invalid
+or incompatible browser saves stop startup rather than overwriting existing data.
+There are no save states or implicit emulator-SRAM dependencies.
+
+New-workspace check/audit includes a locked release Wasm build alongside existing
+desktop checks. Toolkit browser regression setup is separate:
+
+```sh
+bash scripts/setup-web-tests.sh
+tools/web-tests/bin/python scripts/test-port-web.py
+```
+
+The test runs an authored synthetic ROM and native fixture through the actual
+localhost server, bindings and Chromium. It checks rendering, input, audio startup,
+overrides, settings, battery reload and storage failures. No display/audio device,
+commercial ROM or native-versus-ROM fidelity comparison is needed. Setup pins
+wasm-bindgen 0.2.129 (library/CLI match) and Playwright 1.56.0. Python handles build
+and serving; no npm or JavaScript bundler is required.

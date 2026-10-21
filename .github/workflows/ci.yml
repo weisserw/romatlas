@@ -24,6 +24,8 @@ jobs:
       - run: python3 scripts/test-commentary.py
       - run: python3 scripts/test-archive.py
       - run: python3 scripts/test-port.py
+      - run: bash scripts/setup-web-tests.sh
+      - run: tools/web-tests/bin/python scripts/test-port-web.py
       - run: python3 scripts/test-api.py
   hardware:
     runs-on: ubuntu-24.04
