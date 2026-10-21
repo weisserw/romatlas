@@ -26,12 +26,26 @@ The project consists of three general parts:
 * A runtime library which implements utility functions useful for porting games from this era (e.g. implementing timing by waiting for VSync), as well as functions specific to each platform (e.g. Mode 7 graphics on SNES)
 * A set of scripts which create working directories pre-populated with prompts that direct agents to disassemble or port a game in goal mode, using tactics that tend to produce good results out of the box.
 
+## Why?
+
+The once-niche practice of resurrecting games via decompilation and recompilation (decomp/recomp) has suddenly exploded in popularity due to the advent of AI-assisted coding and debugging. While using an AI agent to recomp a specific game is generally straightforward if one understands the underlying
+technical details, the next generation of these efforts will likely involve automated custom agent processes like the ones in this repository, that combine pre-made prompts with specialized tools built to speed up the agent's work. This will, in time, enable us to recomp many more games with minimal effort.
+
+This project has a particular focus: game consoles which were originally programmed in assembly language, rather than a higher-level language like C. These platforms pose an interesting challenge for both decompilation and recompilation. For the former, even though disassembly is a simpler process than decompilation, it requires that we locate the areas of the ROM cartridge that consist of actual assembly code as opposed to data. Since game developers in the 80s and early 90s did not have standardized file formats and layouts, and were desperate to save space in expensive ROM chips, they often
+packed code and data together in ways which are difficult to reverse engineer.
+
+Once successfully disassembled, an assembly-based game can be easily modified by an agent in place ("rom hacking"), or can be read and understood to find, e.g., cheats, easter eggs, or glitches for speed running. But recompiling such a game as a straight assembly language translation will always have the disadvantage that assembly is not a very good platform in terms of maintainability or flexibility. Fixing bugs and adding enhancements and new features will be difficult as long as the game remains in its original form.
+
+That's why this project takes an unusual step: once a game is disasssembled, we recompile it not to native assembly language, but to a modern, high-level language (Rust). While this will inevitably lose some fidelity compared to the original, it means that these games which would otherwise remain ossified forever can now be given new life in surprising and interesting ways, because their code is now truly platform-independant, easy to reason about and easy to extend and modify.
+
+At least, that's the theory. This project is still in heavy development and should be regarded partially as an experiment. That said, we've already gotten quite a few ports working as part of our testing, and more will continue to be added. Hopefully, in time, the feasibility of porting early Nintendo, Sega and similar platform's games to Rust will be proven out.
+
 ## Instructions for Humans
 
 In general, I recommend interacting with this software via an AI agent rather than running commands manually. An agent will be able to understand all the commands and diagnose / fix any problems
 instantly.
 
-When running workflows, as of this writing the models / effort that seem to work best are the default "workhouse" settings from each vendor. Bleeding edge models tend to use too many tokens, and
+As of this writing the models / effort that seem to work best are the default "workhouse" settings from each vendor. Bleeding edge models tend to use too many tokens, and
 lower tier / last generation models will produce poor output and end up wasting more time and tokens than they save.
 
 ### Decompiling / Disassembling a ROM
@@ -66,6 +80,9 @@ TODO
 
 TODO
 
+### Debugging
+
+TODO
 
 ### Caveats / Issues
 
