@@ -1619,3 +1619,14 @@ retry after simulated localStorage quota failure. Final browser and port suites 
 Only generated debug artifacts were cleared for disk space; generated fixtures,
 bundles and captures remain local. No commercial ROM or extracted original asset
 was downloaded or committed; no SDL window or physical audio device was started.
+
+2026-10-21: Web serving now binds to 0.0.0.0 by default, with --host ADDRESS
+available through port.py and generated run.py entrypoints. Startup JSON reports
+the actual bind host and retains a usable loopback URL for wildcard binding.
+Updated current/new-workspace documentation and host assertions. Focused real
+HTTP checks and public run.py web launches pass for both the default wildcard
+and explicit 127.0.0.1, serving the configured synthetic ROM correctly. Python
+compilation and git diff checks pass. Two full browser smoke runs timed out at
+the existing post-rebinding pixel assertion before their public-server step;
+that broader browser result is not claimed as passing for this change. No Rust,
+ROM, asset or existing port-workspace source was changed.

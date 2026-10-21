@@ -238,7 +238,8 @@ python3 run.py web --port 8000
 python3 run.py web --assets /path/to/assets --port 8000
 ```
 
-Open the printed localhost URL and press Start for audio/gameplay. The configured
+The default bind address is `0.0.0.0`; use `--host 127.0.0.1` for loopback or
+`--host ADDRESS` for another interface. Open the printed URL and press Start for audio/gameplay. The configured
 ROM must remain on the server; it is fetched, identity-checked and decoded at
 startup, never embedded into the bundle. `web-dist/` contains generated Wasm,
 bindings and shell only. Original assets must stay ROM-backed. Keep generated
@@ -246,8 +247,8 @@ files local. Existing workspaces are not upgraded automatically.
 
 Browser settings support keyboard/standard gamepad rebinding, four player device
 assignments, volume, scaling, dimensions and fullscreen. Settings and versioned
-battery saves use browser localStorage keyed by ROM hash; keep the same localhost
-port/browser/profile to retain them. Start resumes after focus/visibility/menu
+battery saves use browser localStorage keyed by ROM hash; keep the same server origin,
+browser and profile to retain them. Start resumes after focus/visibility/menu
 pauses. No touch/mobile or save-state support is provided. Current desktop
 Chromium is tested; Firefox uses the same browser APIs but requires separate
 compatibility confirmation. Builds are single-threaded and require no cross-origin

@@ -342,7 +342,8 @@ Deliver runnable Rust source, documented CLI and agent protocol, mgbdis `.sym` c
 
 Future port workspaces also build a single-threaded WebAssembly browser frontend.
 The shared Game API drives SDL2 desktop or Canvas/Web Audio without game-rule
-branches. A small localhost server supplies the user's ROM and override manifests;
+branches. A small server (default bind `0.0.0.0`, configurable with `--host`) supplies the
+user's ROM and override manifests;
 original assets are extracted in memory at load, never bundled. Browser controls,
 settings and versioned original battery-save data persist locally; desktop battery
 saves use the same optional game-owned contract. Save states are outside scope.

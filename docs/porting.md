@@ -378,7 +378,10 @@ python3 run.py web --assets /path/to/replacements --port 8000
 ```
 
 `web-build` writes bindings, Wasm and the shared shell into local `web-dist/`.
-`web` builds and serves at `http://127.0.0.1:8000/`; port 0 requests a free port.
+`web` binds to `0.0.0.0:8000` by default; use `--host 127.0.0.1` for loopback
+or `--host ADDRESS` to select another interface. Port 0 requests a free port.
+The printed URL uses `127.0.0.1` for the wildcard bind; other machines can use
+the server machine’s network address.
 The server reads the configured local ROM, without copying it into the bundle,
 and serves it to the browser for SHA-256 validation and in-memory extraction.
 The bundle alone requires equivalent `/config.json`, `/rom` and override routes;

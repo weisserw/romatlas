@@ -363,7 +363,7 @@ transfer instructions. Adapt that guide for the finished port and tested facts.
 The implementation goal uses focused unit tests and build/static checks. Runtime
 fidelity/device auditing is separate later work. On a desktop with SDL2 installed,
 `python3 run.py desktop` opens the window; F1 opens saved player settings.
-`python3 run.py web` builds and serves the browser frontend on localhost.
+`python3 run.py web` builds and serves the browser frontend (default host 0.0.0.0; use --host to change it).
 Game logic and asset extraction stay shared; implement original battery saving
 through the optional Game hooks. See BUILDING.md for storage and browser limits.
 The executable accepts --rom, --assets, --settings and --headless (frame count).
@@ -507,7 +507,8 @@ def main():
     parser.add_argument("--rom", type=Path)
     parser.add_argument("--out", type=Path)
     parser.add_argument("--binary", type=Path, default=ROOT / "target/release/romatlas")
-    parser.add_argument("--port", type=int, default=8000, help="localhost web server port (0 selects a free port)")
+    parser.add_argument("--host", default="0.0.0.0", help="web server bind host (default: 0.0.0.0)")
+    parser.add_argument("--port", type=int, default=8000, help="web server port (0 selects a free port)")
     parser.add_argument("--frames", type=int, default=120)
     parser.add_argument("--assets", type=Path)
     parser.add_argument("--settings", type=Path)
@@ -525,7 +526,7 @@ def main():
         if args.command in {"web-build", "web"}:
             bundle = port_web.build(work)
             if args.command == "web":
-                port_web.serve(work, rom, bundle, args.assets, args.port)
+                port_web.serve(work, rom, bundle, args.assets, args.port, args.host)
                 return
             print(json.dumps({"ok": True, "bundle": str(bundle)}))
             return

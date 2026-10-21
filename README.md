@@ -1,6 +1,77 @@
 # ROMAtlas
 
-Rust tools for ROM-free Game Boy, Sega Master System, NES and SNES mapping. The Game Boy pilot milestone is complete within documented hardware limits; the SNES extension and its measured limits are described below. This build supports ROM inspection, SM83 decoding, stock mgbdis map import/export, raw-data maps, source generation, and exact byte checks. It also supports bounded DMG ROM-only/MBC1/MBC3/MBC5 execution. A persistent JSON-RPC server supports agent sessions. Bounded CPU tracing and coverage are available through the server. The server also proposes code regions with bounded recursive discovery. The 89-case source-built default Mooneye gate and 55-case CGB selection pass. Full hardware compatibility is not claimed.
+This project contains tools, libraries and prompts for custom AI agents which can decompile and recompile games from second-generation cartridge-based consoles. The main implementation language
+is Rust, with some scripts written in Python. The overall goal is to enable users to go from a ROM file to a finished port in modern Rust code.
+
+The current consoles supported are:
+
+* Game Boy
+* NES
+* SNES
+* Game Gear
+* Master System
+* Genesis
+* TurboGrafx-16
+
+The current build targets for Rust ports are:
+
+* Linux
+* Mac
+* Windows
+* Web Assembly
+
+The project consists of three general parts:
+
+* Customized emulators for each console which are designed to be driven directly by an agent via a persistent JSON-RPC server. Agents can run games, send button inputs, view the screen and read and write internal RAM / CPU states, etc.
+* A runtime library which implements utility functions useful for porting games from this era (e.g. implementing timing by waiting for VSync), as well as functions specific to each platform (e.g. Mode 7 graphics on SNES)
+* A set of scripts which create working directories pre-populated with prompts that direct agents to disassemble or port a game in goal mode, using tactics that tend to produce good results out of the box.
+
+## Instructions for Humans
+
+In general, I recommend interacting with this software via an AI agent rather than running commands manually. An agent will be able to understand all the commands and diagnose / fix any problems
+instantly.
+
+When running workflows, as of this writing the models / effort that seem to work best are the default "workhouse" settings from each vendor. Bleeding edge models tend to use too many tokens, and
+lower tier / last generation models will produce poor output and end up wasting more time and tokens than they save.
+
+### Decompiling / Disassembling a ROM
+
+Before a ROM can be recompiled, it needs to be disassembled. For this proccess, ROMAtlas runs three subagents in sequence:
+
+* A disassemble agent plays the game in the debugger and tries to determine based on accessed regions of memory which parts of the ROM file are code and which are data. It writes these mappings
+to a file that a disassembler can use to produce an uncommented source listing for the game.
+* A commenter agent reads the disassembled source and intuits what each function, variable and jump label is supposed to do, using the debugger as needed for clarification. It then writes source
+comments to a file format that lets an external tool produce a fully commented source listing from the file and the original ROM.
+* A redirect agent reads the commented source and looks for clues that could lead to the discovery of further structure within the ROM file. It writes the list of leads to a file so that
+the disassembler can use them on its next run.
+
+This process continues until the goal reaches a "BLOCKED" state (no more leads) or the ROM is 100% disassembled and commented.
+
+To start the process, run this command:
+
+`python3 scripts/disassembly.py <rom>`
+
+Or ask an agent to do it for you. This creates a working directory under the root (the default root is the current directory) with the rom file and a set of prompts / scaffolding in it. Open a
+new instance of your agent in that directory and type:
+
+`/goal Read goal.md`
+
+The rest of the process should proceed automatically.
+
+### Archiving
+
+TODO
+
+### Porting
+
+TODO
+
+
+### Caveats / Issues
+
+TODO
+
+All the rest of the information below is automatically generated and meant for AI to consume.
 
 ## Setup
 
@@ -24,7 +95,7 @@ See [progress](docs/progress.md), [architecture and limits](docs/architecture.md
 
 ## Agent disassembly workspaces
 
-See [INSTRUCTIONS.md](INSTRUCTIONS.md) for setup and Codex startup steps.
+See [INSTRUCTIONS.md](INSTRUCTIONS.md) for setup and startup steps.
 
 Prepare one separate local workspace per owned ROM, including agent instructions,
 start/resume prompts, an identity record, and baseline/checkpoint commands:
@@ -65,7 +136,7 @@ Full editorial cleanup/audit is reserved for final acceptance and archiving. The
 otherwise reports incomplete. Whole-ROM completion still requires every byte to be
 classified with evidence and a verified rebuild. No agent provider is required.
 
-Scripts write prompts rather than printing goal commands. JSON results remain on
+Scripts write prompts. JSON results remain on
 stdout; prompt locations go to stderr (`--json` suppresses those locations).
 Existing workspaces are not automatically migrated.
 
@@ -124,7 +195,7 @@ Normal tests and headless execution need no display or audio device. On a deskto
 settings. Never run that command on the headless server.
 
 New workspaces also use the same Game API with a Canvas/Web Audio frontend:
-`python3 run.py web --port 8000` builds and serves the bundle on localhost.
+`python3 run.py web --port 8000` builds and serves the bundle on `0.0.0.0` by default; use `--host ADDRESS` to change the bind address.
 The server supplies the configured ROM and optional `--assets` overrides for
 identity-checked startup extraction; original assets are never bundled.
 Browser controls/settings persist locally. Original battery saves use optional

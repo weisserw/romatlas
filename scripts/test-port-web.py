@@ -88,6 +88,7 @@ def main():
         (assets/'initial.json').write_text(json.dumps({'version':1,'entries':[{'id':'initial','file':'value.bin'}]}))
         (assets/'value.bin').write_bytes(bytes([20]))
         with port_web.server(work,rom,bundle,assets,0) as server:
+            assert server.server_address[0]=='0.0.0.0'
             thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()
             url=f'http://127.0.0.1:{server.server_port}/'
             assert urlopen(url+'rom').read()==rom.read_bytes()
@@ -136,12 +137,13 @@ def main():
                 context.close();browser.close()
             server.shutdown();thread.join()
         # The public future-workspace command builds and starts the same server.
-        process=subprocess.Popen(['python3',str(work/'run.py'),'web','--port','0'],stdout=subprocess.PIPE,stderr=subprocess.DEVNULL,text=True)
+        process=subprocess.Popen(['python3',str(work/'run.py'),'web','--host','127.0.0.1','--port','0'],stdout=subprocess.PIPE,stderr=subprocess.DEVNULL,text=True)
         try:
             import select
             ready,_,_=select.select([process.stdout],[],[],120)
             assert ready,'web command did not announce startup'
             announced=json.loads(process.stdout.readline())
+            assert announced['host']=='127.0.0.1'
             assert announced['ok'] and urlopen(announced['url']+'rom').read()==rom.read_bytes()
         finally:
             process.terminate();process.wait(timeout=10)

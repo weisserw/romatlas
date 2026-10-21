@@ -1,4 +1,4 @@
-"""Pinned Wasm bundle builder and deliberately small localhost-only port server."""
+"""Pinned Wasm bundle builder and deliberately small configurable port server."""
 import hashlib
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
@@ -106,7 +106,7 @@ def asset_routes(root):
     return {"enabled": root is not None, "manifests": manifests, "files": files}, routes
 
 
-def server(work, rom, bundle, assets=None, port=8000):
+def server(work, rom, bundle, assets=None, port=8000, host="0.0.0.0"):
     if not 0 <= port <= 65535:
         raise ValueError("port must be in 0..65535")
     rom_bytes = read_bounded(rom, MAX_BYTES)
@@ -142,12 +142,14 @@ def server(work, rom, bundle, assets=None, port=8000):
         def log_message(self, *_args):
             pass
 
-    return ThreadingHTTPServer(("127.0.0.1", port), Handler)
+    return ThreadingHTTPServer((host, port), Handler)
 
 
-def serve(work, rom, bundle, assets, port):
-    with server(work, rom, bundle, assets, port) as http:
-        print(json.dumps({"ok": True, "url": f"http://127.0.0.1:{http.server_port}/", "bundle": str(bundle)}), flush=True)
+def serve(work, rom, bundle, assets, port, host="0.0.0.0"):
+    with server(work, rom, bundle, assets, port, host) as http:
+        address = http.server_address[0]
+        browser_host = "127.0.0.1" if address == "0.0.0.0" else address
+        print(json.dumps({"ok": True, "host": address, "url": f"http://{browser_host}:{http.server_port}/", "bundle": str(bundle)}), flush=True)
         try:
             http.serve_forever()
         except KeyboardInterrupt:
