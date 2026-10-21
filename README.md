@@ -80,7 +80,7 @@ Archiving a game copies its disassembly artifacts into the `atlas/` directory wh
 
 ### Porting
 
-The `scripts/port.py` script initializes a workspace for porting an archived game. By default it creates a directory named `rom-ports/<romfile>`. Inside this directory, run an agent and type `/goal Read goal.md` to begin the porting process to Rust.
+The `scripts/port.py` script initializes a workspace for porting an archived game (or just tell your agent, "initialize the port for X"). By default it creates a directory named `rom-ports/<romfile>`. Inside this directory, run an agent and type `/goal Read goal.md` to begin the porting process to Rust.
 
 ### Debugging
 
