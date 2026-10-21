@@ -29,5 +29,5 @@ close to the relevant implementation; avoid a literal assembly-shaped architectu
 List an actionable order for implementing the whole game and focused unit tests
 of intended logic. Revise this plan when design decisions change, including brief
 reasons. Check affected boundaries after substantial features; fix concrete design
-problems without repeatedly auditing/redesigning the entire project. Runtime
-fidelity comparisons and a separate validation phase are outside this plan.
+problems without repeatedly auditing/redesigning the entire project. Schedule the
+bounded smoke-test.md route before completion; broader fidelity QA is separate work.

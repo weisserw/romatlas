@@ -103,28 +103,42 @@ frontend settings and asset replacement/extension support remain supported, with
 authorizing extra gameplay features or content-selection menus. Keep development
 diagnostics in logs or headless tools. This does not add fidelity-validation gates.
 
-The native goal implements the whole game on a source-informed best-effort basis.
-Focused unit tests check intended logic; formatting, static checks and compilation
-complete the required implementation checks. **Runtime fidelity validation is
-outside this porting goal.** Do not compare native frames, animation, screenshots,
-audio, state trajectories or gameplay scenarios against emulator/ROM execution.
-Do not create exhaustive scenario matrices, confidence-building replay loops,
-playthrough requirements or device tests as completion criteria. A later fidelity
-or device audit requires an explicit user request.
+Faithfulness does not require reproducing hardware-induced lag, slowdown or
+sprite flicker. The native port may run smoothly and render sprites without those
+artifacts; this is not an extra game feature. Preserve intentional gameplay timing
+and visual effects, such as deliberate slow motion or damage/invulnerability
+flashing.
 
-Debugger use is for a specific unresolved source-understanding question that
-static inspection cannot reasonably answer. Record the needed observation and
-stopping condition, perform a bounded experiment and return to implementation.
-Stop at that bound even if unanswered; do not repeat inconclusive runs without
-new evidence.
-If inconclusive, choose and document a reasonable source-informed implementation
-assumption where possible. Do not reopen the question without new contradictory
-evidence. Lack of similarity evidence or an untested screen is not such a question.
-Once whole-game implementation/accounting and a coherent architecture are ready,
-required checks pass and the handoff is written, run the administrative audit and
-stop when it passes. Assume the implemented/unit-tested behavior works for this
-handoff without claiming independent fidelity. More time/budget is not a reason
-to expand acceptance criteria or repeat passing checks.
+The native goal implements the whole game on a source-informed best-effort basis.
+Required checks include focused unit tests, format/static/build checks and a bounded
+smoke test before completion. The generated smoke-test.md defines one representative
+route: boot; check title-screen layout/graphics/colors against the original ROM;
+interact with menus and start play; check initial gameplay colors, movement, primary
+actions and representative enemy/hazard or equivalent interactions; then exit the
+first area or reach a normal death/game-over, as appropriate to the game.
+
+Use the device-free debug API, bounded input/advance/capture calls and a few matching
+original-ROM observations. Do not launch SDL on the server. Fix exposed defects and
+recheck failed/affected steps, recording build/ROM identity, inputs, results and local
+evidence in checks/smoke-test.md. Failed or unperformed required steps block
+completion; report a concrete blocker if they cannot be completed. Absence of
+hardware-induced lag, slowdown or flicker is not a defect; intentional timing and
+visual effects still matter.
+
+Broader runtime fidelity validation is outside the implementation goal. Do not
+expand the smoke test into exhaustive scenarios, pixel-perfect/frame-by-frame proof,
+audio equivalence, later levels or repeated passing routes for confidence. Once
+its route passes, stop smoke testing. The separate debug/goal.md two-pass QA workflow
+is not invoked by this requirement; full-game QA/device auditing needs another request.
+
+Debugger use also supports a specific unresolved source question. Record the
+needed observation and stopping condition, run a bounded experiment and return to
+implementation. Change the hypothesis/method before repeating inconclusive runs.
+Document reasonable source-informed assumptions; they do not excuse broken required
+smoke-test steps. After whole-game implementation/accounting, smoke testing,
+required checks and handoff are complete, run the administrative audit and stop
+when it passes. Remaining unverified fidelity outside the smoke-test route does
+not justify expanding acceptance criteria or repeating passing checks.
 
 ## Unfinished disassembly and discoveries during porting
 
@@ -334,8 +348,8 @@ and original ROM identity without requiring frozen reference or research files.
 Only audit and reference-management commands validate those development artifacts;
 they are not runtime assets. Missing checks/ output directories are recreated.
 Focused unit tests cover intended game logic and CPU-side utilities. The optional
-headless command remains available for later requested work; executing it is not
-a required validation phase.
+headless command alone does not cover the required smoke test; use the device-free
+debug API and follow smoke-test.md.
 
 For each original region and unit, set ledger disposition to `implemented`,
 `merged`, `replaced` or `excluded`, give a summary and list equivalents (except
@@ -346,16 +360,16 @@ replace entire original routines without a line-to-line translation.
 
 The agent judges obvious irrelevant/unreachable code from the commented source
 without formal proof; favor implementing ambiguous cases. Complete classification
-is not a gate, and runtime fidelity comparisons are outside the goal. A coherent
-architecture/plan, focused passing unit tests, documented assumptions/differences,
+is not a gate; comparisons are limited to the required smoke test. A coherent
+architecture/plan, a passing smoke test, focused unit tests, documented assumptions/differences,
 finished accounting, editor instructions and a handoff are required.
 Assess the uncertainty ledger too; new workspaces cannot finish with pending gaps,
 removed original uncertainty entries or preserved unknown behavior. Documented
 implemented assumptions can be assessed without fidelity proof. Set ledger
 completion status/notes and run `audit`. Audit validates inventory,
 dispositions and builds; it cannot assess semantic correctness or test quality.
-Unassessed gameplay/audiovisual fidelity and device behavior are recorded without
-blocking completion or creating another investigation phase. After a successful
+Unassessed fidelity beyond the smoke-test route and device behavior are recorded
+without creating another investigation phase. Required smoke-test failures block completion. After a successful
 administrative audit, stop. Rerun checks only after relevant edits, failures or a
 concrete new defect.
 
@@ -488,6 +502,6 @@ launcher adapter described there. The agreed debugging contract is a
 source-informed QA plan and two complete
 successful passes. Failed/inaccessible checks block progress; holistic code or
 plan changes restart QA. Resource limits interrupt as incomplete, not success.
-Installation does not activate a fidelity audit or change initial implementation
+Installation does not activate full-game QA or change initial implementation
 completion. Future scaffolds expose --debug-stdio
 with optional game-specific read-only inspection.

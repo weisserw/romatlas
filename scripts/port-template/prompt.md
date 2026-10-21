@@ -102,7 +102,13 @@ debug functions as new player-facing controls. Keep implementation diagnostics i
 logs or headless development tools, outside the player interface. Required frontend
 settings and asset replacement/extension support below remain supported; they do
 not authorize extra in-game features or menus for selecting added content. This
-presentation target does not add runtime fidelity validation or completion gates.
+presentation target is checked only within the bounded smoke-test scope below.
+
+Faithfulness does not require reproducing hardware-induced lag, slowdown or
+sprite flicker. The native port may run smoothly and render sprites without those
+artifacts; this is not an extra game feature. Preserve intentional gameplay timing
+and visual effects, such as deliberate slow motion or damage/invulnerability
+flashing.
 
 Use romatlas-port for common mechanisms and platform-specific effects, including
 available audio/video helpers. Review their documented limits. Keep game rules,
@@ -143,32 +149,33 @@ interfaces; assertions should explain the intended behavior, not merely mirror
 implementation details. Do not turn the source inventory into an exhaustive test
 matrix. Use synthetic fixtures or local ROM data without distributing originals.
 
-Runtime fidelity validation is outside this porting goal. Do not compare native
-frames, screenshots, animation sequences, audio, state trajectories or gameplay
-scenarios against emulator/ROM runs to validate the port. Do not construct or repeat
-scenario replays, frame captures or debugger sessions to accumulate confidence.
-There is no pixel-perfect, audio-equivalence, frame-by-frame or exhaustive-scenario
-acceptance requirement. Native playthroughs, image/golden comparisons, cross-runtime
-differential tests and device testing are not completion gates. A separate fidelity
-audit requires a later explicit user request.
+Before declaring completion, execute the bounded [initial smoke test](../smoke-test.md).
+It covers boot/title-screen accuracy, representative colors, menu interaction and
+starting play, basic movement/actions/enemy or equivalent interactions, and the
+first area's exit or normal death as appropriate. Fix exposed defects and recheck
+affected steps; record route, build/ROM identity and results in checks/smoke-test.md.
+Use device-free controls/captures and targeted original-ROM observations for these
+checks. This does not invoke the separate debug/goal.md two-pass QA workflow.
 
-The debugger is available only to answer a specific unresolved question about the
-source when static reading/data inspection cannot reasonably answer it. Before a
-run, record the question, needed observation and stopping condition. Run a bounded
-experiment, record its answer, then return to implementation. Stop at the declared
-bound even if unanswered; do not repeat inconclusive runs without new evidence.
-If the result remains
-inconclusive, make a reasonable documented implementation assumption and proceed
-where possible. Do not reopen an answered question without new contradictory
-evidence. Missing confidence, desired similarity or an untested screen is not a
-source-understanding question. A genuine missing input/tool may be reported as a
-blocker; lack of runtime fidelity evidence is not one.
+Broader runtime fidelity validation is outside this goal. Do not expand the smoke
+test into pixel-perfect/frame-by-frame proof, exhaustive scenarios, later areas,
+audio equivalence or repeated passing routes for confidence. Once its defined
+route passes, stop. A failed or unperformed required smoke test blocks completion;
+report concrete tooling or implementation blockers rather than assuming it passed.
+
+The debugger may also answer a specific unresolved source question that static
+inspection cannot reasonably answer. Record the question, needed observation and
+stopping condition; run a bounded experiment and return to implementation. Do not
+repeat inconclusive runs without a revised hypothesis/method or reopen answered
+questions without contradictory evidence. Document reasonable assumptions where
+needed; assumptions do not excuse broken smoke-test steps. Full-game QA and device
+testing require a separate user request.
 
 Run python3 run.py check for formatting, clippy, unit tests and desktop compilation.
 After shared-library changes run the toolkit's required relevant regression checks,
 including portability/dependency boundaries, and update its docs/progress.md with
 tested facts. Those toolkit checks protect library/tool behavior; they do not
-expand the native game's acceptance criteria into emulator comparisons. Once a
+expand the native game's comparisons beyond the bounded smoke-test scope. Once a
 relevant check passes, rerun it only after a pertinent change, failure or concrete
 new defect. Do not add more validation simply because time or goal budget remains.
 
@@ -176,19 +183,19 @@ new defect. Do not add more validation simply because time or goal budget remain
 
 Maintain README.md with running/controls, asset replacement, added levels and game
 rule locations. Adapt BUILDING.md with build recipes, exact source/lockfile/path
-requirements and actual build/unit-test results. Other-platform/device execution
-and gameplay fidelity remain unassessed unless separately requested. Provide an
+requirements and actual build/unit-test/smoke-test results. Other-platform/device
+execution and fidelity beyond the smoke-test route remain unassessed unless requested. Provide an
 original-content-only extension manifest. Keep progress.md and differences.md
 current, recording assumptions, library limits and known differences without a
 checklist of fidelity experiments to perform before completion.
 
 Finish when the whole game's best-effort implementations and behavior accounting
 are complete, uncertainty entries are assessed (including implemented assumptions),
-the architecture is coherent and documented, required checks pass and the handoff
+the architecture is coherent and documented, the smoke test and required checks pass and the handoff
 is written. Set ledger completion.status=complete with notes describing that scope;
 run python3 run.py audit once to check accounting/builds. It is an administrative
 check, not a fidelity audit. Fix actual failures; after it passes, stop. Assume
-the implemented and unit-tested behavior works for this handoff; do not claim
+the implemented behavior outside the smoke-test route works for this handoff; do not claim
 independent gameplay or audiovisual equivalence. Remaining unverified similarity
 must not trigger another investigation, replay, audit or polishing cycle.
 
@@ -215,5 +222,5 @@ The desktop frontend loads/stores ROM-bound files; browser localStorage uses the
 same envelope. No full runtime save states are required or supported. Explain
 original saving behavior and save format in the port documentation. No-battery
 originals keep the default hooks. Run check/audit including Wasm compilation;
-no per-game browser/device/fidelity audit is added to this implementation goal.
+the smoke test can use headless controls; no separate browser/device audit is required.
 Document `python3 run.py web` in BUILDING.md. Existing ports are not migrated.

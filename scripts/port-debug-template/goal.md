@@ -49,6 +49,12 @@ transition, not an undefined obligation to prove every pixel/frame identical.
 Cover major game functionality without enumerating every collision or input
 permutation. Write the ordered A-to-Z check list before executing it.
 
+Faithfulness does not require reproducing hardware-induced lag, slowdown or
+sprite flicker. Their absence in a smoother native port is not a bug and must not
+produce a failing QA check or a repair task. Preserve and check intentional gameplay
+timing and visual effects, such as deliberate slow motion or damage/invulnerability
+flashing.
+
 Use the installed plan/result format described in DEBUGGING.md. Preserve check
 IDs and plan revisions, source/baseline identities, routes, observations, fixes
 and local evidence. Once a pass begins, the plan is fixed for that QA attempt.

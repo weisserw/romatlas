@@ -138,7 +138,7 @@ with tempfile.TemporaryDirectory(prefix="romatlas-port-") as temporary:
     for path in ["goal.md", "workflow.md", "prompts/start.md"]:
         text = (work / path).read_text()
         assert "architecture.md" in text, path
-        assert "Runtime fidelity validation is outside" in text, path
+        assert "Broader runtime fidelity validation is outside" in text, path
         assert "stopping condition" in text or "stopping\ncondition" in text, path
         assert "stop when" in text or "after it passes, stop" in text, path
         assert "unresolved gameplay-affecting behavior prevents completion" not in text.lower(), path

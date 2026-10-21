@@ -276,7 +276,7 @@ def workflow(work, rom):
     assert (port/'architecture.md').is_file()
     for path in ['goal.md','workflow.md','prompts/start.md']:
         text=(port/path).read_text()
-        assert 'architecture.md' in text and 'Runtime fidelity validation is outside' in text
+        assert 'architecture.md' in text and 'Broader runtime fidelity validation is outside' in text
         assert 'stop when' in text or 'after it passes, stop' in text
     assert 'implementation assumption' in (port/'prompts/reference-updates.md').read_text()
 

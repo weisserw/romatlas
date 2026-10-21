@@ -28,21 +28,21 @@ GOAL = ("Port this entire archived game into maintainable best-effort native Rus
         "Preserve the frozen reference and original ledger identities. Replace the scaffold "
         "and implement/account for the whole game, including ROM-backed startup assets, "
         "replacements/added slots, player settings, desktop/browser frontends and original battery saves where present. Validate native logic with focused unit "
-        "tests and required format/static/build checks. Runtime fidelity validation is outside "
-        "this porting goal: no native-versus-ROM frame/audio/state/scenario comparisons. "
-        "Use the debugger only for a specific unresolved source question with a bounded "
-        "experiment and stopping condition, never to validate the port. Complete necessary "
+        "tests, required format/static/build checks and the bounded startup/first-area smoke "
+        "test in smoke-test.md. Broader runtime fidelity validation is outside this goal. "
+        "Use the debugger for that smoke test or a specific unresolved source question, "
+        "with a bounded experiment and stopping condition. Complete necessary "
         "shared-library changes uncommitted, preserve unrelated work and log changes/checks "
         "for the separate reviewer. Finish architecture, accounting, required checks, "
         "BUILDING.md and handoff; run the administrative ledger/build audit and stop when "
         "it passes. Do not expand acceptance criteria or repeat validation for confidence. "
         "Unverified fidelity and documented implemented assumptions do not block completion; "
-        "missing required implementations do. Report a concrete blocker if implementation "
-        "cannot proceed. Fidelity/device auditing and release work require a later request.")
+        "missing implementations or a failed/unperformed required smoke test do. Report a concrete blocker if implementation "
+        "cannot proceed. Broader fidelity/device auditing and release work require a later request.")
 RESUME = ("Read architecture.md, progress.md, ledger.json, uncertainties.json, "
           "research/current.json if present, differences.md, library-changes.md and existing "
           "code first. Preserve work; do not reinitialize. Resume implementation under "
-          "prompts/start.md's debugger and stopping boundaries; do not start a fidelity audit.")
+          "prompts/start.md's smoke-test, debugger and stopping boundaries; do not start full-game QA.")
 
 
 def git(*args):
@@ -233,6 +233,7 @@ def prepare(archive, rom, output, binary):
         (stage / "goal.md").write_text("# Native port\n\n" + GOAL + "\n\nOn resume: " + RESUME + "\n")
         shutil.copyfile(TEMPLATES / "architecture.md", stage / "architecture.md")
         shutil.copyfile(TEMPLATES / "review.md", stage / "prompts/review.md")
+        shutil.copyfile(TEMPLATES / "smoke-test.md", stage / "smoke-test.md")
         shutil.copyfile(TEMPLATES / "reference-updates.md", stage / "prompts/reference-updates.md")
         build_guide = (TEMPLATES / "BUILDING.md").read_text().replace("__GAME_NAME__", name).replace("__TOOLKIT_PATH__", str(ROOT))
         if manifest["platform"]=="pce":
@@ -288,7 +289,8 @@ The arbitrary-tile scaffold implements no gameplay.
    limits. A missing implementation remains incomplete; lack of fidelity proof
    for an implemented interpretation does not. ROM-backed data may remain
    structurally uncertain; preserving code bytes does not implement behavior.
-4. Validate intended native logic with focused unit tests. Run python3 run.py check
+4. Validate intended native logic with focused unit tests and complete the bounded
+   smoke-test.md route, fixing exposed defects. Run python3 run.py check
    for formatting, clippy, tests and desktop/Wasm compilation. Recheck only after a
    relevant change, failure or concrete new defect. Document actual check results.
 5. Finish accounting, assessed uncertainties, a coherent architecture and handoff
@@ -299,18 +301,17 @@ The arbitrary-tile scaffold implements no gameplay.
    notes describing this scope, run python3 run.py audit and stop when it passes.
    Do not create more work to fill the remaining goal budget.
 
-Runtime fidelity validation is outside this porting goal. No native-versus-ROM
-frame, screenshot, animation, audio, state or gameplay-scenario comparisons,
-playthrough requirements or confidence-building replay loops are authorized.
-Unit tests check intended logic; they need not establish original-game equivalence.
-Debugger use is limited to a named unresolved source question that static reading
-cannot reasonably answer. Record its needed observation and stopping condition;
-perform a bounded experiment and return to implementation. Stop at the declared
-bound even if unanswered; do not repeat inconclusive runs without new evidence.
-Document a reasonable
-assumption if inconclusive. Do not reopen it without new contradictory evidence.
-A later fidelity/device audit requires an explicit user request. This boundary
-applies to Game Boy, SMS, NES and SNES and to the entire generated instruction set.
+The required smoke test in smoke-test.md permits targeted original-ROM/title/color
+comparisons and native gameplay through the first area's exit or a normal death.
+Broader runtime fidelity validation is outside this goal: no exhaustive scenario
+matrices, frame-by-frame equivalence or confidence-building replay loops.
+Debugger use is also available for a named unresolved source question that static
+reading cannot reasonably answer. Record its needed observation and stopping condition;
+perform a bounded experiment, then return to implementation. Do not repeat an
+inconclusive run without a revised hypothesis/method. Document reasonable source
+assumptions where needed; they cannot excuse a broken required smoke-test step.
+Full-game QA and device auditing require a separate request. This boundary applies
+to every supported platform and the entire generated instruction set.
 
 Available commands (availability does not make each command a required phase):
 
@@ -324,8 +325,8 @@ python3 run.py reference-verify --revision findings-001
 
 The audit checks accounting and builds, not gameplay fidelity. Do not run it while
 ledger completion is pending. check retains logs in checks/latest.log and JSON
-results. desktop and headless execution remain available for later user-requested
-work; neither is a required implementation-validation step. Never launch desktop
+results. Use python3 run.py debug for the required device-free smoke test; the
+headless command alone does not exercise its checks. Never launch desktop
 graphics on this server. Unit tests initialize no display or audio device.
 
 Ledger dispositions are implemented, merged, replaced or excluded, with a summary
@@ -363,8 +364,8 @@ implementation blockers without presenting unverified fidelity as a blocker.
 Status: scaffold only. Implement the entire game before claiming completion.
 See [BUILDING.md](BUILDING.md) for local macOS/Linux/Windows source builds, Android integration guidance and
 transfer instructions. Adapt that guide for the finished port and tested facts.
-The implementation goal uses focused unit tests and build/static checks. Runtime
-fidelity/device auditing is separate later work. On a desktop with SDL2 installed,
+The implementation goal uses focused unit tests, build/static checks and the
+bounded [smoke test](smoke-test.md). Broader fidelity/device auditing is separate later work. On a desktop with SDL2 installed,
 `python3 run.py desktop` opens the window; F1 opens saved player settings.
 `python3 run.py web` builds and serves the browser frontend (default host 0.0.0.0; use --host to change it).
 Game logic and asset extraction stay shared; implement original battery saving
@@ -383,9 +384,9 @@ manual installation or automatic QA launch occurs during port preparation.
         phase.write_json(stage / "examples/asset-extension.json", {"version": 1,
             "entries": [{"id": "level-01", "file": "levels/replacement-01.json"},
                         {"id": "level-16", "file": "levels/new-16.json"}], "order": []})
-        (stage / "library-changes.md").write_text("# Library changes\n\nNo port-driven changes recorded yet. Record requirements, files, reusable contracts, focused unit tests/checks and limits. Runtime fidelity auditing is outside the implementation goal.\n")
+        (stage / "library-changes.md").write_text("# Library changes\n\nNo port-driven changes recorded yet. Record requirements, files, reusable contracts, focused unit tests/checks and limits. Broader fidelity auditing beyond smoke-test.md is outside the implementation goal.\n")
         (stage / "progress.md").write_text("# Port progress\n\nPrepared reference and demonstration scaffold. Every source-ledger entry is pending. Read representative source and complete architecture.md before substantial implementation. No gameplay is ported.\n")
-        (stage / "differences.md").write_text("# Differences and validation limits\n\nScaffold implements no gameplay or original audio. Record implemented assumptions and known differences as work proceeds. Runtime fidelity/device auditing is outside this goal; its absence does not block implementation completion.\n")
+        (stage / "differences.md").write_text("# Differences and validation limits\n\nScaffold implements no gameplay or original audio. Record implemented assumptions and known differences as work proceeds. The required smoke test is described in smoke-test.md; broader fidelity/device auditing is outside this goal.\n")
         (stage / "run.py").write_text(f"""#!/usr/bin/env python3
 import runpy, sys
 from pathlib import Path

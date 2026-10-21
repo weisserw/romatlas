@@ -23,8 +23,10 @@ game-independent contracts or explicit platform-specific scope; game rules
 belong in the port. Check ROM identity, bounded reads, asset
 replacement/extension, data hygiene, headless separation, console cadence and
 customization. Review focused unit tests and run relevant toolkit checks.
-Runtime fidelity validation is outside this review: do not request
-emulator/native comparisons, scenario playthroughs or GUI/device checks.
+Review the recorded smoke-test.md scope/results and concrete unresolved failures.
+Do not launch a second smoke test merely for review confidence. Broader fidelity
+validation is outside this review; do not request full playthroughs, exhaustive
+emulator/native comparisons or GUI/device checks.
 Debugger use, if needed for a specific source question, follows
 prompts/start.md's bounded inquiry rule. Do not expand review into an
 original-game equivalence audit. A later fidelity audit requires an explicit

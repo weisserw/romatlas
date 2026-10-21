@@ -3,8 +3,8 @@
 This is the baseline guide generated with the port scaffold. The port agent must
 update it for the finished executable, dependencies, flags and validation.
 Platform instructions below are recipes for a human developer, not evidence that
-a platform was tested. The porting agent's checks are focused unit tests plus
-format/static/build checks. Runtime fidelity/device auditing and optional Android
+a platform was tested. The porting agent's checks are focused unit tests, format/static/build checks and
+the bounded initial smoke test in smoke-test.md. Broader fidelity/device auditing and optional Android
 integration require a later user request; do not execute these recipes to expand
 the implementation goal.
 
@@ -214,9 +214,10 @@ physical devices or other operating systems have been validated for this port.
 The port agent must replace this section with actual build/test evidence,
 distinguishing compilation, headless execution, desktop play and user-reported
 results. Keep untested platforms/device behavior explicit; instructions do not
-establish compatibility. Runtime fidelity/device validation is outside the implementation goal and its
-absence does not block completion. Do not start playthroughs, emulator comparisons
-or a server graphics launch to complete this section.
+establish compatibility. Record the required smoke-test.md route and its actual
+results; targeted title/color comparisons and initial gameplay checks are required.
+Broader fidelity/device validation is separate work. Do not expand the smoke test
+into a full playthrough or launch server graphics to complete this section.
 
 ## Later packaging
 

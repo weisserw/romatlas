@@ -1826,3 +1826,44 @@ prior port AGENTS cleanup. Existing game workspaces were not rewritten.
 Python compilation of all modified generators/regression scripts and git diff
 --check pass. No tests, builds, emulator execution or agents were launched for this
 instruction-template cleanup; generated workflow behavior has not been exercised.
+
+## 2026-10-21 — Clarify native-port faithfulness
+
+The port implementation prompt and porting guide now explicitly allow smooth
+native execution without reproducing hardware-induced lag, slowdown or sprite
+flicker. Intentional gameplay timing and effects, including deliberate slow motion
+and damage/invulnerability flashing, remain part of the source-game behavior.
+This clarification adds no features or fidelity-validation gates. Existing game
+workspaces and unrelated edits were preserved. Validation: matching policy text
+in both owning documents and git diff --check pass. No executable code changed;
+no builds, runtime tests or game execution were needed.
+
+## 2026-10-21 — Clarify hardware artifacts in native QA
+
+The debug goal template and debugging guide now explicitly say that absence of
+hardware-induced lag, slowdown or sprite flicker is not a bug and must not create
+a failing QA check or repair task. Intentional timing and visual effects, including
+slow motion and damage/invulnerability flashing, still require checking. Updated
+Alleyway/Rygar goal and guide copies and their deployment hashes; existing QA plans,
+results and acceptance files were preserved. No executable code changed or gameplay
+QA was started. Whitespace check passed; no runtime tests were run.
+
+## 2026-10-21 — Require bounded initial-port smoke testing
+
+Initial native implementation now requires a device-free smoke test before
+completion: boot/title-screen layout and colors against representative matching-ROM
+observations, menu interaction/start, initial-area colors, movement/actions and
+representative enemy/hazard or equivalent interactions, ending at the first-area
+exit or normal death/game-over as appropriate. New workspaces receive smoke-test.md;
+results belong in checks/smoke-test.md with build/ROM identity, route and fixes.
+Failed/unperformed required steps block completion. Fix and recheck affected steps,
+then stop when the route passes. No exhaustive frame/pixel equivalence, later-level
+coverage, repeated passing routes, device launch or automatic two-pass QA is added.
+
+Updated generated goal/workflow/README/differences guidance, implementation and
+architecture templates, building/reviewer guidance and porting docs to remove
+conflicting blanket runtime-validation bans. Preserved focused-unit-test limits and
+allowed smooth rendering without hardware lag/flicker. Updated existing contract
+assertions to match the broader-QA restriction. Existing game workspaces were not
+migrated and no game was run. Python compilation and git diff --check pass; no
+builds or regression tests were run for this instruction-only change.

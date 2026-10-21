@@ -6,6 +6,12 @@ and required checks. The agreed two-pass QA acceptance contract is preinstalled;
 invoking debug/goal.md selects this separate workflow without another acceptance
 approval. Installation alone does not start QA or claim that a game is correct.
 
+Faithfulness does not require reproducing hardware-induced lag, slowdown or
+sprite flicker. Their absence in a smoother native port is not a bug and must not
+produce a failing QA check or a repair task. Preserve and check intentional gameplay
+timing and visual effects, such as deliberate slow motion or damage/invulnerability
+flashing.
+
 ## Install and configure
 
 Run toolkit commands from the toolkit directory recorded in workspace.json.
