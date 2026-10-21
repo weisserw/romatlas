@@ -61,7 +61,7 @@ the disassembler can use them on its next run.
 
 This process continues until the goal reaches a "BLOCKED" state (no more leads) or the ROM is 100% disassembled and commented.
 
-To start the process, run this command:
+To start the process, build the Rust code (see "Setup" below), then run this command:
 
 `python3 scripts/disassembly.py <rom>`
 
@@ -74,19 +74,36 @@ The rest of the process should proceed automatically.
 
 ### Archiving
 
-TODO
+Once a game has been successfully disassembled (or has reached a "blocked" state where only a small unknown portion remains), you should archive it using `scripts/archive.py` (this script is better invoked via an AI agent, as it depends on the outputs of the disassembly process which may not be 100% reliable since AI agents can make mistakes; an agent running the script can fix any of these problems as it goes).
+
+Archiving a game copies its disassembly artifacts into the `atlas/` directory which is published in this repo. It does not copy the original ROM file or the full game source code (found in `commentary/reading-after.asm`). Users of this repo must supply their own ROM files to reconstruct the original source, which can be done via `scripts/archive.py restore`.
 
 ### Porting
 
-TODO
+The `scripts/port.py` script initializes a workspace for porting an archived game. By default it creates a directory named `rom-ports/<romfile>`. Inside this directory, run an agent and type `/goal Read goal.md` to begin the porting process to Rust.
 
 ### Debugging
 
-TODO
+The porting goal does minimal checking of its own work; it is concerned mainly with reproducing the original game logic. Once a port is complete, it needs to be tested and compared with the original game to find defects. To do this, run `/goal debug/goal.md` in the port directory. The porting agent is instructed to include headless / scripted interaction in the port's feature set so that the agent can play the game and compare the result to the emulated copy using the toolkit's built-in emulator.
+
+Debugging works by first generating a test plan unique to the game, then running through the entire test plan twice and fixing all issues found. Additional debugging cycles may be neccessary for large and complex games.
+
+### Running a Port in The Browser
+
+Run:
+
+`python3 run.py web`
+
+To run a local web server on port 8000 which hosts the WebAsssembly build of the port. You must press the "Start" button on the web site to initialize sound and input before you can begin playing.
 
 ### Caveats / Issues
 
-TODO
+A persistent issue with goal-based workflows in today's AI agents is their tendency to "go down rabbit holes" or run forever in loops if they can't solve a problem. The prompts in this repository have been engineered to attempt to avoid this behavior as much as possible, but they also do not run under any "budget" by default. Users should periodically check on the processes or instruct their agents to operate under a time or token budget if neccessary.
+
+Some 8- and 16-bit era games were simple and some were not. Because testing on large games is time consuming and expensive, this project is likely to have trouble with the most complex games for the time being, but work is ongoing.
+
+There are many features which could be added to ports out of the box, as the current implementation is quite basic and only provides customizable display
+and input controls (with basic gamepad support). An advantage of the architecture of this project is that ports share a runtime library which can be used to add QoL features to all future ports built by this system, not just to individual games.
 
 All the rest of the information below is automatically generated and meant for AI to consume.
 
