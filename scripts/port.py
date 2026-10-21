@@ -254,6 +254,11 @@ Use focused unit tests and required format/static/build checks, then finish
 accounting/handoff, run the administrative audit and stop when it passes.
 Implemented documented assumptions and unverified fidelity do not block completion;
 missing required code does. The scaffold is not a completed port.
+Default to a faithful representation of the source game with no extra game features.
+Do not add visible debug artifacts, level selects, sound tests, cheats or developer
+menus unless specifically instructed by the user. Preserve original features and
+access conditions; required frontend settings/asset support remain supported.
+See prompts/start.md for the player-interface contract.
 Toolkit: {json.dumps(str(ROOT))}. Use its AGENTS.md for shared-library changes.
 reference/ and review/toolkit-before/ are frozen. Change port/, ledger.json and
 uncertainties.json and port documentation. Use prompts/reference-updates.md for

@@ -70,6 +70,14 @@ file/line quotas apply. Inspect affected boundaries after substantial features,
 fix concrete design problems and update the plan when decisions change. Finish
 with one bounded maintainability pass, not repeated redesign/audit cycles.
 
+The default target is a faithful representation of the source game with no extra
+game features. Unless the user specifically requests them, do not add visible
+debug artifacts, level selects, sound tests, diagnostic overlays, cheats or developer
+menus. Preserve source-game features with their original access conditions. Required
+frontend settings and asset replacement/extension support remain supported, without
+authorizing extra gameplay features or content-selection menus. Keep development
+diagnostics in logs or headless tools. This does not add fidelity-validation gates.
+
 The native goal implements the whole game on a source-informed best-effort basis.
 Focused unit tests check intended logic; formatting, static checks and compilation
 complete the required implementation checks. **Runtime fidelity validation is

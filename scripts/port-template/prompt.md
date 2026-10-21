@@ -65,6 +65,19 @@ an assumption as confirmed classification. Frozen reference/ stays unchanged.
 
 ## Runtime library, assets and player interface
 
+The default target is a faithful representation of the source game, with no extra
+game features. Preserve its intended gameplay, progression and presentation within
+the documented best-effort implementation scope. Unless the user specifically
+instructs otherwise, do not add visible debug artifacts or developer conveniences:
+level/stage selects, sound tests, debug overlays, diagnostic screens, cheats,
+unlock menus or extra gameplay modes. Preserve such features when they belong to
+the source game, with their original access conditions; do not expose hidden source
+debug functions as new player-facing controls. Keep implementation diagnostics in
+logs or headless development tools, outside the player interface. Required frontend
+settings and asset replacement/extension support below remain supported; they do
+not authorize extra in-game features or menus for selecting added content. This
+presentation target does not add runtime fidelity validation or completion gates.
+
 Use romatlas-port for common mechanisms and platform-specific effects, including
 available audio/video helpers. Review their documented limits. Keep game rules,
 sequence interpretation and unusual tricks in the game when appropriate. Simulate

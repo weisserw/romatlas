@@ -1641,3 +1641,14 @@ continued audit/foreign-ROM rejection. Stock portability, dependency boundaries,
 Python compilation and diff checks pass. Alleyway's standard check passes fmt,
 Clippy, 66 tests and desktop compilation; its 120-frame ROM-backed headless run
 passes. No Rust/dependency changes or desktop launch; edits remain uncommitted.
+
+2026-10-21: Updated native port prompts, generated workspace instructions and
+porting documentation to default to a faithful source-game representation without
+extra game features. Visible debug artifacts, level selects, sound tests, cheats
+and developer menus require explicit user instructions; original features retain
+their original access conditions. Required frontend settings and asset extension
+support remain, and no new runtime fidelity gates were added. Existing generated
+workspaces were not rewritten. Validation: Python compilation, scripts/test-port.py
+(preparation, reference fidelity, headless/desktop/Wasm checks, overrides, accounting
+and rejections), stock deterministic four-bank portability and git diff checks pass.
+No runtime or dependency changes were made.
