@@ -277,7 +277,11 @@ The arbitrary-tile scaffold implements no gameplay.
 2. Implement the whole game using shared platform helpers. Maintain architecture.md
    when decisions change and fix concrete design problems after substantial
    features. Avoid monolithic code and cosmetic file splitting. No size quotas
-   or repeated whole-project architecture audits are required.
+   or repeated whole-project architecture audits are required. Write useful Rust
+   comments as specified in prompts/start.md, keeping non-obvious reasoning,
+   source-game quirks and implementation assumptions close to the relevant code.
+   Use descriptive enums or scoped named constants for states and other meaningful
+   values; avoid unexplained numeric IDs, flags, sentinels and gameplay parameters.
 3. Account for original source behavior in ledger.json and assess uncertainties
    as consumers become relevant. Preserve IDs, ranges and original source records.
    Implement reasonable source-informed assumptions, documenting their basis and
@@ -289,7 +293,9 @@ The arbitrary-tile scaffold implements no gameplay.
    relevant change, failure or concrete new defect. Document actual check results.
 5. Finish accounting, assessed uncertainties, a coherent architecture and handoff
    (README.md, BUILDING.md, progress.md, differences.md, library-changes.md).
-   Make one bounded maintainability pass. Set completion.status=complete with
+   Make one bounded maintainability pass, including unexplained semantic numeric
+   literals and missing/stale code comments.
+   Set completion.status=complete with
    notes describing this scope, run python3 run.py audit and stop when it passes.
    Do not create more work to fill the remaining goal budget.
 

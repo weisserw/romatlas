@@ -1,5 +1,25 @@
 # Milestone checklist
 
+Native port instructions now also require descriptive enum variants or scoped
+named constants for semantic values, including states, flags, sentinels, timing
+and gameplay parameters. Guidance preserves numeric ROM encodings, explicitly
+handles unknown values and avoids invented meanings or needless constants for
+obvious literals/opaque data. The existing maintainability pass checks unexplained
+semantic numeric literals. Updated the start template, generated workflow and
+porting guide. Python syntax, focused instruction-template checks and
+git diff --check pass; no full port regression or live agent run was performed
+for this instruction-only change. Existing workspaces are not rewritten.
+
+Native port instructions now explicitly require useful Rust comments during
+implementation: major-system documentation, important type/interface contracts,
+and nearby explanations of non-obvious behavior, source quirks, invariants,
+timing/order, numeric formats and assumptions. The existing bounded
+maintainability pass checks missing/stale explanations without comment quotas or
+additional fidelity gates. Updated the start template, generated workflow and
+porting guide. Python compilation, focused instruction-template checks and
+git diff --check pass. No full port regression or live agent run was performed
+for this instruction-only change; existing workspaces are not rewritten.
+
 T001 region explanations are now available through map.annotate: optional name, role, evidence and comment strings are stored in region_metadata, exposed by map.get and retained by map.save/load. Null removes a field; unchanged extents preserve imported directives and explanations. Structural edits discard old metadata; all edits stage and validate the full proposed map before committing. Names export as stock symbols; explanatory text remains internal. Metadata no longer requires a sym directive. Rust 1.90.0 fmt, locked workspace clippy/tests/build, synthetic session, API and stock portability pass, including byte-identical rebuilding with a named region and imported 1bpp metadata. A focused mapping unit test also passes for explanation-only metadata and named export. No commercial ROMs or extracted assets were used.
 
 Generated disassembly workflow and start/resume prompts now require game familiarization using available online manuals, FAQs/walkthroughs and technical resources after game/version identification. New workspaces initialize analysis/gameplay.md for source URLs, version uncertainty, actionable controls/mechanics/progression/password routes and local confirmation status. Findings feed targeted runtime scenarios; external claims do not independently justify structural classification. Agents revisit research for specific obstacles and check documented routes before exhausting gameplay-dependent paths, preserving research across sessions and continuing local analysis if browsing/resources are unavailable. INSTRUCTIONS.md documents the behavior. Rust 1.90.0 fmt, locked workspace clippy/tests, synthetic workspace regression, stock portability, session tests and git diff --check pass. Regression checks cover generated prompts, gameplay record initialization, evidence distinction and exhaustion review. No live browsing/disassembly-agent behavior was tested; existing workspaces are not automatically updated.

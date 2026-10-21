@@ -28,11 +28,37 @@ simulation, assets, rendering, audio and UI. Splitting a tangled implementation
 across files without improving ownership/coupling does not satisfy this requirement.
 There are no arbitrary file-count, line-count or abstraction quotas.
 
+Give meaningful values descriptive names throughout the Rust implementation.
+Prefer enums with descriptive variants for game modes, actor states, commands and
+other finite semantic choices: write `state == ActorState::Falling` rather than
+`state == 3`. When numeric storage or ROM compatibility makes integers appropriate,
+use scoped named constants for state IDs, flags/masks, sentinels, table fields,
+timing values and gameplay parameters. Name values by their role, not their number
+(avoid names like STATE_3 or VALUE_16); include units where useful. Keep raw numeric
+encodings at ROM/serialization boundaries, preserving exact values and handling
+unknown values explicitly. Do not invent meanings for unresolved IDs: use honest
+provisional names and nearby explanations of what is known or assumed. Ordinary
+obvious literals such as zero initialization need no artificial constants, and
+opaque ROM data tables need not be renamed element by element.
+
+Include useful comments in the Rust code as you implement it. Add module-level
+documentation for major systems and doc comments for important types/interfaces
+where their purpose or contract needs explanation. Near non-obvious logic, explain
+why it works: source-game behavior and quirks, algorithm invariants, update/timing
+order, numeric formats and constants, and intentional differences or implementation
+assumptions. Cite relevant source labels or routines when they help a maintainer
+trace the reasoning; distinguish supported facts from assumptions. Keep these
+explanations close to the code rather than only in architecture.md or the ledger.
+Use concise natural language, avoid comments that merely restate Rust statements,
+and update comments when the implementation changes. No comment-count quota applies.
+
 After a substantial feature, briefly inspect the affected design against the plan;
 fix concrete coupling, duplication or unclear algorithms before building on them.
 This is part of implementation, not a new review phase or repeated whole-project
 audit. Update the plan only when decisions change. At completion, make one bounded
-maintainability pass; do not keep redesigning a coherent working implementation.
+maintainability pass, including unexplained semantic numeric literals and missing
+or stale explanations of non-obvious code;
+do not keep redesigning a coherent working implementation.
 
 ## Implementation and behavior accounting
 

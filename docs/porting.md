@@ -76,6 +76,25 @@ file/line quotas apply. Inspect affected boundaries after substantial features,
 fix concrete design problems and update the plan when decisions change. Finish
 with one bounded maintainability pass, not repeated redesign/audit cycles.
 
+The port agent must write useful Rust comments during implementation: document
+major modules and important type/interface contracts, and explain non-obvious
+behavior, source-game quirks, invariants, timing/order, numeric formats and
+implementation assumptions near the relevant code. Include source labels where
+they help trace the reasoning, and distinguish facts from assumptions. Clear names
+and external design/accounting records complement these comments. Avoid statement
+paraphrases and comment-count quotas; check for missing or stale explanations in
+the existing bounded maintainability pass. This guidance applies to newly prepared
+workspaces; existing workspace instructions are not rewritten automatically.
+
+Use descriptive enum variants for finite semantic choices such as game modes and
+actor states (`ActorState::Falling` rather than an unexplained `3`). Where integer
+storage is appropriate, use scoped constants named for their role for state IDs,
+flags/masks, sentinels, table fields, timing and gameplay parameters. Preserve exact
+ROM encodings at data boundaries and handle unknown values explicitly. Unresolved
+IDs need honest provisional names and explanations, without invented semantics.
+Obvious literals and opaque ROM table elements do not each need constants. The
+existing maintainability pass also checks unexplained semantic numeric literals.
+
 The default target is a faithful representation of the source game with no extra
 game features. Unless the user specifically requests them, do not add visible
 debug artifacts, level selects, sound tests, diagnostic overlays, cheats or developer
