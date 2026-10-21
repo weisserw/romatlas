@@ -1867,3 +1867,55 @@ allowed smooth rendering without hardware lag/flicker. Updated existing contract
 assertions to match the broader-QA restriction. Existing game workspaces were not
 migrated and no game was run. Python compilation and git diff --check pass; no
 builds or regression tests were run for this instruction-only change.
+
+## 2026-10-21 — Reduce debug transport storage and workflow artifact growth
+
+Disk investigation found the VM at 94% usage (1.2 GiB available), Rygar debug
+artifacts at 1.2 GiB and toolkit targets at 3.1 GiB. Native PortClient duplicated
+bulk API payloads in transport logs (128 MiB per experiment) and redirected
+unbounded stderr to disk. It now summarizes large lists/strings with count,
+encoded size and SHA-256, preserving returned API results. Transport has an 8 MiB
+per-experiment limit; stderr drains in a background thread while retaining only
+its first 1 MiB. Budget/runtime failures close the child. Logs are diagnostic
+summaries; replay checkpoints/captures must be explicitly saved when needed.
+
+Disassembly coordinator/evidence policy, port prompt and QA goal/guide now require
+reusable disposable scratch, promotion of cited evidence, selected captures,
+cleanup at batch/handoff boundaries and reused build targets. Superseded plans,
+results and explanations remain durable without requiring every intermediate dump.
+Storage pressure never establishes successful workflow completion. Updated Rygar's
+QA goal/guide and their deployment hashes, preserving QA records and existing
+artifacts. Existing scripts using the shared client receive compact logs on their
+next process invocation, including Rygar's gzip wrapper.
+
+Checks: ROM-free client storage regression passes (full framebuffer still returned,
+compact transport, 2 MiB noisy child capped at 1 MiB stderr, repeated close);
+all three administrative QA contract tests pass; Python compilation and whitespace
+checks pass. No Rust changes/builds, game execution or QA were performed. Existing
+artifact/build data was not deleted, so this change does not reclaim existing disk
+usage. Aggregate artifact retention remains agent-managed, not an enforced global
+quota; other custom clients and external agent session logs are not bounded here.
+
+## 2026-10-21 — Continue native QA passes through repairs without restarting
+
+The user clarified that QA always completes two continuous A-to-Z passes, fixing
+issues as encountered. Removed the explicit broader-code/plan-change restart rule
+from the QA goal, debugging/porting guides and acceptance contract (now version 3).
+Code scope and plan/route corrections never reset pass numbers or completed work.
+Targeted rechecks repair affected earlier results within the current pass; retain
+unaffected results and continue at the current position. Blockers/resource limits
+leave an incomplete resumable run, not a fresh attempt. Corrected/new plan checks
+must be reconciled with real results; hash mismatch diagnostics now request that
+reconciliation without instructing a restart. Two completed passes remain required.
+
+The administrative audit rejects the superseded restart contract. Added a
+regression for repairs during pass two with preserved first-pass/unaffected results
+and rejection of the old restart rule. All four QA contract tests, Python compilation
+and git diff --check pass. The audit validates records, not whether the agent chose
+sufficient regression checks or assessed impact correctly. No Rust build or gameplay
+QA was performed.
+
+Updated Rygar goal/guide/acceptance and deployment hashes; prepended a handoff
+correction explicitly resuming attempt-008 without restarting. Previous policy
+text is retained in a small local backup; plan.json and qa.json were verified
+byte-for-byte unchanged. Other game workspaces were not migrated.

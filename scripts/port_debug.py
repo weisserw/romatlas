@@ -11,9 +11,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def acceptance_contract():
-    return dict(version=2, status='agreed', policy='two_full_successful_qa_passes',
-        required_passes=2, failure_rule='block_until_fixed_or_abort_for_correction',
-        restart_rule='holistic_code_or_plan_change_restarts_at_pass_one',
+    return dict(version=3, status='agreed', policy='two_full_successful_qa_passes',
+        required_passes=2, failure_rule='fix_in_place_then_continue',
+        restart_rule='never_restart_continue_current_pass',
         resource_ceiling=None, resource_limit_outcome='incomplete')
 
 
@@ -21,7 +21,7 @@ def audit(work):
     """Administrative acceptance checks; does not evaluate evidence truth."""
     work = work.resolve(strict=True)
     acceptance = json.loads((work/'debug/acceptance.json').read_text())
-    if acceptance.get('policy') != 'two_full_successful_qa_passes' or acceptance.get('required_passes') != 2 or acceptance.get('status') != 'agreed':
+    if acceptance.get('policy') != 'two_full_successful_qa_passes' or acceptance.get('required_passes') != 2 or acceptance.get('status') != 'agreed' or acceptance.get('restart_rule') != 'never_restart_continue_current_pass':
         raise ValueError('expected the agreed two-pass acceptance contract')
     plan_bytes = (work/'debug/plan.json').read_bytes()
     plan = json.loads(plan_bytes)
@@ -56,7 +56,7 @@ def audit(work):
     if qa.get('version') != 1 or qa.get('status') != 'complete' or qa.get('blockers') != []:
         raise ValueError('QA is incomplete or has blockers')
     if qa.get('plan_sha256') != hashlib.sha256(plan_bytes).hexdigest():
-        raise ValueError('QA results refer to a different plan; restart required')
+        raise ValueError('QA results refer to a different plan; reconcile affected checks and plan hash without restarting')
     def artifact(name):
         if not text(name) or Path(name).is_absolute():
             raise ValueError('evidence/report must name a local workspace file')

@@ -57,7 +57,8 @@ flashing.
 
 Use the installed plan/result format described in DEBUGGING.md. Preserve check
 IDs and plan revisions, source/baseline identities, routes, observations, fixes
-and local evidence. Once a pass begins, the plan is fixed for that QA attempt.
+and local evidence. Correct mistaken expectations/routes in place with source
+evidence and a recorded plan revision; preserve valid check IDs and prior results.
 Missing source/tools or a mistaken game model must be investigated as an obstacle,
 not silently treated as a successful check or an exclusion.
 
@@ -69,21 +70,26 @@ it until it passes; do not skip it, defer it to a backlog or call an inconclusiv
 result acceptable completion. An inaccessible state is a defect in the route,
 implementation or understanding that must be resolved.
 
-If the failure reveals a broader implementation problem, halt the current QA
-attempt, make the necessary holistic game-code changes and restart from the
-beginning. If the plan rests on a mistaken understanding, correct it from source
-and evidence and restart QA. Preserve superseded plans/results and explain why
-restart was necessary. Do not weaken expectations or remove a valid failing check
-merely to obtain a pass. If no sound repair or plan correction is available,
-abort and report the fundamental blocker; do not continue A-to-Z past it.
+Fix broader implementation problems in the current run too. Do not restart the
+attempt, reset the pass number, discard completed checks or return to A because
+of a code fix, its scope, or a plan/route correction. Preserve the current pass
+and next-check position. Do not weaken expectations or remove valid failing
+checks merely to obtain a pass. If no sound repair is available, leave an
+incomplete handoff at the blocked check and resume there when resolved.
 
-Only after the full first pass succeeds, start at A again and re-check every
-entry in a complete second pass against the updated port. A second-pass failure
-also blocks advancement until fixed. For a local fix, recheck the failed entry
-and any previously passed checks affected by the change before continuing. Record
-that impact assessment and fresh evidence; results invalidated by a fix do not
-count as current passes. A holistic change or plan change restarts QA at pass one.
-There is no automatic third full pass after two valid successful passes.
+After a fix, recheck the failed entry and specifically affected earlier checks,
+recording the impact assessment and fresh evidence. Retain unaffected results.
+These targeted regressions are repairs within the current pass, not another
+A-to-Z traversal. A broad fix alone is not grounds to repeat every earlier check.
+Correct mistaken plans/routes in place, reconcile changed checks and evidence,
+and update the plan hash; newly added checks need results in both pass records.
+Do not fabricate results or clear progress merely because a plan hash changed.
+
+When the first A-to-Z pass finishes, start at A once for the second full pass.
+Fix issues during pass two with the same continue-in-place procedure, including
+targeted rechecks of earlier results invalidated by a fix. Never reset to pass
+one or start a third full pass. Completion requires both full passes and resolved
+issues; a blocked check or resource interruption leaves a resumable incomplete run.
 
 ## Tools and repair discipline
 
@@ -101,8 +107,8 @@ An experiment timeout or exhausted client budget does not permit passing/skippin
 the check: continue with a useful revised method or diagnose the larger problem.
 Avoid unchanged retries without a new hypothesis or observation sought. Do not
 use a stagnation counter, fixed repair-attempt quota or minimum bug count as an
-alternative acceptance rule. Keep fixing checks; escalate fundamental problems
-into code/plan correction and restart instead of endless identical experiments.
+alternative acceptance rule. Keep fixing checks, including broader code/plan
+corrections, then continue from the current position without restarting QA.
 
 Use shared platform helpers and maintain the architecture. Add focused unit
 regressions for complex/error-prone repaired logic when useful; avoid trivial
@@ -131,3 +137,26 @@ resumable record at useful points and before an external ceiling is exhausted.
 Once both passes succeed, run relevant final checks, write the QA/fix/remaining-
 limitations report, and stop. This establishes completion of the declared QA
 plan, not a claim of universal bug freedom or untested hardware compatibility.
+
+## Disk and evidence retention
+
+Keep durable evidence separate from disposable scratch. Retain maps, readable
+source, current state, plan/result history, concise observations, reproducible
+routes and the selected captures/checkpoints actually cited by those records.
+Preserving superseded attempts means retaining their plans/results and explanation;
+it does not require retaining every intermediate dump or duplicate capture.
+
+Use one reusable scratch directory for exploratory output. Before each batch and
+at handoff, inspect free disk space and scratch size; remove superseded scratch
+files after recording useful conclusions and promoting cited evidence. Never prune
+cited evidence, source, ROMs, frozen references, saves or active-process output.
+Save selected frames/audio intervals rather than continuous captures. Keep bulk
+pixel/sample arrays and checkpoint payloads out of transport logs; explicitly save
+needed captures/checkpoints once and link them. Bound trace/log bytes and stderr,
+not just execution time. Reuse build targets; avoid a fresh Cargo target directory
+for each probe and remove owned temporary test workspaces when finished.
+
+When disk is tight, compact disposable output before another experiment. If safe
+cleanup is insufficient, leave an incomplete resumable handoff rather than filling
+the filesystem. This is storage hygiene, not a weaker acceptance criterion or a
+limit on required game coverage. Do not delete another task's files.

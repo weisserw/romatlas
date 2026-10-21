@@ -500,8 +500,9 @@ read `debug/goal.md`. For older workspaces use
 `python3 scripts/port_debug.py install WORKSPACE`; those ports also need the small
 launcher adapter described there. The agreed debugging contract is a
 source-informed QA plan and two complete
-successful passes. Failed/inaccessible checks block progress; holistic code or
-plan changes restart QA. Resource limits interrupt as incomplete, not success.
+successful passes. Failed/inaccessible checks block progress; broader code or
+plan changes are corrected in place without restarting QA. Resource limits
+interrupt as incomplete, not success.
 Installation does not activate full-game QA or change initial implementation
 completion. Future scaffolds expose --debug-stdio
 with optional game-specific read-only inspection.

@@ -48,6 +48,22 @@ class ContractTests(unittest.TestCase):
         self.assertEqual((self.work/'debug/qa.json').read_bytes(), before_qa)
         self.assertFalse(result['agent_started'])
 
+    def test_repairs_preserve_current_pass_and_unaffected_results(self):
+        first_pass = copy.deepcopy(self.qa['passes'][0])
+        self.qa['passes'][1]['checks'][1].update(
+            build='repaired-build', evidence=['observation.txt'])
+        self.qa['passes'][1]['checks'][1]['repair'] = 'Fixed during pass two; start unaffected'
+        self.write('qa.json', self.qa)
+        self.assertTrue(port_debug.audit(self.work)['ok'])
+        self.assertEqual(self.qa['passes'][0], first_pass)
+        contract = port_debug.acceptance_contract()
+        self.assertEqual(contract['restart_rule'], 'never_restart_continue_current_pass')
+        self.assertEqual(contract['failure_rule'], 'fix_in_place_then_continue')
+        contract['restart_rule'] = 'holistic_code_or_plan_change_restarts_at_pass_one'
+        self.write('acceptance.json', contract)
+        with self.assertRaisesRegex(ValueError, 'acceptance contract'):
+            port_debug.audit(self.work)
+
     def test_partial_failed_inaccessible_and_budget_limited_are_not_success(self):
         cases = []
         for status in ['failed','inaccessible','pending','inconclusive','deferred']:

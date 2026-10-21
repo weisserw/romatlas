@@ -116,21 +116,24 @@ progression and ending/terminal states where present. Each entry has specific
 applicable graphics, behavior and sound checks and a reproducible route/setup.
 The scope is major game functionality, not exhaustive frame/input permutations.
 
-A failure or inaccessible check blocks advancement until corrected. Do not skip,
-defer, mark unsupported/inconclusive as passed, or finish merely by recording a
-backlog. Keep investigating/fixing it. A fundamental code problem requires halting
-the attempt, holistic correction and restarting QA at pass one. A mistaken plan
-requires an evidence-supported plan correction and the same restart. Preserve
-superseded attempts and reasons; do not remove a valid check to escape a failure.
-If no sound correction is available, abort with the fundamental blocker.
+A failure or inaccessible check blocks advancement until corrected. Fix every
+issue as it is encountered, including broader implementation problems. Do not
+restart the run, reset pass numbers or discard completed checks for code changes,
+plan corrections or route corrections. If genuinely blocked, leave an incomplete
+handoff and resume at that check when resolved. Never skip a valid failing check.
 
-After pass one fully succeeds, recheck every entry in pass two. For local fixes,
-rerun the failed check and affected earlier checks before continuing; invalidate
-stale results. Holistic code changes or plan changes restart at pass one. Two
-complete valid passes, no blockers and a final report constitute success. There
-is no stagnation-based completion, repair quota, successful budget-limited result
-or automatic third pass. A resource ceiling can interrupt the run as incomplete.
-Per-experiment timeouts protect tools; they do not excuse skipping a check.
+After any fix, recheck the failed check and specifically affected earlier checks,
+recording impact and fresh evidence. Retain unaffected results. Targeted regression
+checks stay within the current pass; the scope of a fix alone does not require
+another A-to-Z traversal. Correct plans/routes in place with source evidence,
+preserve check IDs and results, and reconcile changed/new checks and plan hashes.
+New checks need results in both pass records; do not invent successful results.
+
+Finish pass one, then run the full plan once more as pass two, fixing issues with
+the same continue-in-place procedure. Never return to pass one or start a third
+full pass. Success requires two completed passes, resolved issues and a report.
+There is no stagnation-based completion or repair quota. A resource ceiling or
+unresolved blocker leaves the current run incomplete and resumable.
 
 ### Plan and result records
 
@@ -151,7 +154,7 @@ The example assumes `bridge` and `occlusion` are listed in their respective
 coverage lists. Use area:, mechanic:, transition: prefixes. Every listed item
 needs a check; the agent must assess actual comprehensiveness from source. Use
 status ready and a descriptive revision when planning is complete. Preserve
-superseded plans/results in local artifacts when restarting.
+plan revisions and superseded results as concise history when correcting them.
 
 Write debug/qa.json with the SHA-256 of the exact current plan file, `status`
 (in_progress, incomplete, aborted or complete), passes and blockers. Each pass
@@ -171,8 +174,9 @@ python3 scripts/port_debug.py audit /path/to/port-workspace
 
 The audit rejects partial/failing/inaccessible or stale-plan records. It validates
 accounting, not semantic correctness. Preserve first-pass records while executing
-the second pass. Restarting after holistic changes creates a fresh attempt; old
-passing records cannot be reused to evade the required two passes.
+the second pass. For corrections, retain valid results, replace only invalidated
+results with actual rechecks and update the plan hash after reconciling records.
+A hash mismatch requires reconciliation, not a fresh run or reset to pass one.
 
 ## Agent scenario client
 
@@ -200,3 +204,35 @@ Add the toolkit scripts directory to Python's import path. Evidence directories
 must be new, preventing accidental overwrites. Use the generated game package's
 actual binary name; build it before the experiment. Inspect captured images with
 local image tools and retain useful scenarios rather than regenerating every route.
+
+## Disk and evidence retention
+
+Keep durable evidence separate from disposable scratch. Retain maps, readable
+source, current state, plan/result history, concise observations, reproducible
+routes and the selected captures/checkpoints actually cited by those records.
+Preserving superseded attempts means retaining their plans/results and explanation;
+it does not require retaining every intermediate dump or duplicate capture.
+
+Use one reusable scratch directory for exploratory output. Before each batch and
+at handoff, inspect free disk space and scratch size; remove superseded scratch
+files after recording useful conclusions and promoting cited evidence. Never prune
+cited evidence, source, ROMs, frozen references, saves or active-process output.
+Save selected frames/audio intervals rather than continuous captures. Keep bulk
+pixel/sample arrays and checkpoint payloads out of transport logs; explicitly save
+needed captures/checkpoints once and link them. Bound trace/log bytes and stderr,
+not just execution time. Reuse build targets; avoid a fresh Cargo target directory
+for each probe and remove owned temporary test workspaces when finished.
+
+When disk is tight, compact disposable output before another experiment. If safe
+cleanup is insufficient, leave an incomplete resumable handoff rather than filling
+the filesystem. This is storage hygiene, not a weaker acceptance criterion or a
+limit on required game coverage. Do not delete another task's files.
+
+The Python client logs compact transport metadata: lists longer than 64 entries
+and strings longer than 2048 characters become count/size/SHA-256 summaries.
+Returned API results are unchanged. Transport logs are limited to 8 MiB per
+experiment; stderr retains its first 1 MiB while further bytes are drained.
+Logs are diagnostic summaries, not replay checkpoint storage. Explicitly persist
+any checkpoint needed for replay, and save selected frame/audio files separately.
+These per-client limits do not bound accumulated workspace artifacts; use the
+scratch/promotion discipline above across experiments.

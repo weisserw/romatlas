@@ -1,13 +1,31 @@
 """Bounded persistent native-port client for agent-authored scenarios (Unix host)."""
 import json
+import hashlib
 import os
 from pathlib import Path
 import select
 import signal
 import subprocess
 import time
+import threading
 
 MAX_MESSAGE = 16 * 1024 * 1024
+MAX_LOG = 8 * 1024 * 1024
+MAX_STDERR = 1024 * 1024
+
+
+def compact_record(value):
+    """Keep metadata and hashes without duplicating captures/checkpoint payloads."""
+    if isinstance(value, dict):
+        return {key: compact_record(item) for key, item in value.items()}
+    if (isinstance(value, list) and len(value) > 64 or
+            isinstance(value, str) and len(value) > 2048):
+        raw = json.dumps(value, separators=(',', ':'), ensure_ascii=True).encode()
+        return dict(omitted=True, count=len(value), json_bytes=len(raw),
+                    sha256=hashlib.sha256(raw).hexdigest())
+    if isinstance(value, list):
+        return [compact_record(item) for item in value]
+    return value
 
 
 class PortClient:
@@ -20,7 +38,7 @@ class PortClient:
         self.errors = (self.evidence/'stderr.log').open('xb')
         try:
             self.process = subprocess.Popen(command, stdin=subprocess.PIPE,
-                stdout=subprocess.PIPE, stderr=self.errors, start_new_session=True)
+                stdout=subprocess.PIPE, stderr=subprocess.PIPE, start_new_session=True)
         except BaseException:
             self.errors.close();self.log.close();raise
         self.deadline = time.monotonic()+seconds
@@ -28,6 +46,19 @@ class PortClient:
         self.serial = 0
         self.buffer = bytearray()
         self.log_bytes = 0
+        self.error_thread = threading.Thread(target=self._drain_errors, daemon=True)
+        self.error_thread.start()
+
+    def _drain_errors(self):
+        retained = 0
+        while True:
+            block = self.process.stderr.read(65536)
+            if not block:
+                break
+            chunk = block[:max(0, MAX_STDERR-retained)]
+            self.errors.write(chunk)
+            retained += len(chunk)
+        self.errors.flush()
 
     def __enter__(self):
         return self
@@ -36,10 +67,10 @@ class PortClient:
         self.close()
 
     def _record(self, value):
-        text=json.dumps(value,separators=(',', ':'))+'\n'
+        text=json.dumps(compact_record(value),separators=(',', ':'))+'\n'
         self.log_bytes += len(text.encode())
-        if self.log_bytes > 128*1024*1024:
-            raise RuntimeError('transport evidence reached 128 MiB budget')
+        if self.log_bytes > MAX_LOG:
+            raise RuntimeError('transport evidence reached 8 MiB budget')
         self.log.write(text);self.log.flush()
 
     def request(self, method, params=None):
@@ -77,7 +108,7 @@ class PortClient:
             self._record(dict(direction='response',value=reply))
             if 'error' in reply: raise RuntimeError(reply['error']['message'])
             return reply['result']
-        except (TimeoutError, BrokenPipeError, ValueError):
+        except (TimeoutError, BrokenPipeError, ValueError, RuntimeError):
             self.close();raise
 
     def frame(self, name):
@@ -100,4 +131,9 @@ class PortClient:
                 try:os.killpg(self.process.pid,signal.SIGKILL)
                 except ProcessLookupError:pass
                 self.process.wait()
+        # Descendants may inherit stderr even after the direct child exits.
+        try:os.killpg(self.process.pid,signal.SIGKILL)
+        except ProcessLookupError:pass
+        self.error_thread.join()
+        self.process.stderr.close()
         self.process.stdin.close();self.process.stdout.close();self.errors.close();self.log.close()

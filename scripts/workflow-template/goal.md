@@ -219,3 +219,26 @@ record specific obstacles and try another representative milestone. Aim to reach
 the ending, but documented unsuccessful attempts or unavailable transitions do not
 require endless experimentation. Preserve classification, fidelity and readability
 gates; this is broad best-effort exploration, not an exhaustive gameplay/fidelity gate.
+
+## Disk and evidence retention
+
+Keep durable evidence separate from disposable scratch. Retain maps, readable
+source, current state, plan/result history, concise observations, reproducible
+routes and the selected captures/checkpoints actually cited by those records.
+Preserving superseded attempts means retaining their plans/results and explanation;
+it does not require retaining every intermediate dump or duplicate capture.
+
+Use one reusable scratch directory for exploratory output. Before each batch and
+at handoff, inspect free disk space and scratch size; remove superseded scratch
+files after recording useful conclusions and promoting cited evidence. Never prune
+cited evidence, source, ROMs, frozen references, saves or active-process output.
+Save selected frames/audio intervals rather than continuous captures. Keep bulk
+pixel/sample arrays and checkpoint payloads out of transport logs; explicitly save
+needed captures/checkpoints once and link them. Bound trace/log bytes and stderr,
+not just execution time. Reuse build targets; avoid a fresh Cargo target directory
+for each probe and remove owned temporary test workspaces when finished.
+
+When disk is tight, compact disposable output before another experiment. If safe
+cleanup is insufficient, leave an incomplete resumable handoff rather than filling
+the filesystem. This is storage hygiene, not a weaker acceptance criterion or a
+limit on required game coverage. Do not delete another task's files.
