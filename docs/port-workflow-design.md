@@ -1,5 +1,14 @@
 # Port workflow: confirmed design
 
+The iterative workflow update supersedes the original phase/stopping boundaries
+below: a coordinator invokes sequential planning, one-milestone porting and debug
+subagents. Planning maintains the architecture and finite whole-game milestone
+plan after each cycle. Intermediate QA runs once over implemented scope; final
+whole-game QA runs twice, repairing failures in place without restarting. Applicable
+smoke steps remain implementation checks. See [current guide](porting.md) and
+[coordinator template](../scripts/port-template/workflow.md) for the active contract.
+The remaining original design records the baseline implementation requirements.
+
 This document consolidates the confirmed port-workflow interview. It specifies a new phase
 beyond the original mapping scope in project.md. It does not establish that any
 port workflow or runtime library has been implemented or tested.

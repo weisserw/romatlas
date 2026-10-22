@@ -17,11 +17,16 @@ python3 scripts/port.py prepare /path/to/archive --rom /path/to/owned.gb --out /
 codex -C /root/rom-ports/game
 ```
 
-Ask the agent to read the generated `goal.md`; it includes the whole-game
-objective and resume instructions. The separate QA workflow is also preinstalled;
-when explicitly requested later, tell the agent **Read debug/goal.md.** That file
-links all QA instructions and records and supports starting or resuming. QA does
-not start during preparation or become part of initial port completion.
+Ask the agent to read the generated `goal.md`. It coordinates three sequential
+subagents: planning (`prompts/plan.md`), one-milestone implementation
+(`prompts/start.md`), and scoped QA (`debug/goal.md`). Planning writes a living
+`architecture.md` design describing modes, systems, state, special concerns and
+a finite series of milestones from zero to the entire game. After each QA cycle,
+planning updates status and may revise future milestones based on findings.
+Intermediate QA executes its cumulative implemented-scope plan once; the final
+cycle runs a complete whole-game plan twice. Every failure is repaired in place,
+with affected-check rechecks and no restart. Preparation launches no agents.
+Standalone QA remains available by invoking **Read debug/goal.md.**
 No goal command is printed. `--json` suppresses human instructions; preparation
 results are JSON on stdout and instructions are on stderr. Use `--binary PATH` to select a toolkit
 binary. Existing destinations and repository-local workspaces are rejected.
@@ -48,10 +53,10 @@ the toolkit before retrying. Rust 1.90.0 is pinned in the generated project.
 | `research/working/` | Optional editable disassembly state, source, correction log and local evidence. |
 | `research/revisions/`, `research/current.json` | Verified immutable local corrections and the adopted revision pointer. |
 | `goal.md` | Overall native-port objective and resume instructions. |
-| `debug/goal.md`, `DEBUGGING.md` | Preinstalled, separately invoked two-pass QA workflow and API guide. |
+| `debug/goal.md`, `DEBUGGING.md` | Scoped milestone/final QA workflow and API guide; standalone QA defaults to two passes. |
 | `debug/acceptance.json`, `plan.json`, `qa.json` | QA acceptance contract, editable test plan and results. |
 | `architecture.md` | Source-informed module/state/algorithm plan, maintained during implementation. |
-| `prompts/start.md`, `reference-updates.md`, `review.md` | Port contract, reference correction procedure and separate reviewer instructions. |
+| `prompts/plan.md`, `start.md`, `reference-updates.md`, `review.md` | Port contract, reference correction procedure and separate reviewer instructions. |
 | `review/toolkit-before/`, `toolkit-before.json` | Initial toolkit files, hashes, Git HEAD and pre-existing status. |
 | `library-changes.md` | Shared changes, requirements, rationale, validation and unresolved findings. |
 | `progress.md`, `differences.md`, `README.md` | Progress/blockers, behavioral differences and editor instructions. |
@@ -95,6 +100,15 @@ IDs need honest provisional names and explanations, without invented semantics.
 Obvious literals and opaque ROM table elements do not each need constants. The
 existing maintainability pass also checks unexplained semantic numeric literals.
 
+Keep bare ROM addresses and offsets out of ordinary gameplay code. Isolate their
+numeric values in constants named for the asset/table/field, or in named asset
+definitions and loader recipes; distinguish banked CPU addresses from physical
+ROM offsets. For example, define `ENEMY_SPAWN_TABLE_OFFSET` in the loader and let
+gameplay use decoded `level.enemy_spawns`. Names like `DATA_F4DB` do not explain a
+role. Use honest provisional names for unresolved roles and source-label/address
+comments where useful for traceability. The maintainability pass also checks for
+scattered bare addresses and offsets.
+
 The default target is a faithful representation of the source game with no extra
 game features. Unless the user specifically requests them, do not add visible
 debug artifacts, level selects, sound tests, diagnostic overlays, cheats or developer
@@ -111,7 +125,9 @@ flashing.
 
 The native goal implements the whole game on a source-informed best-effort basis.
 Required checks include focused unit tests, format/static/build checks and a bounded
-smoke test before completion. The generated smoke-test.md defines one representative
+smoke test before handoff. Early milestones execute only applicable smoke steps;
+record future steps and their dependencies as deferred, never passed. The full
+route is required once implemented and before final implementation completion. The generated smoke-test.md defines one representative
 route: boot; check title-screen layout/graphics/colors against the original ROM;
 interact with menus and start play; check initial gameplay colors, movement, primary
 actions and representative enemy/hazard or equivalent interactions; then exit the
@@ -125,19 +141,19 @@ completion; report a concrete blocker if they cannot be completed. Absence of
 hardware-induced lag, slowdown or flicker is not a defect; intentional timing and
 visual effects still matter.
 
-Broader runtime fidelity validation is outside the implementation goal. Do not
+Broader runtime fidelity validation is outside the porting subprocess. Do not
 expand the smoke test into exhaustive scenarios, pixel-perfect/frame-by-frame proof,
 audio equivalence, later levels or repeated passing routes for confidence. Once
-its route passes, stop smoke testing. The separate debug/goal.md two-pass QA workflow
-is not invoked by this requirement; full-game QA/device auditing needs another request.
+its route passes, stop smoke testing. The coordinator invokes debug/goal.md after the implementation handoff for the
+configured scoped or final QA. Physical-device auditing remains separately requested.
 
 Debugger use also supports a specific unresolved source question. Record the
 needed observation and stopping condition, run a bounded experiment and return to
 implementation. Change the hypothesis/method before repeating inconclusive runs.
 Document reasonable source-informed assumptions; they do not excuse broken required
 smoke-test steps. After whole-game implementation/accounting, smoke testing,
-required checks and handoff are complete, run the administrative audit and stop
-when it passes. Remaining unverified fidelity outside the smoke-test route does
+required checks and handoff are complete, run the administrative audit and return
+to the coordinator when it passes. Overall completion also requires final two-pass QA. Remaining unverified fidelity outside the smoke-test route does
 not justify expanding acceptance criteria or repeating passing checks.
 
 ## Unfinished disassembly and discoveries during porting
@@ -491,18 +507,30 @@ commercial ROM or native-versus-ROM fidelity comparison is needed. Setup pins
 wasm-bindgen 0.2.129 (library/CLI match) and Playwright 1.56.0. Python handles build
 and serving; no npm or JavaScript bundler is required.
 
-## Separately requested autonomous debugging
+## Milestone and standalone debugging
 
-[Native debug control and workflow](port-debugging.md) provides an opt-in persistent
-headless API and a separate two-pass QA goal. New port workspaces include it
-automatically; invoke it by asking the agent to
-read `debug/goal.md`. For older workspaces use
-`python3 scripts/port_debug.py install WORKSPACE`; those ports also need the small
-launcher adapter described there. The agreed debugging contract is a
-source-informed QA plan and two complete
-successful passes. Failed/inaccessible checks block progress; broader code or
-plan changes are corrected in place without restarting QA. Resource limits
-interrupt as incomplete, not success.
-Installation does not activate full-game QA or change initial implementation
-completion. Future scaffolds expose --debug-stdio
-with optional game-specific read-only inspection.
+[Native debug control and workflow](port-debugging.md) provides the headless API
+and QA subprocess. New port goals invoke it after each implemented milestone.
+Before each cycle the coordinator runs:
+
+```sh
+python3 scripts/port_debug.py begin-cycle WORKSPACE --milestone cycle-01
+# Only after all milestones and whole-game accounting/builds are complete:
+python3 scripts/port_debug.py begin-cycle WORKSPACE --milestone final --final
+python3 scripts/port_debug.py audit WORKSPACE
+```
+
+A repeated cycle ID resumes its records unchanged. A new ID requires the previous
+QA audit to pass and archives the previous acceptance/plan/results under
+`debug/cycles/ID/`. Preserve cited artifacts and unique reports. Future scope is
+explicitly deferred in intermediate plans; final scope is the entire game, with
+two fresh complete passes. Empty coverage categories are allowed only for early
+intermediate cycles; ordered checks and some covered implemented behavior remain
+required. Failed/inaccessible checks block progress, and repairs continue in place.
+Resource interruptions leave an incomplete resumable handoff.
+
+Standalone invocation of `debug/goal.md` uses the installed acceptance contract
+(default two-pass whole-game QA). For older workspaces use
+`python3 scripts/port_debug.py install WORKSPACE`; existing instructions/records
+are preserved and not silently migrated. Preparation/installation never launches
+agents. Scaffolds expose --debug-stdio with optional read-only game inspection.

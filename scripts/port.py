@@ -20,29 +20,16 @@ import port_web
 ROOT = phase.ROOT
 TEMPLATES = ROOT / "scripts/port-template"
 DISPOSITIONS = {"implemented", "merged", "replaced", "excluded"}
-GOAL = ("Port this entire archived game into maintainable best-effort native Rust, following "
-        "workflow.md and prompts/start.md. First survey representative source paths "
-        "and write the high-level module/state/algorithm plan in architecture.md; maintain it "
-        "during implementation. Use shared platform helpers. Assess uncertainties by consumer "
-        "and port impact; implement reasonable source-informed assumptions and document them. "
-        "Preserve the frozen reference and original ledger identities. Replace the scaffold "
-        "and implement/account for the whole game, including ROM-backed startup assets, "
-        "replacements/added slots, player settings, desktop/browser frontends and original battery saves where present. Validate native logic with focused unit "
-        "tests, required format/static/build checks and the bounded startup/first-area smoke "
-        "test in smoke-test.md. Broader runtime fidelity validation is outside this goal. "
-        "Use the debugger for that smoke test or a specific unresolved source question, "
-        "with a bounded experiment and stopping condition. Complete necessary "
-        "shared-library changes uncommitted, preserve unrelated work and log changes/checks "
-        "for the separate reviewer. Finish architecture, accounting, required checks, "
-        "BUILDING.md and handoff; run the administrative ledger/build audit and stop when "
-        "it passes. Do not expand acceptance criteria or repeat validation for confidence. "
-        "Unverified fidelity and documented implemented assumptions do not block completion; "
-        "missing implementations or a failed/unperformed required smoke test do. Report a concrete blocker if implementation "
-        "cannot proceed. Broader fidelity/device auditing and release work require a later request.")
-RESUME = ("Read architecture.md, progress.md, ledger.json, uncertainties.json, "
-          "research/current.json if present, differences.md, library-changes.md and existing "
-          "code first. Preserve work; do not reinitialize. Resume implementation under "
-          "prompts/start.md's smoke-test, debugger and stopping boundaries; do not start full-game QA.")
+GOAL = ("Port this entire archived game through the iterative subagent workflow in workflow.md. "
+        "Act as coordinator: execute planning, one-milestone porting and scoped debugging "
+        "sequentially, each in its own subagent. Read prompts/plan.md, prompts/start.md and "
+        "debug/goal.md. Keep architecture.md as the living design and milestone plan. "
+        "Repeat until all milestones are implemented and final whole-game QA passes twice. "
+        "Finish BUILDING.md and the implementation/QA handoffs; stop when both audits pass.")
+RESUME = ("Preserve work; do not reinitialize. Read architecture.md, progress.md, ledger.json, "
+          "uncertainties.json, differences.md, library-changes.md, research/current.json if "
+          "present, debug/acceptance.json, debug/plan.json and debug/qa.json. Resume the "
+          "active stage and blocking check before advancing; do not restart a QA pass.")
 
 
 def git(*args):
@@ -83,7 +70,7 @@ def records(review):
 def instructions(work):
     return (f"Read {work / 'goal.md'} to start or resume the port.\n"
             f"For a separate library reviewer, read {work / 'prompts/review.md'}.\n"
-            f"For separately requested QA, read {work / 'debug/goal.md'}.\n")
+            f"For standalone QA, read {work / 'debug/goal.md'}.\n")
 
 
 def prepare(archive, rom, output, binary):
@@ -232,6 +219,7 @@ def prepare(archive, rom, output, binary):
         (stage / "prompts/start.md").write_text(prompt)
         (stage / "goal.md").write_text("# Native port\n\n" + GOAL + "\n\nOn resume: " + RESUME + "\n")
         shutil.copyfile(TEMPLATES / "architecture.md", stage / "architecture.md")
+        shutil.copyfile(TEMPLATES / "plan.md", stage / "prompts/plan.md")
         shutil.copyfile(TEMPLATES / "review.md", stage / "prompts/review.md")
         shutil.copyfile(TEMPLATES / "smoke-test.md", stage / "smoke-test.md")
         shutil.copyfile(TEMPLATES / "reference-updates.md", stage / "prompts/reference-updates.md")
@@ -263,109 +251,18 @@ selects the workflow; this file does not start or resume a goal.
 - Toolkit: {json.dumps(str(ROOT))}. For edits there, follow that repository's applicable
   instructions. Leave shared-library edits uncommitted and log their changes
   and check results in library-changes.md; preserve pre-existing work.
-- No agent launch, check-in or publication is authorized by this workspace.
+- Invoking goal.md authorizes its sequential planning, porting and debug subagents.
+  Preparation alone launches no agents. No check-in or publication is authorized.
 """)
-        (stage / "workflow.md").write_text("""# Port workflow
-
-Implement the whole game as a maintainable best-effort native Rust port.
-The restored byte-identical reference establishes source integrity only.
-The arbitrary-tile scaffold implements no gameplay.
-
-1. Read the full prompts/start.md contract and representative startup, gameplay,
-   rendering and sound source paths. Write a short actionable architecture.md with
-   modules, state ownership, interfaces, algorithms, scheduling and implementation
-   order. Do not require exhaustive analysis or approval before implementing.
-2. Implement the whole game using shared platform helpers. Maintain architecture.md
-   when decisions change and fix concrete design problems after substantial
-   features. Avoid monolithic code and cosmetic file splitting. No size quotas
-   or repeated whole-project architecture audits are required. Write useful Rust
-   comments as specified in prompts/start.md, keeping non-obvious reasoning,
-   source-game quirks and implementation assumptions close to the relevant code.
-   Use descriptive enums or scoped named constants for states and other meaningful
-   values; avoid unexplained numeric IDs, flags, sentinels and gameplay parameters.
-3. Account for original source behavior in ledger.json and assess uncertainties
-   as consumers become relevant. Preserve IDs, ranges and original source records.
-   Implement reasonable source-informed assumptions, documenting their basis and
-   limits. A missing implementation remains incomplete; lack of fidelity proof
-   for an implemented interpretation does not. ROM-backed data may remain
-   structurally uncertain; preserving code bytes does not implement behavior.
-4. Validate intended native logic with focused unit tests and complete the bounded
-   smoke-test.md route, fixing exposed defects. Run python3 run.py check
-   for formatting, clippy, tests and desktop/Wasm compilation. Recheck only after a
-   relevant change, failure or concrete new defect. Document actual check results.
-5. Finish accounting, assessed uncertainties, a coherent architecture and handoff
-   (README.md, BUILDING.md, progress.md, differences.md, library-changes.md).
-   Make one bounded maintainability pass, including unexplained semantic numeric
-   literals and missing/stale code comments.
-   Set completion.status=complete with
-   notes describing this scope, run python3 run.py audit and stop when it passes.
-   Do not create more work to fill the remaining goal budget.
-
-The required smoke test in smoke-test.md permits targeted original-ROM/title/color
-comparisons and native gameplay through the first area's exit or a normal death.
-Broader runtime fidelity validation is outside this goal: no exhaustive scenario
-matrices, frame-by-frame equivalence or confidence-building replay loops.
-Debugger use is also available for a named unresolved source question that static
-reading cannot reasonably answer. Record its needed observation and stopping condition;
-perform a bounded experiment, then return to implementation. Do not repeat an
-inconclusive run without a revised hypothesis/method. Document reasonable source
-assumptions where needed; they cannot excuse a broken required smoke-test step.
-Full-game QA and device auditing require a separate request. This boundary applies
-to every supported platform and the entire generated instruction set.
-
-Available commands (availability does not make each command a required phase):
-
-```sh
-python3 run.py instructions
-python3 run.py check
-python3 run.py audit
-python3 run.py reference-init
-python3 run.py reference-verify --revision findings-001
-```
-
-The audit checks accounting and builds, not gameplay fidelity. Do not run it while
-ledger completion is pending. check retains logs in checks/latest.log and JSON
-results. Use python3 run.py debug for the required device-free smoke test; the
-headless command alone does not exercise its checks. Never launch desktop
-graphics on this server. Unit tests initialize no display or audio device.
-
-Ledger dispositions are implemented, merged, replaced or excluded, with a summary
-and equivalents except for explained exclusions. Add discovered units with unique
-IDs and source ranges. Favor implementing unclear behavior over dropping it.
-Assess each uncertainty's consumers and consequences; distinguish established
-source facts from implemented assumptions. Do not require complete classification,
-source-proof exhaustion or a runtime trace for every assessment. The original
-mapping goal retains its stricter classification/evidence requirements.
-
-prompts/reference-updates.md describes optional source corrections. Use
-reference-init only when a correction is useful; edit the working source/state
-and evidence, then reference-verify a coherent correction batch. Its map and
-byte-identical rebuild checks protect reference integrity, not native fidelity.
-research/current.json selects adopted supplements; reference/ and original ledger
-identities remain frozen. Never regenerate over maintained commentary or publish
-an implementation assumption as confirmed source classification.
-
-Keep progress.md for implementation status and concrete blockers, differences.md
-for assumptions/approximations/unassessed fidelity, and library-changes.md for
-shared changes, interface rationale, unit tests/checks and limits. Adapt BUILDING.md
-to actual dependencies/executable/flags; other-OS/device recipes are optional
-user instructions, not testing obligations. The initial toolkit snapshot and
-hashes/status/HEAD in review/toolkit-before.json preserve pre-existing work for
-separate review using prompts/review.md. No review agent is launched automatically.
-
-Library changes remain uncommitted. A local path dependency is not frozen by
-Cargo.lock; release pinning, packaging and publication are later work. Keep
-ROMs, restored source/assets and generated products local. Source incompleteness
-is not permission to silently omit required game behavior; report actual
-implementation blockers without presenting unverified fidelity as a blocker.
-""")
+        shutil.copyfile(TEMPLATES / "workflow.md", stage / "workflow.md")
         (stage / "README.md").write_text(f"""# {name}: native Rust port workspace
 
 Status: scaffold only. Implement the entire game before claiming completion.
 See [BUILDING.md](BUILDING.md) for local macOS/Linux/Windows source builds, Android integration guidance and
 transfer instructions. Adapt that guide for the finished port and tested facts.
-The implementation goal uses focused unit tests, build/static checks and the
-bounded [smoke test](smoke-test.md). Broader fidelity/device auditing is separate later work. On a desktop with SDL2 installed,
+Read goal.md for the iterative planning, milestone porting and scoped QA workflow.
+Implementation uses focused unit tests, build/static checks and the bounded
+[smoke test](smoke-test.md); QA runs once per intermediate cycle and twice for the final whole-game plan. On a desktop with SDL2 installed,
 `python3 run.py desktop` opens the window; F1 opens saved player settings.
 `python3 run.py web` builds and serves the browser frontend (default host 0.0.0.0; use --host to change it).
 Game logic and asset extraction stay shared; implement original battery saving
@@ -384,9 +281,9 @@ manual installation or automatic QA launch occurs during port preparation.
         phase.write_json(stage / "examples/asset-extension.json", {"version": 1,
             "entries": [{"id": "level-01", "file": "levels/replacement-01.json"},
                         {"id": "level-16", "file": "levels/new-16.json"}], "order": []})
-        (stage / "library-changes.md").write_text("# Library changes\n\nNo port-driven changes recorded yet. Record requirements, files, reusable contracts, focused unit tests/checks and limits. Broader fidelity auditing beyond smoke-test.md is outside the implementation goal.\n")
+        (stage / "library-changes.md").write_text("# Library changes\n\nNo port-driven changes recorded yet. Record requirements, files, reusable contracts, focused unit tests/checks and limits. Broader fidelity auditing beyond smoke-test.md is outside the porting subprocess.\n")
         (stage / "progress.md").write_text("# Port progress\n\nPrepared reference and demonstration scaffold. Every source-ledger entry is pending. Read representative source and complete architecture.md before substantial implementation. No gameplay is ported.\n")
-        (stage / "differences.md").write_text("# Differences and validation limits\n\nScaffold implements no gameplay or original audio. Record implemented assumptions and known differences as work proceeds. The required smoke test is described in smoke-test.md; broader fidelity/device auditing is outside this goal.\n")
+        (stage / "differences.md").write_text("# Differences and validation limits\n\nScaffold implements no gameplay or original audio. Record implemented assumptions and known differences as work proceeds. The required smoke test is described in smoke-test.md; the debug subprocess owns scoped fidelity QA and device testing remains separately requested.\n")
         (stage / "run.py").write_text(f"""#!/usr/bin/env python3
 import runpy, sys
 from pathlib import Path

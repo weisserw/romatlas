@@ -265,14 +265,15 @@ Existing workspaces are not migrated. See the [browser and save guide](docs/port
 for setup, storage, limits and the synthetic Chromium regression.
 
 Original assets must load from the ROM at startup and stay out of distributions. The
-agent first writes a source-informed architecture plan, then implements the whole game
-as maintainable best-effort Rust. Focused unit tests and required format/static/build
-checks establish implementation checks. A device-free startup/first-area smoke test is
-required; results go in `checks/smoke-test.md`. Broader fidelity validation is a
-separately invoked workflow. Debugger use supports the smoke test and bounded source
-questions. Document implemented assumptions, finish behavior accounting and the handoff,
-run the administrative audit and stop. Broader fidelity auditing requires a separate
-request; automated audit cannot assess gameplay fidelity. Release packaging and library
+coordinator runs three sequential subagents: planning, one-milestone porting and
+scoped debugging. The planning agent writes the architecture and finite milestone
+plan, then updates it after each cycle. Implementation runs focused unit tests,
+format/static/build checks and applicable startup/first-area smoke steps. Debugging
+runs its cumulative implemented-scope plan once per intermediate cycle, fixing
+failures without restarting. The final cycle runs a complete whole-game test plan
+twice. Completion requires implementation accounting/build and final QA audits.
+Preparation launches no agents, and existing workspaces are not migrated.
+Automated audits check records/builds rather than gameplay fidelity. Release packaging and library
 publication/pinning are later work. See [porting guide](docs/porting.md) and [agreed
 design](docs/port-workflow-design.md). Test with `python3 scripts/test-port.py`.
 

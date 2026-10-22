@@ -3,6 +3,7 @@
 import argparse
 import hashlib
 import json
+import re
 from pathlib import Path
 import shutil
 import sys
@@ -10,19 +11,38 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def acceptance_contract():
-    return dict(version=3, status='agreed', policy='two_full_successful_qa_passes',
+def acceptance_contract(milestone=None, final=False):
+    contract = dict(version=3, status='agreed', policy='two_full_successful_qa_passes',
         required_passes=2, failure_rule='fix_in_place_then_continue',
         restart_rule='never_restart_continue_current_pass',
         resource_ceiling=None, resource_limit_outcome='incomplete')
+    if milestone is not None:
+        contract.update(version=4, milestone=milestone, final=final,
+                        scope='whole_game' if final else 'implemented_milestones',
+                        policy='two_full_successful_qa_passes' if final else 'one_scoped_successful_qa_pass',
+                        required_passes=2 if final else 1)
+    return contract
 
 
 def audit(work):
     """Administrative acceptance checks; does not evaluate evidence truth."""
     work = work.resolve(strict=True)
     acceptance = json.loads((work/'debug/acceptance.json').read_text())
-    if acceptance.get('policy') != 'two_full_successful_qa_passes' or acceptance.get('required_passes') != 2 or acceptance.get('status') != 'agreed' or acceptance.get('restart_rule') != 'never_restart_continue_current_pass':
-        raise ValueError('expected the agreed two-pass acceptance contract')
+    scoped = acceptance.get('version') == 4
+    if scoped:
+        milestone = acceptance.get('milestone')
+        final = acceptance.get('final')
+        if (not isinstance(milestone, str) or not re.fullmatch(r'[a-zA-Z0-9][a-zA-Z0-9_-]*', milestone)
+                or type(final) is not bool):
+            raise ValueError('invalid milestone acceptance contract')
+        expected = acceptance_contract(milestone, final)
+    else:
+        expected = acceptance_contract()
+    required_keys = ['policy', 'required_passes', 'status', 'restart_rule']
+    if ((scoped and acceptance != expected) or
+            any(acceptance.get(key) != expected[key] for key in required_keys)):
+        raise ValueError('expected the agreed acceptance contract')
+    required_passes = acceptance['required_passes']
     plan_bytes = (work/'debug/plan.json').read_bytes()
     plan = json.loads(plan_bytes)
     qa = json.loads((work/'debug/qa.json').read_text())
@@ -33,7 +53,7 @@ def audit(work):
     coverage = set()
     for key, prefix in [('areas', 'area'), ('mechanics', 'mechanic'), ('transitions', 'transition')]:
         items = plan.get(key)
-        if not isinstance(items, list) or not items or any(not text(v) for v in items) or len(set(items)) != len(items):
+        if not isinstance(items, list) or (not items and not (scoped and not acceptance['final'])) or any(not text(v) for v in items) or len(set(items)) != len(items):
             raise ValueError(f'plan needs unique nonempty {key}')
         coverage.update(f'{prefix}:{item}' for item in items)
     checks = plan.get('checks')
@@ -65,8 +85,8 @@ def audit(work):
         if not path.is_file():
             raise ValueError('evidence/report is not a file')
     passes = qa.get('passes')
-    if not isinstance(passes, list) or len(passes) != 2:
-        raise ValueError('two complete successful passes are required')
+    if not isinstance(passes, list) or len(passes) != required_passes:
+        raise ValueError(f'{required_passes} complete successful passes are required')
     for number, result in enumerate(passes, 1):
         if result.get('number') != number or result.get('status') != 'passed':
             raise ValueError('passes must succeed in order, first then second')
@@ -82,8 +102,8 @@ def audit(work):
             for name in evidence:
                 artifact(name)
     artifact(qa.get('report'))
-    return dict(ok=True, passes=2, checks_per_pass=len(ids),
-                acceptance='two_full_successful_qa_passes', semantic_correctness_assessed=False)
+    return dict(ok=True, passes=required_passes, checks_per_pass=len(ids),
+                acceptance=acceptance['policy'], semantic_correctness_assessed=False)
 
 
 def install(work):
@@ -109,12 +129,56 @@ def install(work):
                 acceptance=json.loads(acceptance.read_text()), agent_started=False)
 
 
+def begin_cycle(work, milestone, final=False):
+    """Start fresh records only after the previous cycle passes; same ID resumes."""
+    work = work.resolve(strict=True)
+    if not re.fullmatch(r'[a-zA-Z0-9][a-zA-Z0-9_-]*', milestone):
+        raise ValueError('milestone must be a safe unique cycle ID')
+    if not (work/'workspace.json').is_file() or not (work/'port/Cargo.toml').is_file():
+        raise ValueError('expected an existing native port workspace')
+    debug = work/'debug'
+    current = json.loads((debug/'acceptance.json').read_text())
+    desired = acceptance_contract(milestone, final)
+    if current.get('milestone') == milestone:
+        if current != desired:
+            raise ValueError('cannot change the active cycle acceptance contract')
+        return dict(ok=True, resumed=True, acceptance=current, agent_started=False)
+    history = debug/'cycles'
+    destination = history/milestone
+    if destination.exists():
+        raise ValueError('cycle ID was already used; choose a new ID')
+    qa = json.loads((debug/'qa.json').read_text())
+    plan = json.loads((debug/'plan.json').read_text())
+    initial_qa = json.loads((ROOT/'scripts/port-debug-template/qa.json').read_text())
+    initial_plan = json.loads((ROOT/'scripts/port-debug-template/plan.json').read_text())
+    if current != acceptance_contract() or qa != initial_qa or plan != initial_plan:
+        audit(work)
+        previous = current.get('milestone', 'standalone')
+        history.mkdir(exist_ok=True)
+        archived = history/previous
+        archived.mkdir()  # Never overwrite earlier records.
+        for name in ['acceptance.json', 'plan.json', 'qa.json']:
+            shutil.copyfile(debug/name, archived/name)
+    for name in ['plan.json', 'qa.json']:
+        shutil.copyfile(ROOT/'scripts/port-debug-template'/name, debug/name)
+    (debug/'acceptance.json').write_text(json.dumps(desired, indent=2)+'\n')
+    return dict(ok=True, resumed=False, acceptance=desired, agent_started=False)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command', choices=['install', 'status', 'audit'])
+    parser.add_argument('command', choices=['install', 'status', 'audit', 'begin-cycle'])
     parser.add_argument('workspace', type=Path)
+    parser.add_argument('--milestone')
+    parser.add_argument('--final', action='store_true')
     args = parser.parse_args()
-    if args.command == 'install':
+    if args.command != 'begin-cycle' and (args.milestone or args.final):
+        parser.error('--milestone/--final require begin-cycle')
+    if args.command == 'begin-cycle':
+        if not args.milestone:
+            parser.error('begin-cycle requires --milestone')
+        result = begin_cycle(args.workspace, args.milestone, args.final)
+    elif args.command == 'install':
         result = install(args.workspace)
     elif args.command == 'audit':
         result = audit(args.workspace)

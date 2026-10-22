@@ -1,10 +1,18 @@
 # Native port debugging control and workflow
 
-This is a separately requested workflow, not an additional implementation gate.
-The initial port goal still ends after its best-effort implementation/accounting
-and required checks. The agreed two-pass QA acceptance contract is preinstalled;
-invoking debug/goal.md selects this separate workflow without another acceptance
-approval. Installation alone does not start QA or claim that a game is correct.
+This guide supports the iterative port coordinator's debug subprocess and
+standalone QA. Intermediate milestone cycles execute one full pass over currently
+implemented scope; final and standalone QA execute two full whole-game passes.
+Read debug/acceptance.json for the active scope and pass count. Invoking the port
+goal authorizes its QA subagents; installation alone launches nothing.
+
+The coordinator uses `python3 scripts/port_debug.py begin-cycle WORKSPACE
+--milestone ID` (add `--final` for the final whole-game cycle). Same-ID invocation
+resumes records unchanged; a new ID requires the previous cycle's successful audit
+and preserves its acceptance/plan/results in debug/cycles/ID/. Retain all cited
+artifacts and distinct reports. Never weaken acceptance or reset an incomplete
+cycle. Read architecture.md for implemented milestones and explicitly deferred
+future behavior. Final QA derives a complete plan and runs both passes afresh.
 
 Faithfulness does not require reproducing hardware-induced lag, slowdown or
 sprite flicker. Their absence in a smoother native port is not a bug and must not
@@ -20,8 +28,8 @@ New workspaces prepared with `scripts/port.py prepare` already contain the debug
 API launcher, this guide, debug/goal.md and acceptance/plan/result templates.
 To start or resume QA, open an agent in the port workspace and tell it:
 **Read debug/goal.md.** That file links everything else and directs execution.
-Preparation installs the files without launching QA or adding it to the initial
-implementation completion criteria.
+Preparation installs the files without launching QA. The port coordinator invokes
+the QA subprocess after each milestone; users can also invoke it independently.
 
 The install command below is for older workspaces that lack these files:
 
@@ -107,11 +115,12 @@ Process restart replay is supported only for the same executable/assets; replay
 logs are not a substitute for immutable source provenance. Files containing
 captured original-game outputs remain private/local.
 
-## Autonomous two-pass QA contract
+## QA pass and repair contract
 
-The user-approved process is plan first, then A-to-Z QA fixing as it goes, then a
-complete second A-to-Z pass. Build the plan from source, native architecture and
-behavior accounting: each area/mode, all major mechanics and transitions, later
+The process is plan first, then A-to-Z QA fixing as it goes, with a second complete
+pass only for final/standalone QA. Build the plan from source, native architecture and
+behavior accounting within the implemented scope: each area/mode, major mechanics
+and transitions, later
 progression and ending/terminal states where present. Each entry has specific
 applicable graphics, behavior and sound checks and a reproducible route/setup.
 The scope is major game functionality, not exhaustive frame/input permutations.
@@ -127,18 +136,23 @@ recording impact and fresh evidence. Retain unaffected results. Targeted regress
 checks stay within the current pass; the scope of a fix alone does not require
 another A-to-Z traversal. Correct plans/routes in place with source evidence,
 preserve check IDs and results, and reconcile changed/new checks and plan hashes.
-New checks need results in both pass records; do not invent successful results.
+New checks need results in every required pass record; do not invent successful results.
 
-Finish pass one, then run the full plan once more as pass two, fixing issues with
+For intermediate cycles, finish after pass one. For final/standalone QA, finish
+pass one, then run the full plan once more as pass two, fixing issues with
 the same continue-in-place procedure. Never return to pass one or start a third
-full pass. Success requires two completed passes, resolved issues and a report.
+full pass. Success requires the configured completed passes, resolved issues and a report.
 There is no stagnation-based completion or repair quota. A resource ceiling or
 unresolved blocker leaves the current run incomplete and resumable.
 
 ### Plan and result records
 
 Fill debug/plan.json before executing it. Lists `areas`, `mechanics`, `transitions`
-contain unique nonempty descriptive strings. Each ordered `checks` entry contains:
+contain unique nonempty descriptive strings. Intermediate cycles may leave a
+category empty when no behavior in it is implemented; at least one covered item
+and one real ordered check are still required. Whole-game plans require all three
+nonempty categories. Record implemented milestone IDs and deferred future scope
+in the plan/report. Each ordered `checks` entry contains:
 
 ```json
 {
@@ -158,7 +172,7 @@ plan revisions and superseded results as concise history when correcting them.
 
 Write debug/qa.json with the SHA-256 of the exact current plan file, `status`
 (in_progress, incomplete, aborted or complete), passes and blockers. Each pass
-has `number` 1 or 2, `status`, and ordered `checks` results. Each result has id,
+has `number` 1 (and 2 when required), `status`, and ordered `checks` results. Each result has id,
 status, a nonempty `build` identity, and `evidence` listing local artifact files.
 Only status passed counts. Inaccessible, failed and pending entries remain
 blockers during execution. Each pass must cover the full ordered plan. The

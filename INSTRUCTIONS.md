@@ -260,6 +260,14 @@ ledger, and records the toolkit's initial files for review. It implements no gam
 and launches no agent. Phase-one unknowns are allowed, but gameplay-relevant gaps must
 be investigated by the port agent.
 
+Read goal.md to invoke a coordinator that runs sequential planning, one-milestone
+porting and scoped debug subagents. Planning creates architecture.md with modes,
+systems, special concerns and a finite milestone plan, then revises it after each
+cycle. Intermediate debugging runs the cumulative implemented scope once; final
+whole-game QA runs twice. Repairs continue in place without restarting passes.
+Early smoke steps may be deferred with milestone dependencies; all applicable
+steps are required. Preparation does not invoke this loop or migrate old workspaces.
+
 The agent implements every gameplay-relevant equivalent, accounting for merged,
 modernized and obviously irrelevant original paths rather than translating every line.
 Original assets load from the user's ROM at startup. File-backed replacements and new

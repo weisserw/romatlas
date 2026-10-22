@@ -131,15 +131,22 @@ with tempfile.TemporaryDirectory(prefix="romatlas-port-") as temporary:
     prompt = (work / "prompts/start.md").read_text()
     for required in ["startup","added", "uncommitted","headless","useful","borderline", "No check-in"]:
         assert required in prompt,required
-    # Check the delivered contract, not only the template: implementation documents must
-    # retain the same implementation boundary and the architecture plan must ship.
+    # Check delivered coordinator/stage contracts as well as preparation.
     architecture = (work / "architecture.md").read_text()
     assert "state owners" in architecture and "algorithms" in architecture
+    goal = (work / "goal.md").read_text()
+    workflow = (work / "workflow.md").read_text()
+    planning = (work / "prompts/plan.md").read_text()
+    assert "subagent" in goal and "one-milestone" in goal
+    assert "ONE TIME" in workflow and "--final" in workflow
+    assert "runs it twice" in workflow and "begin-cycle" in workflow
+    assert "stable ID" in planning and "future milestones" in planning
+    assert "exactly one" in workflow and "awaiting QA" in prompt
+    assert "future milestones stay pending" in prompt
+    assert "deferred" in (work / "smoke-test.md").read_text()
     for path in ["goal.md", "workflow.md", "prompts/start.md"]:
         text = (work / path).read_text()
         assert "architecture.md" in text, path
-        assert "Broader runtime fidelity validation is outside" in text, path
-        assert "stopping condition" in text or "stopping\ncondition" in text, path
         assert "stop when" in text or "after it passes, stop" in text, path
         assert "unresolved gameplay-affecting behavior prevents completion" not in text.lower(), path
     assert "implemented assumptions" in prompt

@@ -1,10 +1,13 @@
-# Autonomous two-pass native-port QA
+# Native-port QA: milestone cycle or standalone run
 
-Execute or resume the autonomous QA goal below when the user invokes this file.
-The only start/resume instruction the user needs is: **Read debug/goal.md.**
-Preparing a workspace merely installs these files; it does not invoke this goal.
-The two-pass acceptance contract is already agreed. Derive the game-specific plan
-autonomously; no further installation or plan/acceptance approval is required.
+Execute or resume this QA subprocess when the coordinator invokes it, or as a
+standalone goal when the user invokes this file. **Read debug/goal.md.** is the
+standalone start/resume instruction. Preparation only installs files.
+Read debug/acceptance.json before planning: a milestone cycle requires one pass
+through cumulative implemented scope; a final cycle or standalone run requires
+two complete passes. The coordinator configures milestone cycles with
+port_debug.py begin-cycle; do not edit acceptance to evade a required pass.
+No further installation or plan/acceptance approval is required.
 
 ## Start or resume here
 
@@ -13,7 +16,7 @@ these links; the user need not name additional files:
 
 - [Debugging guide](../DEBUGGING.md): control API, bounded Python client, original
   ROM comparison, checkpoint limits, plan/result formats and audit command.
-- [Acceptance contract](acceptance.json): the agreed two-pass success criterion.
+- [Acceptance contract](acceptance.json): current scope and required pass count.
 - [QA plan](plan.json) and [QA results](qa.json): create the source-informed plan
   if still planning; otherwise resume the current attempt, pass and blocking check.
   Preserve existing work rather than replacing these records on resume.
@@ -33,14 +36,30 @@ it lives at the preparation machine's absolute path if the workspace was moved.
 For the native transport, run `python3 run.py debug` from this workspace. This
 starts the control server only; the agent drives it to execute this QA goal.
 
-This separately requested QA goal does not change initial best-effort
+This QA subprocess does not change best-effort
 implementation completion. Preserve the starting source, unrelated work, frozen
 references and original ledger IDs. Do not launch agents or publish/check in changes.
+
+## Scope before planning
+
+For milestone cycles read architecture.md and the latest implementation handoff.
+Plan only for currently implemented milestones, including regressions in earlier
+implemented behavior. Explicitly record implemented IDs and deferred future scope
+in the plan/report. Do not fail the cycle because a future milestone is absent,
+and do not skip defects in behavior claimed implemented. Use source-informed
+expectations and the existing original-ROM comparison methods within this scope.
+Early infrastructure cycles may have no playable areas or transitions: empty
+coverage lists are allowed for intermediate cycles only, but at least one real
+check and coverage item are required (for example an asset-loading mechanic).
+For final cycles all milestones must be implemented: derive the complete game
+plan from source, not merely a union of earlier partial plans. Neither final pass
+may be credited from intermediate cycle results. Standalone QA retains whole-game
+scope and the existing two-pass semantics.
 
 ## Plan before testing
 
 Derive debug/plan.json from the source, behavior ledger and port. List each game
-area/mode, all major gameplay elements and major transitions, including later
+area/mode, major gameplay elements and transitions within the configured scope, including later
 progression, bosses and ending/terminal screens where present. For each, define
 specific applicable graphics, behavior and sound checks and a reproducible route
 or setup. The ledger helps find code; it is not a complete scenario catalogue.
@@ -62,7 +81,7 @@ evidence and a recorded plan revision; preserve valid check IDs and prior result
 Missing source/tools or a mistaken game model must be investigated as an obstacle,
 not silently treated as a successful check or an exclusion.
 
-## Execute the plan twice
+## Execute the configured number of passes
 
 First pass: work through the entire plan in order, fixing failures as encountered.
 A failed or inaccessible check blocks advancement. Keep diagnosing and correcting
@@ -82,13 +101,15 @@ recording the impact assessment and fresh evidence. Retain unaffected results.
 These targeted regressions are repairs within the current pass, not another
 A-to-Z traversal. A broad fix alone is not grounds to repeat every earlier check.
 Correct mistaken plans/routes in place, reconcile changed checks and evidence,
-and update the plan hash; newly added checks need results in both pass records.
+and update the plan hash; newly added checks need results in every required pass record.
 Do not fabricate results or clear progress merely because a plan hash changed.
 
-When the first A-to-Z pass finishes, start at A once for the second full pass.
+For an intermediate cycle, stop after the first A-to-Z pass succeeds: do not
+start a second traversal. For final or standalone QA, when the first A-to-Z pass
+finishes, start at A once for the second full pass.
 Fix issues during pass two with the same continue-in-place procedure, including
 targeted rechecks of earlier results invalidated by a fix. Never reset to pass
-one or start a third full pass. Completion requires both full passes and resolved
+one or start a third full pass. Completion requires all configured full passes and resolved
 issues; a blocked check or resource interruption leaves a resumable incomplete run.
 
 ## Tools and repair discipline
@@ -120,7 +141,7 @@ implementation into the MIT native library.
 
 ## Acceptance and resource limits
 
-Success requires every check in the current justified plan to pass in both full
+Success requires every check in the current justified plan to pass in all required full
 passes, with current valid results, no unresolved blockers and a final report.
 Record debug/qa.json and run the administrative `port_debug.py audit` check.
 That command validates records; it cannot judge game coverage or evidence truth.
@@ -134,7 +155,7 @@ successful QA. No numerical goal-wide ceiling has been chosen by the user; do no
 invent one or confuse technical per-command limits with acceptance. Preserve a
 resumable record at useful points and before an external ceiling is exhausted.
 
-Once both passes succeed, run relevant final checks, write the QA/fix/remaining-
+Once the required passes succeed, run relevant final checks, write the QA/fix/remaining-
 limitations report, and stop. This establishes completion of the declared QA
 plan, not a claim of universal bug freedom or untested hardware compatibility.
 

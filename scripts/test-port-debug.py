@@ -80,6 +80,71 @@ class ContractTests(unittest.TestCase):
                 self.write('qa.json', qa)
                 with self.assertRaises(ValueError):port_debug.audit(self.work)
 
+    def test_milestone_cycle_resume_archive_and_final_passes(self):
+        result = port_debug.begin_cycle(self.work, 'm1')
+        self.assertEqual(result['acceptance']['required_passes'], 1)
+        archived = self.work/'debug/cycles/standalone'
+        self.assertEqual(json.loads((archived/'qa.json').read_text()), self.qa)
+        self.write('plan.json', self.plan)
+        qa = copy.deepcopy(self.qa)
+        qa['passes'] = qa['passes'][:1]
+        self.write('qa.json', qa)
+        self.assertEqual(port_debug.audit(self.work)['passes'], 1)
+        self.write('qa.json', self.qa)  # Intermediate cycles must not run twice.
+        with self.assertRaises(ValueError):
+            port_debug.audit(self.work)
+        qa['passes'][0]['checks'][0]['status'] = 'inaccessible'
+        self.write('qa.json', qa)
+        with self.assertRaises(ValueError):
+            port_debug.audit(self.work)
+        qa['passes'][0]['checks'][0]['status'] = 'passed'
+        self.write('qa.json', qa)
+        before = (self.work/'debug/qa.json').read_bytes()
+        self.assertTrue(port_debug.begin_cycle(self.work, 'm1')['resumed'])
+        self.assertEqual((self.work/'debug/qa.json').read_bytes(), before)
+        with self.assertRaises(ValueError):
+            port_debug.begin_cycle(self.work, 'm1', final=True)
+        port_debug.begin_cycle(self.work, 'final', final=True)
+        self.assertEqual((self.work/'debug/cycles/m1/qa.json').read_bytes(), before)
+        self.write('plan.json', self.plan)
+        self.write('qa.json', qa)
+        with self.assertRaises(ValueError):
+            port_debug.audit(self.work)
+        self.write('qa.json', self.qa)
+        self.assertEqual(port_debug.audit(self.work)['passes'], 2)
+        with self.assertRaises(ValueError):
+            port_debug.begin_cycle(self.work, 'm1')
+
+    def test_incomplete_cycle_cannot_advance_or_erase_results(self):
+        port_debug.begin_cycle(self.work, 'm1')
+        before = (self.work/'debug/qa.json').read_bytes()
+        with self.assertRaises(ValueError):
+            port_debug.begin_cycle(self.work, 'm2')
+        self.assertEqual((self.work/'debug/qa.json').read_bytes(), before)
+        for invalid in ['../escape', '', '/absolute', 'space id']:
+            with self.assertRaises(ValueError):
+                port_debug.begin_cycle(self.work, invalid)
+
+    def test_infrastructure_scope_allows_empty_categories_but_needs_checks(self):
+        port_debug.begin_cycle(self.work, 'infrastructure')
+        plan = copy.deepcopy(self.plan)
+        plan.update(areas=[], transitions=[], checks=[plan['checks'][1]])
+        self.write('plan.json', plan)
+        qa = copy.deepcopy(self.qa)
+        qa['plan_sha256'] = hashlib.sha256((self.work/'debug/plan.json').read_bytes()).hexdigest()
+        qa['passes'] = [qa['passes'][0]]
+        qa['passes'][0]['checks'] = [qa['passes'][0]['checks'][1]]
+        self.write('qa.json', qa)
+        self.assertTrue(port_debug.audit(self.work)['ok'])
+        self.write('acceptance.json', port_debug.acceptance_contract('final', final=True))
+        with self.assertRaises(ValueError):
+            port_debug.audit(self.work)
+        self.write('acceptance.json', port_debug.acceptance_contract('infrastructure'))
+        plan['checks'] = []
+        self.write('plan.json', plan)
+        with self.assertRaises(ValueError):
+            port_debug.audit(self.work)
+
     def test_changed_plan_missing_coverage_and_missing_evidence_reject(self):
         changed = copy.deepcopy(self.plan);changed['revision'] = 'corrected-understanding'
         self.write('plan.json', changed)

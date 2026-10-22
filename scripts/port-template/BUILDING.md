@@ -4,7 +4,7 @@ This is the baseline guide generated with the port scaffold. The port agent must
 update it for the finished executable, dependencies, flags and validation.
 Platform instructions below are recipes for a human developer, not evidence that
 a platform was tested. The porting agent's checks are focused unit tests, format/static/build checks and
-the bounded initial smoke test in smoke-test.md. Broader fidelity/device auditing and optional Android
+the bounded initial smoke test in smoke-test.md. The coordinator runs scoped fidelity QA after each milestone. Physical-device auditing and optional Android
 integration require a later user request; do not execute these recipes to expand
 the implementation goal.
 

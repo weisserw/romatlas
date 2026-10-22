@@ -1,5 +1,33 @@
 # Milestone checklist
 
+Native port instructions now explicitly isolate numeric ROM addresses/offsets in
+constants named by asset/table/field or in named loader recipes, keeping gameplay
+code on decoded data. They distinguish banked CPU addresses from physical ROM
+offsets, reject address-only pseudo-names and preserve honest provisional naming
+and source traceability. The existing maintainability pass checks scattered bare
+addresses/offsets. Updated the port prompt, coordinator template and porting guide.
+Focused template checks and git diff --check pass. No full port regression or
+live agent run was performed for this instruction-only change; existing workspace
+instructions and game code are not rewritten.
+
+Native port preparation now installs an iterative coordinator goal: sequential
+planning, one-milestone porting and scoped-debug subagents. Planning maintains
+architecture.md with modes/systems, special concerns and a finite whole-game
+milestone plan, revisiting status/design after each cycle. Implementation retains
+the existing source/accounting/library/frontend requirements and executes only
+applicable smoke steps, explicitly deferring future steps. Intermediate debug
+cycles execute their cumulative implemented-scope plan once; final whole-game QA
+executes two fresh complete passes. Failures are fixed in place, preserving
+unaffected results and continuing without restarts. begin-cycle resumes the same
+ID unchanged, rejects advancing incomplete QA, archives successful cycle records
+and initializes the next plan/results. Intermediate infrastructure plans can have
+empty coverage categories but still need real covered checks. Standalone QA
+retains its two-pass default. Rust 1.90.0 locked release build, full synthetic port
+preparation regression (including locked headless/desktop/Wasm builds), all seven
+QA record/cycle regressions, Python compilation and git diff --check pass.
+Existing workspaces are not rewritten, and no live
+port/planning/debug agents or commercial games were run for this workflow change.
+
 Native port instructions now also require descriptive enum variants or scoped
 named constants for semantic values, including states, flags, sentinels, timing
 and gameplay parameters. Guidance preserves numeric ROM encodings, explicitly

@@ -1,4 +1,8 @@
-# Implement the entire game as a maintainable best-effort native port
+# Implement one milestone of the native port
+
+Read architecture.md and the coordinator-selected milestone first. Implement only
+that milestone, preserving earlier work. The whole game remains the overall goal;
+future milestones stay pending. Hand off to the coordinator for scoped QA.
 
 Read workflow.md, uncertainties.json and
 prompts/reference-updates.md. Use reference/reading.asm and relevant archive
@@ -7,19 +11,22 @@ before starting is not required.
 On resume read architecture.md, progress.md, differences.md, library-changes.md,
 ledger.json and existing code. Inspect research/current.json and its adopted
 reading/source supplement when present. Preserve work; do not reinitialize.
-The scaffold is an arbitrary ROM-backed tile demonstration. Replace it with the
-whole game; a scaffold, first level or playable demo is not completion.
+The scaffold is an arbitrary ROM-backed tile demonstration. Replace it incrementally
+according to the milestone plan; a scaffold, first level or playable demo does not
+complete the overall goal.
 
 ## Source-informed architecture before substantial implementation
 
 Read representative source paths for startup, gameplay, rendering and sound.
 Identify major systems, state ownership, update order and dependencies on original
 data or hardware. This is a bounded initial survey, not exhaustive source analysis.
-Write a short high-level plan in architecture.md before substantial implementation:
+The planning subagent has written the design in architecture.md. Check its current
+milestone against the relevant source before substantial implementation:
 proposed modules/files, responsibilities, public interfaces, state owners, data
 flow, scheduling, shared-library use, uncertainties and an implementation order.
 Choose boundaries around game concepts rather than assembly banks or routine lists.
-Proceed with implementation once the plan is actionable; no approval is required.
+Proceed with the selected milestone once the plan is actionable; no approval is required.
+Record discoveries and proposed future-plan changes for the next planning subagent.
 
 Maintain that plan as understanding changes. Keep modules cohesive, state ownership
 explicit and interfaces small. Express algorithms with clear names, focused
@@ -41,6 +48,18 @@ provisional names and nearby explanations of what is known or assumed. Ordinary
 obvious literals such as zero initialization need no artificial constants, and
 opaque ROM data tables need not be renamed element by element.
 
+Do not scatter bare ROM addresses or offsets such as `0xf4db` through the port.
+Isolate required numeric locations in scoped constants named for the asset, table
+or field they identify (for example `ENEMY_SPAWN_TABLE_OFFSET`), or in named asset
+definitions/loader recipes. Keep banked CPU addresses distinct from physical ROM
+offsets. Decode ROM-backed structures at loading boundaries so ordinary gameplay
+code uses meaningful data such as `level.enemy_spawns`, not address arithmetic.
+Use source labels or address comments for traceability where useful; names such
+as `DATA_F4DB` merely repeat the address and do not explain its role. If the role
+is unresolved, use an honest provisional name and document what is known rather
+than inventing semantics. Numeric locations belong at these access boundaries,
+not repeated at call sites or disguised as a reimplementation of original RAM.
+
 Include useful comments in the Rust code as you implement it. Add module-level
 documentation for major systems and doc comments for important types/interfaces
 where their purpose or contract needs explanation. Near non-obvious logic, explain
@@ -55,17 +74,18 @@ and update comments when the implementation changes. No comment-count quota appl
 After a substantial feature, briefly inspect the affected design against the plan;
 fix concrete coupling, duplication or unclear algorithms before building on them.
 This is part of implementation, not a new review phase or repeated whole-project
-audit. Update the plan only when decisions change. At completion, make one bounded
-maintainability pass, including unexplained semantic numeric literals and missing
+audit. Update the plan only when decisions change. At the final implementation milestone, make one bounded
+maintainability pass, including unexplained semantic numeric literals, scattered
+bare addresses/offsets and missing
 or stale explanations of non-obvious code;
 do not keep redesigning a coherent working implementation.
 
 ## Implementation and behavior accounting
 
-Use ledger.json to account for every archived region and meaningful unit as
+Use ledger.json to account for the selected milestone's archived regions and meaningful units as
 implemented, merged, replaced or excluded, with a behavior explanation and native
 equivalents. Add discovered units while preserving original IDs and ranges.
-Implement every gameplay-relevant equivalent; modern methods may merge routines
+Implement every gameplay-relevant equivalent in this milestone; modern methods may merge routines
 or remove original mechanisms. Judge obvious irrelevant junk/unreachable paths
 from source without a formal reachability proof. Favor implementing borderline
 or unclear behavior. Lack of observed execution alone does not justify exclusion.
@@ -149,15 +169,17 @@ interfaces; assertions should explain the intended behavior, not merely mirror
 implementation details. Do not turn the source inventory into an exhaustive test
 matrix. Use synthetic fixtures or local ROM data without distributing originals.
 
-Before declaring completion, execute the bounded [initial smoke test](../smoke-test.md).
+Before handing off, execute the applicable portion of the bounded [initial smoke test](../smoke-test.md).
 It covers boot/title-screen accuracy, representative colors, menu interaction and
 starting play, basic movement/actions/enemy or equivalent interactions, and the
 first area's exit or normal death as appropriate. Fix exposed defects and recheck
 affected steps; record route, build/ROM identity and results in checks/smoke-test.md.
 Use device-free controls/captures and targeted original-ROM observations for these
-checks. This does not invoke the separate debug/goal.md two-pass QA workflow.
+checks. Record future smoke steps as deferred with milestone dependencies; never
+call them passed. When the full route is implemented it is required. This porting
+subagent does not execute QA; the coordinator invokes the debug subagent next.
 
-Broader runtime fidelity validation is outside this goal. Do not expand the smoke
+Broader runtime fidelity validation is outside this porting subprocess. Do not expand the smoke
 test into pixel-perfect/frame-by-frame proof, exhaustive scenarios, later areas,
 audio equivalence or repeated passing routes for confidence. Once its defined
 route passes, stop. A failed or unperformed required smoke test blocks completion;
@@ -168,8 +190,8 @@ inspection cannot reasonably answer. Record the question, needed observation and
 stopping condition; run a bounded experiment and return to implementation. Do not
 repeat inconclusive runs without a revised hypothesis/method or reopen answered
 questions without contradictory evidence. Document reasonable assumptions where
-needed; assumptions do not excuse broken smoke-test steps. Full-game QA and device
-testing require a separate user request.
+needed; assumptions do not excuse broken smoke-test steps. Full-game QA belongs
+to the debug subprocess; device testing remains separately requested.
 
 Run python3 run.py check for formatting, clippy, unit tests and desktop compilation.
 After shared-library changes run the toolkit's required relevant regression checks,
@@ -184,20 +206,22 @@ new defect. Do not add more validation simply because time or goal budget remain
 Maintain README.md with running/controls, asset replacement, added levels and game
 rule locations. Adapt BUILDING.md with build recipes, exact source/lockfile/path
 requirements and actual build/unit-test/smoke-test results. Other-platform/device
-execution and fidelity beyond the smoke-test route remain unassessed unless requested. Provide an
+execution remains untested when unavailable. The debug subprocess records fidelity results. Provide an
 original-content-only extension manifest. Keep progress.md and differences.md
 current, recording assumptions, library limits and known differences without a
 checklist of fidelity experiments to perform before completion.
 
-Finish when the whole game's best-effort implementations and behavior accounting
-are complete, uncertainty entries are assessed (including implemented assumptions),
-the architecture is coherent and documented, the smoke test and required checks pass and the handoff
-is written. Set ledger completion.status=complete with notes describing that scope;
-run python3 run.py audit once to check accounting/builds. It is an administrative
-check, not a fidelity audit. Fix actual failures; after it passes, stop. Assume
-the implemented behavior outside the smoke-test route works for this handoff; do not claim
-independent gameplay or audiovisual equivalence. Remaining unverified similarity
-must not trigger another investigation, replay, audit or polishing cycle.
+Finish this subprocess when the selected milestone is implemented, its ledger
+entries and relevant uncertainties are assessed (including implemented assumptions),
+required checks and applicable smoke steps pass, and progress.md records changed
+systems, tests, deferred smoke steps and QA entry routes. Leave future ledger
+entries pending. Mark the milestone implemented, awaiting QA; do not mark it QA
+complete. Return to the coordinator rather than implementing another milestone.
+On the final milestone, finish whole-game accounting and uncertainty assessment,
+make the bounded maintainability pass and set ledger completion.status=complete.
+Run python3 run.py audit for the final implementation only; after it passes, stop
+this subprocess. This audit does not complete the coordinator goal: final QA must
+still execute two complete runs through its whole-game test plan.
 
 Leave shared-library edits for the separate reviewer with the actual diff,
 requirements and check results. No check-in, publication or agent launch is

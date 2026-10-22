@@ -1,9 +1,12 @@
 # Initial port smoke test
 
-Before declaring the initial port complete, run this focused smoke test against
+Before each milestone handoff, run the applicable steps of this smoke test against
 the native game. Use the device-free debug API (`python3 run.py debug`) with
 bounded input/advance/capture calls. This uses the control API only; it does not
-invoke debug/goal.md or the separate two-pass QA workflow. Do not launch SDL or
+invoke the debug subprocess. Document steps requiring future milestones as
+deferred, with their dependencies; do not mark them passed. The full route becomes
+required once its dependencies are implemented, and before final implementation
+completion. A limited early milestone is not blocked by unimplemented future steps. Do not launch SDL or
 require physical controllers/audio devices on the headless server.
 
 Choose one representative route appropriate to the game and record its inputs,
