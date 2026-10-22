@@ -1,0 +1,391 @@
+{
+  "version": 1,
+  "round": 1,
+  "phase": "disassembly",
+  "rom_sha256": "97d472f7b2c1088448d1644155b2650a546bad887b3cba571e16d7986824c169",
+  "input_contract": {
+    "method": "emulator.input",
+    "buttons": "replacement held-button array, port 1",
+    "release": []
+  },
+  "budgets": {
+    "step_helper": {
+      "unit": "frame",
+      "max_operations": 5000000,
+      "timeout_ms": 30000
+    },
+    "visit_entry": {
+      "a_frames": 30,
+      "release_frames": 35
+    },
+    "menu_move": {
+      "down_frames": 12,
+      "release_frames": 4
+    }
+  },
+  "canonical_replay": {
+    "import": "analysis/stage-select.snapshot",
+    "state": {
+      "frames": 345,
+      "cpu_cycles": 10272005,
+      "context": {
+        "prg_banks": [
+          10,
+          11,
+          14,
+          15
+        ]
+      }
+    },
+    "after_import": "Reassert buttons=[]; snapshots restore time, so aggregate evidence across branches is not a forward timeline. Same-build snapshot; local ROM-containing artifact."
+  },
+  "boot": {
+    "status": "visited",
+    "observed": "USA DuckTales title; Start opens land selection. Initial 180-frame/10M-operation/30s request timed out at 161 frames, CPU cycles 4820636; preserved state continued. Subsequent empty-input steps 2,60,20,40 frames reached frame283; Start held2, released60 reached frame345 menu.",
+    "evidence": [
+      "analysis/title.png",
+      "analysis/stage-select.png",
+      "analysis/stage-select.snapshot"
+    ],
+    "limitation": "Original wall-time timeout is not a deterministic replay recipe; use durable canonical menu snapshot, or reproduce boot to exact cycle 4820636 before subsequent frame steps."
+  },
+  "progression": [
+    {
+      "milestone": "amazon",
+      "status": "visited",
+      "route": {
+        "restore": "stage-select",
+        "release": [],
+        "down_pulses": 0,
+        "pulse_frames": 12,
+        "release_frames": 4,
+        "confirm": [
+          "a"
+        ],
+        "confirm_frames": 30,
+        "then_release_frames": 35
+      },
+      "mechanics": {
+        "buttons": [
+          "right",
+          "a"
+        ],
+        "frames": 8,
+        "then_buttons": [
+          "right",
+          "down",
+          "b"
+        ],
+        "then_frames": 60,
+        "finally_release": []
+      },
+      "observed": "Forest enemy, jump/pogo and treasure terrain.",
+      "evidence": [
+        "analysis/amazon-entry.png",
+        "analysis/amazon-mechanics.png",
+        "analysis/amazon.snapshot"
+      ]
+    },
+    {
+      "milestone": "transylvania",
+      "status": "visited",
+      "route": {
+        "restore": "stage-select",
+        "actual": "Held right+a+down+b100 frames, then a2/release60, then a30/release30; down changed menu to Transylvania. Clean replay: one down pulse then A30/release35."
+      },
+      "mechanics": {
+        "buttons": [
+          "right",
+          "a"
+        ],
+        "frames": 8,
+        "then_buttons": [
+          "right",
+          "down",
+          "b"
+        ],
+        "then_frames": 50,
+        "finally_release": []
+      },
+      "observed": "Castle spike pits, enemy and airborne movement/pogo.",
+      "evidence": [
+        "analysis/amazon-long-a.png",
+        "analysis/first-area-play.png",
+        "analysis/first-area.snapshot"
+      ]
+    },
+    {
+      "milestone": "mines",
+      "status": "visited",
+      "route": {
+        "restore": "stage-select",
+        "release": [],
+        "down_pulses": 2,
+        "pulse_frames": 12,
+        "release_frames": 4,
+        "confirm": [
+          "a"
+        ],
+        "confirm_frames": 30,
+        "then_release_frames": 35
+      },
+      "mechanics": {
+        "buttons": [
+          "right",
+          "a"
+        ],
+        "frames": 8,
+        "then_buttons": [
+          "right",
+          "down",
+          "b"
+        ],
+        "then_frames": 40,
+        "finally_release": []
+      },
+      "observed": "Mine exterior, movement/pogo and $2000 collected; key gate not traversed.",
+      "evidence": [
+        "analysis/mines-entry.png",
+        "analysis/mines-mechanics.png",
+        "analysis/mines.snapshot"
+      ],
+      "tracing": "Disabled during menu/entry; enabled 8 frames after entry and during representative mechanics. Entry image is state evidence, not instruction coverage."
+    },
+    {
+      "milestone": "himalayas",
+      "status": "visited",
+      "route": {
+        "restore": "stage-select",
+        "release": [],
+        "down_pulses": 3,
+        "pulse_frames": 12,
+        "release_frames": 4,
+        "confirm": [
+          "a"
+        ],
+        "confirm_frames": 30,
+        "then_release_frames": 35
+      },
+      "mechanics": {
+        "buttons": [
+          "right",
+          "a"
+        ],
+        "frames": 8,
+        "then_buttons": [
+          "right",
+          "down",
+          "b"
+        ],
+        "then_frames": 50,
+        "finally_release": []
+      },
+      "observed": "Snow terrain, rabbit, movement/pogo and snow landing interaction.",
+      "evidence": [
+        "analysis/himalayas-entry.png",
+        "analysis/himalayas-mechanics.png",
+        "analysis/himalayas.snapshot"
+      ]
+    },
+    {
+      "milestone": "moon",
+      "status": "visited",
+      "route": {
+        "restore": "stage-select",
+        "release": [],
+        "down_pulses": 4,
+        "pulse_frames": 12,
+        "release_frames": 4,
+        "confirm": [
+          "a"
+        ],
+        "confirm_frames": 30,
+        "then_release_frames": 35
+      },
+      "mechanics": {
+        "buttons": [
+          "right",
+          "a"
+        ],
+        "frames": 8,
+        "then_buttons": [
+          "right",
+          "down",
+          "b"
+        ],
+        "then_frames": 45,
+        "finally_release": []
+      },
+      "observed": "Lunar surface, robot/spikes, movement/pogo.",
+      "evidence": [
+        "analysis/moon-entry.png",
+        "analysis/moon-mechanics.png",
+        "analysis/moon.snapshot"
+      ]
+    },
+    {
+      "milestone": "Later Amazon / shortcut",
+      "status": "attempted",
+      "restore": "analysis/amazon.snapshot",
+      "patches": [
+        {
+          "space": "ram",
+          "address": 125,
+          "bytes": [
+            1
+          ],
+          "timing": "immediately after entry snapshot; later readback0 (initialization overwrote)"
+        },
+        {
+          "space": "ram",
+          "address": 125,
+          "bytes": [
+            1
+          ],
+          "timing": "frame1205 after later traversal; readback1 at frame1513"
+        }
+      ],
+      "route": "Right+A8, right+down+B requested600 frames with max_operations5M -> operation budget exhausted; trace enabled12 yielded frame597/cycle17776695. Then right+down+B600 at max25M/10s, trace8 -> frame1205/cycle35883239. Write second patch, right+down+B300 max12M/10s, trace8 -> frame1513. Then up180 max7M/10s, trace8 -> frame1701. Release [] at each boundary. Tracing disabled for long traversals, enabled only selected observation windows.",
+      "observed": "Later ruin/vine/snake terrain reached; $007D=1 persisted in second test; pit/fall or route failure still caused death/respawn (P2 -> P1, timer reset500). No boss or temple interior proven.",
+      "context": {
+        "prg_banks": [
+          10,
+          11,
+          14,
+          15
+        ]
+      },
+      "artificial": true,
+      "evidence": [
+        "analysis/amazon-shortcut.png",
+        "analysis/amazon-later-attempt.png",
+        "analysis/amazon-invincible-attempt.png",
+        "analysis/amazon-vine-attempt.png",
+        "analysis/amazon-later.snapshot"
+      ]
+    },
+    {
+      "milestone": "Bosses, final battle, ending/credits",
+      "status": "deferred",
+      "reason": "All five starting areas exercised; Amazon bounded later route reached vine/ruin then respawn. Supported room/stage-completion transition and player/camera RAM contracts not yet identified; $007D invincibility cannot skip pits. Investigate lead R001-PROGRESSION rather than brute-force RAM or repeated long play.",
+      "evidence": [
+        "analysis/leads.json",
+        "analysis/gameplay.md"
+      ]
+    },
+    {
+      "milestone": "Mine interior/key, lunar UFO/remote, bonus flight",
+      "status": "deferred",
+      "reason": "Distinct item and transition contracts require targeted consumer/flag analysis; external manual describes prerequisites, not ROM-confirmed shortcuts. See R001-PROGRESSION."
+    }
+  ],
+  "redirect_attempts": [
+    {
+      "attempt": "r001-20261021-a",
+      "phase": "redirect",
+      "input_checkpoint": "maps/pass-001-final.json",
+      "milestones": [
+        {
+          "milestone": "statue-boss",
+          "status": "visited",
+          "artificial": true,
+          "route_or_patch_recipe": "analysis/redirect/r001-20261021-a/runtime_spawn.py",
+          "restore_snapshot": "analysis/redirect/r001-20261021-a/boss-spawn-2.snapshot",
+          "observed_result": "Source-defined Amazon row1 spawn record11, artificial boss with retained forest background; jump/pogo and quake handler exercised.",
+          "evidence": [
+            "analysis/redirect/r001-20261021-a/boss-spawn-0.png",
+            "analysis/redirect/r001-20261021-a/runtime-observed.json"
+          ]
+        },
+        {
+          "milestone": "stage-treasure-completion",
+          "status": "visited",
+          "artificial": true,
+          "route_or_patch_recipe": "analysis/redirect/r001-20261021-a/treasure-open-config.json",
+          "restore_snapshot": "analysis/redirect/r001-20261021-a/treasure-open-2.snapshot",
+          "observed_result": "Decoded HP/hit/cooldown defeat and reveal/collect contracts; A0 bit01 set, playerstate10. Natural completion not claimed.",
+          "evidence": [
+            "analysis/redirect/r001-20261021-a/treasure-open-2.png",
+            "analysis/redirect/r001-20261021-a/runtime-observed.json"
+          ]
+        },
+        {
+          "milestone": "final-boss",
+          "status": "visited",
+          "artificial": true,
+          "route_or_patch_recipe": "analysis/redirect/r001-20261021-a/final-boss-config.json",
+          "restore_snapshot": "analysis/redirect/r001-20261021-a/final-boss-2.snapshot",
+          "observed_result": "Stage1 row3/page5 record27 withA0=1F/FB=FF produced final handler3A/animation84/HP5; jump/pogo exercised.",
+          "evidence": [
+            "analysis/redirect/r001-20261021-a/final-boss-2.png",
+            "analysis/redirect/r001-20261021-a/runtime-observed.json"
+          ]
+        },
+        {
+          "milestone": "final-race",
+          "status": "visited",
+          "artificial": true,
+          "route_or_patch_recipe": "analysis/redirect/r001-20261021-a/race-start-config.json",
+          "restore_snapshot": "analysis/redirect/r001-20261021-a/race-start-3.snapshot",
+          "observed_result": "Final defeat handler3B/dialogue0B initialized race; known message cursor terminator plus A acknowledged; F8 cleared and rivals climb, Up exercised. Race win not claimed.",
+          "evidence": [
+            "analysis/redirect/r001-20261021-a/race-start-3.png",
+            "analysis/redirect/r001-20261021-a/runtime-observed.json"
+          ]
+        },
+        {
+          "milestone": "epilogue",
+          "status": "visited",
+          "artificial": true,
+          "route_or_patch_recipe": "analysis/redirect/r001-20261021-a/epilogue-enter-config.json",
+          "restore_snapshot": "analysis/redirect/r001-20261021-a/epilogue-render-1.snapshot",
+          "observed_result": "AC=1 supported epilogue gate, guarded saved-X shortening of initial120frame wait, stage9 scene initialized and animated.",
+          "evidence": [
+            "analysis/redirect/r001-20261021-a/epilogue-render-1.png",
+            "analysis/redirect/r001-20261021-a/runtime-observed.json"
+          ]
+        },
+        {
+          "milestone": "ending-terminal",
+          "status": "visited",
+          "artificial": true,
+          "route_or_patch_recipe": "analysis/redirect/r001-20261021-a/ending-terminal-config.json",
+          "restore_snapshot": "analysis/redirect/r001-20261021-a/ending-terminal-2.snapshot",
+          "observed_result": "Decoded scene-complete/nextscene controls, exact wipe endpoint and guarded delay counts reached full closing text/End; accepted E286/E289 fetches in artificial banks[10,11,14,15].",
+          "evidence": [
+            "analysis/redirect/r001-20261021-a/ending-terminal-2.png",
+            "analysis/redirect/r001-20261021-a/runtime-observed.json"
+          ]
+        }
+      ],
+      "failed_or_interrupted": [
+        {
+          "recipe": "analysis/redirect/r001-20261021-a/boss-run.json",
+          "outcome": "Boundary/theme transition alone did not initialize spawn cursors; corrected with decoded AE60 row-start contract."
+        },
+        {
+          "recipe": "analysis/redirect/r001-20261021-a/race-message-config.json",
+          "outcome": "120frame job interrupted after40; exact race-message-1.snapshot resumed, no unchanged replay."
+        },
+        {
+          "recipe": "analysis/redirect/r001-20261021-a/completion-return-config.json",
+          "outcome": "60frames remained in decoded256frame audio delay; completion bit was already observed, no return-screen claim."
+        }
+      ],
+      "trace_policy": "Each runtime step5..20frames,max3Moperations,30s; zero detail capacity retains aggregates. All completed summary aggregate_dropped=0; dropped detail is intentional. Reassert buttons after restores; saved counters make branches separate timelines."
+    }
+  ],
+  "redirect_reviews": [
+    {
+      "round": 2,
+      "attempt": "r002-20261022-a",
+      "status": "reused_no_replay",
+      "reason": "Reviewed preserved five land starts, artificial statue/final boss, treasure, active race, full epilogue/End milestones. No unvisited distinct progression system with a credible connection to the isolated audio prefix; ordinary race win/full completion remains unclaimed.",
+      "evidence": [
+        "analysis/redirect/r001-20261021-a/runtime-observed.json",
+        "analysis/redirect/r001-20261021-a/ending-terminal-config.json"
+      ],
+      "remaining_question": "Natural race victory and exact wealth/music variants are semantic/natural-use uncertainties, with no improved recipe discriminating8512 role."
+    }
+  ]
+}

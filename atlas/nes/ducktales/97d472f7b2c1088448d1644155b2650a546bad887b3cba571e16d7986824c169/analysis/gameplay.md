@@ -1,0 +1,9 @@
+# Gameplay familiarization — round 001
+
+ROM title/copyright visually confirms DuckTales USA, Nintendo/Capcom 1989; mapper 2, 128 KiB PRG, CHR RAM. Exact revision unestablished.
+
+Manual transcription: https://www.world-of-nintendo.com/manuals/nes/duck_tales.shtml (consulted 2026-10-21). START opens LAND SELECT; directions choose a land, A confirms. Gameplay A jumps, down then B in air starts pogo, hold B to continue, direction+B swings at obstacles. START pauses. Five selectable lands: Amazon, Transylvania, African Mines, Himalayas, Moon; skeleton key needed in mines; UFO key/remote on Moon; all five treasures precede last battle. Launchpad can return to control room. These later progression contracts are sourced hypotheses until ROM-tested.
+
+Confirmed locally: title, START-to-LAND SELECT. NES adapter input is replacement buttons array (not shared protocol button/pressed); release as []. Saved clean stage-select snapshot enables representative land experiments without replaying startup. Early tests using documented fields were empty-input observations, not failed gameplay controls.
+
+Redirect (2026-10-22): original-NES guide https://gamefaqs.gamespot.com/nes/587253-disneys-ducktales/faqs/11036 identifies the Amazon statue's jumping/ground-tremor mechanic and a final Transylvania confrontation. This was a gameplay hypothesis, not structural evidence; Remastered search results were excluded. Local artificial scenarios now confirm a green statue actor with quake controls, final handler3A, postdefeat rival race, and the Scrooge closing/End screen. Exact source-backed room/spawn/progression recipes are in `analysis/redirect/r001-20261021-a/` and `analysis/scenarios.json`. No natural full-game completion or exact revision claim. Boundary edits alone retain old spawn cursors; use decoded row-start offsets, not arbitrary position patches. Negative protection7D prevents some treasure interactions and must be cleared for collection.

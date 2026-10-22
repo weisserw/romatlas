@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "platform": "nes",
+  "name": "ducktales",
+  "rom_sha256": "97d472f7b2c1088448d1644155b2650a546bad887b3cba571e16d7986824c169",
+  "rom_filename": "game.nes",
+  "image_size": 131088,
+  "editorial_complete": false,
+  "review_status": {
+    "complete": false,
+    "reviewed_regions": 1302,
+    "total_regions": 1302,
+    "reviewed_units": 1537,
+    "total_units": 1537,
+    "editorial_audit": false,
+    "reasons": [
+      "final editorial audit is pending"
+    ]
+  },
+  "omitted_documents": [
+    "analysis/round002/commentary-before/AGENTS.md",
+    "analysis/round002/commentary-before/progress.md",
+    "analysis/round002/commentary-before/prompt.md",
+    "analysis/round002/commentary-before/uncertainties.md",
+    "analysis/round002/commentary-before/workflow.md"
+  ],
+  "artifacts": {
+    "README.md": "468db2be2f0e4ff891af9bf0090e5652f08c720a01d6ec793c70f0f33007955b",
+    "analysis/gameplay.md": "75a45ebb71281810a3a7dfca658646351b81cbbb0a4828dc25779faa6eef4843",
+    "analysis/investigation.md": "4cd529aad31bdee7e8bb1e41225292555b9495184b53742f01bfa4c50e82c513",
+    "analysis/progress.md": "1b08b64a9b63df16818ec5d70ee1d9a380815ee50d7a1c24e6e4ce663763750f",
+    "analysis/redirect/r001-20261021-a/findings.md": "6b37877289d175a99e949866c454c048f2302b6b0ce22de680cdcdd4eab1f057",
+    "analysis/redirect/r001-20261021-a/handoff.md": "f0d8c35ff4d279d84324187edcb3f9758a25b0da50aaddf834bf9f2b847b4f4a",
+    "analysis/redirect/r002-20261022-a/handoff.md": "b7dca5ab953a4b2d31dd34f92e724b0e88f9c48aa66f6a85d79fdb8799632eb2",
+    "analysis/round001/commentary-findings.md": "a761e195e3209aaf66d130a109e843a59c37e7985d2f19fd256e794431f86e83",
+    "analysis/round001/commentary-handoff.md": "b3204428cfc1577747702ac61733b031e8136d36fbde4f8cf35611561a942f0f",
+    "analysis/round001/disassembly-handoff.md": "ce360220f2a958585ccdb029a13c4dc6941f230d84ee7c0956237bbf25e1839b",
+    "analysis/round001/redirect-handoff.md": "f0d8c35ff4d279d84324187edcb3f9758a25b0da50aaddf834bf9f2b847b4f4a",
+    "analysis/round002/commentary-handoff.md": "bf565ab689832783920567a860248f9450c018710d06e77346221fb8f0908e17",
+    "analysis/round002/disassembly-handoff.md": "37f03cf763494278b40dbbb19ff3e77d1aa47f61ddb8444063f5e4240b881e1c",
+    "analysis/round002/redirect-handoff.md": "b7dca5ab953a4b2d31dd34f92e724b0e88f9c48aa66f6a85d79fdb8799632eb2",
+    "analysis/scenarios.json": "fc18f7d3d79378e3b10676c97e23ab78961798ae30fd9a020effe16b85f0722a",
+    "analysis/state.json": "95cea7452f7fb2954cb789d1339f11aa3bb65356381cb2f86311f97c4be4e410",
+    "commentary/baseline.json": "95cea7452f7fb2954cb789d1339f11aa3bb65356381cb2f86311f97c4be4e410",
+    "commentary/manifest.json": "3701bad30c9c0c02a0fdc268b0df9d8f23284adfa39c8ff937ac1f4977f90486",
+    "commentary/phase1-state.json": "95cea7452f7fb2954cb789d1339f11aa3bb65356381cb2f86311f97c4be4e410",
+    "commentary/progress.md": "3a1b704493fb9a98b444e4f60f6b756aef2b023ca791d540fd3922996ca82475",
+    "commentary/review.json": "f5fce45a147ce05e6b1a185bd3e8ea214b61c3dd7aa54624a14ec1a56af8b0a8",
+    "commentary/uncertainties.md": "d9639a4e44c08dd99d57ec80fbf84ed914f8d85cf7bb3317fd26b60438898e05",
+    "commentary/verification.json": "62d8b4cc4efa7a1eec17379229b01a74885aa099a2001c2cfe990edafe053622",
+    "editorial.json": "be42d7cc63d11575dd08abef0ee14d45e6f722bb9ca805e9eb21b11ca4fc9d86",
+    "maps/current.json": "95cea7452f7fb2954cb789d1339f11aa3bb65356381cb2f86311f97c4be4e410"
+  }
+}
