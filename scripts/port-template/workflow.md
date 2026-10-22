@@ -13,6 +13,9 @@ unavailable, preserve a resumable handoff and report the concrete tooling blocke
    milestone. It implements that milestone, updates accounting and progress, runs
    relevant checks and applicable smoke-test.md steps, and hands off. Future
    behavior remains pending, never hidden behind exclusions or stubs.
+   Pass the full prompts/start.md contract to the porting subagent, including its
+   instruction to use meaningful types, names and comments from the first
+   implementation. Do not add a separate milestone readability review or report.
 3. Before debug, initialize its cycle from the toolkit:
    `python3 scripts/port_debug.py begin-cycle /path/to/workspace --milestone ID`
    Add `--final` only when all milestones are implemented, whole-game accounting

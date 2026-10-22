@@ -81,33 +81,16 @@ file/line quotas apply. Inspect affected boundaries after substantial features,
 fix concrete design problems and update the plan when decisions change. Finish
 with one bounded maintainability pass, not repeated redesign/audit cycles.
 
-The port agent must write useful Rust comments during implementation: document
-major modules and important type/interface contracts, and explain non-obvious
-behavior, source-game quirks, invariants, timing/order, numeric formats and
-implementation assumptions near the relevant code. Include source labels where
-they help trace the reasoning, and distinguish facts from assumptions. Clear names
-and external design/accounting records complement these comments. Avoid statement
-paraphrases and comment-count quotas; check for missing or stale explanations in
-the existing bounded maintainability pass. This guidance applies to newly prepared
-workspaces; existing workspace instructions are not rewritten automatically.
-
-Use descriptive enum variants for finite semantic choices such as game modes and
-actor states (`ActorState::Falling` rather than an unexplained `3`). Where integer
-storage is appropriate, use scoped constants named for their role for state IDs,
-flags/masks, sentinels, table fields, timing and gameplay parameters. Preserve exact
-ROM encodings at data boundaries and handle unknown values explicitly. Unresolved
-IDs need honest provisional names and explanations, without invented semantics.
-Obvious literals and opaque ROM table elements do not each need constants. The
-existing maintainability pass also checks unexplained semantic numeric literals.
-
-Keep bare ROM addresses and offsets out of ordinary gameplay code. Isolate their
-numeric values in constants named for the asset/table/field, or in named asset
-definitions and loader recipes; distinguish banked CPU addresses from physical
-ROM offsets. For example, define `ENEMY_SPAWN_TABLE_OFFSET` in the loader and let
-gameplay use decoded `level.enemy_spawns`. Names like `DATA_F4DB` do not explain a
-role. Use honest provisional names for unresolved roles and source-label/address
-comments where useful for traceability. The maintainability pass also checks for
-scattered bare addresses and offsets.
+The implementation contract in `prompts/start.md` requires readable code from
+the first implementation, with concrete examples of prohibited bare numeric
+addresses, bit masks, state IDs, small thresholds, coordinates, rates and timers.
+Use domain types, named constants and decoded data/state fields as appropriate;
+keep numeric encodings at access/serialization boundaries. Comments explain rules
+and contracts where names alone are insufficient, using source evidence without
+invented intent. Obvious literals and opaque table contents remain exceptions.
+There is no additional milestone readability review, report or rewrite phase;
+the existing bounded final maintainability pass remains. This guidance applies
+to newly prepared workspaces; existing instructions are not rewritten.
 
 The default target is a faithful representation of the source game with no extra
 game features. Unless the user specifically requests them, do not add visible
@@ -391,7 +374,7 @@ concrete new defect.
 
 The agent may edit the shared library directly in ROMAtlas, uncommitted, logging
 the actual changes and validation and preserving pre-existing work. It runs the
-toolkit's relevant checks and updates docs/progress.md with tested facts. Use
+toolkit's relevant checks and reports actual results and limitations. Use
 `prompts/review.md` to launch a separate reviewer manually. The initial snapshot
 allows comparison against the starting files, including pre-existing dirty files.
 The user decides check-in. A path dependency is editable; Cargo.lock does not

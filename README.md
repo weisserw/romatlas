@@ -148,7 +148,7 @@ Use a new output folder for each generation. Maps contain labels and region dire
 
 For toolkit checks, see the [development guide](docs/development.md).
 
-See [progress](docs/progress.md), [architecture and limits](docs/architecture.md), and
+See [architecture and limits](docs/architecture.md) and
 [Game Boy map syntax](docs/sym.md).
 
 ## Agent disassembly workspaces

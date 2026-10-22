@@ -5,8 +5,7 @@ selects the workflow; this file does not activate disassembly, porting or QA.
 
 ## Shared rules
 
-- Read [project.md](project.md) and the relevant current entries in
-  [docs/progress.md](docs/progress.md) before changing the toolkit.
+- Read [project.md](project.md) before changing the toolkit.
 - Use Rust 1.90.0 and Cargo.lock. On Ubuntu/Debian, install the pinned tools with
   `bash scripts/setup.sh`. Build with `cargo build --locked --release`;
   CLI examples and integration scripts default to `target/release/romatlas`.
@@ -23,8 +22,8 @@ selects the workflow; this file does not activate disassembly, porting or QA.
   shortcuts. Keep CPU aliases, physical backing and execution evidence distinct.
 - Do not launch SDL graphics or require unavailable GUI/audio devices on this
   headless server. Compile desktop code without opening a window.
-- Follow [docs/development.md](docs/development.md) for relevant checks. Record
-  actual changes, check results and limitations in docs/progress.md. Do not turn
+- Follow [docs/development.md](docs/development.md) for relevant checks. Report
+  actual changes, check results and limitations to the user. Do not turn
   toolkit checks into additional game-fidelity acceptance requirements.
 
 ## Documentation and task entrypoints

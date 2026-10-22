@@ -22,6 +22,12 @@ and reproducible debug entry routes. Early infrastructure milestones may have
 limited observable behavior; their QA still checks implemented interfaces and
 records why gameplay checks are deferred. Do not require unimplemented routes.
 
+Plan meaningful types/names for flags, poses and state, and
+coordinate/unit conventions for movement and interaction thresholds. Source
+encodings must not become unexplained numbers in gameplay code. These conventions
+guide implementation from the outset, not a separate milestone readability
+review, report or rewrite phase.
+
 For each milestone record a stable ID, title, dependencies, scope, implementation
 status, QA status, cycle/report references and remaining work. Track the current
 stage/cycle and exact resumption point. Only nominate one next milestone. The last

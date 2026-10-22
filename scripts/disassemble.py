@@ -78,7 +78,7 @@ promising questions thoroughly but reasonably before deciding whether to continu
 Before starting or resuming a phase, read workspace.json, analysis/progress.md,
 analysis/toolkit-issues.md and the relevant saved handoff. Read and maintain
 analysis/gameplay.md as described below. Locate the toolkit through workspace.json;
-consult its project.md, current docs/progress.md, docs/protocol.md and docs/sym.md
+consult its project.md, docs/protocol.md and docs/sym.md
 for scope, APIs and map rules. Follow this workspace's platform guidance when it
 selects a different mapping/source backend.
 

@@ -334,7 +334,7 @@ romatlas verify ./game.gb --generated ./build/game
 
 ## Delivery requirements
 
-Deliver runnable Rust source, documented CLI and agent protocol, mgbdis `.sym` compatibility guide and examples, pinned external tool dependencies, tests, CI configuration, `AGENTS.md`, and a concise architecture/limitations document. Keep a running milestone checklist in `docs/progress.md`, updating it as features land. Prefer working vertical slices over broad unfinished scaffolding. If the full scope cannot be completed in one pass, leave the repository in a tested, runnable state, clearly identify incomplete milestones, and do not claim unsupported games or features work.
+Deliver runnable Rust source, documented CLI and agent protocol, mgbdis `.sym` compatibility guide and examples, pinned external tool dependencies, tests, CI configuration, `AGENTS.md`, and a concise architecture/limitations document. Prefer working vertical slices over broad unfinished scaffolding. If the full scope cannot be completed in one pass, leave the repository in a tested, runnable state, clearly identify incomplete milestones, and do not claim unsupported games or features work.
 
 **Definition of success:** an autonomous agent can investigate a Game Boy ROM using the toolkit, iteratively build a ROM-free structural map, and another user with the identical ROM can use the exported `.sym` with stock mgbdis to generate and byte-verify the same disassembly without needing the original agent's execution traces or any distributed ROM content.
 

@@ -30,7 +30,7 @@ This file retains the implementation review history. The current requirement-by-
 | Setup on a new VM with pinned tools | setup scripts, lockfile, toolchain and CI | Final fresh-setup audit |
 | Licensed dependencies and homebrew sources | Architecture/license docs; pinned source notices | Final source/artifact hygiene audit |
 | Source, tests, CI, AGENTS.md, guides and examples | Workspace, scripts, docs and workflow files | Final delivery audit |
-| M1 through M4 exit conditions | docs/progress.md and all acceptance evidence above | Full project remains incomplete |
+| M1 through M4 exit conditions | Acceptance evidence above | Full project remains incomplete |
 
 The protocol call-table check queried the running server and found all 43 advertised methods in docs/protocol.md. This proves method-name coverage only. It does not prove that each documented parameter, result, error or bound matches runtime behavior.
 

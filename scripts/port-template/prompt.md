@@ -15,6 +15,53 @@ The scaffold is an arbitrary ROM-backed tile demonstration. Replace it increment
 according to the milestone plan; a scaffold, first level or playable demo does not
 complete the overall goal.
 
+## Write readable native code from the first implementation
+
+Implement behavior in terms of the current game's concepts, not a transcription
+of assembly operations with the same unexplained numbers. Understand the relevant
+source and consumers, define meaningful types and names, then use them while
+writing the logic. Do not postpone naming or comments to a later cleanup pass.
+
+Do not use bare numeric literals for values whose meaning comes from the game
+or original hardware. The following examples illustrate categories, not mechanics
+or names that every game must have:
+
+| Avoid in executable game logic | Express the meaning instead |
+| --- | --- |
+| `rom[0xf4db]` or repeated numeric ROM ranges | A named ROM location or asset-loader definition, followed by decoded data |
+| `memory[0xc120]` for game state | A named field in a native state structure |
+| `flags |= 1 << 14` or `flags & 0x40` | A named flag/mask or typed flag operation |
+| `state == 3` or `set_state(0x2a)` | An enum variant, or a named ID when an integer representation is needed |
+| `distance < 16` or `position >= 176` | A constant identifying the range or boundary, with units/coordinate space |
+| `speed -= 4` or `timer = 30` | A named rate, increment or duration in the appropriate units |
+
+Small decimal integers need meaningful names just as hexadecimal addresses do.
+Names must explain the role: `STATE_3`, `VALUE_16` and `DATA_F4DB` only repeat the
+encoding and are insufficient. Reuse existing names instead of creating aliases.
+Use enums for finite semantic choices and typed interfaces where practical; use
+scoped named constants when numeric representation is appropriate. Keep original
+encodings and numeric locations in definitions, loaders or serialization code,
+not scattered at call sites. Distinguish banked CPU addresses from physical ROM
+offsets. Original RAM addresses should become native state fields, not a second
+memory map. Preserve exact data encodings and deterministic behavior.
+
+Write useful comments alongside the implementation. Document major modules and
+important type/interface contracts. For a condition, calculation or transition
+whose purpose is not apparent from its names, explain what its inputs represent,
+what rule it implements and what effect it has. Also explain relevant invariants,
+update ordering, source quirks and intentional differences. Naming each constant
+alone is insufficient if the combined expression still obscures the behavior.
+Derive names and explanations from this game's source; distinguish facts from
+assumptions. If a meaning is unresolved, use an honest provisional name and state
+what is known without inventing intent. Cite source labels or addresses when
+useful for traceability. Avoid comments that only paraphrase the Rust statements.
+
+Ordinary literals whose meaning is evident, such as zero initialization, and
+opaque ROM table contents need no artificial constants. Executable conditions,
+call arguments and game parameters are not opaque data merely because they came
+from assembly. No abstraction or comment-count quota applies. These are coding
+requirements, not an additional review phase, report or gameplay traversal.
+
 ## Source-informed architecture before substantial implementation
 
 Read representative source paths for startup, gameplay, rendering and sound.
@@ -35,49 +82,14 @@ simulation, assets, rendering, audio and UI. Splitting a tangled implementation
 across files without improving ownership/coupling does not satisfy this requirement.
 There are no arbitrary file-count, line-count or abstraction quotas.
 
-Give meaningful values descriptive names throughout the Rust implementation.
-Prefer enums with descriptive variants for game modes, actor states, commands and
-other finite semantic choices: write `state == ActorState::Falling` rather than
-`state == 3`. When numeric storage or ROM compatibility makes integers appropriate,
-use scoped named constants for state IDs, flags/masks, sentinels, table fields,
-timing values and gameplay parameters. Name values by their role, not their number
-(avoid names like STATE_3 or VALUE_16); include units where useful. Keep raw numeric
-encodings at ROM/serialization boundaries, preserving exact values and handling
-unknown values explicitly. Do not invent meanings for unresolved IDs: use honest
-provisional names and nearby explanations of what is known or assumed. Ordinary
-obvious literals such as zero initialization need no artificial constants, and
-opaque ROM data tables need not be renamed element by element.
-
-Do not scatter bare ROM addresses or offsets such as `0xf4db` through the port.
-Isolate required numeric locations in scoped constants named for the asset, table
-or field they identify (for example `ENEMY_SPAWN_TABLE_OFFSET`), or in named asset
-definitions/loader recipes. Keep banked CPU addresses distinct from physical ROM
-offsets. Decode ROM-backed structures at loading boundaries so ordinary gameplay
-code uses meaningful data such as `level.enemy_spawns`, not address arithmetic.
-Use source labels or address comments for traceability where useful; names such
-as `DATA_F4DB` merely repeat the address and do not explain its role. If the role
-is unresolved, use an honest provisional name and document what is known rather
-than inventing semantics. Numeric locations belong at these access boundaries,
-not repeated at call sites or disguised as a reimplementation of original RAM.
-
-Include useful comments in the Rust code as you implement it. Add module-level
-documentation for major systems and doc comments for important types/interfaces
-where their purpose or contract needs explanation. Near non-obvious logic, explain
-why it works: source-game behavior and quirks, algorithm invariants, update/timing
-order, numeric formats and constants, and intentional differences or implementation
-assumptions. Cite relevant source labels or routines when they help a maintainer
-trace the reasoning; distinguish supported facts from assumptions. Keep these
-explanations close to the code rather than only in architecture.md or the ledger.
-Use concise natural language, avoid comments that merely restate Rust statements,
-and update comments when the implementation changes. No comment-count quota applies.
-
 After a substantial feature, briefly inspect the affected design against the plan;
 fix concrete coupling, duplication or unclear algorithms before building on them.
 This is part of implementation, not a new review phase or repeated whole-project
-audit. Update the plan only when decisions change. At the final implementation milestone, make one bounded
-maintainability pass, including unexplained semantic numeric literals, scattered
-bare addresses/offsets and missing
-or stale explanations of non-obvious code;
+audit. Update the plan only when decisions change. Apply the naming/comment
+requirements during implementation; do not schedule a separate milestone
+readability review, review report or rewrite phase. At the final implementation milestone, make one
+bounded maintainability pass, including unexplained semantic numeric literals,
+scattered bare addresses/offsets and missing or stale explanations of non-obvious code;
 do not keep redesigning a coherent working implementation.
 
 ## Implementation and behavior accounting
@@ -145,7 +157,7 @@ regenerated assembly local. Never download commercial ROMs or commit ROMs/assets
 Developer-authored content may ship.
 
 Implement needed shared-library changes directly in the toolkit recorded in
-workspace.json. Read its AGENTS.md, project.md and docs/progress.md. Leave edits
+workspace.json. Read its AGENTS.md and project.md. Leave edits
 uncommitted, preserve unrelated work and distinguish the initial state in
 review/toolkit-before.json and review/toolkit-before/. Log each change's requirement,
 files, reusable interface rationale, focused tests and limits in library-changes.md.
@@ -195,8 +207,7 @@ to the debug subprocess; device testing remains separately requested.
 
 Run python3 run.py check for formatting, clippy, unit tests and desktop compilation.
 After shared-library changes run the toolkit's required relevant regression checks,
-including portability/dependency boundaries, and update its docs/progress.md with
-tested facts. Those toolkit checks protect library/tool behavior; they do not
+including portability/dependency boundaries, and report actual results and limits. Those toolkit checks protect library/tool behavior; they do not
 expand the native game's comparisons beyond the bounded smoke-test scope. Once a
 relevant check passes, rerun it only after a pertinent change, failure or concrete
 new defect. Do not add more validation simply because time or goal budget remains.

@@ -218,8 +218,7 @@ rendering, playback and physical-device behavior as untested when unavailable.
 
 Use synthetic or appropriately licensed fixtures. Follow repository requirements
 for Rust 1.90.0, Cargo.lock, fmt, clippy, tests, portability and other relevant
-workflow/session/boundary regressions. Update docs/progress.md with tested facts
-as implementation lands. Workflow tests establish preparation and prompt
+workflow/session/boundary regressions. Report actual check results and limits. Workflow tests establish preparation and prompt
 contracts, not that an autonomous agent has completed an arbitrary real game.
 
 ## References for the framework and dependency decisions
@@ -231,5 +230,4 @@ contracts, not that an autonomous agent has completed an arbitrary real game.
 - [Rust SDL2 build and linking options](https://github.com/rust-sdl2/rust-sdl2)
 
 The user confirmed shared understanding and authorized implementation. See
-docs/porting.md for the implementation contract and docs/progress.md for tested
-facts; this design document alone does not establish implementation or validation.
+docs/porting.md for the implementation contract; this design document alone does not establish implementation or validation.

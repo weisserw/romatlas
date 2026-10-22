@@ -88,5 +88,5 @@ source includes, archive reconstruction and native-port scaffolds have platform
 branches. Existing Game Boy constants/profile text and game workspaces remain
 unchanged. Runtime roots/edges retain relevant observed processor context even
 with zero detail capacity; static-only traversal remains available.
-Validation is recorded in docs/progress.md; instruction tests do not establish
-live-agent judgment, research quality or semantic completeness.
+Instruction tests do not establish live-agent judgment, research quality or
+semantic completeness.

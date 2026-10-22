@@ -83,8 +83,8 @@ gates. Keep generated ROMs local and preserve upstream MIT/zlib notices.
 
 Documentation-only edits need checks appropriate to their content, such as link
 and whitespace checks; they do not require executing games. Toolkit regression
-checks establish tool behavior, not gameplay fidelity. Update
-[progress](progress.md) with tested facts and explicit limitations.
+checks establish tool behavior, not gameplay fidelity. Report actual check results
+and limitations to the user.
 
 ## Platform and API references
 
@@ -117,4 +117,4 @@ Their evidence-policy.md and phase prompts contain structural-versus-reachabilit
 rules and bounded inspection before generic data fallback. Maintain those owning
 files when changing the policy; do not reintroduce copies in toolkit AGENTS.md.
 Historical compatibility measurements belong in platform evaluation/hardware docs
-and progress records, with their original scope and limitations.
+with their original scope and limitations.
