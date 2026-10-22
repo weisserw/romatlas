@@ -82,16 +82,7 @@ Archiving a game copies its disassembly artifacts into the `atlas/` directory wh
 
 The `scripts/port.py` script initializes a workspace for porting an archived game (or just tell your agent, "initialize the port for X"). Specify the output directory with `python3 scripts/port.py prepare /path/to/archive --rom /path/to/game.gb --out /path/to/rom-ports/game`. Inside this directory, run an agent and type `/goal Read goal.md` to begin the porting process to Rust.
 
-### Debugging
-
-The porting goal runs a fixed pipeline: skeleton, behavior planning, source-traced
-unit contracts, whole-game implementation, then two fresh whole-game QA passes.
-Each behavior area gets its own contract worker before implementation. QA uses
-reusable scripts, semantic headless state and validated checkpoints to compare
-against the original emulator, repairing failures without restarting. To invoke
-standalone QA in a prepared workspace, tell the agent: `Read debug/goal.md`.
-
-Debugging works by first generating a test plan unique to the game, then running through the entire test plan twice and fixing all issues found. Repairs continue within the current pass without restarting completed work; incomplete runs resume from their recorded position.
+Porting is a *much* longer and more intensive process than disassembling; don't undertake a port unless you have the motivation to spend a lot of agent resources and time. Porting works on a five-stage process: the agent analyzes the source code and builds a map of low-level game behaviors, it builds a skeleton Rust game, then it creates unit tests for all behaviors to help ensure the final code is as true to the original as possible. Only then does it actually write the code for the game, using the unit tests as a guide, followed by two full cycles of QA where it compares the finished game to its original emulated version.
 
 ### Running a Port in The Browser
 
