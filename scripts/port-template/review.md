@@ -10,8 +10,9 @@ provenance remain intact, and local corrections have fresh map/source rebuild
 evidence. A byte-identical revision does not prove its interpretation or the
 native gameplay equivalent correct. Report missing implementations and weak
 exclusions. An implemented, documented reasonable assumption does not require
-runtime confirmation. Complete original classification and independent gameplay
-fidelity are not port gates. The toolkit directory is in workspace.json. Compare
+runtime confirmation. Complete original classification is not a port gate; the
+final QA stage owns whole-game runtime comparisons. The toolkit directory is in
+workspace.json. Compare
 its current files against review/toolkit-before/ and the hashes/status/HEAD in
 review/toolkit-before.json. That snapshot includes tracked and nonignored
 untracked files from preparation; pre-existing changes are not automatically
@@ -23,15 +24,13 @@ game-independent contracts or explicit platform-specific scope; game rules
 belong in the port. Check ROM identity, bounded reads, asset
 replacement/extension, data hygiene, headless separation, console cadence and
 customization. Review focused unit tests and run relevant toolkit checks.
-Review the recorded smoke-test.md scope/results and concrete unresolved failures.
-Do not launch a second smoke test merely for review confidence. Broader fidelity
-validation is outside this review; do not request full playthroughs, exhaustive
-emulator/native comparisons or GUI/device checks.
-Debugger use, if needed for a specific source question, follows
-prompts/start.md's bounded inquiry rule. Do not expand review into an
-original-game equivalence audit. A later fidelity audit requires an explicit
-user request. Stop once concrete findings and the disposition are written; do
-not repeat checks to accumulate confidence. Report regressions, unnecessary
+Read recorded contract/check results and the final QA report, including concrete
+unresolved failures. Broader fidelity validation is outside this review; do not
+launch another QA pass, request full playthroughs or require GUI/device checks.
+Debugger use for a specific source question follows prompts/common.md's bounded
+inquiry rule. Keep this review focused on the library diff and its contracts.
+Stop once concrete findings and the disposition are written; do not repeat checks
+to accumulate confidence. Report regressions, unnecessary
 abstractions, missing evidence and required fixes. Check the library-change log
 accounts for the relevant diff and preserves unrelated changes. The review is
 not an automatic check-in or release authorization.

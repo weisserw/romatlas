@@ -1,18 +1,12 @@
 # Native port debugging control and workflow
 
-This guide supports the iterative port coordinator's debug subprocess and
-standalone QA. Intermediate milestone cycles execute one full pass over currently
-implemented scope; final and standalone QA execute two full whole-game passes.
-Read debug/acceptance.json for the active scope and pass count. Invoking the port
-goal authorizes its QA subagents; installation alone launches nothing.
-
-The coordinator uses `python3 scripts/port_debug.py begin-cycle WORKSPACE
---milestone ID` (add `--final` for the final whole-game cycle). Same-ID invocation
-resumes records unchanged; a new ID requires the previous cycle's successful audit
-and preserves its acceptance/plan/results in debug/cycles/ID/. Retain all cited
-artifacts and distinct reports. Never weaken acceptance or reset an incomplete
-cycle. Read architecture.md for implemented milestones and explicitly deferred
-future behavior. Final QA derives a complete plan and runs both passes afresh.
+This guide supports the final QA stage of the fixed native-port pipeline and
+standalone QA. Both execute two fresh whole-game passes, repairing failures at
+the current check without restarting. Invoking goal.md authorizes its pipeline
+subagents; preparing/installing instructions alone launches nothing. Read
+debug/acceptance.json, debug/plan.json and debug/qa.json on resume and retain progress.
+New pipeline workspaces do not use milestone cycles or begin-cycle. The toolkit
+retains that command for existing workspaces; it is not a stage in this workflow.
 
 Faithfulness does not require reproducing hardware-induced lag, slowdown or
 sprite flicker. Their absence in a smoother native port is not a bug and must not
@@ -29,7 +23,7 @@ API launcher, this guide, debug/goal.md and acceptance/plan/result templates.
 To start or resume QA, open an agent in the port workspace and tell it:
 **Read debug/goal.md.** That file links everything else and directs execution.
 Preparation installs the files without launching QA. The port coordinator invokes
-the QA subprocess after each milestone; users can also invoke it independently.
+the QA subprocess after whole-game implementation; users can also invoke it independently.
 
 The install command below is for older workspaces that lack these files:
 
@@ -44,8 +38,13 @@ The installed CLI needs `--debug-stdio` wired to `romatlas_port::debug::serve`.
 Future port scaffolds include this wiring. Alleyway and Rygar have been adapted,
 with Alleyway's existing summary and a read-only Rygar summary. Other existing
 ports need the same small launcher adaptation; arbitrary private game state is
-not inferred by the library. There are no native memory/register writes or
-visible in-game debug menus. State edits need a separately designed port adapter.
+not inferred by the library. The skeleton stage connects a versioned game-owned
+observe callback, documented in debug/api.md, to expose semantic state and bounded
+events through port.state.
+Implementation must maintain this schema across all game systems. Existing
+ports may require an adapter extension; the generic library does not infer it.
+There are no native memory/register writes or visible in-game debug menus.
+State edits need a separately designed, validated port adapter.
 
 ## Start the transport
 
@@ -109,19 +108,19 @@ old-build checkpoints. Launchers recheck override/build identity before reset/lo
 No ROM bytes or extracted originals belong in checkpoint metadata.
 
 The port must have deterministic initialization and pure rendering. Frame/audio
-hashes catch output mismatches, not arbitrary hidden-state nondeterminism; useful
-port-owned inspection and future typed snapshots can strengthen this later.
+hashes catch output mismatches, not arbitrary hidden-state nondeterminism;
+game-owned semantic inspection and explicit scenario preconditions must validate
+the relevant state.
 Process restart replay is supported only for the same executable/assets; replay
 logs are not a substitute for immutable source provenance. Files containing
 captured original-game outputs remain private/local.
 
 ## QA pass and repair contract
 
-The process is plan first, then A-to-Z QA fixing as it goes, with a second complete
-pass only for final/standalone QA. Build the plan from source, native architecture and
-behavior accounting within the implemented scope: each area/mode, major mechanics
-and transitions, later
-progression and ending/terminal states where present. Each entry has specific
+The process is plan first, then two A-to-Z passes fixing as each proceeds. Build
+the whole-game plan from source, native architecture and behavior accounting:
+each area/mode, major mechanics and transitions, later progression and ending/
+terminal states where present. Each entry has specific
 applicable graphics, behavior and sound checks and a reproducible route/setup.
 The scope is major game functionality, not exhaustive frame/input permutations.
 
@@ -138,8 +137,7 @@ another A-to-Z traversal. Correct plans/routes in place with source evidence,
 preserve check IDs and results, and reconcile changed/new checks and plan hashes.
 New checks need results in every required pass record; do not invent successful results.
 
-For intermediate cycles, finish after pass one. For final/standalone QA, finish
-pass one, then run the full plan once more as pass two, fixing issues with
+Finish pass one, then run the full plan once more as pass two, fixing issues with
 the same continue-in-place procedure. Never return to pass one or start a third
 full pass. Success requires the configured completed passes, resolved issues and a report.
 There is no stagnation-based completion or repair quota. A resource ceiling or
@@ -148,11 +146,8 @@ unresolved blocker leaves the current run incomplete and resumable.
 ### Plan and result records
 
 Fill debug/plan.json before executing it. Lists `areas`, `mechanics`, `transitions`
-contain unique nonempty descriptive strings. Intermediate cycles may leave a
-category empty when no behavior in it is implemented; at least one covered item
-and one real ordered check are still required. Whole-game plans require all three
-nonempty categories. Record implemented milestone IDs and deferred future scope
-in the plan/report. Each ordered `checks` entry contains:
+contain unique nonempty descriptive strings. Whole-game plans require all three
+nonempty categories. Each ordered `checks` entry contains:
 
 ```json
 {
@@ -160,10 +155,16 @@ in the plan/report. Each ordered `checks` entry contains:
   "covers": ["area:bridge", "mechanic:occlusion"],
   "aspects": ["graphics", "behavior"],
   "expectation": "Player passes behind the foreground bridge rail",
-  "setup": "Recorded route/checkpoint and inputs leading to the crossing"
+  "setup": "Restore validated approach checkpoint; cross the bridge",
+  "scenario": "debug/scenarios/bridge.py",
+  "command": "python3 debug/scenarios/bridge.py --check bridge-foreground --pass 1 --run attempt-001",
+  "source": ["reference/source/scene.asm:BridgeOcclusion"],
+  "starting_state": "debug/artifacts/bridge-approach.json; validate mode, area and position"
 }
 ```
 
+Scenario/source/setup fields above are agent-maintained provenance in addition to
+the core record schema; the administrative audit does not validate their truth.
 The example assumes `bridge` and `occlusion` are listed in their respective
 coverage lists. Use area:, mechanic:, transition: prefixes. Every listed item
 needs a check; the agent must assess actual comprehensiveness from source. Use
@@ -172,8 +173,11 @@ plan revisions and superseded results as concise history when correcting them.
 
 Write debug/qa.json with the SHA-256 of the exact current plan file, `status`
 (in_progress, incomplete, aborted or complete), passes and blockers. Each pass
-has `number` 1 (and 2 when required), `status`, and ordered `checks` results. Each result has id,
+has `number` 1 or 2, `status`, and ordered `checks` results. Each result has id,
 status, a nonempty `build` identity, and `evidence` listing local artifact files.
+Record scenario/script revision, invocation, checkpoint/setup identity and fresh
+execution evidence per result; use distinct evidence directories for each pass
+and repair run. Historical evidence is not a current execution result.
 Only status passed counts. Inaccessible, failed and pending entries remain
 blockers during execution. Each pass must cover the full ordered plan. The
 agent must keep evidence valid after fixes and record affected-check rechecks;
@@ -191,6 +195,55 @@ accounting, not semantic correctness. Preserve first-pass records while executin
 the second pass. For corrections, retain valid results, replace only invalidated
 results with actual rechecks and update the plan hash after reconciling records.
 A hash mismatch requires reconciliation, not a fresh run or reset to pass one.
+
+## Reusable QA scenarios
+
+For each plan check, create or extend a versioned game-owned script in
+debug/scenarios/. Shared helpers should remove repeated setup, input driving,
+reference queries and observation handling. Keep source-derived expectations
+readable and identify their source paths/labels/revision. Reuse the same scripts
+for route discovery refinements, debugging, repair verification and both full
+passes; do not repeatedly reconstruct a setup through individual tool calls.
+
+Each script invocation must:
+
+1. Identify ROM, assets, executable/source and script revisions; select its check
+   ID and a unique pass/repair-run evidence directory.
+2. Restore a known starting checkpoint or execute its retained deterministic setup
+   recipe. Check import success and semantic preconditions (mode, area, actor/
+   progression state, held inputs and relevant timers/flags). A successful frame/
+   audio hash alone does not validate the intended scenario.
+3. Apply bounded logical inputs/advancement, checking completed/remaining status;
+   observe named state changes/events and selected frame/audio output. Assert
+   source-backed expectations with useful expected/actual diagnostics.
+4. Use the existing original-emulator workflow to obtain corresponding reference
+   observations, with snapshot/patch/input provenance. Reference setup can be a
+   shared script/helper; record exactly which source-backed reference each check
+   uses. Do not treat the native implementation as its own oracle.
+5. Write a fresh result including starting-state validation, exact inputs, relevant
+   observations and local evidence. Return failure for failed expectations,
+   inaccessible setup, incomplete advancement or missing observations.
+
+Drive the native transport with PortClient below and the original ROM through its
+platform adapter. Endpoint polling may miss transient effects; expose bounded,
+read-only semantic event history or step at suitable deterministic boundaries.
+Document field units, event sequence/retention and overflow behavior in debug/api.md.
+Never silently lose an event required by a check or mutate state during inspection.
+
+Reuse validated checkpoints within their build/ROM/asset identity. After a code
+change, rebuild native checkpoints by running saved setup recipes from reset and
+revalidate semantic preconditions; output identity guards must remain enforced.
+Keep native replay records separate from emulator snapshots. State shortcuts
+must not bypass a transition under test, and recipes must record exact edits and
+initialization contracts. Validate reference snapshot/setup provenance too.
+
+Each required pass executes all scenarios afresh, even when scripts/checkpoints
+are reused. Repair rechecks use those same scripts with fresh evidence at the
+current position. Preserve valid unaffected results and revise faulty scenarios
+with source-backed reasons instead of weakening expectations. Neither checkpoint
+reuse nor previously cached assertions counts as another pass. Keep reusable
+scripts and setup metadata with the source; keep local captures/checkpoints in
+debug/artifacts/ and link selected evidence rather than embedding bulk payloads.
 
 ## Agent scenario client
 
@@ -216,8 +269,9 @@ with PortClient(["/path/to/port/target/debug/game-port", "--rom",
 
 Add the toolkit scripts directory to Python's import path. Evidence directories
 must be new, preventing accidental overwrites. Use the generated game package's
-actual binary name; build it before the experiment. Inspect captured images with
-local image tools and retain useful scenarios rather than regenerating every route.
+actual binary name; build it before the experiment. This snippet illustrates client calls only; put real check setup, semantic
+preconditions, expectations and reference observations in the reusable scenario.
+Inspect selected images/audio with local tools and record actual observations.
 
 ## Disk and evidence retention
 

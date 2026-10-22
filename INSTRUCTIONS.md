@@ -260,13 +260,16 @@ ledger, and records the toolkit's initial files for review. It implements no gam
 and launches no agent. Phase-one unknowns are allowed, but gameplay-relevant gaps must
 be investigated by the port agent.
 
-Read goal.md to invoke a coordinator that runs sequential planning, one-milestone
-porting and scoped debug subagents. Planning creates architecture.md with modes,
-systems, special concerns and a finite milestone plan, then revises it after each
-cycle. Intermediate debugging runs the cumulative implemented scope once; final
-whole-game QA runs twice. Repairs continue in place without restarting passes.
-Early smoke steps may be deferred with milestone dependencies; all applicable
-steps are required. Preparation does not invoke this loop or migrate old workspaces.
+Read goal.md to invoke the fixed pipeline of sequential subagents: skeleton,
+behavior planning, behavior contract, game implementation, then final QA. The
+skeleton establishes identifiers, shared frontends and semantic debug/checkpoint
+infrastructure without game/menu/title logic. Planning inventories all behavior
+with source references. A separate contract worker for each area independently
+traces source and writes unit tests with adjacent evidence before implementation.
+Implementation completes the whole game until all contracts/checks pass. Final
+whole-game QA executes two fresh passes using reusable scripts and validated
+starting states, repairing failures in place without restarting. Preparation
+launches no agents and does not migrate existing workspaces.
 
 The agent implements every gameplay-relevant equivalent, accounting for merged,
 modernized and obviously irrelevant original paths rather than translating every line.
@@ -282,14 +285,15 @@ python3 run.py check
 python3 run.py audit
 ```
 
-`check` runs formatting, Clippy, headless tests, desktop compilation and Wasm lint/build
-checks. The implementation goal also requires the bounded device-free startup/first-area
-smoke test in `smoke-test.md`, with results in `checks/smoke-test.md`; failed or
-unperformed steps block completion. Do not run `python3 run.py desktop` on this headless
-server; it is for a graphical desktop. F1 or controller Guide opens the settings menu.
-Do not write tests requiring unavailable graphics/devices. Desktop/other-platform
-runtime behavior remains explicitly untested here. Audit checks explained source
-accounting and builds, not gameplay fidelity or semantic correctness.
+`check` runs formatting, Clippy, headless tests, desktop compilation and Wasm
+lint/build checks. All source-backed contracts must pass before final QA; there
+is no separate implementation gameplay smoke route. QA uses debug/scenarios/
+scripts for every check, debugging and repair verification, executing both
+required passes afresh. Do not run `python3 run.py desktop` on this headless
+server; it is for a graphical desktop. F1 or controller Guide opens settings.
+Do not write tests requiring unavailable devices. Desktop/other-platform runtime
+behavior remains explicitly untested here. Audit checks source accounting/builds,
+not gameplay truth; overall completion also requires the final QA record audit.
 
 The agent may implement needed library changes directly in ROMAtlas, uncommitted, with a
 log and relevant toolkit checks. Launch another agent manually from the port workspace

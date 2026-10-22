@@ -3,7 +3,8 @@
 The port phase starts from a reviewed archive and a matching local ROM, creating
 a separate development workspace. It writes goal.md to direct implementation of the
 whole game as maintainable best-effort native Rust. It does not launch an agent or translate the game
-automatically. Game Boy, SMS, Game Gear, NES and SNES archives select independent platform scaffolds.
+automatically. Game Boy/Color, SMS, Game Gear, NES, SNES, Genesis and PC Engine
+archives select independent platform scaffolds.
 The shared library keeps platform helpers separate without imposing a universal
 hardware model. SNES helpers and current limits are documented in [snes.md](snes.md).
 
@@ -17,15 +18,32 @@ python3 scripts/port.py prepare /path/to/archive --rom /path/to/owned.gb --out /
 codex -C /root/rom-ports/game
 ```
 
-Ask the agent to read the generated `goal.md`. It coordinates three sequential
-subagents: planning (`prompts/plan.md`), one-milestone implementation
-(`prompts/start.md`), and scoped QA (`debug/goal.md`). Planning writes a living
-`architecture.md` design describing modes, systems, state, special concerns and
-a finite series of milestones from zero to the entire game. After each QA cycle,
-planning updates status and may revise future milestones based on findings.
-Intermediate QA executes its cumulative implemented-scope plan once; the final
-cycle runs a complete whole-game plan twice. Every failure is repaired in place,
-with affected-check rechecks and no restart. Preparation launches no agents.
+Ask the agent to read the generated `goal.md`. It coordinates a fixed pipeline
+of sequential subagents:
+
+1. Skeleton (`prompts/skeleton.md`): ROM loading, settings, desktop/browser
+   integration, actor/state/level/audio/asset identifiers and semantic headless
+   debug/checkpoint groundwork. No gameplay, title or game-menu implementation.
+2. Behavior planning (`prompts/plan.md`): inventory all source behavior with
+   references in behaviors.md and refine the source-informed architecture.
+3. Behavior contract (`prompts/contract.md`): coordinate a separate worker per
+   behavior area. Independently trace source, cross-call side effects and relevant
+   CPU/flag/branch details, then write executable unit tests with adjacent source
+   evidence. Create logical source files/interfaces; pending behavior may fail
+   assertions but tests must compile and be discovered.
+4. Game implementation (`prompts/start.md`): implement the whole game in those
+   files against source and contracts until all tests and implementation checks/
+   accounting pass. Every system supports the semantic debug API.
+5. QA (`debug/goal.md`): derive the whole-game plan and run two fresh passes with
+   reusable scenario scripts and validated starting checkpoints. Fix failures in
+   place, rechecking affected results without restarting passes or the pipeline.
+
+Each stage hands off before the next starts. Contract workers run sequentially;
+only one agent edits the workspace at a time. Stage/worker status and resumption
+live in progress.md; design/state ownership live in architecture.md; behavior/
+source/trace/test/implementation links live in behaviors.md. Newly discovered
+scope updates affected artifacts within the active stage, without a milestone
+loop. Preparation launches no agents and does not migrate existing workspaces.
 Standalone QA remains available by invoking **Read debug/goal.md.**
 No goal command is printed. `--json` suppresses human instructions; preparation
 results are JSON on stdout and instructions are on stderr. Use `--binary PATH` to select a toolkit
@@ -53,10 +71,11 @@ the toolkit before retrying. Rust 1.90.0 is pinned in the generated project.
 | `research/working/` | Optional editable disassembly state, source, correction log and local evidence. |
 | `research/revisions/`, `research/current.json` | Verified immutable local corrections and the adopted revision pointer. |
 | `goal.md` | Overall native-port objective and resume instructions. |
-| `debug/goal.md`, `DEBUGGING.md` | Scoped milestone/final QA workflow and API guide; standalone QA defaults to two passes. |
+| `debug/goal.md`, `DEBUGGING.md` | Final/standalone two-pass whole-game QA and API guide. |
 | `debug/acceptance.json`, `plan.json`, `qa.json` | QA acceptance contract, editable test plan and results. |
-| `architecture.md` | Source-informed module/state/algorithm plan, maintained during implementation. |
-| `prompts/plan.md`, `start.md`, `reference-updates.md`, `review.md` | Port contract, reference correction procedure and separate reviewer instructions. |
+| `architecture.md`, `behaviors.md` | Source-informed design/identifiers and complete behavior-to-trace/test/implementation inventory. |
+| `debug/api.md`, `debug/scenarios/` | Game-owned semantic debug schema and reusable scenarios, created by the pipeline. |
+| `prompts/` | Stage prompts, shared contract/coding standards, optional reference corrections and separate library review. |
 | `review/toolkit-before/`, `toolkit-before.json` | Initial toolkit files, hashes, Git HEAD and pre-existing status. |
 | `library-changes.md` | Shared changes, requirements, rationale, validation and unresolved findings. |
 | `progress.md`, `differences.md`, `README.md` | Progress/blockers, behavioral differences and editor instructions. |
@@ -70,74 +89,65 @@ implement a real game's level loader. The port agent must replace both as needed
 
 ## Architecture and implementation boundary
 
-Before substantial coding, read representative startup, gameplay, rendering and
-sound source paths and write a short actionable `architecture.md`: modules/files,
-responsibilities, state owners, interfaces, algorithms, scheduling, shared platform
-helpers and implementation order. This survey is bounded; exhaustive source
-understanding and user approval are not prerequisites. Organize code around game
-concepts. Keep algorithms readable and modules cohesive; avoid both a growing
-monolithic game file and cosmetic splitting of tightly coupled code. No arbitrary
-file/line quotas apply. Inspect affected boundaries after substantial features,
-fix concrete design problems and update the plan when decisions change. Finish
-with one bounded maintainability pass, not repeated redesign/audit cycles.
+The skeleton surveys source enough to establish named identifiers, native state
+and cohesive module boundaries. Behavior planning identifies all areas, modes,
+systems, assets, transitions and special concerns with source references. Contract
+workers reread the original independently and trace branches/call effects in
+detail, writing unit tests and adjacent evidence in the source tree before game
+implementation. Planning is a navigation aid, not an oracle. Source gaps and
+reasonable assumptions must remain explicit.
 
-The implementation contract in `prompts/start.md` requires readable code from
-the first implementation, with concrete examples of prohibited bare numeric
-addresses, bit masks, state IDs, small thresholds, coordinates, rates and timers.
-Use domain types, named constants and decoded data/state fields as appropriate;
-keep numeric encodings at access/serialization boundaries. Comments explain rules
-and contracts where names alone are insufficient, using source evidence without
-invented intent. Obvious literals and opaque table contents remain exceptions.
-There is no additional milestone readability review, report or rewrite phase;
-the existing bounded final maintainability pass remains. This guidance applies
-to newly prepared workspaces; existing instructions are not rewritten.
+The coding standards in `prompts/coding-standards.md` are interpolated verbatim
+into the behavior-contract and game-implementation prompts. They apply to tests,
+fixtures and debug adapters as well as game rules: use meaningful identifiers,
+domain types, named constants and ROM definitions instead of bare semantic
+numbers; comments explain rules, invariants, ordering and source quirks without
+invented intent. Obvious literals and opaque table contents retain their stated
+exceptions. Tests must have independent source-derived expectations and cover
+each area's meaningful branches, boundaries and interactions, rather than mirror
+the implementation. They must be registered for native cargo test; browser-only
+module gating must not hide them.
 
-The default target is a faithful representation of the source game with no extra
-game features. Unless the user specifically requests them, do not add visible
-debug artifacts, level selects, sound tests, diagnostic overlays, cheats or developer
-menus. Preserve source-game features with their original access conditions. Required
-frontend settings and asset replacement/extension support remain supported, without
-authorizing extra gameplay features or content-selection menus. Keep development
-diagnostics in logs or headless tools. This does not add fidelity-validation gates.
+The implementation stage completes the whole game, ROM-backed loading, asset
+extensions, settings, original saves and shared desktop/browser logic. Keep
+modules cohesive, ownership explicit and algorithms readable. Inspect affected
+boundaries after substantial changes, then make one bounded maintainability pass
+before handoff. No arbitrary module/file-size quotas or recurring redesign rounds
+apply. Required infrastructure checks pass after skeleton; contract-stage tests
+compile/run but can fail on pending behavior; all tests and implementation checks
+must pass before QA. There is no separate implementation gameplay smoke route.
 
-Faithfulness does not require reproducing hardware-induced lag, slowdown or
-sprite flicker. The native port may run smoothly and render sprites without those
-artifacts; this is not an extra game feature. Preserve intentional gameplay timing
-and visual effects, such as deliberate slow motion or damage/invulnerability
-flashing.
+The player-facing target is the source game. Add no level selects, sound tests,
+overlays, cheats or developer menus unless requested; retain source features with
+their original access conditions. Required frontend settings and asset extensions
+remain supported. Hardware-induced lag, slowdown and flicker need not be reproduced;
+preserve intentional timing and effects such as slow motion or damage flashing.
 
-The native goal implements the whole game on a source-informed best-effort basis.
-Required checks include focused unit tests, format/static/build checks and a bounded
-smoke test before handoff. Early milestones execute only applicable smoke steps;
-record future steps and their dependencies as deferred, never passed. The full
-route is required once implemented and before final implementation completion. The generated smoke-test.md defines one representative
-route: boot; check title-screen layout/graphics/colors against the original ROM;
-interact with menus and start play; check initial gameplay colors, movement, primary
-actions and representative enemy/hazard or equivalent interactions; then exit the
-first area or reach a normal death/game-over, as appropriate to the game.
+The skeleton connects a versioned semantic observation callback to the existing
+headless debug transport. Implementation exposes mode/progression/actor/timer/
+audio state and relevant bounded events as needed, documenting units and retention
+in debug/api.md. Inspection and rendering remain observational. Checkpoints replay
+deterministic inputs/tick/audio calls, rather than serialize arbitrary objects.
+Scripts validate semantic starting preconditions and transport output hashes;
+code/asset changes require rebuilding checkpoints from retained setup recipes.
+This debug facility is separate from player battery saves/save states.
 
-Use the device-free debug API, bounded input/advance/capture calls and a few matching
-original-ROM observations. Do not launch SDL on the server. Fix exposed defects and
-recheck failed/affected steps, recording build/ROM identity, inputs, results and local
-evidence in checks/smoke-test.md. Failed or unperformed required steps block
-completion; report a concrete blocker if they cannot be completed. Absence of
-hardware-induced lag, slowdown or flicker is not a defect; intentional timing and
-visual effects still matter.
+QA owns whole-game runtime comparisons. For each check, create or extend a
+reusable script that restores validated state, applies inputs and observes/asserts
+source-backed expectations using the native debug API and original emulator.
+Use those same scripts for diagnosis, repair verification and both required
+passes, with fresh execution/evidence per pass. Reuse scripts and valid checkpoints,
+never cached successful results. Retain pass/check position through failures and
+code/plan corrections. Recheck failed and specifically affected earlier entries;
+retain unaffected results. See [QA guide](port-debugging.md) for records and tools.
 
-Broader runtime fidelity validation is outside the porting subprocess. Do not
-expand the smoke test into exhaustive scenarios, pixel-perfect/frame-by-frame proof,
-audio equivalence, later levels or repeated passing routes for confidence. Once
-its route passes, stop smoke testing. The coordinator invokes debug/goal.md after the implementation handoff for the
-configured scoped or final QA. Physical-device auditing remains separately requested.
-
-Debugger use also supports a specific unresolved source question. Record the
-needed observation and stopping condition, run a bounded experiment and return to
-implementation. Change the hypothesis/method before repeating inconclusive runs.
-Document reasonable source-informed assumptions; they do not excuse broken required
-smoke-test steps. After whole-game implementation/accounting, smoke testing,
-required checks and handoff are complete, run the administrative audit and return
-to the coordinator when it passes. Overall completion also requires final two-pass QA. Remaining unverified fidelity outside the smoke-test route does
-not justify expanding acceptance criteria or repeating passing checks.
+Earlier debugger use answers a specific unresolved source question with a bounded
+experiment and stopping condition. Document source-informed assumptions instead
+of endlessly seeking confidence. Missing implementations block handoff; residual
+uncertainty is recorded honestly. Whole-game accounting, passing contracts/checks,
+documentation and the implementation audit precede QA. Overall completion also
+requires both fresh QA passes, resolved blockers and the QA audit. Device/GUI
+compatibility remains untested where unavailable; never launch SDL on the server.
 
 ## Unfinished disassembly and discoveries during porting
 
@@ -346,9 +356,9 @@ Build/check, instructions, headless, desktop and web commands validate the works
 and original ROM identity without requiring frozen reference or research files.
 Only audit and reference-management commands validate those development artifacts;
 they are not runtime assets. Missing checks/ output directories are recreated.
-Focused unit tests cover intended game logic and CPU-side utilities. The optional
-headless command alone does not cover the required smoke test; use the device-free
-debug API and follow smoke-test.md.
+Source-backed unit contracts cover game rules, meaningful branches and system
+interfaces. The optional headless command alone does not establish QA completion;
+the final stage executes reusable scenarios through the device-free debug API.
 
 For each original region and unit, set ledger disposition to `implemented`,
 `merged`, `replaced` or `excluded`, give a summary and list equivalents (except
@@ -357,20 +367,18 @@ with unique IDs and valid physical ROM ranges. All gameplay-affecting source
 behavior must have an equivalent; modern control flow/framework features may
 replace entire original routines without a line-to-line translation.
 
-The agent judges obvious irrelevant/unreachable code from the commented source
-without formal proof; favor implementing ambiguous cases. Complete classification
-is not a gate; comparisons are limited to the required smoke test. A coherent
-architecture/plan, a passing smoke test, focused unit tests, documented assumptions/differences,
-finished accounting, editor instructions and a handoff are required.
-Assess the uncertainty ledger too; new workspaces cannot finish with pending gaps,
-removed original uncertainty entries or preserved unknown behavior. Documented
-implemented assumptions can be assessed without fidelity proof. Set ledger
-completion status/notes and run `audit`. Audit validates inventory,
-dispositions and builds; it cannot assess semantic correctness or test quality.
-Unassessed fidelity beyond the smoke-test route and device behavior are recorded
-without creating another investigation phase. Required smoke-test failures block completion. After a successful
-administrative audit, stop. Rerun checks only after relevant edits, failures or a
-concrete new defect.
+The agent judges obvious irrelevant paths from source, favoring implementation
+of ambiguous cases. Complete original-ROM classification is not a porting gate.
+A coherent architecture/inventory, passing source-backed contracts, complete
+behavior implementations, documentation and a handoff are required. Assess the
+uncertainty ledger too; preserve original entries, assess pending gaps and never
+preserve unknown code in place of implementation. Documented implemented
+assumptions may be assessed while residual source/fidelity uncertainty stays
+explicit. Set ledger completion status/notes and run `audit`. It validates
+inventory, dispositions and builds, not semantic correctness or test quality.
+After this audit, the implementation subagent hands off to final two-pass QA;
+overall completion requires its successful record audit too. Rerun build/static
+checks after pertinent changes/failures, rather than merely for confidence.
 
 The agent may edit the shared library directly in ROMAtlas, uncommitted, logging
 the actual changes and validation and preserving pre-existing work. It runs the
@@ -490,30 +498,23 @@ commercial ROM or native-versus-ROM fidelity comparison is needed. Setup pins
 wasm-bindgen 0.2.129 (library/CLI match) and Playwright 1.56.0. Python handles build
 and serving; no npm or JavaScript bundler is required.
 
-## Milestone and standalone debugging
+## Final and standalone QA
 
 [Native debug control and workflow](port-debugging.md) provides the headless API
-and QA subprocess. New port goals invoke it after each implemented milestone.
-Before each cycle the coordinator runs:
+and QA stage. New port goals invoke debug/goal.md after whole-game implementation.
+No begin-cycle command or intermediate QA cycle is part of the fixed pipeline.
+Complete the whole-game source-informed plan twice, with reusable scenario scripts
+and validated checkpoints, executing each pass afresh. Failed/inaccessible checks
+block advancement; repair and resume at that check without restarting either pass.
+Resource interruptions leave an incomplete resumable handoff. After completion run:
 
 ```sh
-python3 scripts/port_debug.py begin-cycle WORKSPACE --milestone cycle-01
-# Only after all milestones and whole-game accounting/builds are complete:
-python3 scripts/port_debug.py begin-cycle WORKSPACE --milestone final --final
 python3 scripts/port_debug.py audit WORKSPACE
 ```
 
-A repeated cycle ID resumes its records unchanged. A new ID requires the previous
-QA audit to pass and archives the previous acceptance/plan/results under
-`debug/cycles/ID/`. Preserve cited artifacts and unique reports. Future scope is
-explicitly deferred in intermediate plans; final scope is the entire game, with
-two fresh complete passes. Empty coverage categories are allowed only for early
-intermediate cycles; ordered checks and some covered implemented behavior remain
-required. Failed/inaccessible checks block progress, and repairs continue in place.
-Resource interruptions leave an incomplete resumable handoff.
-
-Standalone invocation of `debug/goal.md` uses the installed acceptance contract
-(default two-pass whole-game QA). For older workspaces use
-`python3 scripts/port_debug.py install WORKSPACE`; existing instructions/records
-are preserved and not silently migrated. Preparation/installation never launches
-agents. Scaffolds expose --debug-stdio with optional read-only game inspection.
+Standalone invocation is **Read debug/goal.md.** For older workspaces without the
+QA files, use `python3 scripts/port_debug.py install WORKSPACE`. Existing
+instructions/records are preserved and not silently migrated. The toolkit retains
+legacy cycle commands for existing workspaces. Preparation/installation never
+launches agents. The transport exposes --debug-stdio with game-owned semantic
+inspection supplied by the port; see debug/api.md in completed pipeline workspaces.

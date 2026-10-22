@@ -20,13 +20,16 @@ import port_web
 ROOT = phase.ROOT
 TEMPLATES = ROOT / "scripts/port-template"
 DISPOSITIONS = {"implemented", "merged", "replaced", "excluded"}
-GOAL = ("Port this entire archived game through the iterative subagent workflow in workflow.md. "
-        "Act as coordinator: execute planning, one-milestone porting and scoped debugging "
-        "sequentially, each in its own subagent. Read prompts/plan.md, prompts/start.md and "
-        "debug/goal.md. Keep architecture.md as the living design and milestone plan. "
-        "Repeat until all milestones are implemented and final whole-game QA passes twice. "
+GOAL = ("Port this entire archived game through the fixed five-stage subagent pipeline in workflow.md: "
+        "skeleton, behavior planning, behavior contract, game implementation, then QA. "
+        "Act as coordinator and execute the stages sequentially. The behavior-contract stage "
+        "starts one worker subagent per behavior area to independently trace source and write "
+        "unit tests before game implementation. Read prompts/common.md and each stage prompt "
+        "listed in workflow.md. Keep architecture.md, behaviors.md and progress.md current. "
+        "Final whole-game QA executes two fresh passes using reusable scenario scripts, "
+        "fixing failures in place without restarting. "
         "Finish BUILDING.md and the implementation/QA handoffs; stop when both audits pass.")
-RESUME = ("Preserve work; do not reinitialize. Read architecture.md, progress.md, ledger.json, "
+RESUME = ("Preserve work; do not reinitialize. Read architecture.md, behaviors.md, progress.md, ledger.json, "
           "uncertainties.json, differences.md, library-changes.md, research/current.json if "
           "present, debug/acceptance.json, debug/plan.json and debug/qa.json. Resume the "
           "active stage and blocking check before advancing; do not restart a QA pass.")
@@ -206,7 +209,8 @@ def prepare(archive, rom, output, binary):
         if result.returncode:
             raise ValueError("cannot lock scaffold dependencies; build the toolkit first:\n" + result.stderr)
         subprocess.run(["cargo", "fmt", "--manifest-path", str(stage / "port/Cargo.toml")], check=True, capture_output=True, text=True)
-        prompt = (TEMPLATES / "prompt.md").read_text()
+        standards = (TEMPLATES / "coding-standards.md").read_text().rstrip()
+        prompt = (TEMPLATES / "prompt.md").read_text().replace("__CODING_STANDARDS__", standards)
         if manifest["platform"] == "gb":
             prompt += "\nGame Boy / Color: read " + str(ROOT / "docs/gbc.md") + ". Both use the gb platform and stock .sym/RGBDS. Inspect header byte $143: bit 7 selects native color; bits 7/6 mark CGB-only. Use gb::cgb for banked color rendering and palette RAM; keep DMG APIs for DMG behavior. CPU double speed does not double the LCD/APU cadence. The scaffold's grayscale tile is an arbitrary demonstration, not the game's rendering.\n"
 
@@ -219,9 +223,11 @@ def prepare(archive, rom, output, binary):
         (stage / "prompts/start.md").write_text(prompt)
         (stage / "goal.md").write_text("# Native port\n\n" + GOAL + "\n\nOn resume: " + RESUME + "\n")
         shutil.copyfile(TEMPLATES / "architecture.md", stage / "architecture.md")
-        shutil.copyfile(TEMPLATES / "plan.md", stage / "prompts/plan.md")
+        shutil.copyfile(TEMPLATES / "behaviors.md", stage / "behaviors.md")
+        for filename in ["common.md", "coding-standards.md", "skeleton.md", "plan.md", "contract.md"]:
+            text = (TEMPLATES / filename).read_text().replace("__CODING_STANDARDS__", standards)
+            (stage / "prompts" / filename).write_text(text)
         shutil.copyfile(TEMPLATES / "review.md", stage / "prompts/review.md")
-        shutil.copyfile(TEMPLATES / "smoke-test.md", stage / "smoke-test.md")
         shutil.copyfile(TEMPLATES / "reference-updates.md", stage / "prompts/reference-updates.md")
         build_guide = (TEMPLATES / "BUILDING.md").read_text().replace("__GAME_NAME__", name).replace("__TOOLKIT_PATH__", str(ROOT))
         if manifest["platform"]=="pce":
@@ -251,7 +257,7 @@ selects the workflow; this file does not start or resume a goal.
 - Toolkit: {json.dumps(str(ROOT))}. For edits there, follow that repository's applicable
   instructions. Leave shared-library edits uncommitted and log their changes
   and check results in library-changes.md; preserve pre-existing work.
-- Invoking goal.md authorizes its sequential planning, porting and debug subagents.
+- Invoking goal.md authorizes its fixed five-stage pipeline and per-area contract subagents.
   Preparation alone launches no agents. No check-in or publication is authorized.
 """)
         shutil.copyfile(TEMPLATES / "workflow.md", stage / "workflow.md")
@@ -260,9 +266,11 @@ selects the workflow; this file does not start or resume a goal.
 Status: scaffold only. Implement the entire game before claiming completion.
 See [BUILDING.md](BUILDING.md) for local macOS/Linux/Windows source builds, Android integration guidance and
 transfer instructions. Adapt that guide for the finished port and tested facts.
-Read goal.md for the iterative planning, milestone porting and scoped QA workflow.
-Implementation uses focused unit tests, build/static checks and the bounded
-[smoke test](smoke-test.md); QA runs once per intermediate cycle and twice for the final whole-game plan. On a desktop with SDL2 installed,
+Read goal.md for the fixed skeleton, behavior planning, behavior contract,
+game implementation and QA pipeline. Each behavior area gets an independent
+source trace and unit tests before implementation. Final QA runs the whole-game
+plan twice using reusable scripts and validated checkpoints, repairing failures
+in place without restarting. On a desktop with SDL2 installed,
 `python3 run.py desktop` opens the window; F1 opens saved player settings.
 `python3 run.py web` builds and serves the browser frontend (default host 0.0.0.0; use --host to change it).
 Game logic and asset extraction stay shared; implement original battery saving
@@ -281,9 +289,9 @@ manual installation or automatic QA launch occurs during port preparation.
         phase.write_json(stage / "examples/asset-extension.json", {"version": 1,
             "entries": [{"id": "level-01", "file": "levels/replacement-01.json"},
                         {"id": "level-16", "file": "levels/new-16.json"}], "order": []})
-        (stage / "library-changes.md").write_text("# Library changes\n\nNo port-driven changes recorded yet. Record requirements, files, reusable contracts, focused unit tests/checks and limits. Broader fidelity auditing beyond smoke-test.md is outside the porting subprocess.\n")
-        (stage / "progress.md").write_text("# Port progress\n\nPrepared reference and demonstration scaffold. Every source-ledger entry is pending. Read representative source and complete architecture.md before substantial implementation. No gameplay is ported.\n")
-        (stage / "differences.md").write_text("# Differences and validation limits\n\nScaffold implements no gameplay or original audio. Record implemented assumptions and known differences as work proceeds. The required smoke test is described in smoke-test.md; the debug subprocess owns scoped fidelity QA and device testing remains separately requested.\n")
+        (stage / "library-changes.md").write_text("# Library changes\n\nNo port-driven changes recorded yet. Record requirements, files, reusable contracts, focused unit tests/checks and limits. The final QA stage owns whole-game runtime comparisons.\n")
+        (stage / "progress.md").write_text("# Port progress\n\nPrepared reference and demonstration scaffold. Active stage: skeleton (pending). Every source-ledger entry is pending. Track all five stages, per-area contract workers, evidence paths, blockers and exact resumption here. No gameplay is ported.\n")
+        (stage / "differences.md").write_text("# Differences and validation limits\n\nScaffold implements no gameplay or original audio. Record implemented assumptions and known differences as work proceeds. Final QA requires two fresh whole-game passes; device testing remains separately requested.\n")
         (stage / "run.py").write_text(f"""#!/usr/bin/env python3
 import runpy, sys
 from pathlib import Path

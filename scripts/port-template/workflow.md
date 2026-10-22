@@ -1,68 +1,62 @@
-# Iterative native port workflow
+# Fixed native-port pipeline
 
-Invoking goal.md authorizes this complete loop. Act as coordinator and execute
-three subprocesses sequentially, each with a subagent: planning, porting, debug.
-Wait for each handoff; never run agents editing this workspace concurrently.
+Invoking goal.md authorizes this pipeline. Act as coordinator and launch the
+following five stages in order, each in its own subagent. Wait for each handoff.
+Stage 3 launches one worker subagent per behavior area, as described below.
+Only one agent may edit this workspace at a time; trace workers run sequentially.
 Preparation installs instructions only and launches no agents. If subagents are
-unavailable, preserve a resumable handoff and report the concrete tooling blocker.
+unavailable, preserve work and report the concrete tooling blocker.
 
-1. Launch a planning subagent with prompts/plan.md. It analyzes the disassembled
-   source and writes architecture.md: game architecture, modes, systems, special
-   concerns and a finite ordered series of milestones covering the entire game.
-2. Launch a porting subagent with prompts/start.md and exactly one selected
-   milestone. It implements that milestone, updates accounting and progress, runs
-   relevant checks and applicable smoke-test.md steps, and hands off. Future
-   behavior remains pending, never hidden behind exclusions or stubs.
-   Pass the full prompts/start.md contract to the porting subagent, including its
-   instruction to use meaningful types, names and comments from the first
-   implementation. Do not add a separate milestone readability review or report.
-3. Before debug, initialize its cycle from the toolkit:
-   `python3 scripts/port_debug.py begin-cycle /path/to/workspace --milestone ID`
-   Add `--final` only when all milestones are implemented, whole-game accounting
-   is complete and `python3 run.py audit` passes. Use a unique ID for each cycle.
-   Launch a debug subagent with debug/goal.md and the architecture.md milestone
-   status. It derives a cumulative test plan covering currently implemented
-   milestones, runs it ONE TIME, fixes failures in place and continues. It does
-   not restart the plan after fixes. The final cycle instead derives a complete
-   whole-game plan and runs it twice. Prior cycle results cannot substitute for
-   either final pass. Run the QA record audit before accepting its handoff.
-4. Launch planning again after each successful debug cycle. It incorporates the
-   QA report, updates status/design and may revise future milestones based on
-   discoveries. Repeat steps 2–4 until the finite plan is complete. After final
-   QA, planning reconciles final status without creating a new test cycle merely
-   for confidence. Missing required behavior requires more implementation;
-   unassessed device behavior does not.
+1. **Skeleton — prompts/skeleton.md.** Build ROM loading, settings, shared desktop/
+   browser targets, named identifiers and the semantic debug/checkpoint groundwork.
+   Implement no gameplay, title or game-menu logic. Require passing infrastructure
+   checks and a documented debug schema before handing off.
+2. **Behavior planning — prompts/plan.md.** Survey all source behavior, write
+   behaviors.md with stable IDs and source references, and refine architecture.md.
+   Include assets, display, sound, controls, actors, transitions, gameplay, menus,
+   titles and terminal states. This is an inventory, not a substitute for tracing.
+3. **Behavior contract — prompts/contract.md.** This stage's subagent coordinates
+   a separate worker subagent for every inventoried behavior area. Give each
+   worker the full contract prompt, its area ID and source/module context. Each
+   independently rereads and traces source in detail, including cross-call side
+   effects and architecture-specific branch/flag semantics, then writes executable
+   unit tests and adjacent evidence in logically organized source files. Reconcile
+   cross-area dependencies and any newly discovered areas; give every added area
+   its own worker too. Require compiling, discovered, substantive tests; failing
+   behavior assertions are expected until implementation. Do not implement game
+   behavior or weaken contracts to make this stage green.
+4. **Game implementation — prompts/start.md.** Implement the whole game in the
+   prepared files, checking the original source as well as contracts. Make every
+   behavior test pass and expose all relevant logic to the headless debug API.
+   Complete ledger/uncertainty accounting, documentation and the bounded
+   maintainability pass. Require python3 run.py check and python3 run.py audit
+   to pass before QA. A scaffold, partial game or stub is not completion.
+5. **QA — debug/goal.md.** Use the installed two-pass whole-game acceptance
+   contract. Plan source-backed checks and create/extend reusable scenario scripts
+   that restore validated starting states, apply inputs and observe/assert relevant
+   behavior through the native debug API and original emulator. Execute each pass
+   afresh, reusing scripts/checkpoints. Repair failures at the current check with
+   targeted regressions; never restart a pass or return to earlier pipeline stages.
+   Require the QA record audit and final implementation checks after repairs.
 
-Keep stage, cycle ID, selected milestone, implementation/QA status, report paths
-and exact resumption point in architecture.md and progress.md before each handoff.
-A blocked stage stays incomplete; resume it rather than advancing or recreating
-records. begin-cycle with the same ID resumes existing records; a new cycle may
-begin only after successful audited QA of the previous cycle. It archives the
-previous plan/results/acceptance before initializing fresh records. Retain cited
-artifacts and distinct cycle reports; never overwrite previous evidence.
+Read prompts/common.md for the shared contract. Record each stage's status,
+subagent/area handoffs, artifact paths, blockers and exact resumption point in
+progress.md. Keep design/state owners in architecture.md and area-to-source/test/
+implementation links in behaviors.md. At stage 3, track pending/active/completed
+workers and their test compile/run outcomes. Completion here means traced and
+tested, not implemented. Never mark knowingly failing tests as passed.
 
-On the final handoff require every milestone implemented and QA complete,
-whole-game ledger and uncertainties complete, coherent architecture, README.md,
-BUILDING.md, differences.md, library-changes.md and implementation/QA reports.
-Run the implementation and final QA audits; stop when both pass. Audits establish
-record/build accounting, not semantic truth. No third final traversal or repeated
-passing checks for confidence. The final QA uses the existing continue-in-place
-repair rules, including targeted rechecks of affected earlier checks.
+This is a fixed pipeline, not a milestone loop. Resume an interrupted stage or
+worker in place; preserve earlier artifacts. New discoveries update affected
+inventory, contracts and implementation within the active stage. During QA,
+repair code/contracts/scenarios in place with source-backed reasons, retaining
+check IDs and valid results. Do not relaunch planning/development/QA cycles,
+reset records or invoke begin-cycle for a newly prepared pipeline workspace.
 
-Implementation keeps the existing prompts/start.md source-informed architecture,
-useful Rust comments, descriptive enums/constants, named ROM addresses/offsets
-isolated in loaders or asset definitions, ROM-backed assets, extensions,
-settings, saves, shared desktop/browser logic and library-change requirements.
-Use bounded debugger experiments with a named question and stopping condition.
-Broader runtime fidelity validation is outside the porting subprocess; the debug
-subprocess owns comparisons and comprehensive coverage within implemented scope.
-No desktop graphics or unavailable devices on this headless server.
-
-Preserve reference/, original ledger identities and existing game workspaces.
-Use prompts/reference-updates.md for optional evidence-backed corrections; inspect
-research/current.json for adopted supplements. Source incompleteness is not a new
-disassembly completion requirement. Implement reasonable source-informed assumptions
-and document uncertainty honestly. Keep shared-library edits uncommitted for the
-separate reviewer using prompts/review.md; no check-in or publication is authorized.
-Toolkit tests do not add game-fidelity acceptance requirements. Keep generated ROMs,
-source, assets and captures local and follow the existing disk/evidence discipline.
+Stop when whole-game behavior is implemented, both QA passes succeed, both
+administrative audits pass and final handoffs are written. Verify behaviors.md
+has no missing required areas/contracts/implementations; ledger.json and
+uncertainties.json are complete; README.md, BUILDING.md, differences.md and
+library-changes.md describe the actual result. Audits check records/builds, not
+semantic truth. No third traversal or repeated passing checks for confidence.
+Device behavior unavailable on this server remains explicitly untested.

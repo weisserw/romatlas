@@ -1,233 +1,78 @@
-# Port workflow: confirmed design
+# Native-port pipeline design
 
-The iterative workflow update supersedes the original phase/stopping boundaries
-below: a coordinator invokes sequential planning, one-milestone porting and debug
-subagents. Planning maintains the architecture and finite whole-game milestone
-plan after each cycle. Intermediate QA runs once over implemented scope; final
-whole-game QA runs twice, repairing failures in place without restarting. Applicable
-smoke steps remain implementation checks. See [current guide](porting.md) and
-[coordinator template](../scripts/port-template/workflow.md) for the active contract.
-The remaining original design records the baseline implementation requirements.
+This is the current workflow design beyond the original M1–M4 mapping scope.
+The [porting guide](porting.md) owns commands and runtime details; the
+[coordinator template](../scripts/port-template/workflow.md) owns per-game stage
+handoffs. This design does not claim a real game has completed the pipeline.
 
-This document consolidates the confirmed port-workflow interview. It specifies a new phase
-beyond the original mapping scope in project.md. It does not establish that any
-port workflow or runtime library has been implemented or tested.
+Preparation accepts a reviewed archive and matching locally supplied ROM,
+restores/verifies its source, and creates a separate Rust workspace. It launches
+no agents and never migrates an existing game workspace implicitly. Unknown
+source regions are tracked by consumers and port impact without requiring the
+original disassembly goal to be completed first. Frozen source/provenance and
+original accounting identities remain intact; verified corrections supplement
+them through the reference-update procedure.
 
-## Purpose and initial scope
+Invoking goal.md authorizes a fixed sequence of five subagent stages:
 
-Prepare a separate per-game workspace from an archived game and its matching,
-locally supplied ROM. Write a goal.md coordinator prompt directing an agent to
-port the entire game into readable Rust. Do not launch the agent automatically.
-The result is a native reimplementation of game behavior, not execution of the
-original instructions inside an emulator.
+1. Skeleton: toolkit ROM loading/settings, desktop/browser wiring, all source
+   actor/state/level/audio/table/asset identifiers, native module/state interfaces
+   and semantic headless debug/checkpoint groundwork. No game/menu/title logic.
+2. Behavior planning: inventory all behavior with source references and dependencies
+   in behaviors.md; refine state ownership, modules and scheduling in architecture.md.
+3. Behavior contract: a stage coordinator starts one separate worker per behavior
+   area, sequentially. Each rereads source independently, traces detailed branches,
+   low-level flag/width/carry semantics and cross-call side effects, then writes
+   executable unit tests with adjacent source evidence in logical source files.
+   Tests compile and are discovered; unimplemented behavior may fail assertions.
+4. Game implementation: implement the whole game in the prepared files against
+   original source and contracts until all tests pass. Maintain meaningful names,
+   comments, semantic debug observations and complete source accounting. Finish
+   documentation, build/static checks and a bounded maintainability pass before
+   the implementation audit and QA handoff.
+5. QA: derive the whole-game plan, write reusable scenario scripts and execute it
+   twice afresh. Scripts restore validated starting states, apply inputs, observe
+   relevant events/state and check source-backed expectations with original-ROM
+   emulator comparisons. Reuse them for diagnosis and repairs. Fix failures in
+   place without restarting a pass or relaunching earlier stages.
 
-Begin with an educated starting library and workflow. The user will run the
-workflow manually and evaluate it; completing a pilot game is not a prerequisite
-for delivering the workflow. Rust is the initial supported language. Python
-bindings and additional language targets are outside the initial scope.
+The naming/comment standards from the existing implementation prompt are retained
+verbatim in both generated contract and implementation prompts, with one owning
+coding-standards template. All authored Rust, fixtures and debug adapters follow
+those standards. Planning is a navigation aid, never an authority for test
+expectations; source must be reread and cited alongside the tests. Valid contracts
+cannot be weakened merely to make implementations pass. New discoveries update
+the active stage's inventory, traces, tests and code without a milestone loop.
 
-Target Windows, Linux and macOS desktops. Verify what the available headless
-Linux environment permits and explicitly report other platforms and desktop
-runtime behavior as untested. Release packaging and library publication are
-separate later work, not prerequisites for a completed development port.
+The implementation is native game behavior, not an embedded emulator or literal
+assembly translation. Use independent MIT runtime helpers and source-informed
+modern algorithms. Original assets/data load from the user's ROM at startup and
+stay out of distributions. Validated overrides and added named slots coexist
+with original content. Game rules, asset preparation and original battery saves
+are shared between desktop and browser; controls/settings persist through the
+frontends. Player save states are outside scope. Headless debug replay checkpoints
+are a separate test facility and must preserve deterministic initialization/time.
+No GPL emulator implementation enters the MIT runtime.
 
-## Preparation and workspace
+The semantic debug API exposes the state/events necessary for contracts and QA,
+with stable identifiers, units, retention and read-only inspection documented in
+debug/api.md. Existing replay checkpoints validate identity and output hashes;
+scenarios additionally assert semantic preconditions. Changed builds/assets
+require regenerated checkpoints from retained setup recipes. Original emulator
+snapshots remain separate. Artificial setups cannot bypass transitions under test.
+Every required QA pass executes its scenarios afresh; cached successes do not count.
 
-Initialization accepts an archive, a matching local ROM and a new output
-directory. Validate identity and restore the archive's commented source using
-the existing restoration contract. Preserve the archive and create generated
-material outside the ROMAtlas repository. Reject an existing destination.
+Whole-game completion requires implemented behavior, complete behavior/uncertainty
+accounting, passing source-backed unit contracts, format/static/desktop/Wasm
+checks, documentation, two successful QA passes and both administrative audits.
+Audits validate records/builds, not semantic truth. Failures block advancement;
+targeted repairs retain unaffected results and pass position. Resource exhaustion
+leaves a resumable incomplete handoff. There is no third pass, restart rule,
+intermediate smoke route or invented goal-wide repair budget.
 
-Create a Rust port scaffold, commented-source reference, source-behavior ledger,
-library-change log, development instructions, a coordinator prompt and a separate
-library-review prompt. Keep ROMs, regenerated source and decoded assets local.
-Never download or commit commercial ROMs or extracted game assets.
-
-Archives with incomplete structural classification are eligible. Carry relevant
-unknowns into the port ledger and investigate gaps that could affect gameplay.
-An archived editorial review is a useful starting point, not proof of semantic
-correctness or complete gameplay understanding.
-
-## Source-informed architecture
-
-Before substantial implementation, inspect representative startup, gameplay,
-rendering and sound source paths and write architecture.md with modules, state
-owners, interfaces, algorithms, scheduling, library use and an implementation order.
-Keep the survey bounded and proceed once the plan is actionable. Maintain coherent
-modules/readable algorithms as features land; update decisions when they change.
-No exhaustive initial analysis, approval, file-count or line-count quota is needed.
-After substantial features fix concrete boundary problems. One bounded final
-maintainability pass completes this obligation; repeated architectural audits or
-cosmetic file splitting do not improve it.
-
-## Completion and fidelity
-
-The agent pursues the whole game, not merely a scaffold, one level or a runnable
-demo. Account for all archived source routines and meaningful data structures
-with dispositions such as implemented, merged, replaced by modern facilities,
-or excluded with an explanation. Entries identify port equivalents and the
-behavior they preserve; no instruction-by-instruction correspondence is needed.
-
-Every source behavior affecting gameplay must have an equivalent. Modern
-techniques may combine routines or make original mechanisms unnecessary.
-The agent judges relevance from the commented source. Obviously irrelevant
-junk, unreachable elements and non-gameplay paths may be excluded without a
-formal reachability proof. Favor implementing borderline or unclear behavior.
-Unvisited execution alone does not explain an exclusion.
-
-Completion requires explained ledger entries, whole-game best-effort gameplay
-implementations, a coherent documented architecture, focused passing unit tests,
-required format/static/build checks and a handoff. Implement reasonable
-source-informed assumptions and record their basis and limits; unverified fidelity
-does not mean implemented behavior is missing. Required absent code still blocks
-completion. Do not hide missing behavior under preservation or exclusions.
-
-Runtime fidelity validation is outside this porting goal. No native-versus-ROM
-frame, audio, state or scenario comparisons, exhaustive replays, playthroughs or
-device audits are required or authorized as implementation validation. The
-debugger may answer a specific unresolved source question static inspection
-cannot reasonably resolve: record the observation sought and stopping condition,
-run a bounded experiment and return to coding. If inconclusive, implement a
-reasonable documented assumption where possible. Do not reopen answered questions
-without new contradictory evidence. A later fidelity audit requires an explicit
-user request. Record known differences and unassessed fidelity honestly.
-
-Finish the implementation and required records/checks, run the administrative
-ledger/build audit and stop when it passes. Do not expand acceptance criteria or
-repeat passing checks to accumulate confidence or consume a goal budget. The
-ledger and unit tests do not establish independent original-game equivalence.
-
-If blocked, preserve progress and identify concrete unresolved behaviors,
-attempts and what would unblock the work. Do not mark an incomplete port complete
-or stop at an intermediate milestone while necessary work remains achievable.
-
-## Shared library and development loop
-
-Use one Rust library with common utilities and explicit platform-specific
-modules. Implement an initial Game Boy set. Future modules could include SNES
-Mode 7 rendering; do not implement other consoles merely to demonstrate the
-structure. Preserve existing platform-neutral dependency boundaries.
-
-Initial facilities:
-
-- ROM identity checks and bounded byte access.
-- Named asset collections, ROM-backed loaders, file overrides and extension
-  manifests.
-- Fixed simulation timing, logical input state and headless execution helpers.
-- Game Boy tile/palette decoding and basic tile/sprite composition.
-- An audio interface separating sound generation from playback.
-- Shared player settings, input mapping and reusable settings-menu behavior.
-
-The library supplies composable effects rather than a complete second console
-emulator. Ports may update tile storage, palettes and timed effects through
-explicit APIs, or use modern rendering directly when clearer. Add register-like
-interfaces only when they meaningfully simplify a particular effect. Unusual
-hardware behavior and game rules may remain hand-coded in the port.
-
-Game-specific decompression, music-command interpretation and sound-driver
-behavior initially belong to the port. ROM audio is not necessarily stored as
-ready-to-play sound files. There is no universal audio-extraction requirement.
-
-The port agent may implement needed shared-library changes directly in the
-ROMAtlas directory, leaving them uncommitted. Record the starting repository
-state, distinguish pre-existing changes, and log each port-driven change with
-its requirement, interface rationale and validation. Preserve unrelated work.
-
-Reusable mechanisms belong in the library; game rules belong in the port. Each
-shared feature needs a useful game-independent contract, but does not need two
-existing consumers. Keep uncertain abstractions local until they become clear.
-An issue log records unresolved findings; it does not replace implementing
-necessary library work during port development.
-
-The user launches a separate review agent using the supplied prompt. Review the
-actual diff, requirements and test evidence before check-in. The port agent does
-not check in its own shared-library changes. Review findings may require fixes.
-
-During development use a local Cargo path dependency on the library. Record
-library provenance and edits; Cargo.lock does not freeze local source files.
-After user review and check-in, a later distribution step can pin the required
-Git commit. Do not require publishing library packages now or claim that an
-uncommitted local dependency is an immutable release reference.
-
-## ROM-backed assets and extension
-
-At startup require the user's matching ROM, validate its identity and obtain
-original visual/audio assets and gameplay data, including maps, through loader
-recipes. Distributable code must not embed extracted originals as constants or
-files. Original decoded assets may exist in memory or local caches, which remain
-outside distributions. Developer-created content may be distributed.
-
-Expose named collections with stable logical slots, ROM-backed defaults,
-validated file replacements and additional entries. A manifest identifies
-entries, ordering and supported formats. Replacement assets obey the port's
-supported schemas; arbitrary new formats or dimensions are not promised.
-
-Extensions must be practical: a developer can retain fifteen ROM-backed levels
-and append level sixteen as a file. The playable sequence comes from the
-collection rather than a fixed original level count. Other collections define
-appropriate extension rules. Broader modding systems and graphical editors are
-outside the initial scope.
-
-Include concise instructions for replacing assets, adding a level, finding game
-rules and running the port, plus an example extension manifest containing no
-original assets.
-
-## Desktop backend and customization
-
-Use SDL2 through Rust bindings as the initial desktop backend for keyboard and
-controller input, audio playback and 2D presentation. Keep simulation and core
-utilities independent of desktop initialization. Verify compatibility with
-Rust 1.90.0 during implementation and pin compatible dependencies with lockfiles.
-
-Framework comparison informed this choice: Macroquad has a small API but its
-current input documentation still describes gamepads as forthcoming; ggez offers
-controller and display facilities; SDL2 directly exposes the required device,
-audio and window operations. SDL2 brings native build/linking and later packaging
-work. This is a documented-fit decision, not completed cross-platform testing.
-
-Implement per-port persisted settings for keyboard/gamepad bindings, controller
-selection, stick dead zones, window size, fullscreen/windowed mode,
-aspect-preserving scaling and audio volume. Map physical inputs to named game
-actions. Keep original internal rendering resolution distinct from window size.
-
-Provide an in-game settings menu with interactive rebinding, cancellation,
-reset-to-defaults and sensible controller-disconnection handling. SDL2 provides
-the device/window primitives; the shared library supplies settings, persistence
-and reusable menu behavior.
-
-Pause on focus loss by default, clear held inputs on focus changes, and limit
-catch-up after stalls. Allow explicit game-specific overrides. Advance simulation
-at the original platform's intended cadence independently of monitor refresh;
-display vsync paces presentation. Support finer scheduling for console effects
-where a port needs it.
-
-## Unit tests and required checks
-
-The same game logic supports desktop play and scripted headless execution.
-Allow inspection of game state, fixed-step advancement and deterministic seeds
-where relevant. These facilities support unit tests and optional later work;
-headless scenario execution is not a required port-validation phase. Unit tests
-must not initialize windows or audio devices.
-
-Write focused unit tests of intended logic that run on this server, including asset loading,
-overrides/extensions, simulation, timing, settings, bindings and CPU-side image
-composition where applicable. Do not write tests requiring unavailable display,
-GPU or controller environments. Do not spend effort on virtual displays or
-offscreen graphics infrastructure merely to test this workflow. Report desktop
-rendering, playback and physical-device behavior as untested when unavailable.
-
-Use synthetic or appropriately licensed fixtures. Follow repository requirements
-for Rust 1.90.0, Cargo.lock, fmt, clippy, tests, portability and other relevant
-workflow/session/boundary regressions. Report actual check results and limits. Workflow tests establish preparation and prompt
-contracts, not that an autonomous agent has completed an arbitrary real game.
-
-## References for the framework and dependency decisions
-
-- [Cargo dependency specification](https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html)
-- [Macroquad input](https://docs.rs/macroquad/latest/macroquad/input/)
-- [ggez gamepad interface](https://docs.rs/ggez/latest/ggez/input/gamepad/)
-- [Rust SDL2 modules](https://docs.rs/sdl2/latest/sdl2/)
-- [Rust SDL2 build and linking options](https://github.com/rust-sdl2/rust-sdl2)
-
-The user confirmed shared understanding and authorized implementation. See
-docs/porting.md for the implementation contract; this design document alone does not establish implementation or validation.
+Headless Linux checks never launch SDL or claim untested desktop/device/other-OS
+compatibility. Hardware-induced slowdown/flicker may be omitted; intentional
+gameplay timing/effects remain. Shared-library work is authorized in the toolkit,
+uncommitted, with initial-file snapshots and a change log for a separately invoked
+review. Check-in, packaging, immutable dependency pinning and publication remain
+later scope. Toolkit checks do not add game-fidelity acceptance requirements.

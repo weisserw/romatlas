@@ -358,22 +358,28 @@ agent goals. Provide a small shared runtime library with ROM-backed extensible
 assets, console cadence, selected platform effects, headless execution and an
 optional SDL2 desktop frontend with player configuration.
 
-The agent accounts for all original source behavior and implements gameplay
-equivalents using modern techniques; obvious irrelevant paths may be excluded
-with explanations, favoring ambiguous cases. Completion requires finished
-accounting, a source-informed architecture plan and coherent maintainable code,
-focused passing unit tests, required format/static/build checks and a documented
-handoff. Runtime fidelity validation is outside the porting goal: no native-versus-ROM
-frame/audio/state/scenario comparisons or exhaustive replays. Debugger use answers
-a specific unresolved source question with a bounded experiment and stopping
-condition; inconclusive results may lead to documented reasonable implementation
-assumptions. Missing code blocks completion; unverified fidelity does not. After
-the administrative accounting/build audit passes, stop. A fidelity/device audit
-requires a separate user request. No line-by-line translation is required. The scaffold is not gameplay completion. Agents
-may evolve the library directly in ROMAtlas, uncommitted, with an initial-file
-snapshot and change log for separate review before user check-in. Keep original
-assets ROM-backed at startup and out of distributions. Headless Linux validation
-does not claim desktop/other-OS runtime compatibility. Library publication and
+The fixed native pipeline runs skeleton, behavior planning, behavior contract,
+game implementation and final QA as sequential subagent stages. The skeleton
+wires toolkit APIs, identifiers and semantic headless debugging without game logic.
+Planning inventories all behavior with source references; separate per-area
+contract workers independently trace detailed source/call effects and write
+source-backed unit tests before implementation. Coding standards apply equally
+to tests and game logic. Implementation accounts for all source behavior with
+native equivalents, followed by two fresh whole-game QA passes using reusable
+scenario scripts and validated checkpoints. Repairs continue at the current check
+without restarting passes or the pipeline. Whole-game implementations, complete
+accounting, passing tests/build checks, documentation and both administrative
+audits are required; audits do not prove gameplay truth. Missing code blocks
+completion. No line-by-line translation or complete original-ROM classification
+is required. Source assumptions and residual uncertainty remain explicit.
+
+Agents may evolve the library directly in ROMAtlas, uncommitted, with an initial-
+file snapshot and change log for separate review before user check-in. Keep
+original assets ROM-backed at startup and out of distributions. Preserve
+deterministic debug replay and semantic starting-state validation; rebuild
+checkpoints from retained recipes after code/asset changes. Player battery saves
+and debug checkpoints remain distinct. Headless Linux validation does not claim
+desktop/other-OS runtime compatibility. Library publication, device auditing and
 release packaging are later scope. See docs/porting.md for the working contract.
 
 Mapping-phase redirect investigations follow supported connected handlers, state transitions and

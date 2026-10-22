@@ -36,7 +36,8 @@ selects the workflow; this file does not activate disassembly, porting or QA.
   `goal.md`, phase prompts, workflow and evidence policy own the procedure and
   classification/readability/rebuild completion criteria.
 - Native porting: [porting guide](docs/porting.md); prepared workspace `goal.md`
-  owns iterative planning, one-milestone porting and scoped QA subagents.
+  owns the fixed skeleton, behavior planning, per-area contracts, implementation
+  and final two-pass QA pipeline.
 - Separately requested native QA: [debugging guide](docs/port-debugging.md);
   prepared workspace `debug/goal.md` owns QA and its acceptance criteria.
 

@@ -1,11 +1,11 @@
 # Unfinished disassembly and reference corrections
 
 The frozen archive is a verified starting point, not a claim that every byte or
-comment is understood. Keep reference/ unchanged. Port completion uses explained
-best-effort gameplay implementations and focused unit tests. Full
-classification, source-proof exhaustion and runtime fidelity validation are
-outside that completion gate. Follow prompts/start.md's architecture, debugger
-and stopping boundaries throughout this procedure.
+comment is understood. Keep reference/ unchanged. Implementation completion uses
+source-informed gameplay equivalents and source-backed unit contracts. Full
+classification and source-proof exhaustion remain outside that gate; final
+two-pass QA owns runtime comparisons. Follow
+prompts/common.md and the active stage's boundaries throughout this procedure.
 
 ## Assess uncertainty as the port develops
 
@@ -19,7 +19,7 @@ uncertainties in classified source with unique IDs and ranges. Each entry has:
 - consumers: routine/table/asset references and effective CPU/bank context;
 - ledger_ids: affected original or discovered behavior region/unit IDs;
 - evidence: source/evidence locations, reasoning and any reference revision IDs;
-- validation: focused unit tests and actual check results; any source-question debugger experiment must obey prompts/start.md;
+- validation: focused unit tests and actual check results; any source-question debugger experiment must obey prompts/common.md;
 - validation_limits: untested routes and residual uncertainty, or an explicit none.
 
 These are port-impact decisions. Resolved means the relevant port behavior is
@@ -48,8 +48,8 @@ help implementation. Do not create reference revisions to prove the native port
 correct or reclassify the whole ROM. Implementation assumptions may remain in
 port records without rewriting the reference. Debugger use needs a specific
 unresolved source question, a bounded experiment and a stopping condition;
-native frame/audio/state/scenario comparisons are not permitted as port
-validation.
+whole-game native/emulator comparisons belong to final QA rather than this
+reference-correction procedure. QA may use this procedure for supported repairs.
 
 1. Run `python3 run.py reference-init` once. It creates research/working/source/,
    state.json, reading.asm and changes.json from the frozen local reference. Resume
@@ -57,8 +57,9 @@ validation.
    material and is ignored by Git. No original archive or other analysis workspace
    is modified. Only one writer should edit/adopt a reference revision at a time.
 2. Record the discovery and inspect the original bytes/consumers with effective bank
-   context. Read the toolkit's project.md, scripts/workflow-template/evidence-policy.md and platform
-   documentation (docs/sym.md for Game Boy, docs/nes.md for NES, docs/snes.md for SNES, docs/sms.md for SMS, docs/gg.md for Game Gear). Distinguish a
+   context. Read the toolkit's project.md, scripts/workflow-template/evidence-policy.md
+   and the platform references in docs/development.md (including docs/sym.md for
+   Game Boy). Distinguish a
    structural inference, observed execution and a conditional calling contract.
    Useful static evidence does not require a natural caller; valid decoding or a
    plausible pattern alone is insufficient. If evidence is still weak, retain the
@@ -66,7 +67,7 @@ validation.
 3. Edit maintained assembly comments, labels and symbols in research/working/source/.
    For structural changes, use the toolkit map APIs against research/working/state.json:
    open a dedicated `serve` process with the configured binary, explicit --platform
-   gb, nes or snes and --rom input/game.rom; map.load the working state, inspect/annotate,
+   from workspace.json and --rom input/game.rom; map.load the working state, inspect/annotate,
    map.validate and map.save back to that file. Split regions before inserting
    smaller ones. Keep annotations/provenance and edited assembly consistent. The
    verify command exports the map from this state; no hand-edited second map is needed.

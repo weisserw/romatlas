@@ -1,87 +1,81 @@
-# Native-port QA: milestone cycle or standalone run
+# Stage 5: whole-game QA
 
-Execute or resume this QA subprocess when the coordinator invokes it, or as a
-standalone goal when the user invokes this file. **Read debug/goal.md.** is the
-standalone start/resume instruction. Preparation only installs files.
-Read debug/acceptance.json before planning: a milestone cycle requires one pass
-through cumulative implemented scope; a final cycle or standalone run requires
-two complete passes. The coordinator configures milestone cycles with
-port_debug.py begin-cycle; do not edit acceptance to evade a required pass.
-No further installation or plan/acceptance approval is required.
+Execute or resume this QA subprocess when the fixed port pipeline invokes it,
+or as a standalone goal when the user invokes this file. **Read debug/goal.md.**
+is the standalone start/resume instruction. Preparation only installs files.
+Complete two fresh A-to-Z passes over a source-informed whole-game plan, fixing
+failures in place without restarting either pass. No further installation or
+plan/acceptance approval is required.
 
 ## Start or resume here
 
-Treat the port workspace (the parent of debug/) as the working directory. Follow
-these links; the user need not name additional files:
+Treat the port workspace (the parent of debug/) as the working directory. Read:
 
-- [Debugging guide](../DEBUGGING.md): control API, bounded Python client, original
-  ROM comparison, checkpoint limits, plan/result formats and audit command.
-- [Acceptance contract](acceptance.json): current scope and required pass count.
-- [QA plan](plan.json) and [QA results](qa.json): create the source-informed plan
-  if still planning; otherwise resume the current attempt, pass and blocking check.
-  Preserve existing work rather than replacing these records on resume.
-- [Workspace identity/configuration](../workspace.json): toolkit path, platform,
-  original ROM identity/location and source/archive provenance. Locate original
-  source and emulator documentation through this metadata and the guide.
-- [Behavior ledger](../ledger.json), [known differences](../differences.md) and
-  [progress](../progress.md): implemented behavior, assumptions and latest handoff.
-- [Architecture](../architecture.md) and [library changes](../library-changes.md),
-  where present: state ownership and shared-helper contracts/limits. Read the game
-  code under [port/src/](../port/src/), plus any handoff and adopted reference
-  supplement identified by the workspace records.
+- [Debugging guide](../DEBUGGING.md): native API, bounded Python client, original
+  emulator comparison, reusable scenarios, checkpoint limits and record formats.
+- [Acceptance contract](acceptance.json), [QA plan](plan.json) and
+  [QA results](qa.json): preserve the current plan, pass and blocking check.
+- [Workspace configuration](../workspace.json): toolkit path, platform, ROM
+  identity/location and source/archive provenance.
+- [Behavior ledger](../ledger.json), [known differences](../differences.md),
+  [progress](../progress.md), [architecture](../architecture.md) and
+  [library changes](../library-changes.md).
 
-Use workspace-relative paths below from the workspace root, not debug/. Run
-toolkit scripts from the toolkit directory in workspace.json; do not assume that
-it lives at the preparation machine's absolute path if the workspace was moved.
-For the native transport, run `python3 run.py debug` from this workspace. This
-starts the control server only; the agent drives it to execute this QA goal.
+Read prompts/common.md, behaviors.md, debug/api.md and source-backed unit
+tests/traces where present.
+Inspect port/src/, original source and any adopted reference supplement. The
+inventory/tests help navigation; independently check source-backed expectations.
+For older standalone ports without semantic inspection, add the necessary
+read-only game-owned observations before attempting checks that depend on them.
+Keep inspection deterministic and all relevant logic accessible headlessly.
 
-This QA subprocess does not change best-effort
-implementation completion. Preserve the starting source, unrelated work, frozen
-references and original ledger IDs. Do not launch agents or publish/check in changes.
+Use workspace-relative paths from the workspace root. Run toolkit scripts from
+the toolkit path in workspace.json. python3 run.py debug starts the transport;
+the agent drives it to execute QA. Preserve frozen references, original ledger
+IDs, previous evidence and unrelated work. Do not launch other agents or publish/
+check in changes. The fixed pipeline uses the installed two-pass acceptance;
+do not call begin-cycle, reset records or lower acceptance to evade a pass.
 
-## Scope before planning
+## Plan and reusable scenarios before testing
 
-For milestone cycles read architecture.md and the latest implementation handoff.
-Plan only for currently implemented milestones, including regressions in earlier
-implemented behavior. Explicitly record implemented IDs and deferred future scope
-in the plan/report. Do not fail the cycle because a future milestone is absent,
-and do not skip defects in behavior claimed implemented. Use source-informed
-expectations and the existing original-ROM comparison methods within this scope.
-Early infrastructure cycles may have no playable areas or transitions: empty
-coverage lists are allowed for intermediate cycles only, but at least one real
-check and coverage item are required (for example an asset-loading mechanic).
-For final cycles all milestones must be implemented: derive the complete game
-plan from source, not merely a union of earlier partial plans. Neither final pass
-may be credited from intermediate cycle results. Standalone QA retains whole-game
-scope and the existing two-pass semantics.
+Derive debug/plan.json from the source and actual port. Cover every area/mode,
+major gameplay mechanic and transition, later progression, bosses, menus/title
+and ending/terminal states where present. Define applicable graphics, behavior
+and sound checks with specific expectations and source references. Cover major
+functionality without enumerating every collision/input permutation or demanding
+undefined pixel/frame equivalence. Write the ordered A-to-Z plan before running it.
 
-## Plan before testing
+For each QA check, create or extend a reusable scenario script under
+debug/scenarios/ (shared helpers are encouraged). It must restore a validated
+starting state, apply bounded inputs, observe relevant semantic events/state and
+assert source-backed expectations. Use native debug/api.md observations and the
+original ROM emulator workflow for corresponding reference evidence. Retain
+matching source/build/ROM/asset identity, exact inputs, starting preconditions,
+expected events and selected frame/audio evidence. Share setup helpers/checkpoints
+across checks when useful; avoid repeatedly reconstructing routes and issuing
+individual tool calls. Link script, invocation, source expectations and setup/
+checkpoint validation from each plan entry as described in DEBUGGING.md.
 
-Derive debug/plan.json from the source, behavior ledger and port. List each game
-area/mode, major gameplay elements and transitions within the configured scope, including later
-progression, bosses and ending/terminal screens where present. For each, define
-specific applicable graphics, behavior and sound checks and a reproducible route
-or setup. The ledger helps find code; it is not a complete scenario catalogue.
-Use concrete expectations such as foreground occlusion or a death-to-continue
-transition, not an undefined obligation to prove every pixel/frame identical.
-Cover major game functionality without enumerating every collision or input
-permutation. Write the ordered A-to-Z check list before executing it.
+Use the same scenario script for diagnosis, repair verification and each required
+QA pass. Evolve it with source-backed corrections as understanding improves.
+Reuse scripts and valid checkpoints, but execute every check in each pass afresh
+and write distinct result/evidence records. Cached pass results or unit-test
+success cannot substitute for fresh scenario execution. A script's assertion is
+not proof by itself: inspect the relevant source and audiovisual evidence too.
 
-Faithfulness does not require reproducing hardware-induced lag, slowdown or
-sprite flicker. Their absence in a smoother native port is not a bug and must not
-produce a failing QA check or a repair task. Preserve and check intentional gameplay
-timing and visual effects, such as deliberate slow motion or damage/invulnerability
-flashing.
+Check checkpoint identity and semantic starting preconditions on every restore.
+After code/asset changes, regenerate checkpoints using the retained setup recipe
+and validate again; never bypass transport identity checks. Original emulator
+snapshots and native replay checkpoints are separate formats. Artificial setups
+may reach later areas but must not bypass the transition a check is testing.
 
-Use the installed plan/result format described in DEBUGGING.md. Preserve check
-IDs and plan revisions, source/baseline identities, routes, observations, fixes
-and local evidence. Correct mistaken expectations/routes in place with source
-evidence and a recorded plan revision; preserve valid check IDs and prior results.
-Missing source/tools or a mistaken game model must be investigated as an obstacle,
-not silently treated as a successful check or an exclusion.
+Hardware-induced lag, slowdown or sprite flicker need not be reproduced. Preserve
+and check intentional timing/effects such as slow motion or invulnerability
+flashing. Correct mistaken expectations/routes in place with source evidence and
+recorded plan revisions, preserving stable check IDs and previous valid results.
+Missing source/tools or a mistaken model is an obstacle to resolve, not a pass.
 
-## Execute the configured number of passes
+## Execute two passes and repair in place
 
 First pass: work through the entire plan in order, fixing failures as encountered.
 A failed or inaccessible check blocks advancement. Keep diagnosing and correcting
@@ -104,44 +98,38 @@ Correct mistaken plans/routes in place, reconcile changed checks and evidence,
 and update the plan hash; newly added checks need results in every required pass record.
 Do not fabricate results or clear progress merely because a plan hash changed.
 
-For an intermediate cycle, stop after the first A-to-Z pass succeeds: do not
-start a second traversal. For final or standalone QA, when the first A-to-Z pass
-finishes, start at A once for the second full pass.
+When the first A-to-Z pass finishes, start at A once for the second full pass.
 Fix issues during pass two with the same continue-in-place procedure, including
 targeted rechecks of earlier results invalidated by a fix. Never reset to pass
-one or start a third full pass. Completion requires all configured full passes and resolved
+one or start a third full pass. Completion requires both full passes and resolved
 issues; a blocked check or resource interruption leaves a resumable incomplete run.
 
 ## Tools and repair discipline
 
-Use the native stdio API for logical input, bounded advancement, read-only state,
-frame/audio capture, reset and replay checkpoints. Play reactively to discover
-routes, then retain scripts/checkpoints for repeatability. Control the original
-ROM through its separate emulator adapter. Compare corresponding events/states and
-selected visual/audio observations as each check requires; equal frame numbers
-alone do not establish matching scenarios. Explain emulator/helper limitations.
-Artificial setups may help reach later areas, but must not conceal a broken
-transition that the plan is supposed to test. Record exact routes and provenance.
+Use the native stdio API for logical input, bounded advancement, read-only
+semantic state/events, frame/audio capture, reset and replay checkpoints. Control
+the original ROM with its separate emulator adapter. Corresponding events/states,
+not equal frame numbers alone, establish matching scenarios. Record provenance
+and emulator/helper limits. Play reactively only while discovering a route, then
+preserve it in the reusable scenario instead of repeating manual setup.
 
-Use bounded experiments and process deadlines to prevent a hung tool invocation.
-An experiment timeout or exhausted client budget does not permit passing/skipping
-the check: continue with a useful revised method or diagnose the larger problem.
-Avoid unchanged retries without a new hypothesis or observation sought. Do not
-use a stagnation counter, fixed repair-attempt quota or minimum bug count as an
-alternative acceptance rule. Keep fixing checks, including broader code/plan
-corrections, then continue from the current position without restarting QA.
+Use process deadlines and explicit client budgets. A timeout does not permit
+passing/skipping a check: diagnose it with a revised hypothesis/method. Do not
+use stagnation counters, repair quotas or minimum bug counts as acceptance.
+If blocked, preserve the exact check, script invocation, investigation and
+resumption point without restarting the pipeline.
 
-Use shared platform helpers and maintain the architecture. Add focused unit
-regressions for complex/error-prone repaired logic when useful; avoid trivial
-arithmetic/getter tests or a huge unit suite that replaces execution of the QA
-plan. Run relevant format/static/build/regression checks after changes. Follow
-supported reference-correction procedures if source corrections are needed.
-Keep ROMs, extracted assets and generated comparisons local; never copy GPL core
-implementation into the MIT native library.
+Maintain the architecture and coding standards in prompts/coding-standards.md
+where present (otherwise use the port's established standards). Repair meaningful
+unit contracts alongside complex/error-prone fixes, retaining adjacent source
+reasoning. Unit tests do not replace execution of QA scenarios. Run relevant
+format/static/build/regression checks after changes; use supported verified
+reference corrections where needed. Keep ROMs/assets/comparisons local and never
+copy GPL core implementation into the MIT native library.
 
 ## Acceptance and resource limits
 
-Success requires every check in the current justified plan to pass in all required full
+Success requires every check in the current justified plan to pass in both full
 passes, with current valid results, no unresolved blockers and a final report.
 Record debug/qa.json and run the administrative `port_debug.py audit` check.
 That command validates records; it cannot judge game coverage or evidence truth.
@@ -155,29 +143,12 @@ successful QA. No numerical goal-wide ceiling has been chosen by the user; do no
 invent one or confuse technical per-command limits with acceptance. Preserve a
 resumable record at useful points and before an external ceiling is exhausted.
 
-Once the required passes succeed, run relevant final checks, write the QA/fix/remaining-
-limitations report, and stop. This establishes completion of the declared QA
-plan, not a claim of universal bug freedom or untested hardware compatibility.
+Once both passes succeed, run the relevant final checks and python3 run.py audit
+after any QA repairs, write the QA/fix/remaining-limitations report, and run the
+QA record audit. Stop after both audits pass. This establishes completion of the
+declared QA plan, not a claim of universal bug freedom or untested hardware compatibility.
 
-## Disk and evidence retention
-
-Keep durable evidence separate from disposable scratch. Retain maps, readable
-source, current state, plan/result history, concise observations, reproducible
-routes and the selected captures/checkpoints actually cited by those records.
-Preserving superseded attempts means retaining their plans/results and explanation;
-it does not require retaining every intermediate dump or duplicate capture.
-
-Use one reusable scratch directory for exploratory output. Before each batch and
-at handoff, inspect free disk space and scratch size; remove superseded scratch
-files after recording useful conclusions and promoting cited evidence. Never prune
-cited evidence, source, ROMs, frozen references, saves or active-process output.
-Save selected frames/audio intervals rather than continuous captures. Keep bulk
-pixel/sample arrays and checkpoint payloads out of transport logs; explicitly save
-needed captures/checkpoints once and link them. Bound trace/log bytes and stderr,
-not just execution time. Reuse build targets; avoid a fresh Cargo target directory
-for each probe and remove owned temporary test workspaces when finished.
-
-When disk is tight, compact disposable output before another experiment. If safe
-cleanup is insufficient, leave an incomplete resumable handoff rather than filling
-the filesystem. This is storage hygiene, not a weaker acceptance criterion or a
-limit on required game coverage. Do not delete another task's files.
+Follow DEBUGGING.md's disk/evidence retention discipline. Keep reusable scripts,
+validated checkpoint/setup provenance and cited evidence, with bulk captures and
+checkpoint payloads outside transport logs. Preserve superseded plans/results
+and concise correction history rather than every disposable probe.

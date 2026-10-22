@@ -84,7 +84,12 @@ The `scripts/port.py` script initializes a workspace for porting an archived gam
 
 ### Debugging
 
-The porting goal checks its work with focused unit tests, build checks and a bounded startup/first-area smoke test; it is concerned mainly with reproducing the original game logic. Once a port is complete, it needs to be tested and compared with the original game to find defects. To do this, run `/goal Read debug/goal.md` in the port directory. The porting agent is instructed to include headless / scripted interaction in the port's feature set so that the agent can play the game and compare the result to the emulated copy using the toolkit's built-in emulator.
+The porting goal runs a fixed pipeline: skeleton, behavior planning, source-traced
+unit contracts, whole-game implementation, then two fresh whole-game QA passes.
+Each behavior area gets its own contract worker before implementation. QA uses
+reusable scripts, semantic headless state and validated checkpoints to compare
+against the original emulator, repairing failures without restarting. To invoke
+standalone QA in a prepared workspace, tell the agent: `Read debug/goal.md`.
 
 Debugging works by first generating a test plan unique to the game, then running through the entire test plan twice and fixing all issues found. Repairs continue within the current pass without restarting completed work; incomplete runs resume from their recorded position.
 
@@ -264,18 +269,20 @@ are not supported. New-workspace audits lint/build Wasm alongside desktop.
 Existing workspaces are not migrated. See the [browser and save guide](docs/porting.md#browser-ports-and-battery-saves)
 for setup, storage, limits and the synthetic Chromium regression.
 
-Original assets must load from the ROM at startup and stay out of distributions. The
-coordinator runs three sequential subagents: planning, one-milestone porting and
-scoped debugging. The planning agent writes the architecture and finite milestone
-plan, then updates it after each cycle. Implementation runs focused unit tests,
-format/static/build checks and applicable startup/first-area smoke steps. Debugging
-runs its cumulative implemented-scope plan once per intermediate cycle, fixing
-failures without restarting. The final cycle runs a complete whole-game test plan
-twice. Completion requires implementation accounting/build and final QA audits.
-Preparation launches no agents, and existing workspaces are not migrated.
-Automated audits check records/builds rather than gameplay fidelity. Release packaging and library
-publication/pinning are later work. See [porting guide](docs/porting.md) and [agreed
-design](docs/port-workflow-design.md). Test with `python3 scripts/test-port.py`.
+Original assets load from the ROM at startup and stay out of distributions.
+The coordinator runs five sequential stages: skeleton, behavior planning,
+behavior contract, game implementation and final QA. Planning creates the source
+behavior inventory; each area's contract worker independently traces source and
+writes unit tests before implementation. The naming/comment standards apply to
+both tests and game code. All game logic supports semantic headless inspection.
+Final QA executes its whole-game plan twice afresh using reusable scripts and
+validated checkpoints, fixing failures in place without restarting. Completion
+requires whole-game implementations/contracts, documentation and both accounting/
+build and QA audits. Preparation launches no agents; existing workspaces are not
+migrated. Automated audits check records/builds rather than gameplay truth.
+Release packaging and library publication/pinning are later work. See the
+[porting guide](docs/porting.md) and [design](docs/port-workflow-design.md).
+Test preparation with `python3 scripts/test-port.py`.
 
 ## Internal analysis store
 

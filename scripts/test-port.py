@@ -129,7 +129,7 @@ with tempfile.TemporaryDirectory(prefix="romatlas-port-") as temporary:
         text = (work / path).read_text()
         assert "whole" in text.lower() or "entire" in text.lower()
     prompt = (work / "prompts/start.md").read_text()
-    for required in ["startup","added", "uncommitted","headless","useful","borderline", "No check-in"]:
+    for required in ["added", "uncommitted","headless","useful","borderline", "No check-in"]:
         assert required in prompt,required
     # Check delivered coordinator/stage contracts as well as preparation.
     architecture = (work / "architecture.md").read_text()
@@ -137,22 +137,50 @@ with tempfile.TemporaryDirectory(prefix="romatlas-port-") as temporary:
     goal = (work / "goal.md").read_text()
     workflow = (work / "workflow.md").read_text()
     planning = (work / "prompts/plan.md").read_text()
-    assert "subagent" in goal and "one-milestone" in goal
-    assert "ONE TIME" in workflow and "--final" in workflow
-    assert "runs it twice" in workflow and "begin-cycle" in workflow
-    assert "stable ID" in planning and "future milestones" in planning
-    assert "exactly one" in workflow and "awaiting QA" in prompt
-    assert "future milestones stay pending" in prompt
-    assert "deferred" in (work / "smoke-test.md").read_text()
+    assert "fixed five-stage" in goal and "one worker subagent per behavior area" in goal
+    stage_prompts = ["skeleton.md", "plan.md", "contract.md", "start.md"]
+    positions = [workflow.index("prompts/" + name) for name in stage_prompts]
+    positions.append(workflow.index("debug/goal.md"))
+    assert positions == sorted(positions), "stages must execute in the fixed order"
+    for name in [*stage_prompts, "common.md", "coding-standards.md"]:
+        assert (work / "prompts" / name).is_file(), name
+    assert (work / "behaviors.md").is_file()
+    skeleton = (work / "prompts/skeleton.md").read_text()
+    contracts = (work / "prompts/contract.md").read_text()
+    contract_text = " ".join(contracts.split())
+    common = (work / "prompts/common.md").read_text()
+    standards = (ROOT / "scripts/port-template/coding-standards.md").read_text().strip()
+    for delivered in [contracts, prompt]:
+        assert standards in delivered, "interpolate the complete coding standards verbatim"
+        assert "__CODING_STANDARDS__" not in delivered
+    assert "do not implement gameplay" in skeleton
+    assert "observe" in skeleton and "checkpoint" in skeleton
+    assert "stable ID" in planning and "source references" in planning
+    for required in ["one worker subagent", "cross-call", "carry/borrow", "alongside the tests",
+                     "--no-run", "tests compile", "never a source of truth"]:
+        assert required in contract_text, required
+    assert "native cargo test" in contract_text and "game implementation" in contract_text
+    assert "all unit tests pass" in prompt
+    assert "two fresh" in goal and "per-area" in (work / "progress.md").read_text()
+    assert "debug/scenarios/" in debug_goal and "same scenario script" in debug_goal
+    assert "semantic starting preconditions" in debug_goal
+    assert "execute every check in each pass afresh" in debug_goal
+    assert not (work / "smoke-test.md").exists()
+    for path in ["goal.md", "workflow.md", "README.md", "BUILDING.md", "differences.md",
+                 "library-changes.md", "prompts/start.md", "prompts/review.md"]:
+        delivered = (work / path).read_text()
+        for stale in ["one-milestone", "smoke-test.md", "after each milestone", "intermediate cycle"]:
+            assert stale not in delivered, (path, stale)
     for path in ["goal.md", "workflow.md", "prompts/start.md"]:
         text = (work / path).read_text()
         assert "architecture.md" in text, path
-        assert "stop when" in text or "after it passes, stop" in text, path
+        normalized = " ".join(text.lower().split())
+        assert "stop when" in normalized or "after it passes, stop" in normalized, path
         assert "unresolved gameplay-affecting behavior prevents completion" not in text.lower(), path
-    assert "implemented assumptions" in prompt
+    assert "implemented assumptions" in " ".join(prompt.split())
     assert "bounded maintainability pass" in " ".join(prompt.split())
-    assert "Do not add more validation" in prompt
-    assert "source-informed" in prompt and "file-count" in prompt
+    assert "Do not add more validation" in common
+    assert "source-informed" in prompt and "file-count" in common
     references = (work / "prompts/reference-updates.md").read_text()
     assert "implementation assumption" in references and "This procedure is optional" in references
     reviewer = (work / "prompts/review.md").read_text()

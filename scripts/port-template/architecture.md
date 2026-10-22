@@ -1,46 +1,29 @@
 # Native port architecture
 
-Status: initial source survey and plan pending. Replace this template with a short,
-actionable source-informed design before substantial implementation. Do not wait
-for exhaustive understanding or user approval. Read prompts/start.md for scope.
-
-## Source survey
-
-Identify representative startup, gameplay, rendering and sound paths; explain
-major systems, shared state and update order. List important unknowns and the
-reasonable implementation assumptions used to proceed.
+Status: skeleton pending. Record a concise source-informed design here as the
+fixed pipeline progresses; track stage/worker status and resumption in progress.md.
+The behavior inventory and source/test/implementation links live in behaviors.md.
 
 ## Modules and ownership
 
-Describe proposed modules/files, their responsibilities and state owners, small
-interfaces, dependencies and data flow. Separate game rules, ROM asset loading,
-presentation, sound/sequence logic and frontend integration where appropriate.
-Explain reuse of platform-specific library helpers and meaningful exceptions.
-Choose boundaries for this game; no fixed module inventory or file-size quota.
+Describe modules/files, state owners, interfaces, algorithms, dependencies and
+shared platform helpers. Choose boundaries around game concepts, not banks.
+Keep rendering/audio/frontends and game rules coherently separated.
 
-## Algorithms and scheduling
+## Identifiers and asset definitions
 
-Explain the core algorithms and their invariants, simulation/audio/presentation
-ordering and how mutable state crosses boundaries. Keep source-specific reasoning
-close to the relevant implementation; avoid a literal assembly-shaped architecture.
+Inventory actors, states, levels, sound, music, tables and other assets with source
+references and honest provisional names. Explain typed IDs versus extensible
+asset slots, ROM physical/banked addressing and decoded formats.
 
-## Implementation order and decisions
+## Scheduling and debug contracts
 
-List an actionable order for implementing the whole game and focused unit tests
-of intended logic. Revise this plan when design decisions change, including brief
-reasons. Check affected boundaries after substantial features; fix concrete design
-problems without repeatedly auditing/redesigning the entire project. Schedule the
-bounded smoke-test.md route before completion; the debug subprocess performs scoped fidelity QA after each milestone.
+Explain simulation/input/audio/presentation ordering, numeric/coordinate units,
+relevant source quirks and invariants. Link debug/api.md for the semantic state/
+event schema, deterministic reset and validated replay checkpoints.
 
-## Living milestone plan and coordinator state
+## Decisions and uncertainty
 
-Planning owns this design; read prompts/plan.md. Record game modes/transitions and
-special concerns alongside the systems above. Replace the implementation order
-with a finite series covering zero to whole-game completion.
-
-For every milestone: stable ID, dependencies, source/ledger coverage, deliverables,
-checks, applicable smoke steps, QA entry routes, implementation status, QA status
-and cycle/report references. Record deferred scope explicitly. Track current stage,
-cycle, selected milestone and resumption point. Preserve revision reasons and prior
-cycle findings. Final QA covers the entire game in two full passes; intermediate
-cycles cover the cumulative implemented scope in one pass.
+Record design decisions, source facts, implemented assumptions and unresolved
+questions. Keep source/contract links and correction reasons as decisions change.
+No milestone loop or recurring planning/QA cycle is part of this pipeline.
