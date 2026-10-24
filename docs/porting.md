@@ -518,3 +518,38 @@ instructions/records are preserved and not silently migrated. The toolkit retain
 legacy cycle commands for existing workspaces. Preparation/installation never
 launches agents. The transport exposes --debug-stdio with game-owned semantic
 inspection supplied by the port; see debug/api.md in completed pipeline workspaces.
+
+## Optional modernization beta (after full QA)
+
+New preparations install `modernize/goal.md` and empty candidate/change/status
+records. This is an optional post-QA workflow, not a sixth required port stage.
+Installation, port completion and reading about the beta do not launch a pilot.
+Existing workspaces can install it without starting QA or changing game code:
+
+```sh
+python3 scripts/port_modernize.py install /path/to/workspace
+python3 scripts/port_modernize.py check /path/to/workspace
+```
+
+`check` requires the existing full two-pass whole-game acceptance record audit to
+pass; partial/scoped QA leaves status awaiting_full_qa and exits unsuccessfully.
+It does not execute QA, change records or certify gameplay truth. A later explicit
+modernization request must verify report/build/source/ROM/asset provenance and
+implementation checks, then capture an exclusive baseline hash record with
+`python3 scripts/port_modernize.py baseline /path/to/workspace`. This command never
+launches an agent or edits gameplay and will not overwrite an existing baseline.
+Keep a separate reproducible local faithful source/build snapshot; hashes alone
+are not a backup. Candidates/change records remain empty until explicitly invoked.
+
+The beta selects one bounded source-backed simplification, identifies observable
+rules and affected integration tests, fills coverage gaps, implements it and compares
+fresh results against both the original and faithful baseline. Changes to opaque
+hardware plumbing must retain relevant timing, ordering, layering, arithmetic and
+intentional effects. Preserve semantic debug interfaces where practical. Use targeted
+regressions, broadening based on dependency impact rather than automatically repeating
+two complete QA passes per edit. Keep original-fidelity expectations; feature changes
+and deliberately divergent behavior require separate authorization/contracts.
+Retain or revert the candidate with evidence, update records and stop after the
+requested scope (one candidate by default). There is no mandated whole-game rewrite
+or claim of modernizing every subsystem. This beta has not yet had a pilot; DuckTales
+must complete full QA before any candidate investigation or implementation starts.

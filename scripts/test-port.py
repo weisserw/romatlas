@@ -90,6 +90,12 @@ with tempfile.TemporaryDirectory(prefix="romatlas-port-") as temporary:
     assert inventory(archive) == initial_archive and rom.read_bytes() == data
     assert (work / "port/Cargo.lock").is_file()
     assert result["debug_installed"] and result["debug_goal"] == str(work / "debug/goal.md")
+    assert result['modernize_beta_installed'] and result['modernize_goal'] == str(work/'modernize/goal.md')
+    assert json.loads((work/'modernize/status.json').read_text())['pilot_started'] is False
+    assert json.loads((work/'modernize/candidates.json').read_text())['candidates'] == []
+    assert not (work/'modernize/baseline.json').exists()
+    assert 'not a sixth' in (work/'modernize/goal.md').read_text()
+
     for name in ["DEBUGGING.md", "debug/goal.md", "debug/acceptance.json", "debug/plan.json", "debug/qa.json"]:
         assert (work / name).is_file(), name
     debug_goal = (work / "debug/goal.md").read_text()

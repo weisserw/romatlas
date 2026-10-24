@@ -60,3 +60,13 @@ uncertainties.json are complete; README.md, BUILDING.md, differences.md and
 library-changes.md describe the actual result. Audits check records/builds, not
 semantic truth. No third traversal or repeated passing checks for confidence.
 Device behavior unavailable on this server remains explicitly untested.
+
+
+## Optional post-QA modernization beta
+
+Preparation also installs modernize/goal.md and empty beta records. They do not
+start a sixth stage, alter completion criteria or authorize a pilot. Finish the
+existing full two-pass whole-game QA and stop normally. Only a separate later
+user request can invoke that workflow, after its full-QA prerequisite is met.
+A partial pass or successful individual scenario is insufficient. Keep any later
+modernization work in a separate commit from QA tooling and faithful-port fixes.

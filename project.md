@@ -426,3 +426,11 @@ record specific obstacles and try another representative milestone. Aim to reach
 the ending, but documented unsuccessful attempts or unavailable transitions do not
 require endless experimentation. Preserve classification, fidelity and readability
 gates; this is broad best-effort exploration, not an exhaustive gameplay/fidelity gate.
+
+An optional modernization beta can be installed with prepared native workspaces.
+It is separate from the fixed five-stage pipeline and does not start automatically.
+No pilot may begin until the agreed full two-pass whole-game QA is complete and a
+separate user request invokes modernization. Preserve a faithful baseline, improve
+one bounded subsystem with source-backed observable contracts and fresh integration
+evidence, and keep modernization commits separate from QA tooling/faithful fixes.
+Installation prepares empty records only; the beta remains unpiloted.

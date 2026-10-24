@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "workflow": "modernization-beta",
+  "status": "awaiting_full_qa",
+  "pilot_started": false,
+  "active_candidate": null,
+  "baseline": null
+}

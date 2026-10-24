@@ -15,6 +15,7 @@ import archive as archived
 import commentary as phase
 import port_research
 import port_debug
+import port_modernize
 import port_web
 
 ROOT = phase.ROOT
@@ -315,6 +316,7 @@ runpy.run_path(str(toolkit / "scripts/port.py"), run_name="__main__")
         # Install QA instructions in staging so every platform publishes the same
         # complete workspace atomically; preparation never starts QA.
         port_debug.install(stage)
+        port_modernize.install(stage)
         # Reserve the new name before publication; never replace another workspace.
         output.mkdir()
         try:
@@ -325,7 +327,8 @@ runpy.run_path(str(toolkit / "scripts/port.py"), run_name="__main__")
     return {"ok": True, "workspace": str(output), "sha256": manifest["rom_sha256"],
             "byte_identical_reference": True, "scaffold": True,
             "start_prompt": str(output / "prompts/start.md"), "review_prompt": str(output / "prompts/review.md"),
-            "debug_goal": str(output / "debug/goal.md"), "debug_installed": True}
+            "debug_goal": str(output / "debug/goal.md"), "debug_installed": True,
+            "modernize_goal": str(output / "modernize/goal.md"), "modernize_beta_installed": True}
 
 
 def workspace(path, *, reference=True):
