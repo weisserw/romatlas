@@ -96,11 +96,15 @@ with tempfile.TemporaryDirectory(prefix="romatlas-port-") as temporary:
     assert not (work/'modernize/baseline.json').exists()
     assert 'not a sixth' in (work/'modernize/goal.md').read_text()
 
-    for name in ["DEBUGGING.md", "debug/goal.md", "debug/acceptance.json", "debug/plan.json", "debug/qa.json"]:
+    for name in ["DEBUGGING.md", "debug/goal.md", "debug/acceptance.json", "debug/plan.json", "debug/qa.json", "debug/qa-policy.json"]:
         assert (work / name).is_file(), name
     debug_goal = (work / "debug/goal.md").read_text()
     assert "Execute or resume" in debug_goal and "Read debug/goal.md." in debug_goal
     assert "python3 run.py debug" in debug_goal
+    policy = json.loads((work/"debug/qa-policy.json").read_text())
+    assert policy["gameplay"]["execution"] == "native-only"
+    assert policy["original_fidelity_sanity"]["enabled"] is True
+    assert "--include-original-fidelity-sanity" in debug_goal
     for target in re.findall(r"\]\(([^)]+)\)", debug_goal):
         assert (work / "debug" / target).exists(), target
     assert json.loads((work / "debug/acceptance.json").read_text())["required_passes"] == 2

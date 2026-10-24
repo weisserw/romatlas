@@ -86,3 +86,24 @@ else:
 session.restore('origin')
 assert session.export_recipe()['steps'] == [{'kind':'reset'}]
 print('authoring recipes: abandoned branches, identity guard and partial-operation safety passed')
+
+class FastClient(RecipeClient):
+    def request(self, method, params=None):
+        if method == 'api.describe':
+            self.calls.append((method, params))
+            return {'identity': self.identity, 'methods': ['port.snapshot.save','port.snapshot.load']}
+        return super().request(method, params)
+
+client = FastClient()
+session = ScenarioSession(client, native=True)
+session.reset()
+session.bookmark('before-jump')
+session.input(['right'])
+session.advance(7)
+session.restore('before-jump')
+session.input(['left'])
+assert session.export_recipe()['steps'] == [{'kind':'reset'}, {'kind':'input','actions':['left']}]
+assert ('port.snapshot.save', {'name':'before-jump'}) in client.calls
+assert ('port.snapshot.load', {'name':'before-jump'}) in client.calls
+assert not any(method in ['port.checkpoint.import','port.checkpoint.export'] for method,_ in client.calls)
+print('fast native bookmarks: capability detection, no replay calls and abandoned recipe branch discarded')

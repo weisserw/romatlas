@@ -69,7 +69,8 @@ reported by api.describe, not keyboard names. Player slots are zero based, 0..3.
 | port.framebuffer | width/height, rgba8 bytes and SHA-256; caller can save a local image |
 | port.audio | offset and limit (stereo frames, max 4096); paged 48-kHz stereo float capture, total/drop counts |
 | port.audio.clear | Clear captured output without changing synthesis state |
-| port.reset | Fresh deterministic game, cleared input, clocks and journal |
+| port.reset | Fresh deterministic game, cleared input, clocks, journal and snapshot bank |
+| port.snapshot.save/load/delete | name; optional process-local fast branch snapshots when advertised (max16), no disk payload |
 | port.checkpoint.export | Return a ROM-free replay record; save it locally with build/source context |
 | port.checkpoint.import | checkpoint and timeout_ms; replay into a fresh candidate, validate output hashes, then adopt |
 
@@ -114,6 +115,38 @@ the relevant state.
 Process restart replay is supported only for the same executable/assets; replay
 logs are not a substitute for immutable source provenance. Files containing
 captured original-game outputs remain private/local.
+
+## Player-facing QA policy
+
+`debug/qa-policy.json` states the active methodology. Main QA runs the native
+port as a game tester would: perform a checklist action and evaluate meaningful
+consequences against independently stated game rules and source-backed contracts.
+Read-only semantic observations support objective assertions; selected image/audio
+captures support agent judgment. Record criteria, actual observations, capture
+paths and rationale. Missing required presentation review leaves acceptance pending
+regardless of machine assertions. Do not use observed output to invent the oracle.
+
+The emulator is an adjunct for a named uncertainty or defect. Do not launch or
+synchronize both games during routine gameplay/navigation. Different physical
+frame counts, hardware lag and internal scheduling are not automatic failures.
+Use bounded semantic completion conditions and selected events rather than exact
+frame/byte equality. Detailed stepping is for a specific transient contract or
+failure diagnosis. Preserve natural setup; no arbitrary state grants.
+
+Keep a small original-fidelity sanity suite separate from gameplay: representative
+rendering, animation/scrolling and audio checks near the beginning of faithful
+port QA. Reuse adequate reviewed early evidence on migration. Do not run a
+full differential playthrough, or repeat sanity for every gameplay check/pass.
+Keep its manifest, configuration and record independent. A future widescreen or
+other feature project can explicitly disable it with a documented reason while
+continuing every applicable gameplay regression. Never disable it automatically
+to hide a failure. Changing gameplay rules requires explicit authored profiles.
+
+For existing workspaces archive the old plan, keep IDs/coverage, rewrite internal
+comparison obligations as player-visible behavior, reconcile the plan hash, and
+retain accepted evidence supporting the revised expectation. Record the policy
+change; preserve known defects and focused regressions. This is a method change,
+not a reset or declaration that untested checks passed.
 
 ## QA pass and repair contract
 
@@ -200,7 +233,7 @@ A hash mismatch requires reconciliation, not a fresh run or reset to pass one.
 
 For each plan check, create or extend a versioned game-owned script in
 debug/scenarios/. Shared helpers should remove repeated setup, input driving,
-reference queries and observation handling. Keep source-derived expectations
+native navigation and observation handling. Keep source-derived expectations
 readable and identify their source paths/labels/revision. Reuse the same scripts
 for route discovery refinements, debugging, repair verification and both full
 passes; do not repeatedly reconstruct a setup through individual tool calls.
@@ -216,16 +249,16 @@ Each script invocation must:
 3. Apply bounded logical inputs/advancement, checking completed/remaining status;
    observe named state changes/events and selected frame/audio output. Assert
    source-backed expectations with useful expected/actual diagnostics.
-4. Use the existing original-emulator workflow to obtain corresponding reference
-   observations, with snapshot/patch/input provenance. Reference setup can be a
-   shared script/helper; record exactly which source-backed reference each check
-   uses. Do not treat the native implementation as its own oracle.
+4. Evaluate independently stated game rules and source-backed expectations. Run
+   native-only by default. Consult the original only for a named uncertainty or
+   defect; retain the question, observations and conclusion if used. Review selected
+   frame/audio captures against player-visible criteria, not universal pixel hashes.
 5. Write a fresh result including starting-state validation, exact inputs, relevant
    observations and local evidence. Return failure for failed expectations,
    inaccessible setup, incomplete advancement or missing observations.
 
-Drive the native transport with PortClient below and the original ROM through its
-platform adapter. Endpoint polling may miss transient effects; expose bounded,
+Drive the native transport with PortClient below. The original adapter is optional
+for diagnosis and separate initial sanity checks; it is not a gameplay dependency. Endpoint polling may miss transient effects; expose bounded,
 read-only semantic event history or step at suitable deterministic boundaries.
 Document field units, event sequence/retention and overflow behavior in debug/api.md.
 Never silently lose an event required by a check or mutate state during inspection.
@@ -309,9 +342,9 @@ scratch/promotion discipline above across experiments.
 
 Use `scripts/scenario_client.py` with a persistent PortClient. ScenarioSession
 provides input, up to16 named bookmarks, restore and bounded `until` operations.
-Reference bookmarks use full emulator snapshots; native bookmarks use existing
-identity-checked replay checkpoints, so native restore cost still grows with route
-length. No game-state writes or checkpoint identity bypasses are introduced.
+Reference bookmarks use full emulator snapshots. Native bookmarks use
+port.snapshot.save/load when advertised; older ports fall back to identity-checked
+replay checkpoints with history-dependent restore cost. No game-state writes or checkpoint identity bypasses are introduced.
 
 `port.run_until` takes `ticks`/`timeout_ms` with the same bounds as port.advance and
 1–32 `conditions` against JSON pointers relative to the game-owned observation:
@@ -321,14 +354,14 @@ execution and after every tick. Missing fields are errors. Results include match
 reason(matched/tick_limit/timeout), completed, remaining and game. Successful ticks
 are recorded in replay history. Prefer integer semantic values for exact comparisons.
 
-Discover natural input routes interactively, save useful branches and retain their
-recipes, then run durable assertions from validated setups. Use reference
-emulator.run_until and emulator.observe for fine source boundaries and grouped
-read-only inspection rather than Python operation-polling loops. A failed setup,
+Discover natural input routes in the native port, save useful branches and retain
+recipes, then run durable assertions from validated setups. Prefer persistent
+sessions and native port.run_until, not per-frame host polling. Reference
+run_until/observe are diagnostic tools, not mandatory navigation synchronization. A failed setup,
 missing observation or exhausted budget is a setup failure, not a game mismatch.
 The ScenarioSession helper raises SetupFailure on an unmatched bounded until.
-Keep expected original-fidelity behavior separate from explicitly selected modified
-behavior expectations; never automatically bless observed output as an expectation.
+Keep independently authored gameplay expectation profiles distinct from the optional
+original-fidelity comparison suite; never bless observed output as an expectation.
 
 ## Minimal integration harness
 
@@ -339,8 +372,15 @@ versioned result, named assertion results, phase wall times, per-transport reque
 counts and failure diagnostics. A suite continues after a failed test and exits
 nonzero if any test fails. Existing evidence is never overwritten.
 
-The manifest lists `tests` (IDs and documented `expectations`), `suites` (ordered
-ID lists), and an `adapter` Python file relative to the manifest. The adapter's
+The manifest lists `tests` (IDs, documented `expectations`, and optional `kind`),
+`suites` (ordered ID lists), and an `adapter` Python file relative to the manifest.
+Kind defaults to `gameplay`; direct comparisons must use `original-fidelity-sanity`.
+These tests are excluded by default and reported as excluded, never as passed.
+To run them, set manifest `original_fidelity_sanity` to an enabled boolean and
+nonempty reason, then pass `--include-original-fidelity-sanity`. An all-sanity
+selection without opt-in is an error. Setting enabled false prevents opt-in;
+this explicit switch does not disable gameplay tests. Use separate manifests and
+lazy imports so gameplay does not even require the comparison environment. The adapter's
 `run(context, entry)` uses existing clients, registers them in `context.clients`,
 registers cleanup with `context.stack`, and separates `context.phase('setup')`
 from `context.phase('execution')`. Use `context.check(name, callable)` to record
@@ -354,7 +394,11 @@ explicitly selected expectation profiles, with source/design justification.
 Unsupported profiles fail before execution. The runner never creates expectations
 from observations. Run Python without `-O`, since existing scenarios use asserts.
 
-DuckTales is the first local integration: its `debug/tooling/integration.json`
+These historical paired examples are disabled by default and are not the small
+initial sanity suite or the main gameplay process. They require a deliberate
+manifest configuration change plus the opt-in flag to execute.
+
+The historical DuckTales `debug/tooling/integration-legacy-differential.json`
 showcase suite executes accepted J-climb-vertical through the existing paired
 scenario, independently of accepted QA records. Its adapter regenerates stale
 paired gap checkpoints using the retained natural-input recipe, then imports
@@ -362,13 +406,13 @@ with all identity guards and validates canonical state, source yield, player and
 terrain before climbing. Native restore still replays from reset.
 
 ```sh
-python3 scripts/qa_harness.py --manifest /root/ducktales/debug/tooling/integration.json --test J-climb-vertical --expectation original-fidelity --evidence /root/ducktales/debug/artifacts/tooling-j-$(date -u +%Y%m%dT%H%M%S)
+python3 scripts/qa_harness.py --manifest /root/ducktales/debug/tooling/integration-legacy-differential.json --test J-climb-vertical --include-original-fidelity-sanity --expectation original-fidelity --evidence /root/ducktales/debug/artifacts/tooling-j-$(date -u +%Y%m%dT%H%M%S)
 ```
 
 Harness-only regression: `python3 scripts/test-qa-harness.py`. This uses synthetic
 adapters and requires no commercial ROM or game build.
 
-### Validated setup caching in the DuckTales showcase
+### Historical differential caching (diagnostic only)
 
 The J integration adapter caches the paired natural climbing-entry checkpoint in
 `debug/cache/integration/J-climb-vertical/`. Cache keys include native/reference
@@ -392,7 +436,8 @@ Use qa_harness.py as the common runner for new checks. Keep game-owned adapters 
 explicit expectation contracts, retaining source-backed scenario assertions. A
 suite result is execution evidence, not an automatic edit to QA acceptance records.
 Accepted legacy checks can remain valid while later checks move to the harness;
-wrap them when a repair needs regression coverage or before their second-pass run.
+author native player-visible replacements for their second-pass run; retain exact
+old comparisons only when a specific regression needs them.
 There is no prerequisite to replay all old checks before continuing the current one.
 
 For each check document a minimum valid setup, bounded action, semantic observations,
@@ -402,7 +447,7 @@ input/placement permutations and incidental CPU/RAM/driver equality without a
 specific behavioral or regression reason. Retain deliberate timing and effects.
 Do not remove distinct bosses/endings solely because they are expensive.
 
-Natural-play routes establish setup provenance. Reuse cached paired checkpoints,
+Natural-play routes establish setup provenance. Reuse validated native checkpoints,
 but execute the action/assertions afresh. Setup may bypass unrelated earlier checks
 by restoring a validated state; it must never bypass the transition under test.
 After repeated guesses without new evidence, inspect source/topology and improve
@@ -423,7 +468,8 @@ caller's ROM/build/source provenance checks: api.describe alone does not identif
 a reference ROM/build. Calls issued outside ScenarioSession are not recorded;
 use the session for all state-changing authoring calls. An indeterminate transport
 failure or partial native advance requires reset/restore before recipe export.
-Native bookmarks remain replay-based, rather than constant-time snapshots.
+Native fast bookmarks clone current state without replay when advertised; fallback
+bookmarks on older ports remain replay-based.
 
 DuckTales debug/tooling/author_branch_recipe.py validates a newly authored title
 choice branch: try Right, restore, choose Left, export only the retained branch,
@@ -466,7 +512,7 @@ from the example's checkout. Example (new evidence directory each time):
 
 ```sh
 ROMATLAS_GAME_WORKSPACE=/path/to/ducktales python3 scripts/qa_harness.py \
-  --manifest examples/qa/ducktales/tooling/integration.json --test J-climb-vertical \
+  --manifest examples/qa/ducktales/tooling/integration.json --test J-climb-vertical --include-original-fidelity-sanity \
   --expectation original-fidelity --evidence /path/to/ducktales/debug/artifacts/fresh-j
 ```
 
@@ -477,3 +523,54 @@ validated using the game-owned original copies; do not claim a full run of the
 portable copy merely because imports/unit tests pass. The coverage review records
 a reviewed plan hash, not new accepted gameplay results. ROM-free helpers belong
 in version control; original-state caches/captures remain local and ignored.
+
+## Efficient native navigation and bounded execution
+
+Use persistent native sessions, input batches and semantic run-until conditions.
+Validate identity/preconditions at retained milestones. Native replay checkpoints
+are not instant rewind; avoid restarting/replaying the entire route for each jump.
+Do not synchronize reference scheduler owners or compare every actor during setup.
+Use compact waypoint diagnostics; append traces rather than rewriting growing files.
+Ordinary damage/recovery is permitted unless the test specifically forbids it.
+
+Once a bounded script runs, wait for completion in <=60-second waits. Do not fill
+waiting time with speculative reasoning, repeated source reads or file polling.
+Separate restore/setup/discovery/assertion times. Invalid/missing observations are
+setup failures; reaching a bound is not a pass. Use focused detailed investigation
+only after an actual uncertainty/failure, then retain a useful regression.
+
+## Native-only DuckTales gameplay example
+
+`examples/qa/ducktales/tooling/gameplay.json` and its adapter demonstrate native
+choice rejection from an existing legitimate local checkpoint, semantic completion
+bounds, explicit independent expectations and selected presentation capture. Set
+ROMATLAS_GAME_WORKSPACE to the prepared game workspace. It requires the named
+private choice-front checkpoint; none is distributed. The example imports
+`scripts/native_gameplay.py`, which starts only the native executable, records
+inputs/origin checkpoint hash, and offers bounded advance/until and captures.
+No reference binary, symbols or source snapshots are needed to execute it.
+
+The subcase is not full L or whole-game QA acceptance. Its objective assertions
+can pass while required presentation review remains pending. Record an explicit
+review.json with expected/observed criteria, capture paths and judgments before
+counting that presentation obligation. Native disk checkpoints still replay and can be costly. NativeGameplay.bookmark
+and rewind use session-local fast snapshots on capable servers.
+
+## Fast native branch snapshots
+
+Ports opt into `debug::serve_with_snapshots` (or injectable
+`serve_io_with_snapshots`) with a deeply isolated Clone implementation. The legacy
+serve API remains supported without snapshot capabilities. Frame/sample clock,
+held and previous inputs, journal, audio hash/capture/drop counts, health and the
+complete game are cloned. Shared immutable content is fine; mutable shared handles
+must be forked and callbacks rebound by the game. A shallow clone is incorrect.
+
+`port.snapshot.save`, `.load` and `.delete` take a name (1–128 bytes). Up to16
+snapshots stay in server memory; overwrite or delete unused slots. Load does no
+factory reset, tick replay or disk IO. Reset clears the bank. Snapshots cannot be
+exported, transferred between processes or loaded across builds; use guarded
+replay checkpoints for durable setup. Save before a jump/branch, try it, then load
+to retry immediately. This is named rewind, not an automatic every-frame timeline.
+ScenarioSession picks the advertised fast path; NativeGameplay exposes bookmark
+and rewind and truncates abandoned branch inputs. Stay in one process to retain
+the bank. Do not restart/re-import the long setup for each experiment.

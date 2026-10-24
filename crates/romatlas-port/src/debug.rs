@@ -12,7 +12,7 @@ use serde::{Deserialize, Serialize};
 use serde_json::{Value, json};
 use sha2::{Digest, Sha256};
 use std::{
-    collections::BTreeSet,
+    collections::{BTreeMap, BTreeSet},
     io::{BufRead, Read, Write},
     time::Instant,
 };
@@ -77,6 +77,7 @@ fn state_matches(state: &Value, conditions: &[StateCondition]) -> Result<bool> {
     }
     Ok(matched)
 }
+#[derive(Clone)]
 struct Machine<G> {
     game: G,
     frame: Frame,
@@ -186,18 +187,85 @@ pub fn serve<G: Game>(
 pub fn serve_io<G: Game>(
     reader: &mut impl BufRead,
     writer: &mut impl Write,
-    mut factory: impl FnMut() -> Result<G>,
+    factory: impl FnMut() -> Result<G>,
     size: (u32, u32),
     rate: TickRate,
     actions: BTreeSet<String>,
     identity: String,
     observe: impl Fn(&G) -> Value,
 ) -> Result<()> {
+    serve_io_impl(
+        reader, writer, factory, size, rate, actions, identity, observe, None,
+    )
+}
+
+/// Opt-in in-memory snapshots. Clone must isolate all mutable simulation state;
+/// shared immutable assets are fine. Snapshots never serialize arbitrary objects.
+pub fn serve_with_snapshots<G: Game + Clone>(
+    factory: impl FnMut() -> Result<G>,
+    size: (u32, u32),
+    rate: TickRate,
+    actions: BTreeSet<String>,
+    identity: String,
+    observe: impl Fn(&G) -> Value,
+) -> Result<()> {
+    serve_io_with_snapshots(
+        &mut std::io::stdin().lock(),
+        &mut std::io::stdout().lock(),
+        factory,
+        size,
+        rate,
+        actions,
+        identity,
+        observe,
+    )
+}
+
+/// Injectable snapshot-capable transport for tests and headless embedding.
+#[allow(clippy::too_many_arguments)]
+pub fn serve_io_with_snapshots<G: Game + Clone>(
+    reader: &mut impl BufRead,
+    writer: &mut impl Write,
+    factory: impl FnMut() -> Result<G>,
+    size: (u32, u32),
+    rate: TickRate,
+    actions: BTreeSet<String>,
+    identity: String,
+    observe: impl Fn(&G) -> Value,
+) -> Result<()> {
+    serve_io_impl(
+        reader,
+        writer,
+        factory,
+        size,
+        rate,
+        actions,
+        identity,
+        observe,
+        Some(Machine::<G>::clone),
+    )
+}
+
+type CopyMachine<G> = fn(&Machine<G>) -> Machine<G>;
+
+#[allow(clippy::too_many_arguments)]
+fn serve_io_impl<G: Game>(
+    reader: &mut impl BufRead,
+    writer: &mut impl Write,
+    mut factory: impl FnMut() -> Result<G>,
+    size: (u32, u32),
+    rate: TickRate,
+    actions: BTreeSet<String>,
+    identity: String,
+    observe: impl Fn(&G) -> Value,
+    copy_machine: Option<CopyMachine<G>>,
+) -> Result<()> {
     ensure!(
         u64::from(size.0) * u64::from(size.1) * 4 <= 1024 * 1024,
         "debug framebuffer exceeds 1 MiB"
     );
     let mut machine = Machine::new(factory()?, size, rate)?;
+    let mut snapshots: BTreeMap<String, Machine<G>> = BTreeMap::new();
     loop {
         let mut line = Vec::new();
         let read = (&mut *reader)
@@ -238,11 +306,65 @@ pub fn serve_io<G: Game>(
                 Ok(())
             };
             match method {
-                "api.describe" => Ok(
-                    json!({"protocol":"romatlas-native-debug-v1","identity":identity,"actions":actions,
-                    "methods":["api.describe","port.state","port.input","port.advance","port.run_until","port.framebuffer","port.reset","port.audio","port.audio.clear","port.checkpoint.export","port.checkpoint.import"],
-                    "checkpoint":"deterministic_replay","audio_rate":48000,"max_ticks":MAX_TICKS,"state_edits":false}),
-                ),
+                "api.describe" => {
+                    let mut methods = vec![
+                        "api.describe",
+                        "port.state",
+                        "port.input",
+                        "port.advance",
+                        "port.run_until",
+                        "port.framebuffer",
+                        "port.reset",
+                        "port.audio",
+                        "port.audio.clear",
+                        "port.checkpoint.export",
+                        "port.checkpoint.import",
+                    ];
+                    if copy_machine.is_some() {
+                        methods.extend([
+                            "port.snapshot.save",
+                            "port.snapshot.load",
+                            "port.snapshot.delete",
+                        ]);
+                    }
+                    Ok(
+                        json!({"protocol":"romatlas-native-debug-v1","identity":identity,"actions":actions,
+                        "methods":methods,"checkpoint":"deterministic_replay",
+                        "snapshot":if copy_machine.is_some() { "in_memory_clone" } else { "unsupported" },
+                        "max_snapshots":16,"audio_rate":48000,"max_ticks":MAX_TICKS,"state_edits":false}),
+                    )
+                }
+                "port.snapshot.save" | "port.snapshot.load" | "port.snapshot.delete" => {
+                    let copy = copy_machine
+                        .ok_or_else(|| anyhow::anyhow!("fast snapshots unsupported"))?;
+                    let name = p["name"]
+                        .as_str()
+                        .ok_or_else(|| anyhow::anyhow!("snapshot name required"))?;
+                    ensure!(
+                        !name.is_empty() && name.len() <= 128,
+                        "invalid snapshot name"
+                    );
+                    match method {
+                        "port.snapshot.save" => {
+                            ensure!(machine.healthy, "reset required after invalid game output");
+                            ensure!(
+                                snapshots.contains_key(name) || snapshots.len() < 16,
+                                "snapshot limit is 16; delete an unused snapshot"
+                            );
+                            snapshots.insert(name.to_owned(), copy(&machine));
+                        }
+                        "port.snapshot.load" => {
+                            let saved = snapshots
+                                .get(name)
+                                .ok_or_else(|| anyhow::anyhow!("unknown snapshot"))?;
+                            machine = copy(saved);
+                        }
+                        _ => {
+                            ensure!(snapshots.remove(name).is_some(), "unknown snapshot");
+                        }
+                    }
+                    Ok(json!({"ok":true,"ticks":machine.ticks}))
+                }
                 "port.state" => Ok(
                     json!({"ticks":machine.ticks,"held":machine.held,"healthy":machine.healthy,"game":observe(&machine.game)}),
                 ),
@@ -321,6 +443,7 @@ pub fn serve_io<G: Game>(
                 }
                 "port.reset" => {
                     machine = Machine::new(factory()?, size, rate)?;
+                    snapshots.clear();
                     Ok(json!({"ok":true}))
                 }
                 "port.audio" => {
@@ -485,7 +608,7 @@ pub fn identity(rom_sha256: &str, assets: Option<&std::path::Path>) -> Result<St
 #[cfg(test)]
 mod tests {
     use super::*;
-    #[derive(Default)]
+    #[derive(Clone, Default)]
     struct Counter {
         position: i32,
         presses: u64,
@@ -537,6 +660,89 @@ mod tests {
             .map(|s| serde_json::from_str(s).unwrap())
             .collect()
     }
+    fn run_snapshots(requests: Vec<(&str, Value)>) -> Vec<Value> {
+        let input = requests
+            .into_iter()
+            .enumerate()
+            .map(|(id, (method, params))| {
+                json!({"jsonrpc":"2.0","id":id,"method":method,"params":params}).to_string() + "\n"
+            })
+            .collect::<String>();
+        let mut output = Vec::new();
+        serve_io_with_snapshots(
+            &mut input.as_bytes(),
+            &mut output,
+            || Ok(Counter::default()),
+            (2, 2),
+            TickRate::DMG,
+            BTreeSet::from(["right".into()]),
+            "test-build".into(),
+            |g| json!({"position":g.position,"presses":g.presses,"phase":g.phase}),
+        )
+        .unwrap();
+        String::from_utf8(output)
+            .unwrap()
+            .lines()
+            .map(|s| serde_json::from_str(s).unwrap())
+            .collect()
+    }
+    #[test]
+    fn snapshots_restore_clock_audio_edges_and_branch_journal_without_replay() {
+        let replies = run_snapshots(vec![
+            ("port.input", json!({"actions":["right"]})),
+            ("port.advance", json!({"ticks":3})),
+            ("port.snapshot.save", json!({"name":"branch"})),
+            ("port.state", json!({})),
+            ("port.audio", json!({})),
+            ("port.input", json!({"actions":[]})),
+            ("port.advance", json!({"ticks":7})),
+            ("port.audio.clear", json!({})),
+            ("port.snapshot.load", json!({"name":"branch"})),
+            ("port.state", json!({})),
+            ("port.audio", json!({})),
+            ("port.advance", json!({"ticks":2})),
+            ("port.checkpoint.export", json!({})),
+            ("port.snapshot.load", json!({"name":"branch"})),
+            ("port.advance", json!({"ticks":2})),
+            ("port.checkpoint.export", json!({})),
+            ("port.snapshot.delete", json!({"name":"branch"})),
+            ("port.snapshot.load", json!({"name":"branch"})),
+            ("port.state", json!({})),
+        ]);
+        assert_eq!(replies[3]["result"], replies[9]["result"]);
+        assert_eq!(replies[4]["result"], replies[10]["result"]);
+        assert_eq!(replies[12]["result"], replies[15]["result"]);
+        assert_eq!(replies[14]["result"]["game"]["presses"], 1);
+        assert_eq!(replies[14]["result"]["game"]["position"], 5);
+        assert!(replies[17].get("error").is_some());
+        assert_eq!(replies[18]["result"]["ticks"], 5);
+    }
+
+    #[test]
+    fn snapshots_are_opt_in_bounded_and_cleared_on_reset() {
+        assert!(
+            run(vec![("port.snapshot.save", json!({"name":"x"}))])[0]
+                .get("error")
+                .is_some()
+        );
+        let mut requests = (0..17)
+            .map(|n| ("port.snapshot.save", json!({"name":n.to_string()})))
+            .collect::<Vec<_>>();
+        requests.extend([
+            ("port.snapshot.save", json!({"name":"0"})),
+            ("port.snapshot.delete", json!({"name":"0"})),
+            ("port.snapshot.save", json!({"name":"replacement"})),
+            ("port.reset", json!({})),
+            ("port.snapshot.load", json!({"name":"replacement"})),
+        ]);
+        let replies = run_snapshots(requests);
+        assert!(replies[16].get("error").is_some());
+        for n in [17, 18, 19, 20] {
+            assert!(replies[n].get("result").is_some());
+        }
+        assert!(replies[21].get("error").is_some());
+    }
+
     #[test]
     fn conditional_steps_stop_exactly_and_replay() {
         let replies = run(vec![

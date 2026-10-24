@@ -37,7 +37,7 @@ fn run() -> Result<()> {
     if debug_stdio {
         anyhow::ensure!(frames.is_none() && settings.is_none(), "--debug-stdio cannot combine with --headless/--settings");
         let identity = romatlas_port::debug::identity(ROM_SHA256, assets.as_deref())?;
-        return romatlas_port::debug::serve(
+        return romatlas_port::debug::serve_with_snapshots(
             || {
                 anyhow::ensure!(romatlas_port::debug::identity(ROM_SHA256, assets.as_deref())? == identity, "debug assets/build changed; restart session");
                 game::Port::load(&rom, assets.as_deref())

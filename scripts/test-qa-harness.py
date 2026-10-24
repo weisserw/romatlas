@@ -75,6 +75,43 @@ class HarnessTests(unittest.TestCase):
             self.assertEqual(result['status'],'setup_failure')
             self.assertIn('no named assertion',result['error'])
 
+    def test_machine_success_keeps_presentation_review_pending(self):
+        def operation(run, entry):
+            with run.phase('execution'):
+                run.check('semantic outcome', lambda: None)
+            return dict(presentation_review_required=True, captures=['native/end.ppm'])
+        result = self.run_case(operation)
+        self.assertEqual(result['status'], 'passed')
+        self.assertEqual(result['presentation_review']['status'], 'pending')
+
+    def test_original_comparisons_are_explicitly_separable(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root/'adapter.py').write_text("def run(run, entry):\n"
+                "    with run.phase('execution'):\n"
+                "        run.check(entry['id'], lambda: None)\n")
+            manifest = dict(adapter='adapter.py', suites={'all': ['play', 'pixels'], 'sanity': ['pixels']},
+                original_fidelity_sanity=dict(enabled=True, reason='Initial faithful port'),
+                tests=[dict(ENTRY, id='play', kind='gameplay'),
+                       dict(ENTRY, id='pixels', kind='original-fidelity-sanity')])
+            path = root/'manifest.json'
+            def invoke(label, suite, *options):
+                path.write_text(json.dumps(manifest))
+                return subprocess.run([sys.executable, str(Path(__file__).with_name('qa_harness.py')),
+                    '--manifest', str(path), '--suite', suite, '--expectation', 'original',
+                    '--evidence', str(root/label), *options], capture_output=True)
+            self.assertEqual(invoke('native', 'all').returncode, 0)
+            result = json.loads((root/'native/result.json').read_text())
+            self.assertEqual([r['id'] for r in result['results']], ['play'])
+            self.assertEqual(result['excluded_original_fidelity_sanity'], ['pixels'])
+            self.assertEqual(invoke('unrequested', 'sanity').returncode, 2)
+            self.assertFalse((root/'unrequested').exists())
+            self.assertEqual(invoke('initial', 'all', '--include-original-fidelity-sanity').returncode, 0)
+            manifest['original_fidelity_sanity'] = dict(enabled=False, reason='Intentional widescreen')
+            self.assertEqual(invoke('widescreen', 'all').returncode, 0)
+            self.assertEqual(invoke('forbidden', 'sanity', '--include-original-fidelity-sanity').returncode, 2)
+            self.assertFalse((root/'forbidden').exists())
+
     def test_failure_classes_and_evidence(self):
         for stage, error, expected in [
             ('setup', AssertionError('identity'), 'setup_failure'),

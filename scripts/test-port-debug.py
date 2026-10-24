@@ -42,10 +42,15 @@ class ContractTests(unittest.TestCase):
         self.assertTrue(port_debug.audit(self.work)['ok'])
         before = (self.work/'debug/plan.json').read_bytes()
         before_qa = (self.work/'debug/qa.json').read_bytes()
+        policy = json.loads((self.work/'debug/qa-policy.json').read_text())
+        self.assertEqual(policy['gameplay']['execution'], 'native-only')
+        policy['original_fidelity_sanity'].update(enabled=False, reason='Intentional widescreen')
+        self.write('qa-policy.json', policy)
         result = port_debug.install(self.work)
         self.assertEqual(result['acceptance']['required_passes'], 2)
         self.assertEqual((self.work/'debug/plan.json').read_bytes(), before)
         self.assertEqual((self.work/'debug/qa.json').read_bytes(), before_qa)
+        self.assertEqual(json.loads((self.work/'debug/qa-policy.json').read_text()), policy)
         self.assertFalse(result['agent_started'])
 
     def test_repairs_preserve_current_pass_and_unaffected_results(self):

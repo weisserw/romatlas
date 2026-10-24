@@ -2,6 +2,7 @@
 use crate::timing::TickRate;
 use anyhow::{Result, ensure};
 
+#[derive(Clone)]
 pub struct SampleClock {
     rate: TickRate,
     sample_rate: u32,

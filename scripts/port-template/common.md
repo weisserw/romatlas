@@ -71,14 +71,21 @@ save feature. Document original saving and the native format.
 
 All logic must work through the headless Game driver and expose the semantic
 state needed by contracts and QA. Use the observe callback of
-romatlas_port::debug::serve for a versioned read-only summary in port.state:
+romatlas_port::debug::serve_with_snapshots for a versioned read-only summary in port.state:
 mode/scene, progression, actors, timers, flags, transitions and sound/music state
 as relevant. Define stable identifiers and units, avoid opaque RAM dumps, and
 provide bounded semantic event observations when endpoint state cannot establish
 a check. Inspection must not change simulation or drain events needed by a check.
 Keep schema/field meanings and event retention rules in debug/api.md.
 
-Use existing deterministic reset/input/advance/checkpoint methods. A checkpoint
+Use existing deterministic reset/input/advance/checkpoint methods and advertised
+session-local snapshot save/load/delete for fast branch retries. The snapshot-capable
+server requires Port::clone to isolate ALL mutable simulation, audio, scheduler,
+input-edge and event state; share immutable assets only. Fork shared mutable event
+journals and rebind callbacks so abandoned branches cannot mutate a saved state.
+Validate branch/replay state, frame/audio hashes and pending transition behavior.
+Snapshots are process-local and cleared on reset; durable recipes/checkpoints
+remain required for later sessions and builds. A checkpoint
 replays inputs and tick/audio calls; it is not arbitrary object serialization.
 Validate restores with semantic preconditions as well as the transport's output
 hashes. Rebuild checkpoints from their saved setup recipe after a build/asset
@@ -89,7 +96,8 @@ must have an explicit, validated contract and preserve deterministic replay.
 Before QA, emulator use answers a specific unresolved source question: record
 the question, needed observation and stopping condition, run a bounded experiment,
 then return to the active stage. Revise the hypothesis/method before repeating
-inconclusive runs. Whole-game runtime comparisons belong to the final QA stage.
+inconclusive runs. Final QA primarily tests native player-visible behavior. Direct runtime comparisons
+are limited to separate initial sanity checks and specific uncertainty/defect diagnosis.
 No GUI or unavailable audio devices are required. Follow DEBUGGING.md for API,
 checkpoint/client limits and disk/evidence retention; keep original captures local.
 

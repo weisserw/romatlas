@@ -56,6 +56,7 @@ def execute(entry, adapter, expectation, evidence):
     run = Run(evidence, expectation)
     start = time.monotonic()
     result = dict(schema_version=1, id=entry['id'], expectation=expectation,
+                  kind=entry.get('kind', 'gameplay'),
                   expectation_contract=entry['expectations'][expectation],
                   status='setup_failure', evidence=str(evidence.resolve()))
     try:
@@ -64,6 +65,10 @@ def execute(entry, adapter, expectation, evidence):
             if not any(a.get('phase') == 'execution' and a.get('status') == 'passed' for a in run.assertions):
                 raise SetupFailure('adapter executed no named assertion group; empty tests cannot pass')
         result['status'] = 'passed'
+        observations = result.get('observations')
+        if isinstance(observations, dict) and observations.get('presentation_review_required'):
+            result['presentation_review'] = dict(status='pending',
+                note='Machine assertions passed; separate criteria/captures/judgment review is required for QA acceptance')
     except Exception as error:
         if isinstance(error, AssertionError):
             frames = traceback.extract_tb(error.__traceback__)
@@ -89,6 +94,8 @@ def main():
     select.add_argument('--suite')
     parser.add_argument('--expectation', required=True)
     parser.add_argument('--evidence', type=Path, required=True)
+    parser.add_argument('--include-original-fidelity-sanity', action='store_true',
+                        help='explicitly opt into separately configured original comparisons')
     args = parser.parse_args()
     if not __debug__:
         parser.error('assertions require Python without -O')
@@ -101,6 +108,20 @@ def main():
             or any(key not in tests or Path(key).name != key or key in ('.', '..') for key in ids)):
         parser.error('test IDs must be known, unique, nonempty basenames')
     entries = [tests[key] for key in ids]
+    kinds = {'gameplay', 'original-fidelity-sanity'}
+    if any(e.get('kind', 'gameplay') not in kinds for e in manifest['tests']):
+        parser.error('unknown test kind')
+    policy = manifest.get('original_fidelity_sanity', {})
+    if policy and (type(policy.get('enabled')) is not bool or
+                   not isinstance(policy.get('reason'), str) or not policy['reason'].strip()):
+        parser.error('original_fidelity_sanity needs enabled boolean and explicit reason')
+    if args.include_original_fidelity_sanity and policy.get('enabled') is not True:
+        parser.error('original-fidelity sanity is disabled; explicitly configure enabled/reason first')
+    excluded = [e['id'] for e in entries if e.get('kind') == 'original-fidelity-sanity'
+                and not args.include_original_fidelity_sanity]
+    entries = [e for e in entries if e['id'] not in excluded]
+    if not entries:
+        parser.error('no gameplay tests selected; original-fidelity sanity requires explicit opt-in')
     for entry in entries:
         if args.expectation not in entry['expectations']:
             parser.error(f'{entry["id"]}: undocumented expectation {args.expectation}')
@@ -112,7 +133,8 @@ def main():
     save(args.evidence/'manifest.json', manifest)
     results = [execute(e, adapter, args.expectation, args.evidence/e['id']) for e in entries]
     summary = dict(schema_version=1, status='passed' if all(r['status']=='passed' for r in results)
-                   else 'failed', results=results)
+                   else 'failed', results=results, excluded_original_fidelity_sanity=excluded,
+                   original_fidelity_sanity_enabled=bool(args.include_original_fidelity_sanity))
     save(args.evidence/'result.json', summary)
     print(json.dumps(summary, indent=2))
     return 0 if summary['status']=='passed' else 1

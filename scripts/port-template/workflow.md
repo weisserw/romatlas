@@ -34,7 +34,9 @@ unavailable, preserve work and report the concrete tooling blocker.
 5. **QA — debug/goal.md.** Use the installed two-pass whole-game acceptance
    contract. Plan source-backed checks and create/extend reusable scenario scripts
    that restore validated starting states, apply inputs and observe/assert relevant
-   behavior through the native debug API and original emulator. Execute each pass
+   behavior through native gameplay scenarios and selected presentation review.
+   Use the original emulator only for separate initial sanity checks or a named
+   uncertainty/defect; do not synchronize both games throughout gameplay QA. Execute each pass
    afresh, reusing scripts/checkpoints. Repair failures at the current check with
    targeted regressions; never restart a pass or return to earlier pipeline stages.
    Require the QA record audit and final implementation checks after repairs.

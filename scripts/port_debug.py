@@ -115,9 +115,10 @@ def install(work):
     targets = {work/'DEBUGGING.md': ROOT/'docs/port-debugging.md',
                debug/'goal.md': ROOT/'scripts/port-debug-template/goal.md',
                debug/'plan.json': ROOT/'scripts/port-debug-template/plan.json',
-               debug/'qa.json': ROOT/'scripts/port-debug-template/qa.json'}
+               debug/'qa.json': ROOT/'scripts/port-debug-template/qa.json',
+               debug/'qa-policy.json': ROOT/'scripts/port-debug-template/qa-policy.json'}
     for target, source in targets.items():
-        if target.exists() and target.name not in {'plan.json', 'qa.json'} and target.read_bytes() != source.read_bytes():
+        if target.exists() and target.name not in {'plan.json', 'qa.json', 'qa-policy.json'} and target.read_bytes() != source.read_bytes():
             raise ValueError(f'preserve existing instructions; reconcile explicitly: {target}')
     for target, source in targets.items():
         if not target.exists():

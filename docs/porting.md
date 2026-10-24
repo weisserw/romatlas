@@ -132,9 +132,13 @@ Scripts validate semantic starting preconditions and transport output hashes;
 code/asset changes require rebuilding checkpoints from retained setup recipes.
 This debug facility is separate from player battery saves/save states.
 
-QA owns whole-game runtime comparisons. For each check, create or extend a
-reusable script that restores validated state, applies inputs and observes/asserts
-source-backed expectations using the native debug API and original emulator.
+QA tests player-visible game rules through native-only scenarios and selected
+presentation judgment. For each check, restore validated native state, apply bounded
+inputs and check meaningful outcomes against independent game knowledge/contracts.
+The original emulator is an adjunct for a named uncertainty/defect, not a continuously
+synchronized oracle. A small separate initial original-fidelity sanity suite checks
+representative rendering/scrolling/animation/audio; future intentional features can
+explicitly disable that suite without disabling gameplay regressions.
 Use those same scripts for diagnosis, repair verification and both required
 passes, with fresh execution/evidence per pass. Reuse scripts and valid checkpoints,
 never cached successful results. Retain pass/check position through failures and

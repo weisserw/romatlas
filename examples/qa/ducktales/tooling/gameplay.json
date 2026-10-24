@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "adapter": "gameplay_adapter.py",
+  "suites": {"L-ready": ["L-choice-reject"]},
+  "tests": [{
+    "id": "L-choice-reject",
+    "kind": "gameplay",
+    "expectations": {"faithful-gameplay": {
+      "description": "NPC offers readable paced choice text; B rejects without charging money or setting the accepted-stage/special-room request, then panel/HUD and gameplay restore.",
+      "source": "../../reference/source/game.asm:DialogueAcceptStageChoice",
+      "review": "Readable text panel and normal HUD/playfield restoration; selected captures require agent judgment."
+    }}
+  }]
+}

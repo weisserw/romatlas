@@ -60,7 +60,7 @@ actual results instead of asserting that unrun checks passed.
 | Commentary or archive workflow | `python3 scripts/test-commentary.py`, `python3 scripts/test-archive.py` as applicable |
 | Native port preparation/runtime | `python3 scripts/test-port.py`; romatlas-port desktop-feature checks below |
 | Optional modernization beta | `python3 scripts/test-port-modernize.py`; `python3 scripts/test-port.py` for preparation changes |
-| Native QA installation/record contract | `python3 scripts/test-port-debug.py`; `python3 scripts/test-qa-harness.py`; `python3 scripts/test-scenario-client.py`; `python3 scripts/test-qa-variants.py` |
+| Native QA installation/record contract | `python3 scripts/test-port-debug.py`; `python3 scripts/test-qa-harness.py`; `python3 scripts/test-scenario-client.py`; `python3 scripts/test-qa-variants.py` (including explicit sanity-suite separation) |
 | Browser port support | `python3 scripts/test-port-web.py` |
 | Game Boy Color | `python3 scripts/test-gbc.py` and Game Boy regressions |
 | SNES | `python3 scripts/test-snes.py`, `bash scripts/test-snes-cpu.sh` |

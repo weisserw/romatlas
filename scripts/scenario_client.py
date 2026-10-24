@@ -1,7 +1,8 @@
 """Persistent scenario authoring atop PortClient; no game state writes.
 
-Bookmarks are portable replay records on native ports and named full snapshots on
-reference emulators. Native restore is intentionally replay, not constant-time rewind.
+Bookmarks use advertised session-local native snapshots or reference snapshots.
+Older native servers fall back to identity-checked replay checkpoints. Durable
+recipes remain separate from fast in-memory bookmarks.
 """
 from copy import deepcopy
 
@@ -18,6 +19,7 @@ class ScenarioSession:
         self.recipe = []
         self.bookmark_recipes = {}
         self.recipe_valid = True
+        self.fast_snapshots = None
 
     def _mutate(self, method, params=None):
         try:
@@ -39,7 +41,13 @@ class ScenarioSession:
         if name not in self.bookmarks and len(self.bookmarks) >= 16:
             raise ValueError('at most 16 authoring bookmarks')
         if self.native:
-            self.bookmarks[name] = deepcopy(self.client.request('port.checkpoint.export'))
+            if self.fast_snapshots is None:
+                self.fast_snapshots = 'port.snapshot.save' in self.client.request('api.describe').get('methods', [])
+            if self.fast_snapshots:
+                self.client.request('port.snapshot.save', {'name': name})
+                self.bookmarks[name] = dict(fast_snapshot=name)
+            else:
+                self.bookmarks[name] = deepcopy(self.client.request('port.checkpoint.export'))
         else:
             self.client.request('emulator.snapshot.save', {'name': name})
             self.bookmarks[name] = name
@@ -48,8 +56,11 @@ class ScenarioSession:
     def restore(self, name):
         value = self.bookmarks[name]
         if self.native:
-            result = self._mutate('port.checkpoint.import',
-                {'checkpoint': deepcopy(value), 'timeout_ms': 300000})
+            if 'fast_snapshot' in value:
+                result = self._mutate('port.snapshot.load', {'name': value['fast_snapshot']})
+            else:
+                result = self._mutate('port.checkpoint.import',
+                    {'checkpoint': deepcopy(value), 'timeout_ms': 300000})
             if not result.get('ok'):
                 raise SetupFailure('native bookmark import did not succeed')
         else:

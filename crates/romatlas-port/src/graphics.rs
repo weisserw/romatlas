@@ -1,6 +1,7 @@
 //! CPU-side RGBA buffers. Ports can use these or render directly in a frontend.
 use anyhow::{Context, Result, ensure};
 pub type Color = [u8; 4];
+#[derive(Clone)]
 pub struct Frame {
     pub width: u32,
     pub height: u32,

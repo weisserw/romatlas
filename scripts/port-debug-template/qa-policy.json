@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "method": "player-facing-native-gameplay",
+  "gameplay": {
+    "oracle": "independently stated game rules and source-backed behavior contracts",
+    "execution": "native-only",
+    "presentation": "selected captures with explicit agent judgment",
+    "reference_use": "adjunct for a named uncertainty or defect",
+    "continuous_differential_comparison": false
+  },
+  "original_fidelity_sanity": {
+    "enabled": true,
+    "reason": "Initial faithful port production; separate representative technical sanity checks only",
+    "manifest": "debug/sanity.json",
+    "record": "debug/sanity-results.json",
+    "frequency": "once initially; not per gameplay check or pass"
+  }
+}

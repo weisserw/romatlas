@@ -23,7 +23,7 @@ not fabricate assets or claim that source behavior is already implemented.
 Keep pending behavior visible in ledger.json and progress.md.
 
 Lay the groundwork for the headless debug API now: connect a game-owned observe
-callback to debug::serve instead of the scaffold's null summary, expose a
+callback to debug::serve_with_snapshots instead of the scaffold's null summary, expose a
 versioned semantic state schema, and define event types/observation boundaries
 for later logic. Write debug/api.md describing field IDs, units, retention,
 read-only inspection, deterministic reset and restorable replay checkpoints.

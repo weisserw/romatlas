@@ -6,6 +6,7 @@ use romatlas_port::{Game, assets::{Asset, MemoryAssets, Origin, Rom, RomAsset}, 
 #[cfg(not(target_arch = "wasm32"))]
 use std::path::Path;
 
+#[derive(Clone)]
 pub struct Port { tile: [u8;64] }
 impl Port {
     #[cfg(not(target_arch = "wasm32"))]
