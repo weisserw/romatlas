@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "status": "ready",
+  "check": "J-climb-vertical",
+  "source": [
+    "reference/source/game.asm:MovePlayerAlongClimbSurface",
+    "reference/source/game.asm:PlayerRoomTransition",
+    "reference/source/game.asm:AnimateVerticalRoomTransition",
+    "reference/source/game.asm:VerticalTransitionTick",
+    "reference/source/game.asm:AfterVerticalTransitionPhase",
+    "reference/source/game.asm:BuildVerticalTransitionRows"
+  ],
+  "assertion_summary": "Aligned Up/Down climbs source surfaces, crossing a room threshold performs the 60-step vertical transition and rejoins gameplay with correct row/cache/actors.",
+  "setup": [
+    {
+      "semantic": "RestorecurrentG009 pairedgapreplay with exactROM/executable/source/assets/fullcanonical/nativeimport andindependentoriginalDC28/player/caches. Executeprovennatural437tickA+Right/DownB+RighttoX884 thenUp+Right toactualclimb3X896Y117/camera768. No nativewrites orclimbtransitionbypass; preserveactualclimbcheckpointforrepairdiagnosis."
+    }
+  ],
+  "steps": [
+    {
+      "semantic": "Up16actualclimbticks reduceY24; Down4raiseY6whileclass2surfaceheld; UpuntilY<39hex legalabove-roomrow3. Savebeforethresholdnative/originalreplayfacts, thencrossactualtestedtransition."
+    },
+    {
+      "semantic": "ActualVerticalYield entrycounter0\u2192sourceC99C, eachnativeissuedphase1..60\u2192sourceCA08/counter0..59, finalForegroundYield\u2192DC28/counter60. RequirefreshIRQ/predeterminedcompositionbeforeindependentplayer/world/fullcache/activeactorfacts; captureentry,wrap/mid/finalphases."
+    },
+    {
+      "semantic": "UpE8C2 writesactualslot2Y32whileplayerinitialYremains<39; source/nativepreservequirk. Assertrow4\u21923/cameraroom-8, split0Cthrough60phaseyields,60compositions,finalretainedring/inrowrestore/spawnwindow/split0/paletterefreshandDBE4tailreturn;4newrowUpframesverifyestablishedgameplay."
+    }
+  ],
+  "next_action": "FreshboundedJ001executesfullrouteandtransition; reviewactualsource/phasegraphicsbeforeaccepting. Discoveryonlyprovedclimbentry, nottransition.",
+  "handler": "j_climb.climb_vertical"
+}

@@ -59,7 +59,7 @@ actual results instead of asserting that unrun checks passed.
 | Disassembly workspace preparation | `python3 scripts/test-disassemble.py` |
 | Commentary or archive workflow | `python3 scripts/test-commentary.py`, `python3 scripts/test-archive.py` as applicable |
 | Native port preparation/runtime | `python3 scripts/test-port.py`; romatlas-port desktop-feature checks below |
-| Native QA installation/record contract | `python3 scripts/test-port-debug.py` |
+| Native QA installation/record contract | `python3 scripts/test-port-debug.py`; `python3 scripts/test-qa-harness.py`; `python3 scripts/test-scenario-client.py`; `python3 scripts/test-qa-variants.py` |
 | Browser port support | `python3 scripts/test-port-web.py` |
 | Game Boy Color | `python3 scripts/test-gbc.py` and Game Boy regressions |
 | SNES | `python3 scripts/test-snes.py`, `bash scripts/test-snes-cpu.sh` |

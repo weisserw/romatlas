@@ -1,4 +1,5 @@
 //! Line-delimited JSON-RPC 2.0. No console-specific dependencies.
+mod conditional;
 use romatlas_core::{ApiError, CommandAdapter};
 use serde_json::{Value, json};
 use std::io::{self, BufRead, Read, Write};
@@ -63,9 +64,16 @@ impl<A: CommandAdapter> Session<A> {
         let result = if !params.is_object() {
             Err(ApiError::invalid("params must be an object"))
         } else if method == "api.describe" {
+            let mut methods = self.adapter.methods();
+            methods.extend([
+                "emulator.observe".to_string(),
+                "emulator.run_until".to_string(),
+            ]);
             Ok(
-                json!({"protocol":"romatlas/1","platform":self.adapter.platform(),"methods":self.adapter.methods(),"max_request_bytes":MAX_REQUEST_BYTES,"max_response_bytes":MAX_RESPONSE_BYTES}),
+                json!({"protocol":"romatlas/1","platform":self.adapter.platform(),"methods":methods,"conditional_operators":["eq","ne"],"max_request_bytes":MAX_REQUEST_BYTES,"max_response_bytes":MAX_RESPONSE_BYTES}),
             )
+        } else if matches!(method, "emulator.observe" | "emulator.run_until") {
+            conditional::execute(&mut self.adapter, method, params)
         } else {
             self.adapter.command(method, params)
         };

@@ -304,3 +304,176 @@ Logs are diagnostic summaries, not replay checkpoint storage. Explicitly persist
 any checkpoint needed for replay, and save selected frame/audio files separately.
 These per-client limits do not bound accumulated workspace artifacts; use the
 scratch/promotion discipline above across experiments.
+
+## Interactive scenario authoring
+
+Use `scripts/scenario_client.py` with a persistent PortClient. ScenarioSession
+provides input, up to16 named bookmarks, restore and bounded `until` operations.
+Reference bookmarks use full emulator snapshots; native bookmarks use existing
+identity-checked replay checkpoints, so native restore cost still grows with route
+length. No game-state writes or checkpoint identity bypasses are introduced.
+
+`port.run_until` takes `ticks`/`timeout_ms` with the same bounds as port.advance and
+1–32 `conditions` against JSON pointers relative to the game-owned observation:
+`{"pointer":"/mode","value":"gameplay"}`. Operators are eq(default), ne,
+lt, le, gt and ge; ordered operators require numbers. Conditions are checked before
+execution and after every tick. Missing fields are errors. Results include matched,
+reason(matched/tick_limit/timeout), completed, remaining and game. Successful ticks
+are recorded in replay history. Prefer integer semantic values for exact comparisons.
+
+Discover natural input routes interactively, save useful branches and retain their
+recipes, then run durable assertions from validated setups. Use reference
+emulator.run_until and emulator.observe for fine source boundaries and grouped
+read-only inspection rather than Python operation-polling loops. A failed setup,
+missing observation or exhausted budget is a setup failure, not a game mismatch.
+The ScenarioSession helper raises SetupFailure on an unmatched bounded until.
+Keep expected original-fidelity behavior separate from explicitly selected modified
+behavior expectations; never automatically bless observed output as an expectation.
+
+## Minimal integration harness
+
+`scripts/qa_harness.py` runs a game-owned manifest/adapter without starting or
+updating the whole QA workflow. Select `--test ID` or `--suite NAME`, an explicit
+`--expectation PROFILE`, and a new `--evidence DIRECTORY`. Each test retains a
+versioned result, named assertion results, phase wall times, per-transport request
+counts and failure diagnostics. A suite continues after a failed test and exits
+nonzero if any test fails. Existing evidence is never overwritten.
+
+The manifest lists `tests` (IDs and documented `expectations`), `suites` (ordered
+ID lists), and an `adapter` Python file relative to the manifest. The adapter's
+`run(context, entry)` uses existing clients, registers them in `context.clients`,
+registers cleanup with `context.stack`, and separates `context.phase('setup')`
+from `context.phase('execution')`. Use `context.check(name, callable)` to record
+assertion groups. Exceptions during setup, transport failures and `SetupFailure`
+are `setup_failure`; execution assertions are `game_mismatch`. Unexpected errors
+retain their traceback and count as setup/tooling failure. Preserve the failed
+observations and last transport requests; a passing subset never makes a test pass.
+
+Keep original-fidelity and intentionally modified behavior in separately authored,
+explicitly selected expectation profiles, with source/design justification.
+Unsupported profiles fail before execution. The runner never creates expectations
+from observations. Run Python without `-O`, since existing scenarios use asserts.
+
+DuckTales is the first local integration: its `debug/tooling/integration.json`
+showcase suite executes accepted J-climb-vertical through the existing paired
+scenario, independently of accepted QA records. Its adapter regenerates stale
+paired gap checkpoints using the retained natural-input recipe, then imports
+with all identity guards and validates canonical state, source yield, player and
+terrain before climbing. Native restore still replays from reset.
+
+```sh
+python3 scripts/qa_harness.py --manifest /root/ducktales/debug/tooling/integration.json --test J-climb-vertical --expectation original-fidelity --evidence /root/ducktales/debug/artifacts/tooling-j-$(date -u +%Y%m%dT%H%M%S)
+```
+
+Harness-only regression: `python3 scripts/test-qa-harness.py`. This uses synthetic
+adapters and requires no commercial ROM or game build.
+
+### Validated setup caching in the DuckTales showcase
+
+The J integration adapter caches the paired natural climbing-entry checkpoint in
+`debug/cache/integration/J-climb-vertical/`. Cache keys include native/reference
+builds, ROM/assets/native/frozen source identities, expectation profile and exact
+setup recipe dependencies. A cache hit still imports through the ordinary guarded
+APIs and checks canonical native state, original owner, player, terrain, camera,
+room and active actors before running assertions. Cold setups follow the retained
+natural-input route; staged pairs are validated before atomic publication. Cache
+entries record file hashes and the originating evidence directory. Changed
+identities/recipes select a fresh entry; corrupt content is never accepted.
+
+`setup-cache-selection.json` records hit/miss, selected identity and promotion.
+Execution remains fresh on every invocation. Setup caching is not assertion-result
+caching, and native restore still replays its input history. The vertical source
+observer uses server-side equality/inequality conditions when advertised, retaining
+its source caller/composition/fresh-IRQ contract and bounded legacy fallback.
+
+## QA readiness and scope
+
+Use qa_harness.py as the common runner for new checks. Keep game-owned adapters and
+explicit expectation contracts, retaining source-backed scenario assertions. A
+suite result is execution evidence, not an automatic edit to QA acceptance records.
+Accepted legacy checks can remain valid while later checks move to the harness;
+wrap them when a repair needs regression coverage or before their second-pass run.
+There is no prerequisite to replay all old checks before continuing the current one.
+
+For each check document a minimum valid setup, bounded action, semantic observations,
+source-backed success criteria, exclusions and known setup obstacles. Test distinct
+major rules/transitions and representative normal/boundary outcomes. Avoid exhaustive
+input/placement permutations and incidental CPU/RAM/driver equality without a
+specific behavioral or regression reason. Retain deliberate timing and effects.
+Do not remove distinct bosses/endings solely because they are expensive.
+
+Natural-play routes establish setup provenance. Reuse cached paired checkpoints,
+but execute the action/assertions afresh. Setup may bypass unrelated earlier checks
+by restoring a validated state; it must never bypass the transition under test.
+After repeated guesses without new evidence, inspect source/topology and improve
+observation before another input probe. Every probe needs a target, bounds and
+expected/actual diagnostics. Exhaustion remains incomplete, never passed/skipped.
+Scope corrections require source-backed plan/history reconciliation; tooling work
+alone must not reset plan IDs or silently invalidate accepted evidence.
+
+## Discover, record and replay a branch
+
+ScenarioSession.reset establishes a recipe origin. input, advance and until record
+successful deterministic inputs/advancement. bookmark stores a branch point;
+restore discards the abandoned branch from the recorded recipe. export_recipe
+returns a JSON recipe; replay validates it and native transport identity before
+reset/execution. Keep expected observations separate and source-derived. Check
+semantic final state after replay. Reference recipes additionally require the
+caller's ROM/build/source provenance checks: api.describe alone does not identify
+a reference ROM/build. Calls issued outside ScenarioSession are not recorded;
+use the session for all state-changing authoring calls. An indeterminate transport
+failure or partial native advance requires reset/restore before recipe export.
+Native bookmarks remain replay-based, rather than constant-time snapshots.
+
+DuckTales debug/tooling/author_branch_recipe.py validates a newly authored title
+choice branch: try Right, restore, choose Left, export only the retained branch,
+and reproduce the full final semantic state from reset. It is an authoring/tooling
+check, not a new fidelity pass or a claim of automated discovery of arbitrary routes.
+
+## Intentional divergence without disabling regression coverage
+
+The owned example examples/qa/fixture/integration.json has original-fidelity and
+double-speed contracts. Its executable changes movement from one to two pixels
+per tick; the adapter's expectations are independently authored constants. Pause
+must still prevent movement in both variants. Run scripts/test-qa-variants.py to
+verify: original passes original; modified movement fails original; modified passes
+its explicit profile; a broken pause still fails the modified profile. No expected
+value is learned from output, and no blanket modified-game skip is available.
+This validates harness policy without changing DuckTales gameplay. Future intentional
+DuckTales changes need their own documented domain expectations and source/design
+provenance; retain original-fidelity contracts separately.
+
+Example command from the toolkit root:
+
+```sh
+python3 scripts/qa_harness.py --manifest examples/qa/fixture/integration.json \
+  --suite all --expectation original-fidelity --evidence /tmp/fresh-fixture-run
+```
+
+The manifest/adapter pattern is general-purpose. Native setup caching, full reference
+comparison and audiovisual review remain game-owned responsibilities. Do not equate
+passing a synthetic fixture with validating an intentional change to a real game.
+
+### Versioned DuckTales example
+
+The ROM-free example in examples/qa/ducktales preserves the validated J adapter,
+paired setup cache, source-backed scenario scripts, authoring probe and32-check
+scope review. It requires a prepared DuckTales workspace containing the user's own
+ROM, frozen source and native executable; none of those inputs, snapshots, captured
+assets or QA acceptance records is distributed in the example. Set
+ROMATLAS_GAME_WORKSPACE to that existing workspace. The toolkit path is resolved
+from the example's checkout. Example (new evidence directory each time):
+
+```sh
+ROMATLAS_GAME_WORKSPACE=/path/to/ducktales python3 scripts/qa_harness.py \
+  --manifest examples/qa/ducktales/tooling/integration.json --test J-climb-vertical \
+  --expectation original-fidelity --evidence /path/to/ducktales/debug/artifacts/fresh-j
+```
+
+The versioned copy can have a different recipe identity from local legacy helpers;
+its first run may rebuild its cache. The portable authoring probe and adapter/cache
+unit tests were exercised against a local prepared workspace. Full J fidelity was
+validated using the game-owned original copies; do not claim a full run of the
+portable copy merely because imports/unit tests pass. The coverage review records
+a reviewed plan hash, not new accepted gameplay results. ROM-free helpers belong
+in version control; original-state caches/captures remain local and ignored.

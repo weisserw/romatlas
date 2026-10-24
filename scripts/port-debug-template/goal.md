@@ -45,6 +45,25 @@ and sound checks with specific expectations and source references. Cover major
 functionality without enumerating every collision/input permutation or demanding
 undefined pixel/frame equivalence. Write the ordered A-to-Z plan before running it.
 
+Use the integration harness as the normal execution entry point. Create or extend
+a game-owned debug/integration.json and adapter using toolkit scripts/qa_harness.py.
+Map each active plan check to a stable test ID, explicit original-fidelity
+expectation, source contract and one rerun command. Existing scenario scripts may
+be wrapped; do not rewrite sound assertions just to migrate them. Migrate accepted
+checks when needed for repair regression or the second pass, without repeating
+route discovery or discarding valid accepted results. Passing harness results
+supply fresh evidence; update QA records deliberately, never infer acceptance from
+runner status alone. See DEBUGGING.md for the fixture and DuckTales examples.
+
+Review coverage before route discovery. Give each check a minimal semantic setup,
+representative action, observable success conditions and explicit exclusions.
+Cover distinct player-visible rules and source branches; do not enumerate every
+collision, actor placement, frame/input permutation or exact internal byte unless
+it verifies a concrete source contract or regression. Share setup across checks.
+Long prerequisite traversal is setup, not an additional acceptance requirement.
+Choose the least costly legitimate approach to the same behavior and preserve the
+transition under test. Distinct endings/boss mechanics remain distinct coverage.
+
 For each QA check, create or extend a reusable scenario script under
 debug/scenarios/ (shared helpers are encouraged). It must restore a validated
 starting state, apply bounded inputs, observe relevant semantic events/state and
@@ -55,6 +74,29 @@ expected events and selected frame/audio evidence. Share setup helpers/checkpoin
 across checks when useful; avoid repeatedly reconstructing routes and issuing
 individual tool calls. Link script, invocation, source expectations and setup/
 checkpoint validation from each plan entry as described in DEBUGGING.md.
+
+Separate interactive route discovery from durable assertion execution. Prefer
+persistent sessions and named bookmarks using scripts/scenario_client.py. Use
+emulator.run_until/observe and port.run_until where supported rather than repeated
+RPC polling or guessed long input windows. Validate tool availability first.
+Record a successful discovered branch with ScenarioSession.export_recipe and
+replay it from reset before treating it as durable setup. Restore discards abandoned
+branch inputs. Prefer validated paired natural-play checkpoints and identity-keyed
+caches for subsequent runs; keep origin recipes and verify semantic preconditions
+on every import. Rebuild only stale entries, not all routes on every test run.
+
+Use a concrete bounded hypothesis for each discovery probe: target state/event,
+inputs, frame/operation limit and diagnostics at the stopping boundary. If repeated
+probes fail without new facts, inspect source/observations or repair the tool before
+adjusting more frame counts. This is an investigation rule, not a repair quota or
+permission to skip a required check. If setup remains inaccessible, leave that check
+incomplete with a precise tooling/source obstacle and resumption point.
+
+Preserve natural input recipes and semantic starting preconditions. Classify
+unmatched setup/timeouts/missing observations separately from game mismatches;
+none counts as a passed check. Keep fidelity expectations explicit so intentional
+future changes can select documented alternative expectations without disabling
+unaffected regressions. Do not introduce alternate game behavior during fidelity QA.
 
 Use the same scenario script for diagnosis, repair verification and each required
 QA pass. Evolve it with source-backed corrections as understanding improves.

@@ -1,0 +1,280 @@
+{
+  "version": 1,
+  "status": "reviewed-not-executed",
+  "plan_sha256": "c4af0ffdabca9107aca32dc949b844ecc5ed1e1ca502b186f5466b1bc32a7272",
+  "decision": "Retain all32 checks: no evidence supports deleting distinct behavior coverage. Separate setup from acceptance and limit each to representative source-backed observations.",
+  "records_changed": false,
+  "checks": [
+    {
+      "id": "A-title-boot",
+      "expectation": "Fresh reset reaches title input with visible title artwork/options, two title actors, normal option marker and title music after source fades.",
+      "source": [
+        "reference/source/game.asm:InitializeTitle"
+      ],
+      "scope": "One reset-to-title with source fades and representative image/music evidence; no exhaustive title animation phases."
+    },
+    {
+      "id": "B-title-options",
+      "expectation": "Right/Select and Left wrap the three EASY/NORMAL/DIFFICULT markers; held input does not repeat; menu-change sound is authored.",
+      "source": [
+        "reference/source/game.asm:ChangeTitleOption"
+      ],
+      "scope": "Exercise both wrap directions, Select and held-no-repeat once; no Cartesian product of options and frame timings."
+    },
+    {
+      "id": "C-land-navigation",
+      "expectation": "Start enters the five-land screen through fade/upload; Up/Down wraps cursor and name, A confirms selected original land.",
+      "source": [
+        "reference/source/game.asm:InitializeLandSelect"
+      ],
+      "scope": "One five-land wrap cycle and one confirmation; later entries own their level content checks."
+    },
+    {
+      "id": "D-amazon-entry",
+      "expectation": "Amazon entry completes initialization/fade with source player/camera position, terrain, timer/health, actors and stage song.",
+      "source": [
+        "reference/source/game.asm:InitializeStageRuntime"
+      ],
+      "scope": "One validated initial Amazon state and representative presentation/audio; reuse as setup rather than restart for every check."
+    },
+    {
+      "id": "E-walk-jump",
+      "expectation": "Walking changes world position; A initiates jump, gravity changes vertical motion, floor landing restores standing without passing solid terrain.",
+      "source": [
+        "reference/source/game.asm:PlayerStandingEntry",
+        "reference/source/game.asm:PlayerAirborneEntry",
+        "reference/source/game.asm:PlayerAirborneHorizontalMotion"
+      ],
+      "scope": "Representative walk, full jump/landing and solid boundary; unusual collision branches belong to targeted regressions when justified."
+    },
+    {
+      "id": "F-pogo-swing",
+      "expectation": "Airborne held Down+B produces the source pogo landing/rebound; after blocked walking reaches animation07, a newly pressed B enters cane swing with the source impact animation/sound and overlap result.",
+      "source": [
+        "reference/source/game.asm:PlayerLandOrPogo",
+        "reference/source/game.asm:PlayerMomentumAnimationDelay",
+        "reference/source/game.asm:PlayerStandingAction",
+        "reference/source/game.asm:UpdatePlayerSwing",
+        "reference/source/game.asm:ResolvePlayerSwingImpact"
+      ],
+      "scope": "One pogo rebound and valid contextual swing/impact. Establish pose first; do not guess arbitrary B timing."
+    },
+    {
+      "id": "G-breakable-reward",
+      "expectation": "Actual contextual strikes mutate source terrain and execute negative-counter recovery creation with matching allocation/cull semantics; a separate natural contact-health reward executes its full delay/reveal/recovery/collection chain, improves actual health and matches source audio dispatch, priority suppression and emitted effects. Culled terrain food is never counted collected.",
+      "source": [
+        "reference/source/game.asm:ReplaceTerrainForActor",
+        "reference/source/game.asm:ReplaceTerrainActorGate",
+        "reference/source/game.asm:InitializeTerrainReplacementReward",
+        "reference/source/game.asm:Bank06_StartContactRecoveryDelay",
+        "reference/source/game.asm:ActorRestoreAnimation",
+        "reference/source/game.asm:ActorCollectDispatch",
+        "reference/source/game.asm:AudioInstallSecondary"
+      ],
+      "scope": "Retain proven terrain mutation/birth/cull and separate health-collection cases. Preserve priority regression evidence, but do not re-derive routes or require every driver byte in unrelated setups."
+    },
+    {
+      "id": "H-enemies-damage",
+      "expectation": "Ordinary enemies initialize/move/attack; unprotected contact removes health and starts recoil/protection with deliberate visible flashing; protection prevents repeated damage.",
+      "source": [
+        "reference/source/game.asm:StartPlayerDamageArc"
+      ],
+      "scope": "Representative ordinary contact/recoil/protection/flash cycle; add source-distinct uncovered behaviors, not every enemy placement."
+    },
+    {
+      "id": "I-pause-status",
+      "expectation": "Start toggles source status streams; ordinary player/actor/timer progression pauses while interrupts/audio continue; next Start resumes.",
+      "source": [
+        "reference/source/game.asm:GameplayAlternateStatusFrame"
+      ],
+      "scope": "One open/pause/resume cycle with progression frozen and interrupt/audio continuing; no indefinite panel waiting."
+    },
+    {
+      "id": "J-climb-vertical",
+      "expectation": "Aligned Up/Down climbs source surfaces, crossing a room threshold performs the 60-step vertical transition and rejoins gameplay with correct row/cache/actors.",
+      "source": [
+        "reference/source/game.asm:MovePlayerAlongClimbSurface"
+      ],
+      "scope": "Retain source-required climb amounts and sixty transition phases; validated climbing-entry cache is the setup."
+    },
+    {
+      "id": "K-horizontal-boundary",
+      "expectation": "A source boundary performs horizontal background/player motion, restores stage/row and enters late-stage mode with boundary music/palette.",
+      "source": [
+        "reference/source/game.asm:CheckStageBoundary"
+      ],
+      "scope": "Any source-legitimate horizontal boundary satisfying CheckStageBoundary/CheckStageBoundaryX/EnterLateStageHorizontalTransition. Moon key/dialogue/health/death routes are prerequisites, not K success criteria. Inspect transition tables for a cheaper legitimate approach before more Moon route discovery; preserve all existing artifacts."
+    },
+    {
+      "id": "L-dialogue-choice",
+      "expectation": "Source NPC contact opens paced text/panel, acknowledged choices follow the source accept/reject/payment branch, then restore gameplay and status.",
+      "source": [
+        "reference/source/game.asm:DialoguePaidActorReward"
+      ],
+      "scope": "One paced dialogue with source-distinct accept/reject/payment outcomes where applicable; cache valid contact setup and avoid repeating travel."
+    },
+    {
+      "id": "M-platforms-carry",
+      "expectation": "A source rideable/moving platform carries the player through collision-aware movement and releases via its source jump/exit condition.",
+      "source": [
+        "reference/source/game.asm:Bank06_RideablePresetActor",
+        "reference/source/game.asm:Bank06_PlayerCarryingActor",
+        "reference/source/game.asm:UpdatePlayerCarriedState"
+      ],
+      "scope": "One representative carry and legal release, extending only for distinct documented platform behavior; no exhaustive relative positions."
+    },
+    {
+      "id": "N-special-room",
+      "expectation": "Source-triggered special room loads its own layout/spawns/CHR without changing original stage identity; its exit returns through the source selection/reload path.",
+      "source": [
+        "reference/source/game.asm:InitializeSpecialRoom"
+      ],
+      "scope": "One legitimate special-room entry and return, checking identity/content; do not bypass the entry being tested."
+    },
+    {
+      "id": "O-amazon-boss",
+      "expectation": "Amazon handler2E attacks/shakes, respects hit protection, loses five shared HP through legal attacks and produces collectable stage treasure with source effects.",
+      "source": [
+        "reference/source/game.asm:ValidateBossHitAndDefeat"
+      ],
+      "scope": "Distinct Amazon boss phases/protection, legal defeat and treasure; reuse valid approach, not the whole level route."
+    },
+    {
+      "id": "P-complete-transfer",
+      "expectation": "Treasure sets Amazon progress, converts remaining timer with source cadence/sounds, returns to selection, transfers displayed value and skips completed Amazon.",
+      "source": [
+        "reference/source/game.asm:ConvertStageTimerToReward"
+      ],
+      "scope": "One actual treasure-to-selection/score-transfer/completed-land flow; do not restore past the transition under test."
+    },
+    {
+      "id": "Q-transylvania-boss",
+      "expectation": "Transylvania room progression reaches handler26, its preset/fire phases produce projectiles; legal hits produce treasure and complete its progress bit.",
+      "source": [
+        "reference/source/game.asm:Bank06_SpawnAttackTriplet"
+      ],
+      "scope": "Retain Transylvania distinct fire/projectile mechanics and defeat; shared setup infrastructure does not merge distinct boss behavior."
+    },
+    {
+      "id": "R-mines-gate-boss",
+      "expectation": "African Mines source prerequisite/contact/room route reaches handler28; perimeter encounter can be defeated and its treasure updates the source progress bit.",
+      "source": [
+        "reference/source/game.asm:ValidateBossHitAndDefeat"
+      ],
+      "scope": "Validate prerequisite provenance and one distinct encounter/defeat; retain valid gate approach instead of recollecting prerequisites each run."
+    },
+    {
+      "id": "S-himalayas-escort-boss",
+      "expectation": "Himalayas source NPC/hit/escort progression changes its terrain condition; handler2A waves/children and legal defeat lead to collected treasure.",
+      "source": [
+        "reference/source/game.asm:ValidateBossHitAndDefeat"
+      ],
+      "scope": "Cover escort terrain effect and distinct boss waves/defeat as bounded subcases; avoid replaying escort setup for each boss assertion."
+    },
+    {
+      "id": "T-moon-boss",
+      "expectation": "Moon source prerequisite/route reaches handler29; center attack/random phase, defeat and treasure operate with original progression effects.",
+      "source": [
+        "reference/source/game.asm:ValidateBossHitAndDefeat"
+      ],
+      "scope": "Cover Moon prerequisite effect and distinct boss attack/defeat; random possibilities need representative source-backed outcomes, not every RNG seed."
+    },
+    {
+      "id": "U-all-lands-scene",
+      "expectation": "All five completion bits cause the actual completion message/actor sequence, sixteen deliberate palette flashes and acknowledgment before stage1 late-route initialization.",
+      "source": [
+        "reference/source/game.asm:PlayAllStagesCompletionScene"
+      ],
+      "scope": "Actual all-complete transition with deliberate flashes and acknowledgment; restore before trigger with valid prior-completion provenance."
+    },
+    {
+      "id": "V-final-boss",
+      "expectation": "Late-route final boss teleports/attacks, accepts legal hits under protection rules, then defeat countdown enters final race terrain setup.",
+      "source": [
+        "reference/source/game.asm:UpdateFinalBoss"
+      ],
+      "scope": "Distinct final boss attack/teleport/protection/defeat-to-race flow; representative phases, not every teleport pattern."
+    },
+    {
+      "id": "W-rival-race",
+      "expectation": "Race setup installs corresponding climbers and goal; rivals progress across rows while the player climbs; reaching goal triggers ending latch through its overlap/delay.",
+      "source": [
+        "reference/source/game.asm:UpdateRaceClimber"
+      ],
+      "scope": "One representative race progression and actual goal overlap/end latch; no requirement to discover a speedrun or prove optimal inputs."
+    },
+    {
+      "id": "X-ending-standard",
+      "expectation": "Post-transfer total last code nonblank and incomplete low7 selects variation0; source scenes, per-eighth-pixel delays and music reach permanent terminal yield.",
+      "source": [
+        "reference/source/game.asm:UpdateEndingSequence"
+      ],
+      "scope": "Retain ending variant0 as a distinct branch; check scene milestones/deliberate timing/terminal state, not every pixel at every frame."
+    },
+    {
+      "id": "Y-ending-blank",
+      "expectation": "Source-valid ending with blank final total code selects variation1, executes its scene continuation and reaches terminal state.",
+      "source": [
+        "reference/source/game.asm:UpdateEndingSequence"
+      ],
+      "scope": "Retain ending variant1 with source-valid total provenance; shared ending machinery may reuse assertions, not fabricated results."
+    },
+    {
+      "id": "Z-ending-complete",
+      "expectation": "Source-valid low7 progress complete plus nonblank leading total selects variation2 and executes its ending scenes through terminal state.",
+      "source": [
+        "reference/source/game.asm:UpdateEndingSequence"
+      ],
+      "scope": "Retain ending variant2 with valid progress/total provenance; do not remove a distinct ending to reduce runtime."
+    },
+    {
+      "id": "AA-terminal-input",
+      "expectation": "At permanent ending wait, Start/A/B do not restart or dispatch ordinary gameplay; interrupts and audio continue.",
+      "source": [
+        "reference/source/game.asm:AdvanceEndingAfterPause"
+      ],
+      "scope": "One validated permanent-ending state and bounded Start/A/B probes; reuse an ending checkpoint rather than replay all variants."
+    },
+    {
+      "id": "AB-life-loss-reload",
+      "expectation": "Fall/damage life loss performs composed waits/fades, decrements life only in reload, restores source checkpoint/health/timer/music and clears temporary controls.",
+      "source": [
+        "reference/source/game.asm:RestoreStageAudioAndCountdown"
+      ],
+      "scope": "Representative actual life loss/reload with checkpoint/health/timer effects; preserve transition itself and cache earlier approach."
+    },
+    {
+      "id": "AC-countdown-gameover",
+      "expectation": "Countdown decrements via divider, expiration/life depletion reaches game-over presentation, waits240 frames then source reset returns title and clears progression.",
+      "source": [
+        "reference/source/game.asm:PlayGameOverAndReset"
+      ],
+      "scope": "Representative expiration and game-over/reset lifecycle; preserve source-defined wait, no brute-force natural countdown for setup if a valid retained state exists."
+    },
+    {
+      "id": "AD-difficulty-rules",
+      "expectation": "EASY alternating health loss and DIFFICULT reward remapping differ from NORMAL exactly as source option consumers specify, without changing menu identities.",
+      "source": [
+        "reference/source/game.asm:ApplyOptionRewardAnimation"
+      ],
+      "scope": "Targeted EASY health alternation and DIFFICULT reward branch; no exhaustive difficulty\u00d7level\u00d7hazard matrix."
+    },
+    {
+      "id": "AE-authored-chain",
+      "expectation": "Normal file-manifest startup preserves original land UI; naturally completing Amazon activates its named file successor with actual terrain/graphics/spawn/audio, then restores original content after chain completion.",
+      "source": [
+        "reference/source/game.asm:Bank06_CollectStageTreasure"
+      ],
+      "scope": "Authored successor entry/exit under matching asset identity, from a legitimate pre-completion setup; do not repeatedly traverse Amazon merely to rebuild it."
+    },
+    {
+      "id": "AF-replay-purity",
+      "expectation": "Same-build replay restores matching semantic/game/output state transactionally; repeated read/render does not alter simulation, sound queues or synthesis clocks.",
+      "source": [
+        "reference/source/game.asm:YieldOneFrame"
+      ],
+      "scope": "Bounded checkpoint/replay and repeated observational reads/render at a useful state; not repeated whole-game traversals."
+    }
+  ],
+  "caveat": "This is a plan/source-contract review, not new gameplay evidence or a QA pass. Existing scenario assertion precision is changed only with source-backed reasons and record reconciliation."
+}

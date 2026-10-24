@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "adapter": "integration_adapter.py",
+  "suites": {"showcase": ["J-climb-vertical"]},
+  "tests": [{
+    "id": "J-climb-vertical",
+    "expectations": {
+      "original-fidelity": {
+        "description": "Preserve the accepted source contract including the indexed slot-2 write and sixty cooperative phases. Alternatives require an explicitly authored profile and adapter assertions; observations never update expectations.",
+        "source": "../scenarios/j-source-contract.md",
+        "route": "../scenarios/routes/climb-vertical.json"
+      }
+    }
+  }]
+}

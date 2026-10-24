@@ -348,3 +348,32 @@ through CommandAdapter; api.describe returns its supported methods. Read
 HuC6280 stepping, register/memory edits, snapshots, traces, mapping/analysis and
 ca65 reconstruction. Port 1 uses I/II/Run/Select/directions. CD/SuperGrafx are
 outside this profile. Existing platform-specific contracts remain unchanged.
+
+## Conditional execution and grouped observations
+
+The shared session exposes `emulator.observe` and `emulator.run_until` through
+CommandAdapter, without importing platform cores. Both take 1–32 named `queries`:
+`{"name":"phase","method":"emulator.memory","params":{"address":123,"length":1}}`.
+Allowed methods are read-only `emulator.memory`, `emulator.physical_memory` and
+`emulator.state`; memory ranges are limited to 4096 bytes each. Queries run
+sequentially without intervening emulation. Results appear under `observations`.
+
+`run_until` also requires 1–32 `conditions`, for example
+`{"query":"phase","pointer":"/bytes/0","value":1}`. All must match. Conditions accept `op: "eq"` (default) or `op: "ne"`;
+api.describe advertises these under conditional_operators. Missing
+observation paths are errors, including when the expected value is null. It checks
+before stepping and after each complete CPU operation. Optional `cpu` selects the
+adapter's CPU; address-space/CPU context remains in each query's params.
+`max_operations` limits complete operation-step calls (default100000, max1000000);
+`timeout_ms` is a supervisory wall-time deadline (default1000, max30000), never an
+emulated clock. Each call delegates one operation to the adapter with its own
+bounded internal execution budget. An adapter error can leave partial execution,
+as with ordinary stepping. Timeout is checked between observations/operations.
+
+Returns `matched`, `reason` (`matched`, `operation_limit`, `timeout`), `operations`
+and final `observations`. Exhaustion is not a successful check. `observe` does not
+advance and returns reason `observed`. A memory query can additionally supply
+`indirect: {"pointer_address":123,"base":256,"offset":3}` to read at
+base + unsigned byte read at pointer_address + offset, with checked addition.
+It uses the query's address-space/context params for the pointer read too; this is
+explicit address arithmetic, not an inferred CPU stack or pointer format.

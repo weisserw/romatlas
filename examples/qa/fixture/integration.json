@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "adapter": "adapter.py",
+  "suites": {
+    "all": [
+      "movement",
+      "pause"
+    ]
+  },
+  "tests": [
+    {
+      "id": "movement",
+      "expectations": {
+        "original-fidelity": {
+          "description": "Original fixture movement is one pixel per tick; pause prevents movement.",
+          "source": "game.py"
+        },
+        "double-speed": {
+          "description": "Deliberate modification: two pixels per tick. Pause still prevents movement.",
+          "source": "game.py"
+        }
+      }
+    },
+    {
+      "id": "pause",
+      "expectations": {
+        "original-fidelity": {
+          "description": "Original fixture movement is one pixel per tick; pause prevents movement.",
+          "source": "game.py"
+        },
+        "double-speed": {
+          "description": "Deliberate modification: two pixels per tick. Pause still prevents movement.",
+          "source": "game.py"
+        }
+      }
+    }
+  ]
+}

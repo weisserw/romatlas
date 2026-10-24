@@ -36,6 +36,47 @@ struct Checkpoint {
     frame_sha256: String,
     audio_sha256: String,
 }
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct StateCondition {
+    pointer: String,
+    value: Value,
+    #[serde(default = "equal_operator")]
+    op: String,
+}
+fn equal_operator() -> String {
+    "eq".into()
+}
+fn state_matches(state: &Value, conditions: &[StateCondition]) -> Result<bool> {
+    let mut matched = true;
+    for condition in conditions {
+        let actual = state.pointer(&condition.pointer).ok_or_else(|| {
+            anyhow::anyhow!("missing semantic observation: {}", condition.pointer)
+        })?;
+        let result = match condition.op.as_str() {
+            "eq" => actual == &condition.value,
+            "ne" => actual != &condition.value,
+            "lt" | "le" | "gt" | "ge" => {
+                let a = actual
+                    .as_f64()
+                    .ok_or_else(|| anyhow::anyhow!("numeric observation required"))?;
+                let b = condition
+                    .value
+                    .as_f64()
+                    .ok_or_else(|| anyhow::anyhow!("numeric expectation required"))?;
+                match condition.op.as_str() {
+                    "lt" => a < b,
+                    "le" => a <= b,
+                    "gt" => a > b,
+                    _ => a >= b,
+                }
+            }
+            _ => anyhow::bail!("unknown condition operator"),
+        };
+        matched &= result;
+    }
+    Ok(matched)
+}
 struct Machine<G> {
     game: G,
     frame: Frame,
@@ -199,7 +240,7 @@ pub fn serve_io<G: Game>(
             match method {
                 "api.describe" => Ok(
                     json!({"protocol":"romatlas-native-debug-v1","identity":identity,"actions":actions,
-                    "methods":["api.describe","port.state","port.input","port.advance","port.framebuffer","port.reset","port.audio","port.audio.clear","port.checkpoint.export","port.checkpoint.import"],
+                    "methods":["api.describe","port.state","port.input","port.advance","port.run_until","port.framebuffer","port.reset","port.audio","port.audio.clear","port.checkpoint.export","port.checkpoint.import"],
                     "checkpoint":"deterministic_replay","audio_rate":48000,"max_ticks":MAX_TICKS,"state_edits":false}),
                 ),
                 "port.state" => Ok(
@@ -214,7 +255,20 @@ pub fn serve_io<G: Game>(
                     machine.held[player as usize] = held;
                     Ok(json!({"ok":true}))
                 }
-                "port.advance" => {
+                "port.advance" | "port.run_until" => {
+                    let conditional = method == "port.run_until";
+                    let predicates: Vec<StateCondition> = if conditional {
+                        serde_json::from_value(p.get("conditions").cloned().unwrap_or(Value::Null))?
+                    } else {
+                        Vec::new()
+                    };
+                    ensure!(
+                        !conditional || (1..=32).contains(&predicates.len()),
+                        "run_until requires 1..32 conditions"
+                    );
+                    if conditional {
+                        state_matches(&observe(&machine.game), &predicates)?;
+                    }
                     ensure!(machine.healthy, "reset required after invalid game output");
                     let count = number("ticks", 1)?;
                     let timeout = number("timeout_ms", 1000)?;
@@ -229,14 +283,35 @@ pub fn serve_io<G: Game>(
                     );
                     let start = Instant::now();
                     let mut done = 0;
-                    while done < count && start.elapsed().as_millis() < u128::from(timeout) {
+                    let mut matched =
+                        conditional && state_matches(&observe(&machine.game), &predicates)?;
+                    while !matched
+                        && done < count
+                        && start.elapsed().as_millis() < u128::from(timeout)
+                    {
                         machine.step()?;
                         done += 1;
+                        if conditional {
+                            match state_matches(&observe(&machine.game), &predicates) {
+                                Ok(value) => matched = value,
+                                Err(error) => {
+                                    machine.record(done);
+                                    return Err(error);
+                                }
+                            }
+                        }
                     }
                     machine.record(done);
-                    Ok(
-                        json!({"ticks":machine.ticks,"completed":done,"remaining":count-done,"complete":done==count,"game":observe(&machine.game)}),
-                    )
+                    if conditional {
+                        Ok(
+                            json!({"ticks":machine.ticks,"completed":done,"remaining":count-done,"matched":matched,
+                            "reason":if matched {"matched"} else if done==count {"tick_limit"} else {"timeout"},"game":observe(&machine.game)}),
+                        )
+                    } else {
+                        Ok(
+                            json!({"ticks":machine.ticks,"completed":done,"remaining":count-done,"complete":done==count,"game":observe(&machine.game)}),
+                        )
+                    }
                 }
                 "port.framebuffer" => {
                     let hash = machine.render();
@@ -461,6 +536,40 @@ mod tests {
             .lines()
             .map(|s| serde_json::from_str(s).unwrap())
             .collect()
+    }
+    #[test]
+    fn conditional_steps_stop_exactly_and_replay() {
+        let replies = run(vec![
+            ("port.input", json!({"actions":["right"]})),
+            (
+                "port.run_until",
+                json!({"ticks":20,"conditions":[{"pointer":"/position","value":3,"op":"ge"}]}),
+            ),
+            ("port.checkpoint.export", json!({})),
+            (
+                "port.run_until",
+                json!({"ticks":2,"conditions":[{"pointer":"/position","value":99}]}),
+            ),
+            (
+                "port.run_until",
+                json!({"ticks":2,"conditions":[{"pointer":"/missing","value":0}]}),
+            ),
+            ("port.state", json!({})),
+        ]);
+        assert_eq!(replies[1]["result"]["completed"], 3);
+        assert_eq!(replies[1]["result"]["reason"], "matched");
+        assert_eq!(replies[3]["result"]["reason"], "tick_limit");
+        assert!(replies[4].get("error").is_some());
+        assert_eq!(replies[5]["result"]["game"]["position"], 5);
+        let replay = run(vec![
+            (
+                "port.checkpoint.import",
+                json!({"checkpoint":replies[2]["result"]}),
+            ),
+            ("port.state", json!({})),
+        ]);
+        assert_eq!(replay[1]["result"]["game"]["position"], 3);
+        assert_eq!(replay[1]["result"]["game"]["presses"], 1);
     }
     #[test]
     fn replay_preserves_input_edges_audio_and_rejects_transactionally() {

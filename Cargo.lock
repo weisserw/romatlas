@@ -870,6 +870,7 @@ name = "romatlas-agent"
 version = "0.1.0"
 dependencies = [
  "romatlas-core",
+ "serde",
  "serde_json",
 ]
 
