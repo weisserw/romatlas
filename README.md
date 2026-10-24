@@ -1,7 +1,10 @@
 # ROMAtlas
 
-This project contains tools, libraries and prompts for custom AI agents which can decompile and recompile games from 8- and 16-bit cartridge-based consoles. The main implementation language
-is Rust, with some scripts written in Python. The overall goal is to enable users to go from a ROM file to a finished port in modern Rust code with little intervention.
+This project contains tools, libraries and prompts for custom AI agents which can help them disassemble, port and update
+ games from 8- and 16-bit cartridge-based consoles. The overall goal of this project is game preservation and bringing new
+life to abandoned games. This repository does not contain any copyrighted ROM files; users must provide their own ROMs to use it.
+
+The main implementation language is Rust, with some scripts written in Python. Using the systems in this repo, users can in many cases go from a ROM file to a finished port in modern Rust code with little manual intervention.
 
 The current consoles supported are:
 
@@ -24,7 +27,7 @@ The project consists of three general parts:
 
 * Customized emulators for each console which are designed to be driven directly by an agent via a persistent JSON-RPC server. Agents can run games, send button inputs, view the screen and read and write internal RAM / CPU states, etc.
 * A runtime library which implements utility functions useful for porting games from this era (e.g. implementing timing by waiting for VSync), as well as functions specific to each platform (e.g. Mode 7 graphics on SNES)
-* A set of scripts which create working directories pre-populated with prompts that direct agents to disassemble or port a game in goal mode, using tactics that tend to produce good results out of the box.
+* A set of scripts which create working directories pre-populated with prompts that direct agents using "goal mode" to disassemble or port a game, using tactics and instructions that tend to produce good results out of the box.
 
 ## Why?
 
@@ -34,7 +37,7 @@ technical details, the next generation of these efforts will likely involve auto
 This project has a particular focus: game consoles which were originally programmed in assembly language, rather than a higher-level language like C. These platforms pose an interesting challenge for both decompilation and recompilation. For the former, even though disassembly is a simpler process than decompilation, it requires that we locate the areas of the ROM cartridge that consist of actual assembly code as opposed to data. Since game developers in the 80s and early 90s did not have standardized file formats and layouts, and were desperate to save space in expensive ROM chips, they often
 packed code and data together in ways which are difficult to reverse engineer.
 
-Once successfully disassembled, an assembly-based game can be easily modified by an agent in place ("rom hacking"), or can be read and understood to find, e.g., cheats, easter eggs, or glitches for speed running. But recompiling such a game as a straight assembly language translation will always have the disadvantage that assembly is not a very good platform in terms of maintainability or flexibility. Fixing bugs and adding enhancements and new features will be difficult as long as the game remains in its original form.
+Once successfully disassembled, an assembly-based game can be easily modified by an agent in place ("rom hacking"), or can be read and understood to find, e.g., cheats, easter eggs, or glitches for speed running. This makes a successfully disassembled game a valuable artifact on its own. But recompiling such a game as a straight assembly language translation will always have the disadvantage that assembly is not a very good platform in terms of maintainability or flexibility. Fixing bugs and adding enhancements and new features will be difficult as long as the game remains in its original form.
 
 That's why this project takes an unusual step: once a game is disassembled, we recompile it not to an assembly language equivalent, but to a modern, high-level language (Rust). While this will inevitably lose some fidelity compared to the original, it means that these games which would otherwise remain ossified forever can now be given new life in surprising and interesting ways, because their code is now truly platform-independent, easy to reason about and easy to extend and modify.
 
@@ -82,7 +85,21 @@ Archiving a game copies its disassembly artifacts into the `atlas/` directory wh
 
 The `scripts/port.py` script initializes a workspace for porting an archived game (or just tell your agent, "initialize the port for X"). Specify the output directory with `python3 scripts/port.py prepare /path/to/archive --rom /path/to/game.gb --out /path/to/rom-ports/game`. Inside this directory, run an agent and type `/goal Read goal.md` to begin the porting process to Rust.
 
-Porting is a *much* longer and more intensive process than disassembling; don't undertake a port unless you have the motivation to spend a lot of agent resources and time. Porting works on a five-stage process: the agent analyzes the source code and builds a map of low-level game behaviors, it builds a skeleton Rust game, then it creates unit tests for all behaviors to help ensure the final code is as true to the original as possible. Only then does it actually write the code for the game, using the unit tests as a guide, followed by two full cycles of QA where it compares the finished game to its original emulated version.
+Porting is a *much* longer and more intensive process than disassembling; don't undertake a port unless you have the motivation to spend a lot of agent resources and time. Porting works on a five-stage process: the agent analyzes the source code and builds a map of low-level game behaviors, it builds a skeleton Rust game, then it creates unit tests for all behaviors to help ensure the final code is as true to the original as possible. Only then does it actually write the code for the game, using the unit tests as a guide, followed by a process QA where it plays the finished game and looks for bugs or deviations from the source material.
+
+### Modernization
+
+After the initial porting process is complete, the game should be working fairly well while running entirely in Rust with no external dependencies except for the original ROM. However, the Rust code itself will not be very idiomatic / modern, because games from the era used highly specific algorithms to wring as much performance out of their platforms as possible. For this reason, each porting workspace contains a prompt that tells an agent to look for ways to modernize the source code of a game, replacing, e.g., highly optimized sprite routines with simple rasters.
+
+Unlike the other processes, modernization has no defined endpoint, because the quality of the source code is a subjective
+judgment. Users should run a prompt like this:
+
+`Run one modernization iteration following modernize/goal.md`
+
+view the result, and decide whether to continue with further iterations or not.
+
+Once a port is modernized, the next step would be to publish it in a separate repository and/or continue to make changes
+to it to add features and enhancements as the maintainer sees fit.
 
 ### Running a Port in The Browser
 
