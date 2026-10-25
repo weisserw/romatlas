@@ -541,14 +541,26 @@ launches an agent or edits gameplay and will not overwrite an existing baseline.
 Keep a separate reproducible local faithful source/build snapshot; hashes alone
 are not a backup. Candidates/change records remain empty until explicitly invoked.
 
-The beta selects one bounded source-backed simplification, identifies observable
-rules and affected integration tests, fills coverage gaps, implements it and compares
+Each beta iteration presents a menu of up to 8 modernization targets and up to 2
+refactoring targets, grounded in code inspection. Each entry rates implementation
+difficulty and codebase impact with reasons; entries rank by impact descending,
+then difficulty ascending, with separate ranks for both dimensions. The user accepts
+all or selects target IDs before implementation begins. Later iterations require
+a fresh menu and selection.
+Modernization targets are bounded conversions from hardware-shaped machinery to
+idiomatic native game state, rules or actions. Helper extraction and deduplication
+may be offered as refactoring targets, but alone are not modernization.
+Modernization candidates explain the before/after game model, removed
+machinery and encodings retained at asset/runtime boundaries; selection prioritizes
+substantive design improvement rather than existing test coverage or easy equivalence.
+The agent identifies observable rules and affected integration tests, fills coverage
+gaps, implements the selected targets and compares
 fresh results against both the original and faithful baseline. Changes to opaque
 hardware plumbing must retain relevant timing, ordering, layering, arithmetic and
 intentional effects. Preserve semantic debug interfaces where practical. Use targeted
 regressions, broadening based on dependency impact rather than automatically repeating
 two complete QA passes per edit. Keep original-fidelity expectations; feature changes
 and deliberately divergent behavior require separate authorization/contracts.
-Retain or revert the candidate with evidence, update records and stop after the
-requested scope (one candidate by default). There is no mandated whole-game rewrite
+Retain or revert each selected target with evidence, update records and stop after
+the selected scope. There is no mandated whole-game rewrite
 or claim of modernizing every subsystem. Preparation does not start a pilot.

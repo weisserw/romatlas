@@ -34,7 +34,7 @@ baseline_recorded with its baseline path and keep pilot_started false until the
 explicitly authorized candidate begins. Existing QA records continue to describe the
 faithful baseline; they do not automatically certify a changed build.
 
-## Select one bounded improvement
+## Present a ranked target menu for each iteration
 
 Populate candidates.json only when this workflow is explicitly invoked after
 baseline capture. For each candidate record its ID, files/subsystem, current machinery, proposed
@@ -43,26 +43,93 @@ observable rules to preserve, callers/state owners/update ordering, test IDs and
 coverage gaps, coupling/risks and why the scope is bounded. Inspect the code before
 ranking candidates; no subsystem is presumed safe from its name alone.
 
-Prefer improvements that remove proven hardware bookkeeping or duplication and
-make rules easier to understand. A direct drawing call can replace upload machinery
-only when layering, coordinates, intentional flashing/palette/raster effects and
-relevant timing still agree. Preserve wrapping/signed arithmetic, ordering and
-historical quirks where observable behavior depends on them. Collision, movement,
-scheduling or sound drivers may be strongly coupled; defer them when the semantic
-contract is incomplete. Do not invent a generic engine or emulated RAM/CPU layer.
-Renaming numeric fields alone is not proof that the architecture improved.
+Per iteration, identify up to 8 substantive modernization targets and up to 2
+refactoring targets. These are maximums, not quotas: present fewer when evidence
+does not support more. Give stable IDs (M1-M8 and R1-R2) and clearly distinguish
+the two categories. Refactoring targets may include useful helper extraction,
+deduplication, naming or organization changes without claiming a game-model conversion.
 
-Choose one candidate within the user's scope. Establish targeted original-fidelity
+Present the targets to the user as a concise menu before implementing any of them.
+For each entry include its ID, category, scope, proposed change, expected benefit,
+implementation difficulty (low/medium/high) and codebase impact (low/medium/high),
+with brief reasons for both ratings. Impact means the benefit and reach of the
+change; state behavioral risk separately. Include dependencies, overlaps and
+coverage gaps that affect selection. Rank entries within each category by impact
+(highest first), then difficulty (lowest first), and provide separate difficulty
+and impact ranks so both dimensions are visible. Ground rankings in inspected code;
+do not choose randomly or select a target for implementation on the user's behalf.
+
+Invite the user to accept all presented targets or choose particular IDs. Record
+the menu, rankings and user selection in candidates.json. Wait for that selection
+before editing implementation or tests for the proposed targets; invoking the
+workflow authorizes investigation and presentation, not automatic implementation.
+Do not silently add unselected targets. If a selected target needs an unselected
+dependency, explain it and obtain a revised selection before implementing it.
+
+The objective is idiomatic native game code: express game rules, state and actions
+directly instead of preserving the original machine's representation and execution
+machinery. Fidelity constrains observable behavior; it does not require retaining
+register-like fields, packed display values, upload commands, source table encodings
+or continuation machinery internally. Preserve any of these only where their
+observable consequences or an external boundary require them.
+
+Prioritize bounded changes to representation, state ownership or control flow that
+remove hardware-shaped machinery from gameplay. Examples to investigate include:
+
+- Represent background-region changes directly, replacing upload-buffer construction
+  and chunk bookkeeping where they have no observable effect.
+- Store health, money and other game quantities in meaningful native types, with
+  packed digits, tile codes and other display encoding at the presentation boundary.
+- Describe scenes and actor behavior with native structures and explicit actions;
+  decode ROM table formats at the asset boundary rather than throughout gameplay.
+- Replace source-shaped continuations and implicit phase flags with explicit game
+  states and transitions while retaining observable waits and update order.
+
+These are investigation directions, not prescribed rewrites. Prefer the smallest
+coherent subsystem that can complete such a conversion, including its affected
+callers and state owner. A bounded candidate may cross files; it need not be a tiny
+patch. Do not invent a generic engine, add abstraction layers without removing old
+machinery, or introduce an emulated RAM/CPU layer.
+
+Helper extraction, deduplication, renaming, moving code and cosmetic Rust idioms are
+supporting work, not sufficient modernization targets on their own. A shared helper
+that leaves the same hardware-shaped model in every caller does not meet this goal.
+Do not rank candidates mainly by ease of proving equivalence or existing test
+coverage. Investigate promising deeper conversions and fill their contract/coverage
+gaps within a bounded effort. Coupling in collision, movement, scheduling or sound
+calls for investigation; defer a candidate when a specific unresolved dependency
+prevents a sound conversion, recording that dependency and the next useful probe.
+Do not repeatedly substitute easy helper extractions for that investigation.
+
+For each ranked modernization candidate, explain the before/after game model, which low-level
+state or machinery disappears, what remains at asset/runtime boundaries and why,
+and how gameplay code becomes easier to understand or change. Identify the strongest
+plausible conversion considered and give concrete reasons if selecting another.
+If no substantive candidate is currently supportable, report the investigation and
+blockers as incomplete rather than counting routine cleanup as modernization.
+
+A direct drawing call can replace upload machinery only when layering, coordinates,
+intentional flashing/palette/raster effects and relevant timing still agree.
+Preserve wrapping/signed arithmetic, ordering, shared-buffer effects, intentional
+waits, audio interactions and historical quirks where observable behavior depends
+on them. Establish which details matter from evidence rather than assuming every
+hardware operation is either essential or disposable.
+
+For each user-selected target, establish targeted original-fidelity
 integration tests and useful unit regressions first; independently verify any
 missing expectations against source and the faithful reference. Scenario discovery
 uses persistent branching, recorded recipes and validated setup caches. Missing
 observations/setup are tooling gaps, not permission to guess game rules.
 Record the starting source/build identity and a reversible checkpoint for edits.
-Do not mix unrelated candidates or intentional gameplay enhancements into the patch.
+Keep each target's edits and evidence attributable, including when several targets
+are selected. Do not mix intentional gameplay enhancements into the patch.
 
 ## Implement, compare and retain or revert
 
-Replace one bounded piece with the proposed abstraction. Keep public semantic debug
+Implement the selected targets in dependency order, keeping each bounded and
+individually reviewable. For modernization, replace the selected machinery with
+the proposed abstraction; for refactoring, apply the stated structural cleanup.
+Keep public semantic debug
 observations stable where practical so tests survive internal layout changes.
 Update tests that assert obsolete implementation detail only with source-backed
 reasons; preserve their behavioral coverage and original expectations. Never change
@@ -87,13 +154,19 @@ when no sound equivalence claim is available; do not broaden the rewrite to esca
 a difficult result. Existing source uncertainty remains explicit.
 
 Update changes.json and status.json with baseline/candidate/source/build identities,
-actual edits and simplification benefit, test IDs/commands/results/evidence,
+actual edits, target category, before/after game model or refactoring structure,
+removed machinery and remaining boundary
+encodings, test IDs/commands/results/evidence,
 source-grounded contract corrections, remaining uncertainty and retained/reverted
 outcome. Update architecture/behavior links and user documentation where affected.
-Keep scope distinct from runtime performance optimization or feature development.
+Describe selected refactoring honestly as refactoring; passing regressions
+alone does not demonstrate modernization. Keep scope distinct from runtime
+performance optimization or feature development.
 
-Default to one candidate, then report and stop; further iterations need requested
-scope. Do not mark the whole game modernized or invent a percentage-complete goal.
+Complete the user's selected targets, report each outcome and stop for that
+iteration. Each further requested iteration starts with a fresh ranked menu and
+user selection; prior approval does not authorize implementing new targets.
+Do not mark the whole game modernized or invent a percentage-complete goal.
 No automatic commits, publication, deployments or migration of other games are
 part of this workflow. A user-requested modernization commit must remain separate
 from QA tooling and faithful-port fixes.
