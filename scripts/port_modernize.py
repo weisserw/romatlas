@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Install optional beta instructions and capture its source baseline; no agents."""
+"""Install optional modernization instructions and capture its source baseline; no agents."""
 import argparse
 import hashlib
 import json
@@ -94,7 +94,7 @@ def baseline(path):
     if (work/'modernize').is_symlink():
         raise ValueError('modernize directory must not be a symlink')
     if not (work/'modernize/goal.md').is_file():
-        raise ValueError('install the beta workflow first')
+        raise ValueError('install the modernization workflow first')
     record = dict(version=1,status='baseline_recorded',qa=gate,source=gate['source'],
                   semantic_correctness_assessed=False,pilot_started=False)
     # Exclusive creation: neither changed code nor a repeated command can replace it.

@@ -517,11 +517,11 @@ legacy cycle commands for existing workspaces. Preparation/installation never
 launches agents. The transport exposes --debug-stdio with game-owned semantic
 inspection supplied by the port; see debug/api.md in completed pipeline workspaces.
 
-## Optional modernization beta
+## Optional modernization
 
 New preparations install `modernize/goal.md` and empty candidate/change/status
 records. This is an optional separately invoked workflow, not a sixth required port stage.
-Installation, port completion and reading about the beta do not launch a pilot.
+Installation, port completion and reading about the workflow do not launch a pilot.
 Existing workspaces can install it without starting QA or changing game code:
 
 ```sh
@@ -541,7 +541,7 @@ launches an agent or edits gameplay and will not overwrite an existing baseline.
 Keep a separate reproducible local faithful source/build snapshot; hashes alone
 are not a backup. Candidates/change records remain empty until explicitly invoked.
 
-Each beta iteration presents a menu of up to 8 modernization targets and up to 2
+Each modernization iteration presents a menu of up to 8 modernization targets and up to 2
 refactoring targets, grounded in code inspection. Each entry rates implementation
 difficulty and codebase impact with reasons; entries rank by impact descending,
 then difficulty ascending, with separate ranks for both dimensions. The user accepts
@@ -550,6 +550,12 @@ a fresh menu and selection.
 Modernization targets are bounded conversions from hardware-shaped machinery to
 idiomatic native game state, rules or actions. Helper extraction and deduplication
 may be offered as refactoring targets, but alone are not modernization.
+Refactoring improves the structure and maintainability of the existing design
+while preserving its game model and observable behavior. Investigate duplicated
+rules, mixed responsibilities, unclear interfaces and tangled control flow; each
+candidate must explain the concrete maintenance problem, before/after structure
+and benefit. Both categories preserve gameplay, and supporting refactoring within
+a modernization target must not be counted twice in the menu.
 Modernization candidates explain the before/after game model, removed
 machinery and encodings retained at asset/runtime boundaries; selection prioritizes
 substantive design improvement rather than existing test coverage or easy equivalence.

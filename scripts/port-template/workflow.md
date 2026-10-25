@@ -60,9 +60,9 @@ semantic truth. No third traversal or repeated passing checks for confidence.
 Device behavior unavailable on this server remains explicitly untested.
 
 
-## Optional post-QA modernization beta
+## Optional post-QA modernization
 
-Preparation also installs modernize/goal.md and empty beta records. They do not
+Preparation also installs modernize/goal.md and empty modernization records. They do not
 start a sixth stage, alter completion criteria or authorize a pilot. Finish the
 short pipeline QA and stop normally. Only a separate later
 user request can invoke modernization; full-game QA is not a prerequisite.

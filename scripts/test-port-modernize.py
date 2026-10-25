@@ -1,4 +1,4 @@
-"""Beta installation/baseline contracts; synthetic records are not gameplay QA."""
+"""Modernization installation/baseline contracts; synthetic records are not gameplay QA."""
 import hashlib
 import json
 from pathlib import Path

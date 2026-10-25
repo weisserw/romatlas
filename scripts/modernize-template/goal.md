@@ -1,4 +1,4 @@
-# Optional modernization beta
+# Optional modernization
 
 Preparation installs this workflow only. It neither starts an agent nor authorizes
 a pilot, candidate investigation or gameplay/code changes. This is not a sixth
@@ -37,8 +37,8 @@ faithful baseline; they do not automatically certify a changed build.
 ## Present a ranked target menu for each iteration
 
 Populate candidates.json only when this workflow is explicitly invoked after
-baseline capture. For each candidate record its ID, files/subsystem, current machinery, proposed
-game-level abstraction, concrete clarity/flexibility benefit, source references,
+baseline capture. For each candidate record its ID, files/subsystem, current design,
+proposed game-level abstraction or structural refactoring, concrete clarity/flexibility benefit, source references,
 observable rules to preserve, callers/state owners/update ordering, test IDs and
 coverage gaps, coupling/risks and why the scope is bounded. Inspect the code before
 ranking candidates; no subsystem is presumed safe from its name alone.
@@ -46,8 +46,35 @@ ranking candidates; no subsystem is presumed safe from its name alone.
 Per iteration, identify up to 8 substantive modernization targets and up to 2
 refactoring targets. These are maximums, not quotas: present fewer when evidence
 does not support more. Give stable IDs (M1-M8 and R1-R2) and clearly distinguish
-the two categories. Refactoring targets may include useful helper extraction,
-deduplication, naming or organization changes without claiming a game-model conversion.
+the two categories.
+
+In this workflow, modernization replaces hardware-shaped representations or
+execution machinery with native game concepts. Refactoring improves the structure
+and maintainability of the existing design while preserving its game model and
+observable behavior. Both preserve gameplay; classify a target by the design change
+it delivers, not its size or difficulty. A modernization may include supporting
+refactoring, but do not list that same work twice in the menu.
+
+Actively investigate refactoring opportunities with concrete maintenance costs:
+
+- Consolidate duplicated rules or calculations that must currently be updated in
+  several places, after verifying that their semantics really agree.
+- Split functions or modules with mixed responsibilities into cohesive units with
+  explicit inputs and dependencies, preserving state ownership and update order.
+- Clarify misleading names, interfaces or repeated magic values where they obscure
+  an established concept or invariant; group related changes around a specific
+  comprehension problem rather than proposing a broad naming sweep.
+- Simplify tangled branching or repeated error handling within the existing game
+  model, preserving side effects, arithmetic and observable sequencing.
+
+For each refactoring candidate, identify the concrete code smell and affected
+callers, show the proposed before/after structure, and explain how it reduces
+duplication, coupling or the effort required for a likely future change. State
+which model, invariants and behavior remain intact and how they will be checked.
+Do not propose formatting-only churn, speculative frameworks or extra indirection
+without a demonstrated maintenance benefit. Refactoring targets are independently
+selectable work, not merely leftovers from modernization; neither category has to
+fill its quota.
 
 Present the targets to the user as a concise menu before implementing any of them.
 For each entry include its ID, category, scope, proposed change, expected benefit,
@@ -66,7 +93,7 @@ workflow authorizes investigation and presentation, not automatic implementation
 Do not silently add unselected targets. If a selected target needs an unselected
 dependency, explain it and obtain a revised selection before implementing it.
 
-The objective is idiomatic native game code: express game rules, state and actions
+The modernization objective is idiomatic native game code: express game rules, state and actions
 directly instead of preserving the original machine's representation and execution
 machinery. Fidelity constrains observable behavior; it does not require retaining
 register-like fields, packed display values, upload commands, source table encodings
@@ -135,7 +162,7 @@ Update tests that assert obsolete implementation detail only with source-backed
 reasons; preserve their behavioral coverage and original expectations. Never change
 an expected value merely to make the new code pass. Intentional divergence requires
 a separate explicit user request and documented variant contract, outside this
-fidelity-preserving beta iteration; retain unaffected regressions in either case.
+fidelity-preserving modernization iteration; retain unaffected regressions in either case.
 
 Run targeted fresh integration scenarios against the new build, compare relevant
 original-game and faithful-baseline observations, and run affected unit/build/static
