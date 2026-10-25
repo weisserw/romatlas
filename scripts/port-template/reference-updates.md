@@ -4,7 +4,7 @@ The frozen archive is a verified starting point, not a claim that every byte or
 comment is understood. Keep reference/ unchanged. Implementation completion uses
 source-informed gameplay equivalents and source-backed unit contracts. Full
 classification and source-proof exhaustion remain outside that gate; final
-two-pass QA owns runtime comparisons. Follow
+short initial QA owns runtime comparisons. Follow
 prompts/common.md and the active stage's boundaries throughout this procedure.
 
 ## Assess uncertainty as the port develops
@@ -48,7 +48,7 @@ help implementation. Do not create reference revisions to prove the native port
 correct or reclassify the whole ROM. Implementation assumptions may remain in
 port records without rewriting the reference. Debugger use needs a specific
 unresolved source question, a bounded experiment and a stopping condition;
-whole-game native/emulator comparisons belong to final QA rather than this
+short initial native/emulator comparisons belong to final QA rather than this
 reference-correction procedure. QA may use this procedure for supported repairs.
 
 1. Run `python3 run.py reference-init` once. It creates research/working/source/,

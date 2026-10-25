@@ -11,7 +11,7 @@ evidence. A byte-identical revision does not prove its interpretation or the
 native gameplay equivalent correct. Report missing implementations and weak
 exclusions. An implemented, documented reasonable assumption does not require
 runtime confirmation. Complete original classification is not a port gate; the
-final QA stage owns whole-game runtime comparisons. The toolkit directory is in
+final QA stage owns short initial runtime comparisons. The toolkit directory is in
 workspace.json. Compare
 its current files against review/toolkit-before/ and the hashes/status/HEAD in
 review/toolkit-before.json. That snapshot includes tracked and nonignored

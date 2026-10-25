@@ -107,7 +107,7 @@ with tempfile.TemporaryDirectory(prefix="romatlas-port-") as temporary:
     assert "--include-original-fidelity-sanity" in debug_goal
     for target in re.findall(r"\]\(([^)]+)\)", debug_goal):
         assert (work / "debug" / target).exists(), target
-    assert json.loads((work / "debug/acceptance.json").read_text())["required_passes"] == 2
+    assert json.loads((work / "debug/acceptance.json").read_text())["required_passes"] == 1
     assert json.loads((work / "debug/plan.json").read_text())["status"] == "planning"
     assert json.loads((work / "debug/qa.json").read_text())["status"] == "not_started"
     assert "Read debug/goal.md." in (work / "README.md").read_text()
@@ -171,10 +171,10 @@ with tempfile.TemporaryDirectory(prefix="romatlas-port-") as temporary:
         assert required in contract_text, required
     assert "native cargo test" in contract_text and "game implementation" in contract_text
     assert "all unit tests pass" in prompt
-    assert "two fresh" in goal and "per-area" in (work / "progress.md").read_text()
-    assert "debug/scenarios/" in debug_goal and "same scenario script" in debug_goal
-    assert "semantic starting preconditions" in debug_goal
-    assert "execute every check in each pass afresh" in debug_goal
+    assert "initial exact-frame comparisons" in goal and "per-area" in (work / "progress.md").read_text()
+    assert "exact frame comparisons" in debug_goal
+    assert "No full-game QA passes" in debug_goal
+    assert "passes number 1" in debug_goal
     assert not (work / "smoke-test.md").exists()
     for path in ["goal.md", "workflow.md", "README.md", "BUILDING.md", "differences.md",
                  "library-changes.md", "prompts/start.md", "prompts/review.md"]:

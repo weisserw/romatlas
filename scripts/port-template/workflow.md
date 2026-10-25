@@ -31,15 +31,11 @@ unavailable, preserve work and report the concrete tooling blocker.
    Complete ledger/uncertainty accounting, documentation and the bounded
    maintainability pass. Require python3 run.py check and python3 run.py audit
    to pass before QA. A scaffold, partial game or stub is not completion.
-5. **QA — debug/goal.md.** Use the installed two-pass whole-game acceptance
-   contract. Plan source-backed checks and create/extend reusable scenario scripts
-   that restore validated starting states, apply inputs and observe/assert relevant
-   behavior through native gameplay scenarios and selected presentation review.
-   Use the original emulator only for separate initial sanity checks or a named
-   uncertainty/defect; do not synchronize both games throughout gameplay QA. Execute each pass
-   afresh, reusing scripts/checkpoints. Repair failures at the current check with
-   targeted regressions; never restart a pass or return to earlier pipeline stages.
-   Require the QA record audit and final implementation checks after repairs.
+5. **QA — debug/goal.md.** Execute only the short smoke test and initial
+   exact-frame comparisons against the original. Use bounded representative
+   renderer/scrolling/animation/audio checks and reusable scripts with validated
+   starting states. Repair failed/affected checks in place. Require the QA record
+   audit and final implementation checks after repairs. No whole-game QA passes.
 
 Read prompts/common.md for the shared contract. Record each stage's status,
 subagent/area handoffs, artifact paths, blockers and exact resumption point in
@@ -55,7 +51,7 @@ repair code/contracts/scenarios in place with source-backed reasons, retaining
 check IDs and valid results. Do not relaunch planning/development/QA cycles,
 reset records or invoke begin-cycle for a newly prepared pipeline workspace.
 
-Stop when whole-game behavior is implemented, both QA passes succeed, both
+Stop when whole-game behavior is implemented, the short smoke/comparison suite succeeds, both
 administrative audits pass and final handoffs are written. Verify behaviors.md
 has no missing required areas/contracts/implementations; ledger.json and
 uncertainties.json are complete; README.md, BUILDING.md, differences.md and
@@ -68,7 +64,8 @@ Device behavior unavailable on this server remains explicitly untested.
 
 Preparation also installs modernize/goal.md and empty beta records. They do not
 start a sixth stage, alter completion criteria or authorize a pilot. Finish the
-existing full two-pass whole-game QA and stop normally. Only a separate later
+short pipeline QA and stop normally. The modernization beta still requires
+separately requested full two-pass whole-game QA. Only a separate later
 user request can invoke that workflow, after its full-QA prerequisite is met.
 A partial pass or successful individual scenario is insufficient. Keep any later
 modernization work in a separate commit from QA tooling and faithful-port fixes.

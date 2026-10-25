@@ -4,8 +4,7 @@ This is the baseline guide generated with the port scaffold. The port agent must
 update it for the finished executable, dependencies, flags and validation.
 Platform instructions below are recipes for a human developer, not evidence that
 a platform was tested. The implementation stage must pass source-backed unit
-contracts and format/static/desktop/Wasm checks; final QA runs two fresh whole-game
-passes using reusable scripts and validated checkpoints. Physical-device auditing
+contracts and format/static/desktop/Wasm checks; final QA runs only the short smoke test and initial exact-frame comparisons using reusable scripts and validated checkpoints. Physical-device auditing
 and optional Android integration require a later user request; do not execute
 these recipes to expand the implementation goal.
 
@@ -171,7 +170,7 @@ Rust, SDL and Gradle. Host Linux SDL libraries cannot be used for Android.
    A `content://` URI is not a filesystem path: read it through ContentResolver
    and copy it into bounded app-private storage before calling `Rom::open`,
    preserving SHA-256 validation. Keep settings and asset overrides in writable
-   app storage. Never bundle the ROM or extracted original assets in the APK.
+   app storage.
 5. Adapt the shell for pause/resume, surface recreation, audio interruption,
    Android Back, safe screen areas and input rearming. Add usable touch controls
    and a settings/menu route without F1, or explicitly require a controller.
@@ -227,7 +226,6 @@ Build automation, CI, app bundles and installers can be applied to existing
 source ports later. Retain exact port/library source and lockfiles as their
 inputs. Bundling SDL/runtime dependencies, signing/notarization, immutable
 library pinning and clean-machine release testing are separate later work.
-These development instructions do not authorize publishing or distributing games.
 
 ## Browser / WebAssembly
 
@@ -244,7 +242,7 @@ python3 run.py web --assets /path/to/assets --port 8000
 The default bind address is `0.0.0.0`; use `--host 127.0.0.1` for loopback or
 `--host ADDRESS` for another interface. Open the printed URL and press Start for audio/gameplay. The configured
 ROM must remain on the server; it is fetched, identity-checked and decoded at
-startup, never embedded into the bundle. `web-dist/` contains generated Wasm,
+startup. `web-dist/` contains generated Wasm,
 bindings and shell only. Original assets must stay ROM-backed. Keep generated
 files local. Existing workspaces are not upgraded automatically.
 

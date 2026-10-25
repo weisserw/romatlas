@@ -365,9 +365,10 @@ Planning inventories all behavior with source references; separate per-area
 contract workers independently trace detailed source/call effects and write
 source-backed unit tests before implementation. Coding standards apply equally
 to tests and game logic. Implementation accounts for all source behavior with
-native equivalents, followed by two fresh whole-game QA passes using reusable
-scenario scripts and validated checkpoints. Repairs continue at the current check
-without restarting passes or the pipeline. Whole-game implementations, complete
+native equivalents, followed by a short smoke test and initial exact-frame comparisons using reusable
+scenario scripts and validated checkpoints. No whole-game QA passes are required
+by the porting pipeline. Repairs continue at the current check without restarting
+the pipeline. Whole-game implementations, complete
 accounting, passing tests/build checks, documentation and both administrative
 audits are required; audits do not prove gameplay truth. Missing code blocks
 completion. No line-by-line translation or complete original-ROM classification

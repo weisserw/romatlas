@@ -109,7 +109,7 @@ tracing only when needed to resolve uncertainty or identify a cause. Fix the cod
 and meaningful regression; do not turn every diagnostic byte/frame into permanent
 whole-game acceptance. Follow architecture/coding standards and relevant pinned
 Rust 1.90.0 locked checks after repairs. Never copy GPL emulator code into the MIT
-runtime, launch GUI/audio devices or download/commit commercial game assets.
+runtime or launch GUI/audio devices.
 
 Completion requires both gameplay passes, the applicable initial sanity record,
 resolved issues, selected presentation reviews and a report of tested scope and

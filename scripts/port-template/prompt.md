@@ -77,7 +77,7 @@ python3 run.py web, original battery saving and untested device/platform behavio
 Set ledger completion.status=complete and run python3 run.py audit; after it
 passes, stop this subprocess and hand off to QA. Record changed systems, contract
 results, debug schema and reproducible QA entry recipes in progress.md. Overall
-completion still requires two fresh whole-game QA passes. Do not mark missing
+completion still requires the short smoke test and initial exact-frame comparisons. Do not mark missing
 behavior implemented. Leave shared-library edits uncommitted for separate review.
 No check-in, publication or agent launch is authorized by this implementation
 prompt. Release packaging and dependency pinning remain later work.

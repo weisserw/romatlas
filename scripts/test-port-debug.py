@@ -38,6 +38,16 @@ class ContractTests(unittest.TestCase):
     def write(self, name, value):
         (self.work/'debug'/name).write_text(json.dumps(value)+'\n')
 
+    def test_pipeline_smoke_contract_requires_one_bounded_suite(self):
+        self.write('acceptance.json', port_debug.acceptance_contract(smoke_only=True))
+        self.qa['passes'] = self.qa['passes'][:1]
+        self.write('qa.json', self.qa)
+        self.assertEqual(port_debug.audit(self.work)['passes'], 1)
+        self.qa['passes'] = []
+        self.write('qa.json', self.qa)
+        with self.assertRaises(ValueError):
+            port_debug.audit(self.work)
+
     def test_complete_contract_and_installer_preserve_working_records(self):
         self.assertTrue(port_debug.audit(self.work)['ok'])
         before = (self.work/'debug/plan.json').read_bytes()

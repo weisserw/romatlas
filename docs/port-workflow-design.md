@@ -30,11 +30,10 @@ Invoking goal.md authorizes a fixed sequence of five subagent stages:
    comments, semantic debug observations and complete source accounting. Finish
    documentation, build/static checks and a bounded maintainability pass before
    the implementation audit and QA handoff.
-5. QA: derive the whole-game plan, write reusable scenario scripts and execute it
-   twice afresh. Scripts restore validated starting states, apply inputs, observe
-   relevant events/state and check source-backed expectations with original-ROM
-   emulator comparisons. Reuse them for diagnosis and repairs. Fix failures in
-   place without restarting a pass or relaunching earlier stages.
+5. QA: run only the short initial smoke test and selected exact-frame comparisons
+   against the original, including representative rendering/scrolling/animation/audio
+   checks. Retain reusable scripts and validated setup, repair affected checks in
+   place and audit one bounded suite execution. No whole-game QA passes follow.
 
 The naming/comment standards from the existing implementation prompt are retained
 verbatim in both generated contract and implementation prompts, with one owning
@@ -64,7 +63,7 @@ Every required QA pass executes its scenarios afresh; cached successes do not co
 
 Whole-game completion requires implemented behavior, complete behavior/uncertainty
 accounting, passing source-backed unit contracts, format/static/desktop/Wasm
-checks, documentation, two successful QA passes and both administrative audits.
+checks, documentation, the short smoke/comparison suite and both administrative audits.
 Audits validate records/builds, not semantic truth. Failures block advancement;
 targeted repairs retain unaffected results and pass position. Resource exhaustion
 leaves a resumable incomplete handoff. There is no third pass, restart rule,

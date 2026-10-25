@@ -1,8 +1,10 @@
 # Native port debugging control and workflow
 
 This guide supports the final QA stage of the fixed native-port pipeline and
-standalone QA. Both execute two fresh whole-game passes, repairing failures at
-the current check without restarting. Invoking goal.md authorizes its pipeline
+standalone QA. New pipeline workspaces use only the short smoke test and initial
+exact-frame comparisons specified in their debug/goal.md and version-5 acceptance
+contract. The whole-game two-pass instructions below apply to separately installed
+standalone QA and existing full-QA contracts. Invoking goal.md authorizes its pipeline
 subagents; preparing/installing instructions alone launches nothing. Read
 debug/acceptance.json, debug/plan.json and debug/qa.json on resume and retain progress.
 New pipeline workspaces do not use milestone cycles or begin-cycle. The toolkit

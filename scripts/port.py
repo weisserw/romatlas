@@ -27,13 +27,13 @@ GOAL = ("Port this entire archived game through the fixed five-stage subagent pi
         "starts one worker subagent per behavior area to independently trace source and write "
         "unit tests before game implementation. Read prompts/common.md and each stage prompt "
         "listed in workflow.md. Keep architecture.md, behaviors.md and progress.md current. "
-        "Final whole-game QA executes two fresh passes using reusable scenario scripts, "
+        "Final QA runs only a short smoke test and initial exact-frame comparisons, "
         "fixing failures in place without restarting. "
         "Finish BUILDING.md and the implementation/QA handoffs; stop when both audits pass.")
 RESUME = ("Preserve work; do not reinitialize. Read architecture.md, behaviors.md, progress.md, ledger.json, "
           "uncertainties.json, differences.md, library-changes.md, research/current.json if "
           "present, debug/acceptance.json, debug/plan.json and debug/qa.json. Resume the "
-          "active stage and blocking check before advancing; do not restart a QA pass.")
+          "active stage and blocking check before advancing; preserve valid QA results.")
 
 
 def git(*args):
@@ -247,8 +247,6 @@ selects the workflow; this file does not start or resume a goal.
 
 - Use Rust 1.90.0 and Cargo.lock. Do not launch desktop graphics on this
   headless server; compile desktop code without opening a window.
-- Never download or commit commercial ROMs or extracted assets. Keep ROMs,
-  restored source/assets, build products and generated comparisons local.
 - Preserve reference/, review/toolkit-before/, original ledger identities,
   deployment backups and unrelated existing changes. Keep QA records separate
   from implementation accounting and preserve superseded records.
@@ -269,8 +267,8 @@ See [BUILDING.md](BUILDING.md) for local macOS/Linux/Windows source builds, Andr
 transfer instructions. Adapt that guide for the finished port and tested facts.
 Read goal.md for the fixed skeleton, behavior planning, behavior contract,
 game implementation and QA pipeline. Each behavior area gets an independent
-source trace and unit tests before implementation. Final QA runs the whole-game
-plan twice using reusable scripts and validated checkpoints, repairing failures
+source trace and unit tests before implementation. Final QA runs a short smoke test and initial exact-frame comparisons
+using reusable scripts and validated checkpoints, repairing failures
 in place without restarting. On a desktop with SDL2 installed,
 `python3 run.py desktop` opens the window; F1 opens saved player settings.
 `python3 run.py web` builds and serves the browser frontend (default host 0.0.0.0; use --host to change it).
@@ -281,7 +279,6 @@ After implementing the real collections, document replacement formats, adding a
 level and game-rule source locations here. See examples/asset-extension.json for
 an illustrative manifest: original ROM levels plus a replacement and added slot.
 The illustrative manifest is documentation, not a working game-level loader.
-Generated example content must be developer-authored; do not distribute originals.
 
 For a separately requested debugging/QA run, tell the agent: "Read debug/goal.md."
 That file links all required instructions and records. It is preinstalled; no
@@ -290,9 +287,9 @@ manual installation or automatic QA launch occurs during port preparation.
         phase.write_json(stage / "examples/asset-extension.json", {"version": 1,
             "entries": [{"id": "level-01", "file": "levels/replacement-01.json"},
                         {"id": "level-16", "file": "levels/new-16.json"}], "order": []})
-        (stage / "library-changes.md").write_text("# Library changes\n\nNo port-driven changes recorded yet. Record requirements, files, reusable contracts, focused unit tests/checks and limits. The final QA stage owns whole-game runtime comparisons.\n")
+        (stage / "library-changes.md").write_text("# Library changes\n\nNo port-driven changes recorded yet. Record requirements, files, reusable contracts, focused unit tests/checks and limits. The final QA stage owns short initial runtime comparisons.\n")
         (stage / "progress.md").write_text("# Port progress\n\nPrepared reference and demonstration scaffold. Active stage: skeleton (pending). Every source-ledger entry is pending. Track all five stages, per-area contract workers, evidence paths, blockers and exact resumption here. No gameplay is ported.\n")
-        (stage / "differences.md").write_text("# Differences and validation limits\n\nScaffold implements no gameplay or original audio. Record implemented assumptions and known differences as work proceeds. Final QA requires two fresh whole-game passes; device testing remains separately requested.\n")
+        (stage / "differences.md").write_text("# Differences and validation limits\n\nScaffold implements no gameplay or original audio. Record implemented assumptions and known differences as work proceeds. Final QA requires only the short smoke test and initial exact-frame comparisons; device testing remains separately requested.\n")
         (stage / "run.py").write_text(f"""#!/usr/bin/env python3
 import runpy, sys
 from pathlib import Path
@@ -304,7 +301,7 @@ if len(sys.argv) < 2:
 sys.argv = [str(toolkit / "scripts/port.py"), sys.argv[1], str(workspace), *sys.argv[2:]]
 runpy.run_path(str(toolkit / "scripts/port.py"), run_name="__main__")
 """)
-        (stage / ".gitignore").write_text("/input/\n/reference/\n/research/\n/review/toolkit-before/\n/checks/\n/port/target/\n/web-dist/\n/debug/artifacts/\n*.gb\n*.gbc\n*.sms\n*.gg\n*.md.bin\n*.gen\n*.smd\n*.rom\n__pycache__/\n")
+        (stage / ".gitignore").write_text("/input/\n/reference/\n/research/\n/review/toolkit-before/\n/checks/\n/port/target/\n/web-dist/\n/debug/artifacts/\n__pycache__/\n")
         frozen = {str(p.relative_to(stage)): phase.digest(p) for p in (stage / "reference").rglob("*") if p.is_file()}
         frozen.update({str(p.relative_to(stage)): phase.digest(p) for p in (stage / "review/toolkit-before").rglob("*") if p.is_file()})
         frozen["review/toolkit-before.json"] = phase.digest(stage / "review/toolkit-before.json")
@@ -315,7 +312,7 @@ runpy.run_path(str(toolkit / "scripts/port.py"), run_name="__main__")
             "frozen": frozen, "reference_verification": verification})
         # Install QA instructions in staging so every platform publishes the same
         # complete workspace atomically; preparation never starts QA.
-        port_debug.install(stage)
+        port_debug.install(stage, smoke_only=True)
         port_modernize.install(stage)
         # Reserve the new name before publication; never replace another workspace.
         output.mkdir()

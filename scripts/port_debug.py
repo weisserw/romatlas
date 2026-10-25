@@ -11,7 +11,13 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def acceptance_contract(milestone=None, final=False):
+def acceptance_contract(milestone=None, final=False, smoke_only=False):
+    if smoke_only:
+        return dict(version=5, status="agreed", policy="initial_smoke_and_exact_frame_comparisons",
+                    scope="initial_sanity", required_passes=1,
+                    failure_rule="fix_in_place_then_continue",
+                    restart_rule="never_restart_continue_current_pass",
+                    resource_ceiling=None, resource_limit_outcome="incomplete")
     contract = dict(version=3, status='agreed', policy='two_full_successful_qa_passes',
         required_passes=2, failure_rule='fix_in_place_then_continue',
         restart_rule='never_restart_continue_current_pass',
@@ -28,6 +34,7 @@ def audit(work):
     """Administrative acceptance checks; does not evaluate evidence truth."""
     work = work.resolve(strict=True)
     acceptance = json.loads((work/'debug/acceptance.json').read_text())
+    smoke_only = acceptance.get('version') == 5
     scoped = acceptance.get('version') == 4
     if scoped:
         milestone = acceptance.get('milestone')
@@ -37,9 +44,9 @@ def audit(work):
             raise ValueError('invalid milestone acceptance contract')
         expected = acceptance_contract(milestone, final)
     else:
-        expected = acceptance_contract()
+        expected = acceptance_contract(smoke_only=smoke_only)
     required_keys = ['policy', 'required_passes', 'status', 'restart_rule']
-    if ((scoped and acceptance != expected) or
+    if (((scoped or smoke_only) and acceptance != expected) or
             any(acceptance.get(key) != expected[key] for key in required_keys)):
         raise ValueError('expected the agreed acceptance contract')
     required_passes = acceptance['required_passes']
@@ -53,7 +60,7 @@ def audit(work):
     coverage = set()
     for key, prefix in [('areas', 'area'), ('mechanics', 'mechanic'), ('transitions', 'transition')]:
         items = plan.get(key)
-        if not isinstance(items, list) or (not items and not (scoped and not acceptance['final'])) or any(not text(v) for v in items) or len(set(items)) != len(items):
+        if not isinstance(items, list) or (not items and not (smoke_only or (scoped and not acceptance['final']))) or any(not text(v) for v in items) or len(set(items)) != len(items):
             raise ValueError(f'plan needs unique nonempty {key}')
         coverage.update(f'{prefix}:{item}' for item in items)
     checks = plan.get('checks')
@@ -106,14 +113,14 @@ def audit(work):
                 acceptance=acceptance['policy'], semantic_correctness_assessed=False)
 
 
-def install(work):
+def install(work, smoke_only=False):
     work = work.resolve(strict=True)
     if not (work / 'workspace.json').is_file() or not (work / 'port/Cargo.toml').is_file():
         raise ValueError('expected an existing native port workspace')
     debug = work / 'debug'
     debug.mkdir(exist_ok=True)
     targets = {work/'DEBUGGING.md': ROOT/'docs/port-debugging.md',
-               debug/'goal.md': ROOT/'scripts/port-debug-template/goal.md',
+               debug/'goal.md': ROOT/('scripts/port-template/qa.md' if smoke_only else 'scripts/port-debug-template/goal.md'),
                debug/'plan.json': ROOT/'scripts/port-debug-template/plan.json',
                debug/'qa.json': ROOT/'scripts/port-debug-template/qa.json',
                debug/'qa-policy.json': ROOT/'scripts/port-debug-template/qa-policy.json'}
@@ -125,7 +132,7 @@ def install(work):
             shutil.copyfile(source, target)
     acceptance = debug/'acceptance.json'
     if not acceptance.exists():
-        acceptance.write_text(json.dumps(acceptance_contract(), indent=2)+'\n')
+        acceptance.write_text(json.dumps(acceptance_contract(smoke_only=smoke_only), indent=2)+'\n')
     return dict(ok=True, workspace=str(work), goal=str(debug/'goal.md'),
                 acceptance=json.loads(acceptance.read_text()), agent_started=False)
 

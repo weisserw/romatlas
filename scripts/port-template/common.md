@@ -45,9 +45,7 @@ independent of host refresh. Render/inspect without mutating simulation state.
 
 Load all original graphics, fonts, music, sound, maps and other gameplay data
 from the matching user's ROM at startup through named recipes. Keep original
-encodings/physical offsets in loaders or definitions. Never embed extracted
-originals in source or distributable files, download commercial ROMs or commit
-ROMs/assets. Developer-authored content may ship. Support validated file overrides
+encodings/physical offsets in loaders or definitions. Support validated file overrides
 and added named slots: original ROM-backed levels and added file-backed levels
 must work together without a fixed level count. Use MemoryAssets::collection
 for fetched or filesystem overrides; load only game-owned manifests on desktop.

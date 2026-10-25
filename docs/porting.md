@@ -34,9 +34,9 @@ of sequential subagents:
 4. Game implementation (`prompts/start.md`): implement the whole game in those
    files against source and contracts until all tests and implementation checks/
    accounting pass. Every system supports the semantic debug API.
-5. QA (`debug/goal.md`): derive the whole-game plan and run two fresh passes with
-   reusable scenario scripts and validated starting checkpoints. Fix failures in
-   place, rechecking affected results without restarting passes or the pipeline.
+5. QA (`debug/goal.md`): run only a short smoke test and the initial exact-frame
+   comparisons, using bounded representative checks and validated setup. Repair
+   failed/affected checks in place; no whole-game QA passes follow.
 
 Each stage hands off before the next starts. Contract workers run sequentially;
 only one agent edits the workspace at a time. Stage/worker status and resumption
@@ -62,7 +62,7 @@ the toolkit before retrying. Rust 1.90.0 is pinned in the generated project.
 
 | Path | Purpose |
 | --- | --- |
-| `input/game.rom` | Local matching ROM; never distribute it. |
+| `input/game.rom` | Matching ROM. |
 | `reference/archive/` | Frozen archive metadata and final documentation. |
 | `reference/source/`, `reference/reading.asm` | Frozen restored, verified source and reading copy. |
 | `port/` | Editable Cargo project with locked dependencies. |
@@ -71,7 +71,7 @@ the toolkit before retrying. Rust 1.90.0 is pinned in the generated project.
 | `research/working/` | Optional editable disassembly state, source, correction log and local evidence. |
 | `research/revisions/`, `research/current.json` | Verified immutable local corrections and the adopted revision pointer. |
 | `goal.md` | Overall native-port objective and resume instructions. |
-| `debug/goal.md`, `DEBUGGING.md` | Final/standalone two-pass whole-game QA and API guide. |
+| `debug/goal.md`, `DEBUGGING.md` | Short pipeline QA; standalone full-game QA and API guide. |
 | `debug/acceptance.json`, `plan.json`, `qa.json` | QA acceptance contract, editable test plan and results. |
 | `architecture.md`, `behaviors.md` | Source-informed design/identifiers and complete behavior-to-trace/test/implementation inventory. |
 | `debug/api.md`, `debug/scenarios/` | Game-owned semantic debug schema and reusable scenarios, created by the pipeline. |
@@ -132,25 +132,20 @@ Scripts validate semantic starting preconditions and transport output hashes;
 code/asset changes require rebuilding checkpoints from retained setup recipes.
 This debug facility is separate from player battery saves/save states.
 
-QA tests player-visible game rules through native-only scenarios and selected
-presentation judgment. For each check, restore validated native state, apply bounded
-inputs and check meaningful outcomes against independent game knowledge/contracts.
-The original emulator is an adjunct for a named uncertainty/defect, not a continuously
-synchronized oracle. A small separate initial original-fidelity sanity suite checks
-representative rendering/scrolling/animation/audio; future intentional features can
-explicitly disable that suite without disabling gameplay regressions.
-Use those same scripts for diagnosis, repair verification and both required
-passes, with fresh execution/evidence per pass. Reuse scripts and valid checkpoints,
-never cached successful results. Retain pass/check position through failures and
-code/plan corrections. Recheck failed and specifically affected earlier entries;
-retain unaffected results. See [QA guide](port-debugging.md) for records and tools.
+Pipeline QA consists only of the short initial smoke/comparison suite. Check startup
+and a representative interaction, plus selected exact-frame comparisons against the
+original for rendering, scrolling and animation, and representative audio checks.
+Document deterministic setup, input/frame alignment, expectations and reviewed
+captures. Reuse valid equivalent initial evidence; rerun failed/affected checks
+after repairs. Record one bounded suite execution for the QA record audit. This
+establishes only the tested scope, not whole-game fidelity coverage.
 
 Earlier debugger use answers a specific unresolved source question with a bounded
 experiment and stopping condition. Document source-informed assumptions instead
 of endlessly seeking confidence. Missing implementations block handoff; residual
 uncertainty is recorded honestly. Whole-game accounting, passing contracts/checks,
 documentation and the implementation audit precede QA. Overall completion also
-requires both fresh QA passes, resolved blockers and the QA audit. Device/GUI
+requires the short smoke/comparison suite, resolved blockers and the QA audit. Device/GUI
 compatibility remains untested where unavailable; never launch SDL on the server.
 
 ## Unfinished disassembly and discoveries during porting
@@ -264,8 +259,8 @@ Shared utilities should not encode one game's rules under generic names.
 Every original visual/audio asset and gameplay data structure must be obtained
 from the user's ROM at startup. A port must not embed extracted tiles, maps,
 strings, sound data or other original assets into source constants. Extraction
-recipes and game rules are code; extracted originals remain in memory/local
-caches and out of distributions. Developer-created assets may ship.
+recipes and game rules are code; extracted originals are loaded into memory/local
+caches.
 
 Use one manifest per collection:
 
@@ -380,7 +375,7 @@ preserve unknown code in place of implementation. Documented implemented
 assumptions may be assessed while residual source/fidelity uncertainty stays
 explicit. Set ledger completion status/notes and run `audit`. It validates
 inventory, dispositions and builds, not semantic correctness or test quality.
-After this audit, the implementation subagent hands off to final two-pass QA;
+After this audit, the implementation subagent hands off to final short smoke/comparison QA;
 overall completion requires its successful record audit too. Rerun build/static
 checks after pertinent changes/failures, rather than merely for confidence.
 
@@ -447,8 +442,7 @@ the server machine’s network address.
 The server reads the configured local ROM, without copying it into the bundle,
 and serves it to the browser for SHA-256 validation and in-memory extraction.
 The bundle alone requires equivalent `/config.json`, `/rom` and override routes;
-it is not a self-contained game distribution. No commercial ROM or extracted
-original asset may be committed or bundled. No existing workspaces are migrated.
+it is not a self-contained game distribution. No existing workspaces are migrated.
 
 Press Start to enable audio. The shell uses Canvas RGBA frames, stereo Web Audio,
 keyboard and standard-mapping Gamepad APIs for four independent player slots.
@@ -507,9 +501,9 @@ and serving; no npm or JavaScript bundler is required.
 [Native debug control and workflow](port-debugging.md) provides the headless API
 and QA stage. New port goals invoke debug/goal.md after whole-game implementation.
 No begin-cycle command or intermediate QA cycle is part of the fixed pipeline.
-Complete the whole-game source-informed plan twice, with reusable scenario scripts
-and validated checkpoints, executing each pass afresh. Failed/inaccessible checks
-block advancement; repair and resume at that check without restarting either pass.
+New pipeline workspaces require only the short smoke test and initial exact-frame
+comparisons, recorded as one bounded suite. Separately installed standalone QA
+retains its two-pass whole-game contract. Existing workspaces are not migrated.
 Resource interruptions leave an incomplete resumable handoff. After completion run:
 
 ```sh
