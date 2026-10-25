@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Install optional beta instructions and inspect its QA prerequisite; no agents."""
+"""Install optional beta instructions and capture its source baseline; no agents."""
 import argparse
 import hashlib
 import json
@@ -7,7 +7,6 @@ from pathlib import Path
 import shutil
 import sys
 
-import port_debug
 
 ROOT = Path(__file__).resolve().parents[1]
 TEMPLATES = ROOT/'scripts/modernize-template'
@@ -63,27 +62,28 @@ def install(path):
 def check(path):
     work = workspace(path)
     try:
-        acceptance = json.loads((work/'debug/acceptance.json').read_text())
-        if not isinstance(acceptance,dict):
-            raise ValueError('invalid QA acceptance object')
-        if acceptance.get('policy') != 'two_full_successful_qa_passes' or acceptance.get('required_passes') != 2:
-            raise ValueError('requires completed full two-pass whole-game QA, not scoped QA')
-        if acceptance.get('version') == 4 and not acceptance.get('final'):
-            raise ValueError('scoped milestone QA cannot open the modernization gate')
-        qa = json.loads((work/'debug/qa.json').read_text())
-        if not isinstance(qa,dict) or qa.get('status') != 'complete':
-            raise ValueError('full whole-game QA is incomplete')
-        audit = port_debug.audit(work)
-    except (OSError,ValueError,KeyError,TypeError) as error:
-        return dict(ok=False,status='awaiting_full_qa',reason=str(error),pilot_started=False,
-                    semantic_correctness_assessed=False)
-    files = ['debug/acceptance.json','debug/plan.json','debug/qa.json']
-    report = json.loads((work/'debug/qa.json').read_text())['report']
-    files.append(report)
-    return dict(ok=True,status='qa_records_complete',audit=audit,
-                qa_files={name:digest(work/name) for name in files},
-                semantic_correctness_assessed=False,pilot_started=False,
-                next_action='Verify current source/build/ROM/assets provenance and source backup before baseline capture; no pilot launched')
+        source = source_identity(work)
+    except (OSError, ValueError, KeyError, TypeError) as error:
+        return dict(ok=False, status='awaiting_source_baseline', reason=str(error),
+                    pilot_started=False, semantic_correctness_assessed=False)
+    files = ['debug/acceptance.json', 'debug/plan.json', 'debug/qa.json',
+             'debug/sanity.json', 'debug/sanity-results.json', 'debug/sanity-review.md']
+    qa_path = work/'debug/qa.json'
+    if qa_path.is_file():
+        try:
+            report = json.loads(qa_path.read_text()).get('report')
+            if isinstance(report, str) and report and not Path(report).is_absolute():
+                candidate = (work/report).resolve()
+                candidate.relative_to(work)
+                if candidate.is_file():
+                    files.append(report)
+        except (ValueError, AttributeError):
+            pass  # Historical/incomplete QA records do not gate modernization.
+    return dict(ok=True, status='baseline_ready', source=source,
+                qa_files={name:digest(work/name) for name in files if (work/name).is_file()},
+                qa_prerequisite='none', semantic_correctness_assessed=False,
+                pilot_started=False,
+                next_action='Review available evidence/provenance and preserve source backup before baseline capture; no pilot launched')
 
 
 def baseline(path):
@@ -95,7 +95,7 @@ def baseline(path):
         raise ValueError('modernize directory must not be a symlink')
     if not (work/'modernize/goal.md').is_file():
         raise ValueError('install the beta workflow first')
-    record = dict(version=1,status='baseline_recorded',qa=gate,source=source_identity(work),
+    record = dict(version=1,status='baseline_recorded',qa=gate,source=gate['source'],
                   semantic_correctness_assessed=False,pilot_started=False)
     # Exclusive creation: neither changed code nor a repeated command can replace it.
     with (work/'modernize/baseline.json').open('x') as output:

@@ -517,10 +517,10 @@ legacy cycle commands for existing workspaces. Preparation/installation never
 launches agents. The transport exposes --debug-stdio with game-owned semantic
 inspection supplied by the port; see debug/api.md in completed pipeline workspaces.
 
-## Optional modernization beta (after full QA)
+## Optional modernization beta
 
 New preparations install `modernize/goal.md` and empty candidate/change/status
-records. This is an optional post-QA workflow, not a sixth required port stage.
+records. This is an optional separately invoked workflow, not a sixth required port stage.
 Installation, port completion and reading about the beta do not launch a pilot.
 Existing workspaces can install it without starting QA or changing game code:
 
@@ -529,11 +529,13 @@ python3 scripts/port_modernize.py install /path/to/workspace
 python3 scripts/port_modernize.py check /path/to/workspace
 ```
 
-`check` requires the existing full two-pass whole-game acceptance record audit to
-pass; partial/scoped QA leaves status awaiting_full_qa and exits unsuccessfully.
-It does not execute QA, change records or certify gameplay truth. A later explicit
-modernization request must verify report/build/source/ROM/asset provenance and
-implementation checks, then capture an exclusive baseline hash record with
+`check` verifies native source and Cargo.lock are available for baseline capture.
+Full-game QA and two complete passes are not prerequisites. Available QA/smoke
+records are hashed without treating them as completed acceptance. The command does
+not execute QA, change records or certify gameplay truth. A later explicit
+modernization request reviews available evidence and build/source/ROM/asset
+provenance and runs applicable implementation checks, then captures an exclusive
+baseline hash record with
 `python3 scripts/port_modernize.py baseline /path/to/workspace`. This command never
 launches an agent or edits gameplay and will not overwrite an existing baseline.
 Keep a separate reproducible local faithful source/build snapshot; hashes alone
@@ -549,5 +551,4 @@ two complete QA passes per edit. Keep original-fidelity expectations; feature ch
 and deliberately divergent behavior require separate authorization/contracts.
 Retain or revert the candidate with evidence, update records and stop after the
 requested scope (one candidate by default). There is no mandated whole-game rewrite
-or claim of modernizing every subsystem. This beta has not yet had a pilot; DuckTales
-must complete full QA before any candidate investigation or implementation starts.
+or claim of modernizing every subsystem. Preparation does not start a pilot.

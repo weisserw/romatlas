@@ -1,7 +1,7 @@
 {
   "version": 1,
   "workflow": "modernization-beta",
-  "status": "awaiting_full_qa",
+  "status": "awaiting_user_request",
   "pilot_started": false,
   "active_candidate": null,
   "baseline": null

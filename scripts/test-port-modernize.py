@@ -1,4 +1,4 @@
-"""Beta installation/gate contracts; synthetic records are not gameplay QA."""
+"""Beta installation/baseline contracts; synthetic records are not gameplay QA."""
 import hashlib
 import json
 from pathlib import Path
@@ -48,10 +48,10 @@ class ModernizeTests(unittest.TestCase):
         self.assertEqual(json.loads((self.work/'modernize/candidates.json').read_text())['candidates'],[])
         self.assertEqual((self.work/'port/src/lib.rs').read_bytes(),source)
         self.assertEqual((self.work/'debug/qa.json').read_bytes(),qa)
-        self.assertEqual(port_modernize.check(self.work)['status'],'awaiting_full_qa')
-        with self.assertRaisesRegex(ValueError,'blocked'):
-            port_modernize.baseline(self.work)
+        self.assertEqual(port_modernize.check(self.work)['status'],'baseline_ready')
         self.assertFalse((self.work/'modernize/baseline.json').exists())
+        port_modernize.baseline(self.work)
+        self.assertEqual((self.work/'debug/qa.json').read_bytes(), qa)
 
     def test_full_records_capture_exclusive_baseline_without_claiming_truth(self):
         self.complete_records()
@@ -69,18 +69,33 @@ class ModernizeTests(unittest.TestCase):
         self.assertNotEqual(port_modernize.source_identity(self.work)['sha256'],baseline['source']['sha256'])
         self.assertEqual(json.loads((self.work/'modernize/baseline.json').read_text()),baseline)
 
-    def test_scoped_partial_and_stale_records_remain_blocked(self):
+    def test_scoped_partial_and_stale_records_do_not_gate_baseline(self):
         qa = self.complete_records()
         self.write('acceptance.json',port_debug.acceptance_contract('scoped',False))
-        self.assertFalse(port_modernize.check(self.work)['ok'])
+        self.assertTrue(port_modernize.check(self.work)['ok'])
         self.write('acceptance.json',port_debug.acceptance_contract())
         qa['passes'].pop()
         self.write('qa.json',qa)
-        self.assertFalse(port_modernize.check(self.work)['ok'])
+        self.assertTrue(port_modernize.check(self.work)['ok'])
         self.complete_records()
         with (self.work/'debug/plan.json').open('a') as stream:
             stream.write(' ')
-        self.assertFalse(port_modernize.check(self.work)['ok'])
+        self.assertTrue(port_modernize.check(self.work)['ok'])
+
+    def test_smoke_only_and_missing_qa_allow_baseline_but_missing_source_blocks(self):
+        self.write('acceptance.json', port_debug.acceptance_contract(smoke_only=True))
+        self.assertTrue(port_modernize.check(self.work)['ok'])
+        for path in (self.work/'debug').iterdir():
+            path.unlink()
+        self.assertTrue(port_modernize.check(self.work)['ok'])
+        port_modernize.install(self.work)
+        port_modernize.baseline(self.work)
+        baseline = json.loads((self.work/'modernize/baseline.json').read_text())
+        self.assertEqual(baseline['qa']['qa_files'], {})
+        (self.work/'port/Cargo.lock').unlink()
+        self.assertEqual(port_modernize.check(self.work)['status'], 'awaiting_source_baseline')
+        with self.assertRaisesRegex(ValueError, 'blocked'):
+            port_modernize.baseline(self.work)
 
     def test_symlink_install_cannot_write_outside_workspace(self):
         self.complete_records()

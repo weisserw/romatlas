@@ -64,8 +64,7 @@ Device behavior unavailable on this server remains explicitly untested.
 
 Preparation also installs modernize/goal.md and empty beta records. They do not
 start a sixth stage, alter completion criteria or authorize a pilot. Finish the
-short pipeline QA and stop normally. The modernization beta still requires
-separately requested full two-pass whole-game QA. Only a separate later
-user request can invoke that workflow, after its full-QA prerequisite is met.
-A partial pass or successful individual scenario is insufficient. Keep any later
+short pipeline QA and stop normally. Only a separate later
+user request can invoke modernization; full-game QA is not a prerequisite.
+Capture a reproducible source baseline and review available evidence first. Keep any later
 modernization work in a separate commit from QA tooling and faithful-port fixes.

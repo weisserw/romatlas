@@ -1,13 +1,11 @@
-# Optional modernization beta — gated on completed full QA
+# Optional modernization beta
 
 Preparation installs this workflow only. It neither starts an agent nor authorizes
 a pilot, candidate investigation or gameplay/code changes. This is not a sixth
 stage of the fixed port pipeline and is not required for port completion.
-Start it only after a separate user request to modernize this port and a completed
-full whole-game QA sweep. Here, full QA means the existing agreed two-pass
-whole-game contract, with both passes complete, issues resolved and the QA record
-audit passing. A single check, partial pass, scoped milestone or synthetic tooling
-test is insufficient. Never run QA automatically to open this gate.
+Start it only after a separate user request to modernize this port. Full-game QA
+and the former two-pass QA sweep are not prerequisites. Do not run full-game QA
+automatically before starting modernization.
 
 ## Entry and faithful baseline
 
@@ -19,15 +17,14 @@ Apply prompts/coding-standards.md (or established game standards), repository an
 platform boundaries. Original ROM/source/assets and captures remain local.
 
 From the toolkit run `python3 scripts/port_modernize.py check WORKSPACE`.
-If it reports awaiting_full_qa, stop and leave the pilot unstarted. Do not reset,
-finish, fabricate or weaken QA records to proceed. Verify that the full QA report,
-scenario/build/ROM/assets/source provenance and impact rechecks actually cover the
-current faithful implementation. The administrative audit cannot establish this.
-Run applicable implementation checks/audit only after modernization is invoked.
-Record their actual commands/results and any unavailable platform/device checks.
+This verifies that native source and Cargo.lock are available for baseline capture;
+it does not require completed QA or certify gameplay. Review available smoke/test
+evidence and source/build/ROM/assets provenance, recording missing coverage honestly.
+Do not fabricate completed QA records. Run applicable implementation checks/audit
+only after modernization is invoked; record actual results and unavailable checks.
 
 Then run `python3 scripts/port_modernize.py baseline WORKSPACE` to freeze hashes
-of the current plan/results/report and native source/build configuration. Keep the
+of native source/build configuration and available QA/smoke records. Keep the
 faithful implementation reproducible in local version control or an explicit local
 source snapshot, with ROM/asset identities and pinned dependencies. The script
 records hashes only; it does not make a source backup or certify semantic truth.
@@ -39,8 +36,8 @@ faithful baseline; they do not automatically certify a changed build.
 
 ## Select one bounded improvement
 
-Populate candidates.json only when this workflow is explicitly invoked after the
-gate. For each candidate record its ID, files/subsystem, current machinery, proposed
+Populate candidates.json only when this workflow is explicitly invoked after
+baseline capture. For each candidate record its ID, files/subsystem, current machinery, proposed
 game-level abstraction, concrete clarity/flexibility benefit, source references,
 observable rules to preserve, callers/state owners/update ordering, test IDs and
 coverage gaps, coupling/risks and why the scope is bounded. Inspect the code before

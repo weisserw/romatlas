@@ -430,8 +430,8 @@ gates; this is broad best-effort exploration, not an exhaustive gameplay/fidelit
 
 An optional modernization beta can be installed with prepared native workspaces.
 It is separate from the fixed five-stage pipeline and does not start automatically.
-No pilot may begin until the agreed full two-pass whole-game QA is complete and a
-separate user request invokes modernization. Preserve a faithful baseline, improve
+A pilot begins only after a separate user request invokes modernization and a
+reproducible source baseline is captured; full-game QA is not a prerequisite. Preserve a faithful baseline, improve
 one bounded subsystem with source-backed observable contracts and fresh integration
 evidence, and keep modernization commits separate from QA tooling/faithful fixes.
 Installation prepares empty records only; the beta remains unpiloted.
