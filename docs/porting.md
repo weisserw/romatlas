@@ -306,17 +306,22 @@ preserve their source and edited library when adding later build automation.
 
 SDL2 provides window operations, keyboard/controller input, 2D presentation and
 audio queues. The shell uses desktop fullscreen, resizable windows, nearest-neighbor
-aspect-preserving presentation, and optional integer scaling. Fullscreen uses the
+aspect-preserving presentation with free scaling and no integer scaling setting. Fullscreen uses the
 desktop's display mode; configured window dimensions are restored on leaving it.
 Internal game resolution is separate from window size.
 
-F1 or an available controller Guide button opens/closes settings. Escape closes
+F6 or an available controller Guide button opens/closes settings. Escape closes
 the menu or cancels rebinding. Arrows/D-pad select options; Enter/A accept; left/right
 adjust. Backspace/X clears an action's bindings; accepting that action captures an
 additional key/button/axis binding. Game actions can have multiple alternatives.
-F1 and Guide are shell controls. The Guide button may be intercepted by the OS;
-keyboard F1 remains available. The menu includes controller selection, dead zones,
-window size/fullscreen/scaling, volume, focus-loss pause and reset-to-defaults.
+F1–F6 and Guide are shell controls. The Guide button may be intercepted by the OS;
+keyboard F6 remains available. The menu includes four independent player assignments
+(Automatic, None or a device), dead zones, height/fullscreen, volume, focus-loss
+pause and reset-to-defaults. Width follows the game display aspect. Raw SDL
+joysticks are selectable too: buttons use buttonN, axes use axisN, first-stick
+axes retain leftx/lefty aliases and hats map to D-pad directions. Capture reads
+all connected devices, including unassigned devices, and waits for held controls
+to return to neutral.
 
 Settings are per-port, under the user configuration directory (`APPDATA` on
 Windows, `~/Library/Application Support` on macOS, and `XDG_CONFIG_HOME` or
@@ -446,8 +451,10 @@ it is not a self-contained game distribution. No existing workspaces are migrate
 
 Press Start to enable audio. The shell uses Canvas RGBA frames, stereo Web Audio,
 keyboard and Gamepad APIs for four independent player slots.
-Settings provide rebinding, controller assignment, volume/dead zone, dimensions,
-integer scaling and fullscreen. Keyboard bindings use the shared SDL-style names;
+Settings provide rebinding, controller assignment, volume/dead zone, height and
+fullscreen. Width follows config::DISPLAY_ASPECT, defaulting to 4:3 in new ports.
+There is no integer scaling setting; ports can opt into a different display
+aspect in config.rs without changing other games. Keyboard bindings use the shared SDL-style names;
 the shell translates browser keys and controller buttons/axes, including devices
 without the browser's standard mapping. First-stick axes retain the default
 movement bindings; extra controls are exposed as `buttonN` and `axisN` for
@@ -486,7 +493,8 @@ SDL uses an atomic JSON file named `battery-<ROM hash>.json` beside settings.
 Restoration happens before the first gameplay tick. Failed writes do not acknowledge
 pending data; browser errors remain visible, desktop errors reach the CLI. Invalid
 or incompatible browser saves stop startup rather than overwriting existing data.
-There are no save states or implicit emulator-SRAM dependencies.
+This battery envelope contains no full save state and has no implicit emulator-SRAM
+dependencies; player snapshots use the separate format described below.
 
 New-workspace check/audit includes a locked release Wasm build alongside existing
 desktop checks. Toolkit browser regression setup is separate:
@@ -586,5 +594,20 @@ state; `restore_driver_snapshot_json` checks ROM/sample-rate/clock compatibility
 before replacing it. These methods do not capture the game or its immutable
 resources: an opting-in port supplies a versioned game serializer and restores
 both pieces atomically. Float round trips remain exact with this feature.
-The default browser template continues to expose only original battery saves;
-this feature adds no save-state UI or automatic migration to existing ports.
+New templates enable snapshots and expose Save State / Restore State in web and
+SDL desktop frontends. Implement Game::snapshot_json, atomic
+Game::restore_snapshot_json and Game::reset for the game, including all mutable
+game/audio state; the scaffold's empty snapshot describes only its stateless demo.
+The shared Runtime::restore_state_json validates driver state before invoking the
+game restore. Unsupported ports retain working battery saves and report state
+support as unavailable. Existing workspaces are not migrated automatically.
+
+Both frontends use F1 resume, F2 pause, F3 reset, F4 save state, F5 restore state,
+F6 settings. Desktop starts playing immediately. Restore pauses until F1; errors
+retain the current game. Desktop state.json lives beside settings.json, separate
+from battery files, with a 4 MiB limit, checksum, executable/ROM/override identity
+and sample-clock validation. Sample phase resumes without replay; wall-clock and
+held-input boundaries reset on restore. Web snapshots live in browser storage and
+include game state and the driver, with Wasm/ROM/assets/audio identity and checksum.
+Desktop and browser state formats are intentionally frontend-specific. Original
+battery saves keep their existing format and behavior.

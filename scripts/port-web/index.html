@@ -1,21 +1,111 @@
 <!doctype html>
-<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f4f3ee">
 <title>ROMAtlas port</title>
 <style>
-body{background:#181b23;color:#eee;font:16px system-ui;margin:2rem auto;padding:0 1rem;max-width:64rem;text-align:center}button,input,select{font:inherit;margin:.3rem}canvas{display:block;image-rendering:pixelated;background:#000;max-width:100%;margin:1rem auto}fieldset{margin:1rem auto}#error{color:#ffb4ab;white-space:pre-wrap}label{display:inline-block;margin:.4rem}#bindings label{display:block}dialog{text-align:left;background:#242936;color:#eee;max-height:80vh;overflow:auto;border:1px solid #999}small{display:block}
+:root{color-scheme:light;--paper:#f4f3ee;--surface:#fffefa;--ink:#203249;--muted:#647184;--line:#dadfdf;--gold:#ddbb78;--gold-hover:#e8ca90;--stage:#142235;--stage-line:#29394e;--radius:12px;--font:Inter,"Avenir Next",Aptos,"Segoe UI",system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse 800px 420px at 15% 0%,#dbe5ef70,transparent 75%),var(--paper);color:var(--ink);font:14px/1.6 var(--font);-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit}
+button{appearance:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 15px;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--ink);font-size:13px;font-weight:600;line-height:1.35;cursor:pointer;box-shadow:0 1px 2px #14223506;transition:background .16s,border-color .16s,box-shadow .16s,transform .16s}
+button:hover:not(:disabled){background:#eaf0f4;border-color:#b6c3cf;box-shadow:0 3px 8px #14223509}
+button:active:not(:disabled){transform:translateY(1px)}
+button:disabled{opacity:.4;cursor:not-allowed;box-shadow:none}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #b58c3ca0;outline-offset:3px}
+button svg{width:15px;height:15px;flex:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;fill:none}
+kbd{font:500 10px/1 var(--font);opacity:.65;white-space:nowrap}
+.app{max-width:1080px;margin:auto;padding:48px 28px 36px}
+.masthead{text-align:center;max-width:700px;margin:0 auto 29px}
+h1{font-size:clamp(42px,6vw,62px);font-weight:750;line-height:1.1;letter-spacing:.015em;margin:0 0 16px}
+.masthead p{max-width:640px;margin:0 auto;font-size:14px;line-height:1.8;color:var(--muted)}
+.masthead .source-link{margin-top:12px;font-size:12px}.source-link a{color:var(--muted);text-decoration-color:#b8c3cd;text-underline-offset:4px}.source-link a:hover{color:var(--ink);text-decoration-color:#ab8749}.source-link a:focus-visible{outline:3px solid #b58c3ca0;outline-offset:4px;border-radius:2px}
+.toolbar{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:0 auto 22px}
+#start,.button-primary{background:var(--gold);border-color:#cfaa63;color:#283343;box-shadow:0 2px 4px #8c692b10}
+#start:hover:not(:disabled),.button-primary:hover:not(:disabled){background:var(--gold-hover);border-color:#bd9450;box-shadow:0 3px 10px #8c692b18}
+.stage-shell{width:fit-content;max-width:100%;margin:auto;padding:15px 18px 13px;border:1px solid #304056;border-radius:18px;background:var(--stage);box-shadow:0 20px 50px -18px #15253e38,0 3px 10px #15253e0a}
+.stage-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:24px;margin-bottom:12px}
+.screen-label{font-size:9px;letter-spacing:.17em;font-weight:650;text-transform:uppercase;color:#8f9fb3;white-space:nowrap}
+#status{margin:0;text-align:right;font-size:11px;line-height:1.4;color:#b3c0ce;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+#game-panel{position:relative;width:fit-content;max-width:100%;margin:0 auto;background:#000}
+canvas{aspect-ratio:4/3;display:block;image-rendering:pixelated;background:#000;max-width:100%;margin:0 auto}
+.stage-footer{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:13px;padding-top:11px;border-top:1px solid var(--stage-line);min-height:29px;font-size:10px;line-height:1.5;color:#8f9fb3}
+.device-note{white-space:nowrap}
+#state-status{margin:0;color:#dec48f;text-align:right}
+#error{max-width:700px;margin:18px auto 0;padding:12px 16px;border:1px solid #d7b7b1;border-radius:var(--radius);background:#fbefeb;color:#964c43;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere}
+#error:empty{display:none}
+#game-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;background:#08121caa;padding:20px}
+#game-overlay[hidden]{display:none}
+#game-overlay span{background:#1b2b40f5;color:#f6f3e9;padding:18px 24px;border:1px solid #c5aa6d50;border-radius:12px;max-width:28rem;line-height:1.6;font-size:14px;font-weight:500;text-align:center;box-shadow:0 12px 40px #0003}
+#game-panel:fullscreen{width:100%;max-width:none;height:100%;display:grid;place-items:center;background:#080d15}
+dialog{width:min(680px,calc(100% - 32px));max-width:none;max-height:88vh;margin:auto;padding:28px 28px 0;border:1px solid #d0d9df;border-radius:18px;background:var(--surface);color:var(--ink);box-shadow:0 30px 100px #07142540;overflow:auto;scroll-padding-bottom:100px}
+dialog::backdrop{background:#101d30a6;backdrop-filter:blur(5px)}
+dialog h2{font-size:25px;letter-spacing:-.035em;line-height:1.2;margin:0 0 5px}
+.dialog-intro{margin:0 0 22px;color:var(--muted);font-size:13px}
+fieldset{min-width:0;margin:0 0 18px;padding:15px 17px 17px;border:1px solid #dde2e5;border-radius:var(--radius)}
+legend{padding:0 7px;font-size:12px;font-weight:650;color:#4b5e73}
+.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 22px}
+.settings-grid label{display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:500;color:#4b5e73}
+input[type=range]{width:100%;margin:4px 0;accent-color:var(--ink);cursor:pointer}
+input[type=number],select{min-width:0;width:100%;padding:9px 11px;border:1px solid #d3dce2;border-radius:8px;background:#fff;color:var(--ink);font-size:13px}
+input[type=checkbox]{width:17px;height:17px;margin:0;accent-color:var(--ink);cursor:pointer}
+.aspect-note{align-self:end;margin:0;padding:9px 0;color:var(--ink);font-size:13px;font-weight:600;line-height:1.4}.aspect-note span{display:block;margin-top:3px;color:var(--muted);font-size:11px;font-weight:400}
+.display-switches{display:flex;gap:24px;margin-top:18px}
+.display-switches label{display:flex;align-items:center;gap:9px;font-size:12px;color:#4b5e73}
+#players label{display:grid;grid-template-columns:74px minmax(0,1fr);align-items:center;gap:12px;margin-bottom:8px;font-size:12px;color:#4b5e73}
+#players label:last-child{margin-bottom:0}
+#bindings label{display:grid;grid-template-columns:52px minmax(0,1fr) auto auto;align-items:center;gap:7px;padding:9px 0;border-bottom:1px solid #e8ecee;font-size:12px;color:#4b5e73}
+#bindings label:last-child{border-bottom:0;padding-bottom:0}
+#bindings button{min-height:34px;padding:7px 9px;font-size:11px;line-height:1.5;font-weight:500;text-align:left;justify-content:flex-start;overflow-wrap:anywhere}
+#bindings button:not(:first-of-type){background:transparent;border-color:transparent;color:#6c7c8c;box-shadow:none;padding:7px 5px}
+#bindings button:not(:first-of-type):hover{background:#eaf0f4;color:var(--ink)}
+small.binding-hint{display:block;font-size:11px;line-height:1.7;color:var(--muted)}
+.dialog-actions{position:sticky;bottom:0;z-index:1;display:flex;justify-content:flex-end;gap:9px;margin-top:22px;padding:16px 0 22px;border-top:1px solid #e1e6e8;background:var(--surface);box-shadow:0 -12px 20px 3px var(--surface)}
+.dialog-actions button{min-width:90px}
+@media(max-width:760px){.app{padding:32px 18px 25px}.masthead{margin-bottom:24px}.toolbar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));max-width:540px}.toolbar button{padding:10px;gap:7px}.stage-shell{padding:12px;border-radius:14px}.stage-meta{gap:10px}.settings-grid{gap:16px}}
+@media(max-width:500px){.app{padding:27px 14px 22px}.masthead p{font-size:13px;line-height:1.75}.toolbar{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-bottom:18px}.toolbar button{font-size:12px}.stage-shell{padding:10px;border-radius:12px}.stage-meta{margin-bottom:9px}.screen-label{font-size:8px;letter-spacing:.1em}#status{font-size:9px}.stage-footer{font-size:9px;gap:8px;padding-top:9px;margin-top:10px}dialog{padding:21px 21px 0}#bindings label{grid-template-columns:44px minmax(0,1fr) auto auto;gap:4px}#bindings button{padding:6px;font-size:10px}#bindings button:not(:first-of-type){padding:6px 3px}.display-switches{gap:18px}}
+@media(prefers-reduced-motion:reduce){button{transition:none}button:active:not(:disabled){transform:none}dialog::backdrop{backdrop-filter:none}}
 </style>
+<body>
+<main class="app">
+<header class="masthead">
 <h1 id="title">ROMAtlas port</h1>
 <p>This is a native recompilation of the original game in Rust, running in WebAssembly. You must click the Start button below to start the game engine and enable audio and input in the browser.</p>
-<button id="start" disabled>Start</button><button id="pause" disabled>Pause</button><button id="reset" disabled>Reset</button><button id="settings" disabled>Settings (F1)</button>
-<p id="status" role="status">Loading local ROM and Wasm…</p><p id="error" role="alert"></p><canvas id="screen" aria-label="Game display"></canvas>
-<dialog id="preferences"><h2>Settings</h2><form id="options">
+</header>
+<section aria-label="Game player">
+<div class="toolbar" role="group" aria-label="Game controls">
+<button id="start" aria-keyshortcuts="F1" title="Start (F1)" disabled><svg aria-hidden="true" viewBox="0 0 20 20"><path d="m6 4 10 6-10 6Z"/></svg><span>Start <kbd>(F1)</kbd></span></button>
+<button id="pause" aria-keyshortcuts="F2" title="Pause (F2)" disabled><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M7 4v12M13 4v12"/></svg><span>Pause <kbd>(F2)</kbd></span></button>
+<button id="reset" aria-keyshortcuts="F3" title="Reset (F3)" disabled><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 7a6.5 6.5 0 1 1-.2 5M4 3v4h4"/></svg><span>Reset <kbd>(F3)</kbd></span></button>
+<button id="save-state" aria-keyshortcuts="F4" title="Save State (F4)" disabled><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M10 3v9m-4-4 4 4 4-4M4 13v4h12v-4"/></svg><span>Save State <kbd>(F4)</kbd></span></button>
+<button id="restore-state" aria-keyshortcuts="F5" title="Restore State (F5)" disabled><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M10 12V3m-4 4 4-4 4 4M4 13v4h12v-4"/></svg><span>Restore State <kbd>(F5)</kbd></span></button>
+<button id="settings" aria-keyshortcuts="F6" title="Settings (F6)" disabled><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 5h12M4 10h12M4 15h12"/><path d="M7 3v4M13 8v4M8 13v4"/></svg><span>Settings <kbd>(F6)</kbd></span></button>
+</div>
+<div class="stage-shell">
+<div class="stage-meta"><span class="screen-label">Game window</span><p id="status" role="status">Loading local ROM and Wasm…</p></div>
+<div id="game-panel"><canvas id="screen" aria-label="Game display"></canvas><div id="game-overlay" role="status" hidden><span id="game-message"></span></div></div>
+<div class="stage-footer"><span class="device-note">Save states stay in this browser.</span><p id="state-status" role="status"></p></div>
+</div>
+<p id="error" role="alert"></p>
+</section>
+</main>
+<dialog id="preferences" aria-labelledby="settings-title">
+<h2 id="settings-title">Settings</h2><p class="dialog-intro">Adjust your display, audio and controls.</p>
+<form id="options">
+<fieldset><legend>Audio &amp; input</legend><div class="settings-grid">
 <label>Volume <input id="volume" type="range" min="0" max="1" step=".05"></label>
 <label>Stick dead zone <input id="dead_zone" type="range" min="0" max=".95" step=".05"></label>
-<label>Width <input id="width" type="number" min="160" max="8192"></label><label>Height <input id="height" type="number" min="144" max="8192"></label>
-<label>Integer scale <input id="integer_scale" type="checkbox"></label>
-<label>Fullscreen <input id="fullscreen" type="checkbox"></label>
+</div></fieldset>
+<fieldset><legend>Display</legend><div class="settings-grid">
+<label>Height <input id="height" type="number" min="144" max="4608"></label><p class="aspect-note"><span id="display-aspect">4:3 display</span><span>Width adjusts automatically.</span></p>
+</div><div class="display-switches">
+<label><input id="fullscreen" type="checkbox">Fullscreen</label>
+</div></fieldset>
 <fieldset id="players"><legend>Controller assignment (keyboard also controls player 1)</legend></fieldset>
 <fieldset id="bindings"><legend>Bindings shared across players</legend></fieldset>
-<small>Choose a binding, then press a key, gamepad button or stick direction. Escape cancels capture. Controls held during transitions must be released.</small>
-<button type="submit">Save and close</button><button id="cancel" type="button">Cancel</button></form></dialog>
-<script type="module" src="/shell.js"></script></html>
+<small class="binding-hint">Choose a binding, then press a key, gamepad button or stick direction. Escape cancels capture. Controls held during transitions must be released.</small>
+<div class="dialog-actions"><button id="cancel" type="button">Cancel</button><button class="button-primary" type="submit">Save and close</button></div>
+</form></dialog>
+<script type="module" src="/shell.js"></script>
+</body></html>

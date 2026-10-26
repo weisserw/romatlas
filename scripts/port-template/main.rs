@@ -27,7 +27,7 @@ fn run() -> Result<()> {
             "--settings" => settings = Some(PathBuf::from(args.next().context("--settings needs a file")?)),
             "--headless" => frames = Some(args.next().context("--headless needs a frame count")?.parse()?),
             "--help" => {
-                println!("Usage: __GAME_NAME__ --rom FILE [--assets DIR] [--settings FILE] [--debug-stdio] [--headless FRAMES]\nF1 opens desktop settings. This scaffold is not a ported game.");
+                println!("Usage: __GAME_NAME__ --rom FILE [--assets DIR] [--settings FILE] [--debug-stdio] [--headless FRAMES]\nF1 resume, F2 pause, F3 reset, F4 save state, F5 restore state, F6 settings. This scaffold is not a ported game.");
                 return Ok(());
             }
             _ => bail!("unknown argument: {arg}"),
@@ -58,8 +58,8 @@ fn run() -> Result<()> {
             None => romatlas_port::settings::default_path("__GAME_NAME__")?,
         };
         let battery = path.with_file_name(format!("battery-{}.json", ROM_SHA256));
-        romatlas_port::desktop::run_with_save(&mut port,"__GAME_NAME__ - PORT NOT IMPLEMENTED (F1 SETTINGS)",
-            config::SIZE,config::RATE,&path,config::settings(),Some((ROM_SHA256,&battery)))?;
+        romatlas_port::desktop::run_with_assets(&mut port,"__GAME_NAME__ - PORT NOT IMPLEMENTED (F6 SETTINGS)",
+            config::SIZE,config::RATE,&path,config::settings(),Some((ROM_SHA256,&battery)),assets.as_deref())?;
         Ok(())
     }
     #[cfg(not(feature = "desktop"))]

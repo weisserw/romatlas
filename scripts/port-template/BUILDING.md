@@ -247,12 +247,12 @@ bindings and shell only. Original assets must stay ROM-backed. Keep generated
 files local. Existing workspaces are not upgraded automatically.
 
 Browser settings support keyboard/standard gamepad rebinding, four player device
-assignments, volume, scaling, dimensions and fullscreen. Settings and versioned
+assignments, volume, height and fullscreen. Settings and versioned
 battery saves use browser localStorage keyed by ROM hash; keep the same server origin,
 browser and profile to retain them. Start resumes after Pause or Settings. Focus loss does not pause the browser
 game; browser background throttling can still limit updates. Reset reloads the
 game and returns to the Start prompt, preserving settings and original battery
-saves. No touch/mobile or save-state support is provided. Current desktop
+saves. No touch/mobile support is provided. Current desktop
 Chromium is tested; Firefox uses the same browser APIs but requires separate
 compatibility confirmation. Builds are single-threaded and require no cross-origin
 isolation. See the toolkit's docs/porting.md for the save contract and test setup.
@@ -262,3 +262,25 @@ hooks. Desktop saves live next to settings in a ROM-hash-named JSON file. The ga
 validates payloads and owns save-format versions; frontends store and acknowledge
 only successful writes. New port check/audit requires locked Wasm compilation;
 the toolkit's synthetic browser smoke test is separate from game fidelity work.
+
+## Shared desktop and web controls
+
+F1 resumes, F2 pauses, F3 resets, F4 saves state, F5 restores state, F6 opens
+settings. Desktop starts immediately; browser Start enables audio. Desktop also
+accepts Guide for settings and Escape to close them. Restore leaves play paused
+until F1. Errors are shown in the desktop window title or browser status.
+
+New ports default to config.rs DISPLAY_ASPECT = (4,3). The selected height
+controls presentation width automatically; there is no integer scaling setting.
+Changing the aspect is a per-game enhancement, independent of framebuffer size.
+Controllers can be assigned per player to Automatic, None or a specific device.
+Unmapped SDL joysticks and browser gamepads expose raw buttonN/axisN bindings.
+
+Save State requires the game's versioned full native serialization hooks,
+including mutable audio state, with validation before mutation. The scaffold's
+empty snapshot covers only its stateless demonstration. Keep these hooks when
+implementing gameplay. No input replay is used. Desktop state.json is beside the
+settings file and validates build/ROM/assets/audio compatibility and checksum;
+browser states use origin-local storage. They are separate from original battery
+saves and are not interchangeable across frontends. Existing ports require an
+explicit upgrade to these APIs; preparation never rewrites them.

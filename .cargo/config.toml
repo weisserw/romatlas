@@ -1,0 +1,9 @@
+# Keep local builds practical on small development machines.
+# These settings change build artifacts, not game behavior.
+[profile.dev]
+debug = 0
+incremental = false
+
+[profile.test]
+debug = 0
+incremental = false

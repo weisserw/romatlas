@@ -34,6 +34,14 @@ impl Port {
     }
 }
 impl Game for Port {
+    fn display_aspect_ratio(&self) -> Option<(u32,u32)> { Some(crate::config::DISPLAY_ASPECT) }
+    // This demonstration has no mutable gameplay state. Replace these hooks
+    // with versioned serialization of all game/audio state when implementing it.
+    fn snapshot_json(&self) -> Result<String> { Ok("{}".into()) }
+    fn restore_snapshot_json(&mut self, json: &str) -> Result<()> {
+        ensure!(json == "{}", "invalid demonstration snapshot"); Ok(())
+    }
+    fn reset(&mut self) -> Result<()> { Ok(()) }
     fn tick(&mut self, _input: &InputState) {
         // Implement gameplay here. This scaffold implements no game behavior.
     }

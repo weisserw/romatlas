@@ -1,5 +1,6 @@
+import {StateSnapshot, digest} from './save-state.mjs';
 import {gamepads, padState, capturePadBinding} from './browser-gamepads.mjs';
-let pollCapture;
+let pollCapture, stateSnapshot, stateKey, restoringState=false, savingState=false;
 import init, { BrowserAssets, BrowserGame } from './game.js';
 const $ = id => document.getElementById(id);
 const report = error => { $('error').textContent = String(error); console.error(error); };
@@ -37,16 +38,29 @@ function boundary() {
   if(game)game.boundary(JSON.stringify(physical()));
   keys.clear();keyCodes.clear();last=null;stopAudio();flush();
 }
+function gameMessage(message='') {
+  $('game-message').textContent=message;
+  $('game-overlay').hidden=!message;
+  $('status').hidden=Boolean(message);
+}
+async function resumeGame() {
+  await audio.resume();
+  if(audio.state!=='running')throw Error('Audio could not start');
+  boundary();started=true;paused=false;gameMessage();$('state-status').textContent='';
+  $('pause').disabled=false;$('status').textContent='Running';
+}
 function pause() {
-  paused=true;boundary();$('status').textContent='Paused — press Start to resume';
+  paused=true;boundary();$('status').textContent='Paused — press Start to resume';gameMessage('Paused — press Start to resume');
   if(audio)audio.suspend().catch(report);
 }
 function draw() {
   const canvas=$('screen');canvas.width=game.width();canvas.height=game.height();
+  canvas.style.aspectRatio=String(game.display_aspect());
   canvas.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(game.pixels()),canvas.width,canvas.height),0,0);
-  const scale=Math.min(settings.width/canvas.width,settings.height/canvas.height);
-  const factor=settings.integer_scale && scale>=1?Math.floor(scale):scale;
-  canvas.style.width=`${canvas.width*factor}px`;canvas.style.height='auto';
+  // Height controls the presentation of the native gameplay viewport.
+  const height=settings.height;
+  const displayHeight=document.fullscreenElement=== $('game-panel')?Math.min(height,innerHeight):height;
+  canvas.style.width=`${displayHeight*game.display_aspect()}px`;canvas.style.height='auto';
 }
 function play(samples) {
   if(!samples.length || audio.state!=='running')return;
@@ -62,7 +76,7 @@ function loop(now) {
     const connected=JSON.stringify(pads().map(p=>[p.id,p.pad.index]));
     if(connected!==signature){signature=connected;boundary();if($('preferences').open)controllerOptions();}
     if(capture && pollCapture){const binding=pollCapture();if(binding)bind(binding);}
-    if(game && started && !paused && !$('preferences').open) {
+    if(game && started && !restoringState && !paused && !$('preferences').open) {
       ticks+=game.advance(last===null?0:Math.min(now-last,1000),JSON.stringify(physical()));last=now;
       draw();play(game.audio());flush();$('screen').dataset.ticks=String(ticks);$('status').textContent='Running';
     } else last=null;
@@ -102,33 +116,72 @@ function bind(binding) {
 }
 function preferences() {
   if(!game)return;pause();draft={settings:structuredClone(settings),assignments:[...assignments]};
-  for(const key of ['volume','dead_zone','width','height'])$(key).value=settings[key];
-  for(const key of ['integer_scale','fullscreen'])$(key).checked=settings[key];
+  for(const key of ['volume','dead_zone','height'])$(key).value=settings[key];
+  $('fullscreen').checked=settings.fullscreen;
   controllerOptions();bindings();$('preferences').showModal();
 }
 $('options').onsubmit=async event=>{
   event.preventDefault();
   try{
-    for(const key of ['volume','dead_zone','width','height'])draft.settings[key]=Number($(key).value);
-    for(const key of ['integer_scale','fullscreen'])draft.settings[key]=$(key).checked;
+    for(const key of ['volume','dead_zone','height'])draft.settings[key]=Number($(key).value);
+    draft.settings.fullscreen=$('fullscreen').checked;
+    draft.settings.width=Math.round(draft.settings.height*game.display_aspect());
     const explicit=draft.assignments.filter(id=>id!=='auto' && id!=='none');
     if(new Set(explicit).size!==explicit.length)throw new Error('Assign each controller to only one player');
     game.configure(JSON.stringify(draft.settings));
     try { localStorage.setItem(settingsKey,JSON.stringify(draft)); }
     catch(error) { game.configure(JSON.stringify(settings)); throw error; }
     settings=draft.settings;assignments=draft.assignments;
-    if(settings.fullscreen && !document.fullscreenElement)await $('screen').requestFullscreen();
+    // Resume audio inside the submit gesture, before awaiting fullscreen.
+    if(started)audio.resume().catch(report);
+    if(settings.fullscreen && !document.fullscreenElement)await $('game-panel').requestFullscreen();
     if(!settings.fullscreen && document.fullscreenElement)await document.exitFullscreen();
     capture=null;$('preferences').close();boundary();draw();
   }catch(error){report(`Settings failed: ${error}`);}
 };
 $('cancel').onclick=()=>{capture=null;$('preferences').close();boundary();};
 $('preferences').addEventListener('cancel',()=>{capture=null;boundary();});
+$('preferences').addEventListener('close',()=>{if(started && !restoringState)resumeGame().catch(report);});
 $('settings').onclick=preferences;$('pause').onclick=pause;
+$('save-state').onclick=async()=>{
+  if(savingState || restoringState)return;
+  savingState=true;$('save-state').disabled=true;
+  try {localStorage.setItem(stateKey,await stateSnapshot.capture());$('error').textContent='';$('state-status').textContent='State saved.';$('restore-state').disabled=false;}
+  catch(error){report(`Save state failed: ${error}`);}
+  finally{savingState=false;$('save-state').disabled=restoringState;}
+};
+$('restore-state').onclick=async()=>{
+  if(restoringState)return;
+  let candidate;
+  try {
+    const saved=localStorage.getItem(stateKey);if(!saved)throw Error('No saved state');
+    pause();restoringState=true;
+    for(const id of ['start','pause','reset','settings','save-state','restore-state'])$(id).disabled=true;
+    $('state-status').textContent='Restoring state…';
+    candidate=await stateSnapshot.restore(saved);
+    // Restore the simulation independently of current browser preferences.
+    candidate.game.configure(JSON.stringify(settings));
+    game.free();stateSnapshot=candidate;game=candidate.game;candidate=null;
+    ticks=stateSnapshot.ticks;boundary();draw();$('screen').dataset.ticks=String(ticks);
+    $('error').textContent='';$('state-status').textContent='';gameMessage('State restored. Press Start to resume');
+  } catch(error){if(candidate)candidate.runtime.free();$('state-status').textContent='Restore failed; current game retained.';report(`Restore state failed: ${error}`);}
+  finally {restoringState=false;for(const id of ['start','pause','reset','settings','save-state','restore-state'])$(id).disabled=false;}
+};
 $('reset').onclick=()=>{flush();stopAudio();window.location.reload();};
 window.addEventListener('keydown',event=>{
   if(capture){event.preventDefault();if(event.key==='Escape'){capture=null;bindings();}else bind({kind:'key',name:keyName(event)});return;}
-  if(event.key==='F1'){event.preventDefault();if(!$('preferences').open)preferences();return;}
+  const shortcuts={F1:'start',F2:'pause',F3:'reset',F4:'save-state',F5:'restore-state',F6:'settings'};
+  const target=shortcuts[event.key];
+  if(target && !event.ctrlKey && !event.altKey && !event.metaKey && !event.shiftKey){
+    event.preventDefault();
+    if(event.repeat || restoringState)return;
+    if($('preferences').open){
+      if(event.key==='F6')$('cancel').click();
+      return;
+    }
+    if(!$(target).disabled)$(target).click();
+    return;
+  }
   if($('preferences').open)return;
   if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' ','Backspace','Tab'].includes(event.key))event.preventDefault();
   if(!event.repeat){const name=keyName(event);keys.add(name);keyCodes.set(event.code,name);}
@@ -138,24 +191,43 @@ window.addEventListener('keyup',event=>{keys.delete(keyCodes.get(event.code)||ke
 window.addEventListener('blur',boundary);document.addEventListener('visibilitychange',boundary);
 window.addEventListener('pagehide',()=>{flush();stopAudio();});
 $('start').onclick=async()=>{
-  try{const resume=audio.resume();if(settings.fullscreen && !document.fullscreenElement){try{await $('screen').requestFullscreen();}catch(error){report(`Fullscreen unavailable: ${error}`);}}await resume;if(audio.state!=='running')throw new Error('Audio could not start');boundary();started=true;paused=false;$('pause').disabled=false;$('status').textContent='Running';}
-  catch(error){report(error);}
+  try {
+    const resume=resumeGame();
+    if(settings.fullscreen && !document.fullscreenElement){
+      try{await $('game-panel').requestFullscreen();}catch(error){report(`Fullscreen unavailable: ${error}`);}
+    }
+    await resume;
+  }catch(error){report(error);}
 };
+
 async function checkedFetch(path) {const response=await fetch(path);if(!response.ok)throw new Error(`${path}: HTTP ${response.status}`);return response;}
 async function boot(){
   config=await(await checkedFetch('/config.json')).json();$('title').textContent=config.title;document.title=config.title;
   await init();audio=new AudioContext({sampleRate:48000});
   const rom=new Uint8Array(await(await checkedFetch('/rom')).arrayBuffer());
-  const assets=new BrowserAssets(JSON.stringify({enabled:config.assets.enabled,manifests:config.assets.manifests,files:{}}));
-  for(const [name,url]of Object.entries(config.assets.files))assets.add_file(name,new Uint8Array(await(await checkedFetch(url)).arrayBuffer()));
-  game=new BrowserGame(rom,assets,audio.sampleRate);
+  const metadata=JSON.stringify({enabled:config.assets.enabled,manifests:config.assets.manifests,files:{}});
+  const files=[];
+  for(const [name,url]of Object.entries(config.assets.files))files.push([name,new Uint8Array(await(await checkedFetch(url)).arrayBuffer())]);
+  const wasmHash=await digest(await(await checkedFetch('./game_bg.wasm')).arrayBuffer());
+  const fileHashes=await Promise.all(files.map(async([name,bytes])=>[name,await digest(bytes)]));
+  const identity=JSON.stringify([config.rom_sha256,wasmHash,audio.sampleRate,metadata,fileHashes]);
+  stateKey=`romatlas:${config.rom_sha256}:save-state:v1`;
+  stateSnapshot=new StateSnapshot(()=>{
+    const assets=new BrowserAssets(metadata);
+    for(const [name,bytes]of files)assets.add_file(name,bytes);
+    return new BrowserGame(rom,assets,audio.sampleRate);
+  },identity);
+  game=stateSnapshot.game;
   defaults=JSON.parse(game.settings());settings=structuredClone(defaults);
   settingsKey=`romatlas:${config.rom_sha256}:settings:v1`;
-  try{const saved=localStorage.getItem(settingsKey);if(saved){const parsed=JSON.parse(saved);if(!Array.isArray(parsed.assignments)||parsed.assignments.length!==4||!parsed.assignments.every(v=>typeof v==='string'))throw new Error('Invalid controller assignments');game.configure(JSON.stringify(parsed.settings));settings=parsed.settings;assignments=parsed.assignments;}}
+  try{const saved=localStorage.getItem(settingsKey);if(saved){const parsed=JSON.parse(saved);if(!Array.isArray(parsed.assignments)||parsed.assignments.length!==4||!parsed.assignments.every(v=>typeof v==='string'))throw new Error('Invalid controller assignments');delete parsed.settings.integer_scale;game.configure(JSON.stringify(parsed.settings));settings=parsed.settings;assignments=parsed.assignments;}}
   catch(error){report(`Settings load failed: ${error}`);}
   const version=game.save_version();saveKey=version===undefined?null:`romatlas:${config.rom_sha256}:battery:v${version}`;
   if(saveKey){try{const saved=localStorage.getItem(saveKey);if(saved)game.restore(saved);}catch(error){throw new Error(`Battery save load failed: ${error}`);}}
   game.advance(0,JSON.stringify([empty(),empty(),empty(),empty()]));draw();
+  $('display-aspect').textContent=`${game.display_aspect()===4/3?'4:3':game.display_aspect()===16/9?'16:9':game.display_aspect().toFixed(3)} display`;
+  $('save-state').disabled=!game.snapshots_supported();
+  try{$('restore-state').disabled=!game.snapshots_supported() || !localStorage.getItem(stateKey);}catch(error){report(`Save state storage unavailable: ${error}`);}
   $('start').disabled=false;$('reset').disabled=false;$('settings').disabled=false;$('status').textContent='Ready — press Start to enable audio and play';
   requestAnimationFrame(loop);
 }

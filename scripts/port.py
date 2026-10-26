@@ -153,7 +153,7 @@ def prepare(archive, rom, output, binary):
         phase.write_json(stage / "review/toolkit-before.json", before)
         cargo = (f"[package]\nname = {json.dumps(name + '-port')}\nversion = \"0.1.0\"\nedition = \"2024\"\nrust-version = \"1.90\"\n\n"
                  "[workspace]\n\n[features]\ndefault = []\ndesktop = [\"romatlas-port/desktop\"]\nweb = [\"dep:wasm-bindgen\"]\n\n[lib]\ncrate-type = [\"cdylib\", \"rlib\"]\n\n[dependencies]\n"
-                 f"romatlas-port = {{ path = {json.dumps(str(ROOT / 'crates/romatlas-port'))} }}\n"
+                 f"romatlas-port = {{ path = {json.dumps(str(ROOT / 'crates/romatlas-port'))}, features = [\"snapshots\"] }}\n"
                  "anyhow = \"1.0\"\nserde_json = \"1.0\"\nwasm-bindgen = { version = \"=0.2.129\", optional = true }\n")
         (stage / "port/Cargo.toml").write_text(cargo)
         (stage / "port/web-enabled").write_text("1\n")
@@ -270,7 +270,7 @@ game implementation and QA pipeline. Each behavior area gets an independent
 source trace and unit tests before implementation. Final QA runs a short smoke test and initial exact-frame comparisons
 using reusable scripts and validated checkpoints, repairing failures
 in place without restarting. On a desktop with SDL2 installed,
-`python3 run.py desktop` opens the window; F1 opens saved player settings.
+`python3 run.py desktop` opens the window; F6 opens saved player settings; F1 resumes, F2 pauses, F3 resets, F4 saves state and F5 restores state.
 `python3 run.py web` builds and serves the browser frontend (default host 0.0.0.0; use --host to change it).
 Game logic and asset extraction stay shared; implement original battery saving
 through the optional Game hooks. See BUILDING.md for storage and browser limits.

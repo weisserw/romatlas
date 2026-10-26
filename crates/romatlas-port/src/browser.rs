@@ -136,7 +136,7 @@ impl<G: Game> Runtime<G> {
             "sample_rate": self.sample_rate, "rom_sha256": self.rom_sha256,
         }))?)
     }
-    pub fn restore_driver_snapshot_json(&mut self, json: &str) -> Result<()> {
+    fn validated_driver(&self, json: &str) -> Result<DriverSnapshot> {
         ensure!(json.len() <= 1024 * 1024, "driver snapshot too large");
         let saved: DriverSnapshot = serde_json::from_str(json)?;
         ensure!(
@@ -148,11 +148,26 @@ impl<G: Game> Runtime<G> {
                 && saved.sample_clock.snapshot_compatible(&self.sample_clock),
             "invalid snapshot clock"
         );
+        Ok(saved)
+    }
+    /// Validate driver compatibility before invoking the game's atomic restore.
+    pub fn restore_state_json(&mut self, game: &str, driver: &str) -> Result<()> {
+        let saved = self.validated_driver(driver)?;
+        self.game.restore_snapshot_json(game)?;
+        self.apply_driver(saved);
+        self.game.render(&mut self.frame);
+        Ok(())
+    }
+    pub fn restore_driver_snapshot_json(&mut self, json: &str) -> Result<()> {
+        let saved = self.validated_driver(json)?;
+        self.apply_driver(saved);
+        Ok(())
+    }
+    fn apply_driver(&mut self, saved: DriverSnapshot) {
         self.clock = saved.clock;
         self.sample_clock = saved.sample_clock;
         self.mapper = saved.mapper;
         self.latches = saved.latches;
         self.samples.clear();
-        Ok(())
     }
 }

@@ -39,3 +39,11 @@ Do not run a gameplay smoke test or launch SDL. Hand off architecture.md,
 debug/api.md, the identifier/module inventory, check results and any concrete
 blocker in progress.md. Stop after infrastructure checks pass; leave all game
 behavior pending for the following stages.
+
+Frontend contract: keep config.rs DISPLAY_ASPECT at its default 4:3 unless a
+per-game enhancement explicitly changes it. Both frontends derive width from
+height and expose no integer scaling setting. Preserve F1–F6 resume/pause/reset/
+save-state/restore-state/settings controls. Implement Game::reset and versioned
+full-state Game::snapshot_json / atomic Game::restore_snapshot_json, including
+mutable game/audio state. The empty scaffold snapshot is not sufficient once
+stateful gameplay is implemented. Retain separate original battery save hooks.

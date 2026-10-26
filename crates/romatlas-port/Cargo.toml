@@ -9,7 +9,7 @@ description = "ROM-backed assets and reusable runtime helpers for native game po
 [features]
 snapshots = ["serde_json/float_roundtrip"]
 default = []
-desktop = ["dep:sdl2"]
+desktop = ["dep:sdl2", "snapshots"]
 
 [dependencies]
 anyhow.workspace = true

@@ -58,6 +58,9 @@ impl Port {
  }
 }
 impl Game for Port {
+ fn snapshot_json(&self)->Result<String>{Ok(serde_json::json!({"value":self.value,"dirty":self.dirty}).to_string())}
+ fn restore_snapshot_json(&mut self,json:&str)->Result<()>{let v:serde_json::Value=serde_json::from_str(json)?;let n=v["value"].as_u64().ok_or_else(||anyhow::anyhow!("missing value"))?;ensure!(n<=255,"invalid value");let dirty=v["dirty"].as_bool().ok_or_else(||anyhow::anyhow!("missing dirty"))?;self.value=n as u8;self.dirty=dirty;Ok(())}
+ fn reset(&mut self)->Result<()>{self.value=0;Ok(())}
  fn tick(&mut self,input:&InputState){if input.pressed("a"){self.value=self.value.wrapping_add(1);self.dirty=true;}}
  fn tick_players(&mut self,input:&romatlas_port::input::MultiInputState){self.tick(&input.primary);if input.players[1].pressed("a"){self.value=self.value.wrapping_add(10);self.dirty=true;}}
  fn render(&self,f:&mut Frame){f.clear([self.value,17,33,255]);}
@@ -73,6 +76,7 @@ impl Game for Port {
 
 def main():
     subprocess.run(["node", str(ROOT / "scripts/test-port-gamepads.mjs")], check=True)
+    subprocess.run(["node", str(ROOT / "scripts/test-port-states.mjs")], check=True)
     try:
         from playwright.sync_api import sync_playwright
     except ImportError:
@@ -109,7 +113,7 @@ def main():
                 box=page.locator('#screen').bounding_box()
                 assert abs(box['x']+box['width']/2-page.viewport_size['width']/2)<2
                 assert page.locator('h1 + p').inner_text()=='This is a native recompilation of the original game in Rust, running in WebAssembly. You must click the Start button below to start the game engine and enable audio and input in the browser.'
-                assert page.locator('#pause + #reset').inner_text()=='Reset'
+                assert page.locator('#pause + #reset').inner_text()=='Reset (F3)'
                 for kind in ['blur','visibilitychange']:
                     previous=int(page.locator('#screen').get_attribute('data-ticks'))
                     page.evaluate("""kind => {
@@ -130,10 +134,24 @@ def main():
                 page.wait_for_function("Object.keys(localStorage).some(k=>k.includes(':battery:'))")
                 save=page.evaluate("JSON.parse(localStorage.getItem(Object.keys(localStorage).find(k=>k.includes(':battery:'))))")
                 assert save['bytes']==[21] and save['rom_sha256']==hashlib.sha256(rom.read_bytes()).hexdigest()
-                page.click('#settings');page.locator('#volume').evaluate("el => {el.value='0.3';el.dispatchEvent(new Event('input',{bubbles:true}));}");page.locator('#width').fill('800');page.click('button[type=submit]')
+                page.click('#settings');page.locator('#volume').evaluate("el => {el.value='0.3';el.dispatchEvent(new Event('input',{bubbles:true}));}");page.locator('#height').fill('600');page.click('button[type=submit]')
                 page.reload();page.wait_for_function("!document.getElementById('start').disabled")
                 assert page.evaluate(pixel)==[21,17,33,255]
                 page.click('#settings');assert page.locator('#volume').input_value()=='0.3';page.click('#cancel')
+                assert page.locator('#integer_scale').count()==0
+                assert page.locator('#width').count()==0
+                box=page.locator('#screen').bounding_box()
+                assert abs(box['width']/box['height']-4/3)<.01
+                page.keyboard.press('F4')
+                page.wait_for_function("document.getElementById('state-status').textContent==='State saved.'")
+                page.click('#start');page.wait_for_function("document.getElementById('status').textContent==='Running'");page.keyboard.down('z')
+                page.wait_for_function("document.getElementById('screen').getContext('2d').getImageData(0,0,1,1).data[0]===22")
+                page.keyboard.up('z')
+                page.keyboard.press('F5')
+                page.wait_for_function("document.getElementById('game-message').textContent.includes('State restored')")
+                assert page.evaluate(pixel)==[21,17,33,255]
+                page.keyboard.press('F1')
+                page.wait_for_function("document.getElementById('status').textContent==='Running'")
                 # Rebind a to Q through the actual settings UI and persist it.
                 page.click('#settings');page.locator('#bindings label').filter(has_text='a:').first.locator('button').first.click();page.keyboard.press('q');page.click('button[type=submit]')
                 page.click('#start');page.wait_for_timeout(100);page.keyboard.down('q')
@@ -202,6 +220,6 @@ def main():
         (assets/'value.bin').unlink();(assets/'value.bin').symlink_to(rom)
         try:port_web.asset_routes(assets);raise AssertionError('accepted escaping symlink')
         except ValueError:pass
-    print('Wasm scaffold, localhost ROM/assets, Chromium frame/input/audio startup, settings and battery replay/error checks passed')
+    print('Wasm scaffold, localhost ROM/assets, Chromium frame/input/audio startup, 4:3 display, F1–F6 controls, full snapshots, settings and battery error checks passed')
 
 if __name__=='__main__':main()

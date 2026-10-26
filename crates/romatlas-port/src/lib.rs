@@ -16,6 +16,8 @@ pub mod saves;
 pub mod settings;
 pub mod sms;
 pub mod snes;
+#[cfg(feature = "snapshots")]
+pub mod states;
 pub mod timing;
 
 use anyhow::{Result, ensure};
@@ -25,6 +27,17 @@ use input::{InputState, MultiInputState};
 /// A port owns its rules/state and can run identically with or without a window.
 pub trait Game {
     fn tick(&mut self, input: &InputState);
+    /// Optional full native state, separate from battery persistence. No replay.
+    fn snapshot_json(&self) -> Result<String> {
+        anyhow::bail!("save states unavailable for this port")
+    }
+    /// Validate before mutation; errors must leave the current game intact.
+    fn restore_snapshot_json(&mut self, _json: &str) -> Result<()> {
+        anyhow::bail!("save states unavailable for this port")
+    }
+    fn reset(&mut self) -> Result<()> {
+        anyhow::bail!("reset unavailable for this port")
+    }
     /// Original in-game battery persistence only, never a full runtime snapshot.
     /// Increment the version when the game-owned persistent representation changes.
     fn save_version(&self) -> Option<u32> {

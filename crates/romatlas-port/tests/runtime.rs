@@ -319,7 +319,7 @@ fn persisted_settings_rebinding_cancellation_reset_and_rejection_preserve_data()
     settings = Settings::load(&path)?;
     let mut menu = Menu {
         open: true,
-        selected: 8,
+        selected: 10,
         ..Default::default()
     };
     menu.handle(MenuInput::Accept, &mut settings, &defaults, &[]);
@@ -331,14 +331,15 @@ fn persisted_settings_rebinding_cancellation_reset_and_rejection_preserve_data()
     assert!(settings.bindings["a"].contains(&Binding::Key { name: "K".into() }));
     menu.handle(MenuInput::ClearBinding, &mut settings, &defaults, &[]);
     assert!(settings.bindings["a"].is_empty());
-    menu.selected = 7;
+    menu.selected = 9;
     menu.handle(MenuInput::Accept, &mut settings, &defaults, &[]);
     assert_eq!(settings, defaults);
-    menu.selected = 5;
+    menu.selected = 4;
     let pads = [("0".repeat(32), "PAD".into())];
     menu.handle(MenuInput::Right, &mut settings, &defaults, &pads);
-    assert_eq!(settings.controller, Some("0".repeat(32)));
-    assert!(menu.labels(&settings, &[])[5].contains("DISCONNECTED"));
+    menu.handle(MenuInput::Right, &mut settings, &defaults, &pads);
+    assert_eq!(settings.players[0], "0".repeat(32));
+    assert!(menu.labels(&settings, &[])[4].contains("DISCONNECTED"));
     settings.bindings.get_mut("a").unwrap().push(Binding::Axis {
         name: "leftx".into(),
         direction: 0,
@@ -446,4 +447,27 @@ fn stretched_native_pixels_keep_the_requested_display_aspect() {
     );
     let small = viewport_with_aspect((720, 240), (320, 180), true, Some((16, 9)));
     assert_eq!((small.width(), small.height()), (320, 180));
+}
+
+#[test]
+fn legacy_integer_scale_is_accepted_but_not_emitted_or_shown() -> Result<()> {
+    let mut json = serde_json::to_value(Settings::default())?;
+    assert!(json.get("integer_scale").is_none());
+    json["integer_scale"] = true.into();
+    json.as_object_mut().unwrap().remove("players");
+    let settings: Settings = serde_json::from_value(json)?;
+    settings.validate()?;
+    assert_eq!(settings.players, ["auto", "auto", "auto", "auto"]);
+    assert!(
+        serde_json::to_value(&settings)?
+            .get("integer_scale")
+            .is_none()
+    );
+    assert!(
+        !Menu::default()
+            .labels(&settings, &[])
+            .iter()
+            .any(|label| label.contains("INTEGER"))
+    );
+    Ok(())
 }

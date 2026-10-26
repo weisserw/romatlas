@@ -86,3 +86,14 @@ fn apu_snapshot_preserves_bit_exact_sample_continuation() {
         serde_json::to_string(&restored).unwrap()
     );
 }
+
+#[test]
+fn full_restore_keeps_driver_when_game_restore_is_unavailable() {
+    let mut original = runtime();
+    original.advance(23.125, Default::default()).unwrap();
+    let saved = original.driver_snapshot_json().unwrap();
+    let mut restored = runtime();
+    let before = restored.driver_snapshot_json().unwrap();
+    assert!(restored.restore_state_json("{}", &saved).is_err());
+    assert_eq!(restored.driver_snapshot_json().unwrap(), before);
+}

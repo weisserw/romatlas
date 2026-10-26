@@ -17,12 +17,16 @@ pub struct Settings {
     pub width: u32,
     pub height: u32,
     pub fullscreen: bool,
+    /// Legacy input only; display always scales freely.
+    #[serde(default, skip_serializing)]
     pub integer_scale: bool,
     pub volume: f32,
     pub dead_zone: f32,
     /// SDL GUID#ordinal among identical models; None selects the first available.
     /// A bare GUID is also accepted and selects ordinal zero.
     pub controller: Option<String>,
+    #[serde(default = "automatic_players")]
+    pub players: [String; 4],
     pub pause_on_focus_loss: bool,
     pub bindings: BTreeMap<String, Vec<Binding>>,
 }
@@ -49,6 +53,10 @@ pub fn default_path(game: &str) -> Result<std::path::PathBuf> {
     .context("cannot locate user configuration directory; supply --settings")?;
     Ok(root.join("romatlas-ports").join(game).join("settings.json"))
 }
+fn automatic_players() -> [String; 4] {
+    std::array::from_fn(|_| "auto".into())
+}
+
 impl Default for Settings {
     fn default() -> Self {
         let mut bindings = BTreeMap::new();
@@ -87,16 +95,23 @@ impl Default for Settings {
         Self {
             version: 1,
             width: 640,
-            height: 576,
+            height: 480,
             fullscreen: false,
-            integer_scale: true,
+            integer_scale: false,
             volume: 0.7,
             dead_zone: 0.2,
             controller: None,
+            players: automatic_players(),
             pause_on_focus_loss: true,
             bindings,
         }
     }
+}
+fn valid_controller(id: &str) -> bool {
+    let (guid, ordinal) = id.split_once('#').map_or((id, None), |(g, o)| (g, Some(o)));
+    guid.len() == 32
+        && guid.bytes().all(|b| b.is_ascii_hexdigit())
+        && ordinal.is_none_or(|o| o.parse::<u16>().is_ok())
 }
 impl Settings {
     pub fn validate(&self) -> Result<()> {
@@ -124,6 +139,17 @@ impl Settings {
             }),
             "invalid controller selector"
         );
+        let mut explicit = std::collections::BTreeSet::new();
+        for id in &self.players {
+            ensure!(
+                id == "auto" || id == "none" || valid_controller(id),
+                "invalid player controller"
+            );
+            ensure!(
+                id == "auto" || id == "none" || explicit.insert(id.to_ascii_lowercase()),
+                "controller assigned twice"
+            );
+        }
         ensure!(
             !self.bindings.is_empty() && self.bindings.len() <= 128,
             "invalid action count"
@@ -158,7 +184,8 @@ impl Settings {
         if !path.try_exists()? {
             return Ok(Self::default());
         }
-        let settings: Self = serde_json::from_slice(&read_bounded(path, 1024 * 1024)?)?;
+        let mut settings: Self = serde_json::from_slice(&read_bounded(path, 1024 * 1024)?)?;
+        settings.integer_scale = false;
         settings.validate()?;
         Ok(settings)
     }
@@ -218,27 +245,28 @@ impl Menu {
         self.rebinding = None;
     }
     pub fn labels(&self, settings: &Settings, controllers: &[(String, String)]) -> Vec<String> {
-        let controller = settings
-            .controller
-            .as_ref()
-            .map(|id| {
-                controllers
-                    .iter()
-                    .find(|(guid, _)| guid == id)
-                    .map(|(_, name)| name.as_str())
-                    .unwrap_or("DISCONNECTED")
-            })
-            .unwrap_or("AUTO");
         let mut labels = vec![
-            format!("WINDOW {} X {}", settings.width, settings.height),
+            format!("HEIGHT {} (WIDTH AUTOMATIC)", settings.height),
             format!("FULLSCREEN {}", settings.fullscreen),
-            format!("INTEGER SCALE {}", settings.integer_scale),
             format!("VOLUME {:.0}%", settings.volume * 100.0),
             format!("DEAD ZONE {:.0}%", settings.dead_zone * 100.0),
-            format!("CONTROLLER {controller}"),
-            format!("PAUSE ON FOCUS LOSS {}", settings.pause_on_focus_loss),
-            "RESET DEFAULTS".into(),
         ];
+        for (player, id) in settings.players.iter().enumerate() {
+            let name = match id.as_str() {
+                "auto" => "AUTO",
+                "none" => "NONE",
+                _ => controllers
+                    .iter()
+                    .find(|(key, _)| key == id)
+                    .map_or("DISCONNECTED", |(_, name)| name.as_str()),
+            };
+            labels.push(format!("PLAYER {}: {}", player + 1, name));
+        }
+        labels.push(format!(
+            "PAUSE ON FOCUS LOSS {}",
+            settings.pause_on_focus_loss
+        ));
+        labels.push("RESET DEFAULTS".into());
         for (action, bindings) in &settings.bindings {
             let names = bindings
                 .iter()
@@ -254,8 +282,12 @@ impl Menu {
         labels
     }
     /// Rebinding adds an alternative. ClearBinding explicitly clears the action.
-    /// Reserve Escape/F1 for cancelling the menu and Backspace for clearing.
+    /// Reserve Escape/F6 for cancelling the menu and Backspace for clearing.
     pub fn capture(&mut self, binding: Binding, settings: &mut Settings) -> bool {
+        if matches!(&binding, Binding::Key { name } if matches!(name.as_str(), "F1"|"F2"|"F3"|"F4"|"F5"|"F6"))
+        {
+            return false;
+        }
         if let Some(action) = self.rebinding.take() {
             let bindings = settings.bindings.entry(action).or_default();
             if bindings.len() < 16 && !bindings.contains(&binding) {
@@ -281,7 +313,7 @@ impl Menu {
             }
             return false;
         }
-        let count = 8 + settings.bindings.len();
+        let count = 10 + settings.bindings.len();
         self.selected = self.selected.min(count - 1);
         match input {
             MenuInput::Up => {
@@ -298,11 +330,11 @@ impl Menu {
             }
             _ => {}
         }
-        if self.selected >= 8 {
+        if self.selected >= 10 {
             let action = settings
                 .bindings
                 .keys()
-                .nth(self.selected - 8)
+                .nth(self.selected - 10)
                 .unwrap()
                 .clone();
             if matches!(input, MenuInput::Accept) {
@@ -326,41 +358,38 @@ impl Menu {
         };
         match self.selected {
             0 => {
-                let sizes = [
-                    (640, 576),
-                    (800, 720),
-                    (960, 864),
-                    (1280, 720),
-                    (1920, 1080),
-                ];
-                let index = sizes
+                let heights = [240, 360, 480, 540, 720, 900, 1080, 1440, 2160];
+                let index = heights
                     .iter()
-                    .position(|size| *size == (settings.width, settings.height))
-                    .unwrap_or(0);
-                (settings.width, settings.height) =
-                    sizes[(index as i32 + step).rem_euclid(sizes.len() as i32) as usize];
+                    .position(|height| *height == settings.height)
+                    .unwrap_or(2);
+                settings.height =
+                    heights[(index as i32 + step).rem_euclid(heights.len() as i32) as usize];
             }
             1 => settings.fullscreen = !settings.fullscreen,
-            2 => settings.integer_scale = !settings.integer_scale,
-            3 => settings.volume = (settings.volume + step as f32 * 0.05).clamp(0.0, 1.0),
-            4 => settings.dead_zone = (settings.dead_zone + step as f32 * 0.05).clamp(0.0, 0.95),
-            5 => {
-                let mut choices = vec![None];
-                for (id, _) in controllers {
-                    if !choices.contains(&Some(id.clone())) {
-                        choices.push(Some(id.clone()));
-                    }
-                }
+            2 => settings.volume = (settings.volume + step as f32 * 0.05).clamp(0.0, 1.0),
+            3 => settings.dead_zone = (settings.dead_zone + step as f32 * 0.05).clamp(0.0, 0.95),
+            4..=7 => {
+                let player = self.selected - 4;
+                let mut choices = vec!["auto".to_owned(), "none".to_owned()];
+                choices.extend(controllers.iter().map(|(id, _)| id.clone()).filter(|id| {
+                    !settings
+                        .players
+                        .iter()
+                        .enumerate()
+                        .any(|(other, assigned)| other != player && assigned == id)
+                }));
                 let index = choices
                     .iter()
-                    .position(|c| c == &settings.controller)
+                    .position(|id| id == &settings.players[player])
                     .unwrap_or(0);
-                settings.controller = choices
+                settings.players[player] = choices
                     [(index as i32 + step).rem_euclid(choices.len() as i32) as usize]
                     .clone();
+                settings.controller = None;
             }
-            6 => settings.pause_on_focus_loss = !settings.pause_on_focus_loss,
-            7 => *settings = defaults.clone(),
+            8 => settings.pause_on_focus_loss = !settings.pause_on_focus_loss,
+            9 => *settings = defaults.clone(),
             _ => unreachable!(),
         }
         true

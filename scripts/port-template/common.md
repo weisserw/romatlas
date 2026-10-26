@@ -54,16 +54,17 @@ Desktop SDL2 and browser Wasm share Game rules, Port::load_assets, decoded asset
 validation and battery-save representation. Frontends handle rendering, audio,
 input and persistence; do not branch game rules by frontend. Keep dimensions,
 TickRate, ROM identity and default settings in config.rs. Supply persisted
-keyboard/gamepad mapping, controller selection, dead zones, window/fullscreen/
-scaling and volume settings through the toolkit's usable settings menu.
+keyboard/gamepad mapping, per-player controller assignment, dead zones, height/
+fullscreen and volume settings through the toolkit's usable settings menu.
 Compile desktop code without opening a window on this headless server.
 
 If the original has battery saves, implement the optional Game save hooks with
 versioned game-owned data, transactional validation and dirty/acknowledgement.
 Desktop files and browser localStorage use the same ROM-bound envelope.
-No-battery games retain the default hooks. Player save states are outside scope;
-headless debug replay checkpoints are a separate testing facility, not a player
-save feature. Document original saving and the native format.
+No-battery games retain the default battery hooks. Implement full native player
+snapshots separately through Game::snapshot_json / restore_snapshot_json. Headless
+debug replay checkpoints remain a separate testing facility. Document original
+saving, full snapshots and their native formats.
 
 ## Debug observability and source questions
 
@@ -128,3 +129,11 @@ Do not add more validation simply because time or goal budget remains. QA must
 still execute both required passes afresh. No check-in or publication is
 authorized. A separate library review uses prompts/review.md; release packaging
 and immutable dependency pinning are later work.
+
+Frontend contract: keep config.rs DISPLAY_ASPECT at its default 4:3 unless a
+per-game enhancement explicitly changes it. Both frontends derive width from
+height and expose no integer scaling setting. Preserve F1–F6 resume/pause/reset/
+save-state/restore-state/settings controls. Implement Game::reset and versioned
+full-state Game::snapshot_json / atomic Game::restore_snapshot_json, including
+mutable game/audio state. The empty scaffold snapshot is not sufficient once
+stateful gameplay is implemented. Retain separate original battery save hooks.
