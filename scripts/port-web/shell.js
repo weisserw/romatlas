@@ -1,9 +1,9 @@
+import {gamepads, padState, capturePadBinding} from './browser-gamepads.mjs';
+let pollCapture;
 import init, { BrowserAssets, BrowserGame } from './game.js';
 const $ = id => document.getElementById(id);
 const report = error => { $('error').textContent = String(error); console.error(error); };
 const empty = () => ({keys:[],buttons:[],axes:{}});
-const buttons = ['a','b','x','y','leftshoulder','rightshoulder',null,null,'back','start','leftstick','rightstick','dpup','dpdown','dpleft','dpright','guide'];
-const axes = ['leftx','lefty','rightx','righty'];
 const keyNames = {ArrowUp:'Up',ArrowDown:'Down',ArrowLeft:'Left',ArrowRight:'Right',Enter:'Return',Escape:'Escape',' ':'Space',Backspace:'Backspace',Tab:'Tab',Shift:'Left Shift',Control:'Left Ctrl',Alt:'Left Alt'};
 const keyName = event => ({ShiftRight:'Right Shift',ControlRight:'Right Ctrl',AltRight:'Right Alt',MetaLeft:'Left GUI',MetaRight:'Right GUI',CapsLock:'CapsLock',NumLock:'Numlock',ScrollLock:'ScrollLock',NumpadEnter:'Keypad Enter'})[event.code] || keyNames[event.key] || (event.key.length === 1 ? event.key.toUpperCase() : event.key);
 let game, audio, settings, defaults, draft, config, settingsKey, saveKey;
@@ -11,13 +11,7 @@ let started=false, paused=true, capture=null, last=null, nextAudio=0, ticks=0;
 let assignments = ['auto','auto','auto','auto'];
 const keys = new Set(), keyCodes = new Map(), sources = new Set();
 let signature='';
-function pads() {
-  const counts=new Map();
-  return [...navigator.getGamepads()].filter(p=>p && p.mapping==='standard').map(p=>{
-    const ordinal=counts.get(p.id)||0; counts.set(p.id,ordinal+1);
-    return {pad:p,id:JSON.stringify([p.id,ordinal])};
-  });
-}
+function pads() { return gamepads(navigator); }
 function physical() {
   const all=pads(), used=new Set(), reserved=new Set(assignments.filter(id=>id!=='auto' && id!=='none'));
   return assignments.map((id,index)=>{
@@ -25,9 +19,7 @@ function physical() {
     const item=id==='none'?null:id==='auto'?all.find(p=>!used.has(p.id) && !reserved.has(p.id)):all.find(p=>p.id===id && !used.has(p.id));
     if(item) {
       used.add(item.id); const p=item.pad;
-      p.buttons.forEach((b,i)=>{if(b.pressed && buttons[i])state.buttons.push(buttons[i]);});
-      axes.forEach((name,i)=>state.axes[name]=p.axes[i]||0);
-      state.axes.triggerleft=p.buttons[6]?.value||0; state.axes.triggerright=p.buttons[7]?.value||0;
+      Object.assign(state, padState(p)); if(index===0)state.keys=[...keys];
     }
     return state;
   });
@@ -69,9 +61,8 @@ function loop(now) {
   try {
     const connected=JSON.stringify(pads().map(p=>[p.id,p.pad.index]));
     if(connected!==signature){signature=connected;boundary();if($('preferences').open)controllerOptions();}
-    if(capture){const state=physical().find(s=>s.buttons.length||Object.values(s.axes).some(v=>Math.abs(v)>.75));
-      if(state){if(state.buttons.length)bind({kind:'button',name:state.buttons[0]});else{const [name,value]=Object.entries(state.axes).find(([,v])=>Math.abs(v)>.75);bind({kind:'axis',name,direction:value<0?-1:1});}}}
-    if(game && started && !paused && !$('preferences').open && !document.hidden && document.hasFocus()) {
+    if(capture && pollCapture){const binding=pollCapture();if(binding)bind(binding);}
+    if(game && started && !paused && !$('preferences').open) {
       ticks+=game.advance(last===null?0:Math.min(now-last,1000),JSON.stringify(physical()));last=now;
       draw();play(game.audio());flush();$('screen').dataset.ticks=String(ticks);$('status').textContent='Running';
     } else last=null;
@@ -96,7 +87,7 @@ function bindings() {
   for(const [action,list]of Object.entries(draft.settings.bindings)) {
     const label=document.createElement('label');label.textContent=`${action}: `;
     const button=document.createElement('button');button.type='button';button.textContent=list.map(b=>`${b.kind} ${b.name}${b.direction||''}`).join(', ')||'Unbound';
-    button.onclick=()=>{capture=action;button.textContent='Press a key / pad / axis…';boundary();};
+    button.onclick=()=>{capture=action;pollCapture=capturePadBinding(pads);button.textContent='Press a key / pad / axis…';boundary();};
     const clear=document.createElement('button');clear.type='button';clear.textContent='Clear';clear.onclick=()=>{draft.settings.bindings[action]=[];bindings();};
     const reset=document.createElement('button');reset.type='button';reset.textContent='Default';reset.onclick=()=>{draft.settings.bindings[action]=structuredClone(defaults.bindings[action]||[]);bindings();};
     label.append(button,clear,reset);field.append(label);
@@ -134,6 +125,7 @@ $('options').onsubmit=async event=>{
 $('cancel').onclick=()=>{capture=null;$('preferences').close();boundary();};
 $('preferences').addEventListener('cancel',()=>{capture=null;boundary();});
 $('settings').onclick=preferences;$('pause').onclick=pause;
+$('reset').onclick=()=>{flush();stopAudio();window.location.reload();};
 window.addEventListener('keydown',event=>{
   if(capture){event.preventDefault();if(event.key==='Escape'){capture=null;bindings();}else bind({kind:'key',name:keyName(event)});return;}
   if(event.key==='F1'){event.preventDefault();if(!$('preferences').open)preferences();return;}
@@ -142,7 +134,8 @@ window.addEventListener('keydown',event=>{
   if(!event.repeat){const name=keyName(event);keys.add(name);keyCodes.set(event.code,name);}
 });
 window.addEventListener('keyup',event=>{keys.delete(keyCodes.get(event.code)||keyName(event));keyCodes.delete(event.code);});
-window.addEventListener('blur',pause);document.addEventListener('visibilitychange',()=>{if(document.hidden)pause();});
+// Release held inputs and reset timing without pausing on browser focus changes.
+window.addEventListener('blur',boundary);document.addEventListener('visibilitychange',boundary);
 window.addEventListener('pagehide',()=>{flush();stopAudio();});
 $('start').onclick=async()=>{
   try{const resume=audio.resume();if(settings.fullscreen && !document.fullscreenElement){try{await $('screen').requestFullscreen();}catch(error){report(`Fullscreen unavailable: ${error}`);}}await resume;if(audio.state!=='running')throw new Error('Audio could not start');boundary();started=true;paused=false;$('pause').disabled=false;$('status').textContent='Running';}
@@ -163,7 +156,7 @@ async function boot(){
   const version=game.save_version();saveKey=version===undefined?null:`romatlas:${config.rom_sha256}:battery:v${version}`;
   if(saveKey){try{const saved=localStorage.getItem(saveKey);if(saved)game.restore(saved);}catch(error){throw new Error(`Battery save load failed: ${error}`);}}
   game.advance(0,JSON.stringify([empty(),empty(),empty(),empty()]));draw();
-  $('start').disabled=false;$('settings').disabled=false;$('status').textContent='Ready — press Start to enable audio and play';
+  $('start').disabled=false;$('reset').disabled=false;$('settings').disabled=false;$('status').textContent='Ready — press Start to enable audio and play';
   requestAnimationFrame(loop);
 }
 boot().catch(report);

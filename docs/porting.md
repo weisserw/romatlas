@@ -445,18 +445,25 @@ The bundle alone requires equivalent `/config.json`, `/rom` and override routes;
 it is not a self-contained game distribution. No existing workspaces are migrated.
 
 Press Start to enable audio. The shell uses Canvas RGBA frames, stereo Web Audio,
-keyboard and standard-mapping Gamepad APIs for four independent player slots.
+keyboard and Gamepad APIs for four independent player slots.
 Settings provide rebinding, controller assignment, volume/dead zone, dimensions,
 integer scaling and fullscreen. Keyboard bindings use the shared SDL-style names;
-the shell translates browser keys and standard controller buttons/axes. Browser
-controller identities are separate from SDL GUIDs. Settings and assignments live
+the shell translates browser keys and controller buttons/axes, including devices
+without the browser's standard mapping. First-stick axes retain the default
+movement bindings; extra controls are exposed as `buttonN` and `axisN` for
+rebinding. Raw layouts vary, so verify bindings in Settings. Binding capture reads
+all connected controllers independently of player assignment and waits for
+initially held controls to be released. Browser controller identities are separate from SDL GUIDs. Settings and assignments live
 in localStorage under the ROM hash. This storage is also scoped to the browser's
 origin: changing server port/browser/profile gives a separate storage location.
 Keep the same origin to retain saves; clearing site storage removes them.
 
-Focus loss, hidden tabs, menus and device changes reset the rational clock and
-input edges, discard queued audio and suppress held controls until neutral.
-Resume requires Start after pausing; missed wall time is not replayed. Catch-up
+The browser page centers the game display and explains the initial Start click.
+Pause and Settings pause gameplay; Start resumes it. Reset reloads the page and
+returns to the initial Start prompt, preserving settings and original battery
+saves. Focus loss and visibility changes clear held inputs and queued audio and
+reset timing without pausing gameplay. Device changes also reset input/timing.
+Browsers may throttle background tabs. Missed wall time is not replayed. Catch-up
 is bounded to eight ticks. The desktop-browser baseline is current Chromium and
 Firefox with single-threaded Wasm; Chromium is exercised automatically. Firefox
 support is currently an implementation target, not a measured compatibility claim.

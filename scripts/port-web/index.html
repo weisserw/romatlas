@@ -2,9 +2,11 @@
 <html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ROMAtlas port</title>
 <style>
-body{background:#181b23;color:#eee;font:16px system-ui;margin:2rem}button,input,select{font:inherit;margin:.3rem}canvas{display:block;image-rendering:pixelated;background:#000;max-width:100%;margin:1rem 0}fieldset{margin:1rem 0}#error{color:#ffb4ab;white-space:pre-wrap}label{display:inline-block;margin:.4rem}#bindings label{display:block}dialog{background:#242936;color:#eee;max-height:80vh;overflow:auto;border:1px solid #999}small{display:block}
+body{background:#181b23;color:#eee;font:16px system-ui;margin:2rem auto;padding:0 1rem;max-width:64rem;text-align:center}button,input,select{font:inherit;margin:.3rem}canvas{display:block;image-rendering:pixelated;background:#000;max-width:100%;margin:1rem auto}fieldset{margin:1rem auto}#error{color:#ffb4ab;white-space:pre-wrap}label{display:inline-block;margin:.4rem}#bindings label{display:block}dialog{text-align:left;background:#242936;color:#eee;max-height:80vh;overflow:auto;border:1px solid #999}small{display:block}
 </style>
-<h1 id="title">ROMAtlas port</h1><button id="start" disabled>Start</button><button id="pause" disabled>Pause</button><button id="settings" disabled>Settings (F1)</button>
+<h1 id="title">ROMAtlas port</h1>
+<p>This is a native recompilation of the original game in Rust, running in WebAssembly. You must click the Start button below to start the game engine and enable audio and input in the browser.</p>
+<button id="start" disabled>Start</button><button id="pause" disabled>Pause</button><button id="reset" disabled>Reset</button><button id="settings" disabled>Settings (F1)</button>
 <p id="status" role="status">Loading local ROM and Wasm…</p><p id="error" role="alert"></p><canvas id="screen" aria-label="Game display"></canvas>
 <dialog id="preferences"><h2>Settings</h2><form id="options">
 <label>Volume <input id="volume" type="range" min="0" max="1" step=".05"></label>

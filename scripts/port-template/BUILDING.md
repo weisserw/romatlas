@@ -249,8 +249,10 @@ files local. Existing workspaces are not upgraded automatically.
 Browser settings support keyboard/standard gamepad rebinding, four player device
 assignments, volume, scaling, dimensions and fullscreen. Settings and versioned
 battery saves use browser localStorage keyed by ROM hash; keep the same server origin,
-browser and profile to retain them. Start resumes after focus/visibility/menu
-pauses. No touch/mobile or save-state support is provided. Current desktop
+browser and profile to retain them. Start resumes after Pause or Settings. Focus loss does not pause the browser
+game; browser background throttling can still limit updates. Reset reloads the
+game and returns to the Start prompt, preserving settings and original battery
+saves. No touch/mobile or save-state support is provided. Current desktop
 Chromium is tested; Firefox uses the same browser APIs but requires separate
 compatibility confirmation. Builds are single-threaded and require no cross-origin
 isolation. See the toolkit's docs/porting.md for the save contract and test setup.

@@ -72,6 +72,7 @@ impl Game for Port {
 
 
 def main():
+    subprocess.run(["node", str(ROOT / "scripts/test-port-gamepads.mjs")], check=True)
     try:
         from playwright.sync_api import sync_playwright
     except ImportError:
@@ -93,6 +94,7 @@ def main():
             url=f'http://127.0.0.1:{server.server_port}/'
             assert urlopen(url+'rom').read()==rom.read_bytes()
             assert urlopen(url+'game_bg.wasm').headers['Content-Type']=='application/wasm'
+            assert b'export function gamepads' in urlopen(url+'browser-gamepads.mjs').read()
             try:urlopen(url+'../workspace.json');raise AssertionError('unexpected source exposure')
             except HTTPError as e:assert e.code==404
             with sync_playwright() as playwright:
@@ -103,6 +105,25 @@ def main():
                 pixel="Array.from(document.getElementById('screen').getContext('2d').getImageData(0,0,1,1).data)"
                 assert page.evaluate(pixel)==[20,17,33,255] # server override + Rust extraction path
                 page.click('#start');page.wait_for_function("Number(document.getElementById('screen').dataset.ticks)>0")
+                # Page defaults: centered display, explicit reset, and no focus pause.
+                box=page.locator('#screen').bounding_box()
+                assert abs(box['x']+box['width']/2-page.viewport_size['width']/2)<2
+                assert page.locator('h1 + p').inner_text()=='This is a native recompilation of the original game in Rust, running in WebAssembly. You must click the Start button below to start the game engine and enable audio and input in the browser.'
+                assert page.locator('#pause + #reset').inner_text()=='Reset'
+                for kind in ['blur','visibilitychange']:
+                    previous=int(page.locator('#screen').get_attribute('data-ticks'))
+                    page.evaluate("""kind => {
+                        Object.defineProperty(document,'hasFocus',{value:()=>false,configurable:true});
+                        Object.defineProperty(document,'hidden',{value:true,configurable:true});
+                        (kind==='blur'?window:document).dispatchEvent(new Event(kind));
+                    }""",kind)
+                    page.wait_for_function(f"Number(document.getElementById('screen').dataset.ticks)>{previous+2}")
+                    assert page.locator('#status').inner_text()=='Running'
+                    page.evaluate("delete document.hasFocus;delete document.hidden")
+                page.click('#reset');page.wait_for_function("!document.getElementById('start').disabled")
+                assert page.locator('#status').inner_text().startswith('Ready')
+                assert page.evaluate(pixel)==[20,17,33,255]
+                page.click('#start');page.wait_for_function("Number(document.getElementById('screen').dataset.ticks)>2")
                 page.keyboard.down('z')
                 page.wait_for_function("document.getElementById('screen').getContext('2d').getImageData(0,0,1,1).data[0]===21")
                 page.keyboard.up('z')
@@ -115,7 +136,7 @@ def main():
                 page.click('#settings');assert page.locator('#volume').input_value()=='0.3';page.click('#cancel')
                 # Rebind a to Q through the actual settings UI and persist it.
                 page.click('#settings');page.locator('#bindings label').filter(has_text='a:').first.locator('button').first.click();page.keyboard.press('q');page.click('button[type=submit]')
-                page.click('#start');page.keyboard.down('q')
+                page.click('#start');page.wait_for_timeout(100);page.keyboard.down('q')
                 page.wait_for_function("document.getElementById('screen').getContext('2d').getImageData(0,0,1,1).data[0]===22")
                 page.keyboard.up('q')
                 # Pause has no time debt or stuck input after resume.
@@ -134,6 +155,36 @@ def main():
                 page.evaluate("() => {Storage.prototype.setItem=window.originalSetItem;}")
                 page.wait_for_function("JSON.parse(localStorage.getItem(Object.keys(localStorage).find(k=>k.includes(':battery:')))).bytes[0]===33")
                 assert not errors,errors
+                # Raw controllers stay visible and can be rebound while unassigned.
+                raw_context=browser.new_context();raw_page=raw_context.new_page()
+                raw_page.on('pageerror',lambda error:errors.append(str(error)))
+                raw_page.add_init_script("""window.rawPad={id:'Unmapped USB pad',index:0,connected:true,mapping:'',axes:[0,0,0,0,-1,0],buttons:Array.from({length:20},()=>({pressed:false,value:0}))};Object.defineProperty(navigator,'getGamepads',{value:()=>[window.rawPad]});""")
+                raw_page.goto(url);raw_page.wait_for_function("!document.getElementById('start').disabled")
+                raw_page.click('#settings')
+                assert raw_page.locator('#players select').first.locator('option').count()==3
+                for select in raw_page.locator('#players select').all():select.select_option('none')
+                binding=raw_page.locator('#bindings label').filter(has_text='a:').first.locator('button').first
+                binding.click();raw_page.wait_for_timeout(100)
+                assert 'Press a key' in binding.inner_text() # idle -1 axis must not capture
+                raw_page.evaluate("window.rawPad.buttons[19]={pressed:true,value:1}")
+                raw_page.wait_for_function("document.getElementById('bindings').textContent.includes('button19')")
+                raw_page.evaluate("window.rawPad.buttons[19]={pressed:false,value:0}")
+                raw_page.locator('#players select').first.select_option('auto')
+                raw_page.click('button[type=submit]');raw_page.click('#start')
+                raw_page.wait_for_function("Number(document.getElementById('screen').dataset.ticks)>2")
+                raw_page.evaluate("window.rawPad.buttons[19]={pressed:true,value:1}")
+                raw_page.wait_for_function("document.getElementById('screen').getContext('2d').getImageData(0,0,1,1).data[0]===21")
+                raw_page.evaluate("window.rawPad.buttons[19]={pressed:false,value:0}")
+                raw_page.click('#settings');binding.click()
+                raw_page.evaluate("window.rawPad.axes[5]=-.9")
+                raw_page.wait_for_function("document.getElementById('bindings').textContent.includes('axis5')")
+                raw_page.evaluate("window.rawPad.axes[5]=0")
+                raw_page.click('button[type=submit]');raw_page.click('#start')
+                raw_page.wait_for_timeout(100)
+                raw_page.evaluate("window.rawPad.axes[5]=-.9")
+                raw_page.wait_for_function("document.getElementById('screen').getContext('2d').getImageData(0,0,1,1).data[0]===22")
+                assert not errors,errors
+                raw_context.close()
                 context.close();browser.close()
             server.shutdown();thread.join()
         # The public future-workspace command builds and starts the same server.

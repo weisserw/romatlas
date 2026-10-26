@@ -46,7 +46,7 @@ def build(work):
     with tempfile.TemporaryDirectory(prefix=".web-build-", dir=work) as temporary:
         stage = Path(temporary)
         execute([tool, "--target", "web", "--out-dir", stage, "--out-name", "game", wasm], work)
-        for filename in ("index.html", "shell.js"):
+        for filename in ("index.html", "shell.js", "browser-gamepads.mjs"):
             shutil.copyfile(ROOT / "scripts/port-web" / filename, stage / filename)
         # Only generated shell/bindings: never copy the ROM or decoded assets.
         bundle.mkdir(exist_ok=True)
@@ -115,7 +115,7 @@ def server(work, rom, bundle, assets=None, port=8000, host="0.0.0.0"):
     routes["/rom"] = (rom_bytes, "application/octet-stream")
     config = {"rom_sha256": sha256, "assets": overlays, "title": Path(work).name}
     routes["/config.json"] = (json.dumps(config).encode(), "application/json")
-    for name in ["index.html", "shell.js", "game.js", "game_bg.wasm"]:
+    for name in ["index.html", "shell.js", "browser-gamepads.mjs", "game.js", "game_bg.wasm"]:
         path = Path(bundle) / name
         mime = "application/wasm" if name.endswith(".wasm") else mimetypes.guess_type(name)[0]
         routes["/" if name == "index.html" else "/" + name] = (path.read_bytes(), mime or "application/octet-stream")
