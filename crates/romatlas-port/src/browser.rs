@@ -116,3 +116,43 @@ impl<G: Game> Runtime<G> {
         save.restore(&mut self.game, &self.rom_sha256)
     }
 }
+
+#[cfg(feature = "snapshots")]
+#[derive(serde::Deserialize)]
+struct DriverSnapshot {
+    clock: Clock,
+    sample_clock: SampleClock,
+    mapper: InputMapper,
+    latches: [InputLatch; 4],
+    sample_rate: u32,
+    rom_sha256: String,
+}
+#[cfg(feature = "snapshots")]
+impl<G: Game> Runtime<G> {
+    pub fn driver_snapshot_json(&self) -> Result<String> {
+        Ok(serde_json::to_string(&serde_json::json!({
+            "clock": self.clock, "sample_clock": self.sample_clock,
+            "mapper": self.mapper, "latches": self.latches,
+            "sample_rate": self.sample_rate, "rom_sha256": self.rom_sha256,
+        }))?)
+    }
+    pub fn restore_driver_snapshot_json(&mut self, json: &str) -> Result<()> {
+        ensure!(json.len() <= 1024 * 1024, "driver snapshot too large");
+        let saved: DriverSnapshot = serde_json::from_str(json)?;
+        ensure!(
+            saved.sample_rate == self.sample_rate && saved.rom_sha256 == self.rom_sha256,
+            "driver snapshot identity mismatch"
+        );
+        ensure!(
+            saved.clock.snapshot_compatible(&self.clock)
+                && saved.sample_clock.snapshot_compatible(&self.sample_clock),
+            "invalid snapshot clock"
+        );
+        self.clock = saved.clock;
+        self.sample_clock = saved.sample_clock;
+        self.mapper = saved.mapper;
+        self.latches = saved.latches;
+        self.samples.clear();
+        Ok(())
+    }
+}

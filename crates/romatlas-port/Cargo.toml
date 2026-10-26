@@ -7,6 +7,7 @@ rust-version = "1.90"
 description = "ROM-backed assets and reusable runtime helpers for native game ports"
 
 [features]
+snapshots = ["serde_json/float_roundtrip"]
 default = []
 desktop = ["dep:sdl2"]
 

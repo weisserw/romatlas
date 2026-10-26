@@ -57,6 +57,7 @@ impl TickRate {
         Ok(())
     }
 }
+#[cfg_attr(feature = "snapshots", derive(serde::Serialize, serde::Deserialize))]
 pub struct Clock {
     rate: TickRate,
     remainder: u128,
@@ -90,5 +91,15 @@ impl Clock {
     }
     pub fn reset(&mut self) {
         self.remainder = 0;
+    }
+}
+
+#[cfg(feature = "snapshots")]
+impl Clock {
+    pub(crate) fn snapshot_compatible(&self, current: &Self) -> bool {
+        self.rate.numerator == current.rate.numerator
+            && self.rate.denominator == current.rate.denominator
+            && self.max_catch_up == current.max_catch_up
+            && self.remainder < u128::from(self.rate.denominator) * 1_000_000_000
     }
 }

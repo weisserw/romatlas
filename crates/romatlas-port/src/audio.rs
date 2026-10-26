@@ -3,6 +3,7 @@ use crate::timing::TickRate;
 use anyhow::{Result, ensure};
 
 #[derive(Clone)]
+#[cfg_attr(feature = "snapshots", derive(serde::Serialize, serde::Deserialize))]
 pub struct SampleClock {
     rate: TickRate,
     sample_rate: u32,
@@ -45,5 +46,15 @@ impl Pulse {
         } else {
             -1.0
         }
+    }
+}
+
+#[cfg(feature = "snapshots")]
+impl SampleClock {
+    pub(crate) fn snapshot_compatible(&self, current: &Self) -> bool {
+        self.rate.numerator == current.rate.numerator
+            && self.rate.denominator == current.rate.denominator
+            && self.sample_rate == current.sample_rate
+            && self.remainder < u64::from(self.rate.numerator)
     }
 }

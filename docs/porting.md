@@ -570,3 +570,14 @@ and deliberately divergent behavior require separate authorization/contracts.
 Retain or revert each selected target with evidence, update records and stop after
 the selected scope. There is no mandated whole-game rewrite
 or claim of modernizing every subsystem. Preparation does not start a pilot.
+
+### Opt-in snapshot primitives
+
+The `romatlas-port/snapshots` feature enables serialization of private browser
+clock/input and NES APU state. `Runtime::driver_snapshot_json` captures driver
+state; `restore_driver_snapshot_json` checks ROM/sample-rate/clock compatibility
+before replacing it. These methods do not capture the game or its immutable
+resources: an opting-in port supplies a versioned game serializer and restores
+both pieces atomically. Float round trips remain exact with this feature.
+The default browser template continues to expose only original battery saves;
+this feature adds no save-state UI or automatic migration to existing ports.

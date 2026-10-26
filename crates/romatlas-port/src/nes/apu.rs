@@ -21,6 +21,7 @@ const DUTY: [[u8; 8]; 4] = [
     [1, 0, 0, 1, 1, 1, 1, 1],
 ];
 #[derive(Clone, Default, Debug)]
+#[cfg_attr(feature = "snapshots", derive(serde::Serialize, serde::Deserialize))]
 struct Envelope {
     start: bool,
     divider: u8,
@@ -52,6 +53,7 @@ impl Envelope {
     }
 }
 #[derive(Clone, Default, Debug)]
+#[cfg_attr(feature = "snapshots", derive(serde::Serialize, serde::Deserialize))]
 struct Pulse {
     control: u8,
     sweep: u8,
@@ -113,6 +115,7 @@ impl Pulse {
     }
 }
 #[derive(Clone, Debug)]
+#[cfg_attr(feature = "snapshots", derive(serde::Serialize, serde::Deserialize))]
 pub struct Apu {
     pulse: [Pulse; 2],
     regs: [u8; 24],

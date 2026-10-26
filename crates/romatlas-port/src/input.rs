@@ -19,12 +19,14 @@ pub struct PhysicalInput {
     pub axes: BTreeMap<String, f32>,
 }
 #[derive(Debug, Clone, Default, PartialEq, Eq)]
+#[cfg_attr(feature = "snapshots", derive(serde::Serialize, serde::Deserialize))]
 pub struct InputState {
     pub held: BTreeSet<String>,
     pub pressed: BTreeSet<String>,
     pub released: BTreeSet<String>,
 }
 #[derive(Debug, Clone, Default, PartialEq, Eq)]
+#[cfg_attr(feature = "snapshots", derive(serde::Serialize, serde::Deserialize))]
 pub struct PlayerInput {
     pub held: BTreeSet<String>,
     pub pressed: BTreeSet<String>,
@@ -39,6 +41,7 @@ impl PlayerInput {
     }
 }
 #[derive(Debug, Clone, Default, PartialEq, Eq)]
+#[cfg_attr(feature = "snapshots", derive(serde::Serialize, serde::Deserialize))]
 pub struct MultiInputState {
     /// Player zero mirrors the legacy single-player input state.
     pub primary: InputState,
@@ -54,6 +57,7 @@ impl InputState {
     }
 }
 #[derive(Default)]
+#[cfg_attr(feature = "snapshots", derive(serde::Serialize, serde::Deserialize))]
 pub struct InputMapper {
     previous: [BTreeSet<String>; 4],
 }
@@ -117,6 +121,7 @@ impl InputMapper {
 /// Prevent controls held across focus/menu/device transitions from becoming
 /// fresh game actions. Each suppressed control rearms after returning to neutral.
 #[derive(Default)]
+#[cfg_attr(feature = "snapshots", derive(serde::Serialize, serde::Deserialize))]
 pub struct InputLatch {
     suppressed: PhysicalInput,
 }
