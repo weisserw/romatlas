@@ -46,6 +46,11 @@ pub trait Game {
     fn tick_players(&mut self, input: &MultiInputState) {
         self.tick(&input.primary);
     }
+    /// Optional presentation aspect for ports whose native pixels are stretched.
+    /// None preserves the framebuffer's aspect and existing frontend behavior.
+    fn display_aspect_ratio(&self) -> Option<(u32, u32)> {
+        None
+    }
     fn render(&self, frame: &mut Frame);
     /// Append interleaved stereo f32 samples at the requested rate. This default
     /// is silence, not a substitute for implementing the original game's audio.

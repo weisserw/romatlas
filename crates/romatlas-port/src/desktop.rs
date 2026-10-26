@@ -152,15 +152,30 @@ fn filter_players(
 
 /// Aspect-preserving fit, including windows smaller than the original frame.
 pub fn viewport(logical: (u32, u32), output: (u32, u32), integer_scale: bool) -> Rect {
-    let scale =
-        (output.0 as f64 / logical.0.max(1) as f64).min(output.1 as f64 / logical.1.max(1) as f64);
+    viewport_with_aspect(logical, output, integer_scale, None)
+}
+/// Fit using a display aspect while retaining vertical native-pixel integer steps.
+pub fn viewport_with_aspect(
+    logical: (u32, u32),
+    output: (u32, u32),
+    integer_scale: bool,
+    aspect: Option<(u32, u32)>,
+) -> Rect {
+    let height = f64::from(logical.1.max(1));
+    let width = match aspect {
+        Some((numerator, denominator)) if numerator != 0 && denominator != 0 => {
+            height * f64::from(numerator) / f64::from(denominator)
+        }
+        _ => f64::from(logical.0.max(1)),
+    };
+    let scale = (f64::from(output.0) / width).min(f64::from(output.1) / height);
     let scale = if integer_scale && scale >= 1.0 {
         scale.floor()
     } else {
         scale
     };
-    let width = (logical.0 as f64 * scale).round() as u32;
-    let height = (logical.1 as f64 * scale).round() as u32;
+    let width = (width * scale).round() as u32;
+    let height = (height * scale).round() as u32;
     Rect::new(
         (output.0.saturating_sub(width) / 2) as i32,
         (output.1.saturating_sub(height) / 2) as i32,
@@ -458,7 +473,12 @@ pub fn run_with_save(
             sdl(canvas.copy(
                 &texture,
                 None,
-                viewport(size, output, settings.integer_scale),
+                viewport_with_aspect(
+                    size,
+                    output,
+                    settings.integer_scale,
+                    game.display_aspect_ratio(),
+                ),
             ))?;
         }
         canvas.present();

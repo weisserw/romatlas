@@ -429,3 +429,21 @@ fn display_fit_calculations_need_no_display_server() {
     let small = viewport((160, 144), (80, 72), true);
     assert_eq!((small.width(), small.height()), (80, 72));
 }
+
+#[cfg(feature = "desktop")]
+#[test]
+fn stretched_native_pixels_keep_the_requested_display_aspect() {
+    use romatlas_port::desktop::viewport_with_aspect;
+    let fit = viewport_with_aspect((720, 240), (1920, 1080), false, Some((16, 9)));
+    assert_eq!(
+        (fit.width(), fit.height(), fit.x(), fit.y()),
+        (1920, 1080, 0, 0)
+    );
+    let integer = viewport_with_aspect((720, 240), (1920, 1080), true, Some((16, 9)));
+    assert_eq!(
+        (integer.width(), integer.height(), integer.y()),
+        (1707, 960, 60)
+    );
+    let small = viewport_with_aspect((720, 240), (320, 180), true, Some((16, 9)));
+    assert_eq!((small.width(), small.height()), (320, 180));
+}
