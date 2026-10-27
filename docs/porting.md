@@ -557,7 +557,13 @@ Keep a separate reproducible local faithful source/build snapshot; hashes alone
 are not a backup. Candidates/change records remain empty until explicitly invoked.
 
 Each modernization iteration presents a menu of up to 8 modernization targets and up to 2
-refactoring targets, grounded in code inspection. Each entry rates implementation
+refactoring targets, grounded in code inspection. Seek the full menu without
+padding: first survey the major game subsystems in actual source, trace promising
+alternatives and record inspected files, findings and concrete rejection/blocker
+reasons in candidates.json. A few ready proposals or preliminary probes elsewhere
+do not justify stopping. A shorter final menu requires an evidence-backed
+explanation for each category; an unfinished investigation produces a provisional
+list and next probes, not a request for selection. Each entry rates implementation
 difficulty and codebase impact with reasons; entries rank by impact descending,
 then difficulty ascending, with separate ranks for both dimensions. The user accepts
 all or selects target IDs before implementation begins. Later iterations require

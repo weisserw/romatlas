@@ -43,10 +43,49 @@ observable rules to preserve, callers/state owners/update ordering, test IDs and
 coverage gaps, coupling/risks and why the scope is bounded. Inspect the code before
 ranking candidates; no subsystem is presumed safe from its name alone.
 
-Per iteration, identify up to 8 substantive modernization targets and up to 2
-refactoring targets. These are maximums, not quotas: present fewer when evidence
-does not support more. Give stable IDs (M1-M8 and R1-R2) and clearly distinguish
-the two categories.
+Per iteration, seek a full menu of 8 substantive modernization targets and 2
+refactoring targets. These are maximums, not quotas: do not pad the menu with weak,
+duplicate or artificially split proposals. Present fewer only after the broad
+investigation below establishes why additional sound targets are unavailable;
+having found only a few candidates so far is not that evidence. Give stable IDs
+(M1-M8 and R1-R2) and clearly distinguish the two categories.
+
+Before finalizing the menu:
+
+- Inventory the game's major subsystems from architecture documents and current
+  source. Survey gameplay state and quantities (including inventory/economy),
+  actors and animation ownership, movement/collision, scheduling and transitions,
+  rendering/display updates, audio, and assets/data boundaries where present.
+  Adapt this inventory to the actual game and include other substantial systems.
+- Inspect actual implementations across that inventory, not just names, search
+  hits or documentation. Trace representative state owners, callers, consumers
+  and update ordering far enough to identify the current model, possible native
+  replacement and concrete dependencies. Deep investigation of one or two areas
+  does not compensate for preliminary probes elsewhere.
+- Record the survey in candidates.json alongside the candidates: subsystem,
+  inspected files/symbols, source-grounded findings, candidate IDs or concrete
+  rejection/blocker reasons, and remaining useful probes. Distinguish inspected,
+  preliminary and uninvestigated areas. Unknown or uninvestigated does not mean
+  unsuitable; generic claims such as "too coupled" need specific dependencies.
+- Develop and compare promising alternatives across subsystems before narrowing
+  the menu. Follow obvious leads and resolve bounded questions that could change
+  eligibility or ranking, including deeper conversions with coverage gaps. Do not
+  stop because the first selectable targets are ready, easy targets are exhausted,
+  or a short menu is easier to explain. Investigate both categories independently.
+
+Finalize only when the major-subsystem survey is complete and promising leads
+have either become source-backed candidates or have concrete exclusion/deferral
+reasons. This is a broad, bounded source investigation, not exhaustive gameplay QA
+or a requirement to prove every candidate's equivalence before selection. If fewer
+than 8 modernization or 2 refactoring targets survive, explain the shortfall for
+each category using the survey and strongest excluded alternatives. Do not infer
+that the surviving targets are the best available from a narrow sample.
+
+If interrupted or blocked before that point, retain the survey and next probes,
+report investigation incomplete and continue it when possible. Any interim list
+is provisional; do not present it as the final selection menu or ask the user to
+choose from it. Keep the eventual user-facing menu concise by retaining detailed
+investigation evidence in candidates.json.
 
 In this workflow, modernization replaces hardware-shaped representations or
 execution machinery with native game concepts. Refactoring improves the structure
