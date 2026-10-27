@@ -254,6 +254,23 @@ with tempfile.TemporaryDirectory(prefix="romatlas-port-") as temporary:
     assert call(*run,"headless","--frames","5")[0]["scaffold"]
     call(*run,"headless","--frames","-1",ok=False)
     assert call(*run,"check")[0]["ok"]  # Real fmt/clippy/test/SDL2 linking, no display.
+    acceptance = {suffix: (work / f"checks/latest.{suffix}").read_bytes()
+                  for suffix in ["json", "log"]}
+    fast, _ = call(*run,"check-fast","--test-filter","snapshot")
+    assert fast["ok"] and fast["development_only"] and fast["frontend"] == "shared"
+    assert len(fast["checks"]) == 3
+    assert all("--release" not in row["command"] for row in fast["checks"])
+    for frontend in ["desktop", "web"]:
+        fast, _ = call(*run,"check-fast","--frontend",frontend)
+        assert fast["ok"] and fast["frontend"] == frontend
+        assert fast["wasm_compiled"] == (frontend == "web")
+        assert len(fast["checks"]) == 4
+        assert fast["checks"][-1]["command"][0:2] == ["cargo", "build"]
+        assert fast["checks"][-1]["command"][fast["checks"][-1]["command"].index("--features")+1] == frontend
+    call(*run,"check-fast","--test-filter","",ok=False)
+    call(*run,"check","--frontend","web",ok=False)
+    for suffix, original in acceptance.items():
+        assert (work / f"checks/latest.{suffix}").read_bytes() == original
     no_display = {k:v for k,v in os.environ.items() if k not in {"DISPLAY","WAYLAND_DISPLAY"}}
     rejected, _ = call(*run,"desktop",ok=False,env=no_display)
     assert "graphical session" in rejected["error"]

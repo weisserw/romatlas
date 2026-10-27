@@ -40,8 +40,8 @@ portability:
 
 ```sh
 cargo fmt -- --check
-cargo clippy --locked --workspace --all-targets -- -D warnings
-cargo test --locked --workspace
+cargo clippy --release --locked --workspace --all-targets -- -D warnings
+cargo test --release --locked --workspace
 python3 scripts/test-portability.py
 ```
 
@@ -72,9 +72,18 @@ actual results instead of asserting that unrun checks passed.
 
 For native runtime/port changes, compile desktop code and test headless logic:
 
+For edits inside a prepared game workspace, `python3 run.py check-fast` uses
+unoptimized incremental builds for shared library lint and unit tests. Optional
+`--test-filter NAME` focuses execution; `--frontend desktop` or `--frontend web`
+builds only that frontend. Development records stay in `checks/fast.*`; the full
+optimized `python3 run.py check` remains required for final port validation.
+Do not run multiple Cargo commands concurrently against the same target cache.
+
+For changes to the toolkit runtime itself, retain these optimized checks:
+
 ```sh
-cargo clippy --locked -p romatlas-port --all-targets --features desktop -- -D warnings
-cargo test --locked -p romatlas-port --features desktop
+cargo clippy --release --locked -p romatlas-port --all-targets --features desktop -- -D warnings
+cargo test --release --locked -p romatlas-port --features desktop
 ```
 
 For licensed Game Boy game regressions, install the pinned fixtures with
@@ -119,3 +128,9 @@ rules and bounded inspection before generic data fallback. Maintain those owning
 files when changing the policy; do not reintroduce copies in toolkit AGENTS.md.
 Historical compatibility measurements belong in platform evaluation/hardware docs
 with their original scope and limitations.
+
+Local Cargo configuration enables incremental builds for development, tests and
+release builds and disables debug symbols in all three profiles. Prefer release
+builds for execution and verification; optimized programs run faster, while a
+fresh optimized compilation can take longer than a development build. Port
+launchers and generated workspace checks select release mode explicitly.

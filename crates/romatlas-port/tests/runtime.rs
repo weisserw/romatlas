@@ -304,6 +304,58 @@ fn input_edges_dead_zones_and_focus_rearm_are_independent_of_devices() {
 }
 
 #[test]
+fn controller_settings_order_and_selected_binding_follow_platform_buttons() -> Result<()> {
+    use romatlas_port::{genesis, gg, nes, pce, sms, snes};
+    for (settings, expected) in [
+        (Settings::default(), "a b start select up right down left"),
+        (
+            nes::default_settings(),
+            "a b start select up right down left",
+        ),
+        (
+            snes::default_settings(),
+            "a b x y l r start select up right down left",
+        ),
+        (
+            genesis::default_settings(),
+            "a b c x y z start mode up right down left",
+        ),
+        (
+            sms::default_settings(),
+            "button1 button2 pause up right down left",
+        ),
+        (
+            gg::default_settings(),
+            "button1 button2 start up right down left",
+        ),
+        (
+            pce::default_settings(),
+            "i ii run select up right down left",
+        ),
+    ] {
+        let restored: Settings = serde_json::from_str(&serde_json::to_string(&settings)?)?;
+        assert_eq!(restored.binding_actions().join(" "), expected);
+    }
+    let defaults = snes::default_settings();
+    let mut settings = defaults.clone();
+    settings.bindings.insert("custom".into(), vec![]);
+    assert_eq!(settings.binding_actions().last(), Some(&"custom"));
+    let mut menu = Menu {
+        open: true,
+        selected: 12,
+        ..Default::default()
+    };
+    assert!(menu.labels(&settings, &[])[12].starts_with("BIND x:"));
+    menu.handle(MenuInput::Accept, &mut settings, &defaults, &[]);
+    assert_eq!(menu.rebinding.as_deref(), Some("x"));
+    menu.handle(MenuInput::Cancel, &mut settings, &defaults, &[]);
+    menu.handle(MenuInput::ClearBinding, &mut settings, &defaults, &[]);
+    assert!(settings.bindings["x"].is_empty());
+    assert_eq!(settings.bindings["down"], defaults.bindings["down"]);
+    Ok(())
+}
+
+#[test]
 fn persisted_settings_rebinding_cancellation_reset_and_rejection_preserve_data() -> Result<()> {
     let temp = Temporary::new();
     let path = temp.0.join("nested/settings.json");

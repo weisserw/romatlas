@@ -107,6 +107,26 @@ impl Default for Settings {
         }
     }
 }
+
+impl Settings {
+    /// Controller buttons, system buttons, then clockwise D-pad directions.
+    /// Filter the common order to the platform's actual actions; retain custom
+    /// actions alphabetically afterward, independent of persisted map ordering.
+    pub fn binding_actions(&self) -> Vec<&str> {
+        const ORDER: &[&str] = &[
+            "a", "b", "c", "x", "y", "z", "l", "r", "button1", "button2", "i", "ii", "start",
+            "run", "select", "mode", "pause", "up", "right", "down", "left",
+        ];
+        let mut actions: Vec<_> = self.bindings.keys().map(String::as_str).collect();
+        actions.sort_by_key(|action| {
+            ORDER
+                .iter()
+                .position(|known| known == action)
+                .unwrap_or(ORDER.len())
+        });
+        actions
+    }
+}
 fn valid_controller(id: &str) -> bool {
     let (guid, ordinal) = id.split_once('#').map_or((id, None), |(g, o)| (g, Some(o)));
     guid.len() == 32
@@ -267,7 +287,8 @@ impl Menu {
             settings.pause_on_focus_loss
         ));
         labels.push("RESET DEFAULTS".into());
-        for (action, bindings) in &settings.bindings {
+        for action in settings.binding_actions() {
+            let bindings = &settings.bindings[action];
             let names = bindings
                 .iter()
                 .map(|binding| match binding {
@@ -331,12 +352,7 @@ impl Menu {
             _ => {}
         }
         if self.selected >= 10 {
-            let action = settings
-                .bindings
-                .keys()
-                .nth(self.selected - 10)
-                .unwrap()
-                .clone();
+            let action = settings.binding_actions()[self.selected - 10].to_owned();
             if matches!(input, MenuInput::Accept) {
                 self.rebinding = Some(action);
             } else if matches!(input, MenuInput::ClearBinding) {

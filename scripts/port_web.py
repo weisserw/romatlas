@@ -113,7 +113,9 @@ def server(work, rom, bundle, assets=None, port=8000, host="0.0.0.0"):
     sha256 = hashlib.sha256(rom_bytes).hexdigest()
     overlays, routes = asset_routes(assets)
     routes["/rom"] = (rom_bytes, "application/octet-stream")
-    config = {"rom_sha256": sha256, "assets": overlays, "title": Path(work).name}
+    metadata = Path(work) / "workspace.json"
+    title = json.loads(metadata.read_text()).get("title", Path(work).name) if metadata.is_file() else Path(work).name
+    config = {"rom_sha256": sha256, "assets": overlays, "title": title}
     routes["/config.json"] = (json.dumps(config).encode(), "application/json")
     for name in ["index.html", "shell.js", "save-state.mjs", "browser-gamepads.mjs", "game.js", "game_bg.wasm"]:
         path = Path(bundle) / name

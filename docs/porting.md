@@ -611,3 +611,15 @@ held-input boundaries reset on restore. Web snapshots live in browser storage an
 include game state and the driver, with Wasm/ROM/assets/audio identity and checksum.
 Desktop and browser state formats are intentionally frontend-specific. Original
 battery saves keep their existing format and behavior.
+
+## Faster native development checks
+
+Use `python3 run.py check-fast` for unoptimized incremental shared-library lint
+and unit tests during edits. Add `--test-filter NAME` to execute matching tests,
+or `--frontend desktop` / `--frontend web` to build only that frontend. Commands
+run sequentially; avoid concurrent Cargo jobs sharing the same target directory.
+Development records live in `checks/fast.*`; full optimized acceptance remains
+`python3 run.py check` with its separate `checks/latest.*` records. The initial
+development build is a separate cache warm-up. Existing workspaces using the
+shared run.py wrapper gain the command; preparation installs explicit development
+profile settings in new workspaces without migrating unrelated existing ports.

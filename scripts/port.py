@@ -156,6 +156,8 @@ def prepare(archive, rom, output, binary):
                  f"romatlas-port = {{ path = {json.dumps(str(ROOT / 'crates/romatlas-port'))}, features = [\"snapshots\"] }}\n"
                  "anyhow = \"1.0\"\nserde_json = \"1.0\"\nwasm-bindgen = { version = \"=0.2.129\", optional = true }\n")
         (stage / "port/Cargo.toml").write_text(cargo)
+        (stage / ".cargo").mkdir(exist_ok=True)
+        shutil.copyfile(TEMPLATES / "cargo-config.toml", stage / ".cargo/config.toml")
         (stage / "port/web-enabled").write_text("1\n")
         (stage / "port/rust-toolchain.toml").write_text('[toolchain]\nchannel = "1.90.0"\nprofile = "minimal"\ncomponents = ["rustfmt", "clippy"]\ntargets = ["wasm32-unknown-unknown"]\n')
         for filename in ["main.rs", "game.rs", "lib.rs", "config.rs"]:
@@ -247,6 +249,10 @@ selects the workflow; this file does not start or resume a goal.
 
 - Use Rust 1.90.0 and Cargo.lock. Do not launch desktop graphics on this
   headless server; compile desktop code without opening a window.
+- During iteration use `python3 run.py check-fast --test-filter NAME` (omit the
+  filter for all library tests); optionally select `--frontend desktop` or `web`.
+  Run Cargo jobs sequentially to avoid build-cache lock contention. Keep
+  `python3 run.py check` as full optimized validation before handoff.
 - Preserve reference/, review/toolkit-before/, original ledger identities,
   deployment backups and unrelated existing changes. Keep QA records separate
   from implementation accounting and preserve superseded records.
@@ -387,31 +393,64 @@ def validate_ledger(work, meta):
             **port_research.validate_uncertainties(work, meta, ledger)}
 
 
+def check_fast(work, frontend="shared", test_filter=None):
+    """Development feedback only; never replace optimized acceptance records."""
+    cargo = ["cargo", "--manifest-path", str(work / "port/Cargo.toml")]
+    checks = [[cargo[0], "fmt", *cargo[1:], "--check"],
+              [cargo[0], "clippy", *cargo[1:], "--lib", "--locked", "--", "-D", "warnings"]]
+    tests = [cargo[0], "test", *cargo[1:], "--lib", "--locked"]
+    if test_filter is not None:
+        if not test_filter.strip():
+            raise ValueError("test filter must not be empty")
+        tests.extend(["--", test_filter])
+    checks.append(tests)
+    if frontend == "desktop":
+        checks.append([cargo[0], "build", *cargo[1:], "--features", "desktop", "--locked"])
+    elif frontend == "web":
+        if not (work / "port/web-enabled").exists():
+            raise ValueError("workspace has no browser scaffold")
+        checks.append([cargo[0], "build", *cargo[1:], "--lib", "--features", "web", "--target", "wasm32-unknown-unknown", "--locked"])
+    elif frontend != "shared":
+        raise ValueError("invalid development frontend")
+    return run_checks(work, checks, "fast", {
+        "development_only": True, "frontend": frontend, "test_filter": test_filter,
+        "desktop_runtime_tested": False, "browser_runtime_tested": False,
+        "wasm_compiled": frontend == "web",
+    })
+
+
 def check(work):
     cargo = ["cargo", "--manifest-path", str(work / "port/Cargo.toml")]
     checks = [[cargo[0], "fmt", *cargo[1:], "--check"],
-              [cargo[0], "clippy", *cargo[1:], "--all-targets", "--features", "desktop", "--locked", "--", "-D", "warnings"],
-              [cargo[0], "test", *cargo[1:], "--locked"],
-              [cargo[0], "build", *cargo[1:], "--features", "desktop", "--locked"]]
+              [cargo[0], "clippy", *cargo[1:], "--release", "--all-targets", "--features", "desktop", "--locked", "--", "-D", "warnings"],
+              [cargo[0], "test", *cargo[1:], "--release", "--locked"],
+              [cargo[0], "build", *cargo[1:], "--features", "desktop", "--release", "--locked"]]
     if (work / "port/web-enabled").exists():
         checks.extend([
-            [cargo[0], "clippy", *cargo[1:], "--lib", "--features", "web", "--target", "wasm32-unknown-unknown", "--locked", "--", "-D", "warnings"],
+            [cargo[0], "clippy", *cargo[1:], "--release", "--lib", "--features", "web", "--target", "wasm32-unknown-unknown", "--locked", "--", "-D", "warnings"],
             [cargo[0], "build", *cargo[1:], "--lib", "--features", "web", "--target", "wasm32-unknown-unknown", "--release", "--locked"],
         ])
+    return run_checks(work, checks, "latest", {
+        "desktop_runtime_tested": False, "wasm_compiled": (work / "port/web-enabled").exists(), "browser_runtime_tested": False,
+    })
+
+
+def run_checks(work, checks, name, metadata):
     results = []
-    report = work / "checks/latest.json"
+    report = work / f"checks/{name}.json"
+    logfile = work / f"checks/{name}.log"
     report.parent.mkdir(parents=True, exist_ok=True)
-    phase.write_json(report, {"ok": False, "checks": []})
-    with (work / "checks/latest.log").open("w") as log:
+    phase.write_json(report, {"ok": False, "checks": [], **metadata})
+    with logfile.open("w") as log:
         for command in checks:
             log.write(shlex.join(command) + "\n")
             log.flush()
             result = subprocess.run(command, cwd=work / "port", stdout=log, stderr=log)
             results.append({"command": command, "ok": result.returncode == 0})
-            phase.write_json(report, {"ok": False, "checks": results})
+            phase.write_json(report, {"ok": False, "checks": results, **metadata})
             if result.returncode:
-                raise ValueError(f"{command[1]} failed; see {work / 'checks/latest.log'}")
-    result = {"ok": True, "checks": results, "desktop_runtime_tested": False, "wasm_compiled": (work / "port/web-enabled").exists(), "browser_runtime_tested": False}
+                raise ValueError(f"{command[1]} failed; see {logfile}")
+    result = {"ok": True, "checks": results, **metadata}
     phase.write_json(report, result)
     return result
 
@@ -421,7 +460,7 @@ def main():
         def error(self, message):
             raise ValueError(message)
     parser = Parser(description=__doc__)
-    parser.add_argument("command", choices=["prepare", "instructions", "check", "headless", "desktop", "audit", "reference-init", "reference-verify", "web-build", "web", "debug"])
+    parser.add_argument("command", choices=["prepare", "instructions", "check", "check-fast", "headless", "desktop", "audit", "reference-init", "reference-verify", "web-build", "web", "debug"])
     parser.add_argument("path", type=Path, help="archive for prepare; port workspace otherwise")
     parser.add_argument("--rom", type=Path)
     parser.add_argument("--out", type=Path)
@@ -433,7 +472,12 @@ def main():
     parser.add_argument("--settings", type=Path)
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--revision", help="new name for a verified local reference revision")
+    parser.add_argument("--frontend", choices=["shared", "desktop", "web"], default=None,
+                        help="check-fast only: optionally build one frontend")
+    parser.add_argument("--test-filter", help="check-fast only: Rust unit-test name substring")
     args = parser.parse_args()
+    if args.command != "check-fast" and (args.frontend is not None or args.test_filter is not None):
+        raise ValueError("--frontend and --test-filter require check-fast")
     if args.command == "prepare":
         if args.rom is None or args.out is None:
             raise ValueError("prepare requires --rom and --out")
@@ -454,7 +498,7 @@ def main():
         if args.command == "debug":
             if args.settings:
                 raise ValueError("debug uses logical input; --settings is not supported")
-            command = ["cargo", "run", "--quiet", "--locked", "--manifest-path", str(work / "port/Cargo.toml"),
+            command = ["cargo", "run", "--release", "--quiet", "--locked", "--manifest-path", str(work / "port/Cargo.toml"),
                        "--", "--rom", str(rom), "--debug-stdio"]
             if args.assets:
                 command.extend(["--assets", str(args.assets.resolve(strict=True))])
@@ -467,6 +511,8 @@ def main():
             return
         if args.command == "check":
             result = check(work)
+        elif args.command == "check-fast":
+            result = check_fast(work, args.frontend or "shared", args.test_filter)
         elif args.command == "reference-init":
             result = port_research.initialize(work, meta)
         elif args.command == "reference-verify":
@@ -481,7 +527,7 @@ def main():
         else:
             if args.command == "headless" and not 0 <= args.frames <= 1_000_000:
                 raise ValueError("headless frames must be in 0..1000000")
-            command = ["cargo", "run", "--quiet", "--locked", "--manifest-path", str(work / "port/Cargo.toml")]
+            command = ["cargo", "run", "--release", "--quiet", "--locked", "--manifest-path", str(work / "port/Cargo.toml")]
             if args.command == "desktop":
                 if sys.platform.startswith("linux") and not (os.environ.get("DISPLAY") or os.environ.get("WAYLAND_DISPLAY")):
                     raise ValueError("desktop requires a graphical session; use headless on this server")

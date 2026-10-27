@@ -3,14 +3,17 @@
 //! or a cycle-exact S-DSP: interpolation is linear, register races/key-on delays,
 //! pitch modulation and echo RAM bus behavior are not modeled.
 use anyhow::{Result, ensure};
+use serde::{Deserialize, Serialize};
 
 pub const SAMPLE_RATE: u32 = 32000;
 /// Stateful BRR predictor, retained across blocks and loop boundaries.
-#[derive(Clone, Debug, Default)]
+#[derive(Clone, Debug, Default, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct BrrDecoder {
     history: [i32; 2],
 }
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct BrrBlock {
     pub samples: [i16; 16],
     pub end: bool,
@@ -67,14 +70,16 @@ fn fires(clock: u32, rate: u8) -> bool {
     let r = usize::from(rate & 31);
     PERIODS[r] != 0 && (clock + OFFSETS[r]).is_multiple_of(PERIODS[r])
 }
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub enum EnvelopeStage {
     Attack,
     Decay,
     Sustain,
     Release,
 }
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct Envelope {
     pub level: u16,
     pub stage: EnvelopeStage,
@@ -148,7 +153,8 @@ impl Envelope {
         self.level
     }
 }
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct Noise {
     bits: u16,
 }
@@ -167,7 +173,8 @@ impl Noise {
 }
 /// Owned BRR source. Loop offsets are block indices; validate before replacing
 /// a playing voice. Decoder history is preserved at loop boundaries.
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct Sample {
     blocks: Vec<[u8; 9]>,
     loop_block: usize,
@@ -198,7 +205,8 @@ impl Sample {
         })
     }
 }
-#[derive(Clone, Debug, Default)]
+#[derive(Clone, Debug, Default, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct Voice {
     pub pitch: u16,
     pub volume: [i8; 2],
@@ -248,6 +256,9 @@ impl Voice {
         if header & 1 != 0 {
             if header & 2 == 0 {
                 self.active = false;
+                // A high pitch can still have whole source steps pending when
+                // the one-shot ends. Keep the stopped cursor canonical too.
+                self.phase = 0;
                 self.envelope.level = 0;
                 self.envelope.key_off();
                 return;
@@ -305,7 +316,8 @@ impl Voice {
     }
 }
 /// Eight-tap stereo FIR echo over a private delay buffer. No emulated ARAM writes.
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct Echo {
     delay: Vec<[i16; 2]>,
     position: usize,
@@ -353,7 +365,8 @@ impl Echo {
         output
     }
 }
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct Mixer {
     pub voices: [Voice; 8],
     pub master: [i8; 2],
@@ -378,7 +391,42 @@ impl Default for Mixer {
         }
     }
 }
+#[derive(Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct MixerSnapshot { version: u32, mixer: Mixer }
 impl Mixer {
+    /// Versioned complete native synthesis state, independent of a CPU/core.
+    /// Includes live samples, BRR predictor, phase, envelopes, noise and echo.
+    pub fn snapshot_json(&self) -> Result<String> {
+        self.validate_snapshot()?;
+        Ok(serde_json::to_string(&MixerSnapshot {version: 1, mixer: self.clone()})?)
+    }
+    /// Parse and validate a candidate before replacing any live synthesis state.
+    pub fn restore_snapshot_json(&mut self, json: &str) -> Result<()> {
+        ensure!(json.len() <= 16 * 1024 * 1024, "mixer snapshot too large");
+        let candidate: MixerSnapshot = serde_json::from_str(json)?;
+        ensure!(candidate.version == 1, "unsupported mixer snapshot version");
+        candidate.mixer.validate_snapshot()?;
+        *self = candidate.mixer;
+        Ok(())
+    }
+    fn validate_snapshot(&self) -> Result<()> {
+        ensure!(self.clock < 30720 && self.noise_rate < 32 && self.noise.bits <= 0x7fff, "invalid mixer clock/noise");
+        for voice in &self.voices {
+            ensure!(voice.envelope.level <= 2047 && voice.phase < 4096 && voice.position < 16, "invalid voice envelope/phase");
+            ensure!(voice.decoder.history.iter().all(|value| (-16384..=16383).contains(value)), "invalid BRR predictor");
+            if let Some(source) = &voice.source {
+                let bytes: Vec<u8> = source.blocks.iter().flatten().copied().collect();
+                Sample::new(&bytes, source.loop_block)?;
+                ensure!(source.blocks.len() <= 7282 && voice.block < source.blocks.len(), "invalid voice source cursor");
+            } else { ensure!(!voice.active && voice.block == 0, "active voice without source"); }
+        }
+        if let Some(echo) = &self.echo {
+            ensure!((1..=7680).contains(&echo.delay.len()) && echo.position < echo.delay.len(), "invalid echo delay/cursor");
+        }
+        Ok(())
+    }
+
     /// Start with held power-on noise (-32768), mixing before decrementing the
     /// global counter and generating the next noise value. Unlike `default`,
     /// this models drivers which already have a held DSP output at time zero.
@@ -441,5 +489,55 @@ impl Mixer {
                 output.push(f32::from(sample) / 32768.0);
             }
         }
+    }
+}
+
+#[cfg(test)]
+mod snapshot_tests {
+    use super::*;
+    #[test]
+    fn ended_one_shot_remains_saveable_at_fractional_high_pitch() {
+        let mut mixer = Mixer::default();
+        mixer.voices[0].pitch = 0x3fff;
+        mixer.voices[0].gain = 127;
+        mixer.voices[0].volume = [100; 2];
+        mixer.voices[0].key_on(Sample::new(&[0x21, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11], 0).unwrap());
+        for _ in 0..20 {
+            mixer.sample();
+            let saved = mixer.snapshot_json().unwrap();
+            let mut restored = Mixer::default();
+            restored.restore_snapshot_json(&saved).unwrap();
+            let mut branch = mixer.clone();
+            assert_eq!(branch.sample(), restored.sample());
+        }
+        assert!(!mixer.voices[0].active());
+    }
+    #[test]
+    fn complete_mixer_snapshot_forks_live_source_predictor_noise_and_echo() {
+        let mut original = Mixer::with_buffered_noise();
+        original.noise_rate = 31;
+        let mut echo = Echo::new(3).unwrap();
+        echo.fir[0] = 64; echo.feedback = 32; echo.volume = [40, -30];
+        original.echo = Some(echo);
+        original.voices[0].pitch = 5000; original.voices[0].gain = 127;
+        original.voices[0].volume = [110, -100]; original.voices[0].echo = true;
+        original.voices[0].key_on(Sample::new(&[0x27, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11],0).unwrap());
+        for _ in 0..21 { original.sample(); }
+        let snapshot = original.snapshot_json().unwrap();
+        let mut restored = Mixer::default(); restored.restore_snapshot_json(&snapshot).unwrap();
+        let expected: Vec<_> = (0..91).map(|_| original.sample()).collect();
+        assert!(expected.iter().any(|sample| *sample != [0;2]));
+        assert_eq!(expected, (0..91).map(|_| restored.sample()).collect::<Vec<_>>());
+        assert_eq!(original.snapshot_json().unwrap(),restored.snapshot_json().unwrap());
+        restored.voices[0].key_off();
+        assert_ne!(original.snapshot_json().unwrap(),restored.snapshot_json().unwrap());
+        let before=restored.snapshot_json().unwrap();
+        let mut invalid: serde_json::Value=serde_json::from_str(&snapshot).unwrap();
+        invalid["mixer"]["voices"][0]["position"]=serde_json::json!(16);
+        assert!(restored.restore_snapshot_json(&invalid.to_string()).is_err());
+        assert_eq!(restored.snapshot_json().unwrap(),before);
+        invalid["version"]=serde_json::json!(99);
+        assert!(restored.restore_snapshot_json(&invalid.to_string()).is_err());
+        assert_eq!(restored.snapshot_json().unwrap(),before);
     }
 }

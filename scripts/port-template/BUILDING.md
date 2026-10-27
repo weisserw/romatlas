@@ -194,12 +194,33 @@ store packaging require a separate release setup; keep signing secrets local.
 
 ## Headless builds and checks
 
+For everyday edits, use the unoptimized incremental development check from the
+workspace root:
+
+```sh
+python3 run.py check-fast                         # format, shared lint, all library tests
+python3 run.py check-fast --test-filter terrain   # focus on matching unit tests
+python3 run.py check-fast --frontend desktop      # also build desktop, without opening it
+python3 run.py check-fast --frontend web          # also build Wasm; no desktop build
+```
+
+Development results go to `checks/fast.json` and `checks/fast.log`. They do not
+replace `checks/latest.*` or the required full optimized `python3 run.py check`
+before handoff. Frontend selection builds one frontend in the development profile;
+it does not serve or replace the playable browser bundle. A test filter selects
+which tests execute; Rust still compiles the library test binary. Run Cargo jobs
+sequentially to avoid waiting on the same build cache. The first development build
+creates a separate cache from release builds; subsequent edits reuse it.
+Long gameplay simulations can run much slower without optimization. For those,
+run `cargo +1.90.0 test --release --locked FILTER` from `port/` to execute focused
+optimized tests without rebuilding both frontends.
+
 SDL2 is optional. Without the desktop feature, build and run device-free:
 
 ```sh
 cargo +1.90.0 build --release --locked
 ./target/release/__GAME_NAME__-port --rom "/full/path/to/your/game.gb" --headless 120
-cargo +1.90.0 test --locked
+cargo +1.90.0 test --release --locked
 ```
 
 Windows uses the .exe suffix. README.md must describe the finished port's controls,
@@ -284,3 +305,8 @@ settings file and validates build/ROM/assets/audio compatibility and checksum;
 browser states use origin-local storage. They are separate from original battery
 saves and are not interchangeable across frontends. Existing ports require an
 explicit upgrade to these APIs; preparation never rewrites them.
+
+Local build defaults enable incremental compilation and leave debug symbols off,
+including in the release profile. The run.py desktop/headless/debug commands and
+full check command use release mode. Use check-fast or direct Cargo tests without
+--release during iteration; keep release builds for final validation and play.

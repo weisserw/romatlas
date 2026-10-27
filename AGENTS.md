@@ -9,6 +9,10 @@ selects the workflow; this file does not activate disassembly, porting or QA.
 - Use Rust 1.90.0 and Cargo.lock. On Ubuntu/Debian, install the pinned tools with
   `bash scripts/setup.sh`. Build with `cargo build --locked --release`;
   CLI examples and integration scripts default to `target/release/romatlas`.
+- Prefer --release for Cargo runs, tests, checks and Clippy as well. Keep
+  incremental compilation enabled and debug symbols disabled.
+  Native port iteration may use `run.py check-fast` and unoptimized Cargo tests;
+  retain `run.py check` for full optimized validation. Avoid overlapping Cargo jobs.
 - Preserve unrelated changes and existing game workspaces. Do not implicitly
   migrate another platform's core, maps, toolchain or workspace.
 - Never download or commit commercial ROMs or extracted assets. Keep generated

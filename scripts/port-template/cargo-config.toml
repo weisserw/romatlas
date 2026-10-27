@@ -1,0 +1,14 @@
+# Fast local iteration; optimized acceptance checks still use --release.
+[profile.dev]
+opt-level = 0
+debug = 0
+incremental = true
+
+[profile.test]
+opt-level = 0
+debug = 0
+incremental = true
+
+[profile.release]
+debug = 0
+incremental = true

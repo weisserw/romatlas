@@ -95,10 +95,16 @@ function controllerOptions() {
     select.value=draft.assignments[player];select.onchange=()=>{draft.assignments[player]=select.value;boundary();};label.append(select);field.append(label);
   }
 }
+function bindingActions(bindings) {
+  const order=['a','b','c','x','y','z','l','r','button1','button2','i','ii','start','run','select','mode','pause','up','right','down','left'];
+  const rank=action=>{const at=order.indexOf(action);return at<0?order.length:at;};
+  return Object.keys(bindings).sort((a,b)=>rank(a)-rank(b)||(a<b?-1:a>b?1:0));
+}
 function bindings() {
   const field=$('bindings');field.replaceChildren();
   const legend=document.createElement('legend');legend.textContent='Bindings';field.append(legend);
-  for(const [action,list]of Object.entries(draft.settings.bindings)) {
+  for(const action of bindingActions(draft.settings.bindings)) {
+    const list=draft.settings.bindings[action];
     const label=document.createElement('label');label.textContent=`${action}: `;
     const button=document.createElement('button');button.type='button';button.textContent=list.map(b=>`${b.kind} ${b.name}${b.direction||''}`).join(', ')||'Unbound';
     button.onclick=()=>{capture=action;pollCapture=capturePadBinding(pads);button.textContent='Press a key / pad / axis…';boundary();};

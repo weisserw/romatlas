@@ -1,9 +1,12 @@
-# Keep local builds practical on small development machines.
-# These settings change build artifacts, not game behavior.
+# Prefer optimized builds; keep rebuild caches without debug symbols.
 [profile.dev]
 debug = 0
-incremental = false
+incremental = true
 
 [profile.test]
 debug = 0
-incremental = false
+incremental = true
+
+[profile.release]
+debug = 0
+incremental = true

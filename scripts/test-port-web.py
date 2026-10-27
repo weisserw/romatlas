@@ -137,7 +137,25 @@ def main():
                 page.click('#settings');page.locator('#volume').evaluate("el => {el.value='0.3';el.dispatchEvent(new Event('input',{bubbles:true}));}");page.locator('#height').fill('600');page.click('button[type=submit]')
                 page.reload();page.wait_for_function("!document.getElementById('start').disabled")
                 assert page.evaluate(pixel)==[21,17,33,255]
-                page.click('#settings');assert page.locator('#volume').input_value()=='0.3';page.click('#cancel')
+                page.click('#settings');assert page.locator('#volume').input_value()=='0.3'
+                assert page.locator('#bindings label').evaluate_all("els=>els.map(el=>el.firstChild.textContent.trim().replace(/:$/,''))") == ['a','b','start','select','up','right','down','left']
+                page.click('#cancel')
+                saved_settings=page.evaluate("localStorage.getItem(Object.keys(localStorage).find(k=>k.includes(':settings:')))")
+                for expected in [
+                    'a b x y l r start select up right down left',
+                    'a b c x y z start mode up right down left',
+                    'button1 button2 pause up right down left',
+                    'button1 button2 start up right down left',
+                    'i ii run select up right down left',
+                ]:
+                    actions=expected.split()
+                    page.evaluate("actions=>{const key=Object.keys(localStorage).find(k=>k.includes(':settings:'));const saved=JSON.parse(localStorage.getItem(key));saved.settings.bindings=Object.fromEntries(actions.map(a=>[a,[]]));localStorage.setItem(key,JSON.stringify(saved));}",list(reversed(actions)))
+                    page.reload();page.wait_for_function("!document.getElementById('start').disabled")
+                    page.click('#settings')
+                    assert page.locator('#bindings label').evaluate_all("els=>els.map(el=>el.firstChild.textContent.trim().replace(/:$/,''))") == actions
+                    page.click('#cancel')
+                page.evaluate("saved=>localStorage.setItem(Object.keys(localStorage).find(k=>k.includes(':settings:')),saved)",saved_settings)
+                page.reload();page.wait_for_function("!document.getElementById('start').disabled")
                 assert page.locator('#integer_scale').count()==0
                 assert page.locator('#width').count()==0
                 box=page.locator('#screen').bounding_box()
