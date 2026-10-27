@@ -102,3 +102,54 @@ zero new/suspected/missing-feature findings,no blocker;[report](../analysis/tool
 ## Archive preparation and spelling correction — 2026-10-18
 
 Renamed workspace and original local ROM filename to castlevania-adventure; corrected all internal UTF-8 spelling/path references. ROM bytes and assembly unchanged. Historical checkpoint hashes were not rewritten to imply new verification of historical text. Reused complete round025 readability reviews for final editorial acceptance; 581 Unknown bytes remain. See commentary/editorial-audit.md (from analysis: ../commentary/editorial-audit.md). Archive validation follows; no new toolkit issues found.
+
+## Round026 current-source readability complete — 2026-10-27
+
+All2807records/3007actualinputunits reviewed, zero pending readability records/bytes
+or deferred ranges. Entire previous commentary preserved under
+analysis/round-026/commentary/carried (duplicate prior checked by hash manifest).
+Current internal state changed despite unchanged map text; prepared fresh verified
+baseline and carried edited source independently, retaining all sound review credit.
+
+All80newgenericData regions/576bytes have local boundary/bank/uncertainty notes;
+obsolete Unclassified labels renamed to GenericData only on those regions. Corrected
+sparse score/sound table claims, shape/box domain prose, layout holes, child restart
+zeros, audio frequency/alias words and review-only stale animation/control-tail
+claims. Current-source dependencies and unchanged full inventory assessed; all6045
+source references remapped/checked. No fabricated schema or selector expansion.
+Five isolatedC9bytes remainUnknown; classification65531/65536 remains incomplete.
+
+Fresh configured verify and independent index assembly byte-identical65536; all
+emitted statements unchanged except consistent label renaming; reading refreshed.
+ROM/map/state/config/release and entire prior commentary protected. Final audit and
+redirect not launched. [Assessment](../analysis/round-026/commentary/readability-assessment.md),
+[verification](../analysis/round-026/commentary/verification.json).
+Toolkit existingconfirmedT001only; no new/suspected/missing-feature findings,no blocker.
+
+## Round027 current-source readability complete
+
+Preserved entire prior commentary under analysis/round-027/commentary/prior and
+prepared a fresh current-state baseline. Carried all 2807 reviewed records/3007 units;
+6045 references and full65536byte scaffold checked. Named Static0728
+EmptyMainState7Handler; explained no-op main state7, inline-dispatch stack cleanup
+and direct outer return01a5, and symbolized its directory word. Assessed dispatcher,
+substate setter/completion boundaries and state6/8/9 credit/completion dependencies.
+Natural selector7/fetch remains unproved; four other isolatedC9 residuals remain
+Unknown. No pending/deferred readability ranges. Fresh configured verification and
+independent indexed assembly both byte-identical65536bytes; reading copy refreshed.
+Final editorial acceptance remains pending. Existing confirmedT001 only; zero new
+toolkit findings/no blocker. Details: analysis/round-027/commentary/readability-assessment.md.
+
+## Round028 commentary complete
+
+Current-source readability complete:2807 records/3007 units,6045 source references,
+zero pending/deferred ranges. Preserved prior commentary under analysis/round-028/
+commentary/prior; fresh current-map/state baseline and carried authoritative source.
+Named EmptyRuntimeTypeZeroHandler at3420, explained local33ae pointer0 and retained
+outer3343 axis-integration return. Reassessed dispatcher/field-reader/caller and
+ending pointer/wrapper boundaries. No full directory/natural type0/Observed claim.
+65533/65536 classified; Unknown2f09,34af,ad6a. Fresh configured-release verification
+and independent indexed assembly byte-identical65536bytes; reading refreshed.
+Protected ROM/config/release hashes match; no toolkit changes or new issues.
+See analysis/round-028/commentary/readability-assessment.md and verification.json.
+Final editorial acceptance remains pending; no redirect launched.

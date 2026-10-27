@@ -170,7 +170,8 @@
 00:0713 R21_code_0713
 00:0720 .code:8
 00:0720 code_00_0720
-00:0728 .data:1
+00:0728 .code:1
+00:0728 ReturnFromMainStateSeven
 00:0729 .code:a
 00:0729 R21_code_0729
 00:0733 .data:c
@@ -970,7 +971,8 @@
 00:3416 R16_data_3416
 00:341a .data:6
 00:341a R21_data_341a
-00:3420 .data:1
+00:3420 .code:1
+00:3420 EmptyRuntimeTypeZeroHandler
 00:3421 .code:2e
 00:3421 R21_code_3421
 00:344f .code:12

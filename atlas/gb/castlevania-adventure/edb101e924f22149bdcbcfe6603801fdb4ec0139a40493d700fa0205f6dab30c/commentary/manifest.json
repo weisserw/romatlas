@@ -1,7 +1,7 @@
 {
   "version": 1,
   "rom_sha256": "edb101e924f22149bdcbcfe6603801fdb4ec0139a40493d700fa0205f6dab30c",
-  "map_sha256": "9e884470ae4551c0b8e50e0a8ad1d14db8807d5c6779eea4f8f5886d712c624f",
-  "state_sha256": "cc7e7112bf413d59ad7156a75abc3d1bf9d4ee93c425b23e1a25e9152eb4a3b3",
+  "map_sha256": "fdd289ecbb0f18e0c66ca7782a07d6a9f3b7f54edf45d7eeff65390a84c87a35",
+  "state_sha256": "48d8d9ad1658d2ffc8d3e13122a70cd9c2168af1cdaf8f27707eece315f81079",
   "image_size": 65536
 }

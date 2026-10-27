@@ -1,0 +1,15 @@
+# Round28 disassembly handoff
+
+One pass complete; ROM incomplete. Next phase: commentary under its own prompt, then redirect. Input restored Round27/Round26; output `round28-disassembly-final`.
+
+ROM classification: 99.81% (523271 / 524288 bytes classified; 1017 bytes unknown).
+
+Accepted4381 bytes in84 Static Data regions after fresh bounded role/reference/pattern/boundary checks, applying narrower generic non-code policy to prior ownership/semantic rejections. All1437 original regions unchanged;1521 total roles, all with evidence/comments. Totals19239 Code,455341 Data,48691 Padding. No new natural-use, allocation/fill, exact table-layout or audio-stream ownership claims. [Independent review](independent-review.json), [annotation RPC](annotation-rpc.json), [per-bank counts](classification.json), [final audit](final-audit.json).
+
+Six Unknowns, end-exclusive:0001FB..000200(5),0019C0..0019C2(2),070149..07014A(1),0704FF..070500(1),077E08..078000(504),07FE08..080000(504). Primary bytes/source/neighbor evidence and code-v-data competing interpretations: [residual-review.json](residual-review.json). Tail upload exclusion and lack of eight-byte accepted-Code matches do not establish data; isolated RETs do not establish routines. This is not terminal exhaustion. Redirect can assess concrete revised methods after commentary. No ready lead IDs consumed/produced.
+
+Broad gameplay is now locally reproducible: natural boot/name/shop/Fandango; artificial initializer PC0081ED/A15,31,63/P30/DB0/DP0/Efalse/SP01FF after restoring natural race and reaching instruction boundary;420frames then30frames driving each. Reached Rio Trio/Cutoff Pass/Volcano Valley. Exact [script](gameplay.py), [RPC](gameplay-rpc.json), race/order snapshots and PPM captures are local. Full additional10frame sample2937 contexts, zero aggregate drops, no unknown/non-Code fetches: [coverage review](coverage-review.json). Final-order snapshot plus WRAM002D=02 and04E6=05,350frame/B sequence reaches podium, Wipeout/Game Over,title; [terminal script](terminal.py), [RPC](rpc.json), captures final-order-transition-2/4/7.ppm. No distinct credits observed/all64 race-completion claim. Current natural race restored and buttons released before shutdown. Scenarios progression checklist and gameplay record updated.
+
+`map.validate/save/export` passed; `analysis/state.json` equals `maps/current.json`. [Fresh checkpoint verification](../round28-disassembly-final-verification.json) is byte-identical524288 bytes. ROM SHA25624b687f95bb9737d223738f13c00aeaa7d697fa9e2fd50597b81d0cfa2160daa; map SHA256f7c8daf379bbb8166b63388f291eb02b906452e73a5658b2f33f892b3525c039. Source unchanged; preserve current Round27 prose/review credit and integrate84 generic data roles across current source. Historical scratch omissions remain unverified, not evidence.
+
+No toolkit issues found; [persistent report](../toolkit-issues.md), historical TI-001 fixed/no active blockers. No ROM/toolkit edits. No final whole-ROM/editorial acceptance claim.

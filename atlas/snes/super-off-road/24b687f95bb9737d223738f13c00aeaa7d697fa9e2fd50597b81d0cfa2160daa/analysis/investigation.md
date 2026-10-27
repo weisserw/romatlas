@@ -505,3 +505,69 @@ Connected continuation excludes pitchD900 neighbor cells; instrument/scaling con
 
 
 Round26 disassembly consumed R25-L001. The exact 32 odd offsets in the finite bank-00 two-byte-stride start-heading window were accepted Static Data under a bounded storage-window claim; slot-internal meanings and reachability are unresolved. Sparse one-byte values plus independent zeros remains a competing finer semantic layout, so no high-field/padding/word claim was made. See analysis/round26/independent-review.json and handoff.md. Current status 518890/524288 classified, 5398 unknown. `round26-disassembly-final` verification was byte-identical. Commentary must integrate these annotations before redirect. No new toolkit issues found; see analysis/toolkit-issues.md.
+
+
+## Round28 disassembly
+
+Accepted84 exact Static Data regions /4381 bytes by fresh current-ROM/source/map pattern, role/reference and boundary review under the narrower generic-data claim. Preserved all1437 prior roles, source and historical records. Current classification523271/524288,1017 Unknown in6ranges; per-bank counts and full rationale in [progress](progress.md), [review](round28/independent-review.json), [residual review](round28/residual-review.json).
+
+|Physical bank|Code|Data|Padding|Unknown|
+|---|---:|---:|---:|---:|
+|00|17099|7690|7972|7|
+|01|0|32768|0|0|
+|02|0|32768|0|0|
+|03|0|32768|0|0|
+|04|0|27648|5120|0|
+|05|0|27512|5256|0|
+|06|0|31104|1664|0|
+|07|0|28338|4430|0|
+|08|0|27962|4806|0|
+|09|0|32656|112|0|
+|0A|0|28058|4710|0|
+|0B|0|23233|9535|0|
+|0C|0|32768|0|0|
+|0D|0|27682|5086|0|
+|0E|2140|30122|0|506|
+|0F|0|32264|0|504|
+
+Broad best effort replay reached natural Fandango, artificial orders15/31/63 with driving, final-order podium/Game Over/title. Complete artificial10frame sample has2937 contexts and no unknown/non-Code fetch; no new runtime code proposal. Patches/routes/snapshots in round28 scripts/RPCs; scenarios checklist updated. Unknown tails are not proven data by upload exclusion/no-code-match, isolated RETs not code by decoding. Further redirect should inspect these exact primary-backed residuals without inheriting semantic-proof rejections for the4381 accepted bytes. Fresh checkpoint round28-disassembly-final verifies byte-identical, internal/portable maps validated. No toolkit issues found; [report](toolkit-issues.md). Commentary next; [handoff](round28/handoff.md).
+
+
+## Round29 disassembly — post-upload bank tails
+
+Exactly one disassembly pass, input `round28-disassembly-final`, `analysis/round28/commentary-handoff.md` and `analysis/redirect/round28-residual-contracts/handoff.md`. Independently accepted **R28-L001:1008 bytes in two Static generic Data regions**, physical `077E08..078000` and `07FE08..080000` (end-exclusive), canonical main bank aliases0E:FE08..FFFF and0F:FE08..FFFF. All1521 prior classified regions are unchanged. Whole-block hex/quarter patterns, exact upload-terminator and bank-end boundaries, current neighboring consumers and bounded competing decodes were reviewed. Shared dense nibble families/gradient support non-code throughout both full blocks, including the more varied prefixes; arbitrary quarter/half cuts do not establish distinct objects. Generic role asserts no BRR/compression/graphics/padding, original ownership, upload view, natural reachability or deadness. Known format/consumer checks were reused; no useful specific role emerged. [Independent review](round29/independent-review.json), [primary bytes/patterns/decodes](round29/primary-review.json), [annotation transcript](round29/annotation-rpc.json).
+
+**ROM classification: 100.00% (524279 / 524288 bytes classified; 9 bytes unknown).**
+
+Exact percentage99.99828338623047%; rounded100.00% is **incomplete**, with nine Unknown bytes in four intervals:0001FB..000200(5),0019C0..0019C2(2),070149..07014A(1),0704FF..070500(1). Short inter-routine constants/fragments and isolated SPC RET/data bytes retain materially ambiguous roles. Round28 primary/rejection evidence remains valid; no newly justified discriminator was found, so no unchanged experiments were replayed. Reopen only with concrete references, independent data format or nontrivial routine contracts; do not infer single-byte RET code from hypothetical CALL behavior.
+
+Internal state and portable map are equal; counts use unique classified internal-map bytes, not raw fallback. Totals19239 Code,456349 Data,48691 Padding,9Unknown. [Exact classification/per-bank/residuals](round29/classification.json):
+
+|Physical bank|Classified|Code|Data|Padding|Unknown|
+|---|---:|---:|---:|---:|---:|
+|00|32761|17099|7690|7972|7|
+|01|32768|0|32768|0|0|
+|02|32768|0|32768|0|0|
+|03|32768|0|32768|0|0|
+|04|32768|0|27648|5120|0|
+|05|32768|0|27512|5256|0|
+|06|32768|0|31104|1664|0|
+|07|32768|0|28338|4430|0|
+|08|32768|0|27962|4806|0|
+|09|32768|0|32656|112|0|
+|0A|32768|0|28058|4710|0|
+|0B|32768|0|23233|9535|0|
+|0C|32768|0|32768|0|0|
+|0D|32768|0|27682|5086|0|
+|0E|32766|2140|30626|0|2|
+|0F|32768|0|32768|0|0|
+
+Broad gameplay credit reused from Round28 current durable snapshots/routes/captures: natural frontend/shop/Fandango, artificial supported later orders15/31/63 with distinct tracks and driving mechanics, final-order podium/Game Over/title. Reviewed `analysis/scenarios.json` and `analysis/gameplay.md`; separate credits/ending transition remains unavailable under known contract, not claimed absent. No changed runtime prerequisite; no new input, RAM/register edit, trace or gameplay replay. No connected promising continuation was deferred.
+
+`map.validate` passed; `map.save` persisted `analysis/state.json`; `map.export` persisted `maps/current.json`. Fresh `python3 run.py checkpoint round29-disassembly-final` passed ok=true,byte_identical=true over524288bytes. [Verification](round29-disassembly-final-verification.json), [checkpoint map](../maps/round29-disassembly-final.json), [generated source](../generated/round29-disassembly-final/game.asm), [audit](round29/final-audit.json). ROM SHA25624b687f95bb9737d223738f13c00aeaa7d697fa9e2fd50597b81d0cfa2160daa; map SHA25617b2c51b822e88b786376229f549a033aab947813e3684eb7cce784c085442b7. No ROM/toolkit edits.
+
+No toolkit issues found in this pass; historical TI-001 reported fixed, zero active blockers; [toolkit issues](toolkit-issues.md). Storage checked14GiB free and scratch152KiB before batch; only bounded JSON/text evidence added, no cited artifact deleted. Next phase is commentary integration of the two new generic roles, followed by redirect assessment of the four tiny residuals; final editorial acceptance remains pending. [Handoff](round29/handoff.md).
+
+## Round29 redirect — exact Data target and split-layout check
+
+New method extends earlier Code-focused reference interpretation to every exact target-word occurrence and its accepted Data consumer; reconstructs all supported SPC split roots and34 handler vectors. All apparent target hits explained by existing graphics/terrain/waypoint/BRR/DSP-mask or main WRAM operand representations; no supported residual target. Narrow generic Data claims for0102040000/01FF and singleton6F alternatives reviewed without semantic/reachability requirements; no discriminating positive structure. No new ready lead, proposed0/accepted0,9Unknown bytes remain. Durable reproducible primary and terminal rejection review/handoff: `analysis/redirect/round29-pointer-contracts/`. No productive continuation deferred; no runtime replay or toolkit issue.

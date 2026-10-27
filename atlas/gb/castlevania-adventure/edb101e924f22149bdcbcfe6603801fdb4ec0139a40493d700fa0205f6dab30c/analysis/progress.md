@@ -2316,3 +2316,232 @@ Existing confirmedT001 only;zero new/suspected/missing-feature findings,no block
 ## Archive preparation and spelling correction — 2026-10-18
 
 Renamed workspace and original local ROM filename to castlevania-adventure; corrected all internal UTF-8 spelling/path references. ROM bytes and assembly unchanged. Historical checkpoint hashes were not rewritten to imply new verification of historical text. Reused complete round025 readability reviews for final editorial acceptance; 581 Unknown bytes remain. See commentary/editorial-audit.md (from analysis: ../commentary/editorial-audit.md). Archive validation follows; no new toolkit issues found.
+
+
+## Archive restoration and current-prompt preparation — 2026-10-26
+
+Restored the archived Round 25 source exactly with the matching local ROM; archive restoration passed exact_source=true and byte_identical=true. Prepared current toolkit Game Boy goal/workflow/evidence policy and disassembly/commentary/redirect prompts. Retained archived maps, internal state, analysis/lead history, exact edited source and completed editorial review credit. Original archive metadata and documents are preserved under archive-origin/. A fresh byte-identical frozen baseline was generated from the restored map.
+
+Classification remains 64955/65536 bytes (99.113464%); 581 Unknown bytes across 85 ranges. Round 25 readability and archived final editorial acceptance are complete. Next phase: Round 26 disassembly under prompts/disassembly.txt. This explicit continuation setup authorizes reassessment under the latest evidence policy, including practical role inspection and bounded generic-data fallback; preserve sound findings and do not repeat unchanged exhausted experiments. Preparation has not started gameplay, research or classification.
+
+Historical terminal method-exhaustion findings remain preserved. Reevaluate their premises under current policy rather than treating archived completion or byte fidelity as classification proof. Missing scratch evidence/checkpoints/traces/snapshots were excluded by archive policy; recover needed premises from available source/map/records. The historical T001 input-restoration workaround remains documented in analysis/toolkit-issues.md; reassert all eight inputs after snapshot restoration unless independently verified fixed.
+
+## Round026 disassembly — generic non-code reassessment (in progress)
+
+Input restored Round25:64955/65536 classified,581 Unknown/85ranges. Explicit
+current-policy reassessment separates generic non-code classification from original
+allocation, selector coverage, semantics and reachability. Inspected every physical
+hole, neighboring accepted regions, associated consumers and historical scoped
+rejections. Individual rationale/bounds/limits are retained in
+[ledger](round-026/classification-ledger.json), with [physical context](round-026/context.txt).
+Fresh decode audit of11394 accepted-code instructions found no ordinary fallthrough
+into Unknown. Its one conservatively bank-expanded target to bank3 f505 is actually
+the bank1 player-hazard callback7505; no supported bank3 entry is established.
+[Audit](round-026/conflict-audit.json). Five isolated C9 bytes remain ambiguous.
+
+Accepted576bytes/80regions using configured-release map.annotate, Static generic
+Data with per-region explanatory metadata; prior classifications untouched.
+[Annotation results](round-026/annotation-results.json). Saved state/exported map;
+portable map hash unchanged because raw fallback emitted the same directives before.
+Fresh [checkpoint verification](round-026-disassembly-verification.json) byte-identical.
+ROM classification: 99.99% (65531 / 65536 bytes classified; 5 bytes unknown).
+
+Fresh broad gameplay ongoing. Initial unsynchronized stage patches are rejected as
+stage-initialization evidence; snapshot was inside active setup. Corrected replay
+stops at DispatchGameFrame0433 before state writes, and verifies resultant state,
+descriptor, frame and execution. Initial attempt preserved, not counted as visits.
+[Corrected replay](round-026/safe-gameplay.py). Phase not yet handed off.
+
+## Round026 disassembly — completed phase handoff
+
+ROM classification: 99.99% (65531 / 65536 bytes classified; 5 bytes unknown).
+Per-bank code/data/padding/unknown:bank0 10278/6029/73/4;
+bank1 8413/7904/67/0;bank2 2992/13354/37/1;bank3 227/15468/689/0.
+All80newgenericData regions carry role/evidence/comment metadata and Static provenance.
+Existing observed/static classifications retained;annotation and execution coverage
+are separate. Five isolatedC9bytes remainUnknown; wholeROM incomplete.
+
+Fresh initialized gameplay visits now include stages1/2/3/4,distinct field/cavern/
+spikes/masonry scenes;source-supported completion/shake/scroll shortcuts reach
+actual ending and visible STAFF credits. Captured2816unique physical ROM opcode
+addresses in selected traced segments;zero newData conflict/Unknown fetch.
+Boss defeat/natural late-stage reachability/final held-A screen remainunclaimed.
+[Checklist](scenarios.json),[runtime audit](round-026/runtime-audit.json).
+Rejected setup attempts preserved;shorter synchronized replays supersede them.
+
+Configured-release map.save/export/validate and fresh checkpoint
+round-026-disassembly byte-identical65536bytes;[verification](round-026-disassembly-verification.json).
+[Counts/hashes](round-026/classification-counts.json). No ROM/toolkit/source changes.
+ConsumedR26-GENERIC-NONCODE-REASSESSMENT verified;producedR26-ISOLATED-RET-RESIDUAL
+deferred,notready. Separate commentary next: reconcile80genericData/sourceUnknown
+claims,assess allcurrent source readability,reuse reviewcredit,refresh reading copy
+and verify. [Compact handoff](round-026-disassembly-handoff.md).
+ExistingconfirmedT001only;zero new/suspected/missing-feature findings,no blocker;
+[toolkit report](toolkit-issues.md). No finalacceptance/archive phase launched.
+Final post-runtime load/validate/conflicts/protected-hash audit passed:
+[final verification](round-026/final-verification.json). Disk14Gavailable,
+round026evidence17MiB. Phasecomplete;nextseparatecommentary.
+
+## Round026 commentary — completed current-source readability
+
+All2807records/3007actualrestoredunits reviewed,6045source references checked;
+zero pending readability records/bytes or deferred ranges. Historical3000unit phase
+count predates seven restored editorial units; all actualinputunits retained.
+Entire preceding commentary archived before fresh baseline preparation; carried
+source preserved. All80newgenericData ranges/576bytes locally explained,stale
+Unclassified labels renamed,affected lookup/layout/audio/child/state dependencies
+assessed. Corrected broader table/domain claims without inventing schema/semantics;
+reconciled older review-only Unknown claims as concrete backlog defects.
+
+Fresh configuredverify and independent index assembly byte-identical65536; reading
+refreshed; emitted statements unchanged except consistent labels. ProtectedROM,
+state,map,config,release/prior hashes match. Classification65531/65536,fiveUnknown
+C9 bytes remainsincomplete. [Assessment](round-026/commentary/readability-assessment.md),
+[checks](round-026/commentary/verification.json),[handoff](round-026-commentary-handoff.md).
+Next separatephase redirect; no redirect/finalaudit/archive acceptance launched.
+ExistingconfirmedT001only;zero new/suspected/missing-feature issues,no blocker;
+[toolkitreport](toolkit-issues.md). All internal assets/evidence/source remainlocal.
+
+## Round026 redirect — corrected accepted-directory return contract
+
+Input remains round-026-disassembly:65531/65536 classified,5Unknown(singleC9 at
+0728,2f09,3420,34af,ad6a). Current-source readability gate complete. No map/state,
+ROM/source/toolkit/runtime mutation. New unique attempt
+[assessment](redirect/R26-20261027-dispatch-contracts-v1/assessment.md) preserves
+changed premise, primary byte/table/source evidence and per-residual scoped review.
+
+The prior no-contract conclusion omitted accepted GameStateHandlers word7 at045d,
+which selects0728. Its ten-entry established directory and independently traced
+CALL/RST/POP/JP stack contract support a one-byte empty main-state7 handler.
+Produced readyR26-MAINSTATE7-EMPTY-HANDLER:proposed1byte StaticCode,accepted0;
+natural state7 production/execution unclaimed. Independent disassembly review next.
+Other4 remain ambiguous after same-standard consumer/stack/bank inspection;
+3420's33ae pointer cell is genericData with no independent runtime0 membership
+proof, not equivalent to accepted main-state directory. No remaining concrete
+productive continuation identified; no arbitrary calls or unchanged gameplay replay.
+Broad stage1..4/ending/credits evidence reused; boss/final-held-A gaps remain explicit,
+with no identified link to residuals. No terminal exhaustion/finalacceptance claim.
+ExistingconfirmedT001 only;zero new toolkit findings,no blocker. Disk14GiBfree.
+[Compact handoff](round-026-redirect-handoff.md);[leads](leads.json).
+
+## Round027 disassembly — completed single pass
+
+ROM classification: 99.99% (65532 / 65536 bytes classified; 4 bytes unknown).
+Per-bank Code/Data/Padding/Unknown:bank0 10279/6029/73/3;
+bank1 8413/7904/67/0;bank2 2992/13354/37/1;bank3 227/15468/689/0.
+Accepted R26-MAINSTATE7-EMPTY-HANDLER:one Static Code byte0728 after independent
+accepted ten-word directory, exact raw pointer and CALL/RST/POP/JP stack review.
+No Observed or natural selector7 claim. [Assessment](round-027/assessment.md),
+[primary review](round-027/primary-review.json),[counts](round-027/result.json).
+Prior blanket no-contract conclusion corrected only for0728;remaining2f09,3420,
+34af,ad6a(bank2CPU6d6a) remain structurally ambiguous. Reused sound scoped review;
+no arbitrary call or unchanged gameplay replay. Broad Round026 stage1..4/ending/
+credits evidence reused;boss/final-held-A/natural late-game claims remain absent.
+
+Configured-release map.load/annotate/save/export/validate/conflicts and fresh
+round-027-disassembly checkpoint byte-identical65536bytes pass;
+[verification](round-027-disassembly-verification.json),[final audit](round-027/final-verification.json).
+ROM/config/release/commentary source unchanged;previous checkpoint/state/map preserved.
+ExistingconfirmedT001 only;zero new toolkit findings,no blocker;[report](toolkit-issues.md).
+WholeROM incomplete;single disassembly pass complete,next separate commentary.
+[Compact handoff](round-027-disassembly-handoff.md). No commentary/redirect/archive
+acceptance launched. Internal evidence/source/assets stay local. Disk14GiB free.
+
+## Round027 commentary — complete current-source readability
+
+All2807records/3007units reviewed,6045source refs checked,zero pending/deferred
+readability ranges. Preserved complete previous commentary with manifest; fresh
+current-state baseline and carried authoritative source. Static0728 is now named
+EmptyMainState7Handler with RET, symbolic directory word, direct outer-return
+stack explanation and affected state/credit dependencies assessed. No new natural
+selector7/fetch claim. Four residualUnknown bytes unchanged;65532/65536classified.
+Fresh configured-release verification plus independent indexed assembly both
+byte-identical65536bytes; full physical scaffold/state agreement checked and reading
+copy refreshed. [Phase evidence](round-027/commentary/verification.json),
+[assessment](round-027/commentary/readability-assessment.md),
+[compact handoff](round-027-commentary-handoff.md). ExistingconfirmedT001 only;
+zero new toolkit findings/no blocker. No toolkit/ROM/map/state/runtime changes;
+no redirect/finalaudit/archive acceptance launched. Internal artifacts local.
+
+## Round027 redirect — ready inline-origin runtime0 proposal
+
+Corrected independent origin reasoning: RST00 at33ad explicitly anchors33ae;
+zero-index3420 pointer plus inherited outer CALL stack supports one-byte empty
+handler without a complete directory or naturally produced selector. Current entry0
+pair remains Static genericData pending independent role review. Proposed1byte,
+accepted0;4Unknown unchanged. All3 accepted terminalJP/JR+RET analogs independently
+entered and Observed; none establishes detached epilogue convention for other3.
+[Assessment](redirect/R27-20261027-origin-and-epilogue-v1/assessment.md),
+[compact handoff](round-027-redirect-handoff.md),[ready lead](leads.json).
+No ROM/map/state/source/runtime/toolkit edits. ExistingconfirmedT001 only;zero new
+issues,no blocker. No terminal exhaustion/final acceptance requested.
+
+## Round028 disassembly — inline-origin runtime0 handler verified
+
+ROM classification: 100.00% (65533 / 65536 bytes classified; 3 bytes unknown).
+Rounded100.00% does not establish completion. Accepted3420 length1 StaticCode from
+independent RST33ad/base33ae/word0/outerCALL stack/exact-boundary review. No natural
+occupiedtype0 or Observed claim;33ae genericData pair unchanged, independently supported
+pointer0 interpretation documented without whole-table expansion.
+Per-bank Code/Data/Padding/Unknown:0 10280/6029/73/2;1 8413/7904/67/0;
+2 2992/13354/37/1;3 227/15468/689/0. Execution coverage unchanged/separate.
+Remaining2f09,34af,ad6a(bank2CPU6d6a) ambiguous under reused scoped Round027 primary
+review; no detached epilogue convention or changed productive test. Broad stage1..4/
+ending/STAFF routes reused; explicit boss/finalheldA/natural progression limits retained.
+[Assessment](round-028/assessment.md),[primary review](round-028/primary-review.json),
+[counts](round-028/result.json),[handoff](round-028-disassembly-handoff.md).
+Fresh configured-release save/export/validation/conflicts and checkpoint pass,
+byte-identical65536bytes;[verification](round-028-disassembly-verification.json),
+[protected audit](round-028/final-verification.json). ROM/config/release/all commentary
+hashes match; source unchanged. Prior map/state/history retained. ExistingconfirmedT001
+only;zero new toolkit findings,no blocker;[report](toolkit-issues.md). Disk14GiB free;
+no bulk scratch. One disassembly phase complete; wholeROM incomplete; separate commentary
+next. No commentary/redirect/finalaudit/archive acceptance launched. Internal artifacts local.
+
+## Round028 commentary — current-source readability complete
+
+All2807 records/3007 units retain valid review credit;6045 source references checked,
+zero pending/deferred readability ranges. Prior commentary preserved in
+round-028/commentary/prior with manifest; fresh frozen map/state baseline prepared.
+EmptyRuntimeTypeZeroHandler names3420; source explains type0 local word33ae and outer
+CALL continuation3343 without a full directory or natural selection/execution claim.
+Caller/field reader/dispatcher/axis and adjacent ending wrapper dependencies assessed.
+[Assessment](round-028/commentary/readability-assessment.md),
+[checks](round-028/commentary/verification.json). Fresh configured-release verify and
+independent physical-index RGBDS reconstruction byte-identical65536bytes; reading refreshed.
+ROM/config/release protected hashes match. Classified65533/65536;3Unknown remain
+2f09,34af,ad6a(bank2CPU6d6a). WholeROM incomplete; no readability backlog.
+Existing confirmedT001 only;zero new toolkit issues,no blocker;[report](toolkit-issues.md).
+No ROM/map/state/toolkit edits,redirect/finalaudit/archive acceptance. Internal artifacts local.
+
+## Round028 redirect — terminal rejection review for coordinator
+
+65533/65536 classified; exact3Unknown2f09,34af,ad6a(bank2CPU6d6a).
+Proposed0/accepted0; no map/state/ROM/source/toolkit/runtime changes. Retrieved
+R27 primary source/analog audit and R26 exact word audit; scoped each negative
+and compared combined constraints with accepted0728/3420 contracts. No useful
+revised inference/test remains; no speculative code or genericData proposal.
+[Per-byte review](redirect/R28-20261027-terminal-rejection-v1/rejection-review.md),
+[fresh exact complement/protected hash audit](redirect/R28-20261027-terminal-rejection-v1/final-audit.json).
+Broad artificial stages1..4/ending/STAFF evidence retained;boss/finalheldA unvisited
+limits explicit, no exhaustive gameplay claim. Readability complete; existing
+validated/conflict-free checkpoint and byte-identical source verification retained,
+with final protected/source hash equality checked. ExistingconfirmedT001 only;
+zero new toolkit issues,no blocker. Disk14GiB free,no bulk scratch. Recommendation
+is incomplete pending coordinator review; no final acceptance/archive performed.
+
+## Coordinator review — Round028 incomplete termination, 2026-10-27
+
+Inspected scoped rejection reasoning and primary source return chains; no unsupported
+caller prerequisite or overbroad negative result remains. Three isolated C9 bytes
+at physical2f09/34af/ad6a remain materially ambiguous, not generic-data candidates.
+No ready lead or concrete useful revised test remains. Independently checked all18
+recorded protected/product hashes and direct rebuilt-ROM equality: pass.
+65533/65536 classified=99.99542236328125%;3Unknown. Current-source readability
+complete, fresh byte-identical checks retained; final acceptance/archive pending.
+Workflow terminates incomplete, not whole-ROM completion. Preserve accepted work
+and sound rejection review; no unchanged automatic research cycle.
+[Coordinator audit](round-028-coordinator-review.md),
+[checkpoint](round-028-disassembly-handoff.md),
+[commentary](round-028-commentary-handoff.md),
+[redirect](round-028-redirect-handoff.md),[leads](leads.json).

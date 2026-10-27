@@ -35389,9 +35389,1075 @@
       "kind": "Data",
       "provenance": "Static",
       "confidence": 0.8
+    },
+    "2724": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 2949,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2725": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 8500,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 11,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2726": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 8512,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 3,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2727": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 8516,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2728": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 8523,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 33,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2729": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 8657,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 11,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2730": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 8669,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 3,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2731": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 8673,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2732": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 8680,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 41,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2733": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 8725,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2734": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 9516,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2735": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 9522,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2736": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 9530,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2737": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 9534,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2738": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 9634,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 22,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2739": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 9667,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 33,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2740": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 9711,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2741": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 9745,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2742": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 9759,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2743": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 9764,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 3,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2744": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 9773,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2745": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 13230,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2746": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 13286,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2747": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 13302,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2748": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 13318,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2749": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 13324,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 10,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2750": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 14672,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2751": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 14677,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2752": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 14682,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2753": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 14687,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2754": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 14692,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2755": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 14947,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2756": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 14952,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2757": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 14957,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2758": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 14962,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2759": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 14967,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2760": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 15222,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2761": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 15227,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2762": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 15232,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2763": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 15237,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2764": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 15242,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2765": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 17611,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2766": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 17629,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2767": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 17837,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 5,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2768": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 17882,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 5,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2769": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 18305,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2770": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 22055,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 15,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2771": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 23704,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2772": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 25926,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2773": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 25940,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2774": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 27009,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2775": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 30621,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 1,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2776": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 30647,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 1,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2777": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 31277,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 1,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2778": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 31329,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 1,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2779": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 31351,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 1,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2780": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 31362,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2781": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 31552,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 3,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2782": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 31557,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 1,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2783": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 31561,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 1,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2784": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 31563,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2785": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 31570,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 7,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2786": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 31578,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 27,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2787": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 31606,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2788": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 32676,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2789": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 32682,
+        "context": {
+          "bank": "1"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2790": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 34847,
+        "context": {
+          "bank": "2"
+        }
+      },
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2791": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 34937,
+        "context": {
+          "bank": "2"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2792": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 34947,
+        "context": {
+          "bank": "2"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2793": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 34959,
+        "context": {
+          "bank": "2"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2794": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 34991,
+        "context": {
+          "bank": "2"
+        }
+      },
+      "length": 46,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2795": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 35090,
+        "context": {
+          "bank": "2"
+        }
+      },
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2796": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 35437,
+        "context": {
+          "bank": "2"
+        }
+      },
+      "length": 1,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2797": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 35489,
+        "context": {
+          "bank": "2"
+        }
+      },
+      "length": 10,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2798": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 35507,
+        "context": {
+          "bank": "2"
+        }
+      },
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2799": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 35734,
+        "context": {
+          "bank": "2"
+        }
+      },
+      "length": 7,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2800": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 35743,
+        "context": {
+          "bank": "2"
+        }
+      },
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2801": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 36036,
+        "context": {
+          "bank": "2"
+        }
+      },
+      "length": 3,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2802": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 62720,
+        "context": {
+          "bank": "3"
+        }
+      },
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2803": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 64448,
+        "context": {
+          "bank": "3"
+        }
+      },
+      "length": 96,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 0.95
+    },
+    "2804": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 1832,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 1,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.98
+    },
+    "2805": {
+      "start": {
+        "space": "cartridge-rom",
+        "offset": 13344,
+        "context": {
+          "bank": "0"
+        }
+      },
+      "length": 1,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 0.98
     }
   },
-  "next_id": 2724,
+  "next_id": 2806,
   "metadata": {},
   "region_metadata": {
     "1": {
@@ -48653,6 +49719,418 @@
       "evidence": "analysis/round-025evidence/audit.json and rpc.json: independent literal resolver arithmetic; rooted stage2 width/layout directories358b/351d coindexed by stage/nested; column<53 and cross0..4; 265 sparse cells in275byte envelope. Exact six ranges exclude ten screen holes. All rawID downstream16-byte bank3 records already classified.",
       "name": "Stage2Nested1ScreenCells_3a74",
       "role": "conditional ordinary stage2 nested1 screen-major layout ID cells; fixed bank0"
+    },
+    "2724": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Eight-byte island within tile-transfer/list storage: 0080,017f,4000,0000 matches the nearby six-byte transfer plus terminator pattern; no ordinary fallthrough or supported control target. Role inspection: TransferTileList at bank0 source explains six-byte records, zero terminator and caller-selected source bank. No known root/source bank; generic data only, no transfer-list annotation. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2725": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Low-entropy numeric storage between an explicitly terminating routine and accepted indexed numeric cells, continuing the same repeated 07 or 00/01/02/03 pattern. Award-word gap 2215..2216 continues neighboring little-endian small BCD words. Each boundary is an existing classified cell or next code entry. Role inspection: Fixed-bank effect sound lookup2134 and AwardScoreBySourceSelector21d1/2211 inspected. Sparse supported cells do not declare full selector domains; generic data does not require that declaration. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2726": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Low-entropy numeric storage between an explicitly terminating routine and accepted indexed numeric cells, continuing the same repeated 07 or 00/01/02/03 pattern. Award-word gap 2215..2216 continues neighboring little-endian small BCD words. Each boundary is an existing classified cell or next code entry. Role inspection: Fixed-bank effect sound lookup2134 and AwardScoreBySourceSelector21d1/2211 inspected. Sparse supported cells do not declare full selector domains; generic data does not require that declaration. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2727": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Low-entropy numeric storage between an explicitly terminating routine and accepted indexed numeric cells, continuing the same repeated 07 or 00/01/02/03 pattern. Award-word gap 2215..2216 continues neighboring little-endian small BCD words. Each boundary is an existing classified cell or next code entry. Role inspection: Fixed-bank effect sound lookup2134 and AwardScoreBySourceSelector21d1/2211 inspected. Sparse supported cells do not declare full selector domains; generic data does not require that declaration. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2728": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Low-entropy numeric storage between an explicitly terminating routine and accepted indexed numeric cells, continuing the same repeated 07 or 00/01/02/03 pattern. Award-word gap 2215..2216 continues neighboring little-endian small BCD words. Each boundary is an existing classified cell or next code entry. Role inspection: Fixed-bank effect sound lookup2134 and AwardScoreBySourceSelector21d1/2211 inspected. Sparse supported cells do not declare full selector domains; generic data does not require that declaration. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2729": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Low-entropy numeric storage between an explicitly terminating routine and accepted indexed numeric cells, continuing the same repeated 07 or 00/01/02/03 pattern. Award-word gap 2215..2216 continues neighboring little-endian small BCD words. Each boundary is an existing classified cell or next code entry. Role inspection: Fixed-bank effect sound lookup2134 and AwardScoreBySourceSelector21d1/2211 inspected. Sparse supported cells do not declare full selector domains; generic data does not require that declaration. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2730": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Low-entropy numeric storage between an explicitly terminating routine and accepted indexed numeric cells, continuing the same repeated 07 or 00/01/02/03 pattern. Award-word gap 2215..2216 continues neighboring little-endian small BCD words. Each boundary is an existing classified cell or next code entry. Role inspection: Fixed-bank effect sound lookup2134 and AwardScoreBySourceSelector21d1/2211 inspected. Sparse supported cells do not declare full selector domains; generic data does not require that declaration. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2731": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Low-entropy numeric storage between an explicitly terminating routine and accepted indexed numeric cells, continuing the same repeated 07 or 00/01/02/03 pattern. Award-word gap 2215..2216 continues neighboring little-endian small BCD words. Each boundary is an existing classified cell or next code entry. Role inspection: Fixed-bank effect sound lookup2134 and AwardScoreBySourceSelector21d1/2211 inspected. Sparse supported cells do not declare full selector domains; generic data does not require that declaration. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2732": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Low-entropy numeric storage between an explicitly terminating routine and accepted indexed numeric cells, continuing the same repeated 07 or 00/01/02/03 pattern. Award-word gap 2215..2216 continues neighboring little-endian small BCD words. Each boundary is an existing classified cell or next code entry. Role inspection: Fixed-bank effect sound lookup2134 and AwardScoreBySourceSelector21d1/2211 inspected. Sparse supported cells do not declare full selector domains; generic data does not require that declaration. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2733": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Low-entropy numeric storage between an explicitly terminating routine and accepted indexed numeric cells, continuing the same repeated 07 or 00/01/02/03 pattern. Award-word gap 2215..2216 continues neighboring little-endian small BCD words. Each boundary is an existing classified cell or next code entry. Role inspection: Fixed-bank effect sound lookup2134 and AwardScoreBySourceSelector21d1/2211 inspected. Sparse supported cells do not declare full selector domains; generic data does not require that declaration. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2734": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Directory gaps continue aligned 25xx little-endian values; payload gaps repeat count-like 0a with symmetric signed offsets and adjacent established probe records. Box/action gaps continue low-valued pairs or repeated f8 offsets between accepted data. No ordinary instruction fallthrough or supported direct control target. Role inspection: ProbePrimaryActorShapeTerrain, ReadNegatedPlayerShapeProbe, AlignPlayerShapeToTileRow and shape-directory2522/box-base25ff consumers inspected. No claim all17 records owned, no complete shape selector domain, no larger schema extent. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2735": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Directory gaps continue aligned 25xx little-endian values; payload gaps repeat count-like 0a with symmetric signed offsets and adjacent established probe records. Box/action gaps continue low-valued pairs or repeated f8 offsets between accepted data. No ordinary instruction fallthrough or supported direct control target. Role inspection: ProbePrimaryActorShapeTerrain, ReadNegatedPlayerShapeProbe, AlignPlayerShapeToTileRow and shape-directory2522/box-base25ff consumers inspected. No claim all17 records owned, no complete shape selector domain, no larger schema extent. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2736": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Directory gaps continue aligned 25xx little-endian values; payload gaps repeat count-like 0a with symmetric signed offsets and adjacent established probe records. Box/action gaps continue low-valued pairs or repeated f8 offsets between accepted data. No ordinary instruction fallthrough or supported direct control target. Role inspection: ProbePrimaryActorShapeTerrain, ReadNegatedPlayerShapeProbe, AlignPlayerShapeToTileRow and shape-directory2522/box-base25ff consumers inspected. No claim all17 records owned, no complete shape selector domain, no larger schema extent. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2737": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Directory gaps continue aligned 25xx little-endian values; payload gaps repeat count-like 0a with symmetric signed offsets and adjacent established probe records. Box/action gaps continue low-valued pairs or repeated f8 offsets between accepted data. No ordinary instruction fallthrough or supported direct control target. Role inspection: ProbePrimaryActorShapeTerrain, ReadNegatedPlayerShapeProbe, AlignPlayerShapeToTileRow and shape-directory2522/box-base25ff consumers inspected. No claim all17 records owned, no complete shape selector domain, no larger schema extent. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2738": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Directory gaps continue aligned 25xx little-endian values; payload gaps repeat count-like 0a with symmetric signed offsets and adjacent established probe records. Box/action gaps continue low-valued pairs or repeated f8 offsets between accepted data. No ordinary instruction fallthrough or supported direct control target. Role inspection: ProbePrimaryActorShapeTerrain, ReadNegatedPlayerShapeProbe, AlignPlayerShapeToTileRow and shape-directory2522/box-base25ff consumers inspected. No claim all17 records owned, no complete shape selector domain, no larger schema extent. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2739": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Directory gaps continue aligned 25xx little-endian values; payload gaps repeat count-like 0a with symmetric signed offsets and adjacent established probe records. Box/action gaps continue low-valued pairs or repeated f8 offsets between accepted data. No ordinary instruction fallthrough or supported direct control target. Role inspection: ProbePrimaryActorShapeTerrain, ReadNegatedPlayerShapeProbe, AlignPlayerShapeToTileRow and shape-directory2522/box-base25ff consumers inspected. No claim all17 records owned, no complete shape selector domain, no larger schema extent. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2740": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Directory gaps continue aligned 25xx little-endian values; payload gaps repeat count-like 0a with symmetric signed offsets and adjacent established probe records. Box/action gaps continue low-valued pairs or repeated f8 offsets between accepted data. No ordinary instruction fallthrough or supported direct control target. Role inspection: ProbePrimaryActorShapeTerrain, ReadNegatedPlayerShapeProbe, AlignPlayerShapeToTileRow and shape-directory2522/box-base25ff consumers inspected. No claim all17 records owned, no complete shape selector domain, no larger schema extent. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2741": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Directory gaps continue aligned 25xx little-endian values; payload gaps repeat count-like 0a with symmetric signed offsets and adjacent established probe records. Box/action gaps continue low-valued pairs or repeated f8 offsets between accepted data. No ordinary instruction fallthrough or supported direct control target. Role inspection: ProbePrimaryActorShapeTerrain, ReadNegatedPlayerShapeProbe, AlignPlayerShapeToTileRow and shape-directory2522/box-base25ff consumers inspected. No claim all17 records owned, no complete shape selector domain, no larger schema extent. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2742": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Directory gaps continue aligned 25xx little-endian values; payload gaps repeat count-like 0a with symmetric signed offsets and adjacent established probe records. Box/action gaps continue low-valued pairs or repeated f8 offsets between accepted data. No ordinary instruction fallthrough or supported direct control target. Role inspection: ProbePrimaryActorShapeTerrain, ReadNegatedPlayerShapeProbe, AlignPlayerShapeToTileRow and shape-directory2522/box-base25ff consumers inspected. No claim all17 records owned, no complete shape selector domain, no larger schema extent. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2743": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Directory gaps continue aligned 25xx little-endian values; payload gaps repeat count-like 0a with symmetric signed offsets and adjacent established probe records. Box/action gaps continue low-valued pairs or repeated f8 offsets between accepted data. No ordinary instruction fallthrough or supported direct control target. Role inspection: ProbePrimaryActorShapeTerrain, ReadNegatedPlayerShapeProbe, AlignPlayerShapeToTileRow and shape-directory2522/box-base25ff consumers inspected. No claim all17 records owned, no complete shape selector domain, no larger schema extent. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2744": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Directory gaps continue aligned 25xx little-endian values; payload gaps repeat count-like 0a with symmetric signed offsets and adjacent established probe records. Box/action gaps continue low-valued pairs or repeated f8 offsets between accepted data. No ordinary instruction fallthrough or supported direct control target. Role inspection: ProbePrimaryActorShapeTerrain, ReadNegatedPlayerShapeProbe, AlignPlayerShapeToTileRow and shape-directory2522/box-base25ff consumers inspected. No claim all17 records owned, no complete shape selector domain, no larger schema extent. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2745": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Aligned little-endian pointer-like words, often identical repeated words (7120,77f9,765e,5f7f), interleaved among accepted inline dispatch cells. The preceding dispatcher RST consumes inline bytes rather than falling through into them. Role inspection: DispatchObjectRuntimeType and associated state consumers inspected. Generic data only; no proof every sparse slot is selected or target executes; banked targets retain caller-dependent bank context. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2746": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Aligned little-endian pointer-like words, often identical repeated words (7120,77f9,765e,5f7f), interleaved among accepted inline dispatch cells. The preceding dispatcher RST consumes inline bytes rather than falling through into them. Role inspection: DispatchObjectRuntimeType and associated state consumers inspected. Generic data only; no proof every sparse slot is selected or target executes; banked targets retain caller-dependent bank context. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2747": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Aligned little-endian pointer-like words, often identical repeated words (7120,77f9,765e,5f7f), interleaved among accepted inline dispatch cells. The preceding dispatcher RST consumes inline bytes rather than falling through into them. Role inspection: DispatchObjectRuntimeType and associated state consumers inspected. Generic data only; no proof every sparse slot is selected or target executes; banked targets retain caller-dependent bank context. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2748": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Aligned little-endian pointer-like words, often identical repeated words (7120,77f9,765e,5f7f), interleaved among accepted inline dispatch cells. The preceding dispatcher RST consumes inline bytes rather than falling through into them. Role inspection: DispatchObjectRuntimeType and associated state consumers inspected. Generic data only; no proof every sparse slot is selected or target executes; banked targets retain caller-dependent bank context. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2749": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Aligned little-endian pointer-like words, often identical repeated words (7120,77f9,765e,5f7f), interleaved among accepted inline dispatch cells. The preceding dispatcher RST consumes inline bytes rather than falling through into them. Role inspection: DispatchObjectRuntimeType and associated state consumers inspected. Generic data only; no proof every sparse slot is selected or target executes; banked targets retain caller-dependent bank context. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2750": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Bank0 gaps are small-valued screen-envelope holes interleaved every5bytes among established layout cells, preserving the surrounding numeric matrix pattern. Bank1 gaps are aligned45xx words or fixed five-byte numeric descriptor-like islands between established descriptors. No supported direct code target/fallthrough. Role inspection: SelectDescriptorByNestedThreshold, LoadStageLayoutParameters and Round25 accepted screen-major geometry inspected. Excluded columns do not become consumed cells. No full descriptor directory/schema allocation or selection claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2751": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Bank0 gaps are small-valued screen-envelope holes interleaved every5bytes among established layout cells, preserving the surrounding numeric matrix pattern. Bank1 gaps are aligned45xx words or fixed five-byte numeric descriptor-like islands between established descriptors. No supported direct code target/fallthrough. Role inspection: SelectDescriptorByNestedThreshold, LoadStageLayoutParameters and Round25 accepted screen-major geometry inspected. Excluded columns do not become consumed cells. No full descriptor directory/schema allocation or selection claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2752": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Bank0 gaps are small-valued screen-envelope holes interleaved every5bytes among established layout cells, preserving the surrounding numeric matrix pattern. Bank1 gaps are aligned45xx words or fixed five-byte numeric descriptor-like islands between established descriptors. No supported direct code target/fallthrough. Role inspection: SelectDescriptorByNestedThreshold, LoadStageLayoutParameters and Round25 accepted screen-major geometry inspected. Excluded columns do not become consumed cells. No full descriptor directory/schema allocation or selection claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2753": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Bank0 gaps are small-valued screen-envelope holes interleaved every5bytes among established layout cells, preserving the surrounding numeric matrix pattern. Bank1 gaps are aligned45xx words or fixed five-byte numeric descriptor-like islands between established descriptors. No supported direct code target/fallthrough. Role inspection: SelectDescriptorByNestedThreshold, LoadStageLayoutParameters and Round25 accepted screen-major geometry inspected. Excluded columns do not become consumed cells. No full descriptor directory/schema allocation or selection claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2754": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Bank0 gaps are small-valued screen-envelope holes interleaved every5bytes among established layout cells, preserving the surrounding numeric matrix pattern. Bank1 gaps are aligned45xx words or fixed five-byte numeric descriptor-like islands between established descriptors. No supported direct code target/fallthrough. Role inspection: SelectDescriptorByNestedThreshold, LoadStageLayoutParameters and Round25 accepted screen-major geometry inspected. Excluded columns do not become consumed cells. No full descriptor directory/schema allocation or selection claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2755": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Bank0 gaps are small-valued screen-envelope holes interleaved every5bytes among established layout cells, preserving the surrounding numeric matrix pattern. Bank1 gaps are aligned45xx words or fixed five-byte numeric descriptor-like islands between established descriptors. No supported direct code target/fallthrough. Role inspection: SelectDescriptorByNestedThreshold, LoadStageLayoutParameters and Round25 accepted screen-major geometry inspected. Excluded columns do not become consumed cells. No full descriptor directory/schema allocation or selection claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2756": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Bank0 gaps are small-valued screen-envelope holes interleaved every5bytes among established layout cells, preserving the surrounding numeric matrix pattern. Bank1 gaps are aligned45xx words or fixed five-byte numeric descriptor-like islands between established descriptors. No supported direct code target/fallthrough. Role inspection: SelectDescriptorByNestedThreshold, LoadStageLayoutParameters and Round25 accepted screen-major geometry inspected. Excluded columns do not become consumed cells. No full descriptor directory/schema allocation or selection claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2757": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Bank0 gaps are small-valued screen-envelope holes interleaved every5bytes among established layout cells, preserving the surrounding numeric matrix pattern. Bank1 gaps are aligned45xx words or fixed five-byte numeric descriptor-like islands between established descriptors. No supported direct code target/fallthrough. Role inspection: SelectDescriptorByNestedThreshold, LoadStageLayoutParameters and Round25 accepted screen-major geometry inspected. Excluded columns do not become consumed cells. No full descriptor directory/schema allocation or selection claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2758": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Bank0 gaps are small-valued screen-envelope holes interleaved every5bytes among established layout cells, preserving the surrounding numeric matrix pattern. Bank1 gaps are aligned45xx words or fixed five-byte numeric descriptor-like islands between established descriptors. No supported direct code target/fallthrough. Role inspection: SelectDescriptorByNestedThreshold, LoadStageLayoutParameters and Round25 accepted screen-major geometry inspected. Excluded columns do not become consumed cells. No full descriptor directory/schema allocation or selection claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2759": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Bank0 gaps are small-valued screen-envelope holes interleaved every5bytes among established layout cells, preserving the surrounding numeric matrix pattern. Bank1 gaps are aligned45xx words or fixed five-byte numeric descriptor-like islands between established descriptors. No supported direct code target/fallthrough. Role inspection: SelectDescriptorByNestedThreshold, LoadStageLayoutParameters and Round25 accepted screen-major geometry inspected. Excluded columns do not become consumed cells. No full descriptor directory/schema allocation or selection claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2760": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Bank0 gaps are small-valued screen-envelope holes interleaved every5bytes among established layout cells, preserving the surrounding numeric matrix pattern. Bank1 gaps are aligned45xx words or fixed five-byte numeric descriptor-like islands between established descriptors. No supported direct code target/fallthrough. Role inspection: SelectDescriptorByNestedThreshold, LoadStageLayoutParameters and Round25 accepted screen-major geometry inspected. Excluded columns do not become consumed cells. No full descriptor directory/schema allocation or selection claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2761": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Bank0 gaps are small-valued screen-envelope holes interleaved every5bytes among established layout cells, preserving the surrounding numeric matrix pattern. Bank1 gaps are aligned45xx words or fixed five-byte numeric descriptor-like islands between established descriptors. No supported direct code target/fallthrough. Role inspection: SelectDescriptorByNestedThreshold, LoadStageLayoutParameters and Round25 accepted screen-major geometry inspected. Excluded columns do not become consumed cells. No full descriptor directory/schema allocation or selection claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2762": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Bank0 gaps are small-valued screen-envelope holes interleaved every5bytes among established layout cells, preserving the surrounding numeric matrix pattern. Bank1 gaps are aligned45xx words or fixed five-byte numeric descriptor-like islands between established descriptors. No supported direct code target/fallthrough. Role inspection: SelectDescriptorByNestedThreshold, LoadStageLayoutParameters and Round25 accepted screen-major geometry inspected. Excluded columns do not become consumed cells. No full descriptor directory/schema allocation or selection claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2763": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Bank0 gaps are small-valued screen-envelope holes interleaved every5bytes among established layout cells, preserving the surrounding numeric matrix pattern. Bank1 gaps are aligned45xx words or fixed five-byte numeric descriptor-like islands between established descriptors. No supported direct code target/fallthrough. Role inspection: SelectDescriptorByNestedThreshold, LoadStageLayoutParameters and Round25 accepted screen-major geometry inspected. Excluded columns do not become consumed cells. No full descriptor directory/schema allocation or selection claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2764": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Bank0 gaps are small-valued screen-envelope holes interleaved every5bytes among established layout cells, preserving the surrounding numeric matrix pattern. Bank1 gaps are aligned45xx words or fixed five-byte numeric descriptor-like islands between established descriptors. No supported direct code target/fallthrough. Role inspection: SelectDescriptorByNestedThreshold, LoadStageLayoutParameters and Round25 accepted screen-major geometry inspected. Excluded columns do not become consumed cells. No full descriptor directory/schema allocation or selection claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2765": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Bank0 gaps are small-valued screen-envelope holes interleaved every5bytes among established layout cells, preserving the surrounding numeric matrix pattern. Bank1 gaps are aligned45xx words or fixed five-byte numeric descriptor-like islands between established descriptors. No supported direct code target/fallthrough. Role inspection: SelectDescriptorByNestedThreshold, LoadStageLayoutParameters and Round25 accepted screen-major geometry inspected. Excluded columns do not become consumed cells. No full descriptor directory/schema allocation or selection claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2766": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Bank0 gaps are small-valued screen-envelope holes interleaved every5bytes among established layout cells, preserving the surrounding numeric matrix pattern. Bank1 gaps are aligned45xx words or fixed five-byte numeric descriptor-like islands between established descriptors. No supported direct code target/fallthrough. Role inspection: SelectDescriptorByNestedThreshold, LoadStageLayoutParameters and Round25 accepted screen-major geometry inspected. Excluded columns do not become consumed cells. No full descriptor directory/schema allocation or selection claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2767": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Bank0 gaps are small-valued screen-envelope holes interleaved every5bytes among established layout cells, preserving the surrounding numeric matrix pattern. Bank1 gaps are aligned45xx words or fixed five-byte numeric descriptor-like islands between established descriptors. No supported direct code target/fallthrough. Role inspection: SelectDescriptorByNestedThreshold, LoadStageLayoutParameters and Round25 accepted screen-major geometry inspected. Excluded columns do not become consumed cells. No full descriptor directory/schema allocation or selection claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2768": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Bank0 gaps are small-valued screen-envelope holes interleaved every5bytes among established layout cells, preserving the surrounding numeric matrix pattern. Bank1 gaps are aligned45xx words or fixed five-byte numeric descriptor-like islands between established descriptors. No supported direct code target/fallthrough. Role inspection: SelectDescriptorByNestedThreshold, LoadStageLayoutParameters and Round25 accepted screen-major geometry inspected. Excluded columns do not become consumed cells. No full descriptor directory/schema allocation or selection claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2769": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Zero/ff runs plus repeated backward-looking477f word in animation stream storage, bounded by accepted data on both sides; incompatible with normal straight-line continuation from neighbors. Role inspection: Animation selector/parser contracts and prior A6 rejection inspected: ownership/terminator alias unresolved. Generic data only, no inferred animation member or parser extent. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2770": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Fifteen low-entropy 00/01 bytes, including repeated 00,00,01 tail triples, between accepted sprite seed storage and an independent instruction entry at5636. Role inspection: Prior motion-seed and neighboring sprite records inspected; no supported seed reader bounds these bytes. Generic data without seed/zero-fill meaning. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2771": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Aligned pointer-like little-endian words in inline dispatch storage immediately following RST or interleaved among accepted state words. Entries reproduce neighboring handler addresses. Role inspection: State dispatch at5c97,6545,6980 and A1 exclusions inspected; excluded selector0 or duplicate words do not prove execution. Generic data only, no valid-state/domain inference. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2772": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Aligned pointer-like little-endian words in inline dispatch storage immediately following RST or interleaved among accepted state words. Entries reproduce neighboring handler addresses. Role inspection: State dispatch at5c97,6545,6980 and A1 exclusions inspected; excluded selector0 or duplicate words do not prove execution. Generic data only, no valid-state/domain inference. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2773": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Aligned pointer-like little-endian words in inline dispatch storage immediately following RST or interleaved among accepted state words. Entries reproduce neighboring handler addresses. Role inspection: State dispatch at5c97,6545,6980 and A1 exclusions inspected; excluded selector0 or duplicate words do not prove execution. Generic data only, no valid-state/domain inference. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2774": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Aligned pointer-like little-endian words in inline dispatch storage immediately following RST or interleaved among accepted state words. Entries reproduce neighboring handler addresses. Role inspection: State dispatch at5c97,6545,6980 and A1 exclusions inspected; excluded selector0 or duplicate words do not prove execution. Generic data only, no valid-state/domain inference. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2775": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Zero bytes following ff-delimited child-command storage, and low-valued trailing box pairs, embedded among accepted data before independent code entries. Surrounding repeated command/control patterns support storage rather than instructions. Role inspection: Child command parsers and prior seed/box/alias barriers inspected; no terminator-padding purpose or additional command reachability inferred. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2776": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Zero bytes following ff-delimited child-command storage, and low-valued trailing box pairs, embedded among accepted data before independent code entries. Surrounding repeated command/control patterns support storage rather than instructions. Role inspection: Child command parsers and prior seed/box/alias barriers inspected; no terminator-padding purpose or additional command reachability inferred. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2777": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Zero bytes following ff-delimited child-command storage, and low-valued trailing box pairs, embedded among accepted data before independent code entries. Surrounding repeated command/control patterns support storage rather than instructions. Role inspection: Child command parsers and prior seed/box/alias barriers inspected; no terminator-padding purpose or additional command reachability inferred. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2778": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Zero bytes following ff-delimited child-command storage, and low-valued trailing box pairs, embedded among accepted data before independent code entries. Surrounding repeated command/control patterns support storage rather than instructions. Role inspection: Child command parsers and prior seed/box/alias barriers inspected; no terminator-padding purpose or additional command reachability inferred. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2779": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Zero bytes following ff-delimited child-command storage, and low-valued trailing box pairs, embedded among accepted data before independent code entries. Surrounding repeated command/control patterns support storage rather than instructions. Role inspection: Child command parsers and prior seed/box/alias barriers inspected; no terminator-padding purpose or additional command reachability inferred. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2780": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Zero bytes following ff-delimited child-command storage, and low-valued trailing box pairs, embedded among accepted data before independent code entries. Surrounding repeated command/control patterns support storage rather than instructions. Role inspection: Child command parsers and prior seed/box/alias barriers inspected; no terminator-padding purpose or additional command reachability inferred. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2781": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Repeated01 with rare02/03 continues across accepted type-indexed numeric cells from7b40 through7b77, bounded by a preceding tail JP and next entry7b78. No ordinary fallthrough/control conflict. Role inspection: Bank1 incoming-contact amount lookup at7b40 inspected. Generic data does not expand the converted-type domain or claim all bytes are damage amounts. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2782": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Repeated01 with rare02/03 continues across accepted type-indexed numeric cells from7b40 through7b77, bounded by a preceding tail JP and next entry7b78. No ordinary fallthrough/control conflict. Role inspection: Bank1 incoming-contact amount lookup at7b40 inspected. Generic data does not expand the converted-type domain or claim all bytes are damage amounts. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2783": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Repeated01 with rare02/03 continues across accepted type-indexed numeric cells from7b40 through7b77, bounded by a preceding tail JP and next entry7b78. No ordinary fallthrough/control conflict. Role inspection: Bank1 incoming-contact amount lookup at7b40 inspected. Generic data does not expand the converted-type domain or claim all bytes are damage amounts. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2784": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Repeated01 with rare02/03 continues across accepted type-indexed numeric cells from7b40 through7b77, bounded by a preceding tail JP and next entry7b78. No ordinary fallthrough/control conflict. Role inspection: Bank1 incoming-contact amount lookup at7b40 inspected. Generic data does not expand the converted-type domain or claim all bytes are damage amounts. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2785": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Repeated01 with rare02/03 continues across accepted type-indexed numeric cells from7b40 through7b77, bounded by a preceding tail JP and next entry7b78. No ordinary fallthrough/control conflict. Role inspection: Bank1 incoming-contact amount lookup at7b40 inspected. Generic data does not expand the converted-type domain or claim all bytes are damage amounts. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2786": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Repeated01 with rare02/03 continues across accepted type-indexed numeric cells from7b40 through7b77, bounded by a preceding tail JP and next entry7b78. No ordinary fallthrough/control conflict. Role inspection: Bank1 incoming-contact amount lookup at7b40 inspected. Generic data does not expand the converted-type domain or claim all bytes are damage amounts. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2787": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Repeated01 with rare02/03 continues across accepted type-indexed numeric cells from7b40 through7b77, bounded by a preceding tail JP and next entry7b78. No ordinary fallthrough/control conflict. Role inspection: Bank1 incoming-contact amount lookup at7b40 inspected. Generic data does not expand the converted-type domain or claim all bytes are damage amounts. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2788": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Identical ac7f words repeat around an accepted ac7f directory word and before established probe payload. Exact aligned holes are storage continuations; no code entry/fallthrough. Role inspection: Terrain probe pair base7fa4 and prior A2 ownership objection inspected; generic data only, not a declared complete directory. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2789": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Identical ac7f words repeat around an accepted ac7f directory word and before established probe payload. Exact aligned holes are storage continuations; no code entry/fallthrough. Role inspection: Terrain probe pair base7fa4 and prior A2 ownership objection inspected; generic data only, not a declared complete directory. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2790": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Alternating low byte and00/07 high bytes continues neighboring monotonically increasing bounded numeric words; long tail e207..f707 repeats high07 and repeated quantized values. Boundaries at accepted words and next directory are exact physical holes. Role inspection: Audio pitch index arithmetic and CPU481d base inspected. Prior exact generator/allocation objection not used as non-code veto; generic data only, no96-word ownership or exact tuning formula claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2791": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Alternating low byte and00/07 high bytes continues neighboring monotonically increasing bounded numeric words; long tail e207..f707 repeats high07 and repeated quantized values. Boundaries at accepted words and next directory are exact physical holes. Role inspection: Audio pitch index arithmetic and CPU481d base inspected. Prior exact generator/allocation objection not used as non-code veto; generic data only, no96-word ownership or exact tuning formula claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2792": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Alternating low byte and00/07 high bytes continues neighboring monotonically increasing bounded numeric words; long tail e207..f707 repeats high07 and repeated quantized values. Boundaries at accepted words and next directory are exact physical holes. Role inspection: Audio pitch index arithmetic and CPU481d base inspected. Prior exact generator/allocation objection not used as non-code veto; generic data only, no96-word ownership or exact tuning formula claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2793": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Alternating low byte and00/07 high bytes continues neighboring monotonically increasing bounded numeric words; long tail e207..f707 repeats high07 and repeated quantized values. Boundaries at accepted words and next directory are exact physical holes. Role inspection: Audio pitch index arithmetic and CPU481d base inspected. Prior exact generator/allocation objection not used as non-code veto; generic data only, no96-word ownership or exact tuning formula claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2794": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Alternating low byte and00/07 high bytes continues neighboring monotonically increasing bounded numeric words; long tail e207..f707 repeats high07 and repeated quantized values. Boundaries at accepted words and next directory are exact physical holes. Role inspection: Audio pitch index arithmetic and CPU481d base inspected. Prior exact generator/allocation objection not used as non-code veto; generic data only, no96-word ownership or exact tuning formula claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2795": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Packed descending nibble sequence76543210, adjacent short1234 sequence, repeated b84a words, and repeated audio event/control bytes f9/11/31/51/ff and31/11/ff continue classified audio storage. Exact holes bounded by accepted data. Role inspection: Wave-copy overlap, CPU4a6a command lookup, sound directory and event-parser control grammar inspected. No additional complete waveform, command selector, finite stream or parser extent claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2796": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Packed descending nibble sequence76543210, adjacent short1234 sequence, repeated b84a words, and repeated audio event/control bytes f9/11/31/51/ff and31/11/ff continue classified audio storage. Exact holes bounded by accepted data. Role inspection: Wave-copy overlap, CPU4a6a command lookup, sound directory and event-parser control grammar inspected. No additional complete waveform, command selector, finite stream or parser extent claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2797": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Packed descending nibble sequence76543210, adjacent short1234 sequence, repeated b84a words, and repeated audio event/control bytes f9/11/31/51/ff and31/11/ff continue classified audio storage. Exact holes bounded by accepted data. Role inspection: Wave-copy overlap, CPU4a6a command lookup, sound directory and event-parser control grammar inspected. No additional complete waveform, command selector, finite stream or parser extent claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2798": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Packed descending nibble sequence76543210, adjacent short1234 sequence, repeated b84a words, and repeated audio event/control bytes f9/11/31/51/ff and31/11/ff continue classified audio storage. Exact holes bounded by accepted data. Role inspection: Wave-copy overlap, CPU4a6a command lookup, sound directory and event-parser control grammar inspected. No additional complete waveform, command selector, finite stream or parser extent claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2799": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Packed descending nibble sequence76543210, adjacent short1234 sequence, repeated b84a words, and repeated audio event/control bytes f9/11/31/51/ff and31/11/ff continue classified audio storage. Exact holes bounded by accepted data. Role inspection: Wave-copy overlap, CPU4a6a command lookup, sound directory and event-parser control grammar inspected. No additional complete waveform, command selector, finite stream or parser extent claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2800": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Packed descending nibble sequence76543210, adjacent short1234 sequence, repeated b84a words, and repeated audio event/control bytes f9/11/31/51/ff and31/11/ff continue classified audio storage. Exact holes bounded by accepted data. Role inspection: Wave-copy overlap, CPU4a6a command lookup, sound directory and event-parser control grammar inspected. No additional complete waveform, command selector, finite stream or parser extent claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2801": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Packed descending nibble sequence76543210, adjacent short1234 sequence, repeated b84a words, and repeated audio event/control bytes f9/11/31/51/ff and31/11/ff continue classified audio storage. Exact holes bounded by accepted data. Role inspection: Wave-copy overlap, CPU4a6a command lookup, sound directory and event-parser control grammar inspected. No additional complete waveform, command selector, finite stream or parser extent claim. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2802": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Bank3 f500 is sixteen00 bytes. fbc0..fc1f shows sixteen19, repeated four-byte5a04156c, then repeated1a with terminal6c. Visibly repeated matrices bounded by established data and codefc20. Role inspection: Known bank3 metatile payload consumers and ending transfer lists inspected. No ID/allocation/graphics identity claim. Conservative fixed-ROM jump to7505 is the player hazard bank1 callback, not a bank3 source entry; no supported bank3 code conflict. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2803": {
+      "comment": "Generic Data is the complete structural claim for this exact interval. No semantic schema, allocation extent, unused/dead status, natural selection or observed execution inferred.",
+      "evidence": "Bank3 f500 is sixteen00 bytes. fbc0..fc1f shows sixteen19, repeated four-byte5a04156c, then repeated1a with terminal6c. Visibly repeated matrices bounded by established data and codefc20. Role inspection: Known bank3 metatile payload consumers and ending transfer lists inspected. No ID/allocation/graphics identity claim. Conservative fixed-ROM jump to7505 is the player hazard bank1 callback, not a bank3 source entry; no supported bank3 code conflict. Round26 individual audit: analysis/round-026/classification-ledger.json; control conflict audit: analysis/round-026/conflict-audit.json.",
+      "role": "Non-code byte storage; specific ownership and meaning unresolved"
+    },
+    "2804": {
+      "comment": "Exact one-byte Static handler, fixed bank0 CPU0728. Prior0727 terminates substate setter;0729 begins independent completion dispatcher. Natural selector7 production and observed execution remain unclaimed.",
+      "evidence": "Accepted GameStateHandlers region71 physical044f..0462 word7 at045d selects0728. MainFrameLoop CALL DispatchGameFrame leaves frame return; selector7 bypasses synthetic early-state push; RST00 POP HL consumes inline directory address, RST08 returns selected pointer, JP HL preserves original frame return. C9 returns to frame loop. Primary ROM/map/decode independently reviewed in analysis/round-027/primary-review.json.",
+      "name": "ReturnFromMainStateSeven",
+      "role": "Empty main-state 7 handler"
+    },
+    "2805": {
+      "comment": "Exact one-byte Static handler, fixedROM bank0 CPU3420. Previous accepted wrapper word ends341f; separate bank2 wrapper begins3421. Supported occupied type0 entry contract; natural production and instruction fetch unclaimed. Entry0 pointer interpretation does not assert whole-directory extent; existing genericData pair unchanged.",
+      "evidence": "CALL3340 leaves3343 on stack; accepted field1 read33a8..33ac returns actor type. RST00 at33ad fixes inline base33ae. POP HL at0000 consumes inline return; RST08 zero index reads little-endian word33ae..33af=3420, returns0002; JP HL retains outer3343. C9 returns to actor axis integration. Independently verified raw ROM, map boundaries and decode in analysis/round-028/primary-review.json.",
+      "name": "EmptyRuntimeTypeZeroHandler",
+      "role": "Empty runtime-type 0 handler"
     }
   }
 }

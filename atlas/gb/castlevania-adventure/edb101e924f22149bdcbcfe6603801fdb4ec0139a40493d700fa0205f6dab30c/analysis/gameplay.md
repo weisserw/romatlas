@@ -325,3 +325,25 @@ No new research, natural route, runtime, input or snapshot. Evaluated structural
 alternatives do not establish natural selection, timing or unused/dead status.
 Existing sourced routes, failed-route history and T001 explicit all8button
 reassertion after restore remain unchanged. [Assessment](final-investigation/FI025-20261018-exhaustion-v1/method-outcomes.md).
+
+## Round026 — fresh broad progression after archive restoration
+
+No new external research. Recovered natural startup into genuine mainstate5 and
+saved a new same-build safe-field snapshot. Stopped at DispatchGameFrame0433 before
+patching mainstate4/substate0, stage index, nested selector and cleared gates; the
+ordinary initialization then selected descriptors67/74/70/80 for stages1/2/3/4
+(stage4 nested14). Distinct field/cavern/spike-room/masonry screenshots and bounded
+Right+B,Right+A,Up exercises verify initialized artificial visits. Initial patches
+from a mid-setup snapshot were rejected; stage-number writes alone were insufficient.
+
+From initialized stage4, c519=10 and completion gatec42d=1 entered mainstate9.
+Under understood ending countdown contracts, c431=15,c432=1 finished shake at the
+ordinary next tick. After actual ending scene/scroll execution, c431=1,c432=15
+finished the remaining scroll countdown and reached state6 with visible STAFF
+credits. No boss defeat or natural ending/later-stage route is claimed. Final
+held-A terminal phase remains untested; durable credits snapshot supports continuation.
+All8buttons explicitly reasserted after every restore. Exact patches/inputs/budgets,
+results, selected PNGs and snapshots are in [round026](round-026/), with replay
+scripts and [scenario checklist](scenarios.json). Fresh captured opcode addresses
+never intersect new generic Data or the five residual Unknown bytes. No new toolkit
+issue; historicalT001 workaround retained.

@@ -22241,6 +22241,44 @@
       "patches": "Each8case: first complete1SPCoperation toboundary; ARAM0300=CALL071C/CALL0742/BRAself; exactDP/ARAMstate/registerpatches andcasevalues inrecipe/artifact. ROMunchanged.",
       "budget": "100SPCoperations/case max_operations100000 timeout_ms1000 after1operationboundary(max10000,1000ms)",
       "outcome": "All8current/targetexpectedchecks pass; finallyrestored7112natural/artificialfalse. No tracesretained or newnaturalcoverage."
+    },
+    {
+      "id": "round28-restored-broad-progression",
+      "natural": false,
+      "recipe": "analysis/round28/gameplay.py and terminal.py; natural prefix in gameplay-rpc.json; exact supported RPC calls and budgets retained",
+      "evidence": "analysis/round28/gameplay-rpc.json; analysis/round28/rpc.json",
+      "result": "Cold-boot natural Fandango; artificial race initialization for order15/31/63, driving and final-order podium/Game Over/title; no unknown or non-Code fetch in completely paged artificial driving sample.",
+      "patches": "Each alternative restores natural race-snapshot.json, releases buttons, steps main to boundary (max20 single operations), sets PC0081ED A15/31/63 P30 DB0 DP0 Efalse SP01FF;420 untraced frames, B/Y/Right10 B/Left10 B10 traced frames. Final terminal restores order63-snapshot, writes WRAM002D=02,04E6=05; exact350/3frame input sequence in terminal.py.",
+      "reachability": "Natural only for cold-boot title/select/name/shop/Fandango prefix; all later-order/terminal tests artificial. Final state restored to natural Fandango snapshot."
+    }
+  ],
+  "progression_checklist": [
+    {
+      "milestone": "Title, driver name entry, shop, first race",
+      "status": "visited",
+      "route": "Natural cold-boot route in gameplay.py; snapshot boot at603, Fandango at1644",
+      "evidence": "analysis/round28/shop.ppm; analysis/round28/race.ppm"
+    },
+    {
+      "milestone": "Representative later-order race mechanics",
+      "status": "visited",
+      "route": "Artificial understood initializer via PC0081ED for orders15,31,63; acceleration/nitro/left/right inputs30frames each",
+      "observed_result": "Order15 track11 Rio Trio; order31 track8 Cutoff Pass; order63 track15 Volcano Valley, visually distinct layouts; live instruction contexts",
+      "evidence": "analysis/round28/order-15-race.ppm; order-31-race.ppm; order-63-race.ppm; gameplay-rpc.json"
+    },
+    {
+      "milestone": "Final-order result/podium, loss and terminal title return",
+      "status": "visited",
+      "route": "Artificial winner/lap patches WRAM002D=02 and04E6=05 from order63-snapshot; B pulses with350frame waits",
+      "observed_result": "Podium then Wipeout/Game Over then title; slot resets0",
+      "evidence": "analysis/round28/final-order-transition-2.ppm; final-order-transition-4.ppm; final-order-transition-7.ppm; rpc.json"
+    },
+    {
+      "milestone": "Separate ending or credits",
+      "status": "unavailable",
+      "route": "No supported distinct ending/credits transition established. Current wrap handler masks sequence modulo64; tested final-order loss returns title.",
+      "observed_result": "Terminal Game Over covered; no claim that game lacks a different ending or that all64 races were completed.",
+      "evidence": "commentary/source/game.asm:324; analysis/round28/rpc.json"
     }
   ]
 }

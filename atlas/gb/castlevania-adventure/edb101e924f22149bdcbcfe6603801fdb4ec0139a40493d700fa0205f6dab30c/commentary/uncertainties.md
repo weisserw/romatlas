@@ -180,3 +180,36 @@ its phase17 exit, rather than first drawing it in a later state; state9 phase36
 erases retained8. Destinations9b45/9b89/9bc7 contain9/2/6 tile bytes; final FF ends
 at physicalad35Code. Natural ending reachability/artwork identity remain unproved.
 Earlier historical totals are superseded, not additional current Unknown ranges.
+
+## Round026 current limits (supersedes historical Unknown totals)
+
+65531/65536 bytes are classified; only physical0728,2f09,3420,34af,ad6a
+remain Unknown. Each is an isolated C9 with no supported entry/fetch or ordinary
+fallthrough establishing an intended return routine. Eighty former gaps are generic
+Data, not additional proved tables, selectors, streams, fill allocations or consumed
+layout cells. Their meaning limits are local in source; no classified readability
+scope is deferred. Natural selection, exact tuning/allocation and art identities
+remain unproved where noted. Fresh artificial stage/ending observations are recorded
+in analysis/round-026-disassembly-handoff.md and do not prove natural late-game routes.
+
+
+## Round027 current limits (supersedes Round026 residual list)
+
+65532/65536 bytes are classified. Physical 0728 is the Static empty main-state 7
+handler, supported by the accepted ten-word directory and dispatcher stack contract.
+An observed fetch or natural selector 7 is unproved, rather than required for that
+structural interpretation. Only 2f09,3420,34af and ad6a (bank2 CPU6d6a) remain
+Unknown; their independent entry/directory contracts remain unresolved. No wider
+selector domain or natural gameplay claim follows. All current source is reviewed;
+no readability ranges are deferred. Earlier counts and no-contract claims for 0728
+are superseded by analysis/round-027/assessment.md.
+
+
+## Round028 current limits (supersedes earlier residual lists)
+
+65533/65536 bytes classified. Physical3420 is the Static empty runtime-type0 handler;
+33ae..33af stays genericData with independently supported local pointer0 interpretation.
+Outer CALL3340 retains return3343 through dispatch; type0 returns to axis integration.
+No full directory, natural occupied type0 or observed fetch is claimed. Only2f09,34af,
+ad6a(bank2CPU6d6a) remain Unknown. All current source reviewed; no readability deferred.
+Earlier no-contract prose for3420 is superseded by analysis/round-028/assessment.md.

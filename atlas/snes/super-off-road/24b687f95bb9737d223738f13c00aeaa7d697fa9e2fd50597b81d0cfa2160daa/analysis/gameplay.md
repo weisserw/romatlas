@@ -75,3 +75,12 @@ Round11 redirect: no new gameplay route or runtime experiment. Complete stored s
 Final investigation attempt05: no gameplay route, runtime patch or research experiment was justified by the source-ownership and non-MOV destination questions. Saved routes and natural reachability claims remain unchanged; structural alternatives were assessed independently. No new gameplay facts. Evidence final-investigation/attempt05/handoff.md.
 
 Round12 disassembly: bounded static pitch-storage/fill review supplies no changed productive runtime prerequisite. Existing routes preserved without replay. No new natural pitch selection/gameplay facts. Evidence round12/independent-review.json.
+
+
+## Round28 restored broad-progression replay
+
+Historical snapshots were omitted by restoration, so a new deterministic cold-boot route was run with the configured binary. Natural title/select/name/shop/Fandango replay reached frame1644; exact inputs are in `analysis/round28/gameplay.py` and `gameplay-rpc.json`. Saved `boot-snapshot.json` and `race-snapshot.json` are current durable snapshots.
+
+Each later-state alternative restores that natural snapshot, releases buttons, reaches a main instruction boundary, then enters the understood order-resolution/race initializer at PC$0081ED with A=15/31/63, P=$30, DB/DP=0, E=false, SP=$01FF. This initializes track11 Rio Trio, track8 Cutoff Pass and track15 Volcano Valley respectively. After420 untraced frames,30 traced frames exercise B/Y/Right, B/Left and B,10frames each. Captures confirm distinct track scenes, not merely written selectors. All these entries and subsequent observations are artificial. A complete additional10frame sample from order63 retained2937 contexts (2490 ROM,447 ARAM), zero aggregate drops and zero fetches in Unknown/non-Code regions; detail intentionally disabled.
+
+From the saved order63 scene, WRAM$002D=$02 and$04E6=$05 trigger the understood winner/lap result path. The bounded350frame/B-pulse sequence in `terminal.py` reaches podium, Wipeout/Game Over and title; screenshots and `rpc.json` retain exact results. This visits a terminal loss, not all64 natural races or a separate credits ending. Source wraps sequence modulo64; no separate ending shortcut established. Restore natural Fandango at end, release input. No new external-source claim.

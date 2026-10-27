@@ -608,8 +608,7 @@
       "source": [
         "game.asm:333"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-2",
@@ -5941,17 +5940,21 @@
       ]
     },
     {
-      "id": "unknown-000a6c",
+      "id": "region-1442",
       "offset": 2668,
       "length": 8,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 000A6C..000A74. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Bounded run of $64 bytes beside established objects. Its role and consumer remain unresolved; the uniform pattern supports non-code, without establishing fill or ownership.",
       "source": [
         "game.asm:2822"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-141",
@@ -6040,17 +6043,21 @@
       ]
     },
     {
-      "id": "unknown-000aec",
+      "id": "region-1443",
       "offset": 2796,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 000AEC..000AED. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Interleaved $02 byte in the powers-of-two OAM mask progression. The pattern supports data; known selectors use other cells, so a read of this cell is unproved.",
       "source": [
         "game.asm:2915"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-921",
@@ -6082,17 +6089,21 @@
       ]
     },
     {
-      "id": "unknown-000aee",
+      "id": "region-1444",
       "offset": 2798,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 000AEE..000AEF. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Interleaved $08 byte in the powers-of-two OAM mask progression. The pattern supports data; known selectors use other cells, so a read of this cell is unproved.",
       "source": [
         "game.asm:2933"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-922",
@@ -6124,17 +6135,21 @@
       ]
     },
     {
-      "id": "unknown-000af0",
+      "id": "region-1445",
       "offset": 2800,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 000AF0..000AF1. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Interleaved $20 byte in the powers-of-two OAM mask progression. The pattern supports data; known selectors use other cells, so a read of this cell is unproved.",
       "source": [
         "game.asm:2951"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-923",
@@ -6166,17 +6181,21 @@
       ]
     },
     {
-      "id": "unknown-000af2",
+      "id": "region-1446",
       "offset": 2802,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 000AF2..000AF3. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Interleaved $80 byte in the powers-of-two OAM mask progression. The pattern supports data; known selectors use other cells, so a read of this cell is unproved.",
       "source": [
         "game.asm:2969"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-142",
@@ -12744,8 +12763,7 @@
       "source": [
         "game.asm:6889"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-174",
@@ -14699,7 +14717,7 @@
         "label": "frontend_prepare_window_state"
       },
       "status": "reviewed",
-      "summary": "Increment the NMI video-update inhibit byte before clearing window masks. The following unclassified continuation is not implied code.",
+      "summary": "Increment the NMI video-update inhibit byte before clearing window masks. The next block forces display blank before returning.",
       "source": [
         "game.asm:7943"
       ],
@@ -14709,7 +14727,7 @@
           "offset": 8485,
           "length": 5,
           "status": "reviewed",
-          "summary": "Increment the NMI video-update inhibit byte before clearing window masks. The following unclassified continuation is not implied code.",
+          "summary": "Increment the NMI video-update inhibit byte before clearing window masks. The next block forces display blank before returning.",
           "source": [
             "game.asm:7943"
           ],
@@ -15268,7 +15286,7 @@
         "label": "frontend_object_initialization_prefix"
       },
       "status": "reviewed",
-      "summary": "Initialize window center/extent and three control bytes, then select 16-bit accumulator mode. The next immediate boundary lacks enough supported context and remains unclassified.",
+      "summary": "Initialize window center/extent and three control bytes, then select 16-bit accumulator mode. The following block uses the selected word width to start the window animation.",
       "source": [
         "game.asm:8222"
       ],
@@ -15278,7 +15296,7 @@
           "offset": 8851,
           "length": 25,
           "status": "reviewed",
-          "summary": "Initialize window center/extent and three control bytes, then select 16-bit accumulator mode. The next immediate boundary lacks enough supported context and remains unclassified.",
+          "summary": "Initialize window center/extent and three control bytes, then select 16-bit accumulator mode. The following block uses the selected word width to start the window animation.",
           "source": [
             "game.asm:8222"
           ],
@@ -19467,7 +19485,7 @@
         "label": "r4_three_podium_award_values_002c28"
       },
       "status": "reviewed",
-      "summary": "Three award bytes selected by descending podium index 2..0. The fourth adjacent byte lacks a supported consumer and remains unknown.",
+      "summary": "Three award bytes selected by descending podium index 2..0. The fourth adjacent byte is generic data; a consumer and membership in this award array remain unresolved.",
       "source": [
         "game.asm:10287"
       ],
@@ -19477,7 +19495,7 @@
           "offset": 11304,
           "length": 3,
           "status": "reviewed",
-          "summary": "Three award bytes selected by descending podium index 2..0. The fourth adjacent byte lacks a supported consumer and remains unknown.",
+          "summary": "Three award bytes selected by descending podium index 2..0. The fourth adjacent byte is generic data; a consumer and membership in this award array remain unresolved.",
           "source": [
             "game.asm:10287"
           ],
@@ -19486,17 +19504,21 @@
       ]
     },
     {
-      "id": "unknown-002c2b",
+      "id": "region-1447",
       "offset": 11307,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 002C2B..002C2C. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Constant bytes between established objects, consistent with nearby zero/value patterns. Consumer and record ownership remain unresolved.",
       "source": [
         "game.asm:10298"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-996",
@@ -29251,17 +29273,21 @@
       ]
     },
     {
-      "id": "unknown-0048ef",
+      "id": "region-1448",
       "offset": 18671,
       "length": 2,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 0048EF..0048F1. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Constant bytes between established objects, consistent with nearby zero/value patterns. Consumer and record ownership remain unresolved.",
       "source": [
         "game.asm:15511"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-402",
@@ -30214,17 +30240,21 @@
       ]
     },
     {
-      "id": "unknown-004dbe",
+      "id": "region-1449",
       "offset": 19902,
       "length": 2,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 004DBE..004DC0. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Constant bytes between established objects, consistent with nearby zero/value patterns. Consumer and record ownership remain unresolved.",
       "source": [
         "game.asm:16383"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-421",
@@ -31339,17 +31369,21 @@
       ]
     },
     {
-      "id": "unknown-005150",
+      "id": "region-1450",
       "offset": 20816,
       "length": 14,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 005150..00515E. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Seven little-endian $D15E values between the placement pointer and count/record data. The repeated pointer-like representation supports data; no additional selectors or table extent are established.",
       "source": [
         "game.asm:17009"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-427",
@@ -34145,17 +34179,21 @@
       ]
     },
     {
-      "id": "unknown-02eb72",
+      "id": "region-1451",
       "offset": 191346,
       "length": 6,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 02EB72..02EB78. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Bounded run of $00 bytes beside established objects. Its role and consumer remain unresolved; the uniform pattern supports non-code, without establishing fill or ownership.",
       "source": [
         "game.asm:18651"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1408",
@@ -34168,7 +34206,7 @@
         "label": "r12_software_splash_bank_ff_fill"
       },
       "status": "reviewed",
-      "summary": "Inferred FF allocation fill at CPU05:EB78..05:FFFF. Known23x17word splash ends02EB72; six following zeros remain unknown. MaximalFFsuffix ends at bank boundary and independently rooted track source030000; repeated acceptedFFtail organization and bounded competing-reference/source checks jointly support fill. No historical linker, trailer or universal unread claim.",
+      "summary": "Inferred FF allocation fill at CPU05:EB78..05:FFFF. Known23x17word splash ends02EB72; six following zeros are generic data with unresolved ownership. MaximalFFsuffix ends at bank boundary and independently rooted track source030000; repeated acceptedFFtail organization and bounded competing-reference/source checks jointly support fill. No historical linker, trailer or universal unread claim.",
       "source": [
         "game.asm:18658"
       ],
@@ -34178,7 +34216,7 @@
           "offset": 191352,
           "length": 5256,
           "status": "reviewed",
-          "summary": "Inferred FF allocation fill at CPU05:EB78..05:FFFF. Known23x17word splash ends02EB72; six following zeros remain unknown. MaximalFFsuffix ends at bank boundary and independently rooted track source030000; repeated acceptedFFtail organization and bounded competing-reference/source checks jointly support fill. No historical linker, trailer or universal unread claim.",
+          "summary": "Inferred FF allocation fill at CPU05:EB78..05:FFFF. Known23x17word splash ends02EB72; six following zeros are generic data with unresolved ownership. MaximalFFsuffix ends at bank boundary and independently rooted track source030000; repeated acceptedFFtail organization and bounded competing-reference/source checks jointly support fill. No historical linker, trailer or universal unread claim.",
           "source": [
             "game.asm:18658"
           ],
@@ -35260,17 +35298,21 @@
       ]
     },
     {
-      "id": "unknown-045300",
+      "id": "region-1452",
       "offset": 283392,
       "length": 64,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 045300..045340. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Bounded run of $00 bytes beside established objects. Its role and consumer remain unresolved; the uniform pattern supports non-code, without establishing fill or ownership.",
       "source": [
         "game.asm:19676"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-855",
@@ -35360,17 +35402,21 @@
       ]
     },
     {
-      "id": "unknown-046260",
+      "id": "region-1453",
       "offset": 287328,
       "length": 58,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 046260..04629A. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "29 little-endian tileword-like values, with low bytes $1F..$3A and high bytes $20/$24. The window directory selects later bases; dimensions, ownership and a consumer for this block remain unresolved.",
       "source": [
         "game.asm:19749"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-431",
@@ -36424,8 +36470,7 @@
       "source": [
         "game.asm:20434"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-80",
@@ -36751,8 +36796,7 @@
       "source": [
         "game.asm:21012"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-803",
@@ -43208,17 +43252,21 @@
       ]
     },
     {
-      "id": "unknown-07099d",
+      "id": "region-1454",
       "offset": 461213,
       "length": 3,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 07099D..0709A0. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Bounded run of $D9 bytes beside established objects. Its role and consumer remain unresolved; the uniform pattern supports non-code, without establishing fill or ownership.",
       "source": [
         "game.asm:25932"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1145",
@@ -43250,17 +43298,21 @@
       ]
     },
     {
-      "id": "unknown-0709a1",
+      "id": "region-1455",
       "offset": 461217,
       "length": 73,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 0709A1..0709EA. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Bounded run of $D9 bytes beside established objects. Its role and consumer remain unresolved; the uniform pattern supports non-code, without establishing fill or ownership.",
       "source": [
         "game.asm:25951"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1146",
@@ -43292,17 +43344,21 @@
       ]
     },
     {
-      "id": "unknown-0709eb",
+      "id": "region-1456",
       "offset": 461291,
       "length": 4,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 0709EB..0709EF. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Bounded run of $D9 bytes beside established objects. Its role and consumer remain unresolved; the uniform pattern supports non-code, without establishing fill or ownership.",
       "source": [
         "game.asm:25970"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1147",
@@ -43334,17 +43390,21 @@
       ]
     },
     {
-      "id": "unknown-0709f0",
+      "id": "region-1457",
       "offset": 461296,
       "length": 52,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 0709F0..070A24. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Twenty $D9 bytes precede ascending $0B..$19 values, $FF and zeros. This is patterned constant storage near audio constants; its format and consumer remain unresolved.",
       "source": [
         "game.asm:25989"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-470",
@@ -49959,17 +50019,21 @@
       ]
     },
     {
-      "id": "unknown-07124d",
+      "id": "region-1458",
       "offset": 463437,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 07124D..07124E. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:31366"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-628",
@@ -50001,17 +50065,21 @@
       ]
     },
     {
-      "id": "unknown-071273",
+      "id": "region-1459",
       "offset": 463475,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 071273..071274. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:31404"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-629",
@@ -50043,17 +50111,21 @@
       ]
     },
     {
-      "id": "unknown-0712ab",
+      "id": "region-1460",
       "offset": 463531,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 0712AB..0712AC. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:31450"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-630",
@@ -50085,17 +50157,21 @@
       ]
     },
     {
-      "id": "unknown-071358",
+      "id": "region-1461",
       "offset": 463704,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 071358..071359. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:31558"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-631",
@@ -50127,17 +50203,21 @@
       ]
     },
     {
-      "id": "unknown-0713a8",
+      "id": "region-1462",
       "offset": 463784,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 0713A8..0713A9. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:31618"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-632",
@@ -50169,17 +50249,21 @@
       ]
     },
     {
-      "id": "unknown-07140a",
+      "id": "region-1463",
       "offset": 463882,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 07140A..07140B. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:31687"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-633",
@@ -50240,17 +50324,21 @@
       ]
     },
     {
-      "id": "unknown-071443",
+      "id": "region-1464",
       "offset": 463939,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 071443..071444. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:31758"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-634",
@@ -50369,17 +50457,21 @@
       ]
     },
     {
-      "id": "unknown-071790",
+      "id": "region-1465",
       "offset": 464784,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 071790..071791. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:32302"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-637",
@@ -50411,17 +50503,21 @@
       ]
     },
     {
-      "id": "unknown-071819",
+      "id": "region-1466",
       "offset": 464921,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 071819..07181A. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:32396"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-638",
@@ -50453,17 +50549,21 @@
       ]
     },
     {
-      "id": "unknown-07189f",
+      "id": "region-1467",
       "offset": 465055,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 07189F..0718A0. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:32489"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-639",
@@ -50495,17 +50595,21 @@
       ]
     },
     {
-      "id": "unknown-0718b5",
+      "id": "region-1468",
       "offset": 465077,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 0718B5..0718B6. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:32517"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-640",
@@ -50537,17 +50641,21 @@
       ]
     },
     {
-      "id": "unknown-071957",
+      "id": "region-1469",
       "offset": 465239,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 071957..071958. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:32618"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-641",
@@ -50579,17 +50687,21 @@
       ]
     },
     {
-      "id": "unknown-071a07",
+      "id": "region-1470",
       "offset": 465415,
       "length": 3,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 071A07..071A0A. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $AE,$00,$80 bytes. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:32731"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-642",
@@ -50621,17 +50733,21 @@
       ]
     },
     {
-      "id": "unknown-071a4b",
+      "id": "region-1471",
       "offset": 465483,
       "length": 3,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 071A4B..071A4E. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $AE,$00,$80 bytes. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:32790"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-643",
@@ -50663,17 +50779,21 @@
       ]
     },
     {
-      "id": "unknown-071aef",
+      "id": "region-1472",
       "offset": 465647,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 071AEF..071AF0. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:32929"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-644",
@@ -50734,17 +50854,21 @@
       ]
     },
     {
-      "id": "unknown-071dfd",
+      "id": "region-1473",
       "offset": 466429,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 071DFD..071DFE. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:33397"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-646",
@@ -50776,17 +50900,21 @@
       ]
     },
     {
-      "id": "unknown-071e5d",
+      "id": "region-1474",
       "offset": 466525,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 071E5D..071E5E. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:33467"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-647",
@@ -50818,17 +50946,21 @@
       ]
     },
     {
-      "id": "unknown-071e97",
+      "id": "region-1475",
       "offset": 466583,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 071E97..071E98. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:33514"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-648",
@@ -50860,17 +50992,21 @@
       ]
     },
     {
-      "id": "unknown-071f0b",
+      "id": "region-1476",
       "offset": 466699,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 071F0B..071F0C. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:33593"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-649",
@@ -50902,17 +51038,21 @@
       ]
     },
     {
-      "id": "unknown-071f71",
+      "id": "region-1477",
       "offset": 466801,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 071F71..071F72. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:33666"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-650",
@@ -50944,17 +51084,21 @@
       ]
     },
     {
-      "id": "unknown-071fd7",
+      "id": "region-1478",
       "offset": 466903,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 071FD7..071FD8. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:33739"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-651",
@@ -51015,17 +51159,21 @@
       ]
     },
     {
-      "id": "unknown-072016",
+      "id": "region-1479",
       "offset": 466966,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 072016..072017. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:33811"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1170",
@@ -51057,17 +51205,21 @@
       ]
     },
     {
-      "id": "unknown-07209d",
+      "id": "region-1480",
       "offset": 467101,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 07209D..07209E. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:33901"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1171",
@@ -51099,17 +51251,21 @@
       ]
     },
     {
-      "id": "unknown-0721a1",
+      "id": "region-1481",
       "offset": 467361,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 0721A1..0721A2. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:34052"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1172",
@@ -51199,17 +51355,21 @@
       ]
     },
     {
-      "id": "unknown-072215",
+      "id": "region-1482",
       "offset": 467477,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 072215..072216. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:34183"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1175",
@@ -51241,17 +51401,21 @@
       ]
     },
     {
-      "id": "unknown-0722a3",
+      "id": "region-1483",
       "offset": 467619,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 0722A3..0722A4. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:34290"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1176",
@@ -51283,17 +51447,21 @@
       ]
     },
     {
-      "id": "unknown-072303",
+      "id": "region-1484",
       "offset": 467715,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 072303..072304. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:34370"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1177",
@@ -51354,17 +51522,21 @@
       ]
     },
     {
-      "id": "unknown-072381",
+      "id": "region-1485",
       "offset": 467841,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 072381..072382. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:34470"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1179",
@@ -51396,17 +51568,21 @@
       ]
     },
     {
-      "id": "unknown-0723d3",
+      "id": "region-1486",
       "offset": 467923,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 0723D3..0723D4. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:34531"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1180",
@@ -51438,17 +51614,21 @@
       ]
     },
     {
-      "id": "unknown-072404",
+      "id": "region-1487",
       "offset": 467972,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 072404..072405. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:34575"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1181",
@@ -51480,17 +51660,21 @@
       ]
     },
     {
-      "id": "unknown-072463",
+      "id": "region-1488",
       "offset": 468067,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 072463..072464. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:34649"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1182",
@@ -51522,17 +51706,21 @@
       ]
     },
     {
-      "id": "unknown-0724a5",
+      "id": "region-1489",
       "offset": 468133,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 0724A5..0724A6. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:34712"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1183",
@@ -51564,17 +51752,21 @@
       ]
     },
     {
-      "id": "unknown-0724e5",
+      "id": "region-1490",
       "offset": 468197,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 0724E5..0724E6. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:34762"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1184",
@@ -51664,17 +51856,21 @@
       ]
     },
     {
-      "id": "unknown-072650",
+      "id": "region-1491",
       "offset": 468560,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 072650..072651. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:35020"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1186",
@@ -51706,17 +51902,21 @@
       ]
     },
     {
-      "id": "unknown-072718",
+      "id": "region-1492",
       "offset": 468760,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 072718..072719. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:35151"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1187",
@@ -51777,17 +51977,21 @@
       ]
     },
     {
-      "id": "unknown-0727ce",
+      "id": "region-1493",
       "offset": 468942,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 0727CE..0727CF. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:35282"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1189",
@@ -51819,17 +52023,21 @@
       ]
     },
     {
-      "id": "unknown-072871",
+      "id": "region-1494",
       "offset": 469105,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 072871..072872. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:35382"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1190",
@@ -51861,17 +52069,21 @@
       ]
     },
     {
-      "id": "unknown-0728c3",
+      "id": "region-1495",
       "offset": 469187,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 0728C3..0728C4. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:35441"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1191",
@@ -51903,17 +52115,21 @@
       ]
     },
     {
-      "id": "unknown-072919",
+      "id": "region-1496",
       "offset": 469273,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 072919..07291A. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:35506"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1192",
@@ -51974,17 +52190,21 @@
       ]
     },
     {
-      "id": "unknown-07295a",
+      "id": "region-1497",
       "offset": 469338,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 07295A..07295B. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:35583"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1194",
@@ -52016,17 +52236,21 @@
       ]
     },
     {
-      "id": "unknown-07297e",
+      "id": "region-1498",
       "offset": 469374,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 07297E..07297F. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:35623"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1195",
@@ -52058,17 +52282,21 @@
       ]
     },
     {
-      "id": "unknown-0729a3",
+      "id": "region-1499",
       "offset": 469411,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 0729A3..0729A4. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:35660"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1196",
@@ -52100,17 +52328,21 @@
       ]
     },
     {
-      "id": "unknown-0729d0",
+      "id": "region-1500",
       "offset": 469456,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 0729D0..0729D1. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:35700"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1197",
@@ -52142,17 +52374,21 @@
       ]
     },
     {
-      "id": "unknown-072af6",
+      "id": "region-1501",
       "offset": 469750,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 072AF6..072AF7. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:35895"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1198",
@@ -52184,17 +52420,21 @@
       ]
     },
     {
-      "id": "unknown-072b2e",
+      "id": "region-1502",
       "offset": 469806,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 072B2E..072B2F. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:35942"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1199",
@@ -52255,17 +52495,21 @@
       ]
     },
     {
-      "id": "unknown-072c4e",
+      "id": "region-1503",
       "offset": 470094,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 072C4E..072C4F. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:36170"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1201",
@@ -52297,17 +52541,21 @@
       ]
     },
     {
-      "id": "unknown-072d61",
+      "id": "region-1504",
       "offset": 470369,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 072D61..072D62. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:36333"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1202",
@@ -52397,17 +52645,21 @@
       ]
     },
     {
-      "id": "unknown-072e9f",
+      "id": "region-1505",
       "offset": 470687,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 072E9F..072EA0. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:36561"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1205",
@@ -52468,17 +52720,21 @@
       ]
     },
     {
-      "id": "unknown-07309d",
+      "id": "region-1506",
       "offset": 471197,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 07309D..07309E. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:36868"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1207",
@@ -52510,17 +52766,21 @@
       ]
     },
     {
-      "id": "unknown-0730e2",
+      "id": "region-1507",
       "offset": 471266,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 0730E2..0730E3. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:36923"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1208",
@@ -52552,17 +52812,21 @@
       ]
     },
     {
-      "id": "unknown-07310c",
+      "id": "region-1508",
       "offset": 471308,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 07310C..07310D. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:36964"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1209",
@@ -52594,17 +52858,21 @@
       ]
     },
     {
-      "id": "unknown-0731a1",
+      "id": "region-1509",
       "offset": 471457,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 0731A1..0731A2. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:37059"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1210",
@@ -52636,17 +52904,21 @@
       ]
     },
     {
-      "id": "unknown-073237",
+      "id": "region-1510",
       "offset": 471607,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 073237..073238. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:37155"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1211",
@@ -52678,17 +52950,21 @@
       ]
     },
     {
-      "id": "unknown-0732cc",
+      "id": "region-1511",
       "offset": 471756,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 0732CC..0732CD. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:37250"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1212",
@@ -52778,17 +53054,21 @@
       ]
     },
     {
-      "id": "unknown-0733cb",
+      "id": "region-1512",
       "offset": 472011,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 0733CB..0733CC. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:37446"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1214",
@@ -52820,17 +53100,21 @@
       ]
     },
     {
-      "id": "unknown-073435",
+      "id": "region-1513",
       "offset": 472117,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 073435..073436. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:37540"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1215",
@@ -52862,17 +53146,21 @@
       ]
     },
     {
-      "id": "unknown-0734e6",
+      "id": "region-1514",
       "offset": 472294,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 0734E6..0734E7. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:37647"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1216",
@@ -52904,17 +53192,21 @@
       ]
     },
     {
-      "id": "unknown-0735ae",
+      "id": "region-1515",
       "offset": 472494,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 0735AE..0735AF. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:37767"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1217",
@@ -52946,17 +53238,21 @@
       ]
     },
     {
-      "id": "unknown-07374e",
+      "id": "region-1516",
       "offset": 472910,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 07374E..07374F. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:38009"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1218",
@@ -52988,17 +53284,21 @@
       ]
     },
     {
-      "id": "unknown-0737b0",
+      "id": "region-1517",
       "offset": 473008,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 0737B0..0737B1. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:38098"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1219",
@@ -53059,17 +53359,21 @@
       ]
     },
     {
-      "id": "unknown-073857",
+      "id": "region-1518",
       "offset": 473175,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 073857..073858. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:38229"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1221",
@@ -53101,17 +53405,21 @@
       ]
     },
     {
-      "id": "unknown-0738e1",
+      "id": "region-1519",
       "offset": 473313,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 0738E1..0738E2. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:38322"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1222",
@@ -53143,17 +53451,21 @@
       ]
     },
     {
-      "id": "unknown-073985",
+      "id": "region-1520",
       "offset": 473477,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 073985..073986. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:38429"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1223",
@@ -53185,17 +53497,21 @@
       ]
     },
     {
-      "id": "unknown-073a3b",
+      "id": "region-1521",
       "offset": 473659,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 073A3B..073A3C. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:38549"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1224",
@@ -53227,17 +53543,21 @@
       ]
     },
     {
-      "id": "unknown-073abd",
+      "id": "region-1522",
       "offset": 473789,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 073ABD..073ABE. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:38635"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1225",
@@ -53269,17 +53589,21 @@
       ]
     },
     {
-      "id": "unknown-073bd7",
+      "id": "region-1523",
       "offset": 474071,
       "length": 1,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 073BD7..073BD8. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Audio-stream interstice: stored $80 byte. These resemble virtual commands, but stream ownership and parser arrival are unproved; no SPC code entry is established here.",
       "source": [
         "game.asm:38799"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-1226",
@@ -53630,17 +53954,21 @@
       ]
     },
     {
-      "id": "unknown-074029",
+      "id": "region-1524",
       "offset": 475177,
       "length": 3035,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 074029..074C04. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Repeated low-alphabet $46/$66/$99 patterned storage beside established audio data. Pattern and boundaries support non-code; original format, consumer and sample/stream ownership remain unresolved.",
       "source": [
         "game.asm:39658"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-657",
@@ -55789,17 +56117,21 @@
       ]
     },
     {
-      "id": "unknown-077e08",
+      "id": "region-1526",
       "offset": 491016,
       "length": 504,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Independent full-block physical/bank-boundary, pattern, neighboring consumer and competing-decode review: analysis/round29/independent-review.json and primary-review.json, physical 077E08..078000. No semantic format or execution claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Patterned storage after the zero-length upload terminator, ending at the physical bank boundary. Dense $8/$A/$B/$E nibble families become more concentrated toward the end. This supports generic non-code across the whole block; original format, consumer and ownership remain unresolved. The block is outside the established upload payload; no SPC execution view or padding/sample role is assigned.",
       "source": [
         "game.asm:41148"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-90",
@@ -56121,17 +56453,21 @@
       ]
     },
     {
-      "id": "unknown-07fa2b",
+      "id": "region-1525",
       "offset": 522795,
       "length": 985,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Fresh ROM/current-source boundary, pattern and reference inspection: analysis/round28/independent-review.json physical 07FA2B..07FE04. Generic non-code only; no observed fetch, use, original format or natural reachability claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Repeated low-alphabet $46/$66/$99 patterned storage beside established audio data. Pattern and boundaries support non-code; original format, consumer and sample/stream ownership remain unresolved.",
       "source": [
         "game.asm:41242"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     },
     {
       "id": "region-91",
@@ -56163,17 +56499,21 @@
       ]
     },
     {
-      "id": "unknown-07fe08",
+      "id": "region-1527",
       "offset": 523784,
       "length": 504,
-      "kind": "Unknown",
+      "kind": "Data",
+      "phase1": {
+        "views": [],
+        "evidence": "Independent full-block physical/bank-boundary, pattern, neighboring consumer and competing-decode review: analysis/round29/independent-review.json and primary-review.json, physical 07FE08..080000. No semantic format or execution claim.",
+        "label": null
+      },
       "status": "reviewed",
-      "summary": "This interval is preserved exactly while its role, format or relevant execution/bank context remains unresolved. Raw bytes and adjacent objects do not establish ownership.",
+      "summary": "Patterned storage after the zero-length upload terminator, ending at the physical bank boundary. Dense $8/$A/$B/$E nibble families become more concentrated toward the end. This supports generic non-code across the whole block; original format, consumer and ownership remain unresolved. The block is outside the established upload payload; no SPC execution view or padding/sample role is assigned.",
       "source": [
         "game.asm:41252"
       ],
-      "units": [],
-      "phase1": null
+      "units": []
     }
   ],
   "editorial_audit": {

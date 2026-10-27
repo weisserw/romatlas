@@ -7905,5 +7905,70 @@
     "snapshots_restored": 0,
     "evidence": "analysis/redirect/round-023/findings.md",
     "limits": "No natural reachability or new selector domain; historical scenarios retained. Future restores explicitly reassert all8buttons for T001."
+  },
+  "round026_progression": {
+    "model": "dmg",
+    "input": "All eight buttons explicitly released after each import/load, then exact recorded buttons pressed. No ROM edits.",
+    "synchronization": "PC0433 DispatchGameFrame entry via run_until, max1000000operations/10000ms. All stage patches at this boundary.",
+    "stage_patch": "c02a=0,c02b=stage,c412=nested,c045=0,c006=4,c007=0,c424=0,c42d=0; ordinary setup selects descriptor and initializes dependent scene.",
+    "milestones": [
+      {
+        "milestone": "stage1 opening/combat/jump/rope input",
+        "status": "visited",
+        "route": "Natural startup -> safe-field.snapshot.json; synchronized stage0 setup; Right+B30,Right+A20,Up10frames",
+        "observed": "mainstate5,descriptor67; actual field screenshot and accepted opcode fetches in traced exercise",
+        "evidence": "analysis/round-026/safe-gameplay-results.json"
+      },
+      {
+        "milestone": "stage2 cavern",
+        "status": "visited",
+        "route": "visit-stage.py1; stage1,nested0; initialization300frames then Right+B20,Right+A15,Up10",
+        "observed": "mainstate5,descriptor74; distinct cavern/platform scene; actual exercise fetches",
+        "evidence": "analysis/round-026/visit-stage2-nested0-results.json"
+      },
+      {
+        "milestone": "stage3 spike room",
+        "status": "visited",
+        "route": "visit-stage.py2; stage2,nested0; same budgets and controls",
+        "observed": "mainstate5,descriptor70; distinct spike-lined room and exercise fetches",
+        "evidence": "analysis/round-026/visit-stage3-nested0-results.json"
+      },
+      {
+        "milestone": "stage4 later checkpoint",
+        "status": "visited",
+        "route": "visit-stage.py3 14; stage3,nested14; same budgets and controls",
+        "observed": "mainstate5,descriptor80; masonry/vertical platforms and exercise fetches; boss not claimed",
+        "evidence": "analysis/round-026/visit-stage4-nested14-results.json"
+      },
+      {
+        "milestone": "boss encounter",
+        "status": "deferred",
+        "route": "Tried later stage4 nested14 via supported threshold setup",
+        "observed": "Ordinary later scene initialized; no independently identified boss/arena or validated arena entry contract. No arbitrary actor/RAM forcing. Further arena/source identification belongs to redirect.",
+        "evidence": "analysis/round-026/visit-stage4-nested14-exercised.png"
+      },
+      {
+        "milestone": "ending scene and STAFF credits",
+        "status": "visited",
+        "route": "ending.py imports stage4, synchronize0433,c519=10,c42d=1,run10; once endingstate1 set c431=15,c432=1 to finish ordinary shake tick; run30+12*60+20A. credits.py imports ending,synchronize,c431=1,c432=15,run30 to complete scroll countdown and enter credits normally.",
+        "observed": "mainstate9,endingstate1->2->5->6; castle/character scene and visible STAFF text; accepted ending/credit opcode fetches; artificial route only",
+        "evidence": [
+          "analysis/round-026/ending-results.json",
+          "analysis/round-026/credits-results.json"
+        ]
+      },
+      {
+        "milestone": "final held-A ending terminal phase",
+        "status": "deferred",
+        "observed": "Representative ending/credit mechanics visited; later timed credit/final-actor gate not exercised in this bounded pass. Durable credits snapshot supports continuation; no terminal gameplay exhaustion claim."
+      }
+    ],
+    "rejected_attempts": [
+      "Initial gameplay.py patches from active setup did not rerun stage initialization; stage number alone rejected.",
+      "First safe-gameplay.py sync cap100000 stopped before returning from active setup; corrected1000000 reached entry.",
+      "Corrected monolithic replay interrupted midstage2; independent short per-stage replays supersede partial visits.",
+      "Coverage pagination client loop compacted repeated empty terminal pages; nonempty pages retained; see pagination-note.json."
+    ],
+    "runtime_audit": "analysis/round-026/runtime-audit.json"
   }
 }

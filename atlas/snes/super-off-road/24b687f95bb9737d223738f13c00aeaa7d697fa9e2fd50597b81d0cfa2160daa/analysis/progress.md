@@ -1136,3 +1136,160 @@ Round26 disassembly: accepted R25-L001 as a bounded static two-byte-stride start
 Input: `round26-disassembly-final` / `analysis/round26/handoff.md`. Preserved the full round22 commentary tree at `analysis/round27/commentary-round22-original/`, refreshed the commentary baseline to round26, and carried all prior source prose and review credit forward. Integrated 32 interleaved-byte Static Data regions at physical `0x068C..0x06CA` with mechanical labels/comments describing only the bounded two-byte-stride start-heading storage-window role and stored `$00` values; slot-internal semantics remain unresolved. Updated selected-byte prose and the active annotations/uncertainty notes. No high-field, padding, word, use/write, reachability or source-layout claims were added.
 
 The current source covers all 1,437 classified map regions. All1,527 review scaffold entries are `reviewed`, every source location resolves, and all Code entries retain reviewed units. The remaining5,398 unknown bytes are in90 ranges: bank00 38, bank05 6, bank08 122, bank0E 3,743, bank0F 1,489. Classification is518,890/524,288 =98.970413%; exact map/residual evidence remains in `analysis/round26/independent-review.json`. Fresh configured-binary `commentary.py verify` passed byte-identical over524,288 bytes and `commentary.py read` refreshed the reading copy. ROM SHA-256 remains `24b687f95bb9737d223738f13c00aeaa7d697fa9e2fd50597b81d0cfa2160daa`. See [round27 commentary verification](round27-commentary-verification.json) and [handoff](round27-commentary-handoff.md). No map/state/ROM/runtime/toolkit changes. No new toolkit issues found; TI-001 remains historically fixed with no active issues; see [toolkit-issues.md](toolkit-issues.md). Final editorial/archive audit remains pending; whole-ROM classification is incomplete.
+
+
+## Archive restoration and current-prompt preparation — 2026-10-26
+
+Restored the archived Round 27 source exactly using the matching local ROM. Archive restore verified exact_source=true and byte_identical=true. Initialized this workspace with the current toolkit SNES workflow, goal, evidence policy and all three phase prompts. Retained archived analysis, leads, maps, commentary review/progress/uncertainties and exact edited source. A verified fresh frozen baseline was prepared from the restored current map; review credit is carried forward. Original archive metadata and documentation are preserved under archive-origin/.
+
+Classification remains 518890/524288 bytes (98.970413%); 5398 Unknown bytes across 90 ranges. Round 27 current-source readability is complete; final editorial audit remains pending. Next phase: Round 28 disassembly under prompts/disassembly.txt, using the latest evidence policy (including its bounded generic-data fallback) to reassess residual regions and prior rejection premises. Reuse valid work; do not repeat unchanged exhausted experiments. This preparation has not launched a phase worker or begun gameplay/research/classification.
+
+Historical links into omitted scratch evidence/checkpoints remain unavailable. Existing leads and investigation history are retained, but any proposed experiment must establish its needed premises from available source/map/records. There are no restored runtime snapshots or traces. analysis/toolkit-issues.md documents the archive omission and historical TI-001 status.
+
+
+## Round28 disassembly — generic non-code reassessment and broad gameplay
+
+Phase complete; whole-ROM classification incomplete. Input: restored Round27 commentary / frozen `commentary/phase1-state.json`; structural predecessor Round26. Current policy correction narrows the claims: failure to prove original table ownership, natural use or exact semantics does not reject generic Static Data when non-code patterns and physical boundaries are clear. Historical scratch was unavailable and was not treated as verified.
+
+Fresh ROM/source/map inspection accepted **4381 bytes in84 new Static Data regions**, via `map.annotate`, preserving all1437 restored roles exactly. Main groups:3035-byte repeated46/66/99 pre-directory storage,985-byte repeated66/99 post-sample storage, uniform zero and D9 runs, bounded tileword-like/constant/mask interstices, repeated placement-pointer-like words and audio bytecode-boundary interstices. Generic roles do not assert original format, allocation/fill purpose, natural reachability, stream ownership or a wider selector domain. Bounded per-range role/reference/boundary review: [independent-review.json](round28/independent-review.json); exact annotations/replies: [annotation-rpc.json](round28/annotation-rpc.json).
+
+**ROM classification: 99.81% (523271 / 524288 bytes classified; 1017 bytes unknown).**
+
+Totals:19239 Code,455341 Data,48691 Padding,1017 Unknown. All1521 classified roles carry comments and evidence. Six residual intervals remain: `0001FB..000200`(5), `0019C0..0019C2`(2), `070149..07014A`(1), `0704FF..070500`(1), `077E08..078000`(504), `07FE08..080000`(504), all end-exclusive. Short inter-routine values, isolated SPC RETs and nonuniform post-upload tails still lack a discriminator between instructions/fragments and data. Fresh bytes, neighbors/source excerpts, exact boundaries and a bounded eight-byte comparison against accepted Code are retained in [residual-review.json](round28/residual-review.json); no code matches found in either tail, which does not prove data. This is a nonterminal handoff for redirect review, not a claim that all methods are exhausted.
+
+|Physical bank|Code|Data|Padding|Unknown|
+|---|---:|---:|---:|---:|
+|00|17099|7690|7972|7|
+|01|0|32768|0|0|
+|02|0|32768|0|0|
+|03|0|32768|0|0|
+|04|0|27648|5120|0|
+|05|0|27512|5256|0|
+|06|0|31104|1664|0|
+|07|0|28338|4430|0|
+|08|0|27962|4806|0|
+|09|0|32656|112|0|
+|0A|0|28058|4710|0|
+|0B|0|23233|9535|0|
+|0C|0|32768|0|0|
+|0D|0|27682|5086|0|
+|0E|2140|30122|0|506|
+|0F|0|32264|0|504|
+
+Broad gameplay: replayed natural cold boot/title/driver name/shop/Fandango to1644, replacing missing historical snapshots with current durable saves. Under understood initializer contract, each artificial alternative restores clean natural race state, releases input, reaches an instruction boundary and sets PC=$0081ED, A=15/31/63, P=$30, DB=0, DP=0, E=false, SP=$01FF;420 untraced frames initialize track11 Rio Trio, track8 Cutoff Pass and track15 Volcano Valley. Each exercises30 traced frames of B/Y/Right, B/Left, B (10each). Captures verify distinct layouts. A further complete10frame sample from order63 contains2937 contexts (2490 ROM/447 ARAM), zero aggregate drops, zero unknown/non-Code fetches; detail was intentionally disabled. [Coverage review](round28/coverage-review.json) separates artificial execution from natural reachability. No newly discovered code candidate resulted.
+
+Final-order shortcut: restore order63 snapshot, write WRAM$002D=$02 and$04E6=$05, then bounded350frame waits/B pulses. Observed podium, Wipeout/Game Over, title and slot reset0; no claim to completing64 natural races or seeing a separate credits ending. Exact input/patch/budget scripts and RPCs: [gameplay.py](round28/gameplay.py), [gameplay-rpc.json](round28/gameplay-rpc.json), [terminal.py](round28/terminal.py), [terminal RPC](round28/rpc.json). Representative captures and snapshots live beside these files; progression checklist updated in `analysis/scenarios.json`, local findings in `analysis/gameplay.md`. Natural Fandango snapshot restored at end, inputs released. Old historical scenario records are preserved and remain historical where captures were omitted.
+
+`map.validate` passed; `map.save` saved `analysis/state.json`; `map.export` saved `maps/current.json`; internal and portable state match. Fresh `python3 run.py checkpoint round28-disassembly-final` passed `ok=true, byte_identical=true`,524288 bytes. [Verification](round28-disassembly-final-verification.json), [checkpoint map](../maps/round28-disassembly-final.json), [generated source](../generated/round28-disassembly-final/game.asm), [final audit](round28/final-audit.json). ROM SHA256 `24b687f95bb9737d223738f13c00aeaa7d697fa9e2fd50597b81d0cfa2160daa`; map SHA256 `f7c8daf379bbb8166b63388f291eb02b906452e73a5658b2f33f892b3525c039`. Source/commentary tree and toolkit unchanged; new84 generic roles await full current-source commentary integration, then redirect. No new lead IDs consumed/produced.
+
+No toolkit issues found in this pass; historical TI-001 remains reported fixed, zero active blockers; [toolkit issue report](toolkit-issues.md). The initial framebuffer request omitted documented fast-run capture and was corrected; the context pager initially stopped only on null rather than reaching total and was boundedly interrupted/corrected. These were caller mistakes, not toolkit defects. Failed transcript evidence retained. Disk check:14GiB free, round28 evidence about19MiB, scratch under1MiB; no cited evidence removed. Compact phase handoff: [round28/handoff.md](round28/handoff.md).
+
+
+## Round28 commentary — phase complete; redirect next
+
+Input structural checkpoint `round28-disassembly-final`; preserved the complete previous tree at `analysis/round28/commentary-round27-preserved/` before preparing the fresh frozen baseline. All 1,437 older roles are unchanged. Carried sound source, symbols and review credit by exact physical ranges, preserving all 1,408 reviewed units. Reviewed the full current inventory for pending work, invalid locations and stale classification notes; no readability backlog remains. All 1,527 scaffold entries are reviewed, covering 1,521 classified roles and six explained Unknowns. Final editorial audit remains pending.
+
+Integrated all 84 new Static Data roles (4,381 bytes) with concise pattern/boundary/mechanical notes. Examples: interleaved OAM mask bytes, seven repeated little-endian $D15E pointer-like values, the 29-word tileword-like interval, audio-command interstices and repeated low-alphabet audio-adjacent storage. Existing descriptive operand symbols remain consistent; no new unsupported semantic symbols or consumer claims were introduced. Updated the stale round12 source header and current uncertainty totals. Six remaining Unknown notes now identify short instruction/data ambiguity, isolated SPC returns and nonuniform post-upload tails. Generic data purpose/ownership remains unresolved, as do carried DB/DP and gameplay-semantic limits.
+
+Fresh final `commentary.py verify` passed `ok=true, byte_identical=true` for all 524,288 bytes; `commentary.py read` refreshed the reading copy. Proof: `analysis/round28-commentary-verification.json`; inventory/readability assessment: `analysis/round28/commentary-scope.json`. ROM SHA256 remains 24b687f95bb9737d223738f13c00aeaa7d697fa9e2fd50597b81d0cfa2160daa. No readability ranges deferred, no new lead IDs consumed/produced. ROM classification remains 523,271/524,288 (99.81%), with 1,017 Unknown bytes; this is neither whole-ROM completion nor final editorial acceptance. No runtime, structural-map, ROM or toolkit changes. No toolkit issues found; see `analysis/toolkit-issues.md`. Next phase is redirect from the six exact residuals, using the structural handoff and residual review rather than treating semantic uncertainty as structural rejection.
+
+## Round28 redirect — primary residual contracts reviewed; ready generic-data proposal
+
+Input/output structural checkpoint `round28-disassembly-final`; full current-source commentary gate `analysis/round28/commentary-handoff.md` complete. Current classification remains523271/524288 (99.81%),1017 Unknown bytes/six ranges. Accepted bytes0; **R28-L001 proposes1008 bytes** in two504-byte physical bank tails077E08..078000 and07FE08..080000, pending independent disassembly. No map/source/state/ROM/toolkit/runtime changes. The previous nonuniformity/upload-exclusion barrier was reassessed under a narrower generic Data claim: shared strong nibble-alphabet gradients and equal post-record bank-tail bounds, with exact primary bytes, duplicate search and nine-phase BRR inspection. No BRR/encoding/consumer/ownership/reachability claims.
+
+All four tiny gaps were independently reviewed using actual neighbor contracts, encoded-reference searches, raw relative-transfer exclusion for SPC RET targets and the concrete five-entry envelope vector. Their9bytes retain competing code/data interpretations. Current semantic uncertainty and progression records supplied no additional supported discriminating method; no productive connected research interrupted. Durable primary evidence, claim-local rejection review, recipes and coherent handoff: `analysis/redirect/round28-residual-contracts/`. No toolkit issues found; `analysis/toolkit-issues.md`. Existing byte-identical verification remains applicable to unchanged checkpoint/source. Next: independent disassembly review of R28-L001; hypothetical9-byte residual is not the current accepted state.
+
+
+## Round29 disassembly — post-upload bank tails
+
+Exactly one disassembly pass, input `round28-disassembly-final`, `analysis/round28/commentary-handoff.md` and `analysis/redirect/round28-residual-contracts/handoff.md`. Independently accepted **R28-L001:1008 bytes in two Static generic Data regions**, physical `077E08..078000` and `07FE08..080000` (end-exclusive), canonical main bank aliases0E:FE08..FFFF and0F:FE08..FFFF. All1521 prior classified regions are unchanged. Whole-block hex/quarter patterns, exact upload-terminator and bank-end boundaries, current neighboring consumers and bounded competing decodes were reviewed. Shared dense nibble families/gradient support non-code throughout both full blocks, including the more varied prefixes; arbitrary quarter/half cuts do not establish distinct objects. Generic role asserts no BRR/compression/graphics/padding, original ownership, upload view, natural reachability or deadness. Known format/consumer checks were reused; no useful specific role emerged. [Independent review](round29/independent-review.json), [primary bytes/patterns/decodes](round29/primary-review.json), [annotation transcript](round29/annotation-rpc.json).
+
+**ROM classification: 100.00% (524279 / 524288 bytes classified; 9 bytes unknown).**
+
+Exact percentage99.99828338623047%; rounded100.00% is **incomplete**, with nine Unknown bytes in four intervals:0001FB..000200(5),0019C0..0019C2(2),070149..07014A(1),0704FF..070500(1). Short inter-routine constants/fragments and isolated SPC RET/data bytes retain materially ambiguous roles. Round28 primary/rejection evidence remains valid; no newly justified discriminator was found, so no unchanged experiments were replayed. Reopen only with concrete references, independent data format or nontrivial routine contracts; do not infer single-byte RET code from hypothetical CALL behavior.
+
+Internal state and portable map are equal; counts use unique classified internal-map bytes, not raw fallback. Totals19239 Code,456349 Data,48691 Padding,9Unknown. [Exact classification/per-bank/residuals](round29/classification.json):
+
+|Physical bank|Classified|Code|Data|Padding|Unknown|
+|---|---:|---:|---:|---:|---:|
+|00|32761|17099|7690|7972|7|
+|01|32768|0|32768|0|0|
+|02|32768|0|32768|0|0|
+|03|32768|0|32768|0|0|
+|04|32768|0|27648|5120|0|
+|05|32768|0|27512|5256|0|
+|06|32768|0|31104|1664|0|
+|07|32768|0|28338|4430|0|
+|08|32768|0|27962|4806|0|
+|09|32768|0|32656|112|0|
+|0A|32768|0|28058|4710|0|
+|0B|32768|0|23233|9535|0|
+|0C|32768|0|32768|0|0|
+|0D|32768|0|27682|5086|0|
+|0E|32766|2140|30626|0|2|
+|0F|32768|0|32768|0|0|
+
+Broad gameplay credit reused from Round28 current durable snapshots/routes/captures: natural frontend/shop/Fandango, artificial supported later orders15/31/63 with distinct tracks and driving mechanics, final-order podium/Game Over/title. Reviewed `analysis/scenarios.json` and `analysis/gameplay.md`; separate credits/ending transition remains unavailable under known contract, not claimed absent. No changed runtime prerequisite; no new input, RAM/register edit, trace or gameplay replay. No connected promising continuation was deferred.
+
+`map.validate` passed; `map.save` persisted `analysis/state.json`; `map.export` persisted `maps/current.json`. Fresh `python3 run.py checkpoint round29-disassembly-final` passed ok=true,byte_identical=true over524288bytes. [Verification](round29-disassembly-final-verification.json), [checkpoint map](../maps/round29-disassembly-final.json), [generated source](../generated/round29-disassembly-final/game.asm), [audit](round29/final-audit.json). ROM SHA25624b687f95bb9737d223738f13c00aeaa7d697fa9e2fd50597b81d0cfa2160daa; map SHA25617b2c51b822e88b786376229f549a033aab947813e3684eb7cce784c085442b7. No ROM/toolkit edits.
+
+No toolkit issues found in this pass; historical TI-001 reported fixed, zero active blockers; [toolkit issues](toolkit-issues.md). Storage checked14GiB free and scratch152KiB before batch; only bounded JSON/text evidence added, no cited artifact deleted. Next phase is commentary integration of the two new generic roles, followed by redirect assessment of the four tiny residuals; final editorial acceptance remains pending. [Handoff](round29/handoff.md).
+
+## Round29 — commentary complete
+
+Input/output checkpoint `round29-disassembly-final`; next redirect. Full current-source readability gate passed:1527 reviewed scaffold entries,1408 carried units,1523 classified roles; no deferred ranges. Integrated1008bytes/two patterned generic Data tails and corrected four stale classification statements while preserving source body and symbols. Fresh byte-identical verification and refreshed reading copy; final audit pending. Classification100.00% rounded (524279/524288),9Unknown bytes/four gaps, incomplete. No lead IDs consumed/produced. Compact handoff `analysis/round29/commentary-handoff.md`; scope `analysis/round29/commentary-scope.json`; verification `analysis/round29-commentary-verification.json`. Full prior commentary preserved before baseline preparation. No ROM/toolkit/map changes.
+
+## Round29 redirect — Data pointers and tiny-gap review
+
+Checkpoint `round29-disassembly-final`, current-source commentary complete. Bounded whole-ROM exact target-word enumeration inspected all accepted Data hits against their actual transfer/record/sample/mask consumers, plus supported envelope/command/effect/song/config pointer layouts. No supported references into the four residual gaps; negatives localized to their representations and layouts. Independently compared0102040000/01FF against actual accepted mask/constant patterns under generic Data policy; no consumer/semantic prerequisite imposed, but short positive patterns remain insufficient to distinguish code/data. No proposed/accepted bytes, no ready leads or productive interrupted frontier. Classification524279/524288,9Unknown/four exact intervals, incomplete despite rounded100.00%. Primary evidence and compact terminal rejection review: `analysis/redirect/round29-pointer-contracts/`; coordinator inspection required before accepting exhaustion. Broad progression evidence reused without unchanged replay. No ROM/map/state/source/toolkit changes; existing verified checkpoint applies; no toolkit issues found this pass. No empty disassembly/commentary cycle requested.
+# Coordinator terminal review — restored-workspace Rounds28–29
+
+Completed two sequential disassembly/commentary/redirect rounds with separate phase
+workers. Added5389 evidence-backed Static Data bytes while preserving the input ROM,
+all prior roles and historical records. Inspected Round29 redirect rejection reasoning
+and decisive primary source; independently recomputed all exact pointer hits, current
+map complement and source verification identities. Accepted a terminal incomplete
+workflow assessment, not whole-ROM completion. No justified next discriminator remains
+on the reviewed premises; do not cycle unchanged scans or hypothetical calls.
+
+ROM classification: 100.00% (524279 / 524288 bytes classified; 9 bytes unknown).
+Exact99.99828338623047%; four residuals:0001FB..000200(5),0019C0..0019C2(2),
+070149..07014A(1),0704FF..070500(1), end-exclusive. Final structural checkpoint
+`round29-disassembly-final` and fresh current-source commentary verification both pass
+byte-identical524288bytes; current-source readability complete, final editorial
+acceptance pending. Broad later-track driving and podium/Game Over/title evidence is
+saved in Round28. No toolkit issues found; `analysis/toolkit-issues.md`.
+Decision and resume frontier: [coordinator decision](redirect/round29-pointer-contracts/coordinator-decision.md),
+[redirect handoff](redirect/round29-pointer-contracts/handoff.md),
+[rejection review](redirect/round29-pointer-contracts/rejection-review.md),
+[commentary handoff](round29/commentary-handoff.md). Goal remains incomplete.
+
+
+## Continuation audit — unchanged Round29 terminal frontier
+
+Previous goal turn: progress (5389 bytes classified, two full phase cycles and
+verification completed). This continuation revalidated the unchanged ROM, all four
+exact map gaps and current source hashes against the Round29 commentary proof,
+and reread the terminal rejection reasoning. No new evidence, corrected inference
+or supported method emerged. Under goal.md, do not relaunch unchanged terminal
+planning or replay exhausted experiments. This continuation is no progress toward
+classification; saving this audit is not a classification gain.
+
+The same genuine evidence blocker has now appeared in two consecutive goal turns
+(counting the original terminal handoff): nine bytes remain code/data ambiguous.
+Goal remains active/incomplete; no blocked-status update yet. Final structural
+checkpoint round29-disassembly-final, readability complete, byte-identical proof
+current, final editorial acceptance pending. Resume frontier remains
+redirect/round29-pointer-contracts/coordinator-decision.md.
+
+## Blocked audit — third consecutive unchanged evidence frontier
+
+Previous continuation: no progress, not a verified wait. Revalidated current ROM
+and source identities and recomputed the same four gaps totaling nine bytes. No
+new evidence or justified discriminator is available; unchanged experiments remain
+excluded by goal.md. The same evidence impasse has persisted for three consecutive
+goal turns including the original terminal handoff. Marking the thread goal blocked,
+not complete. Reopening requires new evidence or a justified corrected inference;
+all work and the exact Round29 resume frontier are preserved. Current-source
+readability and byte-identical verification remain valid; whole-ROM classification
+and final editorial acceptance remain incomplete.
