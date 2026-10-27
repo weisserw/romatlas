@@ -111,9 +111,9 @@ To run a local web server on port 8000 which hosts the WebAssembly build of the 
 
 ### Caveats / Issues
 
-A persistent issue with goal-based workflows in today's AI agents is their tendency to "go down rabbit holes" or run forever in loops if they can't solve a problem. The prompts in this repository have been engineered to attempt to avoid this behavior as much as possible, but they also do not run under any "budget" by default. Users should periodically check on the processes or instruct their agents to operate under a time or token budget if necessary.
+"Completed" ports will have bugs; I haven't been able to produce a completely automated QA process that can catch every bug and issue, although in my experience they are generally limited. Expect to play through the game manually to find problems (really you should be doing this anyway; what would be the point of porting a game you don't want to play?) and report them to the agent to be fixed.
 
-Some 8- and 16-bit era games were simple and some were not. Because testing on large games is time consuming and expensive, this project is likely to have trouble with the most complex games for the time being, but work is ongoing.
+A persistent issue with goal-based workflows in today's AI agents is their tendency to "go down rabbit holes" or run forever in loops if they can't solve a problem. The prompts in this repository have been engineered to attempt to avoid this behavior as much as possible, but they also do not run under any "budget" by default. Users should periodically check on the processes or instruct their agents to operate under a time or token budget if necessary.
 
 There are many features which could be added to ports out of the box, as the current implementation is quite basic and only provides customizable display
 and input controls (with basic gamepad support). An advantage of the architecture of this project is that ports share a runtime library which can be used to add QoL features to all future ports built by this system, not just to individual games.
