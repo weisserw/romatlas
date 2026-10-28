@@ -393,13 +393,19 @@ impl Default for Mixer {
 }
 #[derive(Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
-struct MixerSnapshot { version: u32, mixer: Mixer }
+struct MixerSnapshot {
+    version: u32,
+    mixer: Mixer,
+}
 impl Mixer {
     /// Versioned complete native synthesis state, independent of a CPU/core.
     /// Includes live samples, BRR predictor, phase, envelopes, noise and echo.
     pub fn snapshot_json(&self) -> Result<String> {
         self.validate_snapshot()?;
-        Ok(serde_json::to_string(&MixerSnapshot {version: 1, mixer: self.clone()})?)
+        Ok(serde_json::to_string(&MixerSnapshot {
+            version: 1,
+            mixer: self.clone(),
+        })?)
     }
     /// Parse and validate a candidate before replacing any live synthesis state.
     pub fn restore_snapshot_json(&mut self, json: &str) -> Result<()> {
@@ -411,18 +417,42 @@ impl Mixer {
         Ok(())
     }
     fn validate_snapshot(&self) -> Result<()> {
-        ensure!(self.clock < 30720 && self.noise_rate < 32 && self.noise.bits <= 0x7fff, "invalid mixer clock/noise");
+        ensure!(
+            self.clock < 30720 && self.noise_rate < 32 && self.noise.bits <= 0x7fff,
+            "invalid mixer clock/noise"
+        );
         for voice in &self.voices {
-            ensure!(voice.envelope.level <= 2047 && voice.phase < 4096 && voice.position < 16, "invalid voice envelope/phase");
-            ensure!(voice.decoder.history.iter().all(|value| (-16384..=16383).contains(value)), "invalid BRR predictor");
+            ensure!(
+                voice.envelope.level <= 2047 && voice.phase < 4096 && voice.position < 16,
+                "invalid voice envelope/phase"
+            );
+            ensure!(
+                voice
+                    .decoder
+                    .history
+                    .iter()
+                    .all(|value| (-16384..=16383).contains(value)),
+                "invalid BRR predictor"
+            );
             if let Some(source) = &voice.source {
                 let bytes: Vec<u8> = source.blocks.iter().flatten().copied().collect();
                 Sample::new(&bytes, source.loop_block)?;
-                ensure!(source.blocks.len() <= 7282 && voice.block < source.blocks.len(), "invalid voice source cursor");
-            } else { ensure!(!voice.active && voice.block == 0, "active voice without source"); }
+                ensure!(
+                    source.blocks.len() <= 7282 && voice.block < source.blocks.len(),
+                    "invalid voice source cursor"
+                );
+            } else {
+                ensure!(
+                    !voice.active && voice.block == 0,
+                    "active voice without source"
+                );
+            }
         }
         if let Some(echo) = &self.echo {
-            ensure!((1..=7680).contains(&echo.delay.len()) && echo.position < echo.delay.len(), "invalid echo delay/cursor");
+            ensure!(
+                (1..=7680).contains(&echo.delay.len()) && echo.position < echo.delay.len(),
+                "invalid echo delay/cursor"
+            );
         }
         Ok(())
     }
@@ -501,7 +531,9 @@ mod snapshot_tests {
         mixer.voices[0].pitch = 0x3fff;
         mixer.voices[0].gain = 127;
         mixer.voices[0].volume = [100; 2];
-        mixer.voices[0].key_on(Sample::new(&[0x21, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11], 0).unwrap());
+        mixer.voices[0].key_on(
+            Sample::new(&[0x21, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11], 0).unwrap(),
+        );
         for _ in 0..20 {
             mixer.sample();
             let saved = mixer.snapshot_json().unwrap();
@@ -517,27 +549,53 @@ mod snapshot_tests {
         let mut original = Mixer::with_buffered_noise();
         original.noise_rate = 31;
         let mut echo = Echo::new(3).unwrap();
-        echo.fir[0] = 64; echo.feedback = 32; echo.volume = [40, -30];
+        echo.fir[0] = 64;
+        echo.feedback = 32;
+        echo.volume = [40, -30];
         original.echo = Some(echo);
-        original.voices[0].pitch = 5000; original.voices[0].gain = 127;
-        original.voices[0].volume = [110, -100]; original.voices[0].echo = true;
-        original.voices[0].key_on(Sample::new(&[0x27, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11],0).unwrap());
-        for _ in 0..21 { original.sample(); }
+        original.voices[0].pitch = 5000;
+        original.voices[0].gain = 127;
+        original.voices[0].volume = [110, -100];
+        original.voices[0].echo = true;
+        original.voices[0].key_on(
+            Sample::new(&[0x27, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11], 0).unwrap(),
+        );
+        for _ in 0..21 {
+            original.sample();
+        }
         let snapshot = original.snapshot_json().unwrap();
-        let mut restored = Mixer::default(); restored.restore_snapshot_json(&snapshot).unwrap();
+        let mut restored = Mixer::default();
+        restored.restore_snapshot_json(&snapshot).unwrap();
         let expected: Vec<_> = (0..91).map(|_| original.sample()).collect();
-        assert!(expected.iter().any(|sample| *sample != [0;2]));
-        assert_eq!(expected, (0..91).map(|_| restored.sample()).collect::<Vec<_>>());
-        assert_eq!(original.snapshot_json().unwrap(),restored.snapshot_json().unwrap());
+        assert!(expected.iter().any(|sample| *sample != [0; 2]));
+        assert_eq!(
+            expected,
+            (0..91).map(|_| restored.sample()).collect::<Vec<_>>()
+        );
+        assert_eq!(
+            original.snapshot_json().unwrap(),
+            restored.snapshot_json().unwrap()
+        );
         restored.voices[0].key_off();
-        assert_ne!(original.snapshot_json().unwrap(),restored.snapshot_json().unwrap());
-        let before=restored.snapshot_json().unwrap();
-        let mut invalid: serde_json::Value=serde_json::from_str(&snapshot).unwrap();
-        invalid["mixer"]["voices"][0]["position"]=serde_json::json!(16);
-        assert!(restored.restore_snapshot_json(&invalid.to_string()).is_err());
-        assert_eq!(restored.snapshot_json().unwrap(),before);
-        invalid["version"]=serde_json::json!(99);
-        assert!(restored.restore_snapshot_json(&invalid.to_string()).is_err());
-        assert_eq!(restored.snapshot_json().unwrap(),before);
+        assert_ne!(
+            original.snapshot_json().unwrap(),
+            restored.snapshot_json().unwrap()
+        );
+        let before = restored.snapshot_json().unwrap();
+        let mut invalid: serde_json::Value = serde_json::from_str(&snapshot).unwrap();
+        invalid["mixer"]["voices"][0]["position"] = serde_json::json!(16);
+        assert!(
+            restored
+                .restore_snapshot_json(&invalid.to_string())
+                .is_err()
+        );
+        assert_eq!(restored.snapshot_json().unwrap(), before);
+        invalid["version"] = serde_json::json!(99);
+        assert!(
+            restored
+                .restore_snapshot_json(&invalid.to_string())
+                .is_err()
+        );
+        assert_eq!(restored.snapshot_json().unwrap(), before);
     }
 }
