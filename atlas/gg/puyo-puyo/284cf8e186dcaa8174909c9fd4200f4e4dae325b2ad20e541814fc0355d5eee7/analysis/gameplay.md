@@ -1,0 +1,15 @@
+# Gameplay familiarization — round 001
+
+Local screen identifies **PUZLOW KIDS**, ©1993 Sega/Compile. Region code 6 and 256 KiB image; no mapper identity encoded in header. English interface observed. [SMS Power game entry](https://www.smspower.org/Games/PuyoPuyo-GG) identifies this as Game Gear Puyo Puyo and describes its English localization. [Cheat page](https://www.smspower.org/Cheats/PuyoPuyo-GG) lists Quest passwords through mission 30 and an ending password; symbols were not translated into a tested input route this pass. These are gameplay hypotheses, not structural evidence. No commercial images/assets downloaded.
+
+Confirmed locally: title Start; mode menu offers 1PLAYER, VERSUS, ENDLESS, QUEST. Button1/button2 confirm context-dependent prompts and rotate falling pieces; directional movement/down exercised. GG input API requires full buttons array, empty array releases (see TK-002). Start reads I/O 00, not NMI.
+
+Natural 1PLAYER Stage1 visited. Script-controlled progression uses C94E as command pointer, D410 as displayed stage, D47F as result-ready, D482 as result side. Script word dispatcher 2BA3 reads commands and supplies inline operands through IX; 2B97/2B9B update pointer. Full setup entries 1015 and 12A4 initialize later/final stages. Patching a displayed counter alone was not used as evidence of a visit. Artificial full setup routes reached Stage8 and13, exercised controls, and final victory led to ending artwork. Exact recipes, snapshots and capture links are in scenarios.json.
+
+Quest first puzzle and Endless field visited through their full setup entries with D401 mode flag (3 and2 respectively). Versus requires link peripheral and is deferred within hardware scope. Quest30 and Quest ending remain concrete follow-up targets, using password UI or DB0B/DB0C progression contract after source investigation; no arbitrary RAM brute force.
+
+## Redirect round001 corrections and later visits
+
+QuestStageIndex(DB0B) is zero-based. Parsed script1B2A explicitly sets29 and enters the full mission30 initializer; objective reads Eliminate7groups. Both instruction confirmations are required before field initialization; DB0C written before them is reset. After field setup, DB0C=1 follows the success route, with D45C=1 a supported wait shortcut; parent ending script1B4D and setup1B56 entered. Stable terminal Quest artwork was not confirmed. See scenariosS010 and local redirect artifacts.
+
+The actual saved main ending continued960 frames with no additional patches, rendering girl dialogue then complete DarkPrince-defeated/kingdom-saved narrative. No staff credits observed; a staff-roll existence/route is unproven. A separate attempted shortcut at1F25 is **tutorial/attract dialogue**, confirmed by WHY DON'T YOU TRY PLAYING and a green mascot, not credits. Legacy `credits-*` filenames preserve the failed hypothesis. Clearing all32 task slots before its full setup fixed interference from old ending callbacks; text rows and mascot/particle animation were exercised with recorded static-contract shortcuts. See S011/S013; no natural-reachability or full-game compatibility claim.

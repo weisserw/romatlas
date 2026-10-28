@@ -1,0 +1,720 @@
+{
+  "version": 1,
+  "round": 1,
+  "phase": "disassembly",
+  "scenarios": [
+    {
+      "id": "S001",
+      "milestone": "Startup / mode menu",
+      "status": "visited",
+      "input_checkpoint": "reset",
+      "route": {
+        "startup": "Run bounded segments to frame714 after logo/title; original documented button/pressed calls were no-ops (TK-002)",
+        "inputs": [
+          [
+            "start",
+            4
+          ],
+          [
+            "none",
+            60
+          ],
+          [
+            "button1",
+            4
+          ],
+          [
+            "none",
+            90
+          ],
+          [
+            "button1",
+            4
+          ],
+          [
+            "none",
+            120
+          ],
+          [
+            "start",
+            4
+          ],
+          [
+            "none",
+            90
+          ],
+          [
+            "button2",
+            4
+          ],
+          [
+            "none",
+            120
+          ],
+          [
+            "button1",
+            4
+          ],
+          [
+            "none",
+            60
+          ],
+          [
+            "button2",
+            4
+          ],
+          [
+            "none",
+            60
+          ]
+        ]
+      },
+      "observed_result": "Title and mode menu, then 1PLAYER Stage1 field; press/release transcript retained. Natural clean durable stage1 snapshot at frame1342.",
+      "evidence": [
+        "disassembly/round-001/stage.png",
+        "disassembly/round-001/stage1.snapshot.json",
+        "disassembly/round-001/rpc.jsonl"
+      ],
+      "artificial": false,
+      "effective_context": {
+        "rom_banks": [
+          0,
+          1,
+          2
+        ],
+        "ram_enabled": false,
+        "cartridge_enabled": true
+      },
+      "budget": "Each listed segment uses frame count, max_operations=1000000, timeout_ms=30000 unless stated. Buttons array reasserted; [] releases. Snapshot import restores counters/input, then [] explicitly releases."
+    },
+    {
+      "id": "S002",
+      "milestone": "Stage1 mechanics",
+      "status": "visited",
+      "input_checkpoint": "stage1",
+      "route": {
+        "inputs": [
+          [
+            "button1",
+            4
+          ],
+          [
+            "none",
+            60
+          ],
+          [
+            "button2",
+            4
+          ],
+          [
+            "none",
+            60
+          ]
+        ]
+      },
+      "observed_result": "Falling pieces and rotation/drop/button mechanics captured naturally.",
+      "evidence": [
+        "disassembly/round-001/dialogue.png",
+        "disassembly/round-001/stage1.snapshot.json",
+        "disassembly/round-001/rpc.jsonl"
+      ],
+      "artificial": false,
+      "effective_context": {
+        "rom_banks": [
+          0,
+          1,
+          2
+        ],
+        "ram_enabled": false,
+        "cartridge_enabled": true
+      },
+      "budget": "Each listed segment uses frame count, max_operations=1000000, timeout_ms=30000 unless stated. Buttons array reasserted; [] releases. Snapshot import restores counters/input, then [] explicitly releases."
+    },
+    {
+      "id": "S003",
+      "milestone": "Board occupancy shortcut",
+      "status": "attempted",
+      "input_checkpoint": "stage1",
+      "route": {
+        "patches": [
+          {
+            "address": "CE14",
+            "bytes": [
+              1
+            ]
+          }
+        ],
+        "inputs": [
+          [
+            "none",
+            120
+          ]
+        ]
+      },
+      "observed_result": "Single occupied spawn-area cell did not establish victory/progression. No retry unchanged; use understood script/result contracts instead.",
+      "evidence": [
+        "disassembly/round-001/shortcut-board.png",
+        "disassembly/round-001/stage1.snapshot.json",
+        "disassembly/round-001/rpc.jsonl"
+      ],
+      "artificial": true,
+      "effective_context": {
+        "rom_banks": [
+          0,
+          1,
+          2
+        ],
+        "ram_enabled": false,
+        "cartridge_enabled": true
+      },
+      "budget": "Each listed segment uses frame count, max_operations=1000000, timeout_ms=30000 unless stated. Buttons array reasserted; [] releases. Snapshot import restores counters/input, then [] explicitly releases."
+    },
+    {
+      "id": "S004",
+      "milestone": "Victory and next opponent",
+      "status": "visited",
+      "input_checkpoint": "stage1",
+      "route": {
+        "patches": [
+          {
+            "address": "D482",
+            "bytes": [
+              1
+            ]
+          },
+          {
+            "address": "D47F",
+            "bytes": [
+              1
+            ]
+          }
+        ],
+        "inputs": [
+          [
+            "none",
+            120
+          ],
+          [
+            "none",
+            180
+          ],
+          [
+            "button1",
+            4
+          ],
+          [
+            "none",
+            90
+          ]
+        ]
+      },
+      "observed_result": "You Win rendered, then next opponent transition. Longer180-frame segment hit operation budget after useful partial progress. D486=1015 experiment was overwritten by nested script calls and only reached Stage2; legacy stage8-field filename is Stage2, not Stage8.",
+      "evidence": [
+        "disassembly/round-001/forced-result.png",
+        "disassembly/round-001/rpc.jsonl",
+        "disassembly/round-001/stage8-field.snapshot.json",
+        "disassembly/round-001/stage8-field.png"
+      ],
+      "artificial": true,
+      "effective_context": {
+        "rom_banks": [
+          0,
+          1,
+          2
+        ],
+        "ram_enabled": false,
+        "cartridge_enabled": true
+      },
+      "budget": "Each listed segment uses frame count, max_operations=1000000, timeout_ms=30000 unless stated. Buttons array reasserted; [] releases. Snapshot import restores counters/input, then [] explicitly releases."
+    },
+    {
+      "id": "S005",
+      "milestone": "Later Stage8",
+      "status": "visited",
+      "input_checkpoint": "stage8-field (actually Stage2)",
+      "route": {
+        "patches": [
+          {
+            "address": "C94E",
+            "bytes": [
+              21,
+              16
+            ]
+          }
+        ],
+        "inputs": [
+          [
+            "none",
+            120
+          ],
+          [
+            "button1",
+            4
+          ],
+          [
+            "none",
+            120
+          ],
+          [
+            "down",
+            45
+          ],
+          [
+            "left",
+            8
+          ],
+          [
+            "button1",
+            4
+          ],
+          [
+            "none",
+            30
+          ]
+        ]
+      },
+      "observed_result": "Full stage setup rendered STAGE=8 transition and stable field. Displayed D410=8; movement/rotation/soft drop exercised. Patch itself was not counted as execution.",
+      "evidence": [
+        "disassembly/round-001/stage8-mechanics.png",
+        "disassembly/round-001/stage8-mechanics.snapshot.json",
+        "disassembly/round-001/rpc.jsonl",
+        "disassembly/round-001/actual-stage8.png",
+        "disassembly/round-001/actual-stage8-field.snapshot.json"
+      ],
+      "artificial": true,
+      "effective_context": {
+        "rom_banks": [
+          0,
+          1,
+          2
+        ],
+        "ram_enabled": false,
+        "cartridge_enabled": true
+      },
+      "budget": "Each listed segment uses frame count, max_operations=1000000, timeout_ms=30000 unless stated. Buttons array reasserted; [] releases. Snapshot import restores counters/input, then [] explicitly releases."
+    },
+    {
+      "id": "S006",
+      "milestone": "Final Stage13",
+      "status": "visited",
+      "input_checkpoint": "actual-stage8-field",
+      "route": {
+        "patches": [
+          {
+            "address": "C94E",
+            "bytes": [
+              164,
+              18
+            ]
+          }
+        ],
+        "inputs": [
+          [
+            "none",
+            120
+          ],
+          [
+            "button1",
+            4
+          ],
+          [
+            "none",
+            120
+          ],
+          [
+            "down",
+            50
+          ],
+          [
+            "right",
+            8
+          ],
+          [
+            "button2",
+            4
+          ],
+          [
+            "none",
+            25
+          ]
+        ]
+      },
+      "observed_result": "Full final-stage setup with distinct board/opponent, STAGE13 displayed and D410=13. Representative movement/rotation/drop exercised.",
+      "evidence": [
+        "disassembly/round-001/stage13-mechanics.png",
+        "disassembly/round-001/stage13-mechanics.snapshot.json",
+        "disassembly/round-001/rpc.jsonl"
+      ],
+      "artificial": true,
+      "effective_context": {
+        "rom_banks": [
+          0,
+          1,
+          2
+        ],
+        "ram_enabled": false,
+        "cartridge_enabled": true
+      },
+      "budget": "Each listed segment uses frame count, max_operations=1000000, timeout_ms=30000 unless stated. Buttons array reasserted; [] releases. Snapshot import restores counters/input, then [] explicitly releases."
+    },
+    {
+      "id": "S007",
+      "milestone": "Main ending",
+      "status": "visited",
+      "input_checkpoint": "stage13-field",
+      "route": {
+        "patches": [
+          {
+            "address": "D482",
+            "bytes": [
+              1
+            ]
+          },
+          {
+            "address": "D47F",
+            "bytes": [
+              1
+            ]
+          }
+        ],
+        "inputs": [
+          [
+            "none",
+            120
+          ],
+          [
+            "none",
+            120
+          ],
+          [
+            "button1",
+            4
+          ],
+          [
+            "none",
+            90
+          ],
+          [
+            "none",
+            120
+          ]
+        ]
+      },
+      "observed_result": "Final win followed black transition then full-screen heroine ending artwork; saved accepted instruction evidence.",
+      "evidence": [
+        "disassembly/round-001/ending-confirm.png",
+        "disassembly/round-001/ending-confirm.snapshot.json",
+        "disassembly/round-001/rpc.jsonl"
+      ],
+      "artificial": true,
+      "effective_context": {
+        "rom_banks": [
+          0,
+          1,
+          2
+        ],
+        "ram_enabled": false,
+        "cartridge_enabled": true
+      },
+      "budget": "Each listed segment uses frame count, max_operations=1000000, timeout_ms=30000 unless stated. Buttons array reasserted; [] releases. Snapshot import restores counters/input, then [] explicitly releases."
+    },
+    {
+      "id": "S008",
+      "milestone": "Quest mode / first puzzle",
+      "status": "visited",
+      "input_checkpoint": "stage1",
+      "route": {
+        "patches": [
+          {
+            "address": "C94E",
+            "bytes": [
+              92,
+              22
+            ]
+          },
+          {
+            "address": "D401",
+            "bytes": [
+              3
+            ]
+          }
+        ],
+        "inputs": [
+          [
+            "none",
+            60
+          ],
+          [
+            "button1",
+            4
+          ],
+          [
+            "none",
+            60
+          ],
+          [
+            "none",
+            60
+          ],
+          [
+            "button1",
+            4
+          ],
+          [
+            "none",
+            40
+          ]
+        ]
+      },
+      "observed_result": "QUEST MODE Start/Continue menu then first puzzle pieces and instruction sheet/field; button input exercised.",
+      "evidence": [
+        "disassembly/round-001/quest-play.png",
+        "disassembly/round-001/quest-play.snapshot.json",
+        "disassembly/round-001/rpc.jsonl"
+      ],
+      "artificial": true,
+      "effective_context": {
+        "rom_banks": [
+          0,
+          1,
+          2
+        ],
+        "ram_enabled": false,
+        "cartridge_enabled": true
+      },
+      "budget": "Each listed segment uses frame count, max_operations=1000000, timeout_ms=30000 unless stated. Buttons array reasserted; [] releases. Snapshot import restores counters/input, then [] explicitly releases."
+    },
+    {
+      "id": "S009",
+      "milestone": "Endless mode",
+      "status": "visited",
+      "input_checkpoint": "stage1",
+      "route": {
+        "patches": [
+          {
+            "address": "C94E",
+            "bytes": [
+              138,
+              8
+            ]
+          },
+          {
+            "address": "D401",
+            "bytes": [
+              2
+            ]
+          }
+        ],
+        "inputs": [
+          [
+            "none",
+            60
+          ],
+          [
+            "button2",
+            4
+          ],
+          [
+            "none",
+            60
+          ],
+          [
+            "down",
+            30
+          ]
+        ]
+      },
+      "observed_result": "Level-select menu and single Endless field with falling/drop piece and score progression.",
+      "evidence": [
+        "disassembly/round-001/endless-play.png",
+        "disassembly/round-001/endless-play.snapshot.json",
+        "disassembly/round-001/rpc.jsonl"
+      ],
+      "artificial": true,
+      "effective_context": {
+        "rom_banks": [
+          0,
+          1,
+          2
+        ],
+        "ram_enabled": false,
+        "cartridge_enabled": true
+      },
+      "budget": "Each listed segment uses frame count, max_operations=1000000, timeout_ms=30000 unless stated. Buttons array reasserted; [] releases. Snapshot import restores counters/input, then [] explicitly releases."
+    },
+    {
+      "id": "S010",
+      "milestone": "Quest mission30 and success route; terminal ending attempted",
+      "status": "visited",
+      "reason": "Deferred to redirect: password symbol route not decoded; DB0B/DB0C contract suggested by script waits needs consumer inspection.",
+      "attempt_history": [
+        {
+          "prior_status": "deferred",
+          "prior_reason": "Deferred to redirect: password symbol route not decoded; DB0B/DB0C contract suggested by script waits needs consumer inspection."
+        }
+      ],
+      "route": {
+        "input_checkpoint": "disassembly/round-001/quest-play.snapshot.json",
+        "patches": [
+          {
+            "address": "C94E",
+            "bytes": [
+              42,
+              27
+            ]
+          },
+          {
+            "address": "D401",
+            "bytes": [
+              3
+            ]
+          }
+        ],
+        "method": "Run120frames, confirm two instruction screens with separate button1 presses/releases; exercise left/button1/down; only after field setup write DB0C=1; set D45C=1 only at success wait; confirm revealed success screen."
+      },
+      "observed_result": "Zero-based QuestStageIndex29, mission objective Eliminate7groups, field task/controls and score16, success text route then parent script1B4D and ending setup1B56. Initial DB0C edit before second confirmation was reset by setup; preserved negative result. Stable terminal Quest artwork is not claimed.",
+      "artificial": true,
+      "effective_context": {
+        "rom_banks": [
+          0,
+          1,
+          2
+        ],
+        "ram_enabled": false,
+        "cartridge_enabled": true
+      },
+      "evidence": [
+        "redirect/round-001-attempt-001/quest30.png",
+        "redirect/round-001-attempt-001/quest30-field.png",
+        "redirect/round-001-attempt-001/quest-resume-contexts.json",
+        "redirect/round-001-attempt-001/quest-resume.log",
+        "redirect/round-001-attempt-001/quest-finish.log",
+        "redirect/round-001-attempt-001/quest-terminal.log",
+        "redirect/round-001-attempt-001/quest-terminal.snapshot.json"
+      ]
+    },
+    {
+      "id": "S011",
+      "milestone": "Later main-ending dialogue/terminal narrative; staff credits unconfirmed",
+      "status": "attempted",
+      "reason": "Main ending artwork visited; full credits sequence timing/transition not traced, bounded pass stopped after terminal artwork.",
+      "attempt_history": [
+        {
+          "prior_status": "deferred",
+          "prior_reason": "Main ending artwork visited; full credits sequence timing/transition not traced, bounded pass stopped after terminal artwork."
+        }
+      ],
+      "route": {
+        "input_checkpoint": "disassembly/round-001/ending-confirm.snapshot.json",
+        "patches": [],
+        "inputs": [
+          {
+            "buttons": [],
+            "frames": 120
+          },
+          {
+            "buttons": [],
+            "frames": 120
+          },
+          {
+            "buttons": [],
+            "frames": 120
+          },
+          {
+            "buttons": [],
+            "frames": 120
+          },
+          {
+            "buttons": [],
+            "frames": 120
+          },
+          {
+            "buttons": [],
+            "frames": 120
+          },
+          {
+            "buttons": [],
+            "frames": 120
+          },
+          {
+            "buttons": [],
+            "frames": 120
+          }
+        ],
+        "budget": "Eight bounded120-frame calls, max_operations1000000, timeout_ms30000 each; no new patches beyond inherited artificial ending scenario"
+      },
+      "observed_result": "Ending girl dialogue rendered, then complete DarkPrince defeated/kingdom saved narrative at script202E. No staff roll or credits confirmed; do not assume such a sequence exists. Static parsed successor2066 is a separate visual/name-entry phase already in proposal.",
+      "artificial": true,
+      "effective_context": {
+        "rom_banks": [
+          0,
+          1,
+          2
+        ],
+        "ram_enabled": false,
+        "cartridge_enabled": true
+      },
+      "evidence": [
+        "redirect/round-001-attempt-001/main-ending-follow-480.png",
+        "redirect/round-001-attempt-001/main-ending-follow-960.png",
+        "redirect/round-001-attempt-001/main-ending-follow.log",
+        "redirect/round-001-attempt-001/main-ending-follow-contexts.json",
+        "redirect/round-001-attempt-001/main-ending-follow.snapshot.json"
+      ]
+    },
+    {
+      "id": "S012",
+      "milestone": "Linked Versus",
+      "status": "unavailable",
+      "reason": "Unavailable within declared scope: EXT/link peripherals deferred; no second controller accepted by GG."
+    },
+    {
+      "id": "S013",
+      "milestone": "Attract/tutorial dialogue and mascot animation",
+      "status": "visited",
+      "route": {
+        "input_checkpoint": "disassembly/round-001/ending-confirm.snapshot.json",
+        "patches": [
+          {
+            "address": "C300",
+            "length": 1024,
+            "bytes": "all zero; exact32x32 ClearAllTasks contract"
+          },
+          {
+            "address": "C94E",
+            "bytes": [
+              37,
+              31
+            ]
+          },
+          {
+            "address": "D426",
+            "bytes": [
+              224
+            ]
+          }
+        ],
+        "method": "Full scene1F25 graphics/setup; run90frames then opening-scroll shortcut; inspect allocated8C13 task; reinitialize its text-stream fields to entry contract (state2,count0,rows9,sourceD561), clear per-glyph delay before289 bounded1-frame calls; selected captures only."
+      },
+      "observed_result": "Eight-row tutorial text system and green mascot animation exercised; phrase WHY DONT YOU TRY PLAYING proves this is tutorial, not credits. Final two source pairs/terminal task wait were not forced further. First attempt without ClearAllTasks suffered unrelated ending task clearingD1FD after8frames; exact diagnostic retained.",
+      "artificial": true,
+      "effective_context": {
+        "rom_banks": [
+          0,
+          1,
+          2
+        ],
+        "ram_enabled": false,
+        "cartridge_enabled": true
+      },
+      "evidence": [
+        "redirect/round-001-attempt-001/credits-cleanpool.py",
+        "redirect/round-001-attempt-001/credits-cleanpool.log",
+        "redirect/round-001-attempt-001/credits-clean-row-4.png",
+        "redirect/round-001-attempt-001/credits-clean-contexts.json",
+        "redirect/round-001-attempt-001/credits-diagnostic.log"
+      ],
+      "naming_correction": "Legacy credits-* filenames preserve the rejected credits interpretation; final visual role is tutorial dialogue."
+    }
+  ]
+}

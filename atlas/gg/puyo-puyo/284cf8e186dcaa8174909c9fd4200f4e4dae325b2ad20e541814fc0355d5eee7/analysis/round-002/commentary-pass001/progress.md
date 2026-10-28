@@ -1,0 +1,9 @@
+# Commentary progress
+
+Round 001 current-source readability is complete against frozen pass-001. Classified scope: 14,979 code bytes and 222,249 data bytes; all 24,916 unknown bytes retain honest boundary notes. All 575 review-scaffold regions are reviewed; no classified range is deferred. Final editorial/archive audit remains pending as a separate gate.
+
+The source contains 323 routine/block explanations, 693 control labels, 151 RAM aliases, hardware ports and separate task/sound/falling-pair/particle fields. Main loop, task allocation, banked transfers, decompression, palette interpolation, threaded scenes, serial fragments, PSG sequencing, field collision/rotation/settling/match work, computer placement ranking and Quest tile transitions are explained mechanically with material uncertainty nearby. Redundant per-instruction bank/origin directives and opcode-summary comments were removed while retaining region/discontinuity placement; byte-identical verification passed after this change.
+
+Data comments retain accepted generic aggregates while explaining known handler operand layouts, relative asset pointers and absolute sound roots. Prior bounded consumer/format evidence is reused. Unknown gaps remain exact ROM slices and are not decoded/classified by commentary. See uncertainties.md and analysis/commentary/scope-review.json.
+
+Fresh final verification: commentary/verification.json, ok=true and byte_identical=true. Reading copy: commentary/reading-after.asm (refreshed at handoff). Baseline/source-before/maps/evidence are preserved. ROM, maps/current.json and analysis/state.json remain unchanged. No toolkit edits or newly found toolkit issues; existing TK-001/TK-002 remain nonblocking. Disk at handoff: 9.5 GiB available; this phase's derived records are bounded, no captures/checkpoints were added.
