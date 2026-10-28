@@ -10,6 +10,7 @@ import tempfile
 import threading
 from urllib.request import urlopen
 from urllib.error import HTTPError
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -85,7 +86,10 @@ def main():
     with tempfile.TemporaryDirectory(prefix='romatlas-web-') as temporary:
         base=Path(temporary);work,rom=fixture(base)
         # First compile the delivered future-workspace scaffold, not just a test entrypoint.
-        port_web.build(work)
+        # CI's default toolchain can lack Wasm even when pinned setup succeeded.
+        # An unavailable override makes accidental default-toolchain use fail.
+        with patch.dict(os.environ, RUSTUP_TOOLCHAIN="romatlas-test-uninstalled"):
+            port_web.build(work)
         (work/'port/src/game.rs').write_text(GAME)
         bundle=port_web.build(work)
         assert not any(p.suffix in {'.rom','.gb','.bin'} for p in bundle.rglob('*'))

@@ -35,10 +35,13 @@ def build(work):
     version = subprocess.check_output([tool, "--version"], text=True).strip()
     if version != f"wasm-bindgen {BINDGEN_VERSION}":
         raise ValueError("wasm-bindgen version mismatch; run bash scripts/setup-web.sh")
-    cargo = ["cargo", "--manifest-path", str(work / "port/Cargo.toml")]
-    execute([cargo[0], "build", *cargo[1:], "--lib", "--features", "web",
+    # --manifest-path does not select the manifest directory's Rust toolchain.
+    # Builds run from the workspace root, outside port/rust-toolchain.toml.
+    cargo = ["cargo", "+1.90.0"]
+    manifest = ["--manifest-path", str(work / "port/Cargo.toml")]
+    execute([*cargo, "build", *manifest, "--lib", "--features", "web",
              "--target", "wasm32-unknown-unknown", "--release", "--locked"], work)
-    metadata = json.loads(subprocess.check_output([cargo[0], "metadata", *cargo[1:], "--no-deps", "--format-version", "1"], cwd=work))
+    metadata = json.loads(subprocess.check_output([*cargo, "metadata", *manifest, "--no-deps", "--format-version", "1"], cwd=work))
     package = next(p for p in metadata["packages"] if p["manifest_path"] == str(work / "port/Cargo.toml"))
     library = next(t for t in package["targets"] if "cdylib" in t["kind"])
     wasm = Path(metadata["target_directory"]) / "wasm32-unknown-unknown/release" / (library["name"].replace("-", "_") + ".wasm")
