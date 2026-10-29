@@ -1,0 +1,319 @@
+{
+  "version": 1,
+  "round": 1,
+  "input_contract": {
+    "platform": "sms",
+    "method": "emulator.input",
+    "press": "buttons array replaces entire port state",
+    "release": {
+      "port": 1,
+      "buttons": []
+    }
+  },
+  "progression_checklist": [
+    {
+      "milestone": "later platform/enemy scene",
+      "stage_index": 3,
+      "status": "visited",
+      "artificial": true,
+      "route": "analysis/round-001/progression.py",
+      "restore": "analysis/round-001/clean-gameplay.snapshot.json",
+      "patches": [
+        {
+          "address": 49298,
+          "bytes": [
+            3
+          ]
+        },
+        {
+          "address": 49158,
+          "bytes": [
+            5
+          ]
+        }
+      ],
+      "inputs": [
+        {
+          "buttons": [],
+          "frames": 90
+        },
+        {
+          "buttons": [
+            "right",
+            "button1"
+          ],
+          "frames": 30
+        },
+        {
+          "buttons": [
+            "button2"
+          ],
+          "frames": 15
+        },
+        {
+          "buttons": [],
+          "frames": 0
+        }
+      ],
+      "evidence": [
+        "analysis/round-001/stage-3-action.ppm",
+        "analysis/round-001/contexts-stage-3.json",
+        "analysis/round-001/summary-stage-3.json"
+      ]
+    },
+    {
+      "milestone": "helicopter encounter",
+      "stage_index": 6,
+      "status": "visited",
+      "artificial": true,
+      "route": "analysis/round-001/progression.py",
+      "restore": "analysis/round-001/clean-gameplay.snapshot.json",
+      "patches": [
+        {
+          "address": 49298,
+          "bytes": [
+            6
+          ]
+        },
+        {
+          "address": 49158,
+          "bytes": [
+            5
+          ]
+        }
+      ],
+      "inputs": [
+        {
+          "buttons": [],
+          "frames": 90
+        },
+        {
+          "buttons": [
+            "right",
+            "button1"
+          ],
+          "frames": 30
+        },
+        {
+          "buttons": [
+            "button2"
+          ],
+          "frames": 15
+        },
+        {
+          "buttons": [],
+          "frames": 0
+        }
+      ],
+      "evidence": [
+        "analysis/round-001/stage-6-action.ppm",
+        "analysis/round-001/contexts-stage-6.json",
+        "analysis/round-001/summary-stage-6.json"
+      ]
+    },
+    {
+      "milestone": "mask-wall encounter",
+      "stage_index": 10,
+      "status": "visited",
+      "artificial": true,
+      "route": "analysis/round-001/progression.py",
+      "restore": "analysis/round-001/clean-gameplay.snapshot.json",
+      "patches": [
+        {
+          "address": 49298,
+          "bytes": [
+            10
+          ]
+        },
+        {
+          "address": 49158,
+          "bytes": [
+            5
+          ]
+        }
+      ],
+      "inputs": [
+        {
+          "buttons": [],
+          "frames": 90
+        },
+        {
+          "buttons": [
+            "right",
+            "button1"
+          ],
+          "frames": 30
+        },
+        {
+          "buttons": [
+            "button2"
+          ],
+          "frames": 15
+        },
+        {
+          "buttons": [],
+          "frames": 0
+        }
+      ],
+      "evidence": [
+        "analysis/round-001/stage-10-action.ppm",
+        "analysis/round-001/contexts-stage-10.json",
+        "analysis/round-001/summary-stage-10.json"
+      ]
+    },
+    {
+      "milestone": "mandala encounter",
+      "stage_index": 14,
+      "status": "visited",
+      "artificial": true,
+      "route": "analysis/round-001/progression.py",
+      "restore": "analysis/round-001/clean-gameplay.snapshot.json",
+      "patches": [
+        {
+          "address": 49298,
+          "bytes": [
+            14
+          ]
+        },
+        {
+          "address": 49158,
+          "bytes": [
+            5
+          ]
+        }
+      ],
+      "inputs": [
+        {
+          "buttons": [],
+          "frames": 90
+        },
+        {
+          "buttons": [
+            "right",
+            "button1"
+          ],
+          "frames": 30
+        },
+        {
+          "buttons": [
+            "button2"
+          ],
+          "frames": 15
+        },
+        {
+          "buttons": [],
+          "frames": 0
+        }
+      ],
+      "evidence": [
+        "analysis/round-001/stage-14-action.ppm",
+        "analysis/round-001/contexts-stage-14.json",
+        "analysis/round-001/summary-stage-14.json"
+      ]
+    },
+    {
+      "milestone": "final ninja encounter",
+      "stage_index": 18,
+      "status": "visited",
+      "artificial": true,
+      "route": "analysis/round-001/progression.py",
+      "restore": "analysis/round-001/clean-gameplay.snapshot.json",
+      "patches": [
+        {
+          "address": 49298,
+          "bytes": [
+            18
+          ]
+        },
+        {
+          "address": 49158,
+          "bytes": [
+            5
+          ]
+        }
+      ],
+      "inputs": [
+        {
+          "buttons": [],
+          "frames": 90
+        },
+        {
+          "buttons": [
+            "right",
+            "button1"
+          ],
+          "frames": 30
+        },
+        {
+          "buttons": [
+            "button2"
+          ],
+          "frames": 15
+        },
+        {
+          "buttons": [],
+          "frames": 0
+        }
+      ],
+      "evidence": [
+        "analysis/round-001/stage-18-action.ppm",
+        "analysis/round-001/contexts-stage-18.json",
+        "analysis/round-001/summary-stage-18.json"
+      ]
+    },
+    {
+      "milestone": "ending/terminal screen",
+      "status": "attempted",
+      "route": "terminal-attempt.py then terminal2.py then terminal3.py",
+      "reason": "Stable mode$44, stage18, C000=6 yields stage19/mode$47; boss victory bit7 animation/ending contract unresolved",
+      "result": "GAME OVER terminal screen visited artificially; ending/credits not established",
+      "evidence": [
+        "analysis/round-001/final-clear-stable-4.png",
+        "analysis/round-001/contexts-terminal3.json"
+      ]
+    },
+    {
+      "milestone": "bonus shooting mechanic",
+      "status": "visited",
+      "reason": "locate supported entry/state contract through final-clear/dispatcher source; no arbitrary RAM brute force",
+      "artificial": true,
+      "route": "analysis/round-002/bonus-play.py then bonus-continue.py",
+      "result": "C000=86 shortcut,420 initialization+150 continuation frames; actual5AB3/5B51/5C65 fetched; left/right/fire exercised",
+      "evidence": [
+        "analysis/round-002/bonus-review.md",
+        "analysis/round-002/bonus-active.png",
+        "analysis/round-002/bonus-active-contexts.json"
+      ]
+    },
+    {
+      "milestone": "GAME OVER",
+      "status": "visited",
+      "artificial": true,
+      "route": "terminal3.py",
+      "evidence": "analysis/round-001/final-clear-stable-4.png"
+    }
+  ],
+  "routes": [
+    {
+      "id": "natural-start",
+      "script": "analysis/round-001/step2.py",
+      "snapshot": "analysis/round-001/title.snapshot.json",
+      "inputs": [
+        {
+          "buttons": [
+            "down",
+            "button1"
+          ],
+          "frames": 5
+        },
+        {
+          "buttons": [],
+          "frames": 10
+        }
+      ],
+      "followup": "step3.py60 +step4.py120 +step5.py220 +step8.py60",
+      "result": "after-release.png confirms city gameplay",
+      "status": "visited"
+    }
+  ]
+}

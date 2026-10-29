@@ -1,0 +1,23 @@
+# Reviewed limitations — round003
+
+Current-source readability covers33710 Code/228937 Data bytes and honest notes for9 Unknown bytes. Classification is262647/262656 (99.9966%, rounded100.00%), separate from readability and final editorial acceptance.
+
+Four physical intervals remain structurally Unknown:0C65..0C68,4CE1..4CE2,182DE..182DF,18D3A..18D3E. The localized round004 rejection review remains applicable; neither thin decoding nor neighboring code distinguishes an independent entry from data. Source preserves exact bytes and uncertainty at every boundary. See analysis/round-004/independent-review.md and analysis/redirect/r003-prefix-contract-review/rejection-review.md.
+
+Round002 leads resolved by accepted round003 classification: pushed free-motion return2746..2766 plus24 displacement words2766..2796; three six-byte bounce profiles4B4C..4B5E; eight encounter-offset pairs7DA5..7DB5. The previously misplaced SpawnEncounterOffsetEffectCycle label was attached to player input at1D4D; that entry is now DispatchPlayerActionButtons. The encounter label and its call now identify the actual consumer at7D4D. These corrections preserve bytes and classification.
+
+Bank2 code explains collision category filtering, recoil/defeat, packed-BCD scoring and comparison, HUD meter clamp, and the four-entry effect FIFO. Selector production and exact game identities remain partly unknown. Table B452 index0 aliases preceding Code, B469 index0 aliases the tile-list tail; preserve both. Earlier type0/table5451 and JP-operand aliases, event termination, stride12/copy16, B8/8381 and slot-specific audio readers remain unchanged. No claim that every selector naturally occurs.
+
+Standalone multiply/controller/VRAM/strided-RAM/camera and bank6 channel helpers have complete mechanical explanations and preconditions. Their static structural contracts do not establish live callers or natural reachability. Masked upload requires valid source/count/VDP access; RAM expansion requires a valid terminated stream and destination; reverse-byte VRAM transfer requires sufficient D800 scratch. Audio uses independent32-byte records, separate from48-byte gameplay objects.
+
+Graphics containers have bank/source, four-plane packet grammar and exact output lengths; stage palettes are raw32-byte values, distinct from counted palette requests. Bank9 font/tile residuals, some animation/category and scrolling storage have bounded non-code explanations without invented internal partitions or original generator claims. Exact characters, effect/song names and original asset organization remain unresolved.
+
+Context-dependent RAM aliases remain explicit: bonus exit/spawn counters share later palette/copy storage; sound attenuation cursor12 differs from pitch-envelope cursor13. The impact-sound quirk still stores field32 after overwriting candidate sound bytes; no ROM correction is implied. Existing broad gameplay/bonus/later-encounter evidence is reused. A genuine natural ending/credits route remains unproven; artificial GAME OVER does not prove victory. No new emulator run, structural edit or toolkit change was made during commentary.
+
+No pending readability ranges or new structural redirect question remains. Final editorial/archive audit is pending and was not run; whole-ROM classification remains incomplete.
+
+Round004 resolves physical588A..588D and5A54..5A57 as balanced HL-to-IY adapters for caller-supplied existing event objects. Their shared bodies establish the object-field contract; actual callers, natural reachability and intended gameplay use remain unresolved. No claim of whole-ROM classification or final editorial acceptance follows.
+
+Final audit superseding disposition: all four intervals above are now user-directed generic unclassified Data (Manual confidence 0), not evidence-proven non-code. Original structural role remains UNKNOWN; all previous rejection reasoning remains applicable. Map coverage is now 262656/262656, with 262647 evidence-backed bytes plus9 user-directed bytes. Current-source readability and final editorial acceptance are distinct from evidence strength, natural reachability and hardware compatibility. See analysis/final-audit/editorial-findings.md and the final handoff for actual audit results.
+
+Final audit superseding disposition: all four intervals above are now user-directed generic unclassified Data (Manual confidence 0), not evidence-proven non-code. Original structural role remains UNKNOWN; all previous rejection reasoning remains applicable. Map coverage is now262656/262656, with262647 evidence-backed bytes plus9 user-directed bytes. See analysis/final-audit/editorial-findings.md and the final handoff for actual editorial/audit results; genuine ending remains unproven.

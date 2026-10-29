@@ -1,0 +1,7 @@
+# Final editorial acceptance
+
+Current-source readability and final editorial audit complete across1159 physical regions and798 unique meaningful units (1304 embedded audit records). All797 prior units preserved; one missing dirty-scroll-column continuation record added after actual preflight inspection. No pending ranges, reviews or checks.
+
+Archived entire prior commentary at analysis/final-audit/commentary-prior before fresh pass-005 preparation; all range identities preserved except four explicitly user-directed Unknown-to-Data dispositions. Map/state/baseline/source mapping SHA c3dfce87e73e79fc955752587d27409a65de5eb37300def81d12d1b342e73bb1. Counts33710 Code/228946 Data/0 Unknown;100% map coverage comprises262647 evidence-backed bytes plus9 Manual confidence0 user-directed bytes whose original role remains UNKNOWN.
+
+Final audit passed fresh byte-identical rebuild and refreshed reading copy. Source SHA41239d34f2c4508149d106d5b24388ea7fe5f4cfcbbc014fec61913383babff9 matches verification and audit. Concrete stale prose and duplicate bounce include corrected, source locations refreshed and full meaningful unit dictionaries embedded for audit. See analysis/final-audit/editorial-findings.md, checks.json and handoff.md for precise findings, preservation checks and limitations. Genuine ending, natural selector coverage and some asset purposes/callers remain unresolved; no hardware compatibility claim.
