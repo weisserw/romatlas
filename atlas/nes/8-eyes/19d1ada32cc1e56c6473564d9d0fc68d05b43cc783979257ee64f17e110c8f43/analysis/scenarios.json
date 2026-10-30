@@ -1,0 +1,107 @@
+[
+  {
+    "milestone": "startup-title",
+    "status": "visited",
+    "route": "reset; trace capacity0; 30 frames then four 30-frame batches; snapshot title150",
+    "evidence": [
+      "analysis/round01/title.png",
+      "analysis/round01/title150-snapshot.json"
+    ]
+  },
+  {
+    "milestone": "attract-demo",
+    "status": "visited",
+    "route": "title then wait through frame625; original button/pressed requests ignored, no active input",
+    "evidence": [
+      "analysis/round01/advance.py",
+      "analysis/round01/late-menu.png"
+    ],
+    "note": "Not player-controlled progression; NES-001"
+  },
+  {
+    "milestone": "main-menu-stage-select",
+    "status": "visited",
+    "route": "title150 snapshot; buttons[start]2frames, buttons[]2,10wait; repeat start; final Start leaves stage selector when none chosen",
+    "evidence": [
+      "analysis/round01/realplay.py",
+      "analysis/round01/realstage-snapshot.json"
+    ]
+  },
+  {
+    "milestone": "representative-stages",
+    "status": "visited",
+    "route": "restore realstage-snapshot; press A 1/4/7 times, 2frames press+2release; start2+release2; wait30. right+B20, release2; right+A12, release2; up+B2, release2; down+B10, release2",
+    "evidence": [
+      "analysis/round01/stages.py",
+      "analysis/round01/stage-first.png",
+      "analysis/round01/stage-middle.png",
+      "analysis/round01/stage-late.png"
+    ],
+    "note": "Distinct stage interiors confirmed. No boss/end yet."
+  },
+  {
+    "milestone": "ruth-shortcut",
+    "status": "visited",
+    "route": "restore stage selector; RAM $0050=7 before start, supported stage-init transition; bounded representative inputs",
+    "evidence": [
+      "analysis/round01/stages.py",
+      "analysis/round01/stage-ruth.png",
+      "analysis/round01/stage-ruth-snapshot.json"
+    ],
+    "note": "Running, result to inspect",
+    "observed_result": "Distinct Ruth exterior, enemies and representative movement/sword/jump/falcon inputs accepted; artificial stage initialization."
+  },
+  {
+    "milestone": "bosses-and-ending",
+    "status": "attempted",
+    "reason": "Room7 initializer visits confirmed, visible boss identity/defeat not confirmed. Altar puzzle reached artificially, validator success PC matched, but terminal/credits not reached in bounded follow-up."
+  },
+  {
+    "milestone": "later-room-initialization",
+    "status": "visited",
+    "route": "Restore realstage-snapshot; patch $50=1 or7, buttons[start]; run_until PC=$EE00 (matched1053 operation calls); buttons[]; patch $51=7; 30frames then right+B20, up+B2, down+B10 with2frame releases.",
+    "evidence": [
+      "analysis/round01/boss.py",
+      "analysis/round01/boss.png",
+      "analysis/round01/ruth-boss.png"
+    ],
+    "observed_result": "Distinct later rooms initialized; artificial. Boss presence/defeat unconfirmed."
+  },
+  {
+    "milestone": "altar-puzzle",
+    "status": "visited",
+    "route": "Restore stage-ruth-snapshot; release inputs; finish instruction; setPC=$D4E6; 30frames. Context[5,13,14,15], preserved stack253. Entry justified by stage7 completion JMP and standalone scene initializer.",
+    "evidence": [
+      "analysis/round01/ending.py",
+      "analysis/round01/puzzle.png",
+      "analysis/round01/puzzle-snapshot.json"
+    ],
+    "observed_result": "Altar and eight jewel slots visible; artificial. Natural prerequisites unverified."
+  },
+  {
+    "milestone": "terminal-success-branch",
+    "status": "attempted",
+    "route": "Restore puzzle snapshot; patch $05F0..7=[2,0,1,6,7,4,3,5]; instruction boundary setPC=$D56A; run_untilPC=$D582 matched204operationcalls. Wait120frames untraced,10traced.",
+    "evidence": [
+      "analysis/round01/validator-probe.py",
+      "analysis/round01/validator-result.png",
+      "analysis/round01/validator-result-snapshot.json"
+    ],
+    "observed_result": "Exact eight-slot equality validator success observed; scene remains puzzle. D564 earlier route did not establish success. Need state/timing contract for terminal transition; do not repeat unchanged."
+  },
+  {
+    "milestone": "ending-text-and-terminal-password",
+    "status": "visited",
+    "route": "Import round01/validator-result snapshot atframe396; release input; continue-ending.py24 bounded requests reachescongratulations atframe982; ending-skip.py holdsA withtrace disabled16x60frames to1942; ending-finish.py releasesA180frames to2122, captures password thenStart2+release30.",
+    "observed_result": "Artificial inherited route: congratulations scene, nine text pages advanced with source-derived A skip, terminal PASSWORD TAXANTAXAN push start key. Start leads Special stage screen; alternate ending cycles/credits not exercised.",
+    "evidence": [
+      "analysis/redirect/round01-contracts/ending-23.png",
+      "analysis/redirect/round01-contracts/ending-terminal.png",
+      "analysis/redirect/round01-contracts/ending-start-return.png",
+      "analysis/redirect/round01-contracts/ending-terminal-snapshot.json",
+      "analysis/redirect/round01-contracts/ending-continued-contexts.json",
+      "analysis/redirect/round01-contracts/ending-skip-results.json"
+    ],
+    "correction": "Prior altar screenshot already belonged to flash loop; stack returnD6E7 identified saved scenario progress. No sprite-zero stall claimed. Earlier attempted scenarios preserved."
+  }
+]

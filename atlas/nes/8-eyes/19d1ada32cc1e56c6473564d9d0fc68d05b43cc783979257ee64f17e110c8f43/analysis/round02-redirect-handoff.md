@@ -1,0 +1,18 @@
+# Round02 redirect handoff — incomplete, no ready proposals
+
+Phase gate satisfied: [current-source commentary handoff](round02-commentary-handoff.md),883intervals reviewed, zero pending readability frontier. Final editorial audit remains pending. Current source/reading copy byte-identical verification: [report](round02-commentary-verification.json), SHA256 `3a548d6ea5af0a27469bf16b9fcab7338a7901a5166bc12d169b92100339847d`; [integrity](round02-commentary/integrity.json). Structural checkpoint remains [round02-disassembly-verified](../maps/round02-disassembly-verified.json), [verification](round02-disassembly-verified-verification.json).
+
+Accepted counts unchanged:262155/262160classified;19793Code,111290Data,131072CHR;5unknown. Proposed bytes in this redirect:0. Exact complement recomputed from internal state and immutable bytes in [ledger](redirect/round02-residuals/unknown-ledger.json):
+
+- Physical116286, length1, bank14 CPU$C62E,60: isolated RTS versus literal.
+- Physical123710..123713, length4, bank15 CPU$E32E..E331,A900855F: optional clear-$5F prefix versus literal/separate bytes.
+
+Required compact [rejection review and broader avenue triage](redirect/round02-residuals/rejection-review.md) links decisive primary artifacts, explicitly states actual needed role claims, localizes prior negative search scope, combines independent constraints and strongest alternatives, and compares accepted mode3 criteria. Coordinator must inspect this reasoning before accepting terminal incomplete status. New method and intermediate findings saved in [method](redirect/round02-residuals/method.md); exact current-source snippets and audit in [evidence](redirect/round02-residuals/source-evidence.txt), [triage](redirect/round02-residuals/source-triage.json).
+
+Material finding: horizontal prefix's$5Fclear has a real horizontal boundary consumer; the vertical selector/body has none. Thus superficial paired-entry symmetry fails to add a discriminating consumer contract for E32E. This does not disprove a vestigial static wrapper and does not impose a live/natural caller requirement. C62E has exact neighboring boundaries plus its unselected pointer-like word, but the single RTS adds no independent state/control semantics. Artificial execution would merely reproduce opcode semantics for either residual. Neither meets generic Data evidence either; both remain honestly unknown.
+
+Practical current-source triage covered missing/direct transfers, state dispatch/mode3/machineB, table consumers, bank/reset, explicit gaps and generic data. Existing useful closure/conditional-contract evidence was reused, not replayed. No concrete promising revised method or productive frontier is deferred. New lead pass recorded with empty ready/add/update arrays in [leads](leads.json); all existing verified histories preserved. No empty disassembly/commentary cycle requested. Remaining schema meanings and natural progression questions do not create new structural prerequisites.
+
+Progression checklist reviewed: representative later stages/rooms and artificial terminal congratulations/text/password/Start route already recorded. Natural boss defeat, natural ending and alternate cycles remain uncertain, without a new supported residual recipe. No unchanged runtime replay, new execution coverage, exhaustive-gameplay or compatibility claim.
+
+No new toolkit issues found; persistent [NES-001](toolkit-issues.md) remains nonblocking. Input/map/state/source/toolkit unchanged; no archive,cleanup,deletion/publication. Bounded saved evidence used; free disk11GiB and redirect tree137MiB before handoff. Work is incomplete; workflow terminal assessment is separate from ROM completion and pending final editorial acceptance.
