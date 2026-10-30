@@ -1,0 +1,11 @@
+# Round 003 commentary
+
+Prior commentary is preserved in full at analysis/round-003/commentary-pass-002-preserved, including its historical preservation subtree. Carried6030exact physical source blocks,6039scaffold reviews and291meaningful units. Corrected local carry emission parsing after saved failed variants; successful carry rebuilt byte-identically. No sole prior source was overwritten.
+
+Read all1237new instructions across39runs and added104functional routine/continuation notes. Reviewed all new noncode consumers/formats/pattern backing and12unknown fragments. Source now names conditional object/pose/action handlers, active versus parser pointers, caller-abort timer/contact paths, scene and multipart tuple formats, bank8 duplicate helpers with inline palette and Code seed, sound command backing and bounded small helpers. Reconciled affected older comments and symbolic ROM aliases with physical bank context. Kept original game identities, curve generators and global selector domains uncertain. The nine-byte scene gap is generic sprite-like backing, not an invented complete record.
+
+Coherent code and data batches passed byte-identical verification. Dependency/symbol batch passed at source SHAb3425a0451f279ca22b403d791ccaaa3817d42884fcdc1982eb28319ba4532d9. Final prose/location/unit-bound reconciliation applied; final verification and reading refresh are the current operation. No readability ranges remain pending; phase handoff will record the fresh result. Final editorial audit stays pending.
+
+No ROM, classification, map or toolkit edits. No archive, cleanup, deletion, publication or sharing. Existing NES-001/NES-002 unchanged; no new toolkit findings or blockers. All generated source and assets stay local.
+
+Final verification passed byte-identically at source SHA408586980be87e03bfda1d358372af93e26f014b557a102a84795eed1dda6618. reading-after.asm refreshed. All7443scaffold entries and559units reviewed;291priorunits retained. Empty readability backlog. Final editorial audit remains pending; no audit invoked. Complete scope and limits: analysis/round-003-commentary-scope.json. Nextphase redirect via analysis/round-003-commentary-handoff.json. Classification remains130973/131088(99.91%),115unknown bytes in12fragments.

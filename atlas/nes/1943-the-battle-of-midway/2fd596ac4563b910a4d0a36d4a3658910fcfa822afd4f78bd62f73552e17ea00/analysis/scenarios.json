@@ -1,0 +1,4493 @@
+{
+  "version": 1,
+  "pass": "round-001-disassembly",
+  "notes": [
+    "All inputs are whole held-button sets; buttons:[] explicitly releases. Early button/pressed calls were no-ops and are retained as rejected input schema, not executed gameplay.",
+    "Snapshots are same-build local artifacts; restore resets inputs, reassert intended buttons. Trace clear performed at branching; per-scenario contexts saved before clear.",
+    "Most 300/600-frame launch/prologue waits disable tracing; short before/after gameplay intervals enable bounded aggregates capacity0. No execution evidence is claimed for untraced intervals."
+  ],
+  "action_log": [
+    {
+      "log_line": 3,
+      "method": "emulator.start",
+      "params": {},
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            0,
+            1,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 0,
+        "frames": 0,
+        "main": {
+          "a": 0,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 36,
+          "pc": 49481,
+          "stack": 253,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 7,
+      "method": "trace.configure",
+      "params": {
+        "enabled": true,
+        "capacity": 10000,
+        "kinds": [
+          "Instruction",
+          "BankSwitch"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 8,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 180,
+        "max_operations": 20000000,
+        "timeout_ms": 15000
+      },
+      "result": null,
+      "error": {
+        "code": -32000,
+        "message": "execution timeout"
+      }
+    },
+    {
+      "log_line": 9,
+      "method": "emulator.state",
+      "params": {},
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 2356269,
+        "frames": 79,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49611,
+          "stack": 251,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 13,
+      "method": "emulator.input",
+      "params": {
+        "button": "start",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 14,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 2,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 2409950,
+        "frames": 81,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 36,
+          "pc": 49610,
+          "stack": 251,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 15,
+      "method": "emulator.input",
+      "params": {
+        "button": "start",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 16,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 40,
+        "max_operations": 10000000,
+        "timeout_ms": 15000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 3601170,
+        "frames": 121,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 36,
+          "pc": 49610,
+          "stack": 251,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 19,
+      "method": "trace.configure",
+      "params": {
+        "capacity": 0
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 21,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 50,
+        "max_operations": 10000000,
+        "timeout_ms": 15000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 5090195,
+        "frames": 171,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 36,
+          "pc": 49610,
+          "stack": 251,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 23,
+      "method": "trace.configure",
+      "params": {
+        "enabled": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 24,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 300,
+        "max_operations": 20000000,
+        "timeout_ms": 15000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 14024347,
+        "frames": 471,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49612,
+          "stack": 249,
+          "x": 1,
+          "y": 2
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 26,
+      "method": "trace.configure",
+      "params": {
+        "enabled": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 32,
+      "method": "emulator.input",
+      "params": {
+        "button": "start",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 33,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 2,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 14083908,
+        "frames": 473,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 36,
+          "pc": 49612,
+          "stack": 249,
+          "x": 1,
+          "y": 2
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 34,
+      "method": "emulator.input",
+      "params": {
+        "button": "start",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 35,
+      "method": "trace.configure",
+      "params": {
+        "enabled": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 36,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 600,
+        "max_operations": 30000000,
+        "timeout_ms": 15000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 31952208,
+        "frames": 1073,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 36,
+          "pc": 49610,
+          "stack": 249,
+          "x": 1,
+          "y": 2
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 38,
+      "method": "trace.configure",
+      "params": {
+        "enabled": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 39,
+      "method": "trace.configure",
+      "params": {
+        "enabled": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 40,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 600,
+        "max_operations": 30000000,
+        "timeout_ms": 15000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 49820508,
+        "frames": 1673,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49614,
+          "stack": 249,
+          "x": 120,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 41,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 600,
+        "max_operations": 30000000,
+        "timeout_ms": 15000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 67688808,
+        "frames": 2273,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49612,
+          "stack": 249,
+          "x": 1,
+          "y": 8
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 43,
+      "method": "trace.configure",
+      "params": {
+        "enabled": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2007,
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2008,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 3,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 67778150,
+        "frames": 2276,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 36,
+          "pc": 49610,
+          "stack": 249,
+          "x": 1,
+          "y": 8
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2009,
+      "method": "emulator.input",
+      "params": {
+        "button": "a",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2011,
+      "method": "emulator.snapshot.save",
+      "params": {
+        "name": "prologue"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2012,
+      "method": "emulator.snapshot.export",
+      "params": {
+        "name": "prologue",
+        "path": "analysis/evidence/prologue.snapshot"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2202,
+      "method": "emulator.input",
+      "params": {
+        "button": "start",
+        "pressed": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2203,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 10,
+        "max_operations": 1000000,
+        "timeout_ms": 4000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 68075955,
+        "frames": 2286,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49613,
+          "stack": 249,
+          "x": 1,
+          "y": 8
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2205,
+      "method": "emulator.input",
+      "params": {
+        "button": "start",
+        "pressed": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2206,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 10,
+        "max_operations": 1000000,
+        "timeout_ms": 4000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 68373760,
+        "frames": 2296,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 36,
+          "pc": 49610,
+          "stack": 249,
+          "x": 1,
+          "y": 8
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2208,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "start"
+        ],
+        "port": 1
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2209,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 3,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 68463101,
+        "frames": 2299,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 37,
+          "pc": 49610,
+          "stack": 249,
+          "x": 32,
+          "y": 130
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2210,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [],
+        "port": 1
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2211,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 30,
+        "max_operations": 3000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 69356518,
+        "frames": 2329,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49614,
+          "stack": 251,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2221,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "start"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2222,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 3,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            2,
+            3,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 69445860,
+        "frames": 2332,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49614,
+          "stack": 247,
+          "x": 0,
+          "y": 32
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2223,
+      "method": "emulator.input",
+      "params": {
+        "buttons": []
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2224,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 40,
+        "max_operations": 3000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 70637086,
+        "frames": 2372,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49612,
+          "stack": 249,
+          "x": 6,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2226,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "start"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2227,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 3,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 70726428,
+        "frames": 2375,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49613,
+          "stack": 249,
+          "x": 6,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2228,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "a"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2229,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 40,
+        "max_operations": 3000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 71917653,
+        "frames": 2415,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 37,
+          "pc": 49612,
+          "stack": 248,
+          "x": 0,
+          "y": 2
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2231,
+      "method": "trace.configure",
+      "params": {
+        "enabled": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2232,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 300,
+        "max_operations": 20000000,
+        "timeout_ms": 15000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 80851803,
+        "frames": 2715,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 36,
+          "pc": 49612,
+          "stack": 249,
+          "x": 8,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2233,
+      "method": "trace.configure",
+      "params": {
+        "enabled": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2234,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 2000000,
+        "timeout_ms": 8000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 81447413,
+        "frames": 2735,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49612,
+          "stack": 249,
+          "x": 8,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2237,
+      "method": "emulator.snapshot.save",
+      "params": {
+        "name": "flight"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2238,
+      "method": "emulator.snapshot.export",
+      "params": {
+        "path": "analysis/evidence/flight.snapshot"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2311,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "right"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2312,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 30,
+        "max_operations": 3000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 82340828,
+        "frames": 2765,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 36,
+          "pc": 49610,
+          "stack": 249,
+          "x": 8,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2313,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "start"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2314,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 3,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 82430169,
+        "frames": 2768,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49613,
+          "stack": 249,
+          "x": 8,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2315,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "a"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2316,
+      "method": "trace.configure",
+      "params": {
+        "enabled": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2317,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 300,
+        "max_operations": 20000000,
+        "timeout_ms": 15000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 91364319,
+        "frames": 3068,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49611,
+          "stack": 249,
+          "x": 8,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2318,
+      "method": "trace.configure",
+      "params": {
+        "enabled": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2319,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 30,
+        "max_operations": 3000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 92257734,
+        "frames": 3098,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49612,
+          "stack": 249,
+          "x": 8,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2321,
+      "method": "emulator.input",
+      "params": {
+        "buttons": []
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2322,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 2,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 92317295,
+        "frames": 3100,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 36,
+          "pc": 49612,
+          "stack": 249,
+          "x": 8,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2323,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "right"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2324,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 2,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 92376856,
+        "frames": 3102,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49614,
+          "stack": 249,
+          "x": 8,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2325,
+      "method": "emulator.input",
+      "params": {
+        "buttons": []
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2326,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 2,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 92436417,
+        "frames": 3104,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49612,
+          "stack": 249,
+          "x": 8,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2327,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "right"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2328,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 2,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 92495978,
+        "frames": 3106,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 36,
+          "pc": 49610,
+          "stack": 249,
+          "x": 8,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2329,
+      "method": "emulator.input",
+      "params": {
+        "buttons": []
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2330,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 2,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 92555539,
+        "frames": 3108,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 36,
+          "pc": 49612,
+          "stack": 249,
+          "x": 8,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2331,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "right"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2332,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 2,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 92615100,
+        "frames": 3110,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49611,
+          "stack": 249,
+          "x": 8,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2333,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "start"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2334,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 3,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 92704442,
+        "frames": 3113,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 36,
+          "pc": 49610,
+          "stack": 249,
+          "x": 8,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2335,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "a"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2336,
+      "method": "trace.configure",
+      "params": {
+        "enabled": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2337,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 300,
+        "max_operations": 20000000,
+        "timeout_ms": 15000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 101638592,
+        "frames": 3413,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49612,
+          "stack": 249,
+          "x": 8,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2338,
+      "method": "trace.configure",
+      "params": {
+        "enabled": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2339,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 30,
+        "max_operations": 3000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 102532007,
+        "frames": 3443,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49614,
+          "stack": 249,
+          "x": 8,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2341,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "a",
+          "right"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2342,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 3,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 102621348,
+        "frames": 3446,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49611,
+          "stack": 249,
+          "x": 8,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2344,
+      "method": "emulator.input",
+      "params": {
+        "buttons": []
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2345,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 3,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 102710690,
+        "frames": 3449,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 36,
+          "pc": 49610,
+          "stack": 249,
+          "x": 8,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2351,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "up"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2352,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 3,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 102800031,
+        "frames": 3452,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 36,
+          "pc": 49612,
+          "stack": 249,
+          "x": 8,
+          "y": 8
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2353,
+      "method": "emulator.input",
+      "params": {
+        "buttons": []
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2354,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 3,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 102889373,
+        "frames": 3455,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49614,
+          "stack": 249,
+          "x": 8,
+          "y": 8
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2902,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "b"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2903,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 2,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 102948934,
+        "frames": 3457,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49613,
+          "stack": 249,
+          "x": 8,
+          "y": 128
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2904,
+      "method": "emulator.input",
+      "params": {
+        "buttons": []
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2905,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 2,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 103008495,
+        "frames": 3459,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49613,
+          "stack": 249,
+          "x": 8,
+          "y": 8
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2906,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "b"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2907,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 2,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 103068056,
+        "frames": 3461,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49614,
+          "stack": 249,
+          "x": 8,
+          "y": 130
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2908,
+      "method": "emulator.input",
+      "params": {
+        "buttons": []
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2909,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 2,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 103127617,
+        "frames": 3463,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49611,
+          "stack": 249,
+          "x": 8,
+          "y": 8
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2910,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "b"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2911,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 2,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 103187178,
+        "frames": 3465,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49614,
+          "stack": 249,
+          "x": 8,
+          "y": 132
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2912,
+      "method": "emulator.input",
+      "params": {
+        "buttons": []
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2913,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 2,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 103246739,
+        "frames": 3467,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 100,
+          "pc": 49611,
+          "stack": 246,
+          "x": 2,
+          "y": 138
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2914,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "start"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2915,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 3,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 103336080,
+        "frames": 3470,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49614,
+          "stack": 249,
+          "x": 128,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2916,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "b"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2917,
+      "method": "trace.configure",
+      "params": {
+        "enabled": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2918,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 300,
+        "max_operations": 20000000,
+        "timeout_ms": 15000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 112270240,
+        "frames": 3770,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49611,
+          "stack": 251,
+          "x": 0,
+          "y": 3
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2919,
+      "method": "trace.configure",
+      "params": {
+        "enabled": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2920,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 40,
+        "max_operations": 3000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 113461460,
+        "frames": 3810,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49613,
+          "stack": 251,
+          "x": 0,
+          "y": 3
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2981,
+      "method": "emulator.snapshot.save",
+      "params": {
+        "name": "stage1-entry"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2982,
+      "method": "emulator.snapshot.export",
+      "params": {
+        "path": "analysis/evidence/stage1-entry.snapshot"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2984,
+      "method": "trace.configure",
+      "params": {
+        "enabled": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2985,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 600,
+        "max_operations": 30000000,
+        "timeout_ms": 15000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            10,
+            11,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 131329760,
+        "frames": 4410,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49614,
+          "stack": 253,
+          "x": 6,
+          "y": 80
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2986,
+      "method": "trace.configure",
+      "params": {
+        "enabled": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2987,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 40,
+        "max_operations": 3000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            10,
+            11,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 132520980,
+        "frames": 4450,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49611,
+          "stack": 253,
+          "x": 6,
+          "y": 80
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2990,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "b",
+          "right"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2991,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 25,
+        "max_operations": 3000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            10,
+            11,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 133265493,
+        "frames": 4475,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49613,
+          "stack": 253,
+          "x": 6,
+          "y": 132
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2992,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "a",
+          "left"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2993,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 25,
+        "max_operations": 3000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            10,
+            11,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 134010005,
+        "frames": 4500,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49613,
+          "stack": 253,
+          "x": 6,
+          "y": 184
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 2994,
+      "method": "emulator.input",
+      "params": {
+        "buttons": []
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2995,
+      "method": "emulator.snapshot.save",
+      "params": {
+        "name": "combat1"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 2996,
+      "method": "emulator.snapshot.export",
+      "params": {
+        "path": "analysis/evidence/combat1.snapshot"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3010,
+      "method": "emulator.snapshot.load",
+      "params": {
+        "name": "flight"
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 81447413,
+        "frames": 2735,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49612,
+          "stack": 249,
+          "x": 8,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3011,
+      "method": "trace.clear",
+      "params": {},
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3012,
+      "method": "emulator.input",
+      "params": {
+        "buttons": []
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3013,
+      "method": "emulator.memory.write",
+      "params": {
+        "space": "ram",
+        "address": 156,
+        "bytes": [
+          11
+        ]
+      },
+      "result": {
+        "artificial": true,
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3014,
+      "method": "emulator.memory.write",
+      "params": {
+        "space": "ram",
+        "address": 839,
+        "bytes": [
+          0
+        ]
+      },
+      "result": {
+        "artificial": true,
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3015,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "start"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3016,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 3,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 81536754,
+        "frames": 2738,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49612,
+          "stack": 249,
+          "x": 0,
+          "y": 2
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3017,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "b"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3018,
+      "method": "trace.configure",
+      "params": {
+        "enabled": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3019,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 600,
+        "max_operations": 30000000,
+        "timeout_ms": 15000
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 99405054,
+        "frames": 3338,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 36,
+          "pc": 49610,
+          "stack": 249,
+          "x": 128,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3020,
+      "method": "trace.configure",
+      "params": {
+        "enabled": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3021,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 40,
+        "max_operations": 3000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 100596274,
+        "frames": 3378,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49612,
+          "stack": 249,
+          "x": 128,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3024,
+      "method": "emulator.input",
+      "params": {
+        "buttons": []
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3025,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 2,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 100655835,
+        "frames": 3380,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 36,
+          "pc": 49612,
+          "stack": 249,
+          "x": 128,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3026,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "start"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3027,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 3,
+        "max_operations": 1000000,
+        "timeout_ms": 3000
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 100745177,
+        "frames": 3383,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49614,
+          "stack": 249,
+          "x": 128,
+          "y": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3028,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "b"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3029,
+      "method": "trace.configure",
+      "params": {
+        "enabled": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3030,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 600,
+        "max_operations": 30000000,
+        "timeout_ms": 15000
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            10,
+            11,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 118613486,
+        "frames": 3983,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49613,
+          "stack": 253,
+          "x": 6,
+          "y": 96
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3031,
+      "method": "trace.configure",
+      "params": {
+        "enabled": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3032,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 40,
+        "max_operations": 3000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            10,
+            11,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 119804706,
+        "frames": 4023,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49614,
+          "stack": 253,
+          "x": 6,
+          "y": 96
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3039,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "a",
+          "right"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3040,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 25,
+        "max_operations": 3000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            10,
+            11,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 120549219,
+        "frames": 4048,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49614,
+          "stack": 253,
+          "x": 6,
+          "y": 132
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3041,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "b",
+          "left"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3042,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 25,
+        "max_operations": 3000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            10,
+            11,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 121293731,
+        "frames": 4073,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49614,
+          "stack": 253,
+          "x": 6,
+          "y": 224
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3043,
+      "method": "emulator.input",
+      "params": {
+        "buttons": []
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3045,
+      "method": "emulator.snapshot.save",
+      "params": {
+        "name": "stage12"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3046,
+      "method": "emulator.snapshot.export",
+      "params": {
+        "path": "analysis/evidence/stage12.snapshot"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3052,
+      "method": "trace.configure",
+      "params": {
+        "enabled": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3053,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 300,
+        "max_operations": 20000000,
+        "timeout_ms": 15000
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            10,
+            11,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 130227881,
+        "frames": 4373,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 36,
+          "pc": 49612,
+          "stack": 253,
+          "x": 6,
+          "y": 16
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3054,
+      "method": "trace.configure",
+      "params": {
+        "enabled": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3055,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 30,
+        "max_operations": 3000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            10,
+            11,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 131121296,
+        "frames": 4403,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49612,
+          "stack": 253,
+          "x": 6,
+          "y": 128
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3066,
+      "method": "emulator.snapshot.load",
+      "params": {
+        "name": "stage1-entry"
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 113461460,
+        "frames": 3810,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49613,
+          "stack": 251,
+          "x": 0,
+          "y": 3
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3067,
+      "method": "trace.clear",
+      "params": {},
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3068,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "b"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3069,
+      "method": "emulator.memory.write",
+      "params": {
+        "space": "ram",
+        "address": 1813,
+        "bytes": [
+          22
+        ]
+      },
+      "result": {
+        "artificial": true,
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3070,
+      "method": "trace.configure",
+      "params": {
+        "enabled": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3071,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 600,
+        "max_operations": 30000000,
+        "timeout_ms": 15000
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            10,
+            11,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 131329760,
+        "frames": 4410,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 36,
+          "pc": 49612,
+          "stack": 253,
+          "x": 6,
+          "y": 32
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3072,
+      "method": "trace.configure",
+      "params": {
+        "enabled": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3073,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 40,
+        "max_operations": 3000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            10,
+            11,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 132520980,
+        "frames": 4450,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49613,
+          "stack": 253,
+          "x": 6,
+          "y": 32
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3076,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "a",
+          "right"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3077,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 3000000,
+        "timeout_ms": 8000
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            10,
+            11,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 133116590,
+        "frames": 4470,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49611,
+          "stack": 253,
+          "x": 6,
+          "y": 4
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3078,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "b",
+          "left"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3079,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 20,
+        "max_operations": 3000000,
+        "timeout_ms": 8000
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            10,
+            11,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 133712200,
+        "frames": 4490,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49611,
+          "stack": 253,
+          "x": 6,
+          "y": 32
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3080,
+      "method": "emulator.snapshot.save",
+      "params": {
+        "name": "midgame"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3081,
+      "method": "emulator.snapshot.export",
+      "params": {
+        "path": "analysis/evidence/midgame.snapshot"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3087,
+      "method": "emulator.snapshot.load",
+      "params": {
+        "name": "stage1-entry"
+      },
+      "result": {
+        "artificial": false,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 113461460,
+        "frames": 3810,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49613,
+          "stack": 251,
+          "x": 0,
+          "y": 3
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3088,
+      "method": "trace.clear",
+      "params": {},
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3089,
+      "method": "emulator.input",
+      "params": {
+        "buttons": [
+          "b"
+        ]
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3090,
+      "method": "emulator.memory.write",
+      "params": {
+        "space": "ram",
+        "address": 1813,
+        "bytes": [
+          47
+        ]
+      },
+      "result": {
+        "artificial": true,
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3091,
+      "method": "trace.configure",
+      "params": {
+        "enabled": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3092,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 600,
+        "max_operations": 30000000,
+        "timeout_ms": 15000
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            10,
+            11,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 131329760,
+        "frames": 4410,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49612,
+          "stack": 253,
+          "x": 6,
+          "y": 120
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3093,
+      "method": "trace.configure",
+      "params": {
+        "enabled": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3094,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 30,
+        "max_operations": 3000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 132223175,
+        "frames": 4440,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 37,
+          "pc": 49613,
+          "stack": 253,
+          "x": 112,
+          "y": 90
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3100,
+      "method": "emulator.snapshot.save",
+      "params": {
+        "name": "final-combat"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3101,
+      "method": "emulator.snapshot.export",
+      "params": {
+        "path": "analysis/evidence/final-combat.snapshot"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3105,
+      "method": "emulator.input",
+      "params": {
+        "buttons": []
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3106,
+      "method": "emulator.step",
+      "params": {
+        "unit": "operation",
+        "count": 1,
+        "max_operations": 1000,
+        "timeout_ms": 1000
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 132223180,
+        "frames": 4440,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 37,
+          "pc": 49612,
+          "stack": 253,
+          "x": 112,
+          "y": 90
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3107,
+      "method": "emulator.memory.write",
+      "params": {
+        "space": "ram",
+        "address": 78,
+        "bytes": [
+          0
+        ]
+      },
+      "result": {
+        "artificial": true,
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3108,
+      "method": "emulator.memory.write",
+      "params": {
+        "space": "ram",
+        "address": 48,
+        "bytes": [
+          0
+        ]
+      },
+      "result": {
+        "artificial": true,
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3109,
+      "method": "emulator.registers.set",
+      "params": {
+        "registers": {
+          "pc": 64064,
+          "stack": 253
+        }
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 132223180,
+        "frames": 4440,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 37,
+          "pc": 64064,
+          "stack": 253,
+          "x": 112,
+          "y": 90
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3110,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 30,
+        "max_operations": 3000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 133116590,
+        "frames": 4470,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 36,
+          "pc": 49612,
+          "stack": 244,
+          "x": 0,
+          "y": 2
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3112,
+      "method": "trace.configure",
+      "params": {
+        "enabled": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3113,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 600,
+        "max_operations": 30000000,
+        "timeout_ms": 15000
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 150984890,
+        "frames": 5070,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 37,
+          "pc": 49610,
+          "stack": 246,
+          "x": 36,
+          "y": 132
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3114,
+      "method": "trace.configure",
+      "params": {
+        "enabled": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3115,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 30,
+        "max_operations": 3000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 151878305,
+        "frames": 5100,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 37,
+          "pc": 49610,
+          "stack": 246,
+          "x": 36,
+          "y": 132
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3123,
+      "method": "emulator.snapshot.save",
+      "params": {
+        "name": "ending"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3124,
+      "method": "emulator.snapshot.export",
+      "params": {
+        "path": "analysis/evidence/ending.snapshot"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3126,
+      "method": "emulator.snapshot.load",
+      "params": {
+        "name": "final-combat"
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 132223175,
+        "frames": 4440,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 37,
+          "pc": 49613,
+          "stack": 253,
+          "x": 112,
+          "y": 90
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3127,
+      "method": "trace.clear",
+      "params": {},
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3128,
+      "method": "emulator.input",
+      "params": {
+        "buttons": []
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3129,
+      "method": "emulator.step",
+      "params": {
+        "unit": "operation",
+        "count": 1,
+        "max_operations": 1000,
+        "timeout_ms": 1000
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 132223180,
+        "frames": 4440,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 37,
+          "pc": 49612,
+          "stack": 253,
+          "x": 112,
+          "y": 90
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3130,
+      "method": "emulator.memory.write",
+      "params": {
+        "space": "ram",
+        "address": 1849,
+        "bytes": [
+          0
+        ]
+      },
+      "result": {
+        "artificial": true,
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3131,
+      "method": "emulator.memory.write",
+      "params": {
+        "space": "ram",
+        "address": 1840,
+        "bytes": [
+          48
+        ]
+      },
+      "result": {
+        "artificial": true,
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3132,
+      "method": "emulator.memory.write",
+      "params": {
+        "space": "ram",
+        "address": 48,
+        "bytes": [
+          0
+        ]
+      },
+      "result": {
+        "artificial": true,
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3133,
+      "method": "emulator.registers.set",
+      "params": {
+        "registers": {
+          "pc": 62785,
+          "stack": 253
+        }
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 132223180,
+        "frames": 4440,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 37,
+          "pc": 62785,
+          "stack": 253,
+          "x": 112,
+          "y": 90
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3134,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 30,
+        "max_operations": 3000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 133116591,
+        "frames": 4470,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49613,
+          "stack": 249,
+          "x": 0,
+          "y": 2
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3136,
+      "method": "trace.configure",
+      "params": {
+        "enabled": false
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3137,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 600,
+        "max_operations": 30000000,
+        "timeout_ms": 15000
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            2,
+            3,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 150984894,
+        "frames": 5070,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 36,
+          "pc": 49610,
+          "stack": 247,
+          "x": 0,
+          "y": 32
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 3138,
+      "method": "trace.configure",
+      "params": {
+        "enabled": true
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "log_line": 3139,
+      "method": "emulator.step",
+      "params": {
+        "unit": "frame",
+        "count": 30,
+        "max_operations": 3000000,
+        "timeout_ms": 10000
+      },
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            10,
+            11,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 151878309,
+        "frames": 5100,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49614,
+          "stack": 251,
+          "x": 6,
+          "y": 232
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 7005,
+      "method": "emulator.state",
+      "params": {},
+      "result": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            10,
+            11,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 151878309,
+        "frames": 5100,
+        "main": {
+          "a": 1,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 36,
+          "pc": 49614,
+          "stack": 251,
+          "x": 6,
+          "y": 232
+        }
+      },
+      "error": null
+    },
+    {
+      "log_line": 7007,
+      "method": "emulator.snapshot.export",
+      "params": {
+        "path": "analysis/evidence/final-live.snapshot"
+      },
+      "result": {
+        "ok": true
+      },
+      "error": null
+    }
+  ],
+  "progression_checklist": [
+    {
+      "milestone": "Title/attract/prologue",
+      "status": "visited",
+      "route": "Startup 79 frames; early no-op inputs let attract run. Correct Start press/release at2296\u20132329 returns title.",
+      "evidence": [
+        "analysis/evidence/startup.ppm",
+        "analysis/evidence/actual-start.ppm"
+      ]
+    },
+    {
+      "milestone": "Upgrade allocation",
+      "status": "visited",
+      "route": "Start from title; wait for upgrade screen. Up/down selects attribute, B edge allocates; three press/release B pairs spend3 points. Start/B accepts YES confirmation.",
+      "snapshot": "analysis/evidence/flight.snapshot",
+      "evidence": [
+        "analysis/evidence/flight.ppm",
+        "analysis/evidence/upgrade-up.ppm",
+        "analysis/evidence/upgrade-listing.txt"
+      ]
+    },
+    {
+      "milestone": "Stage1 launch/combat",
+      "status": "visited",
+      "route": "Natural upgrade and confirmation; launch snapshot frame3810. Wait600 frames, trace40; B+Right25, A+Left25.",
+      "snapshot": "analysis/evidence/combat1.snapshot",
+      "evidence": [
+        "analysis/evidence/stage1-flight2.ppm",
+        "analysis/evidence/combat1.ppm",
+        "analysis/evidence/contexts-combat1.json"
+      ]
+    },
+    {
+      "milestone": "Later-stage shortcut wrong selector",
+      "status": "attempted",
+      "patches": [
+        {
+          "space": "ram",
+          "address": 156,
+          "bytes": [
+            11
+          ]
+        },
+        {
+          "space": "ram",
+          "address": 839,
+          "bytes": [
+            0
+          ]
+        }
+      ],
+      "route": "Restore flight upgrade snapshot, release buttons, patches, Start/B confirmation, launch.",
+      "observed": "$9C was reset to0 during supported launch. Reject $9C as stage selector; earlier filenames stage12-attempt/stage12.snapshot are historical failed experiment names.",
+      "retry": "Only with changed selector contract; corrected $0715 route below."
+    },
+    {
+      "milestone": "Midgame stage12 state",
+      "status": "attempted",
+      "route": "Restore stage1-entry launch snapshot; clear trace, B held, RAM $0715=22,600 frames untraced then40 traced; A+Right20/B+Left20.",
+      "patches": [
+        {
+          "space": "ram",
+          "address": 1813,
+          "bytes": [
+            22
+          ]
+        }
+      ],
+      "snapshot": "analysis/evidence/midgame.snapshot",
+      "observed": "Selector22 preserved, independently proven password-derived stage*2 variable; background stream pointers change. Flight/combat code runs. No stage title seen and not a full naturally reached stage12 visit; artificial state only.",
+      "evidence": [
+        "analysis/evidence/password-decoder-static.json",
+        "analysis/evidence/password-transition-decode.json",
+        "analysis/evidence/stage12-real.ppm",
+        "analysis/evidence/midgame-combat.ppm",
+        "analysis/evidence/contexts-midgame.json"
+      ]
+    },
+    {
+      "milestone": "Final stage/boss state",
+      "status": "attempted",
+      "route": "Restore stage1-entry; clear trace, B held, RAM $0715=47;600 untraced+30 traced frames.",
+      "patches": [
+        {
+          "space": "ram",
+          "address": 1813,
+          "bytes": [
+            47
+          ]
+        }
+      ],
+      "snapshot": "analysis/evidence/final-combat.snapshot",
+      "observed": "Selector47 preserved, final-phase discriminator in $F5D4..$F5E4; enemies and GAME OVER appear. No boss visit established.",
+      "evidence": [
+        "analysis/evidence/final-attempt.ppm",
+        "analysis/evidence/contexts-final-combat.json",
+        "analysis/evidence/stage-transition-static.json"
+      ]
+    },
+    {
+      "milestone": "Ending/credits",
+      "status": "attempted",
+      "route": "Restore final-combat; at operation boundary artificial PC=$FA40,SP=$FD, RAM$4E=0,$30=0;30 traced+600 untraced+30 traced.",
+      "observed": "Execution reaches ending-script path, but display stripes; does not establish ending screen visited. Revised preparation from full result entry $F541 with $0739=0,$0730=$30,$30=0 underway; exact all actions preserved in action_log.",
+      "evidence": [
+        "analysis/evidence/ending-entry-static.json",
+        "analysis/evidence/ending-script-static.json",
+        "analysis/evidence/ending-message.ppm"
+      ],
+      "historical_attempt": true,
+      "superseded_by": "Final ending screen through full result contract",
+      "current_resolution": "Old direct-entry failure preserved; later complete initializer succeeded. No preparation is currently underway."
+    },
+    {
+      "milestone": "Representative bosses and ending text",
+      "status": "attempted",
+      "reason": "The earlier missing phase-init prerequisite was resolved by full $F3FB initialization and the $F541 result contract. Final-phase waves/ship/terrain/large-aircraft encounters and ending text were visited artificially; actual boss identity/defeat and natural route remain unproved. See the separate visited records and natural-route deferral below.",
+      "historical_status": "deferred",
+      "historical_reason": "Requires supported phase-init/checkpoint contract or password-based complete initialization; direct final state/ending jump did not display representative boss/terminal scene. Concrete redirect lead, no exhaustive RAM brute force.",
+      "superseded_by": [
+        "Final ending screen through full result contract",
+        "Initialized final-phase representative encounters",
+        "Natural late boss and ending route"
+      ]
+    },
+    {
+      "milestone": "Final ending screen through full result contract",
+      "status": "visited",
+      "artificial": true,
+      "natural_reachability": false,
+      "route": "analysis/redirect/round001-20261030/runtime-actions.json",
+      "observed": "CONGRATULATIONS! MISSION24 CLEAR; destroyed TOKAKU; victory. Complete setup via$F541 with phase47 and equal tallies produces result-zero path.",
+      "snapshot": "analysis/redirect/round001-20261030/ending-revised.snapshot",
+      "evidence": [
+        "analysis/redirect/round001-20261030/ending-revised-2.ppm",
+        "analysis/redirect/round001-20261030/ending-observed-contexts.json",
+        "analysis/redirect/round001-20261030/ending-final-state.json"
+      ]
+    },
+    {
+      "milestone": "Initialized final-phase representative encounters",
+      "status": "visited",
+      "artificial": true,
+      "natural_reachability": false,
+      "route": "analysis/redirect/round001-20261030/runtime-actions.json",
+      "observed": "Full phase initializer$F3FB with47 and resource999, then bounded speed edits. Waves, ship/terrain, large aircraft and scroll stop; movement/fire/special exercised. No natural boss or complete boss-defeat claim.",
+      "snapshot": "analysis/redirect/round001-20261030/final-boss-wait.snapshot",
+      "evidence": [
+        "analysis/redirect/round001-20261030/final-accelerated-1.ppm",
+        "analysis/redirect/round001-20261030/final-accelerated-3.ppm",
+        "analysis/redirect/round001-20261030/final-boss-active.ppm",
+        "analysis/redirect/round001-20261030/final-boss-special.ppm",
+        "analysis/redirect/round001-20261030/final-boss-observed-contexts.json"
+      ]
+    },
+    {
+      "milestone": "Natural late boss and ending route",
+      "status": "deferred",
+      "reason": "Artificial representative final-phase and ending screens now visited; no supported natural progression replay or final boss-defeat contract. Further long waits at camera$0618 became repetitive after bounded special/movement experiment; forced PC/fetch would not establish natural use. No exhaustive game completion attempted.",
+      "evidence": [
+        "analysis/redirect/round001-20261030/runtime-actions.json"
+      ]
+    }
+  ],
+  "redirect_attempts": [
+    {
+      "id": "round001-20261030",
+      "phase": "redirect",
+      "input_checkpoint": "pass-001-final",
+      "action_log": "analysis/redirect/round001-20261030/runtime-actions.json",
+      "ending_recipe": {
+        "restore": "analysis/evidence/combat1.snapshot",
+        "instruction_boundary": {
+          "unit": "operation",
+          "count": 1,
+          "max_operations": 100,
+          "timeout_ms": 1000
+        },
+        "input": {
+          "buttons": [],
+          "port": 1
+        },
+        "patches": [
+          {
+            "space": "ram",
+            "address": 1813,
+            "bytes": [
+              47
+            ]
+          },
+          {
+            "space": "ram",
+            "address": 1845,
+            "bytes": [
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "space": "ram",
+            "address": 48,
+            "bytes": [
+              0
+            ]
+          }
+        ],
+        "registers": {
+          "pc": 62785,
+          "stack": 253
+        },
+        "budgets": "Traced180-frame call timed out after72 frames (4500\u21924572); inspected state. Disabled trace,300-frame call completed4572\u21924872; further300 completed4872\u21925172. Reimported ending snapshot and10 traced frames for actual ongoing-display fetches. Exact completed state in runtime-actions.json.",
+        "result": "MISSION24 CLEAR / TOKAKU destroyed / victory screen at4872; $0715=47 and $0739=0. Artificial result setup, not natural completion."
+      },
+      "progression_recipe": {
+        "restore": "analysis/evidence/combat1.snapshot",
+        "patches": [
+          {
+            "space": "ram",
+            "address": 1813,
+            "bytes": [
+              47
+            ]
+          },
+          {
+            "space": "ram",
+            "address": 1040,
+            "bytes": [
+              9,
+              9,
+              9
+            ]
+          }
+        ],
+        "registers": {
+          "pc": 62459,
+          "stack": 253
+        },
+        "entry_contract": "Actual per-phase initializer calls resource/player setup, pool reset, $D04C initializes both stage streams, then background/main loop. Not the rejected mid-launch selector-only patch.",
+        "input_and_budgets": "B300frames4500\u21924800; B+Right20, B+Left20, B300\u21925140. Save pre-speed snapshot. Patch $070A/$070B=[4,0] before each300-frame call5140\u21925440\u21925740\u21926040. Script overwrites speed; no arbitrary target-coordinate patch. Wait300\u21926340; trace10 B+Right\u21926350; A+B20, B+Left20, B180\u21926570. All max_operations/timeouts and actual results preserved.",
+        "result": "Initialized phase47 persists, distinct waves, ship/terrain encounter, large aircraft with camera stopped$0618, movement/shooting/special input exercised. Large-aircraft identity/natural boss defeat not established."
+      },
+      "status": "complete; ready combined structural batch; natural completion unproved",
+      "handoff": "analysis/handoff-round-001-redirect.md"
+    },
+    {
+      "id": "round002-20261030",
+      "phase": "redirect",
+      "input_checkpoint": "pass-002-final",
+      "status": "review_complete; no new runtime",
+      "reused_action_log": "analysis/redirect/round001-20261030/runtime-actions.json",
+      "review": "analysis/redirect/round002-20261030/rejection-review.md",
+      "result": "Successful representative later/final initialization and ending reused. Natural final defeat unproved; camera$0618 unchanged wait/special results retained. No replay of successful ending, failed waits or forced-PC RTS."
+    }
+  ],
+  "terminal_progression_review": {
+    "checkpoint": "pass-002-final",
+    "source": "analysis/redirect/round002-20261030/rejection-review.md",
+    "status": "representative best-effort coverage reviewed; historical missing-initializer deferral resolved",
+    "natural_final_boss_or_ending_proven": false,
+    "unperformed_concrete_supported_shortcut": null
+  }
+}

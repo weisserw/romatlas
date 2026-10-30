@@ -1,0 +1,172 @@
+{
+  "version": 1,
+  "phase": "round-001-redirect",
+  "input_contract": "NES emulator.input replaces held buttons via buttons array; use [] to release. Earlier button/pressed calls ignored and excluded.",
+  "scenarios": [
+    {
+      "id": "R1-natural-start",
+      "route": [
+        {
+          "buttons": [],
+          "frames": 244,
+          "note": "startup traced64partial then180untraced"
+        },
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 3
+        },
+        {
+          "buttons": [],
+          "frames": 90,
+          "timeout_ms": 15000,
+          "max_operations": 4000000
+        },
+        {
+          "buttons": [
+            "a",
+            "right"
+          ],
+          "frames": 60,
+          "timeout_ms": 12000,
+          "max_operations": 2000000
+        },
+        {
+          "buttons": []
+        }
+      ],
+      "result": "Natural title, running ground/player/HUD; snapshots playing/early-game/natural-game under round-001. Additional title replay Start/release recorded in gameplay.md. Frame deadlines retained partial progress."
+    },
+    {
+      "id": "R1-later-shortcuts",
+      "restore": "round-001/natural-game.snapshot",
+      "operations_before_edit": 1,
+      "context": {
+        "prg_banks": [
+          12,
+          13,
+          14,
+          15
+        ]
+      },
+      "patches": [
+        {
+          "address": 238,
+          "values_tested": [
+            7,
+            8
+          ]
+        }
+      ],
+      "registers": {
+        "pc": 32835
+      },
+      "buttons": [],
+      "frame_budget": 60,
+      "max_operations": 3000000,
+      "timeout_ms": 12000,
+      "result": "EE7 sprite scene changed, uncorroborated later world; EE8 ending-like HI-SC then SQUARE animation after180untracedframes. Artificial only. See frame/RAM artifacts and gameplay.md."
+    },
+    {
+      "id": "R1-redirect-later-supported",
+      "restore": "analysis/round-001/natural-game.snapshot",
+      "context": {
+        "prg_banks": [
+          12,
+          13,
+          14,
+          15
+        ]
+      },
+      "recipe": [
+        "Restore; release buttons; execute20operations past pending NMI (one-operation redirect was consumed by pending NMI).",
+        "Write RAM E2=0; write EE=2 for stage3 or EE=6 for stage7; set PC8FE5 at instruction boundary. INC EE and clear0650/JMP8034 initialize dependent stage pointers/graphics/player/objects.",
+        "Run180frames; state1 intentionally delays respawn until FrameTickLow>=F8. Resume another120frames untraced, then hold A+right60frames and release. Preserve partial timeout results instead of treating failed budgets as complete."
+      ],
+      "observed": "EE3/7, EA/EB F300/F700, E7 8C/9C; distinct bubble/night-city course, player respawn and jump/elevation changes. Actual fetched ROM instructions saved in progression-ready.json contexts and bounded2frame trace summaries; artificial only.",
+      "evidence": [
+        "analysis/redirect/round001-a/progression-after-nmi.json",
+        "analysis/redirect/round001-a/progression-ready.json",
+        "analysis/redirect/round001-a/world4-ready-action.png",
+        "analysis/redirect/round001-a/world8-ready-action.png"
+      ],
+      "status": "visited"
+    }
+  ],
+  "progression_checklist": [
+    {
+      "milestone": "title/start",
+      "status": "visited",
+      "evidence": "round-001/game-correct-input.ppm"
+    },
+    {
+      "milestone": "world1 running and jump/action",
+      "status": "visited",
+      "evidence": "round-001/natural-game.ppm and natural-action.ppm"
+    },
+    {
+      "milestone": "world4",
+      "status": "visited",
+      "reason": "Artificial source-supported transition; pending NMI prerequisite corrected; scene and player action corroborated",
+      "route": "R1-redirect-later-supported",
+      "evidence": "analysis/redirect/round001-a/progression-ready.json and corresponding ready-action.png"
+    },
+    {
+      "milestone": "world8",
+      "status": "visited",
+      "reason": "Artificial source-supported transition; pending NMI prerequisite corrected; scene and player action corroborated",
+      "route": "R1-redirect-later-supported",
+      "evidence": "analysis/redirect/round001-a/progression-ready.json and corresponding ready-action.png"
+    },
+    {
+      "milestone": "boss/bonus mechanics",
+      "status": "deferred",
+      "reason": "Representative later-world object courses and jumps exercised. Boss-specific entry contract still unresolved; object stream E0..FF gate and progression source now under static investigation, no arbitrary state sweep."
+    },
+    {
+      "milestone": "ending branch",
+      "status": "visited",
+      "route": "artificial EE8 PC8043",
+      "evidence": "round-001/ending-later.ppm SQUARE animation; complete credits unverified"
+    }
+  ],
+  "reviews": [
+    {
+      "id": "round003-a",
+      "checkpoint": "pass-003-complete",
+      "status": "reviewed-no-unchanged-replay",
+      "evidence": [
+        "analysis/redirect/round003-a/scoped-review.md",
+        "analysis/redirect/round001-a/ending-follow.json",
+        "analysis/redirect/round001-a/ending-supported.json",
+        "commentary/source/game.asm"
+      ],
+      "result": "World4/world8artificial movement routes and EE7->8actualbank8/9scene already corroborated. Additional540endingframes previously yielded repeatedwait/sound behavior. Current scene8028/802B/802Egraph is closedNMIwait/soundidleloop; no changed progression prerequisite or justified distinctboss/credits shortcut identified. Retain naturalcompletion/terminalscreen uncertainty; no gameplayexhaustion claim."
+    },
+    {
+      "id": "round004-a",
+      "checkpoint": "pass-004-complete",
+      "status": "reviewed-no-unchanged-replay",
+      "evidence": [
+        "analysis/redirect/round004-a/scoped-review.md",
+        "analysis/redirect/round004-a/source-primary-excerpts.md",
+        "analysis/redirect/round001-a/ending-follow.json"
+      ],
+      "result": "Source8BBBjoins alreadytested8FE5progression; EE7->8bank8animation and540additionalframes remainvalidartificialevidence. Reviewed8028wait/soundidleloopgivesnonewterminalcallback. No concretechangedboss/creditsentrycontract; retainnaturalcompletionuncertainty."
+    },
+    {
+      "id": "round005-a",
+      "checkpoint": "pass-005-complete",
+      "status": "reviewed-no-changed-shortcut",
+      "evidence": [
+        "analysis/redirect/round005-a/rejection-review.md",
+        "analysis/redirect/round005-a/gameplay-primary-summary.json",
+        "analysis/redirect/round005-a/source-primary-excerpts.md",
+        "analysis/redirect/round001-a/progression-ready.json",
+        "analysis/redirect/round001-a/ending-follow.json"
+      ],
+      "result": "Actual saved world4/world8 release/A+right actions and bank8 ending540frame followup reviewed. Current8BBB/8FE5 progression and8028wait/sound idle graph supply no changed practical boss/credits prerequisite. No unchanged runtime replay. Boss/bonus and natural/full credits remain unconfirmed; broad best effort only."
+    }
+  ]
+}

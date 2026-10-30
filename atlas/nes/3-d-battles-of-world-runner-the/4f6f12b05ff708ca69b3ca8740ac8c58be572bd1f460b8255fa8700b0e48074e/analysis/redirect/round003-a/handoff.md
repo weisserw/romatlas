@@ -1,0 +1,7 @@
+Round003 redirect complete-ready-batch from unchanged pass-003-complete. Current classification99.9122726718% (130973/131088),115unknown in12fragments. Proposed9bytes only (3Code+6Data), accepted0; if allaccepted106unknown in10fragments.
+
+Ready: R3-bank10-selection (81939..81941, directaccepted8003/8004consumers); R3-main-local-selfloop (98595..98598 closed8113JMP, exclude8110call); R3-generic-phase-pattern (99732..99736 generic00204060, no specificschema). See proposal-batch.json for exactcontexts/recipes and scoped-review.md forprimarycomparisons and remainingdispositions. Independentreview mustjudge allthree, especially shortpattern/selfloopstructural sufficiency.
+
+All obvious connected and independent residualavenues assessed;57/36bytebank10remnants remain code-derivedbutambiguous, first3main8110bytes retaincallbarrier, tinyisolatedbytes retainlocalizedambiguity. Gameplay savedworld4/world8andending540framefollowup crosscheckedwithsceneidleloop; no unchangedreplay. No terminalexhaustion claim or finaleditorialaudit.
+
+ROM/map/source hashes verifiedunchanged; inheritedcurrent-sourcebyteidenticalverification commentary/verification.json and freshreadingcopy remainvalid. leads.json/scenarios/progress appended; researchonly. Configuredtoolkitboundedreadonlydecodes closed, no liveprocesses. No new toolkitissues found; existingNES-001bug/NES-002feature, no blockers. No archive/deletion/cleanup/publication.

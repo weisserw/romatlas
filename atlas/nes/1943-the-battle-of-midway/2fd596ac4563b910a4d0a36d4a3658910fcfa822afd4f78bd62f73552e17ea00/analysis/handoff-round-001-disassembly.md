@@ -1,0 +1,19 @@
+# Round001 disassembly handoff
+
+ROM classification: 67.25% (88154 / 131088 bytes classified; 42934 bytes unknown).
+
+Incomplete. Internal counts:12434 code,22472 data,53248 image. Exact per-8KiB-bank counts and residual intervals: [classification-final.json](evidence/classification-final.json). Header16 bytes included; unknown/raw fallback excluded. Input remains unchanged.
+
+Final verified checkpoint: **pass-001-final**. [Verification](pass-001-final-verification.json) confirms ok and byte_identical. [Portable map](../maps/pass-001-final.json), current map maps/current.json, internal analysis/state.json, generated/pass-001-final/game.asm. Map SHA2561235bbba785ad78213dfc49a39546d54d1f07fd228cdc14e4b403d4e75d91ece. Baseline and earlier pass-001 checkpoint preserved. Commentary has not run; source readability/editorial completion pending.
+
+Accepted connected work: validated fixed-bank NMI/reset/IRQ; title/menu/upgrade/launch/natural stage1 combat; official-instruction static conditional paths and direct-call entries with effective bank views; full-tile static graphics banks0/2/3 and bank1 prefix; bank1 repeated data and bank4 pointer/record suffix, sprite-layout records and exact uniform runs. No observed fetch conflicts with classified data. Detailed evidence references are in [progress](progress.md), [investigation](investigation.md) and map annotations.
+
+Broad gameplay best effort is recorded in [scenarios](scenarios.json), including all exact input releases, budgets and patches. Natural stage1 combat visited. RAM$9C later-stage hypothesis failed and must not be retried unchanged. Local password consumer proves stage/phase$0715=(stage−1)*2. Artificial22/47 states preserve selector and execute differing streams/enemies; no full later-level/boss visit established. Final47 quickly reached GAME OVER. Direct$FA40 ending entry yielded stripes; revised full result entry$F541 yielded WHAT A PITY! then flight. Ending/credits remain unvisited. These are scoped failures, not terminal exhaustion or proof of inaccessible content.
+
+[Artificial-code review](evidence/artificial-code-review.json) distinguishes debug-edited state from structural support: final$FA40 has an explicit final-phase branch and coherent bounded script caller/stack contract; $F541 is the full inspected result handler. Altered PC alone is not classification evidence; only accepted decoded instructions supported by these static contracts and measured fetches were retained. Ordinary static discovery stops at JSR/mapper effects and inline indirect dispatch barriers.
+
+Next: commentary over all currently classified source, then redirect [ready leads R001–R004](leads.json): stack-consuming$C0EB inline pointer tables and selector domains; banked command trampolines$C033/$C051/$C057/$C06B; complete stage/boss/ending initialization and success predicate; mixed residual code/data boundaries in PRG8KiB banks8,10–15. This is a normal easy-gain handoff, not a terminal exhaustion claim. Further productive semantic/bank contracts belong to redirect before another classification round.
+
+[Toolkit issues](toolkit-issues.md):2 confirmed documentation/API inconsistencies,0 suspected,0 missing features, no blockers. NES input needs {buttons:[...],port:1}, releases []; documented button/pressed silently no-ops. NES discovery needs max_instructions, not generic budget. No toolkit edits.
+
+RPC server closed cleanly. Import clean natural combat1.snapshot or stage1-entry.snapshot for gameplay branching; flight.snapshot is the upgrade menu, historical stage12.snapshot is a failed$9C attempt, final-live.snapshot is artificial. Snapshots/captures/ROM/restored source stay local. Complete bounded RPC history: evidence/pass-001-rpc.jsonl. Disk12GiB free; evidence about82MiB. Scratch Python utilities are disposable; no scratch Markdown created. Nothing archived/published/deleted outside owned disposable duplicate previews.

@@ -1,0 +1,10 @@
+# Round005 redirect frontier and changed tests
+
+Input pass-005-complete: 131075 classified / 131088 total, 13 unknown bytes in eight intervals. Current-source commentary gate is complete; editorial acceptance is pending. Research only; no map/state/source/ROM/toolkit changes.
+
+1. Reassess main physical98592..98595 as historical JSR fragment together with the independently accepted8113 self-stop, without requiring a current ordinary return. Prior zero-callee/BRK result excludes working current calls only. Discriminator: find an independently encoded local relation, semantic instruction conjunction or origin agreement that supports the call beyond legal decoding and adjacency. Do not demand a live caller.
+2. Reassess bank8 physical67088 byte86 through extended exact matches of the following accepted8601 wrapper to accepted instructions, including the predecessor alignment. This differs from matching the singleton byte or demanding a live entry. A matching extended predecessor/origin could establish a clipped instruction origin; a following-body-only match cannot. Stop when the concrete sibling candidates do not extend through the unknown boundary.
+3. Localize the remaining00002F80 claim into its initial zeros and pointer-like suffix; inspect existing exact boundaries/consumers. Do not require a schema for genericData. A short pattern must still discriminate noncode from isolated instruction remnants.
+4. Review isolated60/00 boundaries independently and inspect the saved broad progression primary records and current ending/progression graph. Reuse unchanged sound negative results at their actual scope. No arbitrary RAM sweep or unchanged gameplay replay.
+
+Before the exact-copy test, the concrete source hypothesis was that the established bank8 duplicate body might preserve the byte preceding its known start, analogous to the newly accepted36byte origin copy. The check records actual matching starts and predecessor instructions. It is not a whole-ROM random similarity search or a proposal based on a singleton match.

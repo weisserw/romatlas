@@ -1,0 +1,62 @@
+# Combined redirect structural contracts
+
+Input: pass-001-final, ROM SHA2562fd596ac4563b910a4d0a36d4a3658910fcfa822afd4f78bd62f73552e17ea00; existing classification88154/131088, unknown42934. No annotations have been applied. Source commentary gate was accepted before this work. All proposals require independent disassembly review.
+
+## Primary proposal, not exploratory output
+
+Use **final-proposal-graph.json**, **code-proposal.json**, **data-proposal.json**, **inline-tables.json**, **residual-ledger.json**, **small-data-review.md** and this contract. Earlier command-graph, connected-combined-graph, combined-bounded-graph and intermediate graph files preserve research: some include explicitly identified invalid bank5 roots3/4, wrong bank contexts or inline fallthrough. They are superseded, not additional code proposals. Final graph has no unofficial opcodes, no overlapping instruction starts and no data-proposal conflicts; these are consistency checks, not the proof of code.
+
+Code role is supported by accepted routine control-flow continuation, consuming dispatchers, coherent pool/PPU/audio/arithmetic operations, matching register/stack preconditions and bounded returns or established tail gateways. Bare legal decoding and pointer values were not treated as sufficient. Calling contracts may be supported statically while natural callers/selectors remain unknown. Every proposed code byte is Static unless the next phase independently attaches actual fetch evidence.
+
+The combined code graph follows all supplied dispatcher targets and their downstream states, ordinary calls, branches, shared helpers and associated tables until RTS/RTI/indirect or explicit context barriers. It follows accepted code entry regions as an independent source of concrete missing branches/callees. It does not recursively sweep arbitrary unknown bytes. Helpers with no recovered caller have explicit mechanical contracts in small-data-review.md, rather than an unused/dead claim.
+
+## Bank contracts
+
+Mapper2 value N selects lower effective8KiB banks2N/2N+1; upper slots are always14/15. Physical identities include16-byte iNES header. A lower CPU address in bankN resolves physical16+N*16384+(cpu-$8000); fixed CPU resolves16+7*16384+(cpu-$C000).
+
+- Fixed$C057 sets6 then reads $8040+2*A; $C06B sets4 then reads$9208+2*A; $C07F sets5 then reads$A800+2*A. These are tail dispatches and preserve a caller return below any explicitly pushed argument. Selected entry routines pop arguments where the contract requires them.
+- Bank4 directory$9208..9233 contains22 handler words, followed by four$FF bytes before independently coherent initializer$9238. Nearby$9200..07 are data-directory pointers. Known immediate command selectors cover supported targets; no command is inferred from$FFFF.
+- Bank5$A800..13 is a mixed directory. Entries0/1/2 and5..9 are coherent command routines; entries3=$B897 and4=$B36F are **data directories**. Early attempt to root all ten as code produced unofficial/KIL decodes and was rejected. These data targets are consumed by sprite/formation code; do not turn them back into routine roots.
+- Bank6$8040..80DF contains80 command pointers; first following code$80E0 is itself selected by index$25. Targets implement effect allocation, shot/player/secondary pools, palette/text, score/resources, launch/recovery and PPU helpers. Repeated pointers denote shared handlers, not duplicate physical code. No opcode bytes from those pointer words are proposed as code.
+- Constant fixed-bank mapper stores have explicit local LDA/LDX/LDY immediate preconditions and can select lower context. A dynamic mapper write leaves lower slots unresolved. It does **not** make subsequent fixed-bank instructions ambiguous: decode fixed continuation with [null,null,14,15], stop unresolved lower-code calls and leave lower data reads mechanically described. Do not substitute old pre-call banks after a bank-changing command.
+- Bank-local code has pair context [2N,2N+1,14,15]. For fixed code, graph.bank16=7 identifies physical storage, not a promise that lower mapper7 is selected. Use fixed-only views unless a separately stated selector proves lower slots. Instruction.after fields and base references are exploratory context facts, not a blanket annotation context.
+
+## Inline dispatch and connected actors
+
+$C0EB, bank4:$9415, bank5:$AB9F and bank6:$88CA consume the caller return address, read two bytes at return+1+2*A and tail-jump, preserving X. Bank5:$8556 takes X as selector. They do not return into table words. inline-tables.json records34 localized pointer-word prefixes (exact physical start/length/targets). The graph follows every coherent selected target in these prefixes and the newly exposed nested state tables, not merely two actors.
+
+Exact complete-selector-domain claims are deliberately narrower than non-code claims:
+
+- Bank4:$93BB four words: reflection computation rotates OAM flags then AND3. All four selected routines draw/refelect the same two-sprite pair. Full local bound8bytes is directly established.
+- Bank5:$A9E3 eight words: AND7 gives the full local domain, with repeated target routines; selected handlers initialize eighteen-byte enemy records and direction/position variants.
+- Bank5:$AA73 has only six coherent pointer words before handler$AA7F, despite an upstream AND7. No eight-word table is claimed. Values6/7 require upstream caller/record exclusion; they are not proof that instructions at$AA7F are data. Similar localized caution applies to masked but shorter prefixes at fixed$E8A4/$E874/$E886 and several enemy substate tables.
+- Bank5:$ABBE nineteen words selects initializers, bounded pool allocators, parameter-record copiers and formation variants. $ABE4 is independently coherent following code; it loads an eighteen-byte initializer through$AC48 and then applies difficulty health rules. Initializer templates and later formation directories remain data, rather than being followed as code.
+- Bank6:$82AA,$86EA,$9B57,$A3B6,$A822,$AC4C,$B4CD cover effects, singleton state, weapon firing, shot types, auxiliary craft/recovery and special attack substates. Selected targets use the established pool strides and field contracts, and were followed through their own allocation, drawing, movement and timer helpers. Complete producer domains remain separate where not proved.
+- Fixed$CA8A ten formation/controller targets include state decrement, timed bit operations, formation allocation and nested state table$CCC3. That nested table and all selected continuations were inspected.
+- Fixed$D1A7 twenty-nine spawn-command words are followed by coherent$D1E1 code. Targets set event/state flags, initialize formations, update stream cursors, request banked commands or spawn selected classes. The positioned stream consumes six-byte records and resumes at its independently decoded cursor-advance path. This is a supported local prefix, not a global event-domain assertion.
+- Fixed$DE8A nineteen behavior entries and nested$DFF0/$E14A/$E206/$E31D/$E399/$E454/$E5AD/$E8D6 cover movement/turning, timer transitions, steering, firing and retirement. The investigation followed all these supported nested continuations. Fixed$D9EB twenty frozen/init handlers and$DA4F sixteen high-nibble command entries were added as independent obvious actor opportunities, rather than reserving them for another round.
+- Fixed$C5A2 seventeen page-one object handlers and$D503 three secondary handlers were followed too. Their domain is not inferred to equal the full AND31/AND15 range.
+- Fixed$FA73 four special-effect states are bounded by their state initialization/transition mechanics. Fixed$FE8B six attract states include delay, moving-player/text, camera and terminal-return handlers. State transitions increment$63; the last handler returns rather than selecting a seventh word.
+
+Boundary proof combines dispatcher consumption with independent coherent next-handler code, shared handler contracts, writer/mask constraints where available and absence of code-target conflicts. Where this does not prove a complete named table, annotate the exact clear pointer-word interval as generic Data and retain selector uncertainty. Surrounding non-code classification does not require the original generator, all possible selectors or observed use.
+
+## Independent data avenues
+
+- Bank4$8000..91FF is a background container. Header words select row streams, chunk rows, five-byte metatile definitions and four-byte tile expansion records; fixed$F10F/$F1DC select bank4 explicitly. Complete low-field/repeated record patterns and uniform suffixes were inspected, with code starting$9238 and directory words$9200..37 separated. Existing uniform classifications are retained; only unknown complement is proposed.
+- Bank5$8975..A7FF contains duration scales, descending16-bit periods, audio command pointers and encoded channel streams. Driver ends at RTS$8974. The command directory at$A800..13 follows; actual code begins$A814. Full event-stream semantics and original table generators are unnecessary for generic non-code classification. Driver/overlay/base dispatch graphs were independently followed through all coherent command handlers.
+- Bank5$B363..BFFF contains offset records, pointer directories, sprite/layout/formation records and a uniform suffix after the spawner's RTS$B362. In particular$B36F/$B897 are the disproved code roots mentioned above, now correctly localized as data.
+- Bank6$892B..8CB8 has seven pointer words followed by seven$80-byte velocity profiles. Consumer masks heading to31 and reads four signed velocity bytes per heading; the profile-selector nibble can theoretically be0..15, so complete profile-domain use is unresolved. The actual finite clear data layout and code boundaries remain supported.
+- Bank6$8D1F..99ED contains text directory plus encoded PPU/tile streams ending$7F immediately before renderer$99EE. Consumers recognize$7C..7F controls; repeated strings, row transfers and sprite-like records were inspected. Specific string identities/complete directory extents are not required to classify the generic container.
+- Other data blocks retain concise specific roles when available (decimal score digits, music commands, resource descriptors, movement vectors, palette/OAM layouts, animation/timing tables); otherwise generic record data follows practical consumer/format review. data-proposal.json and small-data-review.md give exact boundaries and samples. These are not exporter-gap inferences.
+
+## Localized correction to accepted classification
+
+Physical$11BA7=72615, bank4 CPU$9B97 is RTS terminating the sixteen-iteration unsigned divider. Preceding stores$9B91/$9B95 return quotient to$00/$01, then the caller at fixed$F6A4 relies on return. Old suffix Data started at this byte and its comment erroneously asserted an earlier RTS. Propose split/remove this one byte from Data and annotate Static Code with bank4 context. The sound suffix begins physical72616/CPU$9B98, not72615. Existing suffix record evidence remains valid for that remainder; do not reject the entire accepted data region.
+
+## Reproducible next disassembly recipe
+
+1. Load unchanged analysis/state.json with the configured binary; independently compare all offsets, bank slots and bytes from ROM. Read this contract and source consumers before annotations.
+2. Review code-proposal.json instruction boundaries and graph edges against inline-tables.json. Do not feed the unfiltered early graphs into discovery. Use contextual decode/discovery as hypotheses, stopping inline tables; manually supply known selected roots/return continuations where the toolkit conservatively stops at JSR or mapper stores.
+3. Apply supported code and data fragments with Static provenance, splitting existing regions as necessary. Use specific supported Data roles and meaningful labels; generic Data is sufficient for unresolved schemas. Correct the single divider RTS independently. Preserve all historical evidence and observed provenance.
+4. Validate map, save/export, checkpoint/verify byte-identical assembly. Refresh exact unknown complement and counts; the current ledger remains the unchanged pre-annotation complement.
+5. Complete full current-source commentary for changed source, correcting misleading result-flag semantics and the physical suffix comment, then redirect with accepted/rejected outcomes. Do not claim proposals accepted or natural reachability merely from these records.
