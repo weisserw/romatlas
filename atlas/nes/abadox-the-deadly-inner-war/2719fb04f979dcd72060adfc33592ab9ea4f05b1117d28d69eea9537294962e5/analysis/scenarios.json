@@ -1,0 +1,194 @@
+{
+  "version": 1,
+  "round": 1,
+  "phase": "disassembly",
+  "scenarios": [
+    {
+      "milestone": "stage1",
+      "route": "Import game-entry license snapshot; release buttons; each cheat key held 2 frames/released 2; Start same; idle90; A+B+Right40; release5",
+      "selector": null,
+      "status": "visited",
+      "evidence": [
+        "analysis/round1/stage1-entry.ppm",
+        "analysis/round1/stage1-exercise.ppm",
+        "analysis/round1/stage1-entry-ram.json"
+      ],
+      "observed_result": "Distinct scrolling gameplay scene, movement/shooting inputs exercised; RAM$3D matches requested stage. Natural cheat-input entry, not sequential gameplay progression."
+    },
+    {
+      "milestone": "stage2",
+      "route": "Import game-entry license snapshot; release buttons; each cheat key held 2 frames/released 2; Start same; idle90; A+B+Right40; release5",
+      "selector": "up",
+      "status": "visited",
+      "evidence": [
+        "analysis/round1/stage2-entry.ppm",
+        "analysis/round1/stage2-exercise.ppm",
+        "analysis/round1/stage2-entry-ram.json"
+      ],
+      "observed_result": "Distinct scrolling gameplay scene, movement/shooting inputs exercised; RAM$3D matches requested stage. Natural cheat-input entry, not sequential gameplay progression."
+    },
+    {
+      "milestone": "stage4",
+      "route": "Import game-entry license snapshot; release buttons; each cheat key held 2 frames/released 2; Start same; idle90; A+B+Right40; release5",
+      "selector": "down",
+      "status": "visited",
+      "evidence": [
+        "analysis/round1/stage4-entry.ppm",
+        "analysis/round1/stage4-exercise.ppm",
+        "analysis/round1/stage4-entry-ram.json"
+      ],
+      "observed_result": "Distinct scrolling gameplay scene, movement/shooting inputs exercised; RAM$3D matches requested stage. Natural cheat-input entry, not sequential gameplay progression."
+    },
+    {
+      "milestone": "stage6",
+      "route": "Import game-entry license snapshot; release buttons; each cheat key held 2 frames/released 2; Start same; idle90; A+B+Right40; release5",
+      "selector": "select",
+      "status": "visited",
+      "evidence": [
+        "analysis/round1/stage6-entry.ppm",
+        "analysis/round1/stage6-exercise.ppm",
+        "analysis/round1/stage6-entry-ram.json"
+      ],
+      "observed_result": "Distinct scrolling gameplay scene, movement/shooting inputs exercised; RAM$3D matches requested stage. Natural cheat-input entry, not sequential gameplay progression."
+    },
+    {
+      "milestone": "stage7",
+      "route": "Import game-entry license snapshot; release buttons; each cheat key held 2 frames/released 2; Start same; idle90; A+B+Right40; release5",
+      "selector": "b",
+      "status": "visited",
+      "evidence": [
+        "analysis/round1/stage7-entry.ppm",
+        "analysis/round1/stage7-exercise.ppm",
+        "analysis/round1/stage7-entry-ram.json"
+      ],
+      "observed_result": "Distinct scrolling gameplay scene, movement/shooting inputs exercised; RAM$3D matches requested stage. Natural cheat-input entry, not sequential gameplay progression."
+    },
+    {
+      "milestone": "ending",
+      "route": "Import game-entry license snapshot; release buttons; each cheat key held 2 frames/released 2; Start same; idle90; A+B+Right40; release5",
+      "selector": "ending",
+      "status": "attempted",
+      "evidence": [
+        "analysis/round1/ending-entry.ppm",
+        "analysis/round1/ending-exercise.ppm",
+        "analysis/round1/ending-entry-ram.json"
+      ],
+      "observed_result": "Published ending sequence selected stage7, same frame hash and RAM$3D=7 as stage7 route. Rejected ending claim; refined handler-derived route supersedes."
+    },
+    {
+      "milestone": "stage6-secondhalf",
+      "status": "visited",
+      "route": "license snapshot; stage-select8 then Select,A,Start each2frames/release2; idle90; A+B+Right60; release5",
+      "observed_result": "RAM$3D=6,$4F=1; different checkpoint environment initialized and movement/shooting exercised.",
+      "evidence": [
+        "analysis/round1/stage6-secondhalf-entry.ppm",
+        "analysis/round1/refined-gameplay.py"
+      ]
+    },
+    {
+      "milestone": "ending-sequence",
+      "status": "visited",
+      "route": "license snapshot; A,A,Up,B,B,Down,A,B,B,A,Start each2frames/release2; idle90; exercise65; restore ending-refined snapshot, idle450 with trace disabled, then trace65",
+      "observed_result": "RAM$3D=7,$4F=1,$05AD=4; animated spacecraft and planet/explosion scene, later spacecraft remains. Ending cutscene visited; terminal credits not yet established.",
+      "evidence": [
+        "analysis/round1/ending-refined-entry.ppm",
+        "analysis/round1/ending-terminal-result.ppm",
+        "analysis/round1/refined-gameplay.py",
+        "analysis/round1/terminal-probes.py"
+      ]
+    },
+    {
+      "milestone": "boss6",
+      "status": "attempted",
+      "route": "restore stage6-secondhalf snapshot; write backing RAM$037C=[1] (invincibility cheat flag); hold A+B; trace disabled450 frames then enabled65",
+      "observed_result": "Artificial branch executes accepted code and scrolls through later checkpoint enemies/terrain, boss not yet visible.",
+      "evidence": [
+        "analysis/round1/boss6-result.ppm",
+        "analysis/round1/terminal-probes.py"
+      ]
+    },
+    {
+      "milestone": "stage3",
+      "status": "visited",
+      "reason": "Round2 supported controller shortcut verified stage selector and distinct scene; movement/shooting exercised.",
+      "route": "license snapshot; stage-select8 then Left,Start, each2frames/release2",
+      "history": [
+        {
+          "status": "deferred",
+          "reason": "Representative odd-stage horizontal mechanics and later even-stage vertical mechanics covered; exact supported selector Left/Right remains replayable. No remaining measured code gain specific to these stages; redirect can target their stage data/objects.",
+          "round": 1
+        }
+      ],
+      "observed_result": "RAM$3D=3; distinct stage3 frame and A+B+Right60/release5 exercise confirmed.",
+      "evidence": [
+        "analysis/redirect/r2-20261030-residual/stage3-ram.json",
+        "analysis/redirect/r2-20261030-residual/stage3-exercise.png",
+        "analysis/redirect/r2-20261030-residual/stage3-trace.json",
+        "analysis/redirect/r2-20261030-residual/progression.py"
+      ]
+    },
+    {
+      "milestone": "stage5",
+      "status": "visited",
+      "reason": "Round2 supported controller shortcut verified stage selector and distinct scene; movement/shooting exercised.",
+      "route": "license snapshot; stage-select8 then Right,Start, each2frames/release2",
+      "history": [
+        {
+          "status": "deferred",
+          "reason": "Representative odd-stage horizontal mechanics and later even-stage vertical mechanics covered; exact supported selector Left/Right remains replayable. No remaining measured code gain specific to these stages; redirect can target their stage data/objects.",
+          "round": 1
+        }
+      ],
+      "observed_result": "RAM$3D=5; distinct stage5 frame and A+B+Right60/release5 exercise confirmed.",
+      "evidence": [
+        "analysis/redirect/r2-20261030-residual/stage5-ram.json",
+        "analysis/redirect/r2-20261030-residual/stage5-exercise.png",
+        "analysis/redirect/r2-20261030-residual/stage5-trace.json",
+        "analysis/redirect/r2-20261030-residual/progression.py"
+      ]
+    },
+    {
+      "milestone": "terminal-credits",
+      "status": "visited",
+      "route": "ending-later probe extends restored cutscene by1800 untraced+65 traced frames",
+      "observed_result": "Staff credits verified in ending-later-result.png; ending credits milestone achieved via natural controller shortcut.",
+      "evidence": [
+        "analysis/round1/later-probes.py"
+      ]
+    },
+    {
+      "milestone": "stage6-later-mechanics",
+      "status": "visited",
+      "route": "boss6 snapshot; reassert A+B, RAM$037C=1; trace disabled12x150 frames then trace60+release5",
+      "observed_result": "Artificial progression reaches wall-mounted cannons/platform enemy formations; screenshot boss6-later-result.ppm. Specific boss identity/terminal battle not established.",
+      "evidence": [
+        "analysis/round1/later-probes.py",
+        "analysis/round1/boss6-later-result.ppm"
+      ]
+    },
+    {
+      "milestone": "ending-credits",
+      "status": "visited",
+      "route": "ending-terminal snapshot; release inputs; trace disabled12x150frames, trace60+release5",
+      "observed_result": "Staff credit text CHARACTER DESIGNER H TAKAHASHI / SOUND CREATER K SADA displayed with spacecraft; actual credits verified visually.",
+      "evidence": [
+        "analysis/round1/ending-later-result.png",
+        "analysis/round1/ending-later.snapshot.json"
+      ]
+    },
+    {
+      "milestone": "stage6-command-threshold-and-boss-coded-formations",
+      "status": "visited",
+      "route": "Restore round1/boss6-later snapshot; patches RAM$037C=1,$4D/$4E=[0,16],$64/$65=[249,173]; A+B365frames; restore this snapshot, set$7A=1 before six30-frame exercises.",
+      "observed_result": "Artificial stage6 state4 script$BE99 active; object kind$40/health$40 and large paired formations observed; later script repeats$BEBE via F8. Terminal defeat not confirmed; dependent terrain/layout pointers remain prior state.",
+      "evidence": [
+        "analysis/redirect/r2-20261030-residual/boss-patches.json",
+        "analysis/redirect/r2-20261030-residual/scheduler-recipe.json",
+        "analysis/redirect/r2-20261030-residual/scheduler-3.png",
+        "analysis/redirect/r2-20261030-residual/scheduler-5-ram.json",
+        "analysis/redirect/r2-20261030-residual/scheduler-contexts.json",
+        "analysis/redirect/r2-20261030-residual/findings.md"
+      ]
+    }
+  ]
+}

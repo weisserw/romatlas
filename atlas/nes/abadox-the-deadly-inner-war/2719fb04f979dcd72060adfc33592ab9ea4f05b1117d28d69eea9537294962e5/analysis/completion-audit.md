@@ -1,0 +1,18 @@
+# Coordinator completion audit
+
+The objective is terminal orchestration with verified current-source commentary, not whole-ROM classification. Current-state machine checks are in completion-audit.json.
+
+| Requirement | Inspected evidence | Conclusion |
+|---|---|---|
+| Read coordinator/policy workflow and resume durable phases | goal.md, evidence-policy.md, workflow.md, analysis/progress.md and phase handoffs | Two complete sequential rounds; separate phase workers, no competing phase writers. Final editorial acceptance used a separate worker. |
+| Preserve baseline and actual final checkpoint | baseline-verification.json, pass-001-verification.json, pass-002-reviewed-verification.json; current map/state | Byte-identical structural checkpoints. Historical accidental pass-002 remains explicitly superseded, never passed off as current. |
+| Evidence-backed classification and exact residuals | Current internal map regions, round2 review/findings/summary, terminal redirect primary bytes and contracts | 262158 unique classified bytes, two exact singleton unknowns. Rounded100.00% is explicitly incomplete. |
+| Broad bounded gameplay and practical shortcuts | scenarios.json, gameplay.md, round1 snapshots/recipes; round2 redirect progression/scheduler evidence | All stage selectors and staff credits exercised, artificial later mechanics documented with exact patches; unconfirmed defeat and natural progression limits retained. |
+| Full current-source readability and preserved history | Both commentary handoffs, preserved prior-commentary, final source/review/editorial assessment | All697 entries and957 units reviewed; current classified source explained with consistent symbols and uncertainty. No pending editorial backlog. |
+| Continuous investigation and terminal rejection review | Both redirect handoffs/findings, r2 rejection-review.md and primary-static.json, coordinator-rejection-review.md | Productive graphs and independent avenues investigated; corrected inference tested; local ambiguity not generalized to neighboring bytes. No credible useful next method remains. Coordinator inspected decisive evidence and acceptance standards. |
+| Fresh final verification and valid maps/state | commentary/audit.json, verification.json, reading-after.asm, final-editorial/checks.json | Byte-identical final source; map/store valid, source/ROM hashes current. Audit covers inventory and metadata; human editorial assessment recorded separately. |
+| Archive document contract and complete accounting | Toolkit scripts/archive.py FINAL and archive() selection code, archive-options.json, machine document inventory | All additional final results explicitly selected; three duplicate historical instruction copies omitted. No final conclusions omitted. No unrecognized Markdown remains. |
+| No toolkit modification, ROM change, archive, deletion, publication | Configured binary/workspace identity; worker reports/commands; preserved artifacts and current hashes | Input unchanged. All work remains local. No archive or cleanup executed; toolkit issues report says no issues found. |
+| Terminal result and resumability | terminal-handoff.md, current leads, exact residuals/checkpoint/history | Justified terminal incomplete, not blocked execution or whole-ROM success. No active experiment remains. Future independent evidence can reopen stable residual leads. |
+
+Final documentation updates only follow the accepted editorial audit; source/map/state/ROM hashes remain checked against that audit. The orchestration can complete once completion-audit.json confirms all current-state gates. No archive execution or cleanup is authorized by this audit.
