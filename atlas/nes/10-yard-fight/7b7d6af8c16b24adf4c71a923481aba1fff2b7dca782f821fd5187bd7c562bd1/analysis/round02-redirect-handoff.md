@@ -1,0 +1,13 @@
+# Round02 redirect handoff
+
+**Redirect complete; ready for separate final editorial audit, with concrete comment corrections below.** No structural proposal or ready lead remains. Pass-003 map/state SHA-256 `a2c637a340703bcd0cbafb8a4e8106d75d5ddbfa82060fd22bd82d615ca09960`. Exact internal complement freshly checked: **40,976/40,976 classified, zero unknown**, 133 regions; Code13,174/Data19,610/Image8,192. Fixed physical PRG banks [0,1,2,3]. Source SHA-256 `d21ffc43c25297a386d3955220258d342cc66b9c8acf0ddfecf4949a50513444`; ROM unchanged.
+
+Current readability is complete across133 regions; actual review/accounting contain **308 units (48 new)**, unlike prior handoff's309/49. No pending readability range. Existing byte-identical verification is valid for unchanged source; no new verification or final audit performed by redirect.
+
+[Unique attempt findings and compact rejection review](redirect/round02-terminal-review/findings.md), [exact complement/identities](redirect/round02-terminal-review/validation.json), [primary current-source excerpts](redirect/round02-terminal-review/source-review.txt). Lead pass appended with empty added/updated lists; all six previous ready leads remain verified. Animation domain, natural caller/selector and football-event meanings do not create unknown structural bytes or new acceptance prerequisites. No productive research frontier is interrupted.
+
+Final editorial audit should correct: (1) source8866 says RestorePpuState, but actual8878 tail is RestoreRenderingMask at3276, restoring PPUMASK only; (2) source2512 attributes PPUMASK restoration to RestorePpuState entry2514, although that entry only restores PPUCTRL/scroll after status read, and mask write precedes the entry; (3) reconcile handoff counts with308/48. These are comment/reporting discrepancies, **not structural inconsistencies**. Source untouched here.
+
+Prior broad progression reused: all five natural skill-menu selections and buttons-array mechanics samples, plus supported artificial dead-ball terminal shortcut, fetched transition and win capture. Failed live-ball timer patch is superseded by successful $8149 entry method; no practical untried later milestone shortcut is identified. No natural win or proven absence of separate credits claimed. See scenarios.json and attempt review for primary artifacts.
+
+No new toolkit issues; existing NES-INPUT-001 remains nonblocking. No ROM/map/state/source/classification/toolkit edits, runtime replay, archives, publication or deletion. All restored material/evidence local. Disk12GiB free, scratch92MiB. Final editorial acceptance and byte-identical verification remain required before workflow completion.

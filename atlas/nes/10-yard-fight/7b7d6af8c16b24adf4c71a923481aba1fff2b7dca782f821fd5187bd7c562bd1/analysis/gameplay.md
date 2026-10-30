@@ -1,0 +1,16 @@
+# Gameplay research
+
+No research performed yet. Follow workflow.md's Game familiarization section. Record source URLs, version uncertainty, actionable routes and local confirmation separately.
+
+## Round01 — 10-Yard Fight, Nintendo NES (1985 title screen)
+ROM is mapper 0, 32 KiB PRG +8 KiB CHR; title identifies 1983/1985 Irem and 1985 Nintendo. Exact regional revision not independently identified.
+
+Sources: https://gamefaqs.gamespot.com/nes/563379-10-yard-fight/faqs/77560/game-overview and https://gamefaqs.gamespot.com/nes/563379-10-yard-fight/faqs/49212 describe movement on D-pad, A passing, B kicking, defensive tackles/selection, five skill levels and a repeating generic win screen rather than separate credits. Source progression claims are hypotheses; actual menu confirms all five skill choices.
+
+Confirmed natural route with NES `buttons` arrays: reset, release 60 frames; Start 10; release 60 reaches skill menu. Start 10 then release 300 initializes High School first half ($31=0, $2D=0). Complete held-button arrays replace prior state; [] releases all. Earlier scripts used shared protocol's button/pressed fields, silently ignored by NES; those trials were attract mode or artificially initialized gameplay, not controller-driven mechanics.
+
+Artificial broad exploration: restore explore.snapshot.json, release inputs, patch RAM $31=0, $2D=2/4/6/8, $33=0, $36=0; align one operation then set PC=$807A, SP=$FF. This is supported nonreturning main-game initialization: sets $EE, clears half counter $2C, then initializes stage timers, graphics and objects at $808D. Four captures confirm College, Professional, Play Off, Super Bowl with correct displayed stage and first half. Actual later traces prove execution in those artificial initialized states only. Original intended movement/pass inputs were ignored; corrected natural-menu trials separately exercise mechanics.
+
+Terminal investigation: zeroing timer $23/$24, player score $25=7, opponent $27=0 and stage/half $2D=9 while ball live did not force transition. $5F=1 alone was overwritten/ineffective. Supported dead-ball check entry PC=$8149 with SP=$FF, same timer/score patches plus $26/$28=0, actually reached generic 7–0 win screen: “YOUR ARE ON THE WAY TO THE SUPER BOWL!!”. This establishes artificial end-of-game behavior, not a natural win. Reproduction terminal2.py and winner2 snapshot/capture in analysis/evidence/round01. No separate credits observed; repeating ending claim remains sourced.
+
+Corrected final normal progression: menu index 0..4 chosen by held [down]3 frames/release3 repeated n times; [start]10 and []300 initialize all five levels naturally. Each trial holds [b,up]180, [a,up]180, [up]180 with 2-frame traced samples after each. $31 remains 0 and stage $2D confirms 0/2/4/6/8. Correct stage labels and football field/play changes captured. These exercise actual controller inputs and simulation, but do not claim every requested action succeeded, a touchdown, or a naturally won match. Original batch interrupted mid-Super-Bowl; finishplay.py replays that selection and completes bounded mechanics. Saved 1,667 accepted natural opcode roots; further static closure yielded zero additional code bytes. Representative mechanics visited; collisions/rare permutations not exhausted.

@@ -1,0 +1,44 @@
+{
+  "checkpoint": "pass-003",
+  "hashes": {
+    "input/game.nes": "7b7d6af8c16b24adf4c71a923481aba1fff2b7dca782f821fd5187bd7c562bd1",
+    "maps/current.json": "a2c637a340703bcd0cbafb8a4e8106d75d5ddbfa82060fd22bd82d615ca09960",
+    "analysis/state.json": "a2c637a340703bcd0cbafb8a4e8106d75d5ddbfa82060fd22bd82d615ca09960",
+    "commentary/source/game.asm": "db996732dfc53607ee766f63aef9abac5211503312a20e9d5df3ff7a2bdcfa54",
+    "commentary/reading-after.asm": "4ebf3303fdae2b0e9e8aca360f143274582f49f63e16c740137b6bff6d59684f",
+    "commentary/baseline.json": "a2c637a340703bcd0cbafb8a4e8106d75d5ddbfa82060fd22bd82d615ca09960",
+    "commentary/phase1-state.json": "a2c637a340703bcd0cbafb8a4e8106d75d5ddbfa82060fd22bd82d615ca09960"
+  },
+  "validation": {
+    "maps/current.json": {
+      "ok": true
+    },
+    "analysis/state.json": {
+      "ok": true
+    }
+  },
+  "classified": 40976,
+  "unknown_bytes": 0,
+  "regions": 133,
+  "reviewed_units": 308,
+  "carried_units": 260,
+  "new_units": 48,
+  "kinds": {
+    "Code": 13174,
+    "Data": 19610,
+    "Image": 8192
+  },
+  "editorial_audit": {
+    "byte_identical": true,
+    "ok": true,
+    "rom_sha256": "7b7d6af8c16b24adf4c71a923481aba1fff2b7dca782f821fd5187bd7c562bd1",
+    "source_sha256": {
+      "game.asm": "db996732dfc53607ee766f63aef9abac5211503312a20e9d5df3ff7a2bdcfa54"
+    },
+    "reviewed_regions": 133,
+    "reviewed_units": 308,
+    "editorial_audit": true
+  },
+  "pending_regions": [],
+  "pending_units": []
+}

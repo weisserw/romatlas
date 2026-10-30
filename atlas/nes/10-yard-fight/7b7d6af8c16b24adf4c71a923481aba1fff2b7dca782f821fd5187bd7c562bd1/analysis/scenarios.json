@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "context": {
+    "prg_banks": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "R01-input-original",
+      "status": "superseded",
+      "recipe": "Original single button/pressed API calls in phase.py, explore.py, broad.py, natural.py",
+      "result": "NES silently ignored fields; all actual held buttons empty. Withdraw movement/pass claims; preserve actual fetches, attract mode and artificial initialization observations. Replaced by R01-menu-progression.",
+      "evidence": "analysis/toolkit-issues.md#nes-input-001"
+    },
+    {
+      "id": "R01-menu-progression",
+      "status": "visited",
+      "recipe": "Reset; buttons=[]60 frames; [start]10; []60 => skill menu. For stage index n 0..4: [down]3, []3 repeated n times; [start]10; []300. Exercise [b,up]180, [a,up]180, [up]180, each followed by traced2 frames. All steps max_operations=20000000, timeout_ms=30000.",
+      "result": "All five skill levels initialized naturally via skill-menu choices ($31=0, $2D=0/2/4/6/8), with actual held-button kickoff/pass/running trials and traced samples. Original menus.py interrupted during Super Bowl; finishplay.py completed it using a fresh output prefix. 1,667 accepted natural opcode starts collected; no new structural code bytes beyond supported connected batch.",
+      "evidence": "analysis/evidence/round01/menus.py"
+    },
+    {
+      "id": "R01-ram-stage-shortcuts",
+      "status": "visited",
+      "recipe": "Import explore snapshot; release all; RAM $31=0,$2D=2/4/6/8,$33=0,$36=0; one operation align then PC=$807A SP=$FF; 240frames initializes stage; 180frames simulates; trace3frames. All max_operations10000000 timeout30000.",
+      "result": "Four correct stage names/first-half screens confirmed. Artificial=true. Original controller fields ignored, so stage simulation only.",
+      "evidence": "analysis/evidence/round01/broad.py"
+    },
+    {
+      "id": "R01-terminal-livepatch",
+      "status": "attempted",
+      "recipe": "Super Bowl snapshot; $23=$24=0, $25=7,$27=0,$2D=9, then900frames; second attempt $5F=1 and240frames.",
+      "result": "Live-ball transition did not finish; $5F overwritten or insufficient. Do not retry same patch without state contract.",
+      "evidence": "analysis/evidence/round01/terminal.py"
+    },
+    {
+      "id": "R01-terminal-check",
+      "status": "visited",
+      "recipe": "Super Bowl snapshot; buttons=[]; patch RAM $23=$24=0,$25=7,$26=0,$27=$28=0,$2D=9,$5F=1; operation1; PC=$8149,SP=$FF; trace3frames, disable trace240frames. Max_operations200000/10000000 timeout10000/30000.",
+      "result": "Artificial terminal win screen 7\u20130, on-way-to-Super-Bowl message; timer check and win routine observed. No natural win claim.",
+      "evidence": "analysis/evidence/round01/terminal2.py"
+    }
+  ],
+  "progression_checklist": [
+    {
+      "milestone": "High School",
+      "status": "visited",
+      "route": "R01-menu-progression",
+      "observed_result": "Natural menu selection and controller-play trial"
+    },
+    {
+      "milestone": "College",
+      "status": "visited",
+      "route": "R01-menu-progression",
+      "observed_result": "Natural menu selection and controller-play trial"
+    },
+    {
+      "milestone": "Professional",
+      "status": "visited",
+      "route": "R01-menu-progression",
+      "observed_result": "Natural menu selection and controller-play trial"
+    },
+    {
+      "milestone": "Playoff",
+      "status": "visited",
+      "route": "R01-menu-progression",
+      "observed_result": "Natural menu selection and controller-play trial"
+    },
+    {
+      "milestone": "Super Bowl",
+      "status": "visited",
+      "route": "R01-menu-progression",
+      "observed_result": "Natural skill-menu route and actual controller mechanics trials completed; final-superbowl captures/RAM/snapshot retained."
+    },
+    {
+      "milestone": "ending/credits",
+      "status": "visited",
+      "route": "R01-terminal-check",
+      "observed_result": "Artificial generic win screen; separate credits unavailable in source guide, not independently proven absent."
+    }
+  ]
+}

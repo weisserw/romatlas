@@ -1,0 +1,2711 @@
+{
+  "format": "romatlas-nes-map",
+  "version": 1,
+  "image_sha256": "7b7d6af8c16b24adf4c71a923481aba1fff2b7dca782f821fd5187bd7c562bd1",
+  "image_size": 40976,
+  "regions": [
+    {
+      "id": 1,
+      "offset": 16,
+      "length": 809,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Reset",
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 32768,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "offset": 928,
+      "length": 92,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33680,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "offset": 1072,
+      "length": 309,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33824,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "offset": 1423,
+      "length": 274,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34175,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "offset": 1781,
+      "length": 476,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34533,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "offset": 2264,
+      "length": 11,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35016,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "offset": 2307,
+      "length": 410,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35059,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "offset": 2725,
+      "length": 55,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35477,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "offset": 2852,
+      "length": 327,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35604,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "offset": 3252,
+      "length": 69,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36004,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "offset": 3384,
+      "length": 173,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36136,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "offset": 3570,
+      "length": 218,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36322,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "offset": 3796,
+      "length": 274,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36548,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "offset": 4108,
+      "length": 233,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36860,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "offset": 4365,
+      "length": 181,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37117,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "offset": 4747,
+      "length": 65,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37499,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "offset": 4835,
+      "length": 33,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37587,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "offset": 4994,
+      "length": 358,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37746,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "offset": 5356,
+      "length": 952,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38108,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "offset": 6404,
+      "length": 67,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39156,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "offset": 6555,
+      "length": 55,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39307,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "offset": 6640,
+      "length": 58,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39392,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "offset": 6703,
+      "length": 24,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39455,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "offset": 7655,
+      "length": 128,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40407,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "offset": 7815,
+      "length": 327,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40567,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "offset": 8218,
+      "length": 161,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40970,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "offset": 8459,
+      "length": 203,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41211,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "offset": 8678,
+      "length": 194,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41430,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "offset": 9000,
+      "length": 188,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41752,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "offset": 9192,
+      "length": 126,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41944,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "offset": 9701,
+      "length": 542,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42453,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "offset": 10398,
+      "length": 119,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43150,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "offset": 10640,
+      "length": 27,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43392,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "offset": 10676,
+      "length": 4,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43428,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "offset": 10712,
+      "length": 209,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43464,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "offset": 10975,
+      "length": 41,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43727,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "offset": 11342,
+      "length": 61,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44094,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "offset": 11762,
+      "length": 164,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44514,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "offset": 11998,
+      "length": 83,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44750,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "offset": 12109,
+      "length": 1,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44861,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "offset": 12221,
+      "length": 377,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44973,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "offset": 13884,
+      "length": 801,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46636,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "offset": 16029,
+      "length": 18,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48781,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "offset": 16051,
+      "length": 264,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48803,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "offset": 16339,
+      "length": 36,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49091,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "offset": 16391,
+      "length": 23,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49143,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "offset": 16422,
+      "length": 298,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49174,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "offset": 16733,
+      "length": 52,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49485,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "offset": 17223,
+      "length": 185,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49975,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "offset": 17673,
+      "length": 14,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 50425,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "offset": 17747,
+      "length": 108,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 50499,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "offset": 17887,
+      "length": 140,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 50639,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "offset": 18287,
+      "length": 335,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 51039,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "offset": 18687,
+      "length": 380,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 51439,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "offset": 19271,
+      "length": 76,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 52023,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 56,
+      "offset": 19404,
+      "length": 82,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Validated connected 6502 control flow; source behavior annotation follows in commentary phase.",
+      "evidence": "Round01: validated reset/NMI/IRQ vectors and supported NMI dispatcher entry contracts; reviewed instruction/control-flow boundaries with fixed NROM context. Three constant-branch data fallthroughs excluded. See analysis/evidence/round01/broad-code-review.txt and scripts.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 52156,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "offset": 0,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "InesHeader",
+      "comment": "",
+      "evidence": "iNES signature and declared NROM PRG/CHR sizes inspected.",
+      "views": []
+    },
+    {
+      "id": 58,
+      "offset": 32778,
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "InterruptVectors",
+      "comment": "",
+      "evidence": "Three hardware vectors: NMI $8471, reset $8000, IRQ $84FF; fixed NROM context.",
+      "views": []
+    },
+    {
+      "id": 59,
+      "offset": 32784,
+      "length": 8192,
+      "kind": "Image",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ChrPatternTiles",
+      "comment": "",
+      "evidence": "iNES CHR ROM section, fixed NROM PPU pattern-table storage; 512 16-byte planar tiles.",
+      "views": []
+    },
+    {
+      "id": 60,
+      "offset": 19508,
+      "length": 13270,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Uniform $FF suffix after last nonuniform bytes; exact boundary inspected, no conflicting CFG or fetch evidence. Specific fill purpose unproven.",
+      "views": []
+    },
+    {
+      "id": 61,
+      "offset": 10680,
+      "length": 32,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "SpriteRecordsA9A8",
+      "comment": "",
+      "evidence": "Repeated four-byte sprite records, indexed record consumer $A980/$A98F. $A9A6 BNE is always taken after ORA #$10; false fallthrough excluded.",
+      "views": []
+    },
+    {
+      "id": 62,
+      "offset": 16315,
+      "length": 24,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "AudioPeriodWords",
+      "comment": "",
+      "evidence": "Consumer $BF50 masks low nibble, CMP #$0C excludes indices >=12, ASL selects 12 two-byte periods at $BFAB. $BFA7 LDA #0 makes BEQ unconditional.",
+      "views": []
+    },
+    {
+      "id": 63,
+      "offset": 16785,
+      "length": 438,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "AudioCommandStreams",
+      "comment": "",
+      "evidence": "Audio entry routines load C2xx/C3xx stream pointers; compact repeated note/duration command encodings, boundary before $C337 code. C17F branch follows nonzero LDA, so no C181 fallthrough.",
+      "views": []
+    },
+    {
+      "id": 64,
+      "offset": 825,
+      "length": 103,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 65,
+      "offset": 1020,
+      "length": 52,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 66,
+      "offset": 1381,
+      "length": 20,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 67,
+      "offset": 1697,
+      "length": 84,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 68,
+      "offset": 2257,
+      "length": 7,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 69,
+      "offset": 2275,
+      "length": 32,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 70,
+      "offset": 2717,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 71,
+      "offset": 2780,
+      "length": 72,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 72,
+      "offset": 3557,
+      "length": 13,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 73,
+      "offset": 3788,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 74,
+      "offset": 4341,
+      "length": 24,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 75,
+      "offset": 4868,
+      "length": 126,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 76,
+      "offset": 5352,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 77,
+      "offset": 6308,
+      "length": 96,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 78,
+      "offset": 6471,
+      "length": 84,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 79,
+      "offset": 6610,
+      "length": 30,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 80,
+      "offset": 6698,
+      "length": 5,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 81,
+      "offset": 8142,
+      "length": 76,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 82,
+      "offset": 8379,
+      "length": 80,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 83,
+      "offset": 8662,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 84,
+      "offset": 8872,
+      "length": 128,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 85,
+      "offset": 9188,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 86,
+      "offset": 10921,
+      "length": 54,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 87,
+      "offset": 16375,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 88,
+      "offset": 16414,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 89,
+      "offset": 17408,
+      "length": 265,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 90,
+      "offset": 17687,
+      "length": 60,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 91,
+      "offset": 17855,
+      "length": 32,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 92,
+      "offset": 18027,
+      "length": 260,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 93,
+      "offset": 19067,
+      "length": 204,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 94,
+      "offset": 19347,
+      "length": 57,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code array: repeated low-domain tile/palette, coordinate or record bytes; inspected adjacent code, references and patterns in round01 review. No conflicting instruction evidence. Exact semantic schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 95,
+      "offset": 1401,
+      "length": 22,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "NmiHandlerPointers",
+      "comment": "",
+      "evidence": "11 little-endian pointers selected by $F4 low 5 bits in NMI $84C0-$84D0; supported states 0..10 from stores/handlers. Larger table extent not asserted.",
+      "views": []
+    },
+    {
+      "id": 96,
+      "offset": 6727,
+      "length": 928,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Pointer-like prefix followed by repeated tile/control streams and low-domain row arrays; consumer vicinity inspected; precise schemas unresolved. Exact physical extent between established code boundaries; no conflicting static CFG or actual fetch evidence. See round01 data-review.txt.",
+      "views": []
+    },
+    {
+      "id": 97,
+      "offset": 12598,
+      "length": 1286,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Binary masks followed by low-domain animation/tile selectors and repeated four-byte sprite records; inspected entire interval, nearby consumers and code endpoints. Exact subtable schemas unresolved. Exact physical extent between established code boundaries; no conflicting static CFG or actual fetch evidence. See round01 data-review.txt.",
+      "views": []
+    },
+    {
+      "id": 98,
+      "offset": 14685,
+      "length": 1344,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated packed-nibble grid rows and bit-pattern rows; entire interval visibly noninstruction data. Nearby bounded graphics consumers inspected; exact encoding semantics unresolved. Exact physical extent between established code boundaries; no conflicting static CFG or actual fetch evidence. See round01 data-review.txt.",
+      "views": []
+    },
+    {
+      "id": 99,
+      "offset": 3179,
+      "length": 45,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static contract-supported code; natural entry/selector reachability unresolved. See round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: contract-supported executable segment",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35931,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 100,
+      "offset": 3224,
+      "length": 28,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static noncode; consumer and boundary review recorded in round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: seven four-byte sprite records",
+      "views": []
+    },
+    {
+      "id": 101,
+      "offset": 3321,
+      "length": 4,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static contract-supported code; natural entry/selector reachability unresolved. See round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: contract-supported executable segment",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36073,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 102,
+      "offset": 3325,
+      "length": 59,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static noncode; consumer and boundary review recorded in round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: FF-terminated tile streams",
+      "views": []
+    },
+    {
+      "id": 103,
+      "offset": 4070,
+      "length": 38,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static contract-supported code; natural entry/selector reachability unresolved. See round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: contract-supported executable segment",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36822,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 104,
+      "offset": 4546,
+      "length": 201,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static contract-supported code; natural entry/selector reachability unresolved. See round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: contract-supported executable segment",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37298,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 105,
+      "offset": 4812,
+      "length": 23,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static contract-supported code; natural entry/selector reachability unresolved. See round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: contract-supported executable segment",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37564,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 106,
+      "offset": 7783,
+      "length": 32,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static noncode; consumer and boundary review recorded in round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: sixteen state-handler pointers",
+      "views": []
+    },
+    {
+      "id": 107,
+      "offset": 9318,
+      "length": 21,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Generic Data: patterned low-domain animation bytes bounded by established code; full reachable nibble domain and complete table layout not asserted.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: animation lookup and bounded noncode suffix",
+      "views": []
+    },
+    {
+      "id": 108,
+      "offset": 9339,
+      "length": 20,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static contract-supported code; natural entry/selector reachability unresolved. See round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: contract-supported executable segment",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42091,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 109,
+      "offset": 9359,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static noncode; consumer and boundary review recorded in round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: four substate handler pointers",
+      "views": []
+    },
+    {
+      "id": 110,
+      "offset": 9367,
+      "length": 334,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static contract-supported code; natural entry/selector reachability unresolved. See round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: contract-supported executable segment",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42119,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 111,
+      "offset": 10243,
+      "length": 147,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static contract-supported code; natural entry/selector reachability unresolved. See round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: contract-supported executable segment",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42995,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 112,
+      "offset": 10390,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static noncode; consumer and boundary review recorded in round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: eight animation bytes",
+      "views": []
+    },
+    {
+      "id": 113,
+      "offset": 10517,
+      "length": 123,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static contract-supported code; natural entry/selector reachability unresolved. See round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: contract-supported executable segment",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43269,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 114,
+      "offset": 10667,
+      "length": 9,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static contract-supported code; natural entry/selector reachability unresolved. See round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: contract-supported executable segment",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43419,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 115,
+      "offset": 11016,
+      "length": 29,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static contract-supported code; natural entry/selector reachability unresolved. See round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: contract-supported executable segment",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43768,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 116,
+      "offset": 11045,
+      "length": 11,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Generic Data: patterned low-domain animation bytes bounded by established code; full reachable nibble domain and complete table layout not asserted.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: bounded animation lookup bytes",
+      "views": []
+    },
+    {
+      "id": 117,
+      "offset": 11056,
+      "length": 286,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static contract-supported code; natural entry/selector reachability unresolved. See round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: contract-supported executable segment",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43808,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 118,
+      "offset": 11403,
+      "length": 179,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static contract-supported code; natural entry/selector reachability unresolved. See round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: contract-supported executable segment",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44155,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 119,
+      "offset": 11582,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static noncode; consumer and boundary review recorded in round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: four substate handler pointers",
+      "views": []
+    },
+    {
+      "id": 120,
+      "offset": 11590,
+      "length": 30,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static contract-supported code; natural entry/selector reachability unresolved. See round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: contract-supported executable segment",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44342,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 121,
+      "offset": 11620,
+      "length": 11,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Generic Data: patterned low-domain animation bytes bounded by established code; full reachable nibble domain and complete table layout not asserted.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: bounded animation lookup bytes",
+      "views": []
+    },
+    {
+      "id": 122,
+      "offset": 11631,
+      "length": 52,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static contract-supported code; natural entry/selector reachability unresolved. See round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: contract-supported executable segment",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44383,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 123,
+      "offset": 11683,
+      "length": 11,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Generic Data: patterned low-domain animation bytes bounded by established code; full reachable nibble domain and complete table layout not asserted.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: bounded animation lookup bytes",
+      "views": []
+    },
+    {
+      "id": 124,
+      "offset": 11694,
+      "length": 57,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static contract-supported code; natural entry/selector reachability unresolved. See round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: contract-supported executable segment",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44446,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 125,
+      "offset": 11751,
+      "length": 11,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Generic Data: patterned low-domain animation bytes bounded by established code; full reachable nibble domain and complete table layout not asserted.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: bounded animation lookup bytes",
+      "views": []
+    },
+    {
+      "id": 126,
+      "offset": 11926,
+      "length": 72,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static contract-supported code; natural entry/selector reachability unresolved. See round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: contract-supported executable segment",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44678,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 127,
+      "offset": 12081,
+      "length": 28,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static contract-supported code; natural entry/selector reachability unresolved. See round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: contract-supported executable segment",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44833,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 128,
+      "offset": 12110,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static noncode; consumer and boundary review recorded in round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: eight-byte player template",
+      "views": []
+    },
+    {
+      "id": 129,
+      "offset": 12118,
+      "length": 103,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static contract-supported code; natural entry/selector reachability unresolved. See round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: contract-supported executable segment",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44870,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 130,
+      "offset": 16047,
+      "length": 4,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static contract-supported code; natural entry/selector reachability unresolved. See round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: contract-supported executable segment",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48799,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 131,
+      "offset": 16720,
+      "length": 13,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static contract-supported code; natural entry/selector reachability unresolved. See round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: contract-supported executable segment",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49472,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 132,
+      "offset": 18622,
+      "length": 65,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Static contract-supported code; natural entry/selector reachability unresolved. See round02 independent review.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: contract-supported executable segment",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 51374,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 133,
+      "offset": 19486,
+      "length": 22,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "STA $CC18 writes immutable NROM and cannot alter LDA source page. Then uploads 64 bytes from $0700 to OAMDATA and tails to RestorePpuState; caller supplies OAMADDR. Historical intent and natural entry unresolved.",
+      "evidence": "Independent round02 exact decode, boundary, caller/stack and consumer review: analysis/evidence/round02/review.md; primary evidence analysis/redirect/round01-contract-review/findings.md. Role: contract-supported executable segment",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 52238,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    }
+  ],
+  "next_id": 134
+}
