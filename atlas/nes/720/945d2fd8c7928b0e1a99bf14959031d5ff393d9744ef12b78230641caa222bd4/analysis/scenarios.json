@@ -1,0 +1,220 @@
+{
+  "version": 1,
+  "round": 1,
+  "input_contract": {
+    "method": "emulator.input",
+    "params": {
+      "port": 1,
+      "buttons": [
+        "start"
+      ]
+    },
+    "release": {
+      "port": 1,
+      "buttons": []
+    },
+    "note": "Earlier button/pressed form silently ignored; TI-001. Old files named menu/title/held/park/startgame were NO-INPUT attract routes."
+  },
+  "budget": {
+    "unit": "frame",
+    "max_chunk_frames": 30,
+    "max_operations": 2000000,
+    "timeout_ms": 30000,
+    "trace_capacity": 0,
+    "aggregate_dropped": 0
+  },
+  "scenarios": [
+    {
+      "id": "R001-attract",
+      "milestone": "copyright/title",
+      "status": "visited",
+      "route": "reset30 then natural no-input startup/menu/title/held/park/startgame sequences total 1204 frames; old button arguments ignored",
+      "evidence": [
+        "analysis/round-001/startup.ppm.png",
+        "analysis/round-001/held-3.ppm.png",
+        "analysis/round-001/startgame.snapshot"
+      ],
+      "reachability": "natural"
+    },
+    {
+      "id": "R001-mainpark",
+      "milestone": "Class 1 and Main Park",
+      "status": "visited",
+      "route": "startgame.snapshot; corrected Start 2f, neutral60f, Right+A60f, neutral30f = realstart; then neutral120f = parkrecovery",
+      "evidence": [
+        "analysis/round-001/realstart.snapshot",
+        "analysis/round-001/parkrecovery.snapshot",
+        "analysis/round-001/skate-0.ppm.png"
+      ],
+      "reachability": "natural"
+    },
+    {
+      "id": "R001-skate-interrupted",
+      "milestone": "park movement/jump/spin",
+      "status": "attempted",
+      "route": "realstart.snapshot neutral120f, Right+A120f, Up+A+B attempted120f, neutral30f planned; SIGTERM after Up+A+B90f before aggregate/snapshot export",
+      "evidence": [
+        "analysis/round-001/skate-ram-2.json",
+        "analysis/round-001/skate-state-2-60.json"
+      ],
+      "result": "frames/RAM remain; final coverage not available; use parkrecovery snapshot, do not claim exact lost gain"
+    },
+    {
+      "id": "R001-event-1",
+      "milestone": "Ramp",
+      "status": "visited",
+      "route": "parkrecovery.snapshot; understood $D93A call injection via event.py; neutral90f then Right+A+B30f and Down+A30f; neutral90f from eventN-4 snapshot reaches initialized event, then short sequential 30f mechanics route",
+      "patch_recipe": "analysis/round-001/event1-recipe.json",
+      "reachability": "artificial",
+      "evidence": [
+        "analysis/round-001/event1-contexts.json",
+        "analysis/round-001/event1-4.snapshot",
+        "analysis/round-001/rampplay-2.ppm.png"
+      ],
+      "result": "Event title confirms selector; initialized event scene and actual accepted fetches after bounded input. Natural event entry remains unproven."
+    },
+    {
+      "id": "R001-event-2",
+      "milestone": "Slalom",
+      "status": "visited",
+      "route": "parkrecovery.snapshot; understood $D93A call injection via event.py; neutral90f then Right+A+B30f and Down+A30f; neutral90f from eventN-4 snapshot reaches initialized event, then short sequential 30f mechanics route",
+      "patch_recipe": "analysis/round-001/event2-recipe.json",
+      "reachability": "artificial",
+      "evidence": [
+        "analysis/round-001/event2-contexts.json",
+        "analysis/round-001/event2-4.snapshot",
+        "analysis/round-001/event2mechanics-0.ppm.png"
+      ],
+      "result": "Event title confirms selector; initialized event scene and actual accepted fetches after bounded input. Natural event entry remains unproven."
+    },
+    {
+      "id": "R001-event-3",
+      "milestone": "Downhill",
+      "status": "visited",
+      "route": "parkrecovery.snapshot; understood $D93A call injection via event.py; neutral90f then Right+A+B30f and Down+A30f; neutral90f from eventN-4 snapshot reaches initialized event, then short sequential 30f mechanics route",
+      "patch_recipe": "analysis/round-001/event3-recipe.json",
+      "reachability": "artificial",
+      "evidence": [
+        "analysis/round-001/event3-contexts.json",
+        "analysis/round-001/event3-4.snapshot",
+        "analysis/round-001/event3mechanics-0.ppm.png"
+      ],
+      "result": "Event title confirms selector; initialized event scene and actual accepted fetches after bounded input. Natural event entry remains unproven."
+    },
+    {
+      "id": "R001-event-4",
+      "milestone": "Jump",
+      "status": "visited",
+      "route": "parkrecovery.snapshot; understood $D93A call injection via event.py; neutral90f then Right+A+B30f and Down+A30f; neutral90f from eventN-4 snapshot reaches initialized event, then short sequential 30f mechanics route",
+      "patch_recipe": "analysis/round-001/event4-recipe.json",
+      "reachability": "artificial",
+      "evidence": [
+        "analysis/round-001/event4-contexts.json",
+        "analysis/round-001/event4-4.snapshot",
+        "analysis/round-001/event4mechanics-0.ppm.png"
+      ],
+      "result": "Event title confirms selector; initialized event scene and actual accepted fetches after bounded input. Natural event entry remains unproven."
+    },
+    {
+      "milestone": "later classes",
+      "status": "visited",
+      "reason": "Broad milestone exploration still active; class/event contract identified, practical branches pending.",
+      "route": "event.py 1 4 patches $0207/$020E=4 before D93A call; event1-class4-1.snapshot, $30=0 skips pure C35D countdown; class4fast 30f then class4mechanics 30f Right+A+B",
+      "reachability": "artificial",
+      "evidence": [
+        "analysis/round-001/event1-class4-recipe.json",
+        "analysis/round-001/delay-listing.json",
+        "analysis/round-001/class4mechanics-0.ppm.png"
+      ],
+      "result": "Class4 selector retained through supported loader; initialized ramp responds with different timer (60 shown)."
+    },
+    {
+      "milestone": "event result/medals",
+      "status": "visited",
+      "reason": "Zero event countdown and metric22; nine per15frame pure frame-delay clears. Park reappearance after result unproved.",
+      "history": [
+        {
+          "milestone": "event result/medals",
+          "status": "deferred",
+          "reason": "Representative events initialized and mechanics sampled; immediate result forcing needs exact event countdown/finish-flag contract. Redirect should trace $0215/$0216 and per-event timer consumers, not repeat long play."
+        }
+      ],
+      "reachability": "artificial",
+      "route": "analysis/redirect/round-001-r01/runtime.py",
+      "result": "Gold Medal/CashPrize$55/NoBonus and class1 medal map visibly captured; grade3 stored for event2.",
+      "evidence": [
+        "analysis/redirect/round-001-r01/result-runtime-recipe.json",
+        "analysis/redirect/round-001-r01/result-contact.png",
+        "analysis/redirect/round-001-r01/result-runtime-contexts.json"
+      ]
+    },
+    {
+      "milestone": "shop",
+      "status": "attempted",
+      "reason": "Corrected oldD980shop hypothesis: D980 is informationmap. Actualshop player script14 traced BE5F->BE90; repeated natural shop arrival has diminished classification prospect after consumer/grammar resolved.",
+      "history": [
+        {
+          "milestone": "shop",
+          "status": "deferred",
+          "reason": "D980 alternate interaction handler found; requires additional world-state/selection contract ($058C, $0570..72, position preservation). Unsafe to treat event selector5 as shop. Redirect inspect concrete handler/caller before patch."
+        }
+      ],
+      "reachability": "artificial",
+      "route": "analysis/redirect/round-001-r01/purchase4_runtime.py",
+      "result": "Purchase consumer BE90 fetched, cash100->75, equipment0580 0->1, availability0560 FF->0. No full shop animation/natural arrival claim.",
+      "evidence": [
+        "analysis/redirect/round-001-r01/purchase4-runtime-recipe.json",
+        "analysis/redirect/round-001-r01/purchase4-runtime-contexts.json",
+        "analysis/redirect/round-001-r01/purchase4-runtime-ram.json"
+      ]
+    },
+    {
+      "milestone": "failure-path terminal/high-score screen",
+      "status": "visited",
+      "reason": "Broad milestone exploration still active; class/event contract identified, practical branches pending.",
+      "route": "gameover.py injects call to C2DE main failure-path under no-argument contract, neutral30f",
+      "reachability": "artificial",
+      "evidence": [
+        "analysis/round-001/gameover-recipe.json",
+        "analysis/round-001/gameover-0.ppm.png"
+      ],
+      "result": "TOP TEN high-score screen shown; normal loss transition still unproven."
+    },
+    {
+      "milestone": "ending or terminal continuation",
+      "status": "attempted",
+      "reason": "No replay: primary milestone preserved, final loading not treated as successful newpark or an endingabsence proof.",
+      "history": [
+        {
+          "milestone": "ending or terminal continuation",
+          "status": "deferred",
+          "reason": "Failure-path high-score terminal visited. Distinct ending unknown: main class progression capped4, but no ending absence claim. Guide fetch restricted; redirect inspect class completion branch and score/medal handlers."
+        }
+      ],
+      "reachability": "artificial",
+      "route": "analysis/redirect/round-001-r01/class_runtime.py",
+      "result": "Class4 all-events-consumed shortcut reaches visible Class Finished at1530frames; SessionResultFF/EventMode0/class4 retained. Saved1740frames before SIGTERM, no final aggregate/snapshot. StaticC22Ccapsclass4 and returnsclassloader. Distinctendingabsence not established.",
+      "evidence": [
+        "analysis/redirect/round-001-r01/class-runtime-recipe.json",
+        "analysis/redirect/round-001-r01/class-runtime-50.ppm.png",
+        "analysis/redirect/round-001-r01/class-runtime-step-57.json"
+      ]
+    },
+    {
+      "id": "R001-r01-information-map",
+      "milestone": "park information map with shop/event locations",
+      "status": "visited",
+      "reachability": "artificial",
+      "route": "parkrecovery.snapshot liveobject14 slot1 parameter1; patch058C=1; neutral60f,A15f,neutral45f; continue saved overlay-runtime-7.snapshot neutral60f",
+      "result": "Map labelsDOWNHILL/HELMETS/RAMP/BOARDS/SHOES/JUMP/SLALOM/PADS/YOUAREHERE; Aexits, triggercleared and READY shown, then black/loading. Successfulpark reappearance unproved.",
+      "evidence": [
+        "analysis/redirect/round-001-r01/overlay-runtime-recipe.json",
+        "analysis/redirect/round-001-r01/overlay-runtime-3.ppm.png",
+        "analysis/redirect/round-001-r01/overlay-runtime-7.ppm.png",
+        "analysis/redirect/round-001-r01/overlay-continue-1.ppm.png",
+        "analysis/redirect/round-001-r01/overlay-runtime-summary.json"
+      ]
+    }
+  ],
+  "phase_outcome": "Round001 redirect combined10942byte Static proposal ready for independent disassembly; acceptedmap/classification unchanged. Runtime result/medal/map/purchase/ClassFinished artificial evidence retained, partial classSIGTERM distinguished."
+}

@@ -1,0 +1,60 @@
+{
+  "classification_complete": false,
+  "terminal_workflow_outcome": "justified incomplete",
+  "image_size": 131088,
+  "classified": 131076,
+  "counts": {
+    "Code": 18839,
+    "Data": 112237
+  },
+  "unknown": 12,
+  "unknown_ranges": [
+    {
+      "offset": 7886,
+      "length": 3
+    },
+    {
+      "offset": 115437,
+      "length": 1
+    },
+    {
+      "offset": 118424,
+      "length": 1
+    },
+    {
+      "offset": 118459,
+      "length": 1
+    },
+    {
+      "offset": 118472,
+      "length": 1
+    },
+    {
+      "offset": 118494,
+      "length": 1
+    },
+    {
+      "offset": 119047,
+      "length": 1
+    },
+    {
+      "offset": 126926,
+      "length": 3
+    }
+  ],
+  "evidence_regions": 817,
+  "failures": [],
+  "validation": {
+    "map": true,
+    "store": true
+  },
+  "checkpoint": "pass-002",
+  "rejection_review": "analysis/redirect/round-002-r01/review.md",
+  "editorial_audit": "commentary/audit.json",
+  "hashes": {
+    "input/game.nes": "945d2fd8c7928b0e1a99bf14959031d5ff393d9744ef12b78230641caa222bd4",
+    "analysis/state.json": "c87510db28caf769ac3674f40e7628477fd591c3a21ac9e5c6ee3a8c66d642e4",
+    "maps/current.json": "c87510db28caf769ac3674f40e7628477fd591c3a21ac9e5c6ee3a8c66d642e4",
+    "maps/pass-002.json": "c87510db28caf769ac3674f40e7628477fd591c3a21ac9e5c6ee3a8c66d642e4"
+  }
+}

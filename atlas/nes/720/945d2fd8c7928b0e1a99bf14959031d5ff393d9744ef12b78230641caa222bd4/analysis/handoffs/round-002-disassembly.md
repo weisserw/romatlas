@@ -1,0 +1,15 @@
+# Round 002 disassembly handoff
+
+ROM classification: 99.99% (131076 / 131088 bytes classified; 12 bytes unknown).
+
+Print that exact classification line before starting commentary. Accepted131076/131088; Code18839/Data112237; Unknown12 in8 intervals. Full accounting analysis/round-002/accounting.json (all817 regions evidence-bearing); review.md/native-review.json/pattern-review.json/accepted.json provide independent primary checks and annotation outcomes. L005–L008 verified: 10942 added bytes,4078Code/6864Data. No forced classification of bare RTS.
+
+Fresh verified checkpoint pass-002, mapSHA256 c87510db28caf769ac3674f40e7628477fd591c3a21ac9e5c6ee3a8c66d642e4; state/current/checkpoint hashes match. analysis/pass-002-verification.json confirms byte identity; generated/pass-002. Input unchanged. Configured release only. No writer remains after handoff.
+
+Residuals: physical7886 length3 (bank0 CPU9EBE..9EC0),115437/118424/118459/118472/118494/119047 each length1 (bank14 C2DD/CE88/CEAB/CEB8/CECE/D0F7),126926 length3 (bank15 EFBE..EFC0). Correction: redirect handoff erroneously called first group bank1; primary per-byte accounting has bank0 unknown3, bank1 unknown0. Known instruction crossing9FFF/A000 is split physically in accounting. Bare RTS legal decode/identical run alone does not settle role; no incoming script/native/consumer constraint currently supports them. This is ordinary incomplete handoff, not terminal exhaustion.
+
+Next full current-source commentary must cover all pass-002 classified source. Preserve previous source/history. Correct TicketDigits/CompareTicketCost names to cash/prize account using actual BE90 purchase and goldprize evidence. Script records are Data, not native code; 771records/62callbacks. Respect all explicit contexts: ordinary[0,1,14,15]; D859..D89B and D8DC..D939 [10,11,14,15], restorebank0 atD89C; DAF1..DB50 switchedslotsnull after variable resource bank. E46C is encodedorigin; actual row-continuation32LE16 tableE46E..E4AD. Generic data roles do not assert original schemas/fill/dead status. Editorial audit remains pending.
+
+Broad progression reused saved result/medal/map/purchase/ClassFinished experiments; unchanged replay unnecessary. All-four events and class4 already visited artificially. Information overlay is not shop; actual purchase player script14->BE90. Park reappearance afterREADY and distinctending unproved. Classruntime interrupted1740frames retains ClassFinished frame1530; no new runtime execution this pass. Natural-use claims remain separate from Static annotations.
+
+After commentary, redirect should review residual claims under evidence-policy.md, including competing data/code readings and primary control/consumer constraints before any terminal decision. No current ready proposal for twelve bytes. No toolkit changes, ROM changes, archive execution, deletion/publication. No new toolkit issues found; TI001confirmed input schema mismatch/workaroundknown/no blocker: analysis/toolkit-issues.md. Progress/investigation/leads updated. Writer done.
