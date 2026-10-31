@@ -1,0 +1,20 @@
+# Gameplay familiarization, round 01
+
+Title confirmed visually in traces/start2.ppm: The Addams Family: Pugsley's Scavenger Hunt, NES, 1993. MMC1, 128 KiB PRG and CHR each; exact region/revision unverified.
+
+https://gamefaqs.gamespot.com/nes/587066-the-addams-family-pugsleys-scavenger-hunt/faqs/32903 (NES guide; search excerpt accessible, direct fetch restricted): A jumps, B/right and Select/left shuffles; Up enters doors/climbs. Start opens pause statistics/password. Locally confirmed movement, A jump and Up residence door. Guide names Hall of Stairs.
+
+https://gamefaqs.gamespot.com/nes/587066-the-addams-family-pugsleys-scavenger-hunt/cheats : NES family-rescue passwords 6R2KK (all rescued), 662K1 (Fester/Gomez/Wednesday rescued, five hearts), maxed 6RXZR. Page mixes GB and NES codes; use explicitly marked NES entries only; not yet confirmed. Concrete experiment: title Password menu, input 6R2KK, then enter final door to expose late-game routines. Preserve title snapshot before editing password RAM if useful.
+
+https://en.wikipedia.org/wiki/The_Addams_Family%3A_Pugsley%27s_Scavenger_Hunt : NES is adapted from earlier SNES Addams Family, reduced levels; doors allow nonlinear level choices, NES pause provides passwords. Hypotheses pending ROM checks.
+
+Observed route: reset, idle 128 frames, Start 1/release 180, Start 2/release120, Start2/release90 => residence at frame523. Up60 => Hall at583. Right+A150, Up40 => right side of hall at773; Right160/Up30 stayed at right boundary. Left+Up240 returned to entry region; no successful staircase climb. Trace-disabled travel dramatically faster; reenable for representative bounded execution, never infer execution from untraced travel.
+
+Persistent snapshots: analysis/round01-house.snapshot.json (frame523), round01-hall.snapshot.json (583), round01-hall-right.snapshot.json (773), round01-title.snapshot.json (reset idle440; actually still presentation sequence, title timing pending). Restore reasserts buttons. Current frontier reset frame473, attempting password route. No late areas/bosses/ending visited yet; practical shortcut under active investigation.
+
+Confirmed shortcut: from actual title at reset frame873, Down2/release2/Start2/release30 opens password screen (frame909). Grid rows 12345678 /9BCDFGHJ /KLMNPRST /VWXYZ0?-. Each tap is press2/release2 frames. Starting (0,0), Right*5,A,Down*2,A,Up*2,Left*4,A,Down*2,Left,A,A enters 6R2KK exactly (traces/password-filled.ppm). Start then40 frames starts Hall with rescued family portraits (traces/password-result.ppm, all-rescued-door.ppm). This is natural password execution, no RAM patches. analysis/round01-all-rescued.snapshot.json preserves state. Door/late-area route investigation ongoing.
+
+Correction after primary source review: $5F-$62 are derived viewport bounds, NOT established player coordinates. At physical $1E136-$1E14E (CPU E126-E13E), code derives them from $55-$58 plus $F8/$E8. Writes to $61/$62 were overwritten and Up returned to residence, not a later area. No later-area visit is claimed. Revised bounded experiment edits source $57/$58 (viewport origin candidate) after clean hall snapshot, observes initialized result. Actual player-object coordinate and supported room-load contract remain unresolved; promising redirect prerequisite is identifying these from writes/consumers, not arbitrary RAM brute force.
+
+## Round02 confirmed final guardian and ending shortcut
+Local source, independent of earlier guide hypotheses: final guardian CurrentScene37(decimal,$25), selected A2BB header, stream sets current guardian mask043C02; fixedD1D3 bit02 gates PRG4 credits entryBAE7. Existing all-family1D does not include02. From persisted clean Hall request0647=[37,FF,00],150frames; initialized06A3=07. Patch signed06A3=FF;300+2frames produces Morticia rescue dialog. Start2/release then300+2frames ->Well done Pugsley ending intro;3612+480+2frames ->THE END. Artificial progression, no natural route claim. Selected screenshots, exact replay scripts, checkpoints and traced-context distinction: analysis/redirect/r02-contract-20261030/findings.md and analysis/scenarios.json.

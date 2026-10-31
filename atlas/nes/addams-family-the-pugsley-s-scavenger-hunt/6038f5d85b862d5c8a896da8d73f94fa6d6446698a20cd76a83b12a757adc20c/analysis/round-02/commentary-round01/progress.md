@@ -1,0 +1,11 @@
+# Commentary progress
+
+Prepared verified baseline. All semantic review entries are pending.
+
+Round 01 active checkpoint: inspected the entire condensed classified instruction inventory (7917 instructions across banks 3,4,10,11,12,13,14,15). Curated semantic notes and routine names for banks 3/4/10/11/12/13 are durable in analysis/commentary-scratch/notes.txt; source installation and bank14/15 notes are next. Review entries remain pending until installed and verified. Findings: player world position $9A-$9D; camera $55-$58; scene descriptors load four-byte exits, three-byte spawn records and bank/palette contracts; audio ABI uses MMC1 value 2 (physical banks4/5). No structural changes. Exact remaining readability scope: all entries await source installation; bank14 physical114764..122879 and bank15 physical122880..131082 await curated notes (only classified subranges). Generic data/CHR/unknown boundary notes also pending installation. No blocker.
+
+
+Round 01 source-install checkpoint: all classified source edited and coherent build verified byte-identical. 302 curated routine/block explanations, 1048 named control labels, 380 operand symbols. Reviewed 7917 Code entries, 57 Data entries and one Image entry, with boundary/uncertainty notes for all 266 Unknown entries. Full-ROM scaffold retained; editorial_audit remains pending for final acceptance. Fixed-bank notes installed, including scene-entry loader, player/camera coordinates, NMI/MMC1 context, sprite and metatile engines. Unrolled tile-writer source addresses use contextual staging aliases rather than misleading frame-counter aliases. No current-source readability backlog remains; final verification/reading refresh and handoff pending.
+
+
+Round 01 commentary complete: zero current-source readability backlog. Final supported verification byte-identical; reading-after.asm refreshed after final control-label refinement. Exact scope/partition checks passed (analysis/round-01-commentary-scope.json). Handoff: analysis/round-01-commentary-handoff.md; verification: analysis/round-01-commentary-verification.json. Current phase complete, next redirect; classification remains incomplete57.89%, final editorial audit pending. Historical arithmetic correction: actual map uniform interiors total4107 bytes, not4162 in prior prose; total classified151767 unchanged. No toolkit issues found.

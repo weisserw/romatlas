@@ -1,0 +1,152 @@
+{
+  "version": 1,
+  "round": 1,
+  "phase": "redirect",
+  "trace_policy": {
+    "detail_capacity": 0,
+    "aggregate_dropped": 0,
+    "notes": "Initial all-kind tracing; later Instruction/ControlFlow/BankSwitch only. Trace-disabled travel is never claimed as observed execution; representative frames reenabled. Named snapshots not assumed persistent."
+  },
+  "milestones": [
+    {
+      "milestone": "title/menu",
+      "status": "visited",
+      "recipe": "Reset idle873 -> Down2 release2 Start2 release30 enters Password at909. Faster route and initial title pictured in gameplay.md.",
+      "evidence": [
+        "traces/start2.ppm",
+        "analysis/round01-real-title.snapshot.json"
+      ]
+    },
+    {
+      "milestone": "residence and Hall of Stairs",
+      "status": "visited",
+      "recipe": "Initial reset idle128; Start1 release180; Start2 release120; Start2 release90. Residence523; Up60 => hall583. Right+A150, Up40; right160 up30; left+up240; representative jumps and walking.",
+      "evidence": [
+        "analysis/round01-house.snapshot.json",
+        "analysis/round01-hall.snapshot.json",
+        "traces/hall-move.ppm",
+        "traces/jump-stairs.ppm"
+      ]
+    },
+    {
+      "milestone": "password and rescued family progression",
+      "status": "visited",
+      "recipe": "From Password snapshot selector1: Right*5 A Down*2 A Up*2 Left*4 A Down*2 Left A A, every tap press2 release2. Enters 6R2KK. Start +40 starts hall; Up reveals rescued portraits.",
+      "evidence": [
+        "analysis/round01-password.py",
+        "traces/password-filled.ppm",
+        "analysis/round01-all-rescued.snapshot.json",
+        "traces/all-rescued-door.ppm"
+      ]
+    },
+    {
+      "milestone": "later levels and distinct mechanics",
+      "status": "attempted",
+      "recipe": "Natural hall walking/jumping failed staircase. Clean hall restores: RAM61=[10,01],idle20 Up35; RAM61=[B0,00],idle12 Up4 idle100; RAM57=[30,00],idle2 Up100,Right+A30. Inspect initialized screen and representative8-10 traced frames. All returned residence or hall.",
+      "result": "Derived viewport bounds mistaken for player coords; corrected using E126-E13E. Stage/door contract unresolved.",
+      "evidence": [
+        "traces/upper-area.ppm",
+        "traces/camera-shortcut-result.ppm",
+        "analysis/gameplay.md"
+      ]
+    },
+    {
+      "milestone": "bosses/final area/ending",
+      "status": "deferred",
+      "reason": "All-rescued password confirmed but hall final-door/player-coordinate contract remains unknown. Resolve D2/1F/20 selectors and object coordinates before more RAM edits; concrete redirect lead R01-door-contract. No terminal exhaustion claimed."
+    },
+    {
+      "milestone": "Hall exit scene transitions",
+      "status": "visited",
+      "route_type": "artificial RAM patch",
+      "recipe": "Replay Hall per probe.py; clean restore and clear buttons; write0647=[destination,FF,entry_flags] selected from loaded exits065F/0669;150 frames,Right+A30,idle10. Destinations40,78,9,12,59,47,72.",
+      "observed_result": "Seven initialized destinations; six playable environments and Fester interstitial. Disabled travel trace does not prove execution coverage.",
+      "evidence": [
+        "/root/romatlas-batch/6038f5d85b862d5c8a896da8d73f94fa6d6446698a20cd76a83b12a757adc20c/workspace/analysis/redirect/r01-scene-contract-20261030/probe.py",
+        "/root/romatlas-batch/6038f5d85b862d5c8a896da8d73f94fa6d6446698a20cd76a83b12a757adc20c/workspace/analysis/redirect/r01-scene-contract-20261030/visit-exit-1.json",
+        "/root/romatlas-batch/6038f5d85b862d5c8a896da8d73f94fa6d6446698a20cd76a83b12a757adc20c/workspace/analysis/redirect/r01-scene-contract-20261030/visit-exit-7.json"
+      ]
+    },
+    {
+      "milestone": "Train and later rooms",
+      "status": "visited",
+      "route_type": "artificial RAM patch",
+      "recipe": "late-probe.py clean Hall restore;0647=[29/88/89/90,FF,0];150 frames,Right+A30,idle10,then2 enabled-trace frames.",
+      "observed_result": "Moving-train obstacle mechanic29,later rooms88/89 and post-boss door90 visually initialized and exercised; accepted fetch summaries retained.",
+      "evidence": [
+        "/root/romatlas-batch/6038f5d85b862d5c8a896da8d73f94fa6d6446698a20cd76a83b12a757adc20c/workspace/analysis/redirect/r01-scene-contract-20261030/late-probe.py",
+        "/root/romatlas-batch/6038f5d85b862d5c8a896da8d73f94fa6d6446698a20cd76a83b12a757adc20c/workspace/analysis/redirect/r01-scene-contract-20261030/late-scene-29.json",
+        "/root/romatlas-batch/6038f5d85b862d5c8a896da8d73f94fa6d6446698a20cd76a83b12a757adc20c/workspace/analysis/redirect/r01-scene-contract-20261030/late-scene-90.json"
+      ]
+    },
+    {
+      "milestone": "Witch,pumpkin and dragon guardians",
+      "status": "visited",
+      "route_type": "artificial RAM patch",
+      "recipe": "late-probe.py same initialized transition contract selecting33,35,38;Right+A30 and2 traced frames.",
+      "observed_result": "Three distinct guardian battles rendered and representative movement exercised; artificial execution only.",
+      "evidence": [
+        "/root/romatlas-batch/6038f5d85b862d5c8a896da8d73f94fa6d6446698a20cd76a83b12a757adc20c/workspace/analysis/redirect/r01-scene-contract-20261030/late-scene-33.json",
+        "/root/romatlas-batch/6038f5d85b862d5c8a896da8d73f94fa6d6446698a20cd76a83b12a757adc20c/workspace/analysis/redirect/r01-scene-contract-20261030/late-scene-35.json",
+        "/root/romatlas-batch/6038f5d85b862d5c8a896da8d73f94fa6d6446698a20cd76a83b12a757adc20c/workspace/analysis/redirect/r01-scene-contract-20261030/late-scene-38.json"
+      ]
+    },
+    {
+      "milestone": "Dragon defeat and Granny rescue/password",
+      "status": "visited",
+      "route_type": "artificial RAM patch",
+      "recipe": "boss-ff-probe.py: clean Hall,0647=[38,FF,0],150 frames; signed remaining-hit counter06A3=FF;300+300 frames;2 traced frames.",
+      "observed_result": "Guardian-defeated text and Granny rescue/password screen reached. Not proven global ending.",
+      "evidence": [
+        "/root/romatlas-batch/6038f5d85b862d5c8a896da8d73f94fa6d6446698a20cd76a83b12a757adc20c/workspace/analysis/redirect/r01-scene-contract-20261030/boss38-hpff-after600.png",
+        "/root/romatlas-batch/6038f5d85b862d5c8a896da8d73f94fa6d6446698a20cd76a83b12a757adc20c/workspace/analysis/redirect/r01-scene-contract-20261030/boss38-post-hpff-contexts.json",
+        "/root/romatlas-batch/6038f5d85b862d5c8a896da8d73f94fa6d6446698a20cd76a83b12a757adc20c/workspace/analysis/redirect/r01-scene-contract-20261030/boss-ff-probe.py"
+      ]
+    },
+    {
+      "milestone": "Global ending/credits",
+      "status": "visited",
+      "recipe": "Continue final scene37/Morticia defeat dialog with Start2/release,300 untraced+2traced frames -> ending intro (frame1339);3612frames ->credits producer page(frame4951);480+2frames ->THE END(frame5433). Commands bounded; patch/Start/route exact scripts and durable snapshots.",
+      "observed_result": "Well done Pugsley introduction, credits pages, and THE END displayed; actual selected2-frame instruction contexts captured. Trace-off travel gives no execution coverage. Prior attempted routes preserved in attempt_history and R01 evidence.",
+      "evidence": [
+        "analysis/redirect/r02-contract-20261030/credits-after-start304.png",
+        "analysis/redirect/r02-contract-20261030/credits-progression.json",
+        "analysis/redirect/r02-contract-20261030/the-end.png",
+        "analysis/redirect/r02-contract-20261030/the-end.json",
+        "analysis/redirect/r02-contract-20261030/the-end.snapshot.json",
+        "analysis/redirect/r02-contract-20261030/ending-contexts.json",
+        "analysis/redirect/r02-contract-20261030/credits-contexts.json",
+        "analysis/redirect/r02-contract-20261030/the-end-contexts.json",
+        "analysis/redirect/r02-contract-20261030/ending-resume.py",
+        "analysis/redirect/r02-contract-20261030/credits-final.py"
+      ],
+      "attempt_history": [
+        {
+          "milestone": "Global ending/credits",
+          "status": "attempted",
+          "recipe": "Post-boss90 Up45 then Start; separately all-family043B=1D and scene38 route. Source B97B/CE DC inspected.",
+          "observed_result": "Start pauses;1D already contains dragon bit08 and skips cleared battle. B97B records per-boss rescue/password with no proven global-ending branch. Further arbitrary flag edits rejected; no credits claim.",
+          "evidence": [
+            "/root/romatlas-batch/6038f5d85b862d5c8a896da8d73f94fa6d6446698a20cd76a83b12a757adc20c/workspace/analysis/redirect/r01-scene-contract-20261030/findings.md",
+            "/root/romatlas-batch/6038f5d85b862d5c8a896da8d73f94fa6d6446698a20cd76a83b12a757adc20c/workspace/analysis/redirect/r01-scene-contract-20261030/ending-probe.py",
+            "/root/romatlas-batch/6038f5d85b862d5c8a896da8d73f94fa6d6446698a20cd76a83b12a757adc20c/workspace/analysis/redirect/r01-scene-contract-20261030/victory-full-decode.txt"
+          ]
+        }
+      ],
+      "artificial": true
+    },
+    {
+      "milestone": "Final guardian scene37 (Morticia)",
+      "status": "visited",
+      "artificial": true,
+      "recipe": "Import clean round01-hall snapshot; input none;0647=[37,255,0];150frames; save boss37-clean;06A3=255;300 untraced+2traced frames.",
+      "observed_result": "Initialized scene37 has043C02 and06A3=07; defeat shortcut produces guardian-defeated Morticia-rescued dialog.",
+      "evidence": [
+        "analysis/redirect/r02-contract-20261030/boss37-initialized.json",
+        "analysis/redirect/r02-contract-20261030/boss37-defeat-after302.png",
+        "analysis/redirect/r02-contract-20261030/boss37-clean.snapshot.json",
+        "analysis/redirect/r02-contract-20261030/ending-resume.py"
+      ]
+    }
+  ]
+}

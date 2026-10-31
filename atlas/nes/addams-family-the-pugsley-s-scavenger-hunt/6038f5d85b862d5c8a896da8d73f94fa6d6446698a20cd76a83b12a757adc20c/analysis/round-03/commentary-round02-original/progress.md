@@ -1,0 +1,7 @@
+# Commentary progress
+
+Prepared verified baseline. All semantic review entries are pending.
+
+Round02 current-source installation: read all2443 newly classified instructions in physical/bank order; installed166 new routine/block explanations while reusing302 prior notes. All364 new Data records have format/consumer or generic-uncertainty prose. New script-coordinate, score and pickup decimal operand symbols added. Prior final instruction labels carried by physical offset; the installer includes all7917 old label identities in its internal label count, not just semantic control labels. Initial coherent build byte-identical; final source-context check, final verify/read and handoff pending. Exact frontier: analysis/round-02/commentary-checkpoint.md. Editorial audit pending.
+
+Round02 commentary complete. Final source-context review corrected the older CPU9C08/9C0A names to describe motion flags and coordinate staggering rather than frame selection; all affected new initializer comments corrected. 470 curated routine/block explanations,413 symbols. Retained7918/7920 prior labels, revising only those two concrete misleading control labels. Scaffold10360 Code/421 Data/1 Image/438 Unknown records fully reviewed;20992 unknown bytes retain boundary notes. Scope proof analysis/round-02-commentary-scope.json. Fresh supported verify byte-identical; reading-after refreshed. Handoff analysis/round-02-commentary-handoff.md; zero current-source readability backlog. Classification still incomplete91.99%; editorial_audit pending. No toolkit issues found.

@@ -1,0 +1,13 @@
+# Round 003 disassembly handoff
+
+ROM classification: 99.99% (262146 / 262160 bytes classified; 14 bytes unknown).
+
+Incomplete ROM. Output **pass-003-verified**; map/state SHA 887095479d741da9bd20fcf6763e646dd005010cf9442803f462feafabf8b2f3. `map.validate` passed; fresh generated assembly byte-identical (analysis/pass-003-verified-verification.json). Internal analysis/state.json and maps/current.json match checkpoint. Input/ROM unchanged; all historical accepted regions preserved verbatim. No live handles.
+
+One pass independently accepted29,786 Static bytes (6,669Code,23,117Data): archived mixed-image code/dictionaries, consumer-backed local code/data and7copied serializer RTS bytes. Primary semantics, source MMC1 mechanics, whole-helper/whole-image constraints, fresh3,131native instructions, physical views/endpoints and positive noncode patterns reviewed in analysis/round-003/review-notes.md; independent-audit.json and fresh-native-instructions.json retain checks.52message pointers form a permutation of52sixteen-tile records;49punctuation alongside01..1A/47. Old external targets remain obsolete-runtime barriers, not a copied-code-role veto. No Observed/natural invocation invented.
+
+Exactly14Unknown bytes in7intervals:3995+4,4228+1,680E+3,6B95+3,80C2+1,A706+1,180A8+1. Primary raw/flank/native review remains materially ambiguous for tiny routine membership versus noncode.180A8 lies beyond proven bootstrap/helper extent. Accepted tail triples have whole-image counterpart support unavailable for repeated JMPAE43 pair. No concrete useful discriminator emerged; arbitrary entry execution or unchanged gameplay would not resolve role. Exact complement classification-summary.json/unknown-complement.json in analysis/round-003; prior redirect rejection-review.md preserved. No terminal workflow exhaustion claim.
+
+Next full current-source commentary, preserving/carrying existing7,183reviewed entries/1,033units as appropriate; prior commentary source untouched SHA3fcceaca3f9532ac32ede3cf446ae6d726fd06001ea83b06b8a61840d1671b6a. Then redirect independently reviews residual reasoning. Final editorial audit remains pending. Annotation coverage262146/262146 classified bytes; execution separately unchanged partial saved3685physical ROM starts/1RAM start. Broad later rooms/mechanics/ending scenarios reused, no replay.
+
+Persistent ready lead families now verified with appended round3 outcomes; old rejections/history preserved. Existing NES-001 confirmed documentation/input validation issue, buttons-array workaround, no blockers/new findings; analysis/toolkit-issues.md. No toolkit edits, publication, archive, cleanup or deletion.

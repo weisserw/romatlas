@@ -1,0 +1,19 @@
+# Terminal handoff — orchestration finished, ROM incomplete
+
+ROM classification: 99.99% (262146 / 262160 bytes classified; 14 bytes unknown).
+
+The documented workflow reached justified terminal incomplete after three sequential disassembly/commentary/redirect rounds and final editorial acceptance. This is not whole-ROM completion or a blocked running task. No useful concrete next structural test survived the localized rejection review and coordinator inspection. Preserve resumability if independent evidence changes.
+
+Classification checkpoint: pass-003-verified; maps/current.json and analysis/state.json SHA256 887095479d741da9bd20fcf6763e646dd005010cf9442803f462feafabf8b2f3. Configured toolkit map/store validations passed again at final coordinator acceptance. generated/pass-003-verified rebuilds byte-identically. Final commented source is commentary/source/game.asm; reading copy commentary/reading-after.asm. Source SHA256 a033ca3c6d31bbd76b0ef60a5dab1576c4e2757e2e4f6f316d95efdf4c6b930e. commentary/audit.json proves final editorial audit and byte-identical rebuilding; analysis/final-editorial/acceptance-verification.json reconciles hashes and reading expansion.
+
+Readability: all 10100 physical inventory entries reviewed; 1197 meaningful units retained, with 10094 bounded inventory unit records satisfying the documented per-Code-entry audit. Two stale comments repaired at final acceptance. No classified-source naming/comment backlog remains. Semantic uncertainty, obsolete archival runtime targets and natural reachability remain explicit; no full hardware/game compatibility claim.
+
+Residual physical file offsets (hex, lengths decimal): $3995+4, $4228+1, $680E+3, $6B95+3, $80C2+1, $A706+1, $180A8+1. Exact complement and primary flanks: analysis/redirect/round-003-attempt-001/unknown-complement.json. Reasons: isolated short return/store/jump motifs admit competing code/remnant/data interpretations without independent routine or record membership. The accepted patterned suffix and copied helpers do not inherit these local ambiguities. See analysis/redirect/round-003-attempt-001/rejection-review.md and analysis/coordinator-rejection-review.md for the actual stopping reasoning, not merely counts or absent callers.
+
+Final phase handoffs: analysis/handoffs/round-003-disassembly.md, round-003-commentary.md, round-003-redirect.md and final-editorial-acceptance.md. All earlier round handoffs, investigation/lead histories and prior commentary copies remain local. analysis/scenarios.json preserves natural startup/garden and artificial representative later systems/ending routes with patches, budgets and evidence; natural quest completion is not claimed.
+
+Existing toolkit issue NES-001 is a nonblocking input documentation/validation bug, with explicit buttons-array workaround; analysis/toolkit-issues.md. No new final toolkit issue or external blocker. No live handles or pending phase work.
+
+archive-options.json selects additional final conclusions, reviews and phase handoffs. Redundant historical copies of instructions are explicitly omitted from future document selection only; nothing was deleted. analysis/archive-document-selection.json accounts for every current unrecognized analysis/commentary Markdown path under scripts/archive.py's contract. No archive execution, cleanup, publication, toolkit change or workspace commit was performed. All ROM, state, traces, source and assets remain local. Only a supported ROM-free portable mapping is eligible for any separately authorized sharing; internal state is not such a mapping.
+
+Resume from this checkpoint only for a new independent membership/layout fact or materially justified corrected inference. Reuse preserved evidence rather than replay unchanged experiments. A changed map requires independent disassembly validation and full affected current-source commentary before another terminal assessment.

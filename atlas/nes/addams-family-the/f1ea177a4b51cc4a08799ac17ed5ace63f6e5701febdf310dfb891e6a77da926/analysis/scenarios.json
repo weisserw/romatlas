@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "round": 1,
+  "phase": "disassembly",
+  "scenarios": [
+    {
+      "milestone": "startup/title",
+      "status": "visited",
+      "route": "reset; requested180frames timeout at112; six60frame batches to472",
+      "evidence": "round-001/title472.png"
+    },
+    {
+      "milestone": "garden",
+      "status": "visited",
+      "route": "actual buttons-array Start884-886;release30; secondStart1218-1220 release60; thirdStart1280-1282 release60; idle60 then right+a90 to1492; natural right90 to1582",
+      "snapshot": "round-001/active.snapshot",
+      "evidence": "round-001/garden-move.png"
+    },
+    {
+      "milestone": "crypt",
+      "status": "visited",
+      "artificial": true,
+      "room": 2,
+      "recipe": "restore active.snapshot;buttons=[];RAM$71=room;$80=1;20loadframes;20exerciseframes;release",
+      "buttons": [
+        "right",
+        "a"
+      ],
+      "evidence": "round-001/crypt-r2-exercise.png",
+      "trace": "interrupted aggregate excluded;45+45frames completed with images"
+    },
+    {
+      "milestone": "hallway",
+      "status": "visited",
+      "artificial": true,
+      "room": 3,
+      "recipe": "restore active.snapshot;buttons=[];RAM$71=room;$80=1;20loadframes;20exerciseframes;release",
+      "buttons": [
+        "right",
+        "b"
+      ],
+      "evidence": "round-001/hallway-r2-exercise.png",
+      "trace": "interrupted aggregate excluded;45+45frames completed with images"
+    },
+    {
+      "milestone": "pond",
+      "status": "visited",
+      "artificial": true,
+      "room": 14,
+      "recipe": "restore active.snapshot;buttons=[];RAM$71=room;$80=1;20loadframes;20exerciseframes;release",
+      "buttons": [
+        "right",
+        "a"
+      ],
+      "evidence": "round-001/pond-bounded-exercise.ppm",
+      "trace": "durably saved"
+    },
+    {
+      "milestone": "river",
+      "status": "visited",
+      "artificial": true,
+      "room": 25,
+      "recipe": "restore active.snapshot;buttons=[];RAM$71=room;$80=1;20loadframes;20exerciseframes;release",
+      "buttons": [
+        "right",
+        "b"
+      ],
+      "evidence": "round-001/river-bounded-exercise.ppm",
+      "trace": "durably saved"
+    },
+    {
+      "milestone": "gomez",
+      "status": "visited",
+      "artificial": true,
+      "room": 32,
+      "recipe": "restore active.snapshot;buttons=[];RAM$71=room;$80=1;20loadframes;20exerciseframes;release",
+      "buttons": [
+        "right",
+        "b"
+      ],
+      "evidence": "round-001/gomez-bounded-exercise.ppm",
+      "trace": "durably saved"
+    },
+    {
+      "milestone": "roof",
+      "status": "visited",
+      "artificial": true,
+      "room": 13,
+      "recipe": "restore active.snapshot;buttons=[];RAM$71=room;$80=1;20loadframes;20exerciseframes;release",
+      "buttons": [
+        "right",
+        "b"
+      ],
+      "evidence": "round-001/roof-bounded-exercise.ppm",
+      "trace": "durably saved"
+    },
+    {
+      "milestone": "freezer",
+      "status": "visited",
+      "artificial": true,
+      "room": 33,
+      "recipe": "restore active.snapshot;buttons=[];RAM$71=room;$80=1;20loadframes;20exerciseframes;release",
+      "buttons": [
+        "right",
+        "b"
+      ],
+      "evidence": "round-001/freezer-bounded-exercise.ppm",
+      "trace": "durably saved"
+    },
+    {
+      "milestone": "ending terminal congratulations",
+      "status": "visited",
+      "artificial": true,
+      "recipe": "room20 load20frames;RAM$0471=$51;20frames",
+      "script": "round-001/ending-attempt.py",
+      "evidence": "round-001/ending-bounded-exercise.png",
+      "natural_quest_completion": false
+    }
+  ],
+  "invalid_inputs": {
+    "frames": "472-884",
+    "reason": "generic button/pressed silently ignored; corrected to buttons array; see NES-001"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "rom_sha256": "f1ea177a4b51cc4a08799ac17ed5ace63f6e5701febdf310dfb891e6a77da926",
+  "map_sha256": "887095479d741da9bd20fcf6763e646dd005010cf9442803f462feafabf8b2f3",
+  "state_sha256": "887095479d741da9bd20fcf6763e646dd005010cf9442803f462feafabf8b2f3",
+  "image_size": 262160,
+  "source_sha256": {
+    "game.asm": "a033ca3c6d31bbd76b0ef60a5dab1576c4e2757e2e4f6f316d95efdf4c6b930e"
+  },
+  "editorial_scope": "analysis/final-editorial/source-scope.json"
+}
