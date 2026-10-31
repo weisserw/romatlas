@@ -1,0 +1,255 @@
+{
+  "version": 1,
+  "phase": "round-001-disassembly",
+  "scenarios": [
+    {
+      "id": "startup",
+      "milestone": "logo/reset",
+      "status": "visited",
+      "route": "reset [0,1,30,31], trace enabled capacity 0 Instruction+ControlFlow; 60 frames; Start press 2 frames, release 60; wait60, press Start2, release30",
+      "result": "DragonStrike logo still present at frame214; 904 early contextual instruction roots",
+      "evidence": [
+        "analysis/round-001/rpc.jsonl",
+        "analysis/round-001/menu.snapshot",
+        "analysis/round-001/title.png"
+      ]
+    },
+    {
+      "id": "overhead-combat",
+      "milestone": "attract demo combat",
+      "status": "visited",
+      "route": "menu.snapshot frame214, trace disabled; wait900 frames (timeout near frame1103), Start2, release60; gameplay.json replays A+Right45, B+Up30, Start2, release15 with tracing",
+      "result": "No-button natural attract playback, bank pair4/5, 2475 contextual roots. Prior claimed controls invalid; NES-001.",
+      "evidence": [
+        "analysis/round-001/gameplay.json",
+        "analysis/round-001/gameplay.snapshot",
+        "analysis/round-001/gameplay-contexts.json",
+        "analysis/round-001/gameplay.png"
+      ]
+    },
+    {
+      "id": "player-first",
+      "milestone": "first player mission",
+      "status": "visited",
+      "reachability": "natural",
+      "recipe": "analysis/round-001/player-first.json",
+      "snapshot": "analysis/round-001/player-first.snapshot",
+      "evidence": [
+        "analysis/round-001/player-first-contexts.json",
+        "analysis/round-001/player-first.ppm",
+        "analysis/round-001/executed-routes.json"
+      ],
+      "result": "banks4/5; real Start/A/B/directions"
+    },
+    {
+      "id": "password8",
+      "milestone": "mission8",
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": "analysis/round-001/password8.json",
+      "snapshot": "analysis/round-001/password8.snapshot",
+      "evidence": [
+        "analysis/round-001/password8-contexts.json",
+        "analysis/round-001/password8.ppm",
+        "analysis/round-001/executed-routes.json"
+      ],
+      "result": "FMHMSD buffer; banks16/17; A/B/directions"
+    },
+    {
+      "id": "mission-03",
+      "milestone": "mission3",
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": "analysis/round-001/mission-03.json",
+      "snapshot": "analysis/round-001/mission-03.snapshot",
+      "evidence": [
+        "analysis/round-001/mission-03-contexts.json",
+        "analysis/round-001/mission-03.ppm",
+        "analysis/round-001/executed-routes.json"
+      ],
+      "result": "FMHMRB buffer; banks18/19; A/B/directions"
+    },
+    {
+      "id": "mission-05",
+      "milestone": "mission5",
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": "analysis/round-001/mission-05.json",
+      "snapshot": "analysis/round-001/mission-05.snapshot",
+      "evidence": [
+        "analysis/round-001/mission-05-contexts.json",
+        "analysis/round-001/mission-05.ppm",
+        "analysis/round-001/executed-routes.json"
+      ],
+      "result": "FKHMKJ buffer; banks6/7; A/B/directions"
+    },
+    {
+      "id": "mission-11",
+      "milestone": "mission11",
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": "analysis/round-001/mission-11.json",
+      "snapshot": "analysis/round-001/mission-11.snapshot",
+      "evidence": [
+        "analysis/round-001/mission-11-contexts.json",
+        "analysis/round-001/mission-11.ppm",
+        "analysis/round-001/executed-routes.json"
+      ],
+      "result": "FMHMVF buffer; banks18/19; A/B/directions"
+    },
+    {
+      "id": "abyss-play",
+      "milestone": "mission14 Abyss",
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": "analysis/round-001/abyss-play.json",
+      "snapshot": "analysis/round-001/abyss-play.snapshot",
+      "evidence": [
+        "analysis/round-001/abyss-play-contexts.json",
+        "analysis/round-001/abyss-play.ppm",
+        "analysis/round-001/executed-routes.json"
+      ],
+      "result": "FKHMPQ buffer; banks14/15; later controls in abyss-exit"
+    },
+    {
+      "id": "abyss-exit",
+      "milestone": "objective RAM shortcut",
+      "status": "attempted",
+      "reachability": "artificial",
+      "recipe": "analysis/round-001/abyss-exit.json",
+      "snapshot": "analysis/round-001/abyss-exit.snapshot",
+      "evidence": [
+        "analysis/round-001/abyss-exit-contexts.json",
+        "analysis/round-001/abyss-exit.ppm",
+        "analysis/round-001/executed-routes.json"
+      ],
+      "result": "counter overwritten; no successful transition; superseded by supported $F503 contract"
+    },
+    {
+      "id": "abyss-transition",
+      "milestone": "Queen boss scene",
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": "analysis/round-001/abyss-transition.json",
+      "snapshot": "analysis/round-001/abyss-transition.snapshot",
+      "evidence": [
+        "analysis/round-001/abyss-transition-contexts.json",
+        "analysis/round-001/abyss-transition.ppm",
+        "analysis/round-001/executed-routes.json"
+      ],
+      "result": "$F503 carry/SP contract; boss capture; A/B/directions in queen"
+    },
+    {
+      "id": "queen",
+      "milestone": "ending victory message",
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": "analysis/round-001/queen.json",
+      "snapshot": "analysis/round-001/queen.snapshot",
+      "evidence": [
+        "analysis/round-001/queen-contexts.json",
+        "analysis/round-001/queen.ppm",
+        "analysis/round-001/executed-routes.json"
+      ],
+      "result": "Queen defeated text after supported scene continuation, not legitimate boss kill"
+    },
+    {
+      "id": "ending-home",
+      "milestone": "home flight terminal scene",
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": "analysis/round-001/ending-home.json",
+      "snapshot": "analysis/round-001/ending-home.snapshot",
+      "evidence": [
+        "analysis/round-001/ending-home-contexts.json",
+        "analysis/round-001/ending-home.ppm",
+        "analysis/round-001/executed-routes.json"
+      ],
+      "result": "scene17; banks18/19; A/B/directions"
+    },
+    {
+      "id": "ending-credits",
+      "milestone": "terminal return to logo",
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": "analysis/round-001/ending-credits.json",
+      "snapshot": "analysis/round-001/ending-credits.snapshot",
+      "evidence": [
+        "analysis/round-001/ending-credits-contexts.json",
+        "analysis/round-001/ending-credits.ppm",
+        "analysis/round-001/executed-routes.json"
+      ],
+      "result": "advance scene17->18; returns logo; separate credits not demonstrated"
+    },
+    {
+      "id": "remaining-missions",
+      "milestone": "other missions/dragon variants/rare mechanics",
+      "status": "deferred",
+      "reason": "Representative early/middle/late/Queen/ending systems visited; further same-loop play reduced prospect compared with consumer/extent research. Not an exhaustive gameplay or compatibility claim. Other passwords remain available for targeted redirect experiments."
+    },
+    {
+      "id": "japanese-select",
+      "milestone": "Japanese title/player menu variant",
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": "analysis/round-001/japanese-menu.json then japanese-select.json",
+      "evidence": [
+        "analysis/round-001/japanese-select.png",
+        "analysis/round-001/japanese-menu-contexts.json",
+        "analysis/round-001/japanese-select-contexts.json"
+      ],
+      "result": "RAM$0601=1 and understood reset entry$FE98 retain DAVID tag and select effective banks26/27. Japanese labels confirmed. No claim all language-variant gameplay visited."
+    },
+    {
+      "id": "ending-credits-scroll",
+      "milestone": "Scrolling named ending credits",
+      "status": "visited",
+      "reachability": "artificial inherited route; no new mutations",
+      "route_or_patch_recipe": "/root/romatlas-batch/6a63874d732c02578966ac1db491e8b8d5ef36016d0b2f99df9429bc3383419b/workspace/analysis/redirect/round001-20261030-a/credits-probe.json then credits-continue.json/credits-final.json/credits-the-end.json; ending-home.snapshot, buttons[], tracing disabled, bounded300/600-frame calls",
+      "observed_result": "Designer/art/music/sound/special-thanks credits visibly captured through3000 idle frames. At4200 event06F5=42 and21 row/text records consumed; separate THE END capture not demonstrated. Earlier ending-credits skip-to-next-scene recipe remains historical, not a credits visit.",
+      "evidence": [
+        "/root/romatlas-batch/6a63874d732c02578966ac1db491e8b8d5ef36016d0b2f99df9429bc3383419b/workspace/analysis/redirect/round001-20261030-a/home-wait-600.png",
+        "/root/romatlas-batch/6a63874d732c02578966ac1db491e8b8d5ef36016d0b2f99df9429bc3383419b/workspace/analysis/redirect/round001-20261030-a/home-wait-1200.png",
+        "/root/romatlas-batch/6a63874d732c02578966ac1db491e8b8d5ef36016d0b2f99df9429bc3383419b/workspace/analysis/redirect/round001-20261030-a/home-wait-1800.png",
+        "/root/romatlas-batch/6a63874d732c02578966ac1db491e8b8d5ef36016d0b2f99df9429bc3383419b/workspace/analysis/redirect/round001-20261030-a/home-wait-2400.png",
+        "/root/romatlas-batch/6a63874d732c02578966ac1db491e8b8d5ef36016d0b2f99df9429bc3383419b/workspace/analysis/redirect/round001-20261030-a/home-wait-3000.png",
+        "/root/romatlas-batch/6a63874d732c02578966ac1db491e8b8d5ef36016d0b2f99df9429bc3383419b/workspace/analysis/redirect/round001-20261030-a/home-wait-4200.png",
+        "/root/romatlas-batch/6a63874d732c02578966ac1db491e8b8d5ef36016d0b2f99df9429bc3383419b/workspace/analysis/redirect/round001-20261030-a/credits-the-end.json",
+        "/root/romatlas-batch/6a63874d732c02578966ac1db491e8b8d5ef36016d0b2f99df9429bc3383419b/workspace/analysis/redirect/round001-20261030-a/ending-data.json"
+      ],
+      "snapshot": "/root/romatlas-batch/6a63874d732c02578966ac1db491e8b8d5ef36016d0b2f99df9429bc3383419b/workspace/analysis/redirect/round001-20261030-a/home-wait-4200.snapshot"
+    },
+    {
+      "id": "ending-the-end-distinct-capture",
+      "milestone": "Distinct visible THE END terminal text",
+      "status": "attempted",
+      "reachability": "artificial inherited route",
+      "route_or_patch_recipe": "Same bounded idle continuation through4200 frames",
+      "observed_result": "Final credit record13/22 and THE END NUL string structurally established, event cursor reached42. Selected rendered captures do not show distinct THE END. Credits/ending system already visited; revisit only with a supported scroll/visibility or narrowly targeted capture discriminator, not unchanged long waits.",
+      "evidence": [
+        "/root/romatlas-batch/6a63874d732c02578966ac1db491e8b8d5ef36016d0b2f99df9429bc3383419b/workspace/analysis/redirect/round001-20261030-a/ending-data.json",
+        "/root/romatlas-batch/6a63874d732c02578966ac1db491e8b8d5ef36016d0b2f99df9429bc3383419b/workspace/analysis/redirect/round001-20261030-a/credits-the-end.json",
+        "/root/romatlas-batch/6a63874d732c02578966ac1db491e8b8d5ef36016d0b2f99df9429bc3383419b/workspace/analysis/redirect/round001-20261030-a/home-wait-4200.png"
+      ]
+    },
+    {
+      "id": "password-active-editor",
+      "milestone": "Active password movement/letter store/back-cursor",
+      "status": "visited",
+      "reachability": "ordinary menu input, no debugger mutations",
+      "route_or_patch_recipe": "/root/romatlas-batch/6a63874d732c02578966ac1db491e8b8d5ef36016d0b2f99df9429bc3383419b/workspace/analysis/redirect/round001-20261030-a/password-active-probe.json; own saved keyboard snapshot,60 idle frames then right/release/A/release/B/release2 frames each",
+      "observed_result": "Right selected key1; A stored letter value1 at0106 and advanced0112 to1; B returned0112 to0 while0106 remained1 (no erase).143 combined new actual opcode addresses/295 bytes with initialization probe. Initial probe edit presses were too early and are not credited as active edits.",
+      "evidence": [
+        "/root/romatlas-batch/6a63874d732c02578966ac1db491e8b8d5ef36016d0b2f99df9429bc3383419b/workspace/analysis/redirect/round001-20261030-a/password-active-probe.json",
+        "/root/romatlas-batch/6a63874d732c02578966ac1db491e8b8d5ef36016d0b2f99df9429bc3383419b/workspace/analysis/redirect/round001-20261030-a/observed-fetches.json"
+      ],
+      "snapshot": "/root/romatlas-batch/6a63874d732c02578966ac1db491e8b8d5ef36016d0b2f99df9429bc3383419b/workspace/analysis/redirect/round001-20261030-a/password-active.snapshot"
+    }
+  ],
+  "correction": "Early button/pressed calls were silently ignored by NES adapter (NES-001). All early routes before menu-real.json are no-button attract playback; gameplay input recipes do not demonstrate player control. Correct schema buttons array now applied.",
+  "last_redirect_review": {
+    "phase": "round-002-redirect",
+    "evidence": "/root/romatlas-batch/6a63874d732c02578966ac1db491e8b8d5ef36016d0b2f99df9429bc3383419b/workspace/analysis/redirect/round002-20261031-a/results.md",
+    "outcome": "Representative gameplay/credits/keyboard coverage reused; no new execution. THE END visibility remains attempted; no new supported narrow capture discriminator. Remaining mission variants have diminished structural prospect."
+  }
+}

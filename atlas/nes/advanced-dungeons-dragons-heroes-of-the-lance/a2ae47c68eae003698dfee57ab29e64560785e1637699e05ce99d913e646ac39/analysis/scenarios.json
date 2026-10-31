@@ -1,0 +1,710 @@
+{
+  "version": 1,
+  "round": 1,
+  "input_semantics": "buttons replace entire held set; every transition records releases",
+  "scenarios": [
+    {
+      "id": "startup-title",
+      "route": [
+        {
+          "buttons": [],
+          "requested_frames": 180,
+          "observed_frames": 129,
+          "trace": "all events capacity 2000",
+          "result": "30000ms timeout, partial state retained"
+        },
+        {
+          "buttons": [],
+          "requested_frames": 180,
+          "observed_frames": 177,
+          "result": "30000ms timeout, total frame306"
+        },
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 2
+        },
+        {
+          "buttons": [],
+          "frames": 30
+        },
+        {
+          "buttons": [],
+          "frames": 600,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 2
+        },
+        {
+          "buttons": [],
+          "frames": 30
+        }
+      ],
+      "result": "title Game Start/Load menu, frame970",
+      "evidence": "analysis/evidence/newgame.ppm"
+    },
+    {
+      "id": "start-game",
+      "route": [
+        {
+          "buttons": [],
+          "frames": 180,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "a"
+          ],
+          "frames": 2
+        },
+        {
+          "buttons": [],
+          "frames": 30
+        },
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 2
+        },
+        {
+          "buttons": [],
+          "frames": 30
+        },
+        {
+          "buttons": [],
+          "frames": 180,
+          "trace": false
+        },
+        {
+          "buttons": [],
+          "frames": 20,
+          "trace": true
+        },
+        {
+          "buttons": [],
+          "requested_frames": 1800,
+          "trace": false
+        }
+      ],
+      "result": "character introduction under observation",
+      "evidence": "analysis/evidence/gameplay3.ppm"
+    },
+    {
+      "id": "portrait-progression-and-first-door",
+      "route": "From intro2 snapshot: A2/release20 traced, wait160 untraced per portrait; eight pages total. post-portraits snapshot at4419. Up45 reaches map1; release and wait120 plus20 traced completes fade.",
+      "result": "first two rooms observed; first-door map1 screenshot room-active.ppm",
+      "evidence": [
+        "analysis/evidence/post-portraits.snapshot.json",
+        "analysis/evidence/room-active.snapshot.json",
+        "analysis/evidence/room-active.ppm"
+      ]
+    },
+    {
+      "id": "transition-shortcut-contract",
+      "route": {
+        "snapshot": "analysis/evidence/post-portraits.snapshot.json",
+        "buttons": [
+          "up"
+        ],
+        "run_until": {
+          "pc": 56999,
+          "max_operations": 1000000,
+          "timeout_ms": 15000
+        }
+      },
+      "observed_entry": {
+        "frames": 4462,
+        "pc": 56999,
+        "a": 1,
+        "x": 2,
+        "stack": 247,
+        "context": {
+          "prg_banks": [
+            0,
+            1,
+            14,
+            15
+          ]
+        }
+      },
+      "clean_snapshot": "analysis/evidence/transition-contract.snapshot.json",
+      "evidence": "analysis/evidence/transition-break3.json",
+      "result": "matched natural boundary; A can be patched for bounded map selection; preserve stack/PC/X"
+    },
+    {
+      "id": "artificial-map-20",
+      "snapshot": "analysis/evidence/transition-contract.snapshot.json",
+      "patch": {
+        "registers": {
+          "a": 32
+        },
+        "pc": 56999,
+        "x_preserved": 2,
+        "stack_preserved": 247,
+        "context": {
+          "prg_banks": [
+            0,
+            1,
+            14,
+            15
+          ]
+        }
+      },
+      "route": [
+        {
+          "buttons": [],
+          "frames": 20,
+          "trace": true
+        },
+        {
+          "buttons": [],
+          "frames": 160,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "right",
+            "a"
+          ],
+          "frames": 30,
+          "trace": true
+        },
+        {
+          "buttons": [],
+          "frames": 0
+        }
+      ],
+      "observed_result": "Combat corridor with different scenery, player/enemy action",
+      "evidence": [
+        "analysis/evidence/map20.ppm",
+        "analysis/evidence/map20.snapshot.json"
+      ],
+      "reachability": "artificial, not normal gameplay proof"
+    },
+    {
+      "id": "artificial-map-40",
+      "snapshot": "analysis/evidence/transition-contract.snapshot.json",
+      "patch": {
+        "registers": {
+          "a": 64
+        },
+        "pc": 56999,
+        "x_preserved": 2,
+        "stack_preserved": 247,
+        "context": {
+          "prg_banks": [
+            0,
+            1,
+            14,
+            15
+          ]
+        }
+      },
+      "route": [
+        {
+          "buttons": [],
+          "frames": 20,
+          "trace": true
+        },
+        {
+          "buttons": [],
+          "frames": 160,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "right",
+            "a"
+          ],
+          "frames": 30,
+          "trace": true
+        },
+        {
+          "buttons": [],
+          "frames": 0
+        }
+      ],
+      "observed_result": "Distinct pit corridor, movement/jump animation and compass changes; no boss/ending seen",
+      "evidence": [
+        "analysis/evidence/map40.ppm",
+        "analysis/evidence/map40.snapshot.json"
+      ],
+      "reachability": "artificial, not normal gameplay proof"
+    },
+    {
+      "id": "artificial-map-52",
+      "snapshot": "analysis/evidence/transition-contract.snapshot.json",
+      "patch": {
+        "registers": {
+          "a": 82
+        },
+        "pc": 56999,
+        "x_preserved": 2,
+        "stack_preserved": 247,
+        "context": {
+          "prg_banks": [
+            0,
+            1,
+            14,
+            15
+          ]
+        }
+      },
+      "route": [
+        {
+          "buttons": [],
+          "frames": 20,
+          "trace": true
+        },
+        {
+          "buttons": [],
+          "frames": 160,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "right",
+            "a"
+          ],
+          "frames": 30,
+          "trace": true
+        },
+        {
+          "buttons": [],
+          "frames": 0
+        }
+      ],
+      "observed_result": "Distinct pit corridor, movement/jump animation and compass changes; no boss/ending seen",
+      "evidence": [
+        "analysis/evidence/map52.ppm",
+        "analysis/evidence/map52.snapshot.json"
+      ],
+      "reachability": "artificial, not normal gameplay proof"
+    },
+    {
+      "id": "special-map-0f-entry3",
+      "snapshot": "analysis/evidence/transition-contract.snapshot.json",
+      "patch": {
+        "registers": {
+          "a": 15,
+          "x": 3
+        },
+        "pc": 56999,
+        "stack": 247,
+        "context": {
+          "prg_banks": [
+            0,
+            1,
+            14,
+            15
+          ]
+        }
+      },
+      "route": [
+        {
+          "buttons": [],
+          "frames": 20,
+          "trace": true
+        },
+        {
+          "buttons": [],
+          "frames": 180,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "right",
+            "a"
+          ],
+          "frames": 30,
+          "trace": true
+        },
+        {
+          "buttons": [],
+          "frames": 0
+        }
+      ],
+      "result": "waterfall/shrine cutscene; no ending",
+      "evidence": "analysis/evidence/special-0f-entry3.ppm",
+      "status": "visited",
+      "reachability": "artificial"
+    },
+    {
+      "id": "special-map-0f-entry1",
+      "snapshot": "analysis/evidence/transition-contract.snapshot.json",
+      "patch": {
+        "registers": {
+          "a": 15,
+          "x": 1
+        },
+        "pc": 56999,
+        "stack": 247,
+        "context": {
+          "prg_banks": [
+            0,
+            1,
+            14,
+            15
+          ]
+        }
+      },
+      "route": [
+        {
+          "buttons": [],
+          "frames": 20,
+          "trace": true
+        },
+        {
+          "buttons": [],
+          "frames": 180,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "right",
+            "a"
+          ],
+          "frames": 30,
+          "trace": true
+        },
+        {
+          "buttons": [],
+          "frames": 0
+        }
+      ],
+      "result": "distinct room and movement/combat; no boss or ending",
+      "evidence": "analysis/evidence/special-0f-entry1.ppm",
+      "status": "visited",
+      "reachability": "artificial"
+    },
+    {
+      "id": "special-map-2b-entry2",
+      "snapshot": "analysis/evidence/transition-contract.snapshot.json",
+      "patch": {
+        "registers": {
+          "a": 43,
+          "x": 2
+        },
+        "pc": 56999,
+        "stack": 247,
+        "context": {
+          "prg_banks": [
+            0,
+            1,
+            14,
+            15
+          ]
+        }
+      },
+      "route": [
+        {
+          "buttons": [],
+          "frames": 20,
+          "trace": true
+        },
+        {
+          "buttons": [],
+          "frames": 180,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "right",
+            "a"
+          ],
+          "frames": 30,
+          "trace": true
+        },
+        {
+          "buttons": [],
+          "frames": 0
+        }
+      ],
+      "result": "distinct room and movement/combat; no boss or ending",
+      "evidence": "analysis/evidence/special-2b-entry2.ppm",
+      "status": "visited",
+      "reachability": "artificial"
+    },
+    {
+      "id": "natural-main-menu",
+      "snapshot": "analysis/evidence/room-active.snapshot.json",
+      "route": [
+        {
+          "buttons": [
+            "select"
+          ],
+          "frames": 30,
+          "trace": true
+        },
+        {
+          "buttons": [],
+          "frames": 120,
+          "trace": false
+        },
+        {
+          "buttons": [],
+          "frames": 10,
+          "trace": true
+        }
+      ],
+      "result": "Main Menu visible; short Select2 failed, Start30 failed",
+      "evidence": "analysis/evidence/select-held-test.ppm",
+      "status": "visited"
+    },
+    {
+      "id": "natural-hero-and-mage",
+      "snapshot": "analysis/evidence/room-active.snapshot.json",
+      "route": [
+        {
+          "buttons": [
+            "select"
+          ],
+          "frames": 30,
+          "trace": true
+        },
+        {
+          "buttons": [],
+          "frames": 120,
+          "trace": false
+        },
+        {
+          "buttons": [],
+          "frames": 10,
+          "trace": true
+        },
+        {
+          "buttons": [
+            "a"
+          ],
+          "frames": 30,
+          "trace": true
+        },
+        {
+          "buttons": [],
+          "frames": 120,
+          "trace": false
+        },
+        {
+          "buttons": [],
+          "frames": 10,
+          "trace": true
+        }
+      ],
+      "result": "Goldmoon hero/status19/19HP; natural-hero-select.ppm",
+      "status": "visited"
+    },
+    {
+      "id": "mage-menu-and-charm",
+      "snapshot": "analysis/evidence/room-active.snapshot.json",
+      "route": "Select30/release120 untraced, Down8/release20 traced, A30/release120 untraced then20traced. Open spell-menu-open.snapshot; A30/release120 untraced then20traced.",
+      "result": "Magic user spells menu; Charm selected and returned to Main Menu; no enemy/effect observed",
+      "evidence": [
+        "analysis/evidence/spell-menu-open.ppm",
+        "analysis/evidence/charm-result.ppm"
+      ],
+      "status": "visited"
+    },
+    {
+      "id": "clerical-menu-followup",
+      "recipe": "scratch/cleric_try.py; start from natural room-active, Select30, release120, Down8/release20 twice, A30, release120, observe; thenA30 to test default spell",
+      "status": "attempted",
+      "result": "external subprocess termination143 before durable output; successful cleric visit not claimed; can resume with shorter snapshot batches if useful"
+    }
+  ],
+  "progression_checklist": [
+    {
+      "milestone": "startup/title/new game",
+      "status": "visited"
+    },
+    {
+      "milestone": "first room and door traversal",
+      "status": "visited",
+      "evidence": "analysis/evidence/room-active.ppm"
+    },
+    {
+      "milestone": "party/menu/spells/inventory",
+      "status": "visited",
+      "result": "Natural Main Menu, Goldmoon status, mage spells and Charm selection; clerical staff menu later confirmed via saved ordinary-menu route. Inventory options visible but not exercised; spell effects not established.",
+      "evidence": [
+        "analysis/evidence/natural-hero-select.ppm",
+        "analysis/evidence/spell-menu-open.ppm",
+        "analysis/evidence/charm-result.ppm",
+        "analysis/redirect/r01-20261031/cleric2.png"
+      ],
+      "history": [
+        {
+          "checkpoint": "round1_disassembly_before_redirect",
+          "result": "Natural Main Menu, Goldmoon status, mage spells and Charm selection; inventory options visible but not used; clerical followup interrupted"
+        }
+      ]
+    },
+    {
+      "milestone": "later dungeon maps/areas",
+      "status": "visited",
+      "route": "supported transition A20/40/52 patches; distinct scenery and controls observed",
+      "uncertainty": "floor/order assignments not established"
+    },
+    {
+      "milestone": "dragon boss and ending",
+      "status": "visited",
+      "result": "Dragon encounter/combat, initialized post-boss result and artificial terminal display confirmed in round1 redirect; natural dragon defeat, item recovery and win remain unproved.",
+      "remaining_contract": "Natural quest item recovery/win unresolved; no current discriminating structural test for four isolated unknown RTS bytes.",
+      "evidence": [
+        "analysis/redirect/r01-20261031/dragon.png",
+        "analysis/redirect/r01-20261031/dragon-progress.json",
+        "analysis/redirect/r01-20261031/dragon-ending2.png",
+        "analysis/redirect/r01-20261031/terminal2-final-check.png"
+      ],
+      "history": [
+        {
+          "checkpoint": "round1_disassembly_before_redirect",
+          "record": {
+            "milestone": "dragon boss and ending",
+            "status": "attempted",
+            "result": "special map0F entries3/1 andmap2B entry2 initialized distinct rooms/waterfall; no dragon/ending",
+            "remaining_contract": "boss room/required event and inventory; redirect needed",
+            "evidence": "analysis/evidence/special-scenario-states.json"
+          }
+        }
+      ],
+      "artificial": true,
+      "route": "See redirect_round1 Dragon encounter, Initialized post-boss phase, Post-boss result through game dispatcher, and Victory text and terminal screen for exact supported transition/register/RAM contracts and budgets."
+    }
+  ],
+  "execution_budgets": {
+    "frame_step_max_operations_default": 10000000,
+    "timeouts_ms": "5000 for untraced waits/short samples;10000 or15000 for longer trace samples;30000 initial startup requests",
+    "run_until": "max_operations1000000 timeout15000; natural transition matched437228 operations",
+    "trace_detail_capacity": "initial2000, later0; all retained aggregate_dropped0",
+    "bank_context": "saved in states/roots per accepted instruction; artificial flag preserved"
+  },
+  "redirect_round1": [
+    {
+      "milestone": "Clerical staff spells",
+      "status": "visited",
+      "route": "Charm-result snapshot, Down8/release20 twice,A30/release40; final4tracedframes",
+      "result": "Actual clerical menu visible; effect untested",
+      "evidence": [
+        "analysis/redirect/r01-20261031/cleric2.png",
+        "analysis/redirect/r01-20261031/cleric2-runtime.json",
+        "analysis/redirect/r01-20261031/cleric2.snapshot.json"
+      ]
+    },
+    {
+      "milestone": "Dragon encounter",
+      "status": "visited",
+      "artificial": true,
+      "route": "Clean transition snapshot; A4/X0,200framesinitialization; internalRAM62=0F thenRight12/release120; combatRight+A30/release20",
+      "result": "Actual dragon frame and initialized map4/mode1; representative combat inputs",
+      "evidence": [
+        "analysis/redirect/r01-20261031/dragon.png",
+        "analysis/redirect/r01-20261031/dragon-progress.json",
+        "analysis/redirect/r01-20261031/dragon2-progress.json",
+        "analysis/redirect/r01-20261031/dragon.snapshot.json"
+      ]
+    },
+    {
+      "milestone": "Initialized post-boss phase",
+      "status": "visited",
+      "artificial": true,
+      "route": "Fromdragon snapshot,03A8=1/03A9=3F underA8BEphasecontract;12tracedframes,180untraced,8traced",
+      "result": "Actual map2B/mode2 initialized bygamecode, entrance links rewritten; natural boss defeat not claimed",
+      "evidence": [
+        "analysis/redirect/r01-20261031/dragon2-progress.json",
+        "analysis/redirect/r01-20261031/dragon2.snapshot.json"
+      ]
+    },
+    {
+      "milestone": "Result/points screens",
+      "status": "visited",
+      "artificial": true,
+      "route": "Map2Broom snapshot;60=11,C4=0,03AB=0;10framebatches then03AB=FE timershortcut; runtime3/4Aandrelease sequences",
+      "result": "Substates0..5 and points screen observed;0330=0 failure route doesnot advance tovictory",
+      "evidence": [
+        "analysis/redirect/r01-20261031/ending-progress.json",
+        "analysis/redirect/r01-20261031/ending-release-a2.png"
+      ]
+    },
+    {
+      "milestone": "Victory text and terminal screen",
+      "status": "visited",
+      "artificial": true,
+      "route": "run_untilPC88F8 atbanks10/11/14/15,SP247; savebeforegate; PC=891C bypasses0330/03AA/61E9questgate. runtime5/6/7 boundedwaits,Aandrelease; noROMorcartridgeRAMedit",
+      "result": "Actual congratulations/Disks narrative andfinalTO BE CONTINUED atstate12; naturalquestsuccessnotclaimed",
+      "evidence": [
+        "analysis/redirect/r01-20261031/victory-boundary.json",
+        "analysis/redirect/r01-20261031/victory-gate-pc-edit.json",
+        "analysis/redirect/r01-20261031/terminal-final-check.png",
+        "analysis/redirect/r01-20261031/terminal2-final-check.png",
+        "analysis/redirect/r01-20261031/terminal2-progress.json"
+      ]
+    },
+    {
+      "milestone": "Post-boss result through game dispatcher",
+      "status": "visited",
+      "artificial": true,
+      "route": "From initializedphase2 snapshot,patch03A9=EF underC727thresholdcontract;360untracedframes then8traced",
+      "result": "MainState11/substate2,mode2; actual Khisanth-dead/no-treasure result. No manualMainState/PCedit on this continuation; earlierphasecontract andtimer edits remainartificial.",
+      "evidence": [
+        "analysis/redirect/r01-20261031/dragon-ending2.png",
+        "analysis/redirect/r01-20261031/dragon-ending2-ram.json",
+        "analysis/redirect/r01-20261031/dragon-ending2.snapshot.json"
+      ]
+    }
+  ],
+  "phase_reviews": [
+    {
+      "round": 2,
+      "phase": "disassembly",
+      "status": "reused_durable_gameplay_evidence",
+      "milestones_reviewed": [
+        "later rooms20/40/52",
+        "dragon combat",
+        "initializedpostboss",
+        "resultscreen",
+        "artificialterminaldisplay",
+        "clericalstaffmenu"
+      ],
+      "evidence": "analysis/handoffs/round-01-redirect.md; analysis/disassembly/r02-20261031/runtime-decodes.json",
+      "result": "No new emulator scenario; existing bounded instruction aggregates add536unique physicalCodebytes. Natural recovery/win remainunresolved, not classificationprerequisites.",
+      "deferrals": "Unvisitedinventory/spelleffectpermutations deferred absent newunknownconsumer; retain existing exactpatches/budgets/releaseinputs/snapshots."
+    },
+    {
+      "round": 3,
+      "phase": "disassembly",
+      "status": "reused_durable_gameplay_evidence",
+      "milestones_reviewed": [
+        "later rooms20/40/52",
+        "dragon combat",
+        "initializedpostboss",
+        "resultscreen",
+        "artificialterminaldisplay",
+        "clericalstaffmenu"
+      ],
+      "evidence": "analysis/gameplay.md; analysis/handoffs/round-02-redirect.md; analysis/redirect/r01-20261031/frontier.md",
+      "result": "No new runtime observation. Static graph/data batch accepted separately; natural recovery/win unresolved.",
+      "deferrals": "Spell/inventory permutations deferred absent newconsumer question; artificialRTS execution would not discriminate the4isolated structuralunknowns."
+    }
+  ],
+  "coordinator_final_review": {
+    "progression_checklist_refresh": {
+      "preserved_prior_statuses": true,
+      "updated_milestones": [
+        "party/menu/spells/inventory",
+        "dragon boss and ending"
+      ],
+      "visual_captures_inspected": [
+        "analysis/redirect/r01-20261031/dragon.png",
+        "analysis/redirect/r01-20261031/terminal2-final-check.png",
+        "analysis/redirect/r01-20261031/cleric2.png"
+      ],
+      "natural_victory_proven": false
+    }
+  }
+}

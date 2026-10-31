@@ -1,0 +1,188 @@
+{
+  "objective_status": "terminal_handoff_achieved",
+  "terminal_research_branch": "justified_incomplete",
+  "rom_classification_complete": false,
+  "classified_bytes": 524298,
+  "total_bytes": 524304,
+  "unknown_bytes": 6,
+  "rounded_report": "ROM classification: 100.00% (524298 / 524304 bytes classified; 6 bytes unknown).",
+  "requirements": [
+    {
+      "id": "sequential_phase_workers",
+      "status": "proven",
+      "evidence": [
+        "analysis/handoffs/round-001-disassembly.md",
+        "analysis/handoffs/round-001-commentary-complete.md",
+        "analysis/handoffs/round-001-redirect.md",
+        "analysis/handoffs/round-002-disassembly.md",
+        "analysis/handoffs/round-002-commentary-complete.md",
+        "analysis/handoffs/round-002-redirect.md",
+        "analysis/coordinator/requirements.md"
+      ]
+    },
+    {
+      "id": "classification_and_exact_residuals",
+      "status": "proven",
+      "evidence": [
+        "analysis/round-002/classification-counts.json",
+        "analysis/redirect/round002-20261031-a/unknown-ledger.json"
+      ]
+    },
+    {
+      "id": "structural_annotations_and_effective_context",
+      "status": "proven",
+      "evidence": [
+        "analysis/state.json",
+        "analysis/round-002/independent-review.md",
+        "analysis/round-002/review-checks.json"
+      ]
+    },
+    {
+      "id": "current_map_validity_and_byte_identical_checkpoint",
+      "status": "proven",
+      "evidence": [
+        "analysis/pass-002-disassembly-verified-verification.json",
+        "analysis/round-002/compact-reload-verification.json"
+      ]
+    },
+    {
+      "id": "broad_gameplay_and_limits",
+      "status": "proven",
+      "evidence": [
+        "analysis/scenarios.json",
+        "analysis/gameplay.md",
+        "analysis/round-001/executed-routes.json"
+      ]
+    },
+    {
+      "id": "lead_history_and_no_ready_structural_lead",
+      "status": "proven",
+      "evidence": [
+        "analysis/leads.json",
+        "analysis/handoffs/round-002-redirect.md"
+      ]
+    },
+    {
+      "id": "continuous_investigation_and_primary_rejection_review",
+      "status": "proven",
+      "evidence": [
+        "analysis/coordinator/rejection-review.md",
+        "analysis/coordinator/rejection-primary-check.json",
+        "analysis/redirect/round002-20261031-a/rejection-review.md"
+      ]
+    },
+    {
+      "id": "full_current_source_readability",
+      "status": "proven",
+      "evidence": [
+        "analysis/handoffs/round-002-commentary-complete.md",
+        "commentary/review.json",
+        "commentary/uncertainties.md"
+      ]
+    },
+    {
+      "id": "final_editorial_metadata_and_directive_preservation",
+      "status": "proven",
+      "evidence": [
+        "analysis/terminal-editorial/preflight.json",
+        "analysis/terminal-editorial/linkage-changes.json",
+        "analysis/terminal-editorial/source-delta.json",
+        "commentary/editorial-audit.md"
+      ]
+    },
+    {
+      "id": "official_final_audit_verify_read",
+      "status": "proven",
+      "evidence": [
+        "commentary/audit.json",
+        "commentary/verification.json",
+        "analysis/terminal-editorial/final-results.json",
+        "analysis/handoffs/terminal-editorial-acceptance.md"
+      ]
+    },
+    {
+      "id": "archive_document_selection",
+      "status": "proven",
+      "evidence": [
+        "archive-options.json",
+        "analysis/coordinator/archive-document-audit.json",
+        "analysis/coordinator/document-selection.json"
+      ]
+    },
+    {
+      "id": "preservation_and_local_only_scope",
+      "status": "proven",
+      "evidence": [
+        "analysis/coordinator/requirements.md",
+        "analysis/toolkit-issues.md"
+      ]
+    },
+    {
+      "id": "final_terminal_handoff",
+      "status": "proven",
+      "evidence": [
+        "analysis/terminal-handoff.md",
+        "analysis/coordinator/completion-audit.md",
+        "analysis/coordinator/rejection-review.md"
+      ]
+    }
+  ],
+  "independent_current_checks": {
+    "missing_annotation_evidence_fields": 0,
+    "code_view_physical_identity_mismatches": 0,
+    "code_own_unit_coverage_errors": 0,
+    "unique_meaningful_units": 2465,
+    "unit_membership_records": 25503,
+    "changed_source_comment_lines_only": 74,
+    "source_lines": 160510,
+    "scenario_evidence_snapshot_paths_validated": 69
+  },
+  "hashes": {
+    "input/game.nes": "6a63874d732c02578966ac1db491e8b8d5ef36016d0b2f99df9429bc3383419b",
+    "analysis/state.json": "8c90238b3ebc1e65c9ea29eb0c92fe1d942bc7fc1e7e8a798945cc58fa5902ac",
+    "maps/current.json": "8c90238b3ebc1e65c9ea29eb0c92fe1d942bc7fc1e7e8a798945cc58fa5902ac",
+    "maps/pass-002-disassembly-verified.json": "8c90238b3ebc1e65c9ea29eb0c92fe1d942bc7fc1e7e8a798945cc58fa5902ac",
+    "commentary/source/game.asm": "badaa8e4be4cd064d4c533321436ef01b18d0a4acfdda69c6d67eb11f662b2a2",
+    "commentary/reading-after.asm": "6dc23fb15c60cfd3e3ec4cff64adb26f5230da971c30cb73a5b9fb0353055871",
+    "commentary/review.json": "69b44e339a29ff42221610d739f38dfbf12a63c0caf84c2cb3005f61c5db3478",
+    "commentary/manifest.json": "715214141b66b3500082c835ef63e89b565c96eadb0c1d7aafa4d63261b6847a",
+    "archive-options.json": "3bc550e146067c910fc9acfea583cb9bc0ee298e6473151270851ef78f06fac6"
+  },
+  "archive_executed": false,
+  "cleanup_executed": false,
+  "published": false,
+  "toolkit_scope": "No workflow toolkit edits. Dirty toolkit worktree observed and left untouched; no clean-baseline claim. Archive contract hash unchanged from recorded initial inspection.",
+  "all_objective_requirements_satisfied": true,
+  "live_or_blocked_work_remaining": false,
+  "official_audit": {
+    "byte_identical": true,
+    "ok": true,
+    "rom_sha256": "6a63874d732c02578966ac1db491e8b8d5ef36016d0b2f99df9429bc3383419b",
+    "source_sha256": {
+      "game.asm": "badaa8e4be4cd064d4c533321436ef01b18d0a4acfdda69c6d67eb11f662b2a2"
+    },
+    "reviewed_regions": 25632,
+    "reviewed_units": 25503,
+    "editorial_audit": true
+  },
+  "reading_copy_matches_current_expansion": true,
+  "archive_document_inventory": {
+    "ok": true,
+    "markdown_files": 46,
+    "additional_final_documents": 30,
+    "omitted_duplicate_templates": 6,
+    "unaccounted": [],
+    "contract_sha256": "9dd430235e3f3f48dd345c90bc0d21a42456bed757307f090c588d5c28810bd3"
+  },
+  "toolkit_findings": {
+    "confirmed_bugs": [
+      "NES-001",
+      "NES-002"
+    ],
+    "missing_performance_features": [
+      "NES-003"
+    ],
+    "blockers": []
+  },
+  "conditional_completion_rule": "Every-byte ROM classification criterion is NOT claimed achieved. The user-authorized alternative terminal-incomplete orchestration branch is achieved after accepted primary rejection review and full final source/editorial/fidelity/document acceptance."
+}

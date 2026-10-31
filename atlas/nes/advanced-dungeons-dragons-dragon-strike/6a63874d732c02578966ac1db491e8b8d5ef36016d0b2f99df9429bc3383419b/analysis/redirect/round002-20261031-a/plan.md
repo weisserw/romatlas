@@ -1,0 +1,10 @@
+# Round002 redirect plan and decision criteria
+
+Input is the accepted full current-source commentary handoff, source0b99d165 and map/state8c90238b (full identities in identity.json). This is a new attempt; round001 remains immutable. Read workspace/workflow, redirect prompt and evidence policy. No structural edits or final editorial/unit audit authorized here.
+
+1. Refresh exact internal annotated complement and inspect newly commented physical neighbors of both residual intervals. Reuse utility-contract-review.md for unchanged prior utility reasoning. Reopen only if a contextual entry/data format/control-flow constraint distinguishes structure, not if arbitrary execution succeeds.
+2. Bank14 commentary question: prior method compared raw odd descriptor bytes with local span. Changed inference: test actual D0D2..D111 consumer representation, category/phase offsets and initialized contexts; compare physically repeated descriptor family. Discriminator: do representation offsets repair apparent out-of-range values, or are restricted type/context domains still required? Stop full-domain reachability work if it cannot alter classification, resolve an observed defect or connect to residual structure.
+3. Triage remaining current-source questions and scenario dispositions against accepted classification. Reuse representative routes; do not replay unchanged gameplay or require optional identities.
+4. If no supported proposal survives, compactly challenge each residual rejection using decisive artifacts, independent combined constraints and strongest alternatives. Submit incomplete PROPOSAL to coordinator for independent reasoning audit, not terminal acceptance by this worker.
+
+Disk before batch:9.6GiB free; shared scratch4KiB. Read-only probes bounded to current regions,262144 PRG bytes and51 bank14 records. inspect.py is standalone and writes only this attempt's small artifacts. No runtime artificial experiment is needed unless the static discriminator leaves a concrete useful mechanics question.
