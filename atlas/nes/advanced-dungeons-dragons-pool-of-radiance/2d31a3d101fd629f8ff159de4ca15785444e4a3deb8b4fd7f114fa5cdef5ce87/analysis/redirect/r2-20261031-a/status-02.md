@@ -1,0 +1,9 @@
+# Active redirect checkpoint 2
+
+Same r2 attempt, no live process/server. Protected ROM/map/state/source unchanged. No classification applied.
+
+closure5.json has7244 unique unknown Code bytes and12977 instruction views, zero cross-view instruction-boundary conflicts; closure5-frontier.json has no unresolved ordinary direct/service targets. New finite56 main28-cell mapping/9word dispatch and biased1..5 split dispatch are documented in frontend-dispatch.json. Their handlers use stable option/carry/state return contracts. Five-state writers increment/decrement only along named transitions, zero exits.
+
+Fourteen mapper/nonlocal barriers inspected in barriers.json. Missing restore tails add18 unknown bytes:58:877C/87B3 JMP FBAD,0:804B JSR FBAD/JMP8024,63:E002 JSR FBAD/JMPDFE1. Other mapper continuations already current Code. C78B maps actual58; never follow stale first-slot0/59 aliases there. D8CB writesCHR registers and fixed identity survives.2:AE8E restores outer stack for mode7, existingRTS is correct.55:8371 is the preserved infeasible empty-list fallthrough into establishedData, not a new Code conflict/proposal.
+
+Exact active frontier: follow newly exposed finite56 dispatches8B2F/8B35(6),8CA9/8CAD(4),8DC6/8DC9(3) and15 bounded record-summary renderers8587/8596 (column list8568 has first zero at15), plus existing4 summary renderer pointers867E/8682. These are direct typed consumers in accepted/new code, not unrelated pointer enumeration. Then inspect resulting concrete direct/service frontier, finite associated Data blocks and package exact combined proposal union/dispositions. Pattern44286 genericData bytes and byte-index256-value1..20 sequence evidence remain supported; stronger global semantics/domains unclaimed. Unknown-memory-frontier.json includes intentionally unaudited entry contexts:0 mapper33 changes to physical53, so apparent1:B517/B58B are stale aliases and are not data proposals. No toolkit issue inferred.

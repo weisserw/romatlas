@@ -1,0 +1,19 @@
+# Unresolved meanings and next structural questions
+
+Current-source readability is complete for the pass-002 corrected baseline. All classified instructions have functional routine/control-flow explanations, RAM/field/CPU aliases and bank-aware entry notes; data fragments have consumer/format notes or an honest generic-data explanation. This does not complete ROM classification:657 bytes remain unknown in39 intervals. Review of unknown meaning is not a decoding claim. Prior commentary is preserved in analysis/round-2/commentary-pass-001-preserved; its obsolete structural-frontier counts are historical.
+
+Names describe established mechanics. Named character identities, original sound/instrument/animation names, authored map labels, diagnostic natural callers and natural selection of every script/handler remain unresolved. Scene-local RAM often has multiple roles; generic scratch aliases deliberately retain that uncertainty. Actor frame headers encode count-minus-one, animation headers an inclusive final index, initializer headers an actual count, and screen-row headers a visible count with FF tile skips that do not consume it. These formats must not be conflated.
+
+CPU aliases retain exact values and supplied physical8KiB slot contexts. Remembered bank43h, current logical bank44h and raw MMC1 writes differ: preserving helpers require incoming mapping coherent with44h; restore43h is not a general preserve-current-bank contract. Map lookup may return another logical bank. Temporary text saves write0180h..01DFh, requiring live frames outside that destination (the reviewed main-task contract uses SP<=7Dh). Source comments describe this restriction. No whole hardware/game compatibility or natural-return claim follows from byte rebuilding.
+
+L009 remains the next structural frontier, as recorded in analysis/leads.json and analysis/pass-002/final-unknown-ranges.json. Useful localized questions, with physical file offsets including the header:
+
+- 0x1C9E9..0x1CA1C (CPU C9D9) follows the exact00/40/80 plane table. Check its row/width/plane operands as a local buffer helper; do not extend the data table by the initial A0 opcode. Also inspect the separate eight-row candidate0x1CDF6..0x1CE2D.
+- 0x1CD52..0x1CD5A (CD42) is the F8 synthetic callback return landing; compare an actual escaped text program with bank1 restore and CD0C reentry. 0x1CDA9..0x1CDAE (CD99) follows dictionary expansion; separate its local continuation from unrelated selector validity. Existing text parser and dictionary source supplies the surrounding mechanics.
+- 0x1C679..0x1C68E and0x1C6C3..0x1C6DA (C669/C6B3) require compatible actor predicates and nested live-frame accounting. Discarding a caller return has a different contract from an ordinary RTS; inspect the supplied caller paths instead of relying on a CFG sketch.
+- 0x1F979..0x1F982 (F969) may contain a bank5 service then bank6 restoration, while F971 is also consumed as a negative HUD sentinel. Distinguish aliases. 0x1FAC9..0x1FB09 (FAB9) needs an exact continuation/patterned-data split, including the FADD region.
+- Tiny0x196E0..0x196E5 and isolated0x19751..0x19752 remain ambiguous; neither an opcode-looking pattern nor an isolated RTS proves entry. Other exact residuals retain their L009 evidence and source notes.
+
+These are questions for the next structural phase, not commentary deferrals or proposals applied here. Follow evidence-policy.md: consumer/extent/stack/bank constraints can establish a localized structural role without proving natural gameplay selection or the original generator. No new runtime capture or arbitrary actor spawn was needed for commentary. Master Spectre activation and ordinary complete quest progression remain specific gameplay questions; artificial visited scenarios stay marked as such.
+
+No toolkit issue was discovered. Final editorial/archive acceptance remains pending and its audit was not run.

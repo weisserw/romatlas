@@ -1,0 +1,231 @@
+{
+  "version": 1,
+  "scenarios": [
+    {
+      "id": "S001",
+      "milestone": "Startup, name entry and castle introduction",
+      "status": "visited",
+      "route_or_patch": "probe.py then advance.py: reset 180 idle; START2/release180; START2/release240; A2/release240. park.py START2/release180. All frame budgets <=30M operations/30s.",
+      "observed_result": "Normal inputs reach name entry, castle dialogue and hub; bank [10,11,14,15] in dialogue, [12,13,14,15] hub.",
+      "evidence": "pass-001/title.ppm, game.ppm, hub.ppm, park.ppm",
+      "artificial": false
+    },
+    {
+      "id": "S002",
+      "milestone": "Hub movement",
+      "status": "visited",
+      "route_or_patch": "park.py UP180 LEFT180 UP+A2 release180; explore.py UP420 twice,A2/release120.",
+      "observed_result": "Left movement confirmed; prolonged up blocked by geometry. Repetition stopped.",
+      "evidence": "pass-001/park-arrival.png,west-wait.png",
+      "artificial": false
+    },
+    {
+      "id": "S003",
+      "milestone": "Pirates of the Caribbean",
+      "status": "visited",
+      "route_or_patch": {
+        "restore": "pass-001/park.snapshot.json",
+        "patch": {
+          "110": 32,
+          "111": 2,
+          "112": 0,
+          "113": 20,
+          "142": 120,
+          "143": 120,
+          "170": 0
+        },
+        "buttons": "Reassert [] after restore. attractions.py idle180; play_attractions.py four A2/release90 cycles, RIGHT+A+B120/release2. Space: space.py three more A2/release90, UP+A+B90/release2. Autopia: autopia.py UP+A300/release2.",
+        "trace": "2-frame accepted fetch capture after representative mechanics; transitions.py one traced frame at distinct A presses for1,4,7; reset trace between discontinuous captures.",
+        "context": "ROM code mapping retained per accepted fetch, usually [12,13,14,15] gameplay; [10,11,14,15] dialogue."
+      },
+      "observed_result": "Distinct gameplay frame inspected; patched entrance initialized through game transition, not direct jump into gameplay.",
+      "evidence": "pass-001/play-1.png; space-play.png for7; per-scene *contexts.json, *trace.json",
+      "artificial": true
+    },
+    {
+      "id": "S004",
+      "milestone": "Big Thunder Mountain",
+      "status": "visited",
+      "route_or_patch": {
+        "restore": "pass-001/park.snapshot.json",
+        "patch": {
+          "110": 64,
+          "111": 1,
+          "112": 184,
+          "113": 20,
+          "142": 120,
+          "143": 128,
+          "170": 0
+        },
+        "buttons": "Reassert [] after restore. attractions.py idle180; play_attractions.py four A2/release90 cycles, RIGHT+A+B120/release2. Space: space.py three more A2/release90, UP+A+B90/release2. Autopia: autopia.py UP+A300/release2.",
+        "trace": "2-frame accepted fetch capture after representative mechanics; transitions.py one traced frame at distinct A presses for1,4,7; reset trace between discontinuous captures.",
+        "context": "ROM code mapping retained per accepted fetch, usually [12,13,14,15] gameplay; [10,11,14,15] dialogue."
+      },
+      "observed_result": "Distinct gameplay frame inspected; patched entrance initialized through game transition, not direct jump into gameplay.",
+      "evidence": "pass-001/play-2.png; space-play.png for7; per-scene *contexts.json, *trace.json",
+      "artificial": true
+    },
+    {
+      "id": "S005",
+      "milestone": "Autopia",
+      "status": "visited",
+      "route_or_patch": {
+        "restore": "pass-001/park.snapshot.json",
+        "patch": {
+          "110": 128,
+          "111": 1,
+          "112": 0,
+          "113": 22,
+          "142": 120,
+          "143": 136,
+          "170": 0
+        },
+        "buttons": "Reassert [] after restore. attractions.py idle180; play_attractions.py four A2/release90 cycles, RIGHT+A+B120/release2. Space: space.py three more A2/release90, UP+A+B90/release2. Autopia: autopia.py UP+A300/release2.",
+        "trace": "2-frame accepted fetch capture after representative mechanics; transitions.py one traced frame at distinct A presses for1,4,7; reset trace between discontinuous captures.",
+        "context": "ROM code mapping retained per accepted fetch, usually [12,13,14,15] gameplay; [10,11,14,15] dialogue."
+      },
+      "observed_result": "Distinct gameplay frame inspected; patched entrance initialized through game transition, not direct jump into gameplay.",
+      "evidence": "pass-001/play-3.png; space-play.png for7; per-scene *contexts.json, *trace.json",
+      "artificial": true
+    },
+    {
+      "id": "S006",
+      "milestone": "Haunted Mansion",
+      "status": "visited",
+      "route_or_patch": {
+        "restore": "pass-001/park.snapshot.json",
+        "patch": {
+          "110": 128,
+          "111": 1,
+          "112": 0,
+          "113": 20,
+          "142": 120,
+          "143": 120,
+          "170": 0
+        },
+        "buttons": "Reassert [] after restore. attractions.py idle180; play_attractions.py four A2/release90 cycles, RIGHT+A+B120/release2. Space: space.py three more A2/release90, UP+A+B90/release2. Autopia: autopia.py UP+A300/release2.",
+        "trace": "2-frame accepted fetch capture after representative mechanics; transitions.py one traced frame at distinct A presses for1,4,7; reset trace between discontinuous captures.",
+        "context": "ROM code mapping retained per accepted fetch, usually [12,13,14,15] gameplay; [10,11,14,15] dialogue."
+      },
+      "observed_result": "Distinct gameplay frame inspected; patched entrance initialized through game transition, not direct jump into gameplay.",
+      "evidence": "pass-001/play-4.png; space-play.png for7; per-scene *contexts.json, *trace.json",
+      "artificial": true
+    },
+    {
+      "id": "S009",
+      "milestone": "Space Mountain",
+      "status": "visited",
+      "route_or_patch": {
+        "restore": "pass-001/park.snapshot.json",
+        "patch": {
+          "110": 128,
+          "111": 2,
+          "112": 248,
+          "113": 21,
+          "142": 120,
+          "143": 128,
+          "170": 0
+        },
+        "buttons": "Reassert [] after restore. attractions.py idle180; play_attractions.py four A2/release90 cycles, RIGHT+A+B120/release2. Space: space.py three more A2/release90, UP+A+B90/release2. Autopia: autopia.py UP+A300/release2.",
+        "trace": "2-frame accepted fetch capture after representative mechanics; transitions.py one traced frame at distinct A presses for1,4,7; reset trace between discontinuous captures.",
+        "context": "ROM code mapping retained per accepted fetch, usually [12,13,14,15] gameplay; [10,11,14,15] dialogue."
+      },
+      "observed_result": "Distinct gameplay frame inspected; patched entrance initialized through game transition, not direct jump into gameplay.",
+      "evidence": "pass-001/play-7.png; space-play.png for7; per-scene *contexts.json, *trace.json",
+      "artificial": true
+    },
+    {
+      "id": "S008",
+      "milestone": "SELECT menu",
+      "status": "visited",
+      "route_or_patch": "Restore park.snapshot.json; [] then SELECT2 traced, release90.",
+      "observed_result": "Help/item menu transition captured with normal input.",
+      "evidence": "pass-001/select-menu.png,select-menu-contexts.json",
+      "artificial": false
+    },
+    {
+      "id": "S009",
+      "milestone": "Parade and terminal End",
+      "status": "visited",
+      "route_or_patch": {
+        "restore": "pass-001/park.snapshot.json",
+        "patch": {
+          "110": 192,
+          "111": 1,
+          "112": 248,
+          "113": 20,
+          "142": 120,
+          "143": 128,
+          "170": 0,
+          "1753": 6
+        },
+        "buttons": "[]240; six A2/release90; []300. transitions.py restores ending.snapshot, eight A2/release90; []600.",
+        "budgets": "Each advance <=10M/10s, final600 <=30M/30s. Last2 frames traced."
+      },
+      "observed_result": "Parade dialogue and final End filmstrip confirmed visually. Key count shortcut proves artificial scenario only.",
+      "evidence": "pass-001/ending.png,terminal.png,terminal.snapshot.json,terminal-contexts.json",
+      "artificial": true
+    },
+    {
+      "id": "S010",
+      "milestone": "Haunted Master Spectre boss and attraction objective completions",
+      "status": "deferred",
+      "route_or_patch": "Verified Haunted interior shortcut: restore redirect/r001-inline-structure/haunted-clean.snapshot.json, patch6F=1,70=0,71=0E,8E=B0,8F=80,AA=0, reassertUP2 then[]180. Source-supported stage initialization selects internal floor5. Boss identity and its actual activation position/state remain unresolved; do not assert boss visit.",
+      "observed_result": "No boss/goal claims; additional early repeated inputs unlikely to establish endpoint. Ending successfully visited independently.",
+      "evidence": "pass-001/contract-0xee50.json; leads L004",
+      "attempt_history": [
+        {
+          "attempt": "r001",
+          "outcome": "Haunted interior floor5 visited and90-frame mechanic exercised; Master Spectre identity/spawn prerequisite still unresolved",
+          "recipe": "redirect/r001-inline-structure/haunted_room.py",
+          "evidence": [
+            "redirect/r001-inline-structure/haunted-room.png",
+            "redirect/r001-inline-structure/haunted-room-mechanic.png",
+            "redirect/r001-inline-structure/haunted-stage-gate.json"
+          ],
+          "negative_history": "Two prior coordinate attempts used EEE5 table from another platform route; their failures retained. Correct ED95/EDCF Haunted gate uses pageY1, worldX+playerX0E78..88, playerYB0 and newly pressedUP08."
+        }
+      ]
+    },
+    {
+      "id": "S011",
+      "milestone": "Disney trivia quest chain",
+      "status": "visited",
+      "route_or_patch": "redirect/r001-inline-structure/trivia_contact.py creates supported slot4 NPC contact (active80,behavior93,0604 quest index, actorY=playerY-16, actorX=playerX, latch90=0). trivia_final.py sets final quest stage0604=6 and06EE=6, advances dialogues until06DB question counter increments, waits300, patches choice5B=BED0[93], pressesA2/release180 for two questions. Exact patches and snapshots retained.",
+      "observed_result": "Actual three-option question screens, correct responses and final key award confirmed. This skips prior quest stages and does not establish natural full chain/all53 questions.",
+      "evidence": "redirect/r001-inline-structure/trivia-final-results.json; trivia-final-question-*.png; trivia-final-answer-*.png; saved answer contexts/traces",
+      "attempt_history": [
+        {
+          "previous_status": "deferred",
+          "attempt": "r001",
+          "result": "First quest question and final NPC stage exercised artificially; correct answer changes26\u219227; final two questions30/32 advance38\u219239\u21923A and award key0\u21921.",
+          "evidence": [
+            "redirect/r001-inline-structure/trivia-ready.png",
+            "redirect/r001-inline-structure/trivia-answer.png",
+            "redirect/r001-inline-structure/trivia-final-results.json",
+            "redirect/r001-inline-structure/trivia-final-answer-1.png"
+          ]
+        }
+      ],
+      "artificial": true
+    },
+    {
+      "id": "S000",
+      "milestone": "Initial long traced startup",
+      "status": "attempted",
+      "route_or_patch": "Trace capacity0,180frame/30M operations/30s request.",
+      "observed_result": "Execution timeout; not repeated. Broad progression thereafter untraced and representative1-3frame windows traced.",
+      "evidence": "pass-001/rpc.jsonl",
+      "artificial": false
+    },
+    {
+      "id": "S012",
+      "milestone": "Haunted interior floor5 transition",
+      "status": "visited",
+      "artificial": true,
+      "route_or_patch": "redirect/r001-inline-structure/haunted_room.py",
+      "observed_result": "Supported entrance gate initializes interior floor5 (6F5,71=0B), then right+A+B90 mechanics exercised. Interior/ghost sprites visible; no Master Spectre assertion.",
+      "evidence": "redirect/r001-inline-structure/haunted-room.png,haunted-room-mechanic.png,haunted-room-contexts.json"
+    }
+  ]
+}

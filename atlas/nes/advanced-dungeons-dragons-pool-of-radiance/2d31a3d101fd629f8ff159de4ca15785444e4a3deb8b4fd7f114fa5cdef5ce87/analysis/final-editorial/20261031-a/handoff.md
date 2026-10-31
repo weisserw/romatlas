@@ -1,0 +1,9 @@
+# Final editorial acceptance handoff
+
+Editorially complete on structurally incomplete pass-006: 655371/655376 classified (99.9992370792%); five Unknown bytes retained in three intervals. Supported audit completed successfully after the last source edit: ok=true, byte_identical=true, editorial_audit=true; 12161 reviewed regions and 4272 reviewed units. Fresh verification.json and reading-after.asm are current.
+
+Targeted review and findings: commentary/editorial-audit.md. Preserved full C6 commentary in prior-c6-commentary/. Reused sound C6 full-readability/native-boundary credit; checked shared descriptor-six clear/retreat and selected advance, temporary bank-2 action/restoration, serializer and synthetic callback return. Kept the selector name with documented full clear mechanics. Updated three opaque-range notes to final R6 rejection evidence and corrected stale current uncertainty wording. No new classification lead.
+
+Supported audit caught local inventory defects: normalized 16433 source references relative to commentary/source and reassociated 803 existing reviewed units to their containing scaffold starts, filling 684 empty Code entries. All 4272 records, ranges, names, summaries, contexts and review credit preserved (unit-preservation.json). Full source checks, exact 71562-byte Code/instruction/unit unions, 33210 starts, 6238 symbols, 3085 local paths and 152 uniform byte claims pass. No toolkit bug inferred.
+
+The final exact unknown values are 10160+1=60,432955+1=60,460056+3=A20060. R6 and coordinator rejection rationale remains authoritative; no fabricated decoding or ROM completion claim. ROM/map/state/baseline/configured release protected identities match. Full current hashes and actual audit output: handoff.json. No live handles. No toolkit modification, archive execution, publication, deletion or cleanup. Root retains final orchestration/document selection work.

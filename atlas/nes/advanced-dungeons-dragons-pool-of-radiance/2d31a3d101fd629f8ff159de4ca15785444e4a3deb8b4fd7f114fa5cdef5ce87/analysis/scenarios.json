@@ -1,0 +1,262 @@
+{
+  "version": 1,
+  "phase": "round6 disassembly complete; full current-source commentary then redirect",
+  "scenarios": [
+    {
+      "milestone": "startup/main menu",
+      "status": "visited",
+      "route": "Reset; idle requests advanced actual284 frames; Start2 frames, release90 frames.",
+      "observed": "SSI/TSR copyright then Character/Order/Environ menu; natural, no edits.",
+      "evidence": [
+        "round1/contexts.json",
+        "round1/request-13.json",
+        "../traces/round1/after-start.png"
+      ]
+    },
+    {
+      "milestone": "prebuilt party",
+      "status": "visited",
+      "route": "Import title.snapshot.json (copyright); tap Start,Down,A,A,Down,A,Down,A,B; each press2 frames and release60 frames. Last wait timed out retaining actual completed state.",
+      "observed": "Gwydion, Felgar, Goldleaf selected; Begin adventure appears.",
+      "snapshot": "round1/adventure1.snapshot.json",
+      "evidence": [
+        "round1/adventure1-rpc.jsonl",
+        "../traces/round1/adventure1.png"
+      ]
+    },
+    {
+      "milestone": "Phlan waterfront / arrival",
+      "status": "visited",
+      "route": "Import adventure1 snapshot; release input; tapDown,Down,A with60-frame settle; wait120 (timeout retained progress).",
+      "observed": "First-person Phlan waterfront and arrival narration, three-member party. Display14/14 is Gwydion HP, not map coordinates; coordinate contract established separately in native code.",
+      "snapshot": "round1/adventure2.snapshot.json",
+      "evidence": [
+        "round1/adventure2-rpc.jsonl",
+        "round1/adventure2-contexts.json",
+        "../traces/round1/adventure2.png"
+      ]
+    },
+    {
+      "milestone": "Rolf guided city tour",
+      "status": "visited",
+      "route": "From adventure2: trace-disabled300-frame idle then A2/release30; from adventure3 holdA1800 frames (3x600) trace disabled then trace20. Rolf welcome awaits a new A edge. Repeated release/press edges now running.",
+      "observed": "Guided tour advanced through city sights including training hall; complete after48 further A edges. Subsequent A enters character status.",
+      "snapshot": "round1/tour-advance2.snapshot.json",
+      "evidence": [
+        "round1/adventure3-rpc.jsonl",
+        "round1/tour-rpc.jsonl",
+        "../traces/round1/tour-1.png"
+      ]
+    },
+    {
+      "milestone": "city movement / character status",
+      "status": "visited",
+      "route": "Import tour-advance2 snapshot; B exits3 times, then Up,Left,Up,Up,Right,Up (2-frame press/40-frame settle).",
+      "observed": "Character fighter stats/equipment visited during post-tour A presses; directional city movement entered monster-infested slums.",
+      "snapshot": "round1/city.snapshot.json",
+      "evidence": [
+        "round1/city-rpc.jsonl",
+        "../traces/round1/city-before.png",
+        "../traces/round1/city-after.png"
+      ]
+    },
+    {
+      "milestone": "slums encounter / tactical combat / Sleep spell",
+      "status": "visited",
+      "route": "city snapshot; exact inputs in slums-rpc.jsonl, battle-rpc.jsonl, cast-rpc.jsonl, sleep-rpc.jsonl. Trace disabled only for recorded waits; sampled/full fetches retained in batch-contexts.json files.",
+      "observed": "Orc encounter Attack/Parley/Wait/Flee menu, tactical grid, party movement/target selection, Goldleaf Cast menu and actual Sleep cast narration. Victory/defeat not claimed.",
+      "snapshot": "round1/spell-resolve.snapshot.json",
+      "evidence": [
+        "../traces/round1/slums-5.png",
+        "../traces/round1/slums-11.png",
+        "../traces/round1/battle2.png",
+        "../traces/round1/cast.png",
+        "../traces/round1/sleep-4.png"
+      ]
+    },
+    {
+      "milestone": "major boss / ending",
+      "status": "visited",
+      "reason": "Artificial supported shortcuts reached dragonboss tacticalfight andSTAFF/creditrows withmode1return. No naturalroute/bossvictory/fullmontage claim.",
+      "attempt_history": [
+        {
+          "prior_status": "deferred",
+          "prior_reason": "Later-area, boss and ending entry deferred pending coherent area contract: $6C/$6D/$70 plus positions and persistent PRG-RAM counterparts. Bounded $6D-only area patch failed; changing a graphics index alone did not establish later-area visit.",
+          "attempt": "r1-20261031-a"
+        }
+      ],
+      "evidence": [
+        "redirect/r1-20261031-a/boss-plan.md",
+        "redirect/r1-20261031-a/boss-continue-2.png",
+        "redirect/r1-20261031-a/boss-interact-3.png",
+        "redirect/r1-20261031-a/credits-plan.md",
+        "redirect/r1-20261031-a/credits-0.png",
+        "redirect/r1-20261031-a/credits-18.png",
+        "redirect/r1-20261031-a/credits-result.json"
+      ]
+    },
+    {
+      "milestone": "later-area RAM shortcut",
+      "status": "attempted",
+      "patch": {
+        "ram_0x006d": [
+          5
+        ],
+        "ram_0x0600": [
+          8,
+          8,
+          0
+        ]
+      },
+      "clean_snapshot": "round1/area-patch-clean.snapshot.json",
+      "execution": "Requested40 frames, timeout retained35; artificial contexts36/37/62/63. Clean snapshot restored.",
+      "observed": "Still slums narration, no verified later-area transition. Do not retry unchanged.",
+      "evidence": [
+        "round1/area-patch-rpc.jsonl",
+        "../traces/round1/area-patch.png",
+        "round1/transition-inspect-rpc.jsonl"
+      ]
+    },
+    {
+      "milestone": "coherent area1 shortcut",
+      "status": "visited",
+      "route": "Clean snapshot; RAM32/33 logical43/0, operand at07E0=[0,1],71/72=07E0, synthetic installer RTS9460; PCFBAD/SP E0;9461 restores savedSP and enters87F0. Exact patches/budgets in attempt transition-plan.md.",
+      "observed": "6B1,6C1,6D5,700 and coordinates15/4/facing3 initialized; distinct door view. Up/left/up input attempted with no coordinate/facing change; no successful movement claim.",
+      "snapshot": "redirect/r1-20261031-a/transition1.snapshot.json",
+      "evidence": [
+        "redirect/r1-20261031-a/transition-result.json",
+        "redirect/r1-20261031-a/transition1.png",
+        "redirect/r1-20261031-a/visit1-result.json",
+        "redirect/r1-20261031-a/visit1.png"
+      ],
+      "limitation": "Historical scene visit; missingFB99cartridgeRAM-enable prerequisite later corrected forworld/bossroutes. Do not infer persistentstate from CPUopen-bus peeks."
+    },
+    {
+      "milestone": "special area25 shortcut",
+      "status": "visited",
+      "route": "FB99enable +VMstore75F8=0 +outermode1/A8=0 entry; exactspecial-unprotect-plan.md.",
+      "observed": "Coherent mountainoverworld,5D1; Right/Down leftphysical75D5/6at0/0, A openedparty panel. CPUPRGRAMpeekvaluesareopenbuswhendisabled; physicalreadsgive75F8=0,760E=5.",
+      "evidence": [
+        "redirect/r1-20261031-a/special-unprotect.png",
+        "redirect/r1-20261031-a/special-visit-5.png",
+        "redirect/r1-20261031-a/special-visit-result.json",
+        "redirect/r1-20261031-a/prgram-inspect.json"
+      ],
+      "attempt_history": [
+        {
+          "status": "attempted",
+          "result": "6C4 initialized but corrupt tiles; mode5D/view prerequisites incomplete. Native8AD3 supported initializer still under investigation."
+        }
+      ]
+    },
+    {
+      "milestone": "ending narrative / outer mode8 shortcut",
+      "status": "visited",
+      "route": "From coherent area1: framed VM command bank8 CPU964A, native8E8F dispatch; savedSP retained. HoldA to abort persistent per-character delay perCAE5.",
+      "observed": "Framedvictoryscriptrequestedmode8; supportedlate9768->982B->9466continuationshowedSTAFF/latecreditrows andreturnedmode1. Delaybypass documented; nativeentry/delaycontracts understood. No naturalbossvictory orfullmontage/presentationfidelityclaim.",
+      "snapshot": "redirect/r1-20261031-a/ending-hold.snapshot.json",
+      "evidence": [
+        "redirect/r1-20261031-a/ending-plan.md",
+        "redirect/r1-20261031-a/credits-plan.md",
+        "redirect/r1-20261031-a/credits-result.json",
+        "redirect/r1-20261031-a/credits-0.png",
+        "redirect/r1-20261031-a/credits-18.png"
+      ]
+    },
+    {
+      "milestone": "coherent overworld Use item menu, character selection and equipped inventory renderer",
+      "status": "visited",
+      "provenance": "artificial inherited snapshot; ordinary controls only, no new patches",
+      "route": "Import redirect/r1-20261031-a/special-visit.snapshot.json. world-followup:release12/A2/release24/B2/release24. Initial use-item timing attempt:A2/release24/Right2/release12/A2/release24. Corrected settled route from saved use-item snapshot:release30/Right2/release24/A2/release30. item-use-action:A2/release30/A2/release30. Sword confirmation30-frame release timed out; retry from clean inventory withA2/release12/release12/release12.",
+      "budgets": "Each request max_operations2000000,timeout7000ms; frame counts above. Failed30-frame result excluded from durable execution union. Tracecapacity0 aggregate_dropped0 across saved successful scenarios.",
+      "observed": "Full Party/Encamp/Cast/Equip/Use item menu; Use/Trade/Drop choices; Who will use it? Gwydion; equipped L.Sword/Banded Mail/Shield rows. Sword activation attempted, no item-use result or effect verified. Natural reachability unchanged.",
+      "snapshot": "round2/item-use-response.snapshot.json",
+      "evidence": [
+        "round2/fresh-gameplay-review.md",
+        "round2/world-followup.json",
+        "round2/item-settled.json",
+        "round2/item-use-action.json",
+        "round2/item-use-response.json",
+        "round2/item-use-result-rpc.jsonl",
+        "round2/item-settled-4.png",
+        "round2/item-use-action-1.png",
+        "round2/item-use-response-3.png",
+        "round2/execution-summary.json"
+      ]
+    }
+  ],
+  "passes": [
+    {
+      "id": "round2-redirect",
+      "attempt": "r2-20261031-a",
+      "runtime_calls": 0,
+      "result": "Reused preserved broad natural early/combat and coherent artificial world/dragon/credits evidence; no unchanged failed route replay. Current static batch needed no new gameplay prerequisite.",
+      "evidence": "redirect/r2-20261031-a/handoff.md"
+    }
+  ],
+  "phase_reviews": [
+    {
+      "phase": "round3 disassembly",
+      "new_runtime_experiments": 0,
+      "result": "Existing natural early/combat and artificial world/dragon/credits milestones reviewed; no materially changed useful gameplay recipe for this static batch. Reused prior sound observations, no unchanged failed-patch or inventory replay. Natural reachability and observed coverage unchanged.",
+      "evidence": [
+        "round3/review.md",
+        "round2/fresh-gameplay-review.md",
+        "round2/execution-summary.json"
+      ]
+    },
+    {
+      "phase": "round4 disassembly",
+      "new_runtime_experiments": 0,
+      "result": "Existing broad natural early/combat and artificial world/dragon/credits reviewed; no materially new productive ordinary mode5 route. Static entry does not prove gameplay. No unchanged startup/failed inventory replay.",
+      "evidence": [
+        "round4/review.md"
+      ]
+    },
+    {
+      "phase": "round4 redirect",
+      "new_runtime_experiments": 0,
+      "result": "Existing natural early/city/combat/spell and artificial overworld/dragon/framed victory/STAFF ending visits reviewed. No newly practical coherent later-ending shortcut prerequisite exposed by local prefix/service/BRK contracts. Natural final victory and full montage remain unverified; no unchanged route or arbitrary orphan-PC execution repeated.",
+      "evidence": [
+        "redirect/r4-20261031-a/remaining-review.md",
+        "redirect/r4-20261031-a/handoff.md"
+      ]
+    },
+    {
+      "phase": "round5 disassembly",
+      "new_runtime_experiments": 0,
+      "result": "Existing broad natural early/combat and artificial world/dragon/framed credits reused; local static contracts expose no materially new practical ordinary route. Natural ending remains unverified. No unchanged replay/forced orphan execution.",
+      "evidence": [
+        "round5/review.md"
+      ]
+    },
+    {
+      "phase": "round5 redirect",
+      "attempt": "r5-20261031-a",
+      "status": "existing broad milestones reviewed; no new runtime scenario",
+      "evidence": [
+        "redirect/r5-20261031-a/remaining-review.md",
+        "redirect/r1-20261031-a/credits-plan.md"
+      ],
+      "limitations": "Natural boss victory and full ending montage unverified. Existing artificial dragon/credits and coherent world routes retained; no new practical initializer exposed by static descriptor-stage batch. Replaying unchanged route or forcing orphan PCs would not discriminate residual roles."
+    },
+    {
+      "phase": "round6 disassembly",
+      "new_runtime_experiments": 0,
+      "result": "Existing broad natural early/combat and artificial world/dragon/STAFF/credits reused. Descriptor cleanup contract exposes no new coherent gameplay shortcut; natural ending remains unverified.",
+      "evidence": [
+        "round6/review.md"
+      ]
+    },
+    {
+      "phase": "round6 redirect",
+      "attempt": "r6-20261031-a",
+      "new_runtime_experiments": 0,
+      "result": "Reviewed existing representative natural early/city/combat/spell and coherent artificial world/dragon/STAFF/credits return. Actual credits-plan primary reviewed; no new initializer or useful changed shortcut exposed by residual interface review. Natural victory and full montage unverified; unchanged replay/forced orphan PC not discriminating.",
+      "evidence": [
+        "analysis/redirect/r6-20261031-a/rejection-review.md",
+        "redirect/r1-20261031-a/credits-plan.md"
+      ]
+    }
+  ]
+}

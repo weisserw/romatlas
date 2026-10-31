@@ -1,0 +1,7 @@
+# R6 residual interface review
+
+Input pass-006/map/state 5912c6e9eaf7bf3a0902fbaa91908d491543e8c2971ccb192fea203197c2c3df; full C6 readability accepted; final editorial audit pending. No map/source/ROM edits authorized here.
+
+Review the three residual role claims against current primary neighbors, actual native return contracts and data boundaries. Prior R4/R5 raw-reference and service negatives are scoped interface results, not vetoes. Changed method: explicitly combine current display callback output disposal, preceding termination, candidate register effects, and independently bounded constant alternatives. Compare the R5 accepted descriptor transition proof without inheriting its former extra caller/field-dependency prerequisites. Reopen even one byte if these constraints distinguish Code/Data. Stop this avenue when its supported interfaces terminate in known code and the remaining alternatives predict the same available observations; forced orphan PC and unchanged raw-word/synthetic-return tests cannot discriminate intended structure.
+
+Inspect broad progression deferrals for a newly practical shortcut; preserve existing representative natural and artificial visits. No unchanged replay or arbitrary state sweep. This attempt must provide primary excerpts and a compact rejection review for coordinator challenge if no proposal survives; terminal decision belongs to coordinator.

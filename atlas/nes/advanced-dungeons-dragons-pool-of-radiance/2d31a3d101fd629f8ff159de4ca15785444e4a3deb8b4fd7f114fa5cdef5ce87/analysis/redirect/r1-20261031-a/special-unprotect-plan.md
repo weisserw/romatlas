@@ -1,0 +1,5 @@
+# PRG-RAM contract correction
+
+Special A8=0 entry executed8AD3 yet75F8 saved-mode branch restored normal5D0. Snapshot was captured in text/idle context, which can protectPRGRAM throughFBA3. Direct mode entry omittedFB99 enable-writes prerequisite. A script09 store75F8=0 may therefore have been ignored despite valid native execution. This is a testable premise, not a confirmed emulator issue.
+
+Enable native PRG-RAM writes through fixedFB99, then mapper installerFBAD, then native8E8F VM entry. Use synthetic twoRTS chain:SP F7;01F8/9=AC FB;01FA/B=8E 8E. Original mode-loop return01FC/FD preserved. Set6B25,A8=0 and logical43/0. RAM script at07D0:09 00 00 01 F8 75 (store literal0 via typed destination75F8),38 00 01 (request outer mode1). Set71/72=07D0. Command56 restores originalA7=FB andRTS to natural mode loopF5BC; mode1 installs59 and starts87F0 with saved flag0. Native8AD3 should initialize5D1, scripts can now update persistent fields. Observe actual75F8 before/after,5D,scene,fetches; bounded3x30frames. A false premise or missing further prerequisites will be recorded and stop this recipe.

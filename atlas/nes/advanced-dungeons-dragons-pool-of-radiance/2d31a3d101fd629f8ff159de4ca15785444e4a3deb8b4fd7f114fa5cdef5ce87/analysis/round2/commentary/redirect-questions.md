@@ -1,0 +1,5 @@
+# Questions from current-source commentary
+
+R2-COM-PANEL-TAILS: fixed physical62:C202 calls CPU8580 after installing logical2B/physical59; fixed62:C290 similarly calls85C0 after the same explicit first-slot mapping. Both destinations lie inside the current Unknown physical[484752,484908), bank59 CPU8580..861C. Source comments name the entry contracts and retain the opaque body. Check the saved primary fixed62/panel graphs and bounded native consumer/stack flow for these two entries; do not infer code from decoding alone or classify the entire gap from pointer values. This is a concrete native-caller lead, not a source readability gap. See source labels B62RestoreUpperPanelView and B62RestoreLowerPanelView; exact unresolved target inventory numeric-target-frontier.json.
+
+R2-COM-RESIDUALS: preserve the disassembly handoff's physical19/24/26 nonuniform neighborhoods, lower54 mixed prefix, bank17 suffix, unbounded60:90F7 sequence and sparse globalAA83 domain. Existing classified Data does not require a complete game schema. Review new source references and visible non-code patterns without repeating startup/inventory experiments.

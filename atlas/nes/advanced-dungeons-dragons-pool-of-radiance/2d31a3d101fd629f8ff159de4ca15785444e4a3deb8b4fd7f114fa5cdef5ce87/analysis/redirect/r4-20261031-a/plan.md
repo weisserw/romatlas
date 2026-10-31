@@ -1,0 +1,7 @@
+# Round 4 redirect: corrected local contracts
+
+Input is pass-004, map/state bfc7f09f81cec0f452e0eb7d631e9b484dedab66d37a5a21bec5b96251ac0106; current-source gate complete, final editorial audit pending. Accepted655353/655376;23 Unknown bytes in8 intervals. Research only; no map/source/runtime changes.
+
+The coordinator identified three corrected inference routes before this attempt. Preserve prior rejection outcomes in r3/residuals.md. Reassess A21F by the validator's actual WorkingSlotHeaderSecond writes followed by A222's callback inversion, rather than a lone compatible call. Reassess B9BE as a default current-selector entry paired with explicit-A entry B9C1 and its complete target-list consumer, rather than a standalone load. Reassess80D1..D4 by BRK's padding/PC+2 and actual IRQ/RTI, rather than an assumed JMP trap loop. Discriminators: independent field flow/default interface or an actual supported control successor; stop if only legal decoding survives. Inspect remaining entries against prior raw/reference/typed-dispatch audits and current exact neighbors, following a concrete new role only when it exists.
+
+Bounded configured-release decode requests; immutable ROM bytes and current source are primary. No arbitrary forced execution. Source-role claims remain Static, natural-use claims remain unresolved. Any proposal returns to independent D/C/R; this is not a terminal assessment.

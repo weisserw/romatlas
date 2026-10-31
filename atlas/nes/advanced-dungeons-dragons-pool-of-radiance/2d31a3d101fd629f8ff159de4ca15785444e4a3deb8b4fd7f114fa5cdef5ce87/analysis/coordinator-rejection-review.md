@@ -1,0 +1,27 @@
+# Coordinator rejection review — accepted terminal incomplete rationale
+
+This accepts the R6 stopping rationale, not whole-ROM completion. Final editorial acceptance and document selection remain separate. Current accepted checkpoint is pass-006: 655371 / 655376 bytes classified (99.9992370792%); five bytes remain Unknown in three intervals. Rounded 100.00% is not completion. There is no capability blocker or request for external input.
+
+## Primary inspection and challenge
+
+I read R6 rejection-review.md and handoff.md, the exact current source neighbors, primary-bytes.json, display-interface.json, reused-service-scope.json, and the actual synthetic-return source. I independently matched all saved neighbor bytes and four display-array slices to input/game.nes, checked the fifteen nonzero columns and index-15 terminator, reconstructed all fifteen callback destinations, and rederived all 164 native service target/bank pairs from the four immutable arrays and bank permutation. No remaining target is selected in those exact interfaces. These checks assess the scope of the alleged reference routes; absence from them is not global unreachable/dead evidence.
+
+At 1:$A7A0 (physical 10160, one byte 60), the preceding arithmetic helper has its own RTS at A79F and A7A1 begins a separate record predicate. An empty native return remains possible. A scalar/residue interpretation remains possible too. Two adjacent return-shaped bytes, one already Code, do not independently bound a noncode run or prove a second native slot. The four contiguous raw-word matches are not additional native targets under their actual consumer/bank representations; the complete service interface independently confirms that limitation. A supported return-slot family or bounded scalar component could reopen the claim without requiring a naturally executed caller.
+
+At 52:$BB2B (physical 432955, one byte 60), BB1E ends with a tail JMP to the known world-cell helper; BB2C is a separate tail JMP to the fixed record service. Neither requires an additional RTS or falls into this byte. A redundant epilogue/no-op is plausible, but tail-JMP syntax alone does not establish an emitted return-slot convention. No independently bounded scalar layout establishes Data either. This is structural ambiguity, not unknown game meaning.
+
+At 56:$8508 (physical 460056, A2 00 60), LDX #0 / RTS has a valid abstract zero-X contract. The prior input routine terminates and returns masked A; the following row routine does not consume incoming X. The actual display callback consumer saves X with TXA/PHA, calls through EA97, then restores it with PLA/TAX before incrementing; its fifteen exact targets exclude 8508. Thus that interface cannot supply a useful returned-X contract or typed placeholder slot. This is a scoped negative, not a rule that every helper needs a caller. No anchored short-record pattern establishes the competing Data role. Forced entry would demonstrate CPU mechanics shared by both interpretations, not distinguish the stored role.
+
+The actual synthetic return constants DEB3→DEB4 and F5BB→F5BC are fixed continuations; callback and mode words are absolute targets. I inspected the DEB3 pushes followed by JMP ($0000) and the F5BB pushes before the mode dispatcher. They provide no target-minus-one route to these residuals. Ordinary RTS dummy reads do not supply a software inline operand/padding format analogous to the independently proven BRK partition.
+
+## Consistency with accepted evidence standards
+
+The accepted short prefixes have independent descriptor-field producer/consumer or explicit-argument/default-interface relationships. Service 40 has a finite native interface with exact bank translation. The accepted BRK partition has a hardware-defined saved-PC/status successor. The accepted six-byte stage wrapper has independently established descriptor-six rendering/cleanup geometry plus a paired forward/back transition family. None required natural use. The remaining opcode shapes lack comparable independent software/format constraints; their legal return semantics alone repeat the same local byte interpretation.
+
+I found no overbroad counterexample, universal caller requirement, weakened generic-data criterion, or concrete corrected method left unaddressed. The review permits generic Data without recovered semantics where noncode is clear; it does not force these ambiguous bytes into Data. New typed slot/output evidence, a bounded constant component, or genuine contextual instruction fetch could reopen the relevant claim. No unchanged planning/replay or arbitrary RAM/PC experiment is justified now.
+
+Broad progression limits were checked against the retained scenario/credits records: natural city/combat/spell and artificial overworld/dragon/STAFF/credits-return are retained; natural final victory and full montage are unverified. R6 exposes no new coherent initializer or discriminating practical shortcut. No exhaustive gameplay/hardware claim follows.
+
+## Decision
+
+Accept justified terminal INCOMPLETE for ROM classification, with the exact five-byte complement retained and resumable. Do not run an empty D/C/R cycle on unchanged premises. Complete final editorial acceptance, fresh verification and explicit archive document accounting before completing the orchestration goal. No archive, publication, deletion, workspace cleanup or toolkit modification is authorized or performed.

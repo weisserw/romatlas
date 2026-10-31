@@ -1,0 +1,7 @@
+# Gameplay familiarization
+
+Visual name-entry Goofy/castle characters and later attraction instruction screens identify Adventures in the Magic Kingdom, NES English. Region/revision beyond ROM hash not independently established.
+
+Manual source: https://www.world-of-nintendo.com/manuals/nes/adventures_magic_kingdom.shtml (retrieved 2026-10-31). Hypotheses: START confirms name and skips castle intro; A advances dialogue; SELECT opens help/item menu. Five attractions plus trivia yield six keys; six keys enable castle ending. Platforming uses A jump/B candle; racing uses UP+A shift/B brake; train B brake; Space Mountain responds to arrows/A/B. Confirmed locally: START name/castle controls, hub movement, attraction dialog variants. Other controls remain provisional until actual stage tests.
+
+Six coordinate arrays at CPU $E1D9-$E238, physical $1E1E9-$1E248, provide exact hub entrance contracts. Code $E14F-$E1D6 compares $6E,$6F,$70,$71,$8E,$8F, masks matched index&7 into $47; castle selector 6 additionally checks $06D9==6. See pass-001/contracts*.json, attractions.py. Exact entrance-coordinate patches on clean park snapshot successfully trigger Pirates (1), Haunted (2), Autopia (3), additional attraction (4), Space Mountain (7) instruction screens. Artificial state; no natural-route assertion. A instruction dialogue must be advanced with distinct presses/releases; START alone does not start these attractions.

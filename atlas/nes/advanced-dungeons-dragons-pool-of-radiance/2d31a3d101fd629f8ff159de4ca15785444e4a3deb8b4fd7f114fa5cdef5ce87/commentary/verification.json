@@ -1,0 +1,13 @@
+{
+  "byte_identical": true,
+  "ok": true,
+  "rom_sha256": "2d31a3d101fd629f8ff159de4ca15785444e4a3deb8b4fd7f114fa5cdef5ce87",
+  "source_sha256": {
+    "carried-entries.inc": "9238dcc6c26ed56afbfe197d7ec50f1f85fbcf257b763a022a026be910a1b6b8",
+    "constants.inc": "b3f9f4cfb62fac8053eee6fd63177a9f880f3f2022c2ac77c961dea764746ddc",
+    "data-aliases.inc": "8259e216148e8f430a3049748960d3d128949891dc5e68383df40c6bd0e48fbf",
+    "fixed-services.inc": "494e2de6be037c74d26c952243060500372a3f2bda1752abc94323a0d03ccac1",
+    "game.asm": "b624cebc9d65e6b9c9a27002991a0fed3ae9ebf080be263d28e9c6f3b760c5d6",
+    "symbols.inc": "d13424df7eb54c159b2e0d7b4867375a5949e9d629d458a2d8c96f8cae95a220"
+  }
+}
