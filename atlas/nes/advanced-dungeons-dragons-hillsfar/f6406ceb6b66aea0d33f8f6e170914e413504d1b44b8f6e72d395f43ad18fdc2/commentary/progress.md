@@ -1,0 +1,27 @@
+# CURRENT — final editorial acceptance passed
+
+All current source is readable and final inventory/context checks passed:3,302 regions/1,566 units; all1,500 unit CPU addresses independently match physical starts. Fresh supported audit/byte-identical rebuild and reading refresh passed. ROM classification remains terminal incomplete:262124/262160 classified,36 Unknown bytes/14 intervals. See editorial-audit.md, audit.json and analysis/coordinator/terminal-handoff.md. The following phase/acceptance history is retained verbatim.
+
+---
+
+# Round 004 commentary — current-source readability complete
+
+Pass-004 full source scope: 3,302 physical scaffold regions, including 3,288 classified regions and 14 Unknown intervals. All 27,563 accepted instruction starts and all classified Data/Text are covered by useful carried review or current review. Counts: 58,111 Code, 131,244 Data, 72,769 Text, 36 Unknown bytes. Classification remains99.99% (262124/262160), separate from source readability, execution coverage and final editorial acceptance. No readability range remains deferred.
+
+Canonical prior tree: analysis/round-004/prior-commentary, preserved in full before preparation. commentary-at-entry is a second unchanged local preservation copy retained when prepare refused an existing tree. Carried3067 exact physical kind/range blocks and sound prior review without a cosmetic reread. Reviewed all46 new Code and175 Data regions plus14 Unknown intervals, retained the full scaffold, refreshed source locations and affected dependencies only. Reused2262 instruction annotations through validated arena/tavern/post-text correspondence while rendering current operands. Source has4032 named instruction locations and1365 compact units; fragment inventories do not claim original routine boundaries.
+
+Explained all24 finite arena handler roots, stream/repeat/outcome/threshold mechanics, relocated arena display/actor/meter helpers, exact tavern tails, town service menus/record/payment/time branches, animation entries, bank signature refresh, PPU rectangle fill, scroll decrement and queued tile cursor advance. Data prose covers numeric/pattern storage, arena islands, character limits, archery resources, name keyboard transitions, maze room/tile planes, palette groups, window records and tumbler endpoints. Generic storage retains explicit schema uncertainty after recorded consumer/reference/pattern checks.
+
+Corrected dependencies: eight aligned11-byte PPU suffixes require valid X and prepositioned PPU address, clearFC and return; the old12-byte JSR00A9 premise is historical and orphan prefixes remain Unknown. Character50/maze33 text directories hold origins into direct strings/shared substrings, not necessarily distinct record starts. The artificial maze scenario used ordinary Right into an existing generated object and reached realF06D A0/X1/Y0, savingF=[0,1,0]; source no longer implies only a synthetic register entry supports Y0. No award, natural quest completion, stage advance or replay claim. Residual bank21 B115 stack mismatch and actual bank23 B115 accepted-operand conflict remain separate barriers.
+
+Coherent batches and fresh final verification passed byte-identically; reading-after.asm refreshed. See analysis/commentary/round004-final-integrity.json and round004-review-summary.json. Final editorial/archive acceptance remains pending and no audit ran. No ROM, map, state or toolkit change; no archive, deletion or publication. No toolkit issues found.
+
+## Final editorial acceptance — completed
+
+Targeted six-issue review and concrete dependencies completed; 18 comment lines corrected, no instructions/operands/labels changed. Valid all-source review retained. Added 201 continuation-unit records linked to existing substantive parent contracts and preserved their physical ranges/effective views. Normalized review source paths to the audit's source-root-relative convention; all source line numbers remain unchanged. Every scaffold entry and meaningful unit is reviewed. See editorial-audit.md and analysis/final-editorial/changes.json.
+
+Supported final audit passed: 3,302 regions / 1,566 units, fresh byte-identical rebuild and refreshed reading-after.asm. Configured-binary current map/internal-store validation passed. Frozen pass-004 map/state and input ROM hashes unchanged. Prior entire tree retained at analysis/final-editorial/prior-commentary. No deferred classified-source readability scope. Classification remains terminal incomplete: 262124/262160 classified; 36 Unknown bytes in 14 intervals. Semantic/natural progression/callback limits persist. No archive, deletion, publication or toolkit change. Coordinator final orchestration/document-selection checks remain separate.
+
+Final acceptance context follow-up: reviewed 1,487 context-bearing units / 1,500 CPU addresses; corrected 268 copied parent-base aliases with accepted view + physical delta and preserved original parent provenance. 1,232 already-correct addresses retained; all current unit CPU aliases independently map to their exact physical starts. No source/map/ROM change or unsupported case. See analysis/final-editorial/unit-context-review.json; supported final audit rerun after correction.
+
+Post-context-correction supported final audit PASSED: 3,302 regions / 1,566 units, fresh byte-identical rebuild and reading refresh. Current integrity hashes refreshed; source, map and ROM identities unchanged.

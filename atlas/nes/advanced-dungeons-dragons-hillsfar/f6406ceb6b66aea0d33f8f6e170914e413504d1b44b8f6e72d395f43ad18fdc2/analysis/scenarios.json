@@ -1,0 +1,329 @@
+{
+  "version": 1,
+  "round": 3,
+  "phase": "disassembly",
+  "replay": {
+    "driver": "analysis/round-001/batch.py",
+    "routes": "analysis/round-001/routes.jsonl",
+    "rpc": "analysis/round-001/batch-rpc.jsonl",
+    "notes": "Each batch imports previous durable snapshot, reasserts released buttons, enables zero-detail trace, records exact inputs/frame budgets and saves snapshot, contexts, RAM and trace summary. Presses/releases included. Historic startup RPC ledger is separate."
+  },
+  "milestones": [
+    {
+      "milestone": "startup/title",
+      "status": "visited",
+      "route_or_patch": "Reset [0,1,30,31]; frames/Start/waits in rpc.jsonl",
+      "observed_result": "Hillsfar title then camp",
+      "evidence": [
+        "analysis/round-001/title2.png"
+      ]
+    },
+    {
+      "milestone": "camp/preloaded character",
+      "status": "visited",
+      "route_or_patch": "Camp $0646 index5; ordinary Down taps then A; default preloaded cleric",
+      "observed_result": "Cleric 12HP, camp exit prompt",
+      "evidence": [
+        "analysis/round-001/gameplay02.png"
+      ]
+    },
+    {
+      "milestone": "overworld",
+      "status": "visited",
+      "route_or_patch": "gameplay03-actions.py: Down 8/20; A 8/30",
+      "observed_result": "Outdoor world route map",
+      "evidence": [
+        "analysis/round-001/gameplay03.png"
+      ]
+    },
+    {
+      "milestone": "horseback riding",
+      "status": "visited",
+      "route_or_patch": "gameplay04 natural A/Right to horse; jump/speed gameplay05/06. Artificial shortcut gameplay07: banks [20,21,30,31], RAM $03F5=34 (extent $03F4=35), $03DB=8. Normal scrolling increments progress and sets $03E1 completion.",
+      "observed_result": "Horse controls exercised; shortcut accepted and city-of-Hillsfar prompt reached.",
+      "evidence": [
+        "analysis/round-001/riding-progress-contract.json",
+        "analysis/round-001/gameplay07-actions.py",
+        "analysis/round-001/gameplay08.png",
+        "analysis/round-001/gameplay08.snapshot"
+      ]
+    },
+    {
+      "milestone": "town exploration",
+      "status": "visited",
+      "route_or_patch": "From gameplay08 city prompt: Left8/20 then A8/40 (horizontal Yes/No); wait150 untraced +20 traced.",
+      "observed_result": "Town rendered at stables, preloaded cleric level6/HP12; effective code banks [22,23,30,31]. Artificial provenance inherited from riding shortcut. Movement and area-search message exercised (gameplay13/14).",
+      "evidence": [
+        "analysis/round-001/gameplay11-actions.py",
+        "analysis/round-001/gameplay12.png",
+        "analysis/round-001/gameplay12.snapshot"
+      ]
+    },
+    {
+      "milestone": "lock picking / building maze",
+      "status": "visited",
+      "route_or_patch": "Source-backed artificial ring recipe and normal post-tool transition, tool_test.py/tool_finish.py/tool_transition.py/maze_continue.py inr002-a01.",
+      "observed_result": "Actualringcount9->8,tumblers0->5,successcounter071E+1,THEDOORISOPEN,thenvisiblemaze room/ladder/player/timer andrepresentativeUp input. Artificialpatchedscenario; naturalcompletionunclaimed.",
+      "evidence": [
+        "analysis/redirect/r002-a01/tool-finish-after.png",
+        "analysis/redirect/r002-a01/maze-after.png",
+        "analysis/redirect/r002-a01/tool-patches.json",
+        "analysis/redirect/r002-a01/maze-after.snapshot"
+      ],
+      "history": [
+        {
+          "status": "attempted",
+          "route_or_patch": "Clean gameplay21,district1. Patchcoordinates[6,5,0] and persistedfields; Up/release/Up faces locked tavern. ChooseYes; menu and manual-style pick inputs attempted.",
+          "observed_result": "Spring-lock interface reached,effective28/29. Pick-option and Right+A/Left+B/A probes produced YOU SURE ARE MAKING A LOT OF NOISE / NOTHING SEEMS TO BE HAPPENING. No successful unlock or maze visit. Further same inputs would repeat; exact tool/menu selection and maze initializer remain prerequisites.",
+          "evidence": [
+            "analysis/redirect/r001-a01/lock-enter-wait1.png",
+            "analysis/redirect/r001-a01/lock-action-release3.png",
+            "analysis/redirect/r001-a01/lock-action.snapshot",
+            "analysis/redirect/r001-a01/lock-action-contexts.json"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": "arena / boss",
+      "status": "visited",
+      "route_or_patch": "Clean gameplay21; district0 $074A=0,map pointer$006E/F=957A from9414 contract; $7C/$7D/$7E=[2,4,0],$071C/D=[2,4],$074B=0; Up to face, settle resource reload, Up to enter; Yes. See door_visit_fast.py/controlled_entry.py/mechanics.py.",
+      "observed_result": "Arena confirmation and CLERIC versus LEFTY,the left-handed orc combat interface, effective20/21. Right+A/Left+B/A input probes exercised; no hit, win or boss-completion claim.",
+      "evidence": [
+        "analysis/redirect/r001-a01/arena-enter-wait4.png",
+        "analysis/redirect/r001-a01/arena-yes-wait4.png",
+        "analysis/redirect/r001-a01/arena-action-release3.png",
+        "analysis/redirect/r001-a01/arena-action.snapshot",
+        "analysis/redirect/r001-a01/arena-action-contexts.json"
+      ]
+    },
+    {
+      "milestone": "archery range",
+      "status": "visited",
+      "route_or_patch": "gameplay21.snapshot; Up8/release60/Up8, then120frames in40-frame chunks. Ordinary Yes and paced tutorial; source inherited artificial town seed.",
+      "observed_result": "Target-shooting welcome, sling/ten-rock tutorial and actual shot/miss response I BET YOU MISS YOUR NEXT SHOT TOO. No perfect-score/completion claim.",
+      "evidence": [
+        "analysis/redirect/r001-a01/range2-wait3.png",
+        "analysis/redirect/r001-a01/archery-shot-shot.png",
+        "analysis/redirect/r001-a01/archery-shot.snapshot",
+        "analysis/redirect/r001-a01/archery-shot-contexts.json"
+      ]
+    },
+    {
+      "milestone": "later class quest / ending",
+      "status": "visited",
+      "route_or_patch": "Clean gameplay21; source-backed $07A7=12,$079B=14 selects cleric third-stage final ungated retirement script; A8/release120 in40-frame chunks. No reward/quest flags forced.",
+      "observed_result": "Retirement terminal dialogue displayed: famous,settled inHillsfar as retired adventurer, HIT BUTTON. Artificial terminal-text visit only; not natural completion,full reward-story progression or credits. Full reward entry13 additionally needs actionstate2 and savedX0; ordinary A search suppliesX64.",
+      "evidence": [
+        "analysis/redirect/r001-a01/retirement-wait3.png",
+        "analysis/redirect/r001-a01/retirement.snapshot",
+        "analysis/redirect/r001-a01/retirement-ram.json",
+        "analysis/redirect/r001-a01/retirement-contexts.json",
+        "analysis/redirect/r001-a01/script-streams-hypothesis.json"
+      ]
+    },
+    {
+      "milestone": "ring-assisted lock success",
+      "status": "visited",
+      "route_or_patch": "Import r001-a01/lock-pick2-wait4.snapshot; set064E=3,0722=9,05C8=100,05D3=0,05CB..05D2=00; A4frames,release280frames in tool_test.py/tool_finish.py",
+      "observed_result": "Artificial scenario: ring9->8,82index0->5=05C9,071Esuccesscounter increments; THE DOOR IS OPEN visible. Building/maze continuation under review.",
+      "evidence": [
+        "analysis/redirect/r002-a01/tool-finish-after.png",
+        "analysis/redirect/r002-a01/tool-finish-after.snapshot",
+        "analysis/redirect/r002-a01/tool-finish-contexts.json"
+      ]
+    },
+    {
+      "milestone": "building maze room",
+      "status": "visited",
+      "route_or_patch": "Continue ring-success snapshot240releasedframes, then60release/A4/60release/Up8/30release; maze_continue.py.",
+      "observed_result": "Artificial inherited patches: visible room/ladder/player/timer with EXPLORE AND EXIT BEFORE YOU ARE DISCOVERED. Up representative movement input exercised; no natural quest progression claimed.",
+      "evidence": [
+        "analysis/redirect/r002-a01/maze-after.png",
+        "analysis/redirect/r002-a01/maze-after.snapshot",
+        "analysis/redirect/r002-a01/maze-contexts.json"
+      ]
+    },
+    {
+      "milestone": "full mentor reward story guard/mechanics",
+      "status": "visited",
+      "route_or_patch": "OrdinaryA-search with074E2,07A7C,079BD provesYlowFfailure. DeclaredsyntheticF06D ABI PCF06D,A0,X40,Y0,SPFD,returnC9DF at01FE/01FF, samefields, existingmessagewindow; boundedA/releasepages.",
+      "observed_result": "F4/F6guards passwithX64/Y0; fullmentor-return storypromises19800gold/XP. Currency01CC andstageC remainunchangedwhileFBtextblocked at91B2; noaward ornaturalquestcompletionclaim.",
+      "evidence": [
+        "analysis/redirect/r002-a01/reward-guard-correction.json",
+        "analysis/redirect/r002-a01/reward_abi.py",
+        "analysis/redirect/r002-a01/reward-final-after.png",
+        "analysis/redirect/r002-a01/reward-final-after-ram.json"
+      ]
+    },
+    {
+      "milestone": "Maze generatedobject -> realcharacter-script ABI",
+      "status": "visited",
+      "route_or_patch": "r003-a01/maze_object_resume.py: importinitializedr002maze-after; actualunlockedcell55,14/tile20; player54,14; quest074E2/079B13/07A7C; ordinaryRight;run_untilF06D then4operations",
+      "observed_result": "Matchedafter68020operations,A0/X1/Y0; savedF1/F2/F3=[0,1,0]. Artificialstate, noPCinjection, storyreplay, award/stage/naturalcompletionclaim.",
+      "evidence": [
+        "/root/romatlas-batch/f6406ceb6b66aea0d33f8f6e170914e413504d1b44b8f6e72d395f43ad18fdc2/workspace/analysis/redirect/r003-a01/maze-object-v2-patches.json",
+        "/root/romatlas-batch/f6406ceb6b66aea0d33f8f6e170914e413504d1b44b8f6e72d395f43ad18fdc2/workspace/analysis/redirect/r003-a01/maze-object-v2-run-until.json",
+        "/root/romatlas-batch/f6406ceb6b66aea0d33f8f6e170914e413504d1b44b8f6e72d395f43ad18fdc2/workspace/analysis/redirect/r003-a01/maze-object-v2-entry.json",
+        "/root/romatlas-batch/f6406ceb6b66aea0d33f8f6e170914e413504d1b44b8f6e72d395f43ad18fdc2/workspace/analysis/redirect/r003-a01/maze-object-v2-after-ram.json",
+        "/root/romatlas-batch/f6406ceb6b66aea0d33f8f6e170914e413504d1b44b8f6e72d395f43ad18fdc2/workspace/analysis/redirect/r003-a01/maze-object-v2-after.snapshot"
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "milestone": "startup/title",
+      "status": "visited",
+      "route_or_patch": "Reset [0,1,30,31]; frames/Start/waits in rpc.jsonl",
+      "observed_result": "Hillsfar title then camp",
+      "evidence": [
+        "analysis/round-001/title2.png"
+      ]
+    },
+    {
+      "milestone": "camp/preloaded character",
+      "status": "visited",
+      "route_or_patch": "Camp $0646 index5; ordinary Down taps then A; default preloaded cleric",
+      "observed_result": "Cleric 12HP, camp exit prompt",
+      "evidence": [
+        "analysis/round-001/gameplay02.png"
+      ]
+    },
+    {
+      "milestone": "overworld",
+      "status": "visited",
+      "route_or_patch": "gameplay03-actions.py: Down 8/20; A 8/30",
+      "observed_result": "Outdoor world route map",
+      "evidence": [
+        "analysis/round-001/gameplay03.png"
+      ]
+    },
+    {
+      "milestone": "horseback riding",
+      "status": "visited",
+      "route_or_patch": "gameplay04 natural A/Right to horse; jump/speed gameplay05/06. Artificial shortcut gameplay07: banks [20,21,30,31], RAM $03F5=34 (extent $03F4=35), $03DB=8. Normal scrolling increments progress and sets $03E1 completion.",
+      "observed_result": "Horse controls exercised; shortcut accepted and city-of-Hillsfar prompt reached.",
+      "evidence": [
+        "analysis/round-001/riding-progress-contract.json",
+        "analysis/round-001/gameplay07-actions.py",
+        "analysis/round-001/gameplay08.png",
+        "analysis/round-001/gameplay08.snapshot"
+      ]
+    },
+    {
+      "milestone": "town exploration",
+      "status": "visited",
+      "route_or_patch": "From gameplay08 city prompt: Left8/20 then A8/40 (horizontal Yes/No); wait150 untraced +20 traced.",
+      "observed_result": "Town rendered at stables, preloaded cleric level6/HP12; effective code banks [22,23,30,31]. Artificial provenance inherited from riding shortcut. Movement and area-search message exercised (gameplay13/14).",
+      "evidence": [
+        "analysis/round-001/gameplay11-actions.py",
+        "analysis/round-001/gameplay12.png",
+        "analysis/round-001/gameplay12.snapshot"
+      ]
+    },
+    {
+      "milestone": "lock picking / building maze",
+      "status": "deferred",
+      "route_or_patch": "Town building entry or understood mode shortcut",
+      "observed_result": "Town reached and search tested; no maze initialization contract. Investigate R001-BUILDING-ENTRY then class/guild scripts before forcing maze state.",
+      "evidence": [
+        "analysis/round-001/gameplay04.snapshot"
+      ]
+    },
+    {
+      "milestone": "arena / boss",
+      "status": "attempted",
+      "route_or_patch": "Source-backed coordinate test: district1; RAM $7C/$7D/$7E = [14,4,0], persisted $071C/$071D=[14,4], $074B=0. Packed collision at adjacent x13,y4=9; mapping table suggests arena but role pending actual entry.",
+      "observed_result": "Candidate type9 was corrected to target shooting after actual location message; arena/boss not reached. No safe arena initialization contract; defer to redirect R001-LATER-ENDING.",
+      "evidence": [
+        "analysis/round-001/town-coordinate-contract.json",
+        "analysis/round-001/town-facing-consumer.json",
+        "analysis/round-001/gameplay18-actions.py",
+        "analysis/round-001/gameplay19.png"
+      ]
+    },
+    {
+      "milestone": "archery range",
+      "status": "attempted",
+      "route_or_patch": "Import gameplay19.snapshot; Left8/50 reaches coordinate13,4 facingwest. Earlier patches and collision consumer in R001-BUILDING-ENTRY.",
+      "observed_result": "YOUR RIGHT SIDE TARGET SHOOTING confirmed. A at tested coordinates produces empty-area search; B toggles status/map overlay. Range gameplay not reached.",
+      "evidence": [
+        "analysis/round-001/gameplay21.png",
+        "analysis/round-001/gameplay21.snapshot",
+        "analysis/round-001/gameplay22.png"
+      ]
+    },
+    {
+      "milestone": "later class quest / ending",
+      "status": "deferred",
+      "route_or_patch": "Identify quest/progress fields and dispatcher from source, then supported transition",
+      "observed_result": "Reviewed script-rich dialogue bank prefixes and town class/progression references; no safe flag/checkpoint initializer inferred. Ending and later class quests unvisited. Practical shortcut cannot be applied responsibly until R001-LATER-ENDING contract research; not a claim of terminal gameplay exhaustion.",
+      "evidence": [
+        "analysis/round-001/gameplay04.snapshot"
+      ]
+    }
+  ],
+  "phase_status": "Round003redirectcomplete-readybatch; distinctgeneratedobjectmechanicobservedwithartificialpatches; no terminalnaturalending/awardclaim",
+  "historical_scenario_note": "scenarios retains initial disassembly-pass evidence; current redirect outcomes and controls are authoritative in milestones and analysis/redirect/r001-a01/progress.md",
+  "review_history": [
+    {
+      "round": 2,
+      "phase": "disassembly",
+      "outcome": "Saved roots and representative mechanics reviewed without replay. Lock/maze success and full guild state2/X0 reward remain deferred for exact contracts; existing artificial retirement dialogue remains visited, not natural completion.",
+      "evidence": [
+        "analysis/handoffs/round-001-redirect.md",
+        "analysis/round-002/code-contract-review.md"
+      ]
+    },
+    {
+      "round": 2,
+      "phase": "redirect",
+      "attempt": "r002-a01",
+      "outcome": "Artificial source-backed ring success reached THE DOOR IS OPEN; actual ring consumption, all5tumblers and successcounter verified. Maze transition pending; no natural route claim.",
+      "evidence": [
+        "analysis/redirect/r002-a01/tool-patches.json",
+        "analysis/redirect/r002-a01/tool-finish-after.png",
+        "analysis/redirect/r002-a01/tool-finish-after-ram.json",
+        "analysis/redirect/r002-a01/tool-finish-contexts.json"
+      ]
+    },
+    {
+      "round": 2,
+      "phase": "redirect",
+      "attempt": "r002-a01",
+      "outcome": "Ring/mazevisitedartificially; rewardYguardcorrected andfullstoryABImechanicstested. Runtimeended; no terminalnaturalending/award/compatibilityclaim.",
+      "evidence": [
+        "analysis/redirect/r002-a01/progress.md",
+        "analysis/redirect/r002-a01/final-validation.json"
+      ]
+    },
+    {
+      "round": 3,
+      "phase": "disassembly",
+      "outcome": "Representative ring/maze and synthetic full mentor story reviewed. Guard is saved Y low nibble0, not X0; no award or stage completion observed. Exact alias roots used for Observed only.",
+      "evidence": [
+        "analysis/round-003/independent-review.json",
+        "analysis/redirect/r002-a01/reward-guard-correction.json"
+      ]
+    },
+    {
+      "round": 3,
+      "phase": "redirect",
+      "attempt": "r003-a01",
+      "outcome": "RealmazeobjectcallerA0/X1/Y0verifiedthroughordinarymovementafterboundedRAMpatch; priorbroadprogressionsnapshotsreused; storypaginationnotrepeated",
+      "evidence": [
+        "/root/romatlas-batch/f6406ceb6b66aea0d33f8f6e170914e413504d1b44b8f6e72d395f43ad18fdc2/workspace/analysis/redirect/r003-a01/contract-review.md"
+      ]
+    },
+    {
+      "round": 4,
+      "phase": "redirect",
+      "attempt": "r004-a01",
+      "outcome": "Saved broad representative mechanics and artificial late terminal coverage reviewed; no unchanged replay. Actual maze ABI remains resolved; award/stage/natural ending unproven. No new structural discriminator in semantic/progression avenues.",
+      "evidence": [
+        "analysis/redirect/r004-a01/semantic-progression-review.md",
+        "analysis/redirect/r004-a01/rejection-review.json"
+      ]
+    }
+  ]
+}
