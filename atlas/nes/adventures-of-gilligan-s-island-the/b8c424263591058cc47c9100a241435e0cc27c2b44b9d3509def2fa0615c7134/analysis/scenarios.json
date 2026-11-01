@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "pass": "round01",
+  "scenarios": [
+    {
+      "id": "R1-BOOT",
+      "milestone": "startup/title",
+      "status": "visited",
+      "recipe": "Initial trace runtime.json attempted button/pressed is ineffective on NES; runtime2.json trace disabled then wait1500 frames reached title. Reuse game.snapshot (title).",
+      "evidence": [
+        "analysis/round01/runtime.json",
+        "analysis/round01/runtime2.json",
+        "analysis/round01/game-wait.png",
+        "analysis/round01/game.snapshot"
+      ]
+    },
+    {
+      "id": "R1-EP1",
+      "milestone": "episode1 intro and gameplay",
+      "status": "visited",
+      "recipe": "From game.snapshot input buttons:[start]3frames, release[]5frames; menu default START, start again3; release180; A3/release120. episode1.snapshot / ep1-advance.snapshot retain dialogue frontier. Six180frame+A3 dialogue advances and mechanics sampling ongoing.",
+      "evidence": [
+        "analysis/round01/runtime3.json",
+        "analysis/round01/ep1-advance-route.json",
+        "analysis/round01/ep1-advance.png",
+        "analysis/round01/ep1-bypass-route.json",
+        "analysis/round01/ep1-bypass.snapshot",
+        "analysis/round01/ep1-sample-route.json",
+        "analysis/round01/ep1-sample-contexts.json",
+        "analysis/round01/ep1-sample.snapshot"
+      ],
+      "observed_result": "Actual gameplay HUD and moving player/follower reached using recorded artificial intro cleanup return contract. Representative movement/jump/attack/Select sampled; no boss claim."
+    },
+    {
+      "id": "R1-PASSWORD",
+      "milestone": "CONTINUE/password UI",
+      "status": "visited",
+      "recipe": "From game.snapshot start3/release5/down3/release5/start3/release60. Input uses full buttons array; release []. Up3/release3 changed RAM C2=0\u219215 (A\u2192P); right3/release3 cursor D1=1; up3/release3 C3=15.",
+      "evidence": [
+        "analysis/round01/password-route.json",
+        "analysis/round01/password-probe-route.json",
+        "analysis/round01/password-probe.png",
+        "analysis/round01/password-ui.snapshot"
+      ]
+    },
+    {
+      "id": "R1-EP4",
+      "milestone": "episode4 forest intro, gameplay and boss/ending",
+      "status": "visited",
+      "recipe": "Import password-ui.snapshot; write RAM194 bytes[15,10,10,2,13,12,15,3] encoding PKKCNMPD, Start3/release300/A3/release180. Accepted distinct forest intro; artificial route. ep4.snapshot and ep4-skip.snapshot. B3/release60 advances to walking-away animation; dialogue-exit/mechanics currently underway. Boss/ending deferred pending gameplay/progression contract.",
+      "evidence": [
+        "analysis/round01/ep4-route.json",
+        "analysis/round01/ep4-after.png",
+        "analysis/round01/ep4-skip.png",
+        "analysis/round01/ep4-bypass-route.json",
+        "analysis/round01/ep4-bypass.snapshot",
+        "analysis/round01/ep4-explore-route.json",
+        "analysis/round01/ep4-explore-contexts.json",
+        "analysis/round01/ep4-explore.snapshot"
+      ],
+      "observed_result": "Actual gameplay HUD and moving player/follower reached using recorded artificial intro cleanup return contract. Representative movement/jump/attack/Select sampled; no boss claim."
+    },
+    {
+      "id": "R1-EP2",
+      "milestone": "episode2",
+      "status": "visited",
+      "recipe": "Same password transition using LJJGDMPC; script password-stage-generic.py 2 currently executing.",
+      "evidence": [
+        "analysis/round01/ep2-route.json",
+        "analysis/round01/ep2-after.png",
+        "analysis/round01/ep2.snapshot",
+        "analysis/round01/ep2-bypass-route.json",
+        "analysis/round01/ep2-bypass.snapshot",
+        "analysis/round01/ep2-sample-route.json",
+        "analysis/round01/ep2-sample-contexts.json",
+        "analysis/round01/ep2-sample.snapshot"
+      ],
+      "observed_result": "Actual gameplay HUD and moving player/follower reached using recorded artificial intro cleanup return contract. Representative movement/jump/attack/Select sampled; no boss claim."
+    },
+    {
+      "id": "R1-EP3",
+      "milestone": "episode3",
+      "status": "visited",
+      "reason": "Next supported password transition MIIJCDAD after current episode2 experiment; no arbitrary RAM stage write.",
+      "recipe": "Password MIIJCDAD via validated RAM C2..C9 entry and ordinary Start; same budgets as episode4.",
+      "observed_result": "Actual gameplay HUD and moving player/follower reached using recorded artificial intro cleanup return contract. Representative movement/jump/attack/Select sampled; no boss claim.",
+      "evidence": [
+        "analysis/round01/ep3-route.json",
+        "analysis/round01/ep3-after.png",
+        "analysis/round01/ep3.snapshot",
+        "analysis/round01/ep3-bypass-route.json",
+        "analysis/round01/ep3-bypass.snapshot",
+        "analysis/round01/ep3-sample-route.json",
+        "analysis/round01/ep3-sample-contexts.json",
+        "analysis/round01/ep3-sample.snapshot"
+      ]
+    },
+    {
+      "id": "R1-ENDING",
+      "milestone": "final boss/ending/credits",
+      "status": "visited",
+      "reason": "Artificial native scene6 descriptor/RTS-dispatch shortcut reached ending text, all nine montage states and visible THE END. A/Start sampled afterward. No natural victory or final-boss claim.",
+      "evidence": [
+        "analysis/round01/ending-route.json",
+        "analysis/round01/ending-direct-route.json",
+        "analysis/round01/ending-direct.snapshot",
+        "analysis/round01/direct-clear-wait.png",
+        "analysis/redirect/round01-contracts-20261031/ending-after-nmi.json",
+        "analysis/redirect/round01-contracts-20261031/terminal-scene.json",
+        "analysis/redirect/round01-contracts-20261031/terminal-c110-decode.json",
+        "analysis/redirect/round01-contracts-20261031/terminal-montage.json",
+        "analysis/redirect/round01-contracts-20261031/montage-14.png",
+        "analysis/redirect/round01-contracts-20261031/terminal-final-check.json",
+        "analysis/redirect/round01-contracts-20261031/terminal-final.snapshot"
+      ],
+      "attempt_history": [
+        {
+          "status": "attempted",
+          "reason": "Two bounded artificial episode-clear activation attempts made; no scene change or ending confirmed. Live coroutine/scene activation contract unresolved, redirect lead R1-ENDING-ACTIVATION.",
+          "evidence": [
+            "analysis/round01/ending-route.json",
+            "analysis/round01/ending-direct-route.json",
+            "analysis/round01/ending-direct.snapshot",
+            "analysis/round01/direct-clear-wait.png",
+            "analysis/redirect/round01-contracts-20261031/ending-after-nmi.json",
+            "analysis/redirect/round01-contracts-20261031/terminal-scene.json",
+            "analysis/redirect/round01-contracts-20261031/terminal-c110-decode.json",
+            "analysis/redirect/round01-contracts-20261031/terminal-montage.json",
+            "analysis/redirect/round01-contracts-20261031/montage-14.png",
+            "analysis/redirect/round01-contracts-20261031/terminal-final-check.json",
+            "analysis/redirect/round01-contracts-20261031/terminal-final.snapshot"
+          ]
+        }
+      ],
+      "recipe": "Exact DB03 immediate-fetch correction and DBC3 scene6 initialized shortcut, RAM D5=6 plus synthetic DAF1/FA64 stack; see linked route. C110 finite source-defined text and montage budget, no arbitrary flag sweep.",
+      "observed_result": "C1 montage index0..9, terminal screen THE END; screenshots and exact source contracts retained."
+    },
+    {
+      "id": "R1-BOSS-COVERAGE",
+      "milestone": "distinct bosses through natural gameplay",
+      "status": "deferred",
+      "reason": "Four episodes and representative gameplay mechanics visited, ending shortcut visited. No validated boss species/initializer and dependent room/event contract established; changing arbitrary actor/RAM IDs would not demonstrate a boss visit. Static actor and completion-predicate batches supplied; no boss-victory claim.",
+      "evidence": [
+        "analysis/redirect/round01-contracts-20261031/actor-entry-review.json",
+        "analysis/redirect/round01-contracts-20261031/supplement-review.json",
+        "analysis/round01/handoff.md"
+      ]
+    }
+  ],
+  "bounded_experiment_defaults": {
+    "inputs": "Full buttons arrays; [] releases. Reasserted after snapshot imports.",
+    "frame_limits": "Exact per-step count/max_operations/timeout_ms in linked route logs.",
+    "snapshots": "Same-build local exports; import adopts state directly, named snapshots session-local."
+  }
+}

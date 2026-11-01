@@ -1,0 +1,11 @@
+# Coordinator rejection review acceptance
+
+Inspected round-001 redirect handoff and rejection-review.md against primary unknown-byte-context.json, source FadePulseChannels/UpdateMusic/FadeMusicPulseEnvelope, jmp-rts-comparison.json, probe.py and the music scheduler. Physical [$39C7,$39C8), CPU $B9B7, fixed PRG [0,1,2,3] remains the sole unknown.
+
+The wrapper tail-jumps to $BA53 after channel-zero JSR and INX. The callee has ordinary stack behavior and RTS at $BA82; no fallthrough contract includes $B9B7. This rules out a required wrapper epilogue, not all static code. The twelve accepted adjacent JMP/RTS examples have independent branch entries, so they do not independently establish the isolated return here. The raw $B9B7 pair in map payload lacks a pointer consumer. Missing direct references is scoped negative evidence, not proof of data or dead code.
+
+Generic data was considered without requiring semantic identity or original tooling. One isolated $60 between code intervals lacks a repeated/uniform pattern or supported payload extent; retained redundant return and spare data are materially competing roles. Exact bounds do not resolve role. No universal live-caller or natural-execution prerequisite is imposed: no independent role-discriminating evidence currently supports either proposal. Injecting PC would test RTS mechanics alone.
+
+The independent music investigation corrected the shared-restart premise and modeled initialized tracks, with results scoped to that model and selected requests. Neither model closure nor out-of-directory targets justify classifying the residual. Semantic questions about accepted payloads do not themselves supply a concrete next structural method. Broad progression includes later areas, four boss types and the final loop; no untried supported shortcut is identified that would discriminate the residual.
+
+Accepted stopping rationale: justified terminal incomplete, not blocked research or whole-ROM completion. No productive interrupted frontier or ready proposal remains. Reopen only for changed evidence or an independently justified discriminating inference/test; unchanged replay is unwarranted. Final editorial acceptance, fresh verification, document-selection audit and terminal handoff remain required before orchestration completes.

@@ -1,0 +1,15 @@
+# Round01 commentary handoff
+
+COMPLETE for all current-source readability; separate whole-ROM classification remains incomplete48.19% (63,165/131,088; unknown67,923). No unreviewed current-source ranges remain. Final editorial/archive acceptance remains pending; no audit performed.
+
+Covered Code12,713/Data50,452 bytes,6,081 instructions/568 Code source regions; full776-record physical inventory reviewed,320 semantic units and1,004 bank-aware named targets. Every one of168 unknown spans has an explicit local physical-boundary/uncertainty note. Frozen originals preserved in commentary/before and baseline/state copies; maps/current.json=maps/pass-001.json unchanged. Source metadata is commentary/review.json, maintained source commentary/source/game.asm and symbols.inc; reading copy commentary/reading-after.asm. All stay local.
+
+Examples: RTS sound command dispatch, per-channel period/modulation/override arrays; player/follower actor fields and movement/contact handlers;12-byte actors versus16-byte scheduler tasks; timed dialog pointer stack/circular rows; PPU record count-minus-one formats; metatile/column expansion and palette/OAM helpers. Explicit address widths and physical bank context survive symbolic operands. Generic data meaning is kept honest and previous evidence reused.
+
+Fresh final verification commentary/verification.json: ok=true, byte_identical=true, unchanged input SHA256 b8c424263591058cc47c9100a241435e0cc27c2b44b9d3509def2fa0615c7134. game.asm SHA2560543585a4ecd8abdb3c8f8b56f7160bcf012290def4d4354d027201faa4b3ea0; symbols.inc SHA256bef055e6ea56c249fec25856fc7fb9c9b2cf44d54204a44a4675dc04b1c113e8. Reading copy refreshed after verification. Tool invocations used configured release binary via official commentary helper.
+
+Concrete redirect question: physical114895..114901 ordinary C0BF B9 03 FF LDA $FF03,Y overlaps the vector-supported C0C0 SLO ($FF,X) entry. The opcode B9 remains unknown, while03 FF is classified from IRQ vector evidence. No map correction was made or assumed warranted merely by the overlap. Inspect bounded fallthrough and IRQ contract/context before any representation change; preserve both supported entry views. Source IrqVectorAlternateEntry and commentary/uncertainties.md explain this exact localized limitation.
+
+Other questions/deferred semantic work: natural scene4/ending coroutine activation and inline/return contracts remain unresolved from the disassembly handoff; sound packed parameters/IDs, exact actor species/surface types, generic graphic subdivisions and unknown resource consumers remain tentative. These do not leave a readability gap. Existing leads analysis/leads.json, disassembly handoff analysis/round01/handoff.md and detailed commentary/uncertainties.md retain evidence/routes.
+
+Toolkit: no new issue; existing nonblocking NES-DOC-001 retained in analysis/toolkit-issues.md. No toolkit edits, classification/disassembly/redirect work, archive, publication, cleanup or deletion. Disk9.6GiB free; commentary4.6MiB, round01 evidence170MiB. No live process/tool handle. Commentary worker relinquishes writes at handoff.

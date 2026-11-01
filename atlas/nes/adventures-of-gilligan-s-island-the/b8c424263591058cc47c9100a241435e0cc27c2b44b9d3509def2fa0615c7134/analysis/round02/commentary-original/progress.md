@@ -1,0 +1,11 @@
+# Commentary progress
+
+Round01 current-source readability complete. Prepared and retained the official frozen before/, baseline.json and phase1-state.json. Read the full9,220-line baseline and edited source/game.asm without regeneration over the maintained source. The durable one-shot editorial transform and its reviewed unit descriptions are retained at tools/annotate_round01.py; do not rerun it over later hand edits.
+
+Covered all12,713 Code bytes (568 source regions,6,081 instructions) and all50,452 Data bytes. Reviewed the full776-record physical inventory, including168 unknown spans/67,923 bytes, and added320 compact semantic units. No pending current-source readability ranges. Editorial audit remains pending for the later final acceptance gate. Whole-ROM structural classification remains48.19%.
+
+Source has1,004 bank-aware routine/continuation/branch target symbols, hardware/RAM/actor/sound/dialog/PPU symbols and explicit stride/count constants. Descriptions cover sound command/period/modulation flow; player/follower movement, contact and recovery; spawn/motion records; intro/title/UI; task scheduler; room/scroll/collision geometry; sprites, palettes and PPU transfer queues. Exact addressing widths, bank aliases and original source bytes are preserved. Neutral scratch/address names remain where meaning varies or is unresolved.
+
+All data/unknown incbin boundaries have nearby explanations. Generic data retains the prior format/boundary inspection rather than inventing consumers. C0C0 vector entry is explicitly distinguished from the overlapping C0BF ordinary-path LDA. See uncertainties.md for investigated limits and redirect questions.
+
+Fresh final verification: verification.json reports ok=true/byte_identical=true against unchanged input SHA256 b8c424263591058cc47c9100a241435e0cc27c2b44b9d3509def2fa0615c7134. Verified source hashes game.asm0543585a4ecd8abdb3c8f8b56f7160bcf012290def4d4354d027201faa4b3ea0 and symbols.incbef055e6ea56c249fec25856fc7fb9c9b2cf44d54204a44a4675dc04b1c113e8. reading-after.asm refreshed after the final successful verification. Baseline/current/frozen maps and internal state remain unchanged. No final audit/archive/publish/cleanup or toolkit changes performed. Disk9.6GiB free; commentary4.6MiB, round01 evidence170MiB.

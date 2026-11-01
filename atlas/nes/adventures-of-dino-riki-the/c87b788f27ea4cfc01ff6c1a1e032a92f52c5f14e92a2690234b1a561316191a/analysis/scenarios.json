@@ -1,0 +1,425 @@
+{
+  "version": 1,
+  "scenarios": [
+    {
+      "id": "S001",
+      "milestone": "Title and natural stage 1-1",
+      "status": "visited",
+      "route": [
+        {
+          "buttons": [],
+          "frames": 52,
+          "note": "180 requested with 10s bound, timeout at52"
+        },
+        {
+          "buttons": [],
+          "frames": 62,
+          "note": "legacy button/pressed parameters ignored; no Start"
+        },
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 2
+        },
+        {
+          "buttons": [],
+          "frames": 30
+        },
+        {
+          "buttons": [
+            "b",
+            "up"
+          ],
+          "frames": 120
+        },
+        {
+          "buttons": [
+            "b",
+            "a",
+            "right"
+          ],
+          "frames": 120
+        }
+      ],
+      "evidence": [
+        "analysis/round-001/title.png",
+        "analysis/round-001/start-game.png",
+        "analysis/round-001/stage1-play.png"
+      ],
+      "reachability": "natural",
+      "notes": "Operation1 then exported clean_gameplay.snapshot at frame386; controller whole buttons array replaces previous inputs."
+    },
+    {
+      "id": "S011",
+      "milestone": "Pterodactyl boss",
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": {
+        "snapshot": "analysis/round-001/clean_gameplay.snapshot",
+        "patch": {
+          "ram:$48": 1
+        },
+        "registers": {
+          "pc": "$84FB",
+          "stack": "$FF"
+        },
+        "banks": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "buttons": [
+          "b",
+          "a"
+        ],
+        "initialization_frames": 220,
+        "trace_frames": 12,
+        "max_operations": 8000000,
+        "timeout_ms": 10000
+      },
+      "evidence": [
+        "analysis/round-001/milestone-01.json"
+      ],
+      "notes": "Distinct actual stage rendering and post-patch instruction fetches; source init tables and bounded selector domain. Selectors2/4 used equivalent 250+20 and 144+180 frame route respectively; exact requests retained in RPC."
+    },
+    {
+      "id": "S012",
+      "milestone": "Desert stage 2",
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": {
+        "snapshot": "analysis/round-001/clean_gameplay.snapshot",
+        "patch": {
+          "ram:$48": 2
+        },
+        "registers": {
+          "pc": "$84FB",
+          "stack": "$FF"
+        },
+        "banks": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "buttons": [
+          "b",
+          "a"
+        ],
+        "initialization_frames": 220,
+        "trace_frames": 12,
+        "max_operations": 8000000,
+        "timeout_ms": 10000
+      },
+      "evidence": [
+        "analysis/round-001/rpc.jsonl",
+        "analysis/round-001/stage2-play.ppm"
+      ],
+      "notes": "Distinct actual stage rendering and post-patch instruction fetches; source init tables and bounded selector domain. Selectors2/4 used equivalent 250+20 and 144+180 frame route respectively; exact requests retained in RPC."
+    },
+    {
+      "id": "S013",
+      "milestone": "T-Rex boss",
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": {
+        "snapshot": "analysis/round-001/clean_gameplay.snapshot",
+        "patch": {
+          "ram:$48": 3
+        },
+        "registers": {
+          "pc": "$84FB",
+          "stack": "$FF"
+        },
+        "banks": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "buttons": [
+          "b",
+          "a"
+        ],
+        "initialization_frames": 220,
+        "trace_frames": 12,
+        "max_operations": 8000000,
+        "timeout_ms": 10000
+      },
+      "evidence": [
+        "analysis/round-001/milestone-03.json"
+      ],
+      "notes": "Distinct actual stage rendering and post-patch instruction fetches; source init tables and bounded selector domain. Selectors2/4 used equivalent 250+20 and 144+180 frame route respectively; exact requests retained in RPC."
+    },
+    {
+      "id": "S014",
+      "milestone": "Swamp stage 3",
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": {
+        "snapshot": "analysis/round-001/clean_gameplay.snapshot",
+        "patch": {
+          "ram:$48": 4
+        },
+        "registers": {
+          "pc": "$84FB",
+          "stack": "$FF"
+        },
+        "banks": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "buttons": [
+          "b",
+          "a"
+        ],
+        "initialization_frames": 220,
+        "trace_frames": 12,
+        "max_operations": 8000000,
+        "timeout_ms": 10000
+      },
+      "evidence": [
+        "analysis/round-001/rpc.jsonl",
+        "analysis/round-001/stage3-play.ppm"
+      ],
+      "notes": "Distinct actual stage rendering and post-patch instruction fetches; source init tables and bounded selector domain. Selectors2/4 used equivalent 250+20 and 144+180 frame route respectively; exact requests retained in RPC."
+    },
+    {
+      "id": "S015",
+      "milestone": "Cobra boss",
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": {
+        "snapshot": "analysis/round-001/clean_gameplay.snapshot",
+        "patch": {
+          "ram:$48": 5
+        },
+        "registers": {
+          "pc": "$84FB",
+          "stack": "$FF"
+        },
+        "banks": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "buttons": [
+          "b",
+          "a"
+        ],
+        "initialization_frames": 220,
+        "trace_frames": 12,
+        "max_operations": 8000000,
+        "timeout_ms": 10000
+      },
+      "evidence": [
+        "analysis/round-001/milestone-05.json"
+      ],
+      "notes": "Distinct actual stage rendering and post-patch instruction fetches; source init tables and bounded selector domain. Selectors2/4 used equivalent 250+20 and 144+180 frame route respectively; exact requests retained in RPC."
+    },
+    {
+      "id": "S016",
+      "milestone": "Stage 4-1",
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": {
+        "snapshot": "analysis/round-001/clean_gameplay.snapshot",
+        "patch": {
+          "ram:$48": 6
+        },
+        "registers": {
+          "pc": "$84FB",
+          "stack": "$FF"
+        },
+        "banks": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "buttons": [
+          "b",
+          "a"
+        ],
+        "initialization_frames": 220,
+        "trace_frames": 12,
+        "max_operations": 8000000,
+        "timeout_ms": 10000
+      },
+      "evidence": [
+        "analysis/round-001/milestone-06.json"
+      ],
+      "notes": "Distinct actual stage rendering and post-patch instruction fetches; source init tables and bounded selector domain. Selectors2/4 used equivalent 250+20 and 144+180 frame route respectively; exact requests retained in RPC."
+    },
+    {
+      "id": "S018",
+      "milestone": "Stage 4-2",
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": {
+        "snapshot": "analysis/round-001/clean_gameplay.snapshot",
+        "patch": {
+          "ram:$48": 8
+        },
+        "registers": {
+          "pc": "$84FB",
+          "stack": "$FF"
+        },
+        "banks": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "buttons": [
+          "b",
+          "a"
+        ],
+        "initialization_frames": 220,
+        "trace_frames": 12,
+        "max_operations": 8000000,
+        "timeout_ms": 10000
+      },
+      "evidence": [
+        "analysis/round-001/milestone-08.json"
+      ],
+      "notes": "Distinct actual stage rendering and post-patch instruction fetches; source init tables and bounded selector domain. Selectors2/4 used equivalent 250+20 and 144+180 frame route respectively; exact requests retained in RPC."
+    },
+    {
+      "id": "S020",
+      "milestone": "Stage 4-3",
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": {
+        "snapshot": "analysis/round-001/clean_gameplay.snapshot",
+        "patch": {
+          "ram:$48": 10
+        },
+        "registers": {
+          "pc": "$84FB",
+          "stack": "$FF"
+        },
+        "banks": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "buttons": [
+          "b",
+          "a"
+        ],
+        "initialization_frames": 220,
+        "trace_frames": 12,
+        "max_operations": 8000000,
+        "timeout_ms": 10000
+      },
+      "evidence": [
+        "analysis/round-001/milestone-10.json"
+      ],
+      "notes": "Distinct actual stage rendering and post-patch instruction fetches; source init tables and bounded selector domain. Selectors2/4 used equivalent 250+20 and 144+180 frame route respectively; exact requests retained in RPC."
+    },
+    {
+      "id": "S022",
+      "milestone": "Stage 4-4",
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": {
+        "snapshot": "analysis/round-001/clean_gameplay.snapshot",
+        "patch": {
+          "ram:$48": 12
+        },
+        "registers": {
+          "pc": "$84FB",
+          "stack": "$FF"
+        },
+        "banks": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "buttons": [
+          "b",
+          "a"
+        ],
+        "initialization_frames": 220,
+        "trace_frames": 12,
+        "max_operations": 8000000,
+        "timeout_ms": 10000
+      },
+      "evidence": [
+        "analysis/round-001/milestone-12.json"
+      ],
+      "notes": "Distinct actual stage rendering and post-patch instruction fetches; source init tables and bounded selector domain. Selectors2/4 used equivalent 250+20 and 144+180 frame route respectively; exact requests retained in RPC."
+    },
+    {
+      "id": "S023",
+      "milestone": "Mad Hornet final boss",
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": {
+        "snapshot": "analysis/round-001/clean_gameplay.snapshot",
+        "patch": {
+          "ram:$48": 13
+        },
+        "registers": {
+          "pc": "$84FB",
+          "stack": "$FF"
+        },
+        "banks": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "buttons": [
+          "b",
+          "a"
+        ],
+        "initialization_frames": 220,
+        "trace_frames": 12,
+        "max_operations": 8000000,
+        "timeout_ms": 10000
+      },
+      "evidence": [
+        "analysis/round-001/milestone-13.json"
+      ],
+      "notes": "Distinct actual stage rendering and post-patch instruction fetches; source init tables and bounded selector domain. Selectors2/4 used equivalent 250+20 and 144+180 frame route respectively; exact requests retained in RPC."
+    },
+    {
+      "id": "S030",
+      "milestone": "Final boss defeat and loop transition",
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": "Hit-array attempt $B1=1,$03A6..9=1,0,0,0 did not complete. Restore final_boss.snapshot; reassert b; patch RAM$A5=$84 (defeated boss4); 12 traced frames then240+240 untraced frames, max_operations8000000 each, timeout10000ms. Final frame1110 $48=0,$C0=1 and first landscape visible.",
+      "evidence": [
+        "analysis/round-001/rpc.jsonl",
+        "analysis/round-001/loop-confirmed.png",
+        "analysis/round-001/final_boss.snapshot"
+      ],
+      "notes": "Artificial terminal milestone; no natural clear claimed."
+    },
+    {
+      "id": "S031",
+      "milestone": "Credits/ending screen",
+      "status": "unavailable",
+      "reason": "No ending/credits reached; locally observed final-boss defeated transition loops to stage1, consistent with guide. No claim that every hidden ending is absent.",
+      "evidence": [
+        "analysis/gameplay.md"
+      ]
+    },
+    {
+      "id": "S032",
+      "milestone": "Repeated stage4 Pterodactyl/T-Rex/Cobra bosses",
+      "status": "deferred",
+      "reason": "Representative first-three boss states and stage4 variants visited; selectors7/9/11 repeat the same boss initializer contracts. Distinct final boss13 visited. Additional repetition not needed for this bounded pass."
+    }
+  ],
+  "progression_contract": "RAM$48 index0..13; even exploration/odd boss; initialization PC$84FB SP$FF; fixed PRG banks0,1,2,3"
+}

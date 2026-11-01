@@ -1,0 +1,16 @@
+# Terminal coordinator handoff — justified incomplete
+
+The sequential round-001 disassembly, full current-source commentary and redirect workflow has reached its documented terminal incomplete handoff. The coordinator inspected the rejection review against primary artifacts and accepted its stopping rationale. Final editorial acceptance and fresh byte-identical verification are complete. This is orchestration completion, not whole-ROM classification completion or a blocked/interrupted research frontier.
+
+ROM classification: 100.00% (65551 / 65552 bytes classified; 1 byte unknown).
+Exact percentage: 99.99847449353186%. Unknown physical [$39C7,$39C8), CPU $B9B7, fixed effective PRG banks [0,1,2,3]. The isolated $60 between the pulse-envelope tail jump and UpdateMusic remains materially ambiguous code/data. No ready lead or productive interrupted frontier remains. L005 retains its blocked lead status and history; this does not mean the orchestration is blocked. L006 is verified semantic research, not a classification proposal. Reopen only on an independently supported discriminating inference or changed evidence.
+
+Final structural checkpoint: maps/round-001-disassembly.json; current portable ROM-free map: maps/current.json; internal state analysis/state.json remains local. Structural counts: 11837 code, 53714 other classified bytes. Per-bank counts and scenario evidence remain in analysis/progress.md and analysis/scenarios.json. Representative later landscapes, four bosses and the final loop were visited through documented artificial scenarios; no credits or full natural execution claim is made.
+
+Readable local deliverables: commentary/source/game.asm, ram.inc, data.inc and commentary/reading-after.asm. All 151 review entries and 350 units reviewed, with no pending readability/editorial ranges. Exact semantic limitations remain in commentary/uncertainties.md. Supported audit and separate fresh verification are byte-identical; current map and internal store validations pass. The ROM SHA256 remains c87b788f27ea4cfc01ff6c1a1e032a92f52c5f14e92a2690234b1a561316191a.
+
+Evidence and decisions: round-001-disassembly.md, round-001-commentary.md, round-001-redirect.md and round-001-final-acceptance.md in this directory; ../redirect/round-001-a/rejection-review.md and primary artifacts; ../coordinator/rejection-review-acceptance.md; ../../commentary/editorial-audit.md, audit.json and verification.json. Coordinator checks: ../coordinator/completion-audit.json and archive-selection-audit.json.
+
+Archive preparation: ../../archive-options.json explicitly selects every additional durable Markdown handoff, investigation and historical review document. No disposable Markdown scratch was found; omitted_documents is empty. Default and special documents follow the inspected toolkit scripts/archive.py selection contract. No archive or cleanup executed. ROM/source/assets/internal state remain local; only the supported ROM-free portable mapping is a sharing deliverable. Nothing published or committed, and no toolkit changes authorized or made.
+
+Toolkit report: ../toolkit-issues.md records one confirmed documentation/parameter issue, zero suspected bugs, zero separate missing features, zero blockers; workaround retained. The configured release binary was used throughout. All historical evidence and phase handoffs remain preserved.

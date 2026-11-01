@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "scenarios": [
+    {
+      "milestone": "Startup/title",
+      "status": "visited",
+      "route_or_patch": "Reset; release20 frames tracing; title reaches frame40/141 naturally",
+      "observed_result": "Bayou Billy title; menu A/B/Practice/Sound",
+      "evidence": "analysis/evidence/round01/resetEvidence-recipe.json"
+    },
+    {
+      "milestone": "Stage1 brawling",
+      "status": "visited",
+      "route_or_patch": "frame40: release40, Start1, release60; Down1/release1/Start1/release100/right+A+B80; release180 untraced/right+A+B40/release20 traced",
+      "observed_result": "Stage1 intro then swamp Billy movement",
+      "evidence": "analysis/evidence/round01/brawl.snapshot"
+    },
+    {
+      "milestone": "Stage2 shooting",
+      "status": "visited",
+      "route_or_patch": "Restore brawl; RAM FB=1,34=0,35=0,FA=2; release360 untraced/right+A20/release20 traced",
+      "observed_result": "Swamp aim reticle and bullets097; controller input exercised",
+      "evidence": "analysis/evidence/round01/stage2.snapshot"
+    },
+    {
+      "milestone": "Stage4 driving",
+      "status": "visited",
+      "route_or_patch": "Restore brawl; RAM FB=3,34=0,35=0; release20 traced/340 untraced/up+B+A+right40 traced",
+      "observed_result": "Driving car,50mph,T98; weapons/steering exercised",
+      "evidence": "analysis/evidence/round01/stage4.snapshot"
+    },
+    {
+      "milestone": "Stage6 city brawl",
+      "status": "visited",
+      "route_or_patch": "Restore brawl; RAM FB=5,34=0,35=0; release360 untraced/right+A+B40 traced",
+      "observed_result": "Bourbon Street scene and Billy movement; zero code gain",
+      "evidence": "analysis/evidence/round01/stage6.snapshot"
+    },
+    {
+      "milestone": "Stage9 mansion",
+      "status": "visited",
+      "route_or_patch": "Restore brawl; RAM FB=8,34=0,35=0; release360 untraced/right+A+B20/release20 traced",
+      "observed_result": "Interior mansion and Billy movement; later combat route attempted separately",
+      "evidence": "analysis/evidence/round01/stage9.snapshot"
+    },
+    {
+      "milestone": "Ending dialogue",
+      "status": "visited",
+      "route_or_patch": "Restore stage9; RAM34=5,35=0,40=0; release20 traced+580 untraced+20 traced",
+      "observed_result": "Billy/Annabelle portrait conversation; natural boss defeat unproved",
+      "evidence": "analysis/evidence/round01/ending.snapshot"
+    },
+    {
+      "milestone": "Ending continuation/credits",
+      "status": "attempted",
+      "route_or_patch": "Restore ending; release1200 untraced+20 traced; subsequent A/release/B/release/Start/release600 attempted",
+      "observed_result": "Dialogue advanced to I can never let you; no credits capture. Second batch interrupted after600-frame wait before capture; do not claim terminal credits",
+      "evidence": "analysis/evidence/round01/credits.snapshot"
+    },
+    {
+      "milestone": "Stage3",
+      "status": "deferred",
+      "route_or_patch": "Restore brawl; FB=2,34=0,35=0; release360 then exercise pad (untested)",
+      "observed_result": "Brawl engine represented by1/6/9; stage6 already zero gain. Specific new script/transition questions remain for redirect.",
+      "evidence": "analysis/evidence/round01/brawl.snapshot"
+    },
+    {
+      "milestone": "Stage5",
+      "status": "deferred",
+      "route_or_patch": "Restore brawl; FB=4,34=0,35=0; release360 then exercise pad (untested)",
+      "observed_result": "Driving represented by4; stage6 already zero gain. Specific new script/transition questions remain for redirect.",
+      "evidence": "analysis/evidence/round01/brawl.snapshot"
+    },
+    {
+      "milestone": "Stage7",
+      "status": "deferred",
+      "route_or_patch": "Restore brawl; FB=6,34=0,35=0; release360 then exercise pad (untested)",
+      "observed_result": "Shooting represented by2; stage6 already zero gain. Specific new script/transition questions remain for redirect.",
+      "evidence": "analysis/evidence/round01/brawl.snapshot"
+    },
+    {
+      "milestone": "Stage8",
+      "status": "deferred",
+      "route_or_patch": "Restore brawl; FB=7,34=0,35=0; release360 then exercise pad (untested)",
+      "observed_result": "Brawl engine represented by1/6/9; stage6 already zero gain. Specific new script/transition questions remain for redirect.",
+      "evidence": "analysis/evidence/round01/brawl.snapshot"
+    },
+    {
+      "milestone": "Practice/sound modes",
+      "status": "deferred",
+      "route_or_patch": "Title Select cycles; choose Practice or Sound with Start (manual, untested)",
+      "observed_result": "Same three mechanics reached by initialized stage shortcuts; focused practice dispatch investigation can be a redirect lead",
+      "evidence": "analysis/gameplay.md"
+    },
+    {
+      "milestone": "Stage9 boss combat",
+      "status": "visited",
+      "route_or_patch": "Restore stage9.snapshot; right400 untraced frames, A+B40 traced; step chunks20, max_operations2000000, timeout30000ms",
+      "observed_result": "Boss life meter B= appears and adjacent opponent combat exercised; 667 pre-second-repair static/observed code bytes gained; no defeat claim",
+      "evidence": "analysis/evidence/round01/mansionCombat.snapshot"
+    },
+    {
+      "milestone": "Credits roll via supported ending initializer",
+      "status": "visited",
+      "route_or_patch": "Restore analysis/evidence/round01/ending.snapshot; save clean; patch RAM34=5,35=10,40..48=0,55=0; release buttons;90 bounded20frame steps (2M operations/30s each)",
+      "observed_result": "State10 clear-screen/palette initializer advances11 by200frames; moving credits with PROGRAM and staff names captured at1800frames; scroll44/45 and selector46 progressed. Artificial route, not boss-defeat/natural ending. Terminal screen still to test.",
+      "evidence": "analysis/redirect/round01-20261031-a/credits-test-log.json; credits-1800.png; credits-shortcut.snapshot"
+    },
+    {
+      "milestone": "THE END terminal and input exit",
+      "status": "visited",
+      "route_or_patch": "Restore redirect/round01-20261031-a/credits-shortcut.snapshot; releasebuttons;patchRAM44=0,46=104(creditsFFendpoint),47=0;10x20frame boundedsteps;Start1/release20",
+      "observed_result": "State35=14 andTHE ENDscreen;StartreturnsSTAGE1/controllerinstructionsscreen. Artificialsceneinitialization/terminalindexshortcut, notnaturalbossdefeat.",
+      "evidence": "analysis/redirect/round01-20261031-a/terminal-test-log.json;terminal-200.png;terminal-after-start.png;terminal-shortcut.snapshot"
+    }
+  ],
+  "notes": "All RAM-patched scenarios are artificial. Frame steps count<=20,max_operations2000000,timeout30000ms; first startup used10000000. Buttons explicitly released as [] and reasserted after restore. Captures/snapshots are local-only."
+}

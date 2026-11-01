@@ -1,0 +1,10 @@
+{
+  "byte_identical": true,
+  "ok": true,
+  "rom_sha256": "c87b788f27ea4cfc01ff6c1a1e032a92f52c5f14e92a2690234b1a561316191a",
+  "source_sha256": {
+    "data.inc": "f5c115fd598fc881f47e04fc3a1d1c21b6fdec9283176a793d53c6293a974bb7",
+    "game.asm": "ddb4ecd2a2f11eaf546b1f9b1cdd52d541df4681406415d7dda406a1bec56c46",
+    "ram.inc": "5a7e52f0ca4f41632dfc4847754bb93ba67167e0ceb541853136778ccba1df87"
+  }
+}

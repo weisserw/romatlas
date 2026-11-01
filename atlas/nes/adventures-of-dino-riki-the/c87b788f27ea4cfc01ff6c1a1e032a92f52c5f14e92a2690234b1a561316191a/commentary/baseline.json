@@ -1,0 +1,3153 @@
+{
+  "format": "romatlas-nes-map",
+  "version": 1,
+  "image_sha256": "c87b788f27ea4cfc01ff6c1a1e032a92f52c5f14e92a2690234b1a561316191a",
+  "image_size": 65552,
+  "regions": [
+    {
+      "id": 1,
+      "offset": 0,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "INES_Header",
+      "comment": "",
+      "evidence": "Validated iNES header: NES magic, 2 PRG units, 4 CHR units, mapper 3, vertical mirroring.",
+      "views": []
+    },
+    {
+      "id": 2,
+      "offset": 32784,
+      "length": 32768,
+      "kind": "Image",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "CHR_PatternBanks",
+      "comment": "",
+      "evidence": "Entire CHR-ROM backing comprises four 8 KiB CNROM selectable pattern banks; NES PPU 16-byte planar tile storage. Immutable CHR physical identity; no CPU executable alias.",
+      "views": []
+    },
+    {
+      "id": 3,
+      "offset": 32778,
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "InterruptVectors",
+      "comment": "",
+      "evidence": "Validated little-endian NMI=$8093 Reset=$8000 IRQ=$808f vectors in fixed CNROM PRG.",
+      "views": []
+    },
+    {
+      "id": 4,
+      "offset": 4918,
+      "length": 92,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ObjectParameterData",
+      "comment": "",
+      "evidence": "Noninstruction object-parameter arrays: consumers at physical $1317/$1320/$132e index CPU $9326/$9334/$9342; repeated nonzero records and adjoining arrays. BNE $92d5 at $1334 follows nonzero object code and skips data. Exact generic data boundary to routine $9382; individual table extents unresolved.",
+      "views": []
+    },
+    {
+      "id": 5,
+      "offset": 16,
+      "length": 655,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Reset",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 32768,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "offset": 673,
+      "length": 351,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_02A1",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33425,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "offset": 1168,
+      "length": 868,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_0490",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33920,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "offset": 2270,
+      "length": 127,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_08DE",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35022,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "offset": 2405,
+      "length": 781,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_0965",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35157,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "offset": 3190,
+      "length": 128,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_0C76",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35942,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "offset": 3322,
+      "length": 460,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_0CFA",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36074,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "offset": 3786,
+      "length": 144,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_0ECA",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36538,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "offset": 3954,
+      "length": 166,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_0F72",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36706,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "offset": 4145,
+      "length": 458,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_1031",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36897,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "offset": 4821,
+      "length": 97,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_12D5",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37573,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "offset": 5010,
+      "length": 529,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_1392",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37762,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "offset": 6055,
+      "length": 597,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_17A7",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38807,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "offset": 6660,
+      "length": 116,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_1A04",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39412,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "offset": 6792,
+      "length": 6,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_1A88",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39544,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "offset": 7262,
+      "length": 30,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_1C5E",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40014,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "offset": 7296,
+      "length": 9,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_1C80",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40048,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "offset": 8576,
+      "length": 14,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_2180",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41328,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "offset": 8611,
+      "length": 214,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_21A3",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41363,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "offset": 8833,
+      "length": 266,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_2281",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41585,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "offset": 9758,
+      "length": 175,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_261E",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42510,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "offset": 9990,
+      "length": 92,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_2706",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42742,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "offset": 10090,
+      "length": 39,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_276A",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42842,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "offset": 10137,
+      "length": 33,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_2799",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42889,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "offset": 10178,
+      "length": 229,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_27C2",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42930,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "offset": 10639,
+      "length": 39,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_298F",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43391,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "offset": 10702,
+      "length": 135,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_29CE",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43454,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "offset": 10849,
+      "length": 28,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_2A61",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43601,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "offset": 11598,
+      "length": 390,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_2D4E",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44350,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "offset": 12004,
+      "length": 456,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_2EE4",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44756,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "offset": 13365,
+      "length": 215,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_3435",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46117,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "offset": 13618,
+      "length": 10,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_3532",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46370,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "offset": 14295,
+      "length": 35,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_37D7",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47047,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "offset": 14675,
+      "length": 20,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_3953",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47427,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "offset": 14737,
+      "length": 54,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_3991",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47489,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "offset": 14792,
+      "length": 251,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_39C8",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47544,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "offset": 15059,
+      "length": 295,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_3AD3",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47811,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "offset": 15377,
+      "length": 30,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_3C11",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48129,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "offset": 15434,
+      "length": 40,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_3C4A",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48186,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "offset": 15500,
+      "length": 80,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_3C8C",
+      "comment": "",
+      "evidence": "Validated fixed CNROM vector/observed-edge control-flow closure; reviewed coherent official 6502 routines, calls, loops and returns. Data barrier $1336-$1391 excludes object arrays. Static structure; reachability separate. See analysis/round-001/static-listing.txt and candidates-reviewed.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48252,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "offset": 15580,
+      "length": 16995,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "SoundAndMapData",
+      "comment": "",
+      "evidence": "Inspected immutable bytes after final sound-stream reader RTS at physical $3CDB through compressed-map stream end $7F3E. Descending 16-bit pitch values at $3CDC, sound-pointer/command sequences, map pointer directory and repeated high-byte run commands/tile values. Consumers: CPU $BD10 at physical $39E5, pitch $BCCC/$BCCD at $3BDE/$3BE4, map $CF4F/$CFBA at $00FB/$0133. No conflicting code candidates/fetches in inspected whole interval; generic non-code role only, individual stream schemas/extents unresolved.",
+      "views": []
+    },
+    {
+      "id": 46,
+      "offset": 32575,
+      "length": 177,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "UniformTailData",
+      "comment": "",
+      "evidence": "Uniform $FF run after compressed tile stream terminator and before space/name metadata; inspected exact boundaries and no conflicting code discovery. Generic non-code, not a claim of original fill purpose.",
+      "views": []
+    },
+    {
+      "id": 47,
+      "offset": 32752,
+      "length": 26,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "CartridgeMetadata",
+      "comment": "",
+      "evidence": "Eight spaces, readable DINORIKI identifier and bounded binary trailer precede independently established six-byte interrupt vector area; metadata/noninstruction layout. Trailer field meanings unresolved.",
+      "views": []
+    },
+    {
+      "id": 48,
+      "offset": 6798,
+      "length": 38,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "LateCode_1A8E",
+      "comment": "",
+      "evidence": "Reviewed official 6502 control-flow closure from observed artificial later-stage/boss dispatch edges in fixed banks0,1,2,3; coherent handlers and returns. Structural Static, artificial runtime reachability only. See static-listing-late.txt, candidates-late.json and milestone records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39550,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "offset": 6843,
+      "length": 88,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "LateCode_1ABB",
+      "comment": "",
+      "evidence": "Reviewed official 6502 control-flow closure from observed artificial later-stage/boss dispatch edges in fixed banks0,1,2,3; coherent handlers and returns. Structural Static, artificial runtime reachability only. See static-listing-late.txt, candidates-late.json and milestone records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39595,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "offset": 6950,
+      "length": 9,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "LateCode_1B26",
+      "comment": "",
+      "evidence": "Reviewed official 6502 control-flow closure from observed artificial later-stage/boss dispatch edges in fixed banks0,1,2,3; coherent handlers and returns. Structural Static, artificial runtime reachability only. See static-listing-late.txt, candidates-late.json and milestone records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39702,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "offset": 7211,
+      "length": 17,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "LateCode_1C2B",
+      "comment": "",
+      "evidence": "Reviewed official 6502 control-flow closure from observed artificial later-stage/boss dispatch edges in fixed banks0,1,2,3; coherent handlers and returns. Structural Static, artificial runtime reachability only. See static-listing-late.txt, candidates-late.json and milestone records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39963,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "offset": 7240,
+      "length": 22,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "LateCode_1C48",
+      "comment": "",
+      "evidence": "Reviewed official 6502 control-flow closure from observed artificial later-stage/boss dispatch edges in fixed banks0,1,2,3; coherent handlers and returns. Structural Static, artificial runtime reachability only. See static-listing-late.txt, candidates-late.json and milestone records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39992,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "offset": 7671,
+      "length": 46,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "LateCode_1DF7",
+      "comment": "",
+      "evidence": "Reviewed official 6502 control-flow closure from observed artificial later-stage/boss dispatch edges in fixed banks0,1,2,3; coherent handlers and returns. Structural Static, artificial runtime reachability only. See static-listing-late.txt, candidates-late.json and milestone records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40423,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "offset": 7728,
+      "length": 109,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "LateCode_1E30",
+      "comment": "",
+      "evidence": "Reviewed official 6502 control-flow closure from observed artificial later-stage/boss dispatch edges in fixed banks0,1,2,3; coherent handlers and returns. Structural Static, artificial runtime reachability only. See static-listing-late.txt, candidates-late.json and milestone records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40480,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "offset": 7871,
+      "length": 23,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "LateCode_1EBF",
+      "comment": "",
+      "evidence": "Reviewed official 6502 control-flow closure from observed artificial later-stage/boss dispatch edges in fixed banks0,1,2,3; coherent handlers and returns. Structural Static, artificial runtime reachability only. See static-listing-late.txt, candidates-late.json and milestone records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40623,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 56,
+      "offset": 8154,
+      "length": 80,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "LateCode_1FDA",
+      "comment": "",
+      "evidence": "Reviewed official 6502 control-flow closure from observed artificial later-stage/boss dispatch edges in fixed banks0,1,2,3; coherent handlers and returns. Structural Static, artificial runtime reachability only. See static-listing-late.txt, candidates-late.json and milestone records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40906,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "offset": 8341,
+      "length": 14,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "LateCode_2095",
+      "comment": "",
+      "evidence": "Reviewed official 6502 control-flow closure from observed artificial later-stage/boss dispatch edges in fixed banks0,1,2,3; coherent handlers and returns. Structural Static, artificial runtime reachability only. See static-listing-late.txt, candidates-late.json and milestone records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41093,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 58,
+      "offset": 8371,
+      "length": 152,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "LateCode_20B3",
+      "comment": "",
+      "evidence": "Reviewed official 6502 control-flow closure from observed artificial later-stage/boss dispatch edges in fixed banks0,1,2,3; coherent handlers and returns. Structural Static, artificial runtime reachability only. See static-listing-late.txt, candidates-late.json and milestone records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41123,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 59,
+      "offset": 8539,
+      "length": 37,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "LateCode_215B",
+      "comment": "",
+      "evidence": "Reviewed official 6502 control-flow closure from observed artificial later-stage/boss dispatch edges in fixed banks0,1,2,3; coherent handlers and returns. Structural Static, artificial runtime reachability only. See static-listing-late.txt, candidates-late.json and milestone records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41291,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "offset": 9953,
+      "length": 37,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "LateCode_26E1",
+      "comment": "",
+      "evidence": "Reviewed official 6502 control-flow closure from observed artificial later-stage/boss dispatch edges in fixed banks0,1,2,3; coherent handlers and returns. Structural Static, artificial runtime reachability only. See static-listing-late.txt, candidates-late.json and milestone records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42705,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "offset": 10407,
+      "length": 98,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "LateCode_28A7",
+      "comment": "",
+      "evidence": "Reviewed official 6502 control-flow closure from observed artificial later-stage/boss dispatch edges in fixed banks0,1,2,3; coherent handlers and returns. Structural Static, artificial runtime reachability only. See static-listing-late.txt, candidates-late.json and milestone records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43159,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 62,
+      "offset": 10537,
+      "length": 102,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "LateCode_2929",
+      "comment": "",
+      "evidence": "Reviewed official 6502 control-flow closure from observed artificial later-stage/boss dispatch edges in fixed banks0,1,2,3; coherent handlers and returns. Structural Static, artificial runtime reachability only. See static-listing-late.txt, candidates-late.json and milestone records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43289,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 63,
+      "offset": 10877,
+      "length": 129,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "LateCode_2A7D",
+      "comment": "",
+      "evidence": "Reviewed official 6502 control-flow closure from observed artificial later-stage/boss dispatch edges in fixed banks0,1,2,3; coherent handlers and returns. Structural Static, artificial runtime reachability only. See static-listing-late.txt, candidates-late.json and milestone records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43629,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "offset": 11014,
+      "length": 111,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "LateCode_2B06",
+      "comment": "",
+      "evidence": "Reviewed official 6502 control-flow closure from observed artificial later-stage/boss dispatch edges in fixed banks0,1,2,3; coherent handlers and returns. Structural Static, artificial runtime reachability only. See static-listing-late.txt, candidates-late.json and milestone records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43766,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "offset": 13663,
+      "length": 7,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "LateCode_355F",
+      "comment": "",
+      "evidence": "Reviewed official 6502 control-flow closure from observed artificial later-stage/boss dispatch edges in fixed banks0,1,2,3; coherent handlers and returns. Structural Static, artificial runtime reachability only. See static-listing-late.txt, candidates-late.json and milestone records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46415,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "offset": 13953,
+      "length": 3,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "LateCode_3681",
+      "comment": "",
+      "evidence": "Reviewed official 6502 control-flow closure from observed artificial later-stage/boss dispatch edges in fixed banks0,1,2,3; coherent handlers and returns. Structural Static, artificial runtime reachability only. See static-listing-late.txt, candidates-late.json and milestone records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46705,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "offset": 13966,
+      "length": 41,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "LateCode_368E",
+      "comment": "",
+      "evidence": "Reviewed official 6502 control-flow closure from observed artificial later-stage/boss dispatch edges in fixed banks0,1,2,3; coherent handlers and returns. Structural Static, artificial runtime reachability only. See static-listing-late.txt, candidates-late.json and milestone records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46718,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 68,
+      "offset": 14038,
+      "length": 53,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "LateCode_36D6",
+      "comment": "",
+      "evidence": "Reviewed official 6502 control-flow closure from observed artificial later-stage/boss dispatch edges in fixed banks0,1,2,3; coherent handlers and returns. Structural Static, artificial runtime reachability only. See static-listing-late.txt, candidates-late.json and milestone records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46790,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 69,
+      "offset": 14233,
+      "length": 62,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "LateCode_3799",
+      "comment": "",
+      "evidence": "Reviewed official 6502 control-flow closure from observed artificial later-stage/boss dispatch edges in fixed banks0,1,2,3; coherent handlers and returns. Structural Static, artificial runtime reachability only. See static-listing-late.txt, candidates-late.json and milestone records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46985,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 70,
+      "offset": 14565,
+      "length": 67,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "LateCode_38E5",
+      "comment": "",
+      "evidence": "Reviewed official 6502 control-flow closure from observed artificial later-stage/boss dispatch edges in fixed banks0,1,2,3; coherent handlers and returns. Structural Static, artificial runtime reachability only. See static-listing-late.txt, candidates-late.json and milestone records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47317,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 71,
+      "offset": 1024,
+      "length": 144,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "PaletteAndUpdatePointers",
+      "comment": "",
+      "evidence": "Palette quads (first128 bytes) and eight little-endian PPU updater targets (last16); consumers physical $0353/$035F and $00E2/$00E6. Exact data bounds bracketed by code.",
+      "views": []
+    },
+    {
+      "id": 72,
+      "offset": 2036,
+      "length": 234,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "StageInitializationTables",
+      "comment": "",
+      "evidence": "Stage map pointer records and fourteen-entry stage/boss selectors, stage labels, CHR bank/sound selection; actual init consumers physical $050D/$0512/$0517/$0794/$079C/$07B6 and domain compare14 at $06C7.",
+      "views": []
+    },
+    {
+      "id": 73,
+      "offset": 4603,
+      "length": 218,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "PlayerSpriteData",
+      "comment": "",
+      "evidence": "Repeated tile-index/attribute layouts and small indexed player animation tables; consumers physical $10BB/$10C1/$1122/$1169. Exact noninstruction block bracketed by routines.",
+      "views": []
+    },
+    {
+      "id": 74,
+      "offset": 5539,
+      "length": 516,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ObjectLayoutData",
+      "comment": "",
+      "evidence": "Repeated tile layouts, indices and parameter records; indexed consumers physical $1309/$1409/$143D/$14B9/$1542. Generic data classification; individual formats not fully reconstructed.",
+      "views": []
+    },
+    {
+      "id": 75,
+      "offset": 9099,
+      "length": 659,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ObjectAnimationAndDispatchData",
+      "comment": "",
+      "evidence": "Repeated tile quads, attributes, signed movement sequences and handler pointer directories; consumers physical $2340/$234E/$22E2/$1836/$19CA/$19E0. Exact bounded noninstruction block, no code conflict.",
+      "views": []
+    },
+    {
+      "id": 76,
+      "offset": 12460,
+      "length": 905,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "PresentationAndSoundData",
+      "comment": "",
+      "evidence": "Screen command streams including visible title/game-over/stage text, pointer arrays and repeated sound register records; consumers physical $30A5/$3443/$34A6/$3959. Mixed data formats; no code evidence in interval.",
+      "views": []
+    },
+    {
+      "id": 77,
+      "offset": 671,
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Table_029F",
+      "comment": "",
+      "evidence": "Inspected exact gap bytes and adjacent routines/references: repeated small signed offsets, tile indices, masks or little-endian targets; visibly noninstruction bounded array. No conflicting code candidate. Individual semantics/extent subdivisions unresolved.",
+      "views": []
+    },
+    {
+      "id": 78,
+      "offset": 2397,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Table_095D",
+      "comment": "",
+      "evidence": "Inspected exact gap bytes and adjacent routines/references: repeated small signed offsets, tile indices, masks or little-endian targets; visibly noninstruction bounded array. No conflicting code candidate. Individual semantics/extent subdivisions unresolved.",
+      "views": []
+    },
+    {
+      "id": 79,
+      "offset": 3186,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Table_0C72",
+      "comment": "",
+      "evidence": "Inspected exact gap bytes and adjacent routines/references: repeated small signed offsets, tile indices, masks or little-endian targets; visibly noninstruction bounded array. No conflicting code candidate. Individual semantics/extent subdivisions unresolved.",
+      "views": []
+    },
+    {
+      "id": 80,
+      "offset": 3318,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Table_0CF6",
+      "comment": "",
+      "evidence": "Inspected exact gap bytes and adjacent routines/references: repeated small signed offsets, tile indices, masks or little-endian targets; visibly noninstruction bounded array. No conflicting code candidate. Individual semantics/extent subdivisions unresolved.",
+      "views": []
+    },
+    {
+      "id": 81,
+      "offset": 3782,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Table_0EC6",
+      "comment": "",
+      "evidence": "Inspected exact gap bytes and adjacent routines/references: repeated small signed offsets, tile indices, masks or little-endian targets; visibly noninstruction bounded array. No conflicting code candidate. Individual semantics/extent subdivisions unresolved.",
+      "views": []
+    },
+    {
+      "id": 82,
+      "offset": 3930,
+      "length": 24,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Table_0F5A",
+      "comment": "",
+      "evidence": "Inspected exact gap bytes and adjacent routines/references: repeated small signed offsets, tile indices, masks or little-endian targets; visibly noninstruction bounded array. No conflicting code candidate. Individual semantics/extent subdivisions unresolved.",
+      "views": []
+    },
+    {
+      "id": 83,
+      "offset": 4120,
+      "length": 25,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Table_1018",
+      "comment": "",
+      "evidence": "Inspected exact gap bytes and adjacent routines/references: repeated small signed offsets, tile indices, masks or little-endian targets; visibly noninstruction bounded array. No conflicting code candidate. Individual semantics/extent subdivisions unresolved.",
+      "views": []
+    },
+    {
+      "id": 84,
+      "offset": 6652,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Table_19FC",
+      "comment": "",
+      "evidence": "Inspected exact gap bytes and adjacent routines/references: repeated small signed offsets, tile indices, masks or little-endian targets; visibly noninstruction bounded array. No conflicting code candidate. Individual semantics/extent subdivisions unresolved.",
+      "views": []
+    },
+    {
+      "id": 85,
+      "offset": 7228,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Table_1C3C",
+      "comment": "",
+      "evidence": "Inspected exact gap bytes and adjacent routines/references: repeated small signed offsets, tile indices, masks or little-endian targets; visibly noninstruction bounded array. No conflicting code candidate. Individual semantics/extent subdivisions unresolved.",
+      "views": []
+    },
+    {
+      "id": 86,
+      "offset": 7292,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Table_1C7C",
+      "comment": "",
+      "evidence": "Inspected exact gap bytes and adjacent routines/references: repeated small signed offsets, tile indices, masks or little-endian targets; visibly noninstruction bounded array. No conflicting code candidate. Individual semantics/extent subdivisions unresolved.",
+      "views": []
+    },
+    {
+      "id": 87,
+      "offset": 8825,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Table_2279",
+      "comment": "",
+      "evidence": "Inspected exact gap bytes and adjacent routines/references: repeated small signed offsets, tile indices, masks or little-endian targets; visibly noninstruction bounded array. No conflicting code candidate. Individual semantics/extent subdivisions unresolved.",
+      "views": []
+    },
+    {
+      "id": 88,
+      "offset": 9933,
+      "length": 20,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Table_26CD",
+      "comment": "",
+      "evidence": "Inspected exact gap bytes and adjacent routines/references: repeated small signed offsets, tile indices, masks or little-endian targets; visibly noninstruction bounded array. No conflicting code candidate. Individual semantics/extent subdivisions unresolved.",
+      "views": []
+    },
+    {
+      "id": 89,
+      "offset": 10082,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Table_2762",
+      "comment": "",
+      "evidence": "Inspected exact gap bytes and adjacent routines/references: repeated small signed offsets, tile indices, masks or little-endian targets; visibly noninstruction bounded array. No conflicting code candidate. Individual semantics/extent subdivisions unresolved.",
+      "views": []
+    },
+    {
+      "id": 90,
+      "offset": 10129,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Table_2791",
+      "comment": "",
+      "evidence": "Inspected exact gap bytes and adjacent routines/references: repeated small signed offsets, tile indices, masks or little-endian targets; visibly noninstruction bounded array. No conflicting code candidate. Individual semantics/extent subdivisions unresolved.",
+      "views": []
+    },
+    {
+      "id": 91,
+      "offset": 10170,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Table_27BA",
+      "comment": "",
+      "evidence": "Inspected exact gap bytes and adjacent routines/references: repeated small signed offsets, tile indices, masks or little-endian targets; visibly noninstruction bounded array. No conflicting code candidate. Individual semantics/extent subdivisions unresolved.",
+      "views": []
+    },
+    {
+      "id": 92,
+      "offset": 10678,
+      "length": 24,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Table_29B6",
+      "comment": "",
+      "evidence": "Inspected exact gap bytes and adjacent routines/references: repeated small signed offsets, tile indices, masks or little-endian targets; visibly noninstruction bounded array. No conflicting code candidate. Individual semantics/extent subdivisions unresolved.",
+      "views": []
+    },
+    {
+      "id": 93,
+      "offset": 10837,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Table_2A55",
+      "comment": "",
+      "evidence": "Inspected exact gap bytes and adjacent routines/references: repeated small signed offsets, tile indices, masks or little-endian targets; visibly noninstruction bounded array. No conflicting code candidate. Individual semantics/extent subdivisions unresolved.",
+      "views": []
+    },
+    {
+      "id": 94,
+      "offset": 11988,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Table_2ED4",
+      "comment": "",
+      "evidence": "Inspected exact gap bytes and adjacent routines/references: repeated small signed offsets, tile indices, masks or little-endian targets; visibly noninstruction bounded array. No conflicting code candidate. Individual semantics/extent subdivisions unresolved.",
+      "views": []
+    },
+    {
+      "id": 95,
+      "offset": 13956,
+      "length": 10,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Table_3684",
+      "comment": "",
+      "evidence": "Inspected exact gap bytes and adjacent routines/references: repeated small signed offsets, tile indices, masks or little-endian targets; visibly noninstruction bounded array. No conflicting code candidate. Individual semantics/extent subdivisions unresolved.",
+      "views": []
+    },
+    {
+      "id": 96,
+      "offset": 15043,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Table_3AC3",
+      "comment": "",
+      "evidence": "Inspected exact gap bytes and adjacent routines/references: repeated small signed offsets, tile indices, masks or little-endian targets; visibly noninstruction bounded array. No conflicting code candidate. Individual semantics/extent subdivisions unresolved.",
+      "views": []
+    },
+    {
+      "id": 97,
+      "offset": 11006,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "BossRenderDispatch",
+      "comment": "",
+      "evidence": "Split low/high return-address-minus-one boss-render dispatch bytes: CPU $AAED+Y low and $AAF1+Y high for boss IDs1..4, each pushed then RTS at physical $2A74-$2A7C. $2AFC BNE follows LDY#2 and cannot fall through. Earlier candidate $2AFE JMP was data decoding; corrected by exact consumer/boundary review.",
+      "views": []
+    },
+    {
+      "id": 98,
+      "offset": 6776,
+      "length": 16,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_1A78",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39528,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 99,
+      "offset": 6836,
+      "length": 7,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_1AB4",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39588,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 100,
+      "offset": 6931,
+      "length": 19,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_1B13",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39683,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 101,
+      "offset": 6959,
+      "length": 252,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_1B2F",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39711,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 102,
+      "offset": 7305,
+      "length": 103,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_1C89",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40057,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 103,
+      "offset": 7412,
+      "length": 68,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_1CF4",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40164,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 104,
+      "offset": 7484,
+      "length": 181,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_1D3C",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40236,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 105,
+      "offset": 7669,
+      "length": 2,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_1DF5",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40421,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 106,
+      "offset": 7717,
+      "length": 11,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_1E25",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40469,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 107,
+      "offset": 7845,
+      "length": 26,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_1EA5",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40597,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 108,
+      "offset": 7894,
+      "length": 18,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_1ED6",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40646,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 109,
+      "offset": 7918,
+      "length": 236,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_1EEE",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40670,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 110,
+      "offset": 8234,
+      "length": 82,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_202A",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40986,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 111,
+      "offset": 8324,
+      "length": 17,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_2084",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41076,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 112,
+      "offset": 8355,
+      "length": 8,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_20A3",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41107,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 113,
+      "offset": 8523,
+      "length": 12,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_214B",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41275,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 114,
+      "offset": 8590,
+      "length": 21,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_218E",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41342,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 115,
+      "offset": 13580,
+      "length": 35,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_350C",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46332,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 116,
+      "offset": 13628,
+      "length": 35,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_353C",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46380,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 117,
+      "offset": 13670,
+      "length": 204,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_3566",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46422,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 118,
+      "offset": 13880,
+      "length": 73,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_3638",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46632,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 119,
+      "offset": 14013,
+      "length": 25,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_36BD",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46765,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 120,
+      "offset": 14100,
+      "length": 46,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_3714",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46852,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 121,
+      "offset": 14182,
+      "length": 47,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_3766",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46934,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 122,
+      "offset": 14332,
+      "length": 43,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_37FC",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47084,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 123,
+      "offset": 14383,
+      "length": 70,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_382F",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47135,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 124,
+      "offset": 14549,
+      "length": 16,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_38D5",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47301,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 125,
+      "offset": 14632,
+      "length": 33,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_3928",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47384,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 126,
+      "offset": 14669,
+      "length": 6,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_394D",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47421,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 127,
+      "offset": 14695,
+      "length": 42,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_3967",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47447,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 128,
+      "offset": 15354,
+      "length": 23,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_3BFA",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48106,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 129,
+      "offset": 15407,
+      "length": 27,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_3C2F",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48159,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 130,
+      "offset": 15474,
+      "length": 26,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConnectedCode_3C72",
+      "comment": "",
+      "evidence": "Supported static entry contracts from return-address-minus-one object and audio dispatch consumers, not pointer plausibility alone. Object slot/state and sound channel RAM preconditions; coherent dataflow/calls/returns reviewed. Fixed CNROM banks0,1,2,3. Runtime reachability may be unresolved. See connected-contracts.json and static-listing-final.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48226,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 131,
+      "offset": 10505,
+      "length": 32,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "BossSpawnCoordinates",
+      "comment": "",
+      "evidence": "Sixteen coordinate pairs: consumer physical $28FB masks index with $1E then loads CPU$A8F9,Y and $A8FA,Y into boss X/Y RAM$A6/$A7. Exact32-byte extent independently fixed by mask and following routine.",
+      "views": []
+    },
+    {
+      "id": 132,
+      "offset": 11125,
+      "length": 473,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "BossSpriteRecordData",
+      "comment": "",
+      "evidence": "Boss sprite pointer directory and dimension/offset/tile records consumed by physical$2B0A-$2B74 renderer. Inspected repeated bounded layouts and next-code boundary$2D4E. Generic data classification: directory full selector domain and individual record extents remain unresolved; masking31 alone does not prove32 populated pointers.",
+      "views": []
+    },
+    {
+      "id": 133,
+      "offset": 7408,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ResidualTable_1CF0",
+      "comment": "",
+      "evidence": "Inspected exact residual gap after supported object/audio handler closure. Repeated tile/offset or APU parameter bytes; adjacent indexed consumers and routine boundaries distinguish data. No conflicting observed fetch or control target. Generic data; individual format meaning remains partial.",
+      "views": []
+    },
+    {
+      "id": 134,
+      "offset": 7480,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ResidualTable_1D38",
+      "comment": "",
+      "evidence": "Inspected exact residual gap after supported object/audio handler closure. Repeated tile/offset or APU parameter bytes; adjacent indexed consumers and routine boundaries distinguish data. No conflicting observed fetch or control target. Generic data; individual format meaning remains partial.",
+      "views": []
+    },
+    {
+      "id": 135,
+      "offset": 7665,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ResidualTable_1DF1",
+      "comment": "",
+      "evidence": "Inspected exact residual gap after supported object/audio handler closure. Repeated tile/offset or APU parameter bytes; adjacent indexed consumers and routine boundaries distinguish data. No conflicting observed fetch or control target. Generic data; individual format meaning remains partial.",
+      "views": []
+    },
+    {
+      "id": 136,
+      "offset": 7837,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ResidualTable_1E9D",
+      "comment": "",
+      "evidence": "Inspected exact residual gap after supported object/audio handler closure. Repeated tile/offset or APU parameter bytes; adjacent indexed consumers and routine boundaries distinguish data. No conflicting observed fetch or control target. Generic data; individual format meaning remains partial.",
+      "views": []
+    },
+    {
+      "id": 137,
+      "offset": 7912,
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ResidualTable_1EE8",
+      "comment": "",
+      "evidence": "Inspected exact residual gap after supported object/audio handler closure. Repeated tile/offset or APU parameter bytes; adjacent indexed consumers and routine boundaries distinguish data. No conflicting observed fetch or control target. Generic data; individual format meaning remains partial.",
+      "views": []
+    },
+    {
+      "id": 138,
+      "offset": 8316,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ResidualTable_207C",
+      "comment": "",
+      "evidence": "Inspected exact residual gap after supported object/audio handler closure. Repeated tile/offset or APU parameter bytes; adjacent indexed consumers and routine boundaries distinguish data. No conflicting observed fetch or control target. Generic data; individual format meaning remains partial.",
+      "views": []
+    },
+    {
+      "id": 139,
+      "offset": 8363,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ResidualTable_20AB",
+      "comment": "",
+      "evidence": "Inspected exact residual gap after supported object/audio handler closure. Repeated tile/offset or APU parameter bytes; adjacent indexed consumers and routine boundaries distinguish data. No conflicting observed fetch or control target. Generic data; individual format meaning remains partial.",
+      "views": []
+    },
+    {
+      "id": 140,
+      "offset": 8535,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ResidualTable_2157",
+      "comment": "",
+      "evidence": "Inspected exact residual gap after supported object/audio handler closure. Repeated tile/offset or APU parameter bytes; adjacent indexed consumers and routine boundaries distinguish data. No conflicting observed fetch or control target. Generic data; individual format meaning remains partial.",
+      "views": []
+    },
+    {
+      "id": 141,
+      "offset": 13615,
+      "length": 3,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ResidualTable_352F",
+      "comment": "",
+      "evidence": "Inspected exact residual gap after supported object/audio handler closure. Repeated tile/offset or APU parameter bytes; adjacent indexed consumers and routine boundaries distinguish data. No conflicting observed fetch or control target. Generic data; individual format meaning remains partial.",
+      "views": []
+    },
+    {
+      "id": 142,
+      "offset": 13874,
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ResidualTable_3632",
+      "comment": "",
+      "evidence": "Inspected exact residual gap after supported object/audio handler closure. Repeated tile/offset or APU parameter bytes; adjacent indexed consumers and routine boundaries distinguish data. No conflicting observed fetch or control target. Generic data; individual format meaning remains partial.",
+      "views": []
+    },
+    {
+      "id": 143,
+      "offset": 14007,
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ResidualTable_36B7",
+      "comment": "",
+      "evidence": "Inspected exact residual gap after supported object/audio handler closure. Repeated tile/offset or APU parameter bytes; adjacent indexed consumers and routine boundaries distinguish data. No conflicting observed fetch or control target. Generic data; individual format meaning remains partial.",
+      "views": []
+    },
+    {
+      "id": 144,
+      "offset": 14091,
+      "length": 9,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ResidualTable_370B",
+      "comment": "",
+      "evidence": "Inspected exact residual gap after supported object/audio handler closure. Repeated tile/offset or APU parameter bytes; adjacent indexed consumers and routine boundaries distinguish data. No conflicting observed fetch or control target. Generic data; individual format meaning remains partial.",
+      "views": []
+    },
+    {
+      "id": 145,
+      "offset": 14146,
+      "length": 36,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ResidualTable_3742",
+      "comment": "",
+      "evidence": "Inspected exact residual gap after supported object/audio handler closure. Repeated tile/offset or APU parameter bytes; adjacent indexed consumers and routine boundaries distinguish data. No conflicting observed fetch or control target. Generic data; individual format meaning remains partial.",
+      "views": []
+    },
+    {
+      "id": 146,
+      "offset": 14229,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ResidualTable_3795",
+      "comment": "",
+      "evidence": "Inspected exact residual gap after supported object/audio handler closure. Repeated tile/offset or APU parameter bytes; adjacent indexed consumers and routine boundaries distinguish data. No conflicting observed fetch or control target. Generic data; individual format meaning remains partial.",
+      "views": []
+    },
+    {
+      "id": 147,
+      "offset": 14330,
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ResidualTable_37FA",
+      "comment": "",
+      "evidence": "Inspected exact residual gap after supported object/audio handler closure. Repeated tile/offset or APU parameter bytes; adjacent indexed consumers and routine boundaries distinguish data. No conflicting observed fetch or control target. Generic data; individual format meaning remains partial.",
+      "views": []
+    },
+    {
+      "id": 148,
+      "offset": 14375,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ResidualTable_3827",
+      "comment": "",
+      "evidence": "Inspected exact residual gap after supported object/audio handler closure. Repeated tile/offset or APU parameter bytes; adjacent indexed consumers and routine boundaries distinguish data. No conflicting observed fetch or control target. Generic data; individual format meaning remains partial.",
+      "views": []
+    },
+    {
+      "id": 149,
+      "offset": 14453,
+      "length": 96,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ResidualTable_3875",
+      "comment": "",
+      "evidence": "Inspected exact residual gap after supported object/audio handler closure. Repeated tile/offset or APU parameter bytes; adjacent indexed consumers and routine boundaries distinguish data. No conflicting observed fetch or control target. Generic data; individual format meaning remains partial.",
+      "views": []
+    },
+    {
+      "id": 150,
+      "offset": 14665,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ResidualTable_3949",
+      "comment": "",
+      "evidence": "Inspected exact residual gap after supported object/audio handler closure. Repeated tile/offset or APU parameter bytes; adjacent indexed consumers and routine boundaries distinguish data. No conflicting observed fetch or control target. Generic data; individual format meaning remains partial.",
+      "views": []
+    }
+  ],
+  "next_id": 151
+}

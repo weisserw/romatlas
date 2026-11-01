@@ -1,0 +1,13 @@
+# Round05 commentary handoff
+
+COMPLETE all-current readability on authoritative pass-007; relinquishes all commentary writes/processes. No deferred readability range. ROM remains99.99% (131070/131088 classified;18unknown bytes/eight spans); final editorial audit pending, not run.
+
+Covered32,827Code/98,243Data bytes and15,110instructions,9,298physical scaffold entries and554semantic units. Preserved all549prior units and15,096prior instruction renderings/review; reconciled22newStaticCode bytes/14instructions in five intervals against official fresh baseline. Full prior commentary preserved at commentary-original/, commentary-working-prior/ and commentary-preparation-input/. No mandatory whole-source reread or cosmetic rewrite; full inventory/semantic coverage, affected dependencies, current evidence and uncertainty consistency checked.
+
+Source explains DrawActorPoseFromA argument/shared pointer setup, TickDialogCompletionTimeout native timer producer/decrement/cleanup, specific scene-index1 and encoder-compatible valid-password return contracts, and TransformArithmeticScratchPair exact low/high transform. Intended arithmetic input relation/game purpose remains unknown; no second general multiply20 claim. Corrected stale scene return prose and false historical B454 $01FF,X attribution; retained old investigation history with current disposition explicitly superseding it. Current symbols and timer $32=50ticks checked. Natural selection/universal return remain unclaimed.
+
+All18unknown bytes/eight exact spans retain honest localized notes: five isolatedRTS, C09C two-byte default prefix, mixed10-byteFFF0 gap, C0BF one-byte overlapping ordinary/IRQ view blocked byNES-MAP-002. NoData workaround. AC71 code correction/surroundingData/ACEC and prior explanations retained.
+
+Fresh official verification.json ok=true/byte_identical=true; reading-after.asm refreshed. commentary-scope-check.json verifies full partition/review/semantic coverage/source links, current map/state/baseline identity, complete prior preservation, unknown boundary notes and source hashes. game.asmSHA25610470c7f71435d11ff6700a6fe4b14fe9e239168f1a86d075bf2c465359b28b0; symbols.incSHA2565dc105cfe4dc8530a356343155c09b48c2712c6938b20228b72463a308b5b04a. InputROM hash unchanged.
+
+Reuse four artificial episodes/native THE END; no replay. Natural boss initializer/victory and original item/music/species names remain uncertain. Existing toolkit issues retained; no new issue or toolkit changes. No ROM/map/state mutation, final terminal audit, archive/publication, cleanup/deletion or next-phase work. Residual redirect belongs to coordinator; no terminal exhaustion claim. No running process/handle remains.
