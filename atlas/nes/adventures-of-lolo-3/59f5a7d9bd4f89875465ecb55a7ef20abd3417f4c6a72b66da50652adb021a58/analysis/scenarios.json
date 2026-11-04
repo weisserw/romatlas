@@ -1,0 +1,431 @@
+{
+  "version": 1,
+  "round": 1,
+  "phase": "disassembly",
+  "default_budget": {
+    "unit": "frame",
+    "max_operations": 18000000,
+    "timeout_ms": 25000
+  },
+  "input_contract": "NES buttons array is entire port1 button state; [] releases. Reassert after snapshot restore. Trace configuration is independent of snapshot history; samples explicitly enabled.",
+  "scenarios": [
+    {
+      "id": "natural-startup",
+      "milestone": "title and overworld",
+      "status": "visited",
+      "artificial": false,
+      "route": [
+        {
+          "buttons": [],
+          "frames": 288
+        },
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 2
+        },
+        {
+          "buttons": [],
+          "frames": 225
+        }
+      ],
+      "result": "Adventures of Lolo III western 1991 title; overworld effective banks [12,13,14,15]. Startup [0,1,14,15] and title [4,5,14,15].",
+      "evidence": [
+        "analysis/title.snapshot.json",
+        "analysis/game2.snapshot.json",
+        "analysis/scratch/title2.png",
+        "analysis/scratch/game2.png"
+      ]
+    },
+    {
+      "id": "natural-tree",
+      "milestone": "first learning tree and tutorial dialogue",
+      "status": "visited",
+      "artificial": false,
+      "start": "analysis/game2.snapshot.json",
+      "route": [
+        [
+          [
+            "a"
+          ],
+          2
+        ],
+        [
+          [],
+          30
+        ],
+        [
+          [
+            "up"
+          ],
+          20
+        ],
+        [
+          [],
+          5
+        ],
+        [
+          [
+            "a"
+          ],
+          2
+        ],
+        [
+          [],
+          30
+        ],
+        [
+          [
+            "right"
+          ],
+          60
+        ],
+        [
+          [
+            "up"
+          ],
+          60
+        ],
+        [
+          [],
+          145
+        ],
+        [
+          [
+            "up"
+          ],
+          100
+        ],
+        [
+          [],
+          190
+        ],
+        [
+          [
+            "a"
+          ],
+          2
+        ],
+        [
+          [],
+          90
+        ],
+        [
+          [
+            "a"
+          ],
+          2
+        ],
+        [
+          [],
+          105
+        ],
+        [
+          [
+            "left"
+          ],
+          10
+        ],
+        [
+          [
+            "up"
+          ],
+          90
+        ],
+        [
+          [],
+          190
+        ]
+      ],
+      "result": "Door alignment Left10 then Up90 enters tutorial with Grandpa. A2/release2 repeated4, release20/right40/up40/A2/release5 advances dialogue; movement remains dialog-blocked. Core room interactions pending.",
+      "evidence": [
+        "analysis/tutorial.snapshot.json",
+        "analysis/scratch/tutorial3.png",
+        "analysis/scratch/tutorial-play.png"
+      ]
+    },
+    {
+      "id": "password-contract",
+      "milestone": "password entry",
+      "status": "visited",
+      "artificial": false,
+      "start": "analysis/title.snapshot.json",
+      "route": [
+        [
+          [
+            "down"
+          ],
+          2
+        ],
+        [
+          [],
+          2
+        ],
+        [
+          [
+            "start"
+          ],
+          2
+        ],
+        [
+          [],
+          90
+        ]
+      ],
+      "result": "Natural password screen. A2/release2 enters 0, right2/release2/A2/release2 enters1; invalid-alphabet sentinel $FF observed in $E9/$EA. Display ASCII $600/$601; entry cursor $93.",
+      "evidence": [
+        "analysis/password.snapshot.json",
+        "analysis/scratch/password-ram0.json",
+        "analysis/scratch/password-ram1.json",
+        "analysis/scratch/password-ram2.json",
+        "analysis/scratch/password1.png"
+      ]
+    },
+    {
+      "id": "king-password",
+      "milestone": "final King overworld",
+      "status": "visited",
+      "artificial": true,
+      "start": "analysis/password.snapshot.json",
+      "patches": [
+        {
+          "space": "ram",
+          "address": 1536,
+          "bytes": [
+            52,
+            82,
+            52,
+            78,
+            83,
+            80,
+            68,
+            68,
+            70,
+            214,
+            76,
+            52,
+            53,
+            66,
+            84,
+            74
+          ]
+        },
+        {
+          "space": "ram",
+          "address": 233,
+          "bytes": [
+            2,
+            21,
+            2,
+            18,
+            22,
+            19,
+            10,
+            10,
+            11,
+            29,
+            16,
+            2,
+            3,
+            8,
+            23,
+            14
+          ]
+        },
+        {
+          "space": "ram",
+          "address": 147,
+          "bytes": [
+            16
+          ]
+        },
+        {
+          "space": "ram",
+          "address": 122,
+          "bytes": [
+            187
+          ]
+        },
+        {
+          "space": "ram",
+          "address": 130,
+          "bytes": [
+            124
+          ]
+        }
+      ],
+      "route": [
+        [
+          [],
+          2
+        ],
+        [
+          [
+            "a"
+          ],
+          3
+        ],
+        [
+          [],
+          15
+        ],
+        [
+          [],
+          240
+        ],
+        [
+          [],
+          10
+        ]
+      ],
+      "result": "Accepted by actual password consumer; underground final castle overworld visible. Artificial observations do not establish natural reachability. Earlier wrong display-only or40-symbol-index patches rejected; retry only because consumer $E9 indices corrected.",
+      "evidence": [
+        "analysis/kingworld2.snapshot.json",
+        "analysis/scratch/kingworld2.png",
+        "analysis/scratch/kingworld2-ram.json"
+      ]
+    },
+    {
+      "id": "caves",
+      "milestone": "levels4\u20137 cave and boss",
+      "status": "attempted",
+      "artificial": true,
+      "password": "JY8HJPLG893QC\u26652L",
+      "route": "Apply proven password contract. Up60/release400 -> second tree exterior. Restore cave-bosses snapshot, Right60/Up60/release400 -> cave-region route. Up2/release45 repeated4; Right60/Up60/Left60/Up60/release400 -> near cave junction.",
+      "result": "Cave-region overworld and tutorial exterior confirmed; no cave/boss room reached. Stop additional direction permutations; missing precise route/entrance contract for redirect.",
+      "evidence": [
+        "analysis/cave-bosses.snapshot.json",
+        "analysis/scratch/cave-bosses.png",
+        "analysis/scratch/cave-winding.png"
+      ]
+    },
+    {
+      "id": "underwater",
+      "milestone": "underwater levels9\u201312",
+      "status": "visited",
+      "artificial": true,
+      "start": "analysis/password.snapshot.json",
+      "password": "V4Y\u266623G\u25b35J\u2666+JNDN",
+      "route": "Apply proven password_route.py patch contract; Up60/release180; Left10/Up90/release180; Right40/Up40/A2/release10/Select2/release50; then Up35/Right+A35/Select2/release30, sampling traced execution.",
+      "result": "LVL09 RM1 puzzle visibly visited with seaweed/skulls/hearts/ladders; movement/action/retry accepted instruction fetches in banks[10,11,14,15].",
+      "evidence": [
+        "analysis/underwater-actual.snapshot.json",
+        "analysis/scratch/underwater-play.png",
+        "analysis/scratch/underwater-mechanics.png"
+      ]
+    },
+    {
+      "id": "underground",
+      "milestone": "late underground rooms16\u201317",
+      "status": "attempted",
+      "artificial": true,
+      "password": "96HW56R8\u2665B\u25b3B93G5",
+      "route": "Apply proven password contract; Up60/release400; trace10.",
+      "result": "Password accepted to underground castle map; no room17 visit. Same obstacle as King.",
+      "evidence": [
+        "analysis/level17.snapshot.json",
+        "analysis/scratch/level17-entry.png"
+      ]
+    },
+    {
+      "id": "king-combat",
+      "milestone": "King combat",
+      "status": "attempted",
+      "reason": "Accepted King map followed by up/alignment/A/select and release variants failed to enter castle. Further blind input permutations stopped; specific missing prerequisite is map-node/entrance/progression consumer contract. See progress ledger.",
+      "evidence": [
+        "analysis/kingworld2.snapshot.json",
+        "analysis/scratch/kingentry4.ppm"
+      ]
+    },
+    {
+      "id": "ending",
+      "milestone": "ending/credits",
+      "status": "attempted",
+      "reason": "King and independent level17 practical password/RAM shortcuts accepted but final-castle entry did not advance to combat. No understood ending entry/register contract; investigate map-node/progression consumers in redirect, not arbitrary RAM/register brute force."
+    },
+    {
+      "id": "redirect-map-transition",
+      "milestone": "Cave04 and King17 bosses; late17 puzzle",
+      "status": "visited",
+      "artificial": true,
+      "route": "Import accepted cave/King/level17 snapshot, releasebuttons, write014F=node5/18/17 and014E=20; step240 bounded30/frame calls then sample1frame. See transition.py. Exercise movement/firing using combat.py.",
+      "evidence": [
+        "analysis/redirect/r1-node-and-residual/transition-results.json",
+        "analysis/redirect/r1-node-and-residual/combat-results.json",
+        "analysis/redirect/r1-node-and-residual/kingworld2-transition.png",
+        "analysis/redirect/r1-node-and-residual/cave-bosses-transition.png"
+      ]
+    },
+    {
+      "id": "redirect-king-phases",
+      "milestone": "King multi-phase defeat",
+      "status": "visited",
+      "artificial": true,
+      "route": "King transition snapshotUp10/release1 ->clean engaged. Set HP93=1, activate stationary bullet1 at boss3 XY with script channelhighs zero, moveplayer2 away, disable projectiles4..6. Hitclean/phases scripts record exactpatches; phaseHP reset10 expected. Native callback9348/93B6/94BB/950E/96A7 follows actual decrement/defeat paths.",
+      "evidence": [
+        "analysis/redirect/r1-node-and-residual/king-clean-engage.snapshot.json",
+        "analysis/redirect/r1-node-and-residual/hit-clean-results.json",
+        "analysis/redirect/r1-node-and-residual/phases-results.json"
+      ]
+    },
+    {
+      "id": "redirect-ending",
+      "milestone": "Rescue, ending story, THE END",
+      "status": "visited",
+      "artificial": true,
+      "route": "After Kingphases75, setplayer2X120/Y16 (B0D6 requiresY<1C). Step60withUp then release ->banks4/5 finalrescue; continue boundedautoplay through credits,credits2,credits3 scripts. THE END at credits3-59. Inputs do not establish natural reachability.",
+      "evidence": [
+        "analysis/redirect/r1-node-and-residual/ending-gate-results.json",
+        "analysis/redirect/r1-node-and-residual/rescue-results.json",
+        "analysis/redirect/r1-node-and-residual/credits-results.json",
+        "analysis/redirect/r1-node-and-residual/credits2-results.json",
+        "analysis/redirect/r1-node-and-residual/credits3-results.json",
+        "analysis/redirect/r1-node-and-residual/credits3-59.png",
+        "analysis/redirect/r1-node-and-residual/credits3-59.snapshot.json"
+      ]
+    }
+  ],
+  "session_note": "Original debugger exited143 after last cave framebuffer but before its RAM query. Prior saved context roots retained; restarted server loaded saved map and imported password snapshot for independent level17 test. Old aggregate timeline not reconstructable; no unnecessary replay performed.",
+  "phase_reviews": [
+    {
+      "round": 2,
+      "phase": "disassembly",
+      "result": "Reused accepted natural tutorial/artificial underwater,cave04,King17 multiphase,late17,finalrescue/story/THE END evidence; no ordinary startup or failed direction replay. All saved3824 contextual roots accepted as exact actual opcodefetch evidence; artificial provenance retained. Representative latergame/terminal checklist reviewed; no new gameplay required for finite structural batch.",
+      "evidence": [
+        "analysis/redirect/r1-node-and-residual/HANDOFF.md",
+        "analysis/disassembly-002/code-review.json"
+      ]
+    },
+    {
+      "round": 3,
+      "phase": "disassembly",
+      "result": "Reviewed and reused broad tutorial/artificial underwater,cave04,King17 multi-phase,late17 puzzle,rescue/story/THE END saved visits. Static mixed-script/native/container review had no unresolved runtime discriminator requiring replay; no new observed/natural execution.",
+      "evidence": [
+        "analysis/disassembly-003/connected-contract-review.md",
+        "analysis/redirect/r1-node-and-residual/HANDOFF.md"
+      ]
+    }
+  ],
+  "review_history": [
+    {
+      "round": 4,
+      "phase": "redirect",
+      "attempt": "r4-script-boundary",
+      "result": "Reused broad throughTHEEND progression; new static script-pattern discriminator; no runtime replay or arbitraryPC experiment",
+      "evidence": [
+        "analysis/redirect/r4-script-boundary/HANDOFF.md"
+      ]
+    },
+    {
+      "round": 5,
+      "phase": "redirect",
+      "attempt": "r5-return-contract-review",
+      "result": "Reused representative tutorial,underwater,cave04,King17 multiphase,late17,rescue/story/THE END checklist. No outstanding practical milestone or distinct runtime discriminator for five isolated return-byte roles; no replay.",
+      "evidence": [
+        "analysis/redirect/r1-node-and-residual/HANDOFF.md",
+        "analysis/redirect/r5-return-contract-review/rejection-review.md"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "workflow_status": "terminal_incomplete",
+  "rom_classification_complete": false,
+  "classified": 262155,
+  "total": 262160,
+  "unknown": 5,
+  "unknown_offsets": [
+    67407,
+    68116,
+    70230,
+    86712,
+    120565
+  ],
+  "exact_percentage": 99.9980927677754,
+  "checkpoint": "maps/pass-005.json",
+  "map_sha256": "9ed86bef8db138cb02991ec2a718f4febe4c972a607a962a32558b900843601a",
+  "rom_sha256": "59f5a7d9bd4f89875465ecb55a7ef20abd3417f4c6a72b66da50652adb021a58",
+  "source_sha256": "1eb0117282ff62bb8d9bd57521e9e3bf9e4e7fc32d0ac8230a754ba52cc3aba3",
+  "map_validation": {
+    "ok": true
+  },
+  "store_validation": {
+    "ok": true
+  },
+  "byte_identical": true,
+  "reading_copy_exact": true,
+  "editorial_status": {
+    "complete": true,
+    "reviewed_regions": 1868,
+    "total_regions": 1868,
+    "reviewed_units": 2032,
+    "total_units": 2032,
+    "editorial_audit": true,
+    "reasons": []
+  },
+  "rejection_review": "analysis/redirect/r5-return-contract-review/rejection-review.md",
+  "coordinator_rejection_review_accepted": true,
+  "archive_executed": false,
+  "archive_options": "archive-options.json"
+}

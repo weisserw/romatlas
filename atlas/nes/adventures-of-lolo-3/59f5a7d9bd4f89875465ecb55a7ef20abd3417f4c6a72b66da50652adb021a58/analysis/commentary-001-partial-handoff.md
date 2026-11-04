@@ -1,0 +1,11 @@
+# Round1 commentary — resumable, incomplete
+
+**Continue commentary. Do not advance to redirect.** Input pass-001 unchanged; independent commentary/source exists and frozen before/baseline/state preserved. Current classified-source readability is incomplete, separately from62.26% ROM classification.
+
+Mechanics/source review covers all classified code before physical98672:6200 of13404 code bytes. All18733 Data/131072 Image bytes have consumer/format or uniform-run uncertainty notes;193 unknown gaps/98951 bytes have honest physical-boundary notes. Source explanations include audio voices/stream bytecode, password UI/bit decoding, room state, player/entity collision, packed maps, palette scheduling and sprite ordering. RAM/hardware symbols retain exact sizes; reviewed branch/call targets resolve only with matching physical bank and CPU alias. Existing review credit should be reused.
+
+Remaining373 code intervals/7204 bytes are exact in [frontier](commentary-001-frontier.json). Begin physical98672..98681 then103703 onward (bank12), then fixed-bank14/15 code through131078. Bank12 source through106147 was provisionally read but not annotated/credited; complete that review and continue. Reviewed-region secondary entry names/dependencies need a final consistency check after fixed-bank helper meanings are known. No current-source gate or editorial success claimed.
+
+Fresh [partial verification](commentary-001-partial-verification.json) `ok=true,byte_identical=true`; source hash`f6764a50ac6d5ad14aea61604a3890ad690781dba6c0fbf2d81e5640c9047399`. Reading copy commentary/reading-after.asm refreshed. [Scope](commentary-001-scope.json) marks readability_complete=false. Map matches frozen pass001; input hash unchanged. No final audit, cleanup, publication or toolkit changes.
+
+Source edits are authoritative; analysis/commentary-001-*.py are retained batch records, **not idempotent regeneration commands**. Do not rerun them over already annotated source. Final verification/reading refresh after remaining edits is required. Concrete map-node/entrance lead from bank12 reading is in commentary/uncertainties.md; this does not authorize skipping pending commentary. Toolkit issue NES-DOC-001 unchanged and nonblocking.

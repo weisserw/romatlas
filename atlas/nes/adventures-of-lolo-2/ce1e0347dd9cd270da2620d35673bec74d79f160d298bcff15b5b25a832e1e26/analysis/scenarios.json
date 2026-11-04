@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "round": 1,
+  "milestones": [
+    {
+      "milestone": "Initial puzzle",
+      "status": "visited",
+      "route": "explore1.py -> explore2.py -> explore3.py",
+      "observed_result": "Rendered room; directional movement and A/B exercised; accepted instruction fetches captured.",
+      "evidence": [
+        "analysis/round-001/contexts-play.json"
+      ]
+    },
+    {
+      "milestone": "Floor 5",
+      "status": "visited",
+      "route": "analysis/round-001/late.py password HRKJ",
+      "observed_result": "Rendered room; directional movement and A/B exercised; accepted instruction fetches captured.",
+      "evidence": [
+        "analysis/round-001/contexts-late.json"
+      ]
+    },
+    {
+      "milestone": "Floor 10",
+      "status": "visited",
+      "route": "analysis/round-001/late.py password QTDV",
+      "observed_result": "Rendered room; directional movement and A/B exercised; accepted instruction fetches captured.",
+      "evidence": [
+        "analysis/round-001/contexts-late.json"
+      ]
+    },
+    {
+      "milestone": "Final boss",
+      "status": "visited",
+      "route": "analysis/round-001/late.py password VQTD",
+      "observed_result": "Rendered room; directional movement and A/B exercised; accepted instruction fetches captured.",
+      "evidence": [
+        "analysis/round-001/contexts-late.json"
+      ]
+    },
+    {
+      "milestone": "Expert puzzle",
+      "status": "visited",
+      "route": "analysis/round-001/late.py password PROA",
+      "observed_result": "Rendered room; directional movement and A/B exercised; accepted instruction fetches captured.",
+      "evidence": [
+        "analysis/round-001/contexts-late.json"
+      ]
+    },
+    {
+      "milestone": "Ending",
+      "status": "visited",
+      "route": "ending.py: boss snapshot, finish current instruction, PC=$9B3F supported clear-transition entry; $78=50,$79=10,$B3=1.",
+      "observed_result": "Artificial entry produced castle/rescue ending montage through 3180 frames. Natural boss defeat and terminal credits unverified.",
+      "evidence": [
+        "analysis/round-001/ending1380.png",
+        "analysis/round-001/ending3180.png",
+        "analysis/round-001/contexts-ending.json",
+        "analysis/round-001/contexts-credits.json"
+      ]
+    }
+  ],
+  "reviews": [
+    {
+      "round": 2,
+      "phase": "disassembly",
+      "evidence": "analysis/round-002/independent-review.md",
+      "result": "Prior broad progression routes and retained contexts reviewed; later floors, boss and expert stage visited, artificial final-clear montage confirmed previously. No changed question justifies unchanged replay.",
+      "unvisited": [
+        {
+          "milestone": "Natural boss defeat and terminal credits endpoint",
+          "status": "deferred",
+          "reason": "Artificial final-clear route already visits ending montage; no new supported progression transition or classification-relevant runtime question; natural defeat remains unresolved."
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "phase": "redirect",
+      "evidence": "analysis/redirect/round002-residual/avenues.md",
+      "result": "Reviewed existing later-stage/boss/expert/ending attempts and terminal unconditional hold source. Existing clear-transition shortcut already supplies artificial ending; no supported subsequent transition to accelerate, no unchanged runtime replay.",
+      "unvisited": [
+        {
+          "milestone": "Natural boss defeat",
+          "status": "deferred",
+          "reason": "Prior boss movement/shots and successful artificial clear-transition suffice for broad representative visit; no new concrete route or structural question."
+        },
+        {
+          "milestone": "Separate credits after final hold",
+          "status": "unavailable",
+          "reason": "Recovered ending path enters unconditional render/animation hold; no supported subsequent timer/input transition. Distinct later screen not claimed."
+        }
+      ]
+    }
+  ]
+}

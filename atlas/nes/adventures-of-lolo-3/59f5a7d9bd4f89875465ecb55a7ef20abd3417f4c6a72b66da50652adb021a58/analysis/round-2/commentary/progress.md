@@ -1,0 +1,15 @@
+# Commentary progress
+
+Prepared verified baseline. All semantic review entries are pending.
+
+Round1 active, input pass-001. Reviewed mechanics in code fragments physical457..2317 and20812..23618; descriptive region names and behavior prose installed. Remaining code43407..131072, data/image/unknown boundary notes, branch/RAM symbol consistency and second review of initial edits remain pending. This is a resumable frontier, not a successful handoff.
+
+Coherent batch2: reviewed code6200/13404 bytes; pending7204 bytes across373 code entries, exact physical intervals analysis/commentary-001-frontier.json. All classified data/image and unknown slices have source notes and scaffold review credit. Review credit is reusable; complete pending code and changed-dependency checks before declaring current-source readability. Final editorial audit remains pending.
+
+Source bank0 covers audio stream allocation/timing/commands/mixing; bank2 password keyboard/special match/ordinary decode/checksum; bank5 selector/counter fragments; banks10/11 puzzle state, movement/collision, entity/map initialization, palette scheduling and two-sprite drawing. Consistent hardware/audio/password/puzzle RAM symbols, meaningful region names and bank-safe branch/call targets installed. Unknown game meanings use mechanical terms and explicit limits. Fresh verification byte_identical=true, source SHA256f6764a50ac6d5ad14aea61604a3890ad690781dba6c0fbf2d81e5640c9047399; reading-after refreshed. Bank12 provisional reading98672..106147 has no review credit yet; continue source commentary there before fixed banks14/15. Do not run final audit or redirect on this partial result.
+
+Round1 full current-source readability complete. Continued the same phase through all373 remaining intervals/7204 code bytes: bank12 map actor history/collision/node entry, fixed-bank actor allocation/scheduler/bytecode, sprite clipping, PPU graphics decoding/ring transfers, controllers/NMI, MMC1 serial helpers/reset, palettes/attributes/dialogue and room map decompression. Installed meaningful interior entry labels and bank-safe call/branch names; consistent actor/script/PPU scratch/state aliases preserve RAM reuse. Revisited earlier helper-dependent interpretations, including dialogue-driven actor removal, CHR/graphics setup and controller bit order. Source includes explicit inline-return-address contracts and local uncertainty.
+
+889/889 scaffold entries reviewed, zero pending: Code13404,Data18733,Image131072,Unknown98951 boundary bytes. Unknown source remains binary slices. Earlier partial counts/frontier are historical, superseded by analysis/commentary-001-final-frontier.json. No classified source gaps deferred. Final editorial_audit remains pending; no final audit run.
+
+Fresh final byte-identical verification is commentary/verification.json and analysis/commentary-001-verification.json; source SHA25683d224cc948e45460fdc28d4b585b0bbd187a35db3e139d3e5cca611471a57b5. Reading-after refreshed. ROM/map identities unchanged. Concrete redirect entrance predicate and bounds are in uncertainties.md. No ROM/toolkit change, archive, deletion, cleanup or publication.

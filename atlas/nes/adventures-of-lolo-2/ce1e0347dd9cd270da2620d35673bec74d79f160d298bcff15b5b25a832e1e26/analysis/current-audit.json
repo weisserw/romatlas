@@ -1,0 +1,93 @@
+{
+  "orchestration_status": "complete; justified terminal incomplete ROM",
+  "whole_rom_classification_complete": false,
+  "classified": 65551,
+  "total": 65552,
+  "unknown": 1,
+  "requirements": [
+    {
+      "requirement": "Sequential separate phase workers and resumable progress",
+      "evidence": [
+        "analysis/progress.md",
+        "analysis/coordinator-audit.md",
+        "analysis/round-002-disassembly-handoff.md",
+        "analysis/round-002-commentary-handoff.md",
+        "analysis/redirect/round002-residual/handoff.md"
+      ],
+      "status": "verified"
+    },
+    {
+      "requirement": "Justified terminal incomplete after primary rejection review",
+      "evidence": [
+        "analysis/redirect/round002-residual/rejection-review.md",
+        "analysis/redirect/round002-residual/reference-review.json",
+        "analysis/redirect/round002-residual/unknown-ledger.json",
+        "analysis/coordinator-audit.md"
+      ],
+      "status": "verified"
+    },
+    {
+      "requirement": "Current-source readability and final editorial/fidelity acceptance",
+      "evidence": [
+        "commentary/review.json",
+        "commentary/editorial-audit.md",
+        "commentary/audit.json",
+        "commentary/reading-after.asm",
+        "analysis/round-002-commentary-scope.json"
+      ],
+      "status": "verified"
+    },
+    {
+      "requirement": "Broad progression and honest limits",
+      "evidence": [
+        "analysis/scenarios.json",
+        "analysis/gameplay.md",
+        "analysis/redirect/round002-residual/avenues.md"
+      ],
+      "status": "verified"
+    },
+    {
+      "requirement": "ROM invariant, exact residual, map validity and configured binary",
+      "evidence": [
+        "analysis/final-invariants.json",
+        "analysis/round-002-disassembly-reviewed-verification.json",
+        "workspace.json"
+      ],
+      "status": "verified"
+    },
+    {
+      "requirement": "Archive document contract and exhaustive explicit selection without execution",
+      "evidence": [
+        "archive-options.json",
+        "analysis/archive-document-audit.json"
+      ],
+      "status": "verified"
+    },
+    {
+      "requirement": "Final checkpoint, limitations and resumable future reopening",
+      "evidence": [
+        "analysis/terminal-handoff.md",
+        "analysis/leads.json",
+        "analysis/toolkit-issues.md"
+      ],
+      "status": "verified"
+    }
+  ],
+  "archive_execution": false,
+  "cleanup": false,
+  "publication": false,
+  "toolkit_edits": false,
+  "final_editorial_audit": {
+    "byte_identical": true,
+    "ok": true,
+    "rom_sha256": "ce1e0347dd9cd270da2620d35673bec74d79f160d298bcff15b5b25a832e1e26",
+    "source_sha256": {
+      "game.asm": "d4f18bf8710a41a77bb6080ab6df23569efc1c10f3d447840f7771dfda78b989"
+    },
+    "reviewed_regions": 5694,
+    "reviewed_units": 947,
+    "editorial_audit": true
+  },
+  "document_count": 30,
+  "unaccounted_markdown": []
+}
