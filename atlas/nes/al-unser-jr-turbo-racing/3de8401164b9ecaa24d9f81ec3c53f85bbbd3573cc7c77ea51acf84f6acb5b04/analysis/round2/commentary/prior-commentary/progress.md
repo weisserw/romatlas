@@ -1,0 +1,13 @@
+# Round 1 commentary — current-source readability complete
+
+Checkpoint **pass-001**. Source readability covers all 335 classified code intervals (8,914 bytes), all 28 Data intervals, the CHR Image interval, and explanatory boundaries for all 154 Unknown intervals. The 518-entry physical review scaffold is preserved. No classified-source readability ranges remain pending. Whole-ROM classification remains 158,102 / 262,160 bytes (60.31%); 104,058 bytes remain unknown.
+
+The complete baseline source was read and brought to a consistent naming/comment standard. Source now has 391 explicit mechanical routine/control-flow explanations and 292 exact-value RAM, hardware, mapper and consumed-table aliases. Examples include audio compatibility arbitration and counted stream repeats; menu selection and PPU text escapes; four-frame race slices and sixteen-phase HUD dispatch; speed integration, course-position wrap, standings comparisons, road geometry, OAM composition and MMC1 serialization. Unknown game-specific meanings use neutral mechanical names and nearby uncertainty explanations. Existing classifications were preserved, including the disputed one-byte audio control lookup.
+
+Buildable source: source/game.asm. Reading copy: reading-after.asm. The current source has 7,286 lines; before/ and reading-before.asm remain frozen. Draft/application scripts and placed-note inventory are retained in analysis/round1/commentary/. These scripts recreate this round's edits from the frozen baseline; do not use them over independently evolved future commentary without rebasing.
+
+Fresh final verification: verification.json reports byte_identical=true and original ROM SHA256 3de8401164b9ecaa24d9f81ec3c53f85bbbd3573cc7c77ea51acf84f6acb5b04. Source SHA256 de8cd4ad93d191c79956d9d417a28830452b8c5ae8a923650b3edba9030e9c57. Reading copy refreshed after final corrections. analysis/round1/commentary/scope-result.json records scope and hashes. Both phase-1 state and current map still match their frozen commentary baselines exactly (fded0bf4e573c67d93860eaede594282b2640f885e4c126a298395b85bac2fda).
+
+Unresolved questions are in uncertainties.md and analysis/round1-commentary-handoff.md. They include PRG-RAM upload origins; course/transition latching; individual scene flag meanings; timing/format conventions; CHR roles; and the localized Code-versus-audio-table question at physical 83315. None represents skipped current classified-source prose. No new disassembly, gameplay replay or toolkit changes occurred. No toolkit issues found. Final editorial/archive audit remains pending and was not run.
+
+Storage check at handoff: approximately 9.2 GiB available; scratch is 96 KiB. No cleanup/deletion performed.

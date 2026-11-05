@@ -1,0 +1,464 @@
+{
+  "ok": true,
+  "scope": "Current physical classification accounting, annotations/views, source/ROM/checkpoint identity, full editorial metadata and Markdown selection; structural stopping rationale independently reviewed in coordinator-terminal-review.md.",
+  "terminal_outcome": "incomplete ROM classification; coordinator workflow complete",
+  "rom_sha256": "314e10b3b99f17b217d19921a202ac3a6b78eb024ffab3c8e3ad82ec6aaf41dd",
+  "configured_binary_sha256": "8ff56b0b1cf8d2a3aca5430c70d34280ae3db36fc6774919062db4ea63843f82",
+  "classified": 131081,
+  "total": 131088,
+  "unknown": 7,
+  "classification_percent": 99.99466007567436,
+  "kinds": {
+    "Data": 81421,
+    "Code": 48860,
+    "Text": 800
+  },
+  "unknown_intervals": [
+    {
+      "offset": 29245,
+      "end": 29246,
+      "hex": "60"
+    },
+    {
+      "offset": 89979,
+      "end": 89980,
+      "hex": "60"
+    },
+    {
+      "offset": 131015,
+      "end": 131020,
+      "hex": "08 60 08 60 51"
+    }
+  ],
+  "checkpoint": "pass-014",
+  "map_sha256": "d4c1fa5c4f103e6477d125538ad4d2cd792e42a5fb8242a5c89f153d242b8ba4",
+  "source_sha256": {
+    "game.asm": "a86f667a5b3c00dd4154bfa998e51b0cc440c1be561d5f4419dea63c1a577ba2",
+    "symbols.inc": "0d7c0aaccf6b067717da007677e93a01c9716170b5513b64f3f96fae6b535398"
+  },
+  "reading_sha256": "3137077f37fc8a80c4ac6d57fd56c23ccdfca61ae2755903bd22a56834256984",
+  "review_regions": 5714,
+  "review_unit_records": 5564,
+  "source_fidelity": {
+    "byte_identical": true,
+    "ok": true,
+    "rom_sha256": "314e10b3b99f17b217d19921a202ac3a6b78eb024ffab3c8e3ad82ec6aaf41dd",
+    "source_sha256": {
+      "game.asm": "a86f667a5b3c00dd4154bfa998e51b0cc440c1be561d5f4419dea63c1a577ba2",
+      "symbols.inc": "0d7c0aaccf6b067717da007677e93a01c9716170b5513b64f3f96fae6b535398"
+    },
+    "reviewed_regions": 5714,
+    "reviewed_units": 5564,
+    "editorial_audit": true
+  },
+  "archive_selection": {
+    "contract_source": "/root/romatlas/scripts/archive.py",
+    "contract_sha256": "9dd430235e3f3f48dd345c90bc0d21a42456bed757307f090c588d5c28810bd3",
+    "options_sha256": "af81bcfa2aebbaa6eee464b6e0dafae6f8eaa487ac54630bb962349f6df89ca0",
+    "additional_documents": 65,
+    "omitted_documents": 18,
+    "markdown_inventory_count": 98,
+    "unaccounted": [],
+    "missing_selected": [],
+    "selection_overlap": [],
+    "archive_executed": false,
+    "cleanup_executed": false,
+    "inventory": [
+      {
+        "path": "analysis/archive-document-selection.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/completion-audit.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/coordinator-audit.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/coordinator-rejection-challenge.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/coordinator-terminal-review.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/final-editorial/20261105-acceptance/before/AGENTS.md",
+        "disposition": "recognized before/source subtree exclusion"
+      },
+      {
+        "path": "analysis/final-editorial/20261105-acceptance/before/progress.md",
+        "disposition": "recognized before/source subtree exclusion"
+      },
+      {
+        "path": "analysis/final-editorial/20261105-acceptance/before/prompt.md",
+        "disposition": "recognized before/source subtree exclusion"
+      },
+      {
+        "path": "analysis/final-editorial/20261105-acceptance/before/uncertainties.md",
+        "disposition": "recognized before/source subtree exclusion"
+      },
+      {
+        "path": "analysis/final-editorial/20261105-acceptance/before/workflow.md",
+        "disposition": "recognized before/source subtree exclusion"
+      },
+      {
+        "path": "analysis/final-editorial/20261105-acceptance/editorial-audit.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/final-editorial/20261105-acceptance/handoff.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/gameplay.md",
+        "disposition": "default final document"
+      },
+      {
+        "path": "analysis/investigation.md",
+        "disposition": "default final document"
+      },
+      {
+        "path": "analysis/progress.md",
+        "disposition": "default final document"
+      },
+      {
+        "path": "analysis/redirect/r1-20261105/handoff.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/redirect/r1-20261105/research.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/redirect/r1-audio-20261105/handoff.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/redirect/r1-audio-20261105/research.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/redirect/r2-20261105/deferred-review.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/redirect/r2-20261105/handoff.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/redirect/r2-20261105/research.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/redirect/r3-20261105/deferred-review.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/redirect/r3-20261105/handoff.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/redirect/r3-20261105/research.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/redirect/r4-20261105/combined-constraint-correction.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/redirect/r4-20261105/frontier.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/redirect/r4-20261105/handoff.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/redirect/r4-20261105/rejection-review.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/redirect/r4-20261105/terminal-draft-handoff.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/redirect/r4-20261105-supplement1/combined-constraint-correction.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/redirect/r4-20261105-supplement1/handoff.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/redirect/r4-20261105-supplement1/mixed-tail-review.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/redirect/r5-20261105-prefix-review/editorial-issues.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/redirect/r5-20261105-prefix-review/handoff.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/redirect/r5-20261105-prefix-review/progress.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/redirect/r5-20261105-prefix-review/rejection-review.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round-2/commentary-pass007-20261105/handoff.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round-2/commentary-pass007-20261105/previous-commentary/AGENTS.md",
+        "disposition": "explicit omission: byte-identical duplicate phase instruction"
+      },
+      {
+        "path": "analysis/round-2/commentary-pass007-20261105/previous-commentary/progress.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round-2/commentary-pass007-20261105/previous-commentary/prompt.md",
+        "disposition": "explicit omission: byte-identical duplicate phase instruction"
+      },
+      {
+        "path": "analysis/round-2/commentary-pass007-20261105/previous-commentary/uncertainties.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round-2/commentary-pass007-20261105/previous-commentary/workflow.md",
+        "disposition": "explicit omission: byte-identical duplicate phase instruction"
+      },
+      {
+        "path": "analysis/round-2/commentary-pass007-correction-20261105/handoff.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round-2/commentary-pass007-correction-20261105/progress.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round-3/commentary-pass012-20261105/final-uncertainties.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round-3/commentary-pass012-20261105/handoff.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round-3/commentary-pass012-20261105/previous-commentary/AGENTS.md",
+        "disposition": "explicit omission: byte-identical duplicate phase instruction"
+      },
+      {
+        "path": "analysis/round-3/commentary-pass012-20261105/previous-commentary/progress.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round-3/commentary-pass012-20261105/previous-commentary/prompt.md",
+        "disposition": "explicit omission: byte-identical duplicate phase instruction"
+      },
+      {
+        "path": "analysis/round-3/commentary-pass012-20261105/previous-commentary/uncertainties.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round-3/commentary-pass012-20261105/previous-commentary/workflow.md",
+        "disposition": "explicit omission: byte-identical duplicate phase instruction"
+      },
+      {
+        "path": "analysis/round-3/commentary-pass012-correction-20261105/handoff.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round-3/commentary-pass012-correction-20261105/preliminary-commentary/AGENTS.md",
+        "disposition": "explicit omission: byte-identical duplicate phase instruction"
+      },
+      {
+        "path": "analysis/round-3/commentary-pass012-correction-20261105/preliminary-commentary/progress.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round-3/commentary-pass012-correction-20261105/preliminary-commentary/prompt.md",
+        "disposition": "explicit omission: byte-identical duplicate phase instruction"
+      },
+      {
+        "path": "analysis/round-3/commentary-pass012-correction-20261105/preliminary-commentary/uncertainties.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round-3/commentary-pass012-correction-20261105/preliminary-commentary/workflow.md",
+        "disposition": "explicit omission: byte-identical duplicate phase instruction"
+      },
+      {
+        "path": "analysis/round-4/commentary-pass013-20261105/handoff.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round-4/commentary-pass013-20261105/previous-commentary/AGENTS.md",
+        "disposition": "explicit omission: byte-identical duplicate phase instruction"
+      },
+      {
+        "path": "analysis/round-4/commentary-pass013-20261105/previous-commentary/progress.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round-4/commentary-pass013-20261105/previous-commentary/prompt.md",
+        "disposition": "explicit omission: byte-identical duplicate phase instruction"
+      },
+      {
+        "path": "analysis/round-4/commentary-pass013-20261105/previous-commentary/uncertainties.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round-4/commentary-pass013-20261105/previous-commentary/workflow.md",
+        "disposition": "explicit omission: byte-identical duplicate phase instruction"
+      },
+      {
+        "path": "analysis/round-4/commentary-pass013-20261105/progress.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round-4/commentary-pass013-correction-20261105/handoff.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round-4/commentary-pass013-correction-20261105/preliminary-commentary/AGENTS.md",
+        "disposition": "explicit omission: byte-identical duplicate phase instruction"
+      },
+      {
+        "path": "analysis/round-4/commentary-pass013-correction-20261105/preliminary-commentary/progress.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round-4/commentary-pass013-correction-20261105/preliminary-commentary/prompt.md",
+        "disposition": "explicit omission: byte-identical duplicate phase instruction"
+      },
+      {
+        "path": "analysis/round-4/commentary-pass013-correction-20261105/preliminary-commentary/uncertainties.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round-4/commentary-pass013-correction-20261105/preliminary-commentary/workflow.md",
+        "disposition": "explicit omission: byte-identical duplicate phase instruction"
+      },
+      {
+        "path": "analysis/round-5/commentary-pass013-preserved/commentary/AGENTS.md",
+        "disposition": "explicit omission: byte-identical duplicate phase instruction"
+      },
+      {
+        "path": "analysis/round-5/commentary-pass013-preserved/commentary/progress.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round-5/commentary-pass013-preserved/commentary/prompt.md",
+        "disposition": "explicit omission: byte-identical duplicate phase instruction"
+      },
+      {
+        "path": "analysis/round-5/commentary-pass013-preserved/commentary/uncertainties.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round-5/commentary-pass013-preserved/commentary/workflow.md",
+        "disposition": "explicit omission: byte-identical duplicate phase instruction"
+      },
+      {
+        "path": "analysis/round-5/commentary-pass014/handoff.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round1/commentary/redirect-questions.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round1/commentary-handoff.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round1/handoff.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round1/redirect-handoff.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round2/handoff.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round2/review.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round3/handoff.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round3/review.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round4/handoff.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round4/review.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round5/commentary-handoff.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round5/handoff.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/round5/review.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/terminal-handoff.md",
+        "disposition": "explicit preservation: final or historical result/handoff"
+      },
+      {
+        "path": "analysis/toolkit-issues.md",
+        "disposition": "recognized special exclusion"
+      },
+      {
+        "path": "commentary/AGENTS.md",
+        "disposition": "recognized special exclusion"
+      },
+      {
+        "path": "commentary/editorial-audit.md",
+        "disposition": "default final document"
+      },
+      {
+        "path": "commentary/progress.md",
+        "disposition": "default final document"
+      },
+      {
+        "path": "commentary/prompt.md",
+        "disposition": "recognized special exclusion"
+      },
+      {
+        "path": "commentary/uncertainties.md",
+        "disposition": "default final document"
+      },
+      {
+        "path": "commentary/workflow.md",
+        "disposition": "recognized special exclusion"
+      }
+    ]
+  },
+  "archive_executed": false,
+  "cleanup_executed": false,
+  "published": false
+}

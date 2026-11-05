@@ -1,0 +1,1 @@
+Ready13byte batch after coordinator-triggered corrected inference. See combined-constraint-correction.md/handoff.md. No terminal gate requested; independent classification pending. Accepted unknown29, predicted16.

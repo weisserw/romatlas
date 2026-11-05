@@ -1,0 +1,9 @@
+# Final editorial assessment
+
+Reused valid physical-range whole-source review from rounds01/02 and verified round03 carry; inspected new utility/template source and changed mapper/inline/credits contracts, current uncertainties, independent structural acceptance and final redirect closure. Corrected stale round02 counts and resolved-residual wording in current uncertainty summary. Descriptive source symbols and mechanical explanations cover all1135 regions/252 units; semantic/natural-use uncertainty remains explicit. No remaining naming/comment backlog or known editorial defect; final byte-identical audit required.
+
+The accepted map is maps/round03-disassembly-accepted.json, not the earlier old-map checkpoint. Source SHA256 973e08a3d00ee621678d2877f13ca0c55b52b5bc66da5a381d3cf2812fb1ce10. The reset templates describe stored structure; after MMC1 reset the lower selected pair remains and upper banks become14/15, with actual nextFFF9=FF. No working reset route, natural game clear, original semantic layout or full hardware compatibility is claimed.
+
+Review evidence: analysis/handoff-round03-commentary.md; analysis/round03-review/review.md; analysis/handoff-round03-redirect.md; analysis/redirect/round03-closure-20261105/findings.md. All current-source units retain valid review credit; no whole-source reread was required on unchanged ranges. Updated commentary/uncertainties.md removes stale round02 counts/R01-L9 residual wording while preserved historical commentary and lead attempts remain intact.
+
+Final audit found and repaired review metadata: source locations are relative to commentary/source (removed redundant source/ prefix); existing252 meaningful physical units are now attached to each intersecting code region as the auditor requires. This changes review links only, preserving actual summaries/physical unit ranges and assembly. analysis/final-review-link-repair.json records coverage.

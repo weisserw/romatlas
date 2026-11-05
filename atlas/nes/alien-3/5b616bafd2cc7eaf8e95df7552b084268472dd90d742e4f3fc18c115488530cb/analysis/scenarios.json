@@ -1,0 +1,323 @@
+{
+  "version": 1,
+  "scenarios": [
+    {
+      "id": "R1-startup",
+      "milestone": "copyright logos and full title (attract mode)",
+      "status": "visited",
+      "route": [
+        {
+          "step_frames": 180,
+          "trace": true,
+          "timeout_ms": 30000,
+          "result": "timeout at frame160"
+        },
+        {
+          "button": "start",
+          "pressed": true,
+          "frames": 30
+        },
+        {
+          "button": "start",
+          "pressed": false
+        },
+        {
+          "step_frames": 180
+        },
+        {
+          "step_frames": 300
+        },
+        {
+          "trace": false,
+          "step_frames": 300
+        },
+        {
+          "button": "start",
+          "pressed": true,
+          "frames": 2
+        },
+        {
+          "button": "start",
+          "pressed": false,
+          "frames": 120
+        },
+        {
+          "step_frames": 600
+        }
+      ],
+      "result": "Full ALIEN3 title at frame1692; earlier inputs during animation did not skip",
+      "evidence": [
+        "analysis/round1/title.ppm",
+        "analysis/round1/menu2.ppm"
+      ],
+      "correction": "Earlier button/pressed input shape was ignored; these routes were natural attract/demo only. No controlled gameplay or cheat validation is established."
+    },
+    {
+      "id": "R1-title-start",
+      "milestone": "options/gameplay entry (attract mode)",
+      "status": "attempted",
+      "route": [
+        {
+          "frame": 1692,
+          "trace": true,
+          "button": "start",
+          "pressed": true,
+          "frames": 2
+        },
+        {
+          "button": "start",
+          "pressed": false,
+          "frames": 20
+        },
+        {
+          "button": "start",
+          "pressed": true,
+          "frames": 2
+        },
+        {
+          "button": "start",
+          "pressed": false,
+          "frames": 30
+        },
+        {
+          "trace": false,
+          "frames": 180
+        },
+        {
+          "frames": 300
+        }
+      ],
+      "result": "Black screen and busy wait around CPU $80D7 in banks10,11,14,15; investigating NMI countdown $3D before shortcut",
+      "evidence": [
+        "analysis/round1/options.snapshot.json",
+        "analysis/round1/options3.ppm"
+      ],
+      "correction": "Earlier button/pressed input shape was ignored; these routes were natural attract/demo only. No controlled gameplay or cheat validation is established."
+    },
+    {
+      "id": "R1-controlled-level1",
+      "milestone": "options, level1 mission1, move/fire/jump/weapon/pause",
+      "status": "visited",
+      "route": "Correct buttons-array Start pulse at frame2518; wait120 options; Start 2 held/2 released; wait390 mission/gameplay; buttons right+b20 frames, release, A2/2, Select2/2, Start2/2.",
+      "evidence": [
+        "analysis/round1/actual-menu.ppm",
+        "analysis/round1/game-controlled.ppm",
+        "analysis/round1/controlled-pause.snapshot.json"
+      ],
+      "result": "Actual level1 input response and pause observed; bank slots[0,13,14,15]."
+    },
+    {
+      "id": "R1-natural-skip",
+      "milestone": "level1 mission2",
+      "status": "visited",
+      "route": "From controlled pause after debounce: Left Right Up Down Left Right A B A B, each8held+8released; wait190 frames; then180 frames.",
+      "result": "$A9 reaches10; $A8 increments0->1; level2 transition and replayable snapshot saved. Two-frame-tap attempt rejected due5-frame debounce.",
+      "evidence": [
+        "analysis/round1/pause-decode.json",
+        "analysis/round1/skip-held.snapshot.json",
+        "analysis/round1/level2-real.snapshot.json"
+      ]
+    },
+    {
+      "id": "R1-guardian1-first",
+      "milestone": "guardian shortcut",
+      "status": "attempted",
+      "patch": {
+        "snapshot": "analysis/round1/controlled-pause.snapshot.json",
+        "space": "ram",
+        "address": 168,
+        "bytes": [
+          1,
+          9
+        ]
+      },
+      "result": "B8+release8 during initial pause debounce did not advance; $A8 merely patched1, no guardian visit claimed.",
+      "evidence": [
+        "analysis/round1/guardian1.snapshot.json"
+      ]
+    },
+    {
+      "id": "R1-guardian1",
+      "milestone": "stageindex2 first guardian",
+      "status": "visited",
+      "patch": {
+        "snapshot": "analysis/round1/pause-shortcut.snapshot.json",
+        "space": "ram",
+        "address": 168,
+        "bytes": [
+          1,
+          9
+        ]
+      },
+      "route": "Release all after import; trace on; B8 held+8 released;12frames; trace off;360frames; trace on right+B12, A+B8, release.",
+      "result": "Transition incremented stage1->2; distinct guardian arena and boss present; movement/fire/jump executed. Artificial-state only. Effective PRG[0,13,14,15].",
+      "evidence": [
+        "analysis/round1/guardian1-accepted.snapshot.json",
+        "analysis/round1/guardian1-action.ppm"
+      ]
+    },
+    {
+      "id": "R1-stage8",
+      "milestone": "zero-based stage8",
+      "status": "visited",
+      "patch": {
+        "snapshot": "analysis/round1/pause-shortcut.snapshot.json",
+        "space": "ram",
+        "address": 168,
+        "bytes": [
+          7,
+          9
+        ]
+      },
+      "route": "Release all; B8held/8released;12frames;360frames trace-off; trace-on left+B12 then A2/2; release.",
+      "result": "Initialized distinct later arena/map and action execution; artificial-state only. Guardian boss encounter itself not established if offscreen. Effective PRG[4,13,14,15].",
+      "evidence": [
+        "analysis/round1/guardian3.snapshot.json",
+        "analysis/round1/guardian3-action.ppm"
+      ]
+    },
+    {
+      "id": "R1-stage9",
+      "milestone": "zero-based stage9",
+      "status": "visited",
+      "patch": {
+        "snapshot": "analysis/round1/pause-shortcut.snapshot.json",
+        "space": "ram",
+        "address": 168,
+        "bytes": [
+          8,
+          9
+        ]
+      },
+      "route": "Release all; B8held/8released;12frames;360frames trace-off; trace-on right+B12 then A2/2 Select2/2; release.",
+      "result": "Initialized distinct later arena/map and action execution; artificial-state only. Guardian boss encounter itself not established if offscreen. Effective PRG[6,13,14,15].",
+      "evidence": [
+        "analysis/round1/late-normal.snapshot.json",
+        "analysis/round1/late-normal-action.ppm"
+      ]
+    },
+    {
+      "id": "R1-stage11",
+      "milestone": "zero-based stage11",
+      "status": "visited",
+      "patch": {
+        "snapshot": "analysis/round1/pause-shortcut.snapshot.json",
+        "space": "ram",
+        "address": 168,
+        "bytes": [
+          10,
+          9
+        ]
+      },
+      "route": "Release all; B8held/8released;12frames;360frames trace-off; trace-on left+B12 then A+B8; release.",
+      "result": "Initialized distinct later arena/map and action execution; artificial-state only. Guardian boss encounter itself not established if offscreen. Effective PRG[6,13,14,15].",
+      "evidence": [
+        "analysis/round1/final-guardian.snapshot.json",
+        "analysis/round1/final-guardian-action.ppm"
+      ]
+    },
+    {
+      "id": "R1-ending-skip-invalid",
+      "milestone": "ending via cheat stage12",
+      "status": "attempted",
+      "patch": {
+        "snapshot": "analysis/round1/pause-shortcut.snapshot.json",
+        "space": "ram",
+        "address": 168,
+        "bytes": [
+          11,
+          9
+        ]
+      },
+      "route": "B8/8,12frames,360frames;20traced+300untraced;Start8 and120frames.",
+      "result": "Stage12 written/initialized out-of-domain, purple frame and string loop. Source review: cheat directly JMP E077 bypasses normal CMP#12 ending gate. Therefore no ending reached; corrected test enters normal transition E267.",
+      "evidence": [
+        "analysis/round1/ending-attempt.snapshot.json",
+        "analysis/round1/ending-loop-decode.json",
+        "analysis/round1/terminal-transition-decode.json"
+      ]
+    },
+    {
+      "id": "R1-ending-normal",
+      "milestone": "ordinary completion tail, bonus and ending",
+      "status": "visited",
+      "patch": {
+        "snapshot": "analysis/round1/pause-shortcut.snapshot.json",
+        "ram": [
+          [
+            168,
+            [
+              11
+            ]
+          ],
+          [
+            100,
+            [
+              0
+            ]
+          ],
+          [
+            82,
+            [
+              0
+            ]
+          ]
+        ],
+        "registers": {
+          "pc": 57959,
+          "stack": 255,
+          "p": 32
+        }
+      },
+      "route": "Release all; finish1operation; PC E267 normal level-completion tail, stackFF,p20. Earlier p24 attempt stalled IRQ frame gate. Clear paused$64 and delay$52;20frames trace-on,360off bonus;600off ending;12trace-on.",
+      "result": "WELL DONE bonus accounting then $A8=12 and Ripley escape ending visually confirmed. Artificial-state observation only; natural final exit contract still unresolved. Effective PRG[10,11,14,15].",
+      "evidence": [
+        "analysis/round1/terminal-transition-decode.json",
+        "analysis/round1/ending-normal-unpaused.ppm",
+        "analysis/round1/ending-after-bonus.ppm",
+        "analysis/round1/ending-confirmed.snapshot.json"
+      ]
+    },
+    {
+      "id": "R1-unvisited",
+      "milestone": "other stages, prisoner exits, credits terminal",
+      "status": "deferred",
+      "result": "Representative early, late normal, three guardian indices and ending reached. Remaining exact exit/prisoner mechanics and ending-to-credits termination are ready redirect research; no exhaustive stage permutation required."
+    },
+    {
+      "id": "R1-redirect-final-exit",
+      "milestone": "final guardian exit rectangle to WELL DONE without PC edit",
+      "status": "visited",
+      "route": "Import final-guardian.snapshot.json; release; save clean; patchRAM0420=00,0440=04,0460=08,0480=02,0064=00;12frames then3x120frames.",
+      "result": "Artificial coordinate shortcut reachesE26B fade after12frames, WELL DONE after372frames. Guardian defeat/natural entry not claimed.",
+      "evidence": [
+        "/root/romatlas-batch/5b616bafd2cc7eaf8e95df7552b084268472dd90d742e4f3fc18c115488530cb/workspace/analysis/redirect/r1-20261105-a/exit-test.json",
+        "/root/romatlas-batch/5b616bafd2cc7eaf8e95df7552b084268472dd90d742e4f3fc18c115488530cb/workspace/analysis/redirect/r1-20261105-a/exit-after372.ppm",
+        "/root/romatlas-batch/5b616bafd2cc7eaf8e95df7552b084268472dd90d742e4f3fc18c115488530cb/workspace/analysis/redirect/r1-20261105-a/exit-after372.snapshot.json"
+      ]
+    },
+    {
+      "id": "R1-redirect-escape-ending",
+      "milestone": "escape/ending after coordinate-triggered final completion",
+      "status": "visited",
+      "route": "From exit-after372 snapshot release;6x120frames;12frames traced;6x120frames.",
+      "result": "Artificial completion proceeds through bonus into escape/ending at1092/1824 totalframes; distinct ending mechanics observed.",
+      "evidence": [
+        "/root/romatlas-batch/5b616bafd2cc7eaf8e95df7552b084268472dd90d742e4f3fc18c115488530cb/workspace/analysis/redirect/r1-20261105-a/ending-continuation.json",
+        "/root/romatlas-batch/5b616bafd2cc7eaf8e95df7552b084268472dd90d742e4f3fc18c115488530cb/workspace/analysis/redirect/r1-20261105-a/exit-after1092.ppm",
+        "/root/romatlas-batch/5b616bafd2cc7eaf8e95df7552b084268472dd90d742e4f3fc18c115488530cb/workspace/analysis/redirect/r1-20261105-a/exit-after1824.ppm"
+      ]
+    },
+    {
+      "id": "R1-redirect-terminal-highscore",
+      "milestone": "ending text terminator and high-score return",
+      "status": "visited",
+      "route": "Import ending-confirmed snapshot; release; save clean; patchRAM0098/99=60/95,03C6=31,0370=7,0371=5;12frames traced then5x120frames.",
+      "result": "0716 changes0->1 after reading sourceFF9580, then HIGH SCORE/FINAL SCORE visible after612frames. Artificial cursor edit only; no PC edit.",
+      "evidence": [
+        "/root/romatlas-batch/5b616bafd2cc7eaf8e95df7552b084268472dd90d742e4f3fc18c115488530cb/workspace/analysis/redirect/r1-20261105-a/ending-terminal.json",
+        "/root/romatlas-batch/5b616bafd2cc7eaf8e95df7552b084268472dd90d742e4f3fc18c115488530cb/workspace/analysis/redirect/r1-20261105-a/ending-terminal612.ppm"
+      ]
+    }
+  ]
+}

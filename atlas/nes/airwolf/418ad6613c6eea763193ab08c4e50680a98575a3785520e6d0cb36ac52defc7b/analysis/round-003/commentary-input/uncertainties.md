@@ -1,0 +1,15 @@
+# Commentary uncertainties
+
+Round 002 current-source readability is complete for all 23089 Code bytes, 9678 Data bytes and 131072 Image bytes. The ten unknown spans (17 bytes) have individual source boundary explanations. These questions concern meaning or structural research; no classified source range is deferred. Final editorial acceptance remains pending.
+
+R001/R002: connected rescue/base arrival/departure, objective accounting and mission retry/progression contracts are now classified and explained. Result one commits rescue/base counters; rescued objectives drive mission advancement. Source also explains the service collision callback's deliberate CPU-stack unwind, two distinct state tables, five-byte animation records and temporarily overlaid RAM. Saved artificial service/late-mission evidence remains artificial; these contracts do not claim full natural progression or hardware fidelity.
+
+R003: decimal, screen, actor pose/metasprite, mission map, VM script, sound and music containers now have consumer-backed formats. Remaining uncertainty includes exact perspective coefficient generation, unused/mixed parameter subfields, original actor/class names and pictures, resource units, and overlapping scene palette/animation views. Known formats may cross old physical generic-data partitions; those source descriptions were updated without changing structural records. Generic data with no stronger role retains an honest boundary note.
+
+C001: resolved biased-address interpretation is reflected in source. The four-byte request base is $f17f, but selectors 13..23 address the eleven records at $f1b3..$f1df. The base itself does not need to be a record and may lie in code. Instrument descriptors are a separate twenty-nine-by-eight-byte table at $fb80..$fc68. This is not an unresolved bank conflict for the supported selector domain; arbitrary other selectors are not validated.
+
+The service helper at $ad1a differs from RandomBelowLimit at $ad34: it constructs a single-bit mask, and rejection re-enters the store that replaces its limit. Service uses the evolved LFSR low bit rather than its returned A. Exact mechanics and calling precondition are documented; its original algorithmic intent remains uncertain. This finding does not change its supported Code classification.
+
+The score/name screen calls a CHR-loaded RAM writer at $04f1. Source names the role and states its returning/preserved-bank contract. This does not establish an immutable ROM upload origin or classify RAM as ROM.
+
+Residual structural questions for redirect: isolated $60 bytes at $ad7d/$dafe/$db21/$db2e/$db44; self-jumps at $c0ea..$c0ed and $ceb2..$ceb5; $fa,$60 at $fc68..$fc6a; the apparent instruction prefix at $fc7d..$fc80 conflicting with the established zero-data boundary; and isolated $20 at $fca2. Intervals are half-open. Review strongest local interpretations against the preserved primary evidence and evidence-policy.md; opcode resemblance or missing callers alone does not settle these boundaries. The finite $fc6a fill-loop prefix does not establish a whole returning routine through the following zero run.

@@ -1,0 +1,77 @@
+{
+  "map_validation": {
+    "command": [
+      "/root/romatlas/target/release/romatlas",
+      "map",
+      "validate",
+      "maps/current.json",
+      "--rom",
+      "input/game.nes"
+    ],
+    "exit_code": 0,
+    "result": {
+      "ok": true
+    }
+  },
+  "store_validation": {
+    "command": [
+      "/root/romatlas/target/release/romatlas",
+      "store",
+      "validate",
+      "input/game.nes",
+      "--store",
+      "analysis/state.json"
+    ],
+    "exit_code": 0,
+    "result": {
+      "ok": true
+    }
+  },
+  "binary": "/root/romatlas/target/release/romatlas",
+  "classification": {
+    "status": "INCOMPLETE",
+    "classified": 163848,
+    "total": 163856,
+    "counts": {
+      "Code": 23098,
+      "Data": 9678,
+      "Image": 131072
+    },
+    "unknown_bytes": 8,
+    "unknown_spans": [
+      [
+        11661,
+        11662
+      ],
+      [
+        17039,
+        17040
+      ],
+      [
+        23310,
+        23311
+      ],
+      [
+        23345,
+        23346
+      ],
+      [
+        23358,
+        23359
+      ],
+      [
+        23380,
+        23381
+      ],
+      [
+        31864,
+        31866
+      ]
+    ]
+  },
+  "hashes": {
+    "input/game.nes": "418ad6613c6eea763193ab08c4e50680a98575a3785520e6d0cb36ac52defc7b",
+    "maps/current.json": "26084c84b9db26ac0971efa455f8fae9b5cb9903a4f0dca18fbd6724c45c6ce3",
+    "analysis/state.json": "26084c84b9db26ac0971efa455f8fae9b5cb9903a4f0dca18fbd6724c45c6ce3"
+  }
+}

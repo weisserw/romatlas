@@ -1,0 +1,104 @@
+[
+  {
+    "id": "S001",
+    "milestone": "licensing/title/story",
+    "status": "visited",
+    "route": "probe2.py; play.py; continue-play.py; advance.py in analysis/round-001",
+    "observed": "Airwolf licensing, title, story and map interstitials, then cockpit",
+    "evidence": [
+      "analysis/round-001/title.png",
+      "analysis/round-001/advance-4.png",
+      "analysis/round-001/advance-5.snapshot.json"
+    ]
+  },
+  {
+    "id": "S002",
+    "milestone": "ordinary cockpit weapons and flight",
+    "status": "visited",
+    "route": "cockpit.py: from advance-5, A+B30; Start30; Up+Right+A60 frames, 10-frame chunks",
+    "observed": "weapons, speed increase, altitude/heading change; natural actual fetch evidence",
+    "evidence": [
+      "analysis/round-001/cockpit-log.json",
+      "analysis/round-001/cockpit-contexts.json"
+    ]
+  },
+  {
+    "id": "S003",
+    "milestone": "late mission19",
+    "status": "visited",
+    "route": "shortcut.py and shortcut-follow.py: restore cockpit-flight, operation1, RAM[0x80]=19, PC=0xCD39, stack=255; frames30 traced,900 untraced,30 weapons/turn traced; then1200 untraced and30 Start+A+B traced",
+    "observed": "artificial initialized later map and cockpit with speed752; natural reachability unproven",
+    "evidence": [
+      "analysis/round-001/late-cockpit.png",
+      "analysis/round-001/late-cockpit.snapshot.json",
+      "analysis/round-001/shortcut-log.json",
+      "analysis/round-001/shortcut-follow-log.json"
+    ]
+  },
+  {
+    "id": "S004",
+    "milestone": "completion presentation",
+    "status": "visited",
+    "route": "restore cockpit-flight, operation1, RAM[0x80]=20, PC=0xCE85, stack=255;30 traced+360 untraced+30 traced; then240 untraced+30 traced",
+    "observed": "artificial well-done completion text with graphics corruption, followed by intelligence update; fidelity and natural ending not established",
+    "evidence": [
+      "analysis/round-001/ending.png",
+      "analysis/round-001/ending-stable.png",
+      "analysis/round-001/progression-decode.json"
+    ]
+  },
+  {
+    "id": "S005",
+    "milestone": "prisoner landing/rescue and base service",
+    "status": "visited",
+    "evidence": [
+      "analysis/redirect/r001-contracts/service-corrected.png",
+      "analysis/redirect/r001-contracts/landing-success-after.json",
+      "analysis/redirect/r001-contracts/base-success-after.json"
+    ],
+    "history": [
+      {
+        "status": "deferred",
+        "reason": "Need coordinate/collision/landing entry contract; story map frames are not landing gameplay. Redirect should inspect mission initializer and transition handlers before RAM shortcut.",
+        "evidence": [
+          "analysis/gameplay.md"
+        ]
+      }
+    ],
+    "route": "analysis/redirect/r001-contracts/service-corrected.py/base-service.py thenlanding-success.py/base-success.py",
+    "observed": "Artificial source-aligned serviceentries showlandingview. RAMlandingpredicate edits yieldobjectiveAE+1 andbaseCB+1 separately. ExactentryPC84DF/85A9 preservesstackbut doesnotprovenaturallandingtrigger."
+  },
+  {
+    "id": "S006",
+    "milestone": "natural mission exit and completion",
+    "status": "attempted",
+    "evidence": [
+      "analysis/redirect/r001-contracts/mission-return-corrected-events.json",
+      "analysis/redirect/r001-contracts/mission-return-corrected-top-level.json",
+      "analysis/redirect/r001-contracts/ending-route-top-level.json"
+    ],
+    "history": [
+      {
+        "status": "deferred",
+        "reason": "Need rescue count $AE versus table $C219[$80], boundary and main gameplay return contract; artificial PC tests do not demonstrate natural completion.",
+        "evidence": [
+          "analysis/round-001/progression-decode.json"
+        ]
+      }
+    ],
+    "route": "analysis/redirect/r001-contracts/mission-return-corrected.py; ending-route.py",
+    "observed": "RAM-onlybarrier/objective edits atnaturallyreachedPC8456 produceactualRTS86DAtoCE12withA2andnormalcallerstack. Unpatchednaturalroute notdemonstrated; late-stage ending shortcut usesprevious artificiallate-cockpit initialization."
+  },
+  {
+    "id": "S007",
+    "milestone": "mission19 completion through actual flight return and clean ending screen",
+    "status": "visited",
+    "route": "analysis/redirect/r001-contracts/ending-route.py: restorelate-cockpit, naturallyreachPC8456; patchmission19, objective7, barrier/cell/heading flags; no newPC/stack edits; boundedactualreturnCE12then300frames",
+    "observed": "Stage19->20; A2 returnonexistingartificiallate-stage stackFF, cleanthank-youending screenshot. Naturalunpatchedroute andfullhardwarefidelityunproven.",
+    "evidence": [
+      "analysis/redirect/r001-contracts/ending-route-top-level.json",
+      "analysis/redirect/r001-contracts/ending-route-after.json",
+      "analysis/redirect/r001-contracts/ending-route.png"
+    ]
+  }
+]

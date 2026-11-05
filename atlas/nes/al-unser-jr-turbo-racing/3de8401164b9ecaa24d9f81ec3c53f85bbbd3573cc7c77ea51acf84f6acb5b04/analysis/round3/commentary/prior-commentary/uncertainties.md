@@ -1,0 +1,15 @@
+# Round 2 commentary uncertainties
+
+Current pass-002 classified-source readability is complete. Classification remains 68.20%; the 83365 unknown bytes retain boundary notes, not invented decoding. Prior uncertainties and source/review history are preserved in analysis/round2/commentary/prior-commentary/ and analysis/round1/commentary/.
+
+Resolved dependencies: the former audio BRK conflict is now a four-byte pulse-control Data lookup; the unmasked stream selector still does not prove its authored domain. The uploaded helper origin is physical58110, copied by fixed-bank $e998 after selecting PRG value three / effective banks[6,7,14,15]. Source comments explain subtraction at RAM$6600, addition at$6c44 and projection at$7288. Immutable source stays Static Data, without claiming ROM instruction fetches. Course$6401->$bf and GP/pit session mechanics use the saved redirect evidence; artificial completion is distinct from natural gameplay.
+
+Remaining meanings are localized in source. Audio global-control and effect high-flag authoring meanings, scene/race flag combinations, signed roadside/contact values, gear reserve units and scheduler timing remain partly uncertain. Shared scratch addresses have caller-specific roles; in particular uploaded arithmetic interprets $2e/$30 as pointer pairs. Descriptor-backed tile/text payloads have bounded transfers, while the larger asset remainder has no recovered original text subdivision. CHR tile roles and palette associations remain unresolved. The unusual menu lap-number formatting behavior is retained literally.
+
+Concrete next redirect questions, without classification changes here:
+
+- Physical124622..125265 / fixed-bank15 CPU$e6be..$e941 has newly readable finite renderer consumers under [6,7,14,15]. Inspect the coordinate descriptor pointer arrays at bank6 CPU$90c0/$90e2/$9104/$9126 and their finite selected records, and the fixed-bank projection tables $ee90/$ef90. Separate exact finite consumer ranges from any unsupported global index-domain claim. Existing sprite arrays physical55921..56104 and handler halves126496..126624 are already Data and should not be proposed again.
+- PPU descriptor and course-row consumers are named near fixed-bank$F2D7/$F43F. Related selector/preset/label tables remain numeric or address aliases where backing bytes are unknown. A bounded inspection can establish finite data layouts using the explicit menu domains, without needing exact original generator semantics.
+- Direct mapper-return continuations and remaining orphan gaps, including physical117377..117379 / CPU$ca71..$ca73, remain unclassified. Use the pass-002 residual ledger and returning bank contracts, rather than inferring code from legal decoding alone. Current source explains the known surrounding terminal control flow.
+
+These are practical source-derived questions, not an exhaustion assessment. No new structural proposals, disassembly mutations or gameplay replay were performed in this phase. The uploaded Code-view and PRG-RAM debugger-write limitations remain in analysis/toolkit-issues.md; no toolkit change was made.

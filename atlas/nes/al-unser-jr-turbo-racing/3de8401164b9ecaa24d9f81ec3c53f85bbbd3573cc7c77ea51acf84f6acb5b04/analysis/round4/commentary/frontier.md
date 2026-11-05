@@ -1,0 +1,7 @@
+# Round 4 commentary frontier
+
+Complete current-source readability, pass-004.1151 reviewed scaffold records,1377 meaningful reviewed units,2528 source locations checked. All780 prior classified source blocks retained; full893-record prior commentary preserved in prior-commentary/.209 exact mechanical code notes cover all107 new Code intervals/109 instruction-view groups;260 new Data intervals covered. Ten stale wording dependencies and six consumer-backed elevation zero slices corrected. No classified readability ranges remain.
+
+Fresh final verify byte_identical=true; reading-after.asm refreshed. Source984f22fea8a5e8153fca71142867806392fb62dbcd73f1583bf088f3061ca96d. Map/state3a5de61434a4e0bb43aa7e3bc3ec2b46a4e88a2262b8c3c65ffd53c6928c7381 and ROM unchanged. Scope/readability assessment, current progress/uncertainties, remaining-ranges.json and ../../round4-commentary-handoff.md carry details. Critical stack/modulo counterexample, nine ranks from26racers, uploaded Static Data/RAM algorithm notes and source locations checked.
+
+Next: residual redirect only. Four Unknown ranges83139..83140,117377..117379,121095..121096,125983..125984 remain fivebytes; classification incomplete despite rounded100.00%. No terminal exhaustion claim. Final editorial acceptance stays pending, reserved for coordinator after residual redirect. No final audit/archive/cleanup/publication/toolkit/binary/ROM/map/state changes. About9GiB free disk.

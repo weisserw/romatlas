@@ -1,0 +1,8 @@
+# Round 1 redirect: contract investigation (active)
+Input checkpoint pass-001; state/map fded0bf4e573c67d93860eaede594282b2640f885e4c126a298395b85bac2fda, source de8cd4ad93d191c79956d9d417a28830452b8c5ae8a923650b3edba9030e9c57. No classifications changed.
+
+Avenues: RAM execution origin via boot writes plus copy-loop contracts; course latch via ConfiguredCourse $6401 and SelectedCourse $bf (commentary shows these, so earlier $062e/$062f hypothesis is audio RAM); championship transition via $bd/$dd and $46; audio control lookup at physical 83315..83319. Static reset continuation now decoded: $ff84..ff92 initializes then jumps fixed-bank14 $c000. This supplies a supported static entry independent of observed gameplay. Audio bytes are 00 40 00 40 between complete terminating predecessor and $8567 timer routine. Need inspect stream-selector domain separately from structural non-code.
+
+Boot trace attempt uses only PRG-RAM Write detail, capacity 10000, 180 frames/20M ticks/20s; execution timed out and script stopped before collecting partial results. No conclusion about writes; revised bounded operation capture with partial collection is required. Script and raw static decodes retained. Disk 9.2G free, scratch 96K. No map/toolkit/input/source edits.
+
+Completed: combined nine-lead ready batch; exact proposal/unknown counts and compact handoff are in ../../round1-redirect-handoff.md. Final gameplay, corrections and evidence are recorded in findings.md/scenarios.json. No resumable live operation remains. This completed attempt is now immutable; later review or research should use a new attempt record and preserve these findings.

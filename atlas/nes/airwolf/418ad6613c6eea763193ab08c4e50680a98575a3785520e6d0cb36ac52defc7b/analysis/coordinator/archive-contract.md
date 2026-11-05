@@ -1,0 +1,11 @@
+# Archive preparation contract
+
+Coordinator inspected `/root/romatlas/scripts/archive.py`, especially `FINAL` and `archive()` document selection, during round 1. This is a read-only inspection; archive execution and cleanup are not authorized.
+
+At terminal handoff, write root `archive-options.json` with `documents` and `omitted_documents` arrays. Additional selected documents must exist, be workspace-relative Markdown beneath analysis/ or commentary/, contain no parent traversal, and exclude analysis/toolkit-issues.md. Preserve final conclusions, phase handoffs and durable investigation/rejection reviews. Classify genuinely disposable scratch explicitly; do not omit results to bypass selection checks.
+
+The archive automatically recognizes its FINAL entries (including investigation, gameplay, progress, commentary progress, uncertainties and editorial-audit Markdown). It separately recognizes analysis/toolkit-issues.md and commentary/{prompt,workflow,AGENTS}.md. Its unrecognized-document scan recursively examines Markdown under analysis/ and commentary/, except paths containing a before or source component. Every other Markdown path must be selected or explicitly omitted. Recheck the current script and actual file inventory at terminal handoff; this note itself requires explicit selection.
+
+Selection validation must be performed without invoking archive(), which also creates a destination, verifies sources and writes a refreshed reading copy. No archive execution occurred here. The final options must be generated from the completed phase inventory, not this initial inventory.
+
+Terminal selection policy: preserve every historical result, commentary snapshot progress/uncertainties, phase handoff, frontier and rejection review as an additional document unless already recognized by FINAL. Omit only copied commentary-input prompt.md, workflow.md and AGENTS.md, which are duplicate operational instructions, not findings or results. Omission affects future archive selection only; no file is deleted. Final inventory and options are validated against the actual script contract after acceptance artifacts are saved. Toolkit-issues.md remains locally preserved and automatically recognized, explicitly excluded from additional documents by the archive contract.

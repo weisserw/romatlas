@@ -1,0 +1,266 @@
+{
+  "version": 1,
+  "default_budgets": {
+    "unit": "frame",
+    "max_operations": 100000000,
+    "timeout_ms": 20000
+  },
+  "trace": {
+    "enabled": true,
+    "capacity": 0,
+    "aggregate_dropped": 0,
+    "detail_drops": "intentional capacity-zero; no detail retained"
+  },
+  "routes": [
+    {
+      "id": "title-mode",
+      "steps": [
+        {
+          "start": true
+        },
+        {
+          "buttons": [],
+          "frames": 120
+        },
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 1
+        },
+        {
+          "buttons": [],
+          "frames": 30
+        }
+      ],
+      "snapshot": "round1/menu.snapshot",
+      "observed": "Mode select; initial power-on banks [0,1,14,15]."
+    },
+    {
+      "id": "trial-brazil",
+      "recipe": "From menu snapshot, release all; advance 100 frames. Press/release A 5/100 frames five times as recorded in setup-advance. This navigates default trial A/player/lap/car/music to grid.",
+      "evidence": [
+        "round1/setup-advance.json",
+        "round1/advance3.png",
+        "round1/advanced.snapshot"
+      ],
+      "observed": "Brazil grid, later active race."
+    },
+    {
+      "id": "trial-driving",
+      "steps": [
+        {
+          "buttons": [
+            "a",
+            "up"
+          ],
+          "frames": 30,
+          "trace": true
+        },
+        {
+          "frames": 1800,
+          "trace": false
+        },
+        {
+          "frames": 30,
+          "trace": true
+        },
+        {
+          "buttons": [
+            "a",
+            "left"
+          ],
+          "frames": 15
+        },
+        {
+          "buttons": [
+            "b",
+            "right"
+          ],
+          "frames": 15
+        },
+        {
+          "buttons": []
+        }
+      ],
+      "evidence": [
+        "round1/driving-results.json",
+        "round1/driving.png",
+        "round1/driving.snapshot"
+      ],
+      "artificial": false,
+      "observed": "Speed/turbo consumed, driving/steering/braking execution. Summary 4929 unique instruction locations includes RAM, not 4929 ROM locations."
+    },
+    {
+      "id": "later-circuit-attempt",
+      "recipe": "Exact calls and results in select-results.json, later-results.json, target-results.json. japan-direct.py attempted 15 right presses from circuit snapshot then four start press/release waits. Naming is experimental, not confirmation of Japan.",
+      "evidence": [
+        "round1/japan-select.snapshot",
+        "round1/japan-setup0.png",
+        "round1/target-results.json"
+      ],
+      "observed": "Brazil course/settings screen; target comparison right changed candidate selector bytes. Later driving batch timed out before durable final result; do not infer visitation."
+    },
+    {
+      "id": "r1-spain-trial",
+      "snapshot": "redirect/r1-contracts/later-driving.snapshot",
+      "recipe": "setup-clean snapshot DOWN/RIGHT edits lap1; DOWN twice to cursor3, RIGHT selects course1, START four times; A+UP180frames,A+LEFT60frames. Each press held5/released100frames. See play.py/play-later.py.",
+      "observed": "ROUND02 SPAIN and active racing; natural input only.",
+      "evidence": [
+        "redirect/r1-contracts/later-step0.png",
+        "redirect/r1-contracts/later-log.json"
+      ]
+    },
+    {
+      "id": "r1-final-usa-trial",
+      "snapshot": "redirect/r1-contracts/final-driving.snapshot",
+      "recipe": "course-one snapshot LEFT twice sets course15; START fourtimes then A+UP60/A+RIGHT30.",
+      "observed": "ROUND16 U.S.A. and active racing, natural input only.",
+      "evidence": [
+        "redirect/r1-contracts/final-step0.png",
+        "redirect/r1-contracts/final-gp-log.json"
+      ]
+    },
+    {
+      "id": "r1-gp-qualifying",
+      "snapshot": "redirect/r1-contracts/gp-qualify-next.snapshot",
+      "recipe": "menu snapshot DOWN twice START, START twice through player confirmation then A confirmsYES; GP choices DOWN twice A selectsQUALIFY, START grid.",
+      "observed": "GP qualifying ROUND1 BRAZIL 1L, countdown/racing; natural input only.",
+      "evidence": [
+        "redirect/r1-contracts/gp-qualify-setup.png",
+        "redirect/r1-contracts/gp-qualify-next.png",
+        "redirect/r1-contracts/gp-qualify-log.json"
+      ]
+    },
+    {
+      "id": "r1-gp-qualifying-result-artificial",
+      "snapshot": "redirect/r1-contracts/gp-qualify-finished.snapshot",
+      "recipe": "From natural qualifying grid:260frames,saveclean racing snapshot,write internal$dd40,8tracedframes,SELECT100/release60.",
+      "observed": "Actual qualifyingresultboard; artificial=true.",
+      "evidence": [
+        "redirect/r1-contracts/gp-finish-log.json",
+        "redirect/r1-contracts/gp-qualify-finished.png"
+      ]
+    },
+    {
+      "id": "r1-gp-ending-artificial",
+      "snapshot": "redirect/r1-contracts/gp-closing-next.snapshot",
+      "recipe": "Initialized GP race selected afterqualifyingresults. During pre-race gridwriteinternal$bf15 ($dd46 wasearly andnotproof),passBGM/PLAYERREADYgateswithSTART,observeactualcityroad. Onactualrace reapply$dd46,SELECT160/release60 ->resultboard. FreshA confirms with200framewaits throughdriverpoints ->closing. Exactintermediates in play-gp-final-result/active/road/terminal/closing/closing-next scripts.",
+      "observed": "ActualROUND16 U.S.A. road,finalresults,driverpoints andlosingchampionshipclosingmessage; artificialstage/finishshortcut,notnaturalchampionshipcompletion.",
+      "evidence": [
+        "redirect/r1-contracts/gp-final-road.png",
+        "redirect/r1-contracts/gp-final-result-board.png",
+        "redirect/r1-contracts/gp-closing-next2.png",
+        "redirect/r1-contracts/gp-closing-next-log.json"
+      ]
+    },
+    {
+      "id": "r1-pit-refuel-artificial",
+      "snapshot": "redirect/r1-contracts/pit-refuel.snapshot",
+      "recipe": "Restoreoriginalnaturalround1/driving.snapshot;writeinternalremaininglaps$46=1,segment$1b16,flags$dd7,8traced+90untracedframes ->PITSTOP. DOWNtwice/AselectedREFUEL(notrepair);fromsavedmenu read$63a4/$63a5[3,1],A ->[3,2].",
+      "observed": "PITSTOP andactualfuelchoicecycle; artificialentry. Priorattemptfromterminalpendingroad didnotunwindcall,notapitfailure. Repairnotentered.",
+      "evidence": [
+        "redirect/r1-contracts/pit2-log.json",
+        "redirect/r1-contracts/pit2-attempt.png",
+        "redirect/r1-contracts/pit-refuel-log.json",
+        "redirect/r1-contracts/pit-refuel.png"
+      ]
+    }
+  ],
+  "progression_checklist": [
+    {
+      "milestone": "Title/menu",
+      "status": "visited",
+      "route_ids": [
+        "title-mode"
+      ],
+      "recipe": "Use route title-mode; start with no buttons120frames, START1/release30.",
+      "observed": "Title/startup and mode selection visited; initial banks[0,1,14,15].",
+      "evidence": [
+        "round1/menu.snapshot"
+      ]
+    },
+    {
+      "milestone": "Brazil trial A/traffic driving",
+      "status": "visited",
+      "route_ids": [
+        "trial-brazil",
+        "trial-driving"
+      ],
+      "observed": "Brazil grid and active acceleration/turbo/steer/brake execution; no artificial edits.",
+      "evidence": [
+        "round1/setup-advance.json",
+        "round1/advance3.png",
+        "round1/driving-results.json",
+        "round1/driving.png"
+      ]
+    },
+    {
+      "milestone": "Later course/Japan",
+      "status": "visited",
+      "reason": "Spain course1 and final U.S.A.course15 verified with named setup plus actual racing; Japan specifically not requested as exhaustive coverage.",
+      "evidence": [
+        "redirect/r1-contracts/later-log.json",
+        "redirect/r1-contracts/final-gp-log.json"
+      ],
+      "route_ids": [
+        "r1-spain-trial",
+        "r1-final-usa-trial"
+      ]
+    },
+    {
+      "milestone": "Solo trial B",
+      "status": "deferred",
+      "reason": "Deferredafterrepresentativetraffictrial,16thcourse,GPqualifying/race/pit/results/endingcoverage. Sameknownrenderinggraphwithtrafficflagclear suppliesnodistinctcurrentunknownstructuretarget;noexhaustivemodecoverageclaim."
+    },
+    {
+      "milestone": "Championship/qualifying/standings",
+      "status": "visited",
+      "reason": "GPsetup/qualifyingnatural;qualifying/finalrace results anddriverpoints via recordedartificialfinishshortcut.",
+      "evidence": [
+        "redirect/r1-contracts/gp-qualify-log.json",
+        "redirect/r1-contracts/gp-finish-log.json",
+        "redirect/r1-contracts/gp-closing-log.json"
+      ],
+      "route_ids": [
+        "r1-gp-qualifying",
+        "r1-gp-qualifying-result-artificial",
+        "r1-gp-ending-artificial"
+      ]
+    },
+    {
+      "milestone": "Pit repair/fuel",
+      "status": "visited",
+      "reason": "Supportedartificialpitentry andobservedrefuelselector1->2;repairwasnotentered(cursorpassedtoREFUEL),nomaterialmissingcode-rolefactjustifiesmoremenuinteractions.",
+      "evidence": [
+        "redirect/r1-contracts/pit2-log.json",
+        "redirect/r1-contracts/pit-refuel-log.json"
+      ],
+      "route_ids": [
+        "r1-pit-refuel-artificial"
+      ]
+    },
+    {
+      "milestone": "Final race/ending",
+      "status": "visited",
+      "reason": "FinalU.S.A.trialvisitednaturally;GPfinalcourse/race/result/closingviaexplicitartificial$bf15/$dd46shortcut. Losingendingobserved;winningvariantnotforced.",
+      "evidence": [
+        "redirect/r1-contracts/final-step0.png",
+        "redirect/r1-contracts/gp-final-road.png",
+        "redirect/r1-contracts/gp-closing-next2.png"
+      ],
+      "route_ids": [
+        "r1-final-usa-trial",
+        "r1-gp-ending-artificial"
+      ]
+    }
+  ],
+  "reviews": [
+    {
+      "id": "round4-redirect-current-source",
+      "checkpoint": "pass-004",
+      "evidence": "redirect/r4-current-residuals/rejection-review.md",
+      "result": "Reviewed saved later/final-course, GP qualifying/results/losing ending and pit/refuel milestones and primary logs. No replay: no concrete discriminator for isolated residual roles. Winning ending and repair remain unclaimed representative variants."
+    }
+  ]
+}

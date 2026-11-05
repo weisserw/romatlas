@@ -1,0 +1,154 @@
+[
+  {
+    "id": "R01-opening",
+    "milestone": "Opening/title",
+    "status": "visited",
+    "reachability": "natural",
+    "route": "Initial power-on traced48frames,120frames,90frames,240frames; disabled trace advance900frames; traced61frames then untraced advance to frame3081 and4281. These long waits are unnecessary: corrected buttons array Start skips opening. Early button/pressed requests were ineffective (NES-001).",
+    "evidence": [
+      "round01-rpc.jsonl",
+      "actual-start.ppm"
+    ]
+  },
+  {
+    "id": "R01-stage1",
+    "milestone": "First air-base shooter, movement/fire",
+    "status": "visited",
+    "reachability": "natural",
+    "route": "At title frame4345 Start2frames release60frames -> approach4407. A/right240traced+300untraced -> frame4947 active shooter. Snapshot round01-shooter1.snapshot; A/up30frames traced.",
+    "evidence": [
+      "round01-shooter1.snapshot",
+      "shooter-active.ppm",
+      "shooter-action.ppm"
+    ]
+  },
+  {
+    "id": "R01-password",
+    "milestone": "Continue/password editor",
+    "status": "visited",
+    "reachability": "natural",
+    "route": "Reproducible clean snapshot round01-password-clean.snapshot frame96. From reset: advance30frames, Select2/release2, Start2/release2, advance20 -> title58; Select2/release2, Start2/release2, advance30 -> password96. NES buttons array mandatory.",
+    "evidence": [
+      "password-confirm.ppm",
+      "round01-password-clean.snapshot"
+    ]
+  },
+  {
+    "id": "R01-stage8",
+    "milestone": "Last air-base shooter",
+    "status": "visited",
+    "reachability": "artificial buffer edit",
+    "route": "From password-clean snapshot reassert buttons[]; write internal RAM $0414 [83,85,71,65] ASCII SUGA; Start2/release2 plus20traced -> approach120 (LAST);700untraced -> active820, $45=7; A/B/right/up45traced. Effective banks[0,1,14,15].",
+    "evidence": [
+      "stage8-accepted.ppm",
+      "stage8-shooter.ppm",
+      "stage8-action.ppm",
+      "round01-stage8-active.snapshot",
+      "round01-before-interior.snapshot"
+    ]
+  },
+  {
+    "id": "R01-interior8",
+    "milestone": "Last fortress interior, movement/weapons",
+    "status": "visited",
+    "reachability": "artificial engine transition",
+    "route": "From before-interior snapshot frame865, buttons[], operation1 to boundary then registers pc=$CF4E. Normal stack-reset/mapper/init stub.30traced+100untraced+120untraced then A/B/right/up45traced -> frame1160; A/right/down30traced ->1190. Effective banks[4,5,14,15].",
+    "evidence": [
+      "interior8.ppm",
+      "interior8-action.ppm",
+      "interior8-move.ppm",
+      "round01-interior8.snapshot"
+    ]
+  },
+  {
+    "id": "R01-core",
+    "milestone": "Reactor destruction and natural escape transition",
+    "status": "visited",
+    "evidence": [
+      "analysis/redirect/round01-static-contracts/core-fixed-destroyed.snapshot",
+      "analysis/redirect/round01-static-contracts/core-fixed-contexts.json"
+    ],
+    "history": [
+      {
+        "id": "R01-core",
+        "milestone": "Reactor destruction and natural escape transition",
+        "status": "deferred",
+        "reason": "Interior visited through supported dispatcher, but player/room/reactor flags and escape contract need source investigation; no speculative RAM brute force.",
+        "evidence": [
+          "investigation.md"
+        ]
+      }
+    ],
+    "reachability": "artificial original route; supported continuation",
+    "route": "core_runtime_fixed.py: initializer8605 A17/X0 with explicit stack return81F8; run_until confirms type23/health20; damage9D02 A255 -> progression65BF=1. Artificial helper entry, not ordinary shot collision."
+  },
+  {
+    "id": "R01-ending1",
+    "milestone": "Firstquest ending/secondquest notice",
+    "status": "visited",
+    "reachability": "artificial engine transition",
+    "route": "From initialized interior1190 buttons[], operation1 boundary, pc=$CF61. $C7=0;30traced+240untraced -> ATTENTION firstquest screen1460.",
+    "evidence": [
+      "ending-first.ppm"
+    ]
+  },
+  {
+    "id": "R01-ending2",
+    "milestone": "Final ending",
+    "status": "visited",
+    "reachability": "artificial quest/engine transition",
+    "route": "Restore interior8 snapshot1160, buttons[], RAM$C7=[8], operation1 boundary, pc=$CF61.30traced+360untraced -> CONGRATULATIONS1550;30traced ->1580; Start tap4frames+600untraced still same terminal scene2184;20traced ->2204.",
+    "evidence": [
+      "ending-final.ppm",
+      "ending-followup.ppm",
+      "round01-ending-final.snapshot",
+      "round01-final.snapshot"
+    ]
+  },
+  {
+    "id": "R01-credits",
+    "milestone": "Credits beyond final ending",
+    "status": "visited",
+    "evidence": [
+      "analysis/redirect/round01-static-contracts/credits-active.snapshot",
+      "analysis/redirect/round01-static-contracts/credits-entry.ppm.png",
+      "analysis/redirect/round01-static-contracts/credits-contexts.json"
+    ],
+    "history": [
+      {
+        "id": "R01-credits",
+        "milestone": "Credits beyond final ending",
+        "status": "attempted",
+        "reason": "Start tap plus600frames on congratulations leaves same terminal screen. Credit text exists physically, but distinct entry/selection contract not established. Redirect can inspect consumer rather than repeat wait.",
+        "evidence": [
+          "ending-followup.ppm",
+          "round01-rpc.jsonl"
+        ]
+      }
+    ],
+    "reachability": "artificial original route; supported continuation",
+    "route": "Source timing disproves prior terminal inference. Restore final snapshot, traced calls partial205frames then untraced1800frames ->STAFF at4209, trace12 ->4221. Existing artificial ending route, ordinary continuation afterward."
+  },
+  {
+    "id": "R01-middle",
+    "milestone": "Intermediate fortresses and distinct bosses",
+    "status": "deferred",
+    "reason": "First/last representative shooter and interior systems visited. Middle stage layout/room/core contracts unreviewed; password table and stable snapshots enable targeted redirect without repeated opening.",
+    "evidence": [
+      "gameplay.md",
+      "investigation.md"
+    ]
+  },
+  {
+    "id": "R01-escape",
+    "milestone": "Core-following escape launch/craft animation",
+    "status": "visited",
+    "reachability": "artificial proximity bypass after artificial core death",
+    "route": "escape_runtime.py restores core-fixed-destroyed; PC97B7 LDA1/STA65C0/RTS with explicit81F8 return, flags1/1; normal main selectsADB7.12traced+600untraced ->frame1784 orange craft andflags1/2,12traced to1796.",
+    "evidence": [
+      "analysis/redirect/round01-static-contracts/escape-active.snapshot",
+      "analysis/redirect/round01-static-contracts/escape-active.ppm.png",
+      "analysis/redirect/round01-static-contracts/escape-contexts.json"
+    ]
+  }
+]

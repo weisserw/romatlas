@@ -1,0 +1,1072 @@
+{
+  "version": 1,
+  "scenarios": [
+    {
+      "id": "startup",
+      "route": [
+        {
+          "reset": true
+        },
+        {
+          "frames_requested": 180,
+          "timeout_ms": 10000,
+          "result": "timeout after55frames"
+        },
+        {
+          "frames": 180,
+          "timeout_ms": 60000
+        },
+        {
+          "frames": 62,
+          "ineffective_input": "documented button/pressed schema clears NES input"
+        },
+        {
+          "trace_enabled": false,
+          "frames": 360
+        },
+        {
+          "trace_enabled": true,
+          "frames": 62
+        },
+        {
+          "frames": 122,
+          "ineffective_input": "same schema"
+        }
+      ],
+      "result": "title at frame841; no natural game start with these ineffective inputs",
+      "snapshot": "analysis/round1/level1.snapshot.json"
+    },
+    {
+      "id": "natural-stage1",
+      "base": "analysis/round1/level1.snapshot.json",
+      "route": [
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 2,
+          "timeout_ms": 5000,
+          "max_operations": 500000
+        },
+        {
+          "buttons": [],
+          "frames": 60,
+          "timeout_ms": 25000,
+          "max_operations": 3000000
+        },
+        {
+          "buttons": [],
+          "frames": 180,
+          "timeout_ms": 60000,
+          "max_operations": 8000000
+        },
+        {
+          "buttons": [
+            "right",
+            "a"
+          ],
+          "frames": 180,
+          "timeout_ms": 45000,
+          "max_operations": 20000000
+        },
+        {
+          "buttons": []
+        }
+      ],
+      "result": "frame1263: Stage1 cheese gameplay visibly reached, moving/jumping; natural, banks10/11/14/15",
+      "snapshot": "analysis/round1/motion1.snapshot.json",
+      "evidence": [
+        "analysis/round1/motion1.png",
+        "analysis/round1/motion1-contexts.json",
+        "analysis/round1/motion1-trace.json"
+      ]
+    },
+    {
+      "id": "stage2-shortcut",
+      "base": "analysis/round1/cheese-checked.snapshot.json",
+      "patches": [
+        {
+          "space": "ram",
+          "address": 147,
+          "bytes": [
+            1
+          ]
+        }
+      ],
+      "route": [
+        {
+          "buttons": [
+            "right",
+            "a"
+          ],
+          "frames": 240,
+          "timeout_ms": 45000,
+          "max_operations": 20000000
+        },
+        {
+          "buttons": []
+        }
+      ],
+      "result": "artificial stage2 blocks gameplay confirmed; request240frames timeout45s, actual217frames to frame1300; banks2/3/14/15",
+      "evidence": [
+        "analysis/round1/stage2.png",
+        "analysis/round1/stage2-contexts.json",
+        "analysis/round1/stage2.snapshot.json"
+      ]
+    },
+    {
+      "id": "stage3-shortcut",
+      "base": "analysis/round1/cheese-checked.snapshot.json",
+      "patches": [
+        {
+          "space": "ram",
+          "address": 147,
+          "bytes": [
+            2
+          ]
+        }
+      ],
+      "route": [
+        {
+          "buttons": [
+            "right",
+            "a"
+          ],
+          "frames_requested": 240,
+          "timeout_ms": 45000,
+          "max_operations": 20000000
+        },
+        {
+          "buttons": []
+        }
+      ],
+      "result": "artificial stage3 industrial screw-platform area confirmed atframe1298; timeout after215frames; movement/jump exercised",
+      "evidence": [
+        "analysis/round1/stage3.png",
+        "analysis/round1/stage3-contexts.json",
+        "analysis/round1/stage3.snapshot.json"
+      ]
+    },
+    {
+      "id": "stage4",
+      "base": "analysis/round1/cheese-checked.snapshot.json",
+      "patches": [
+        {
+          "address": 147,
+          "bytes": [
+            3
+          ]
+        }
+      ],
+      "route": [
+        {
+          "buttons": [
+            "right",
+            "a"
+          ],
+          "frames_requested": 240,
+          "timeout_ms": 45000,
+          "max_operations": 20000000
+        },
+        {
+          "buttons": []
+        }
+      ],
+      "observed_state": {
+        "error": "{'error': {'code': -32000, 'message': 'execution timeout'}, 'id': 8, 'jsonrpc': '2.0'}",
+        "state": {
+          "artificial": true,
+          "context": {
+            "prg_banks": [
+              10,
+              11,
+              14,
+              15
+            ]
+          },
+          "cpu_cycles": 38915069,
+          "frames": 1306,
+          "main": {
+            "a": 0,
+            "frozen": false,
+            "mid_instruction": false,
+            "p": 38,
+            "pc": 61220,
+            "stack": 245,
+            "x": 15,
+            "y": 0
+          }
+        }
+      },
+      "snapshot": "analysis/round1/stage4.snapshot.json",
+      "evidence": [
+        "analysis/round1/stage4.ppm",
+        "analysis/round1/stage4-contexts.json",
+        "analysis/round1/stage4-trace.json"
+      ],
+      "reachability": "artificial; actual instruction fetches observed after recorded RAM edits / artificial snapshot restore"
+    },
+    {
+      "id": "stage5",
+      "base": "analysis/round1/cheese-checked.snapshot.json",
+      "patches": [
+        {
+          "address": 147,
+          "bytes": [
+            4
+          ]
+        }
+      ],
+      "route": [
+        {
+          "buttons": [
+            "right",
+            "a"
+          ],
+          "frames_requested": 240,
+          "timeout_ms": 45000,
+          "max_operations": 20000000
+        },
+        {
+          "buttons": []
+        }
+      ],
+      "observed_state": {
+        "error": "{'error': {'code': -32000, 'message': 'execution timeout'}, 'id': 8, 'jsonrpc': '2.0'}",
+        "state": {
+          "artificial": true,
+          "context": {
+            "prg_banks": [
+              10,
+              11,
+              14,
+              15
+            ]
+          },
+          "cpu_cycles": 38916181,
+          "frames": 1306,
+          "main": {
+            "a": 127,
+            "frozen": false,
+            "mid_instruction": true,
+            "p": 37,
+            "pc": 64850,
+            "stack": 243,
+            "x": 0,
+            "y": 0
+          }
+        }
+      },
+      "snapshot": "analysis/round1/stage5.snapshot.json",
+      "evidence": [
+        "analysis/round1/stage5.ppm",
+        "analysis/round1/stage5-contexts.json",
+        "analysis/round1/stage5-trace.json"
+      ],
+      "reachability": "artificial; actual instruction fetches observed after recorded RAM edits / artificial snapshot restore"
+    },
+    {
+      "id": "stage6",
+      "base": "analysis/round1/cheese-checked.snapshot.json",
+      "patches": [
+        {
+          "address": 147,
+          "bytes": [
+            5
+          ]
+        }
+      ],
+      "route": [
+        {
+          "buttons": [
+            "right",
+            "a"
+          ],
+          "frames_requested": 240,
+          "timeout_ms": 45000,
+          "max_operations": 20000000
+        },
+        {
+          "buttons": []
+        }
+      ],
+      "observed_state": {
+        "error": "{'error': {'code': -32000, 'message': 'execution timeout'}, 'id': 8, 'jsonrpc': '2.0'}",
+        "state": {
+          "artificial": true,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              14,
+              15
+            ]
+          },
+          "cpu_cycles": 36674836,
+          "frames": 1231,
+          "main": {
+            "a": 192,
+            "frozen": false,
+            "mid_instruction": true,
+            "p": 39,
+            "pc": 51631,
+            "stack": 253,
+            "x": 0,
+            "y": 1
+          }
+        }
+      },
+      "snapshot": "analysis/round1/stage6.snapshot.json",
+      "evidence": [
+        "analysis/round1/stage6.ppm",
+        "analysis/round1/stage6-contexts.json",
+        "analysis/round1/stage6-trace.json"
+      ],
+      "reachability": "artificial; actual instruction fetches observed after recorded RAM edits / artificial snapshot restore"
+    },
+    {
+      "id": "balloon-transition",
+      "base": "analysis/round1/motion1.snapshot.json",
+      "patches": [
+        {
+          "address": 148,
+          "bytes": [
+            101,
+            0,
+            48,
+            0,
+            0,
+            14
+          ]
+        },
+        {
+          "address": 168,
+          "bytes": [
+            0
+          ]
+        },
+        {
+          "address": 99,
+          "bytes": [
+            22
+          ]
+        },
+        {
+          "address": 185,
+          "bytes": [
+            0,
+            0
+          ]
+        },
+        {
+          "address": 1152,
+          "bytes": [
+            2
+          ]
+        },
+        {
+          "address": 1440,
+          "bytes": [
+            0
+          ]
+        },
+        {
+          "address": 1536,
+          "bytes": [
+            0
+          ]
+        },
+        {
+          "address": 1584,
+          "bytes": [
+            22
+          ]
+        }
+      ],
+      "route": [
+        {
+          "buttons": [
+            "right",
+            "b"
+          ],
+          "frames_requested": 240,
+          "timeout_ms": 45000,
+          "max_operations": 20000000
+        },
+        {
+          "buttons": []
+        }
+      ],
+      "observed_state": {
+        "error": "{'error': {'code': -32000, 'message': 'execution timeout'}, 'id': 15, 'jsonrpc': '2.0'}",
+        "state": {
+          "artificial": true,
+          "context": {
+            "prg_banks": [
+              12,
+              13,
+              14,
+              15
+            ]
+          },
+          "cpu_cycles": 42561901,
+          "frames": 1429,
+          "main": {
+            "a": 255,
+            "frozen": false,
+            "mid_instruction": true,
+            "p": 165,
+            "pc": 65157,
+            "stack": 243,
+            "x": 1,
+            "y": 0
+          }
+        }
+      },
+      "snapshot": "analysis/round1/balloon-transition.snapshot.json",
+      "evidence": [
+        "analysis/round1/balloon-transition.ppm",
+        "analysis/round1/balloon-transition-contexts.json",
+        "analysis/round1/balloon-transition-trace.json"
+      ],
+      "reachability": "artificial; actual instruction fetches observed after recorded RAM edits / artificial snapshot restore"
+    },
+    {
+      "id": "balloon-flight1",
+      "base": "analysis/round1/balloon-transition.snapshot.json",
+      "patches": [],
+      "route": [
+        {
+          "buttons": [
+            "right",
+            "b"
+          ],
+          "frames_requested": 60,
+          "timeout_ms": 45000,
+          "max_operations": 20000000
+        },
+        {
+          "buttons": []
+        }
+      ],
+      "observed_state": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            0,
+            1,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 44340927,
+        "frames": 1489,
+        "main": {
+          "a": 250,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 39,
+          "pc": 51631,
+          "stack": 253,
+          "x": 0,
+          "y": 1
+        }
+      },
+      "snapshot": "analysis/round1/balloon-flight1.snapshot.json",
+      "evidence": [
+        "analysis/round1/balloon-flight1.ppm",
+        "analysis/round1/balloon-flight1-contexts.json",
+        "analysis/round1/balloon-flight1-trace.json"
+      ],
+      "reachability": "artificial; actual instruction fetches observed after recorded RAM edits / artificial snapshot restore"
+    },
+    {
+      "id": "final-balloon",
+      "base": "analysis/round1/stage5.snapshot.json",
+      "patches": [
+        {
+          "address": 148,
+          "bytes": [
+            149,
+            0,
+            160,
+            1,
+            21,
+            14
+          ]
+        },
+        {
+          "address": 168,
+          "bytes": [
+            0
+          ]
+        },
+        {
+          "address": 99,
+          "bytes": [
+            22
+          ]
+        },
+        {
+          "address": 185,
+          "bytes": [
+            0,
+            0
+          ]
+        },
+        {
+          "address": 1152,
+          "bytes": [
+            2
+          ]
+        },
+        {
+          "address": 1440,
+          "bytes": [
+            0
+          ]
+        },
+        {
+          "address": 1536,
+          "bytes": [
+            0
+          ]
+        },
+        {
+          "address": 1584,
+          "bytes": [
+            22
+          ]
+        }
+      ],
+      "route": [
+        {
+          "buttons": [
+            "b",
+            "right"
+          ],
+          "frames_requested": 180,
+          "timeout_ms": 45000,
+          "max_operations": 20000000
+        },
+        {
+          "buttons": []
+        }
+      ],
+      "observed_state": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            6,
+            7,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 44251587,
+        "frames": 1486,
+        "main": {
+          "a": 0,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 100,
+          "pc": 63188,
+          "stack": 247,
+          "x": 1,
+          "y": 0
+        }
+      },
+      "snapshot": "analysis/round1/final-balloon.snapshot.json",
+      "evidence": [
+        "analysis/round1/final-balloon.ppm",
+        "analysis/round1/final-balloon-contexts.json",
+        "analysis/round1/final-balloon-trace.json"
+      ],
+      "reachability": "artificial; actual instruction fetches observed after recorded RAM edits / artificial snapshot restore"
+    },
+    {
+      "id": "final-flight1",
+      "base": "analysis/round1/final-balloon.snapshot.json",
+      "patches": [],
+      "route": [
+        {
+          "buttons": [
+            "b",
+            "right"
+          ],
+          "frames_requested": 60,
+          "timeout_ms": 45000,
+          "max_operations": 20000000
+        },
+        {
+          "buttons": []
+        }
+      ],
+      "observed_state": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            0,
+            1,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 46038418,
+        "frames": 1546,
+        "main": {
+          "a": 207,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 39,
+          "pc": 51632,
+          "stack": 253,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "snapshot": "analysis/round1/final-flight1.snapshot.json",
+      "evidence": [
+        "analysis/round1/final-flight1.ppm",
+        "analysis/round1/final-flight1-contexts.json",
+        "analysis/round1/final-flight1-trace.json"
+      ],
+      "reachability": "artificial; actual instruction fetches observed after recorded RAM edits / artificial snapshot restore"
+    },
+    {
+      "id": "final-combat",
+      "base": "analysis/round1/final-flight1.snapshot.json",
+      "patches": [],
+      "route": [
+        {
+          "buttons": [
+            "b",
+            "left"
+          ],
+          "frames_requested": 120,
+          "timeout_ms": 45000,
+          "max_operations": 20000000
+        },
+        {
+          "buttons": []
+        }
+      ],
+      "observed_state": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            0,
+            1,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 49612078,
+        "frames": 1666,
+        "main": {
+          "a": 87,
+          "frozen": false,
+          "mid_instruction": false,
+          "p": 39,
+          "pc": 51630,
+          "stack": 253,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "snapshot": "analysis/round1/final-combat.snapshot.json",
+      "evidence": [
+        "analysis/round1/final-combat.ppm",
+        "analysis/round1/final-combat-contexts.json",
+        "analysis/round1/final-combat-trace.json"
+      ],
+      "reachability": "artificial; actual instruction fetches observed after recorded RAM edits / artificial snapshot restore"
+    },
+    {
+      "id": "final-later",
+      "base": "analysis/round1/final-combat.snapshot.json",
+      "route": [
+        {
+          "buttons": [
+            "b",
+            "right"
+          ],
+          "frames": 480,
+          "trace": false,
+          "timeout_ms": 20000,
+          "max_operations": 100000000
+        },
+        {
+          "buttons": [
+            "b",
+            "right"
+          ],
+          "frames": 90,
+          "trace": true,
+          "timeout_ms": 45000,
+          "max_operations": 20000000
+        },
+        {
+          "buttons": []
+        }
+      ],
+      "observed_state": {
+        "artificial": true,
+        "context": {
+          "prg_banks": [
+            0,
+            1,
+            14,
+            15
+          ]
+        },
+        "cpu_cycles": 66586968,
+        "frames": 2236,
+        "main": {
+          "a": 58,
+          "frozen": false,
+          "mid_instruction": true,
+          "p": 39,
+          "pc": 51634,
+          "stack": 253,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "result": "aerial shooting state with enemy projectiles; identifiable boss and ending not confirmed; further runtime repetition yielded162codebytes, no new subsystem",
+      "snapshot": "analysis/round1/final-later.snapshot.json",
+      "evidence": [
+        "analysis/round1/final-later.png",
+        "analysis/round1/final-later-contexts.json",
+        "analysis/round1/final-later-trace.json"
+      ],
+      "reachability": "artificial"
+    },
+    {
+      "id": "r1-redirect-boss-substate2",
+      "source_snapshot": "analysis/round1/final-later.snapshot.json",
+      "artificial": true,
+      "patches": [
+        {
+          "space": "ram",
+          "address": 1845,
+          "bytes": [
+            2
+          ]
+        }
+      ],
+      "route": [
+        {
+          "buttons": [
+            "b"
+          ],
+          "frames": 45,
+          "max_operations": 20000000,
+          "timeout_ms": 30000
+        },
+        {
+          "buttons": [
+            "b"
+          ],
+          "frames": 120,
+          "max_operations": 20000000,
+          "timeout_ms": 30000
+        },
+        {
+          "buttons": []
+        }
+      ],
+      "evidence": "analysis/redirect/r1-20261105/runtime.py",
+      "result": "substate3 and actor3B/3C confirmed at45frames; by165frames player state17 and actors removed; likely death/return, no boss completion claim",
+      "trace": "Instruction enabled capacity0; aggregates saved"
+    },
+    {
+      "id": "r1-redirect-protected-encounter",
+      "base": "analysis/round1/final-later.snapshot.json",
+      "artificial": true,
+      "patches": [
+        {
+          "address": 1845,
+          "bytes": [
+            2
+          ]
+        },
+        {
+          "address": 122,
+          "bytes": [
+            255,
+            255
+          ]
+        }
+      ],
+      "route": [
+        {
+          "buttons": [
+            "b"
+          ],
+          "frames": 120,
+          "timeout_ms": 30000,
+          "max_operations": 20000000
+        },
+        {
+          "buttons": [
+            "b"
+          ],
+          "frames": 120,
+          "timeout_ms": 30000,
+          "max_operations": 20000000
+        },
+        {
+          "buttons": [
+            "b"
+          ],
+          "frames": 180,
+          "timeout_ms": 45000,
+          "max_operations": 30000000
+        },
+        {
+          "buttons": []
+        }
+      ],
+      "result": "paired green mechanical encounter rendered; source-backed Y descent clears wave delay, dialogue phase2 reached; completion pending",
+      "evidence": [
+        "analysis/redirect/r1-20261105/protected-active.png",
+        "analysis/redirect/r1-20261105/dialogue-ram.json",
+        "analysis/redirect/r1-20261105/runtime-protected.py",
+        "analysis/redirect/r1-20261105/advance.py"
+      ]
+    },
+    {
+      "id": "r1-redirect-encounter-to-quest-over",
+      "artificial": true,
+      "reachability": "source-backed debugger state/health/protection/position/persistence edits; actual fetched code and frames observed; no natural-gameclear claim",
+      "route_artifacts": [
+        "analysis/redirect/r1-20261105/runtime-protected.py",
+        "analysis/redirect/r1-20261105/advance.py",
+        "analysis/redirect/r1-20261105/combat-intro-patches.json",
+        "analysis/redirect/r1-20261105/combat-defeat-patches.json",
+        "analysis/redirect/r1-20261105/defeat-transition-patches.json",
+        "analysis/redirect/r1-20261105/protected-second-defeat-patches.json",
+        "analysis/redirect/r1-20261105/protected-final-return-patches.json",
+        "analysis/redirect/r1-20261105/final-defeat-entry-patches.json",
+        "analysis/redirect/r1-20261105/defeat-cinematic-shortcut-patches.json",
+        "analysis/redirect/r1-20261105/reward-contact-plan.json",
+        "analysis/redirect/r1-20261105/reward-contact-patches.json",
+        "analysis/redirect/r1-20261105/ending-prepare.py",
+        "analysis/redirect/r1-20261105/ending-preload.json",
+        "analysis/redirect/r1-20261105/ending-preload-patches.json",
+        "analysis/redirect/r1-20261105/ending-door-patches.json",
+        "analysis/redirect/r1-20261105/ending-transition-patches.json",
+        "analysis/redirect/r1-20261105/ending-finish.py"
+      ],
+      "exact_key_routes": [
+        {
+          "base": "analysis/redirect/r1-20261105/dialogue.snapshot.json",
+          "patches": "1BE=3",
+          "buttons": [
+            "b"
+          ],
+          "frames": 120
+        },
+        {
+          "base": "analysis/redirect/r1-20261105/combat-intro.snapshot.json",
+          "patches": "1B8=0",
+          "buttons": [
+            "b"
+          ],
+          "frames": 120
+        },
+        {
+          "base": "analysis/redirect/r1-20261105/combat-defeat.snapshot.json",
+          "buttons": [
+            "b"
+          ],
+          "frames": 180
+        },
+        {
+          "base": "analysis/redirect/r1-20261105/defeat-transition.snapshot.json",
+          "patches": "1B8=0;7A/B=FFFF",
+          "buttons": [
+            "b"
+          ],
+          "frames": 120
+        },
+        {
+          "base": "analysis/redirect/r1-20261105/protected-second-defeat.snapshot.json",
+          "buttons": [
+            "b"
+          ],
+          "frames": 120
+        },
+        {
+          "base": "analysis/redirect/r1-20261105/protected-final-return.snapshot.json",
+          "patches": "488=8C;5D8=0;1B8=0;7A/B=FFFF",
+          "buttons": [
+            "b"
+          ],
+          "frames": 120
+        },
+        {
+          "base": "analysis/redirect/r1-20261105/final-defeat-entry.snapshot.json",
+          "patches": "5D8=1",
+          "buttons": [
+            "b"
+          ],
+          "frames": 120
+        },
+        {
+          "base": "analysis/redirect/r1-20261105/defeat-cinematic-shortcut.snapshot.json",
+          "patches": "5E/F=0070;60/61=03D6;7A/B=FFFF",
+          "buttons": [
+            "b"
+          ],
+          "frames": 120
+        },
+        {
+          "base": "analysis/redirect/r1-20261105/ending-preload.snapshot.json",
+          "patches": "100=1;7A/B=FFFF (cleared by normal init)",
+          "buttons": [
+            "b"
+          ],
+          "frames": 120
+        },
+        {
+          "base": "analysis/redirect/r1-20261105/ending-door.snapshot.json",
+          "patches": "100=1;7A/B=FFFF",
+          "buttons": [
+            "up"
+          ],
+          "frames": 120
+        },
+        {
+          "base": "analysis/redirect/r1-20261105/ending-transition.snapshot.json",
+          "buttons": [],
+          "frames": 120
+        },
+        {
+          "base": "analysis/redirect/r1-20261105/ending-script.snapshot.json",
+          "buttons": [],
+          "frames": 120
+        },
+        {
+          "base": "analysis/redirect/r1-20261105/ending-arrival.snapshot.json",
+          "buttons": [],
+          "frames": 120
+        },
+        {
+          "base": "analysis/redirect/r1-20261105/ending-message.snapshot.json",
+          "buttons": [],
+          "trace_disabled_frames": 480,
+          "skip_timeout_ms": 20000,
+          "skip_max_operations": 100000000,
+          "then_traced_frames": 45,
+          "timeout_ms": 15000,
+          "max_operations": 20000000
+        }
+      ],
+      "result": "Rendered ALFRED: YOUR QUEST IS OVER, ending-finish.png; wave18/player29,stage5/map2. Credits not claimed. Failed/unprotected branches preserved separately in research.md."
+    }
+  ],
+  "progression_checklist": [
+    {
+      "milestone": "stage1 cheese, movement/jump",
+      "status": "visited",
+      "scenario": "natural-stage1",
+      "natural": true
+    },
+    {
+      "milestone": "stage2 alphabet blocks",
+      "status": "visited",
+      "scenario": "stage2-shortcut",
+      "natural": false
+    },
+    {
+      "milestone": "stage3 industrial screws",
+      "status": "visited",
+      "scenario": "stage3-shortcut",
+      "natural": false
+    },
+    {
+      "milestone": "stage4 chains/spikes",
+      "status": "visited",
+      "scenario": "stage4",
+      "natural": false
+    },
+    {
+      "milestone": "stage5 green machinery, collision/death",
+      "status": "visited",
+      "scenario": "stage5",
+      "natural": false
+    },
+    {
+      "milestone": "sixth descriptor spike room, role uncertain",
+      "status": "visited",
+      "scenario": "stage6",
+      "natural": false
+    },
+    {
+      "milestone": "aerial bonus starfield",
+      "status": "visited",
+      "scenario": "balloon-flight1",
+      "natural": false
+    },
+    {
+      "milestone": "later shooting-flight state, movement and B projectiles",
+      "status": "visited",
+      "scenario": "final-combat",
+      "natural": false
+    },
+    {
+      "milestone": "visible boss encounter",
+      "status": "attempted",
+      "scenario": "final-later",
+      "reason": "480 untraced frames then90 traced frames of flight/shooting; enemy projectiles visible, no identifiable boss confirmed. Source contract research required before further shortcut.",
+      "historical_attempt": true,
+      "superseded_by": "paired mechanical flight encounter",
+      "current_milestone_status": "visited"
+    },
+    {
+      "milestone": "ending / credits",
+      "status": "attempted",
+      "scenario": "stage6",
+      "reason": "Practical sixth-descriptor and final-stage final-balloon shortcuts attempted. Sixth descriptor spike room and later shooting flight reached; no ending/credits. Unknown boss/wave completion and watering-can branch contracts handed to redirect.",
+      "historical_attempt": true,
+      "superseded_by": [
+        "quest-is-over ending screen",
+        "credits"
+      ],
+      "current_resolution": "Ending visited with preserved quest-over capture; separate credits remain deferred for the recorded reason."
+    },
+    {
+      "milestone": "paired mechanical flight encounter",
+      "status": "visited",
+      "reachability": "artificial protected substate2 shortcut; B input exercised",
+      "evidence": "analysis/redirect/r1-20261105/protected-active.png"
+    },
+    {
+      "milestone": "postboss stage5 transition",
+      "status": "visited",
+      "route": "source-backed paired combat/reward contact shortcut then normal stage5 initializer",
+      "evidence": "analysis/redirect/r1-20261105/reward-contact-state.json"
+    },
+    {
+      "milestone": "quest-is-over ending screen",
+      "status": "visited",
+      "reachability": "artificial source-backed stage5 door/persistence shortcut, normal map2 ending script",
+      "evidence": "analysis/redirect/r1-20261105/ending-finish.png"
+    },
+    {
+      "milestone": "credits",
+      "status": "deferred",
+      "reason": "Quest-is-over terminal sequence visited; separate credits not identified in observed output; no untested credits API/route claimed"
+    }
+  ],
+  "round2_disassembly_reuse": {
+    "status": "saved evidence reused; no emulator replay",
+    "evidence": [
+      "analysis/redirect/r1-20261105/handoff.md",
+      "analysis/redirect/r1-20261105/ending-finish.png"
+    ],
+    "scope": "Artificial representative stages, mechanical boss phases, reward pickup, normal stage5 load and scripted quest-over ending; no natural clear/separate credits assertion."
+  }
+}

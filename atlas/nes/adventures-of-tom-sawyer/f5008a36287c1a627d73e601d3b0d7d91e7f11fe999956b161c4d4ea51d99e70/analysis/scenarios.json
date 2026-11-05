@@ -1,0 +1,223 @@
+[
+  {
+    "id": "R001-NATURAL-STARTUP",
+    "milestone": "Title, player/start menus, classroom opening",
+    "status": "visited",
+    "artificial": false,
+    "route": "No input startup (180-frame request timeout at 77 frames); Start 2 frames, release, 120-frame request timeout after 117 frames; Start 2/release/60; Start 2/release/45; no input 100+100+100; Start 2/release/50. Final frame 657.",
+    "evidence": [
+      "round-001/rpc-log.jsonl",
+      "round-001/startup.png",
+      "round-001/intro.png",
+      "round-001/pre-shortcut.snapshot.json"
+    ]
+  },
+  {
+    "id": "R001-STAGE-1",
+    "milestone": "Stage 1: platforms/sky",
+    "status": "visited",
+    "artificial": true,
+    "context": {
+      "prg_banks": [
+        8,
+        9,
+        14,
+        15
+      ]
+    },
+    "route": "Restore pre-shortcut snapshot, reassert released buttons, RAM $72=0/$75=5; 4 frames; $F0=stage+1; Start 2 frames/release; 12 frames; $76=1; A 15 frames/release; $0472=13; Right+A+B 10 frames, Right+B 10 frames, release. Stage1 original mechanics used 30+30 frames. Stage2 durable entry snapshot resumed with 15+15 frames. Start does not select the debug action: the following A press does, and the subsequent new A press advances stage title.",
+    "evidence": [
+      "round-001/stage-1-entry.snapshot.json",
+      "round-001/stage-1-mechanics.ppm",
+      "round-001/stage-1-contexts.json",
+      "round-001/stage-1-discovery.json",
+      "round-001/stage-1-results.json",
+      "round-001/progression.py"
+    ]
+  },
+  {
+    "id": "R001-STAGE-2",
+    "milestone": "Stage 2: top-down rafting",
+    "status": "visited",
+    "artificial": true,
+    "context": {
+      "prg_banks": [
+        2,
+        3,
+        14,
+        15
+      ]
+    },
+    "route": "Restore pre-shortcut snapshot, reassert released buttons, RAM $72=0/$75=5; 4 frames; $F0=stage+1; Start 2 frames/release; 12 frames; $76=1; A 15 frames/release; $0472=13; Right+A+B 10 frames, Right+B 10 frames, release. Stage1 original mechanics used 30+30 frames. Stage2 durable entry snapshot resumed with 15+15 frames. Start does not select the debug action: the following A press does, and the subsequent new A press advances stage title.",
+    "evidence": [
+      "round-001/stage-2-entry.snapshot.json",
+      "round-001/stage-2-mechanics.ppm",
+      "round-001/stage-2-contexts.json",
+      "round-001/stage-2-discovery.json",
+      "round-001/stage-2-results.json",
+      "round-001/progression.py"
+    ]
+  },
+  {
+    "id": "R001-STAGE-3",
+    "milestone": "Stage 3: forest platforming",
+    "status": "visited",
+    "artificial": true,
+    "context": {
+      "prg_banks": [
+        0,
+        1,
+        14,
+        15
+      ]
+    },
+    "route": "Restore pre-shortcut snapshot, reassert released buttons, RAM $72=0/$75=5; 4 frames; $F0=stage+1; Start 2 frames/release; 12 frames; $76=1; A 15 frames/release; $0472=13; Right+A+B 10 frames, Right+B 10 frames, release. Stage1 original mechanics used 30+30 frames. Stage2 durable entry snapshot resumed with 15+15 frames. Start does not select the debug action: the following A press does, and the subsequent new A press advances stage title.",
+    "evidence": [
+      "round-001/stage-3-entry.snapshot.json",
+      "round-001/stage-3-mechanics.ppm",
+      "round-001/stage-3-contexts.json",
+      "round-001/stage-3-discovery.json",
+      "round-001/stage-3-results.json",
+      "round-001/progression.py"
+    ]
+  },
+  {
+    "id": "R001-STAGE-4",
+    "milestone": "Stage 4: mansion platforming",
+    "status": "visited",
+    "artificial": true,
+    "context": {
+      "prg_banks": [
+        4,
+        5,
+        14,
+        15
+      ]
+    },
+    "route": "Restore pre-shortcut snapshot, reassert released buttons, RAM $72=0/$75=5; 4 frames; $F0=stage+1; Start 2 frames/release; 12 frames; $76=1; A 15 frames/release; $0472=13; Right+A+B 10 frames, Right+B 10 frames, release. Stage1 original mechanics used 30+30 frames. Stage2 durable entry snapshot resumed with 15+15 frames. Start does not select the debug action: the following A press does, and the subsequent new A press advances stage title.",
+    "evidence": [
+      "round-001/stage-4-entry.snapshot.json",
+      "round-001/stage-4-mechanics.ppm",
+      "round-001/stage-4-contexts.json",
+      "round-001/stage-4-discovery.json",
+      "round-001/stage-4-results.json",
+      "round-001/progression.py"
+    ]
+  },
+  {
+    "id": "R001-STAGE-5",
+    "milestone": "Stage 5: cloud platforming",
+    "status": "visited",
+    "artificial": true,
+    "context": {
+      "prg_banks": [
+        6,
+        7,
+        14,
+        15
+      ]
+    },
+    "route": "Restore pre-shortcut snapshot, reassert released buttons, RAM $72=0/$75=5; 4 frames; $F0=stage+1; Start 2 frames/release; 12 frames; $76=1; A 15 frames/release; $0472=13; Right+A+B 10 frames, Right+B 10 frames, release. Stage1 original mechanics used 30+30 frames. Stage2 durable entry snapshot resumed with 15+15 frames. Start does not select the debug action: the following A press does, and the subsequent new A press advances stage title.",
+    "evidence": [
+      "round-001/stage-5-entry.snapshot.json",
+      "round-001/stage-5-mechanics.ppm",
+      "round-001/stage-5-contexts.json",
+      "round-001/stage-5-discovery.json",
+      "round-001/stage-5-results.json",
+      "round-001/progression.py"
+    ]
+  },
+  {
+    "id": "R001-STAGE-6",
+    "milestone": "Stage 6: cave platforming",
+    "status": "visited",
+    "artificial": true,
+    "context": {
+      "prg_banks": [
+        10,
+        11,
+        14,
+        15
+      ]
+    },
+    "route": "Restore pre-shortcut snapshot, reassert released buttons, RAM $72=0/$75=5; 4 frames; $F0=stage+1; Start 2 frames/release; 12 frames; $76=1; A 15 frames/release; $0472=13; Right+A+B 10 frames, Right+B 10 frames, release. Stage1 original mechanics used 30+30 frames. Stage2 durable entry snapshot resumed with 15+15 frames. Start does not select the debug action: the following A press does, and the subsequent new A press advances stage title.",
+    "evidence": [
+      "round-001/stage-6-entry.snapshot.json",
+      "round-001/stage-6-mechanics.ppm",
+      "round-001/stage-6-contexts.json",
+      "round-001/stage-6-discovery.json",
+      "round-001/stage-6-results.json",
+      "round-001/progression.py"
+    ]
+  },
+  {
+    "id": "R001-ENDING",
+    "milestone": "Ending/credits sequence",
+    "status": "visited",
+    "artificial": true,
+    "route": "ending-prefix.py: restore pre-shortcut,release inputs,$72=34/$75=0,10 bounded20-frame batches; ending-follow.py: documented$0482/$76 counters shortened, song-active wait skipped atsubstate12, A on results. All handlers advance normally; no substate injection after initial entry.",
+    "observed": "Correct sleeping Tom vignette, subsequent pose/text states, valid STAGE CLEAR TIME scoreboard, A returns to title. No natural completion route or hardware fidelity claimed.",
+    "evidence": [
+      "round-001/ending.py",
+      "round-001/ending-results.json",
+      "round-001/ending-later.png",
+      "round-001/ending.snapshot.json",
+      "redirect/round-001-contracts/ending-prefix-results.json",
+      "redirect/round-001-contracts/ending-follow-results.json",
+      "redirect/round-001-contracts/ending-prefix.png",
+      "redirect/round-001-contracts/ending-state-16.png"
+    ],
+    "attempt_history": [
+      {
+        "id": "R001-ENDING",
+        "milestone": "Ending/credits sequence",
+        "status": "attempted",
+        "artificial": true,
+        "route": "Restore pre-shortcut; $72=34/$75=3; no input 20 frames; $0482=1; A 20 frames, release.",
+        "observed": "Main mode34/substate7 and accepted ending-handler fetches verified. Composition uses malformed tiles; valid ending/credits display not established. Missing scene/CHR preparation contract, not a rejected code classification.",
+        "evidence": [
+          "round-001/ending.py",
+          "round-001/ending-results.json",
+          "round-001/ending-later.png",
+          "round-001/ending.snapshot.json"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "R001-BOSSES",
+    "milestone": "Representative boss encounters",
+    "status": "visited",
+    "evidence": [
+      "round-001/stage6-controller.json",
+      "round-001/player-controller.json",
+      "redirect/round-001-contracts/boss4-spawn-results.json",
+      "redirect/round-001-contracts/boss4-spawn-contexts.json",
+      "redirect/round-001-contracts/boss-visible-results.json",
+      "redirect/round-001-contracts/boss-visible.png"
+    ],
+    "attempt_history": [
+      {
+        "id": "R001-BOSSES",
+        "milestone": "Representative boss encounters",
+        "status": "deferred",
+        "reason": "Six stage entries/mechanics visited; no supported boss-spawn/checkpoint contract identified in bounded controller inspection. $047A and $047E are leads, but arbitrary boss state injection would not initialize dependent objects. Redirect should trace stage6 $B848 and fixed object dispatch/map consumers before attempting a shortcut.",
+        "evidence": [
+          "round-001/stage6-controller.json",
+          "round-001/player-controller.json"
+        ]
+      }
+    ],
+    "artificial": true,
+    "route": "boss-spawn.py followed by boss-visible.py; ordinary stage6 event mapper/palette/spawner initialization, source-backed camera-command freeze and explicit position accounting. Exact patches/inputs/budgets in scripts/results/RPC logs.",
+    "observed": "Representative stage6 flying boss initialized through type14 state0$AF2D; health10, flags/timers, camera-lock gate and AI executed; boss sprite visible during A+B20 frames. Background remains old/unrecomposed after camera jump, so visual room fidelity is unresolved.",
+    "context": {
+      "prg_banks": [
+        10,
+        11,
+        14,
+        15
+      ]
+    }
+  }
+]

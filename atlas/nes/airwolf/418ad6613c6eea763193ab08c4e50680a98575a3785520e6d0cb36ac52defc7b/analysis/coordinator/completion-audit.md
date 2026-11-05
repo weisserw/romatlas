@@ -1,0 +1,20 @@
+# Coordinator completion audit
+
+Orchestration reached justified terminal incomplete handoff. ROM classification remains INCOMPLETE. Final editorial acceptance and byte fidelity are complete. No archive, deletion/cleanup, publication, or toolkit modification performed.
+
+| Requirement | Checked evidence and outcome |
+|---|---|
+| Separate sequential phase workers | Rounds001..005 each used separate disassembly, commentary and redirect contexts; phase handoffs and progress preserve inputs/outcomes. Final acceptance used a separate worker after coordinator terminal review. No competing writers. |
+| Classification reported before commentary | User-facing coordinator messages relayed each pass: round00187.14%(142780/163856;21076unknown); round00299.99%(163839;17unknown); round003100.00%(163848;8unknown); round004100.00%(163849;7unknown); round005100.00%(163848;8unknown). Rounding never treated as completion. |
+| Current-source readability | commentary/editorial-audit.md, review.json and final acceptance checkpoint:543/543 scaffold entries and631/631 units reviewed;1210 labels, no deferred scope. Valid prior whole-source review reused. R007/R008 dependencies, unknown notes and concrete issues checked. |
+| Editorial acceptance | Supported commentary.py audit passed. Corrected AD7D prose and1174 source locator prefixes. Coordinator independently checked archive.editorial_status read-only: complete=true, no reasons. |
+| Fidelity and identities | Final checkpoint hashes independently matched current ROM/map/state/source/review/reading/audit/verification/manifest. commentary/audit.json records fresh byte-identical rebuild. Original input SHA256 unchanged. |
+| Structural validation | analysis/current-audit.json records configured release binary store validate and map validate, both exit0/oktrue. Current map/state SHA25626084c84b9db26ac0971efa455f8fae9b5cb9903a4f0dca18fbd6724c45c6ce3. |
+| Connected and independent investigation | Redirect handoffs retain service/caller/script/audio/record proofs, local boundary corrections, pattern/contract comparisons, and explicit continuation limits. Ready leads consumed through R008; no remaining ready or concrete productive method. |
+| Terminal rejection review | Personally read r005 terminal review and decisive r004 primary control/stack/descriptor/homolog artifacts, source-claim chain, exact complement and corrected source. Returned concrete C27F overextension as R008; correction independently accepted. Final review exposes no remaining overbroad negative or universal caller prerequisite. See residual-review.md. |
+| Exact structural incompleteness |163848/163856 classified; Code23098,Data9678,Image131072. Eight unknown bytes/seven spans: AD7D,C27F,DAFE,DB21,DB2E,DB44,FC68..FC6A half-open; exact physical intervals in final handoff/checkpoint. Six isolated returns and FA/60 retain material code/residue ambiguity. |
+| Broad progression | S001..S007 checked against gameplay and redirect primary records: natural flight, artificial late mission19, rescue/base, actual caller return after RAM-only edits, clean artificial ending. Natural unpatched completion remains attempted; no full hardware/game fidelity claim. |
+| Archive readiness | Inspected scripts/archive.py FINAL and document-selection logic. archive-options.json selects every additional result/history/handoff Markdown; only copied operational instructions omitted. Actual recursive contract inventory independently validated, no unrecognized/missing/invalid paths. Archive not invoked. |
+| Preservation/toolkit | All prior source/evidence/checkpoints and corrected historical decisions retained. No toolkit issues found; report remains local. No toolkit edits or binary substitution. No archive/cleanup/publication. |
+
+Final structural checkpoint: analysis/round-005-disassembly-final.json. Final current-source acceptance checkpoint: analysis/final-editorial-acceptance.json. Terminal redirect: analysis/handoffs/round-005-redirect.md. Final coordinator handoff: analysis/handoffs/final-coordinator.md. Workflow completion does not mean whole-ROM classification completion.

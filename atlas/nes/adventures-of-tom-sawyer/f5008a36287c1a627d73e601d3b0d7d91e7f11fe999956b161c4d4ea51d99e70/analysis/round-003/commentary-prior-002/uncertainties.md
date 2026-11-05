@@ -1,0 +1,18 @@
+# Commentary uncertainties
+
+## Round002 current-source review
+
+Full prior commentary, including its historical uncertainty record, is preserved at `../analysis/round-002/commentary-prior-001/`. This current record carries valid limitations and updates dependencies exposed by the new classification.
+
+- Scene descriptor `$8000..$8009` supplies five stream/metasprite pointer fields. Six gameplay scenes now have independently bounded type/state and horizontal/vertical/animation pointer arrays. Those counts and consumers are explained locally. Generic movement/animation corpora retain unresolved individual record extents and original animation names; a pointer is not code-role proof.
+- Switchable CPU aliases depend on effective physical PRG banks. Fixed-bank function names do not prove mapper preservation. Dynamic PRG outputs at `$EA15/$EA2A`, RTS trampolines and indirect dispatch still need narrow contextual contracts before additional return continuations can be classified. `SceneCpuTarget_*` aliases retain unresolved effective-bank context.
+- Object state, stream IDs/cursors, animation cursor, display, coordinates and timer are separate arrays. Slot0 is the player. `$0780` is a shared object timer, also used by stream wait/loop commands; `$07A0` is auxiliary state whose meaning varies among scripts, hit counts, child-slot links and cooldowns. Names no longer imply animation-only or repeat-only use.
+- Scene scratch `$047E..$048A` is reused for encounter health, timers, saved states, child counts and other local fields. Local routine comments describe those uses. Neutral shared aliases avoid falsely imposing one encounter's schema on another.
+- Scratch `$00..$17` retains storage identities because rendering, collision, resource upload and dispatch reuse it. Sound channel/effect fields have mechanical names; song titles, original instruments and exact tuning remain unknown. Effect-index pointer destination/source domains remain part of the structural frontier.
+- `StageResultLow/High` is rendered by five-digit repeated subtraction and accumulated into stage/player records. Its exact scoring/time unit is not asserted. Results queue formatting and sentinelFFFF behavior are explained without assigning an original display meaning to every record.
+- Most object identities are named by their established behavior: terrain walker, timed emitter, carrier, linked child or encounter controller. These are interpretations of mechanics, not recovered original character names. Allocation failure and repeated-event behavior are described where visible; linked scene-event pair creation is not atomic.
+- Unknown physical gaps have exact local boundary notes. In particular the nonordinary auxiliary-dispatch return continuation, several inline tables and the six vector-like bytes at the end of physical bank14 remain unknown. No semantic comment changes their structural status.
+- Ending/resource preparation and boss-room composition require the retained progression evidence. The round002 disassembly handoff reports inherited leads verified; the remaining boss-room redraw fidelity question is separate from classification. Commentary adds no new execution or natural-reachability claim.
+- Classroom split/NMI order are source explanations, not cycle-exact or full-hardware compatibility claims. Review-unit intervals group readable entries and may include explained gaps; they are not original routine boundaries or structural annotations.
+
+Continue redirect from `../analysis/round-002/extended-frontier.json` and the disassembly handoff, reusing existing bounded experiments. These are structural/behavior questions, not skipped current-source readability ranges.

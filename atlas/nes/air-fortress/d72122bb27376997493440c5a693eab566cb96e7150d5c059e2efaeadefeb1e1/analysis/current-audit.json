@@ -1,0 +1,45 @@
+{
+  "status": "complete",
+  "scope": "structural classification and current-source editorial/fidelity acceptance; representative gameplay, not full hardware compatibility",
+  "total": 163856,
+  "classified": 163856,
+  "unknown": 0,
+  "kinds": {
+    "Data": 104266,
+    "Code": 24862,
+    "Text": 1960,
+    "Image": 32768
+  },
+  "evidenced_regions": 1135,
+  "map_store_validated": true,
+  "byte_identical": true,
+  "editorial_audit": true,
+  "reviewed_unique_units": 252,
+  "reviewed_unit_region_associations": 1039,
+  "hashes": {
+    "analysis/state.json": "ca0e8adc5134a79e32469916d8bf67dc033e26142cf3363b41abd5f4ed0644c0",
+    "maps/current.json": "ca0e8adc5134a79e32469916d8bf67dc033e26142cf3363b41abd5f4ed0644c0",
+    "maps/round03-disassembly-accepted.json": "ca0e8adc5134a79e32469916d8bf67dc033e26142cf3363b41abd5f4ed0644c0",
+    "commentary/phase1-state.json": "ca0e8adc5134a79e32469916d8bf67dc033e26142cf3363b41abd5f4ed0644c0",
+    "commentary/baseline.json": "ca0e8adc5134a79e32469916d8bf67dc033e26142cf3363b41abd5f4ed0644c0",
+    "input/game.nes": "d72122bb27376997493440c5a693eab566cb96e7150d5c059e2efaeadefeb1e1",
+    "commentary/source/game.asm": "973e08a3d00ee621678d2877f13ca0c55b52b5bc66da5a381d3cf2812fb1ce10",
+    "commentary/reading-after.asm": "7f68b71308fca5670d5af90fafa249e258909f0d4adb14107d86b4388b783316",
+    "commentary/audit.json": "29864be7016e9ccbf717421d0d2ea5a00c436e699395fe5ca77070989154cb06"
+  },
+  "terminal_redirect": "analysis/handoff-round03-redirect.md",
+  "authoritative_checkpoint": "maps/round03-disassembly-accepted.json",
+  "excluded_old_map_checkpoint": "maps/round03-disassembly.json",
+  "archive_executed": false,
+  "cleanup_executed": false,
+  "archive_readonly_editorial_status": {
+    "complete": true,
+    "reviewed_regions": 1135,
+    "reviewed_unit_region_associations": 1039,
+    "editorial_audit": true,
+    "reasons": []
+  },
+  "reading_copy_matches": true,
+  "document_accounting": "analysis/archive-document-accounting.json",
+  "document_unaccounted": 0
+}

@@ -1,0 +1,7 @@
+# Commentary-derived residual questions
+
+Read the four localized source notes in remaining-ranges.json together with analysis/round4/review.md and the preserved r3-residuals/rejection-review.md. Commentary has exposed no new decisive entry/consumer evidence for those five bytes, so unchanged broad replay or legal decoding is not a revised method.
+
+For the next bounded redirect review, compare the freshly named audio loop and following entry at physical83139, the race/HUD surrounding117377..117379, the state-machine tails around121095 and the newly explained road-render jump/next renderer around125983. Ask whether any supported entry precondition, complete independent stack/control contract or concrete consumer discriminates the fragment/data alternatives at the exact residual interval. Existing neighboring code/data support does not extend automatically over the isolated byte(s). If no materially different inference exists, preserve Unknown and report the precise remaining insufficiency; final exhaustion remains the coordinator's separate evidence-policy decision.
+
+The source also localizes optional semantic questions: the natural producer/domain of the specialized stack-entry nibble helper and the small effect's possible index-ten cross-plane read. These do not reopen accepted Code/Data classification or block source readability. No new entry should be manufactured merely to get a successful artificial execution.

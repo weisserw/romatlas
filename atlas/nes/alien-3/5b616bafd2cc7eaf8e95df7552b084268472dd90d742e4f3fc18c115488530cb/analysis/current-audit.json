@@ -1,0 +1,59 @@
+{
+  "status": "terminal-incomplete",
+  "classification_complete": false,
+  "orchestration_terminal_ready": true,
+  "checkpoint": "pass-003",
+  "total_bytes": 262160,
+  "classified_bytes": 262152,
+  "unknown_bytes": 8,
+  "percentage_exact": 99.99694842844065,
+  "percentage_display": "100.00%",
+  "counts": {
+    "Data": 231814,
+    "Code": 30338
+  },
+  "unknown_physical_half_open": [
+    [
+      119037,
+      119040
+    ],
+    [
+      120053,
+      120054
+    ],
+    [
+      120219,
+      120222
+    ],
+    [
+      121550,
+      121551
+    ]
+  ],
+  "annotation_evidence_missing": [],
+  "map_validation": {
+    "ok": true,
+    "command": "configured binary map validate maps/current.json --rom input/game.nes"
+  },
+  "store_validation": {
+    "ok": true,
+    "command": "configured binary store validate input/game.nes --store analysis/state.json"
+  },
+  "commentary_audit": {
+    "byte_identical": true,
+    "ok": true,
+    "rom_sha256": "5b616bafd2cc7eaf8e95df7552b084268472dd90d742e4f3fc18c115488530cb",
+    "source_sha256": {
+      "game.asm": "d56efa3b3585f565fa4efc0dde462ee56c5f2842c9852376766154a438112943",
+      "symbols.inc": "6857ca027118cc5c53f5821e42ee41ffc4d855ede8c957cfa30c5a8a71528dad"
+    },
+    "reviewed_regions": 1836,
+    "reviewed_units": 1797,
+    "editorial_audit": true
+  },
+  "source_scope_check": "analysis/round2/commentary-readability-check.json",
+  "rom_sha256": "5b616bafd2cc7eaf8e95df7552b084268472dd90d742e4f3fc18c115488530cb",
+  "map_sha256": "4e8db6a04eb66e103f84903691c4c75900553daf826f7edf62392b2e1be2082a",
+  "terminal_rejection_review": "analysis/redirect/r2-20261105-a/rejection-review.md",
+  "coordinator_primary_review": "analysis/coordinator-audit.md"
+}

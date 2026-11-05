@@ -1,0 +1,13 @@
+# Terminal coordinator handoff — incomplete ROM, completed workflow
+
+ROM classification: 100.00% (163848 / 163856 bytes classified; 8 bytes unknown).
+
+The percentage rounds to100.00%; exact classification is99.9951176642906%, INCOMPLETE. Code23098, Data9678, Image131072. Eight unknown bytes remain in seven physical half-open intervals: [11661,11662)AD7D;[17039,17040)C27F;[23310,23311)DAFE;[23345,23346)DB21;[23358,23359)DB2E;[23380,23381)DB44;[31864,31866)FC68..FC6A. Effective PRG slots[0,1,2,3]. These have concrete code/residue ambiguity; legal decoding, forced execution and absent literal targets do not settle their role.
+
+Five sequential disassembly/commentary/redirect rounds completed in separate contexts. Productive findings were consumed through R008. Coordinator personally inspected terminal rejection reasoning and primary artifacts, corrected unsupported C27F prefix rather than inherit its prior acceptance, and accepted terminal incomplete after correction. No useful new inference/test remains on current premises; do not repeat unchanged methods automatically. See ../coordinator/residual-review.md and ../redirect/r005-terminal-consistency/review.md.
+
+Readable current source is editorially complete:543 scaffold entries,631units,1210labels; no pending scope. Supported final audit passed, with fresh byte-identical rebuild and refreshed reading copy. Configured release map/store validation passed. Input unchanged. Final sourceSHA2566f06293aaef57d5e81c10d048f2f8ba04fc35fc5f72f5cafc7213ea40efd0bd6. Structural checkpoint ../round-005-disassembly-final.json; authoritative current-source checkpoint ../final-editorial-acceptance.json; ../current-audit.json and ../../commentary/audit.json record acceptance. Earlier commentary checkpoints remain historical and precede final editorial edits.
+
+Broad best-effort progression includes ordinary flight, artificial late mission, rescue/base, actual caller return following RAM-only edits and clean artificial ending. Natural unpatched completion remains attempted. No full game/hardware compatibility claim.
+
+Archive preparation only: ../../archive-options.json explicitly selects additional documents and omits only duplicated operational instructions. Coordinator inspected the toolkit archive contract and validated complete Markdown accounting. All results, source/assets, traces and input remain local; only supported ROM-free portable mapping is a sharing deliverable. No archive creation, cleanup/deletion, publication, toolkit edit or binary substitution occurred. No toolkit issues found. Completion audit ../coordinator/completion-audit.md records final requirement evidence.

@@ -1,0 +1,6 @@
+# Gameplay findings, round 01
+Working identity Air Fortress (US), supported by HAL America 1989 ROM strings and opening fortress scene; title confirmation pending.
+Manual transcription https://www.world-of-nintendo.com/manuals/nes/air_fortress.shtml (NES-AI-USA): eight fortresses, each with scrolling air-base shooter then interior exploration; destroy reactor and escape. A/B shoot outside; inside A normal, B limited crash beam, directions move. Password menu: Start, Select, Start from power-on title. Confirm locally before relying on routes.
+Password hypotheses from https://etherealgames.com/nes/a/air-fortress/passwords/ : quest1 stage8 SUGA; quest2 stage8 7NDE. Not yet tested. These can bypass early play; ROM revision applicability remains provisional.
+
+Locally confirmed Air Fortress US title and natural stage1 shooter. Password SUGA accepted as LAST AIR FORTRESS ($45=7). RAM editor buffer $0414..0417 is ASCII. Important guide mismatch: ROM's quest2 final password is 7NDA, not external 7NDE; entire local table validated separately by consumer loop. $C7 quest bit8, $45 stage index0..7; $C8 is not stage index. Engine interior entry CPU$CF4E initializes bank4/5 interior, ending$CF61 branches by quest flag; artificial bounded tests visited interior8, firstquest ATTENTION, final CONGRATULATIONS. See investigation and scenarios for replay.
