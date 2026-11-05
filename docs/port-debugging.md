@@ -233,6 +233,66 @@ A hash mismatch requires reconciliation, not a fresh run or reset to pass one.
 
 ## Reusable QA scenarios
 
+### Pipeline comparison evidence
+
+For version-5 pipeline acceptance, the audit additionally enforces the existing
+bounded original-fidelity suite. Standalone gameplay QA and modernization keep
+their existing scope. The pipeline cannot disable the suite to obtain completion.
+The paths in `debug/qa-policy.json` identify the manifest and comparison record.
+These are comparison evidence records alongside the harness execution results;
+they do not replace scenario execution or the required capture review.
+
+The manifest has `version: 1`, `identity`, and an ordered `comparisons` array.
+`identity` contains `rom`, `build` (the executable), and `assets` (the active asset
+configuration/manifest), each as `{"path": "local/file", "sha256": "..."}`.
+All paths are relative to the workspace and must resolve inside it. Every QA
+check's `build` must equal the executable SHA-256. After source or asset changes,
+rebuild and regenerate affected evidence; hashes cannot infer dependency impact.
+
+Each comparison has this shape (hashes below are placeholders):
+
+```json
+{
+  "id": "title",
+  "aspect": "rendering",
+  "expectation": "Source-backed title logo and menu layout",
+  "alignment": "Cold reset, recorded inputs, frame 180 on both sides",
+  "format": "rgba8, 256x224, row-major, no headers",
+  "setup": {"path": "debug/scenarios/title.py", "sha256": "..."},
+  "reference": {
+    "path": "debug/captures/title-original.rgba",
+    "sha256": "...",
+    "producer": "original-emulator",
+    "emulator": "Adapter/core version and configuration",
+    "recipe": {"path": "debug/scenarios/capture-original.py", "sha256": "..."}
+  }
+}
+```
+
+Cover `rendering`, `scrolling`, `animation`, and `audio` with selected meaningful
+frames/sample windows, without adding a whole-game pass. A scrolling/animation
+capture can contain a bounded sequence of aligned frames. Store decoded raw
+pixels or PCM with explicit dimensions/sample format and alignment so file
+encoding metadata cannot affect the comparison. Generate original captures
+locally from the user's ROM; never distribute commercial captures or assets.
+
+The results record has `version: 1`, `status: "passed"`, `manifest_sha256` (the
+hash of the exact manifest bytes), and `comparisons` in the same ID order. Each
+row contains `id`, `status: "passed"`, `native` as a path/hash object,
+`different_bytes`, and `review` with `status: "accepted"`, `criteria`, and
+`rationale`. Original and native artifacts must be separate, nonempty files of
+equal length. The audit verifies hashes and recomputes differing byte counts;
+exact equality is required by default. It rejects missing/stale evidence and
+pending reviews even if `qa.json` says passed.
+
+For a source-backed intentional difference, declare `intentional_difference` in
+the manifest and provide `difference_source` as a hashed independent source file.
+Record the actual differing-byte count and explain acceptance in the review.
+This exception cannot excuse missing behavior or derive an expectation from port
+output. The audit checks artifact integrity and comparison arithmetic; agents
+remain responsible for authentic emulator provenance, appropriate alignment,
+source justification and honest presentation review.
+
 For each plan check, create or extend a versioned game-owned script in
 debug/scenarios/. Shared helpers should remove repeated setup, input driving,
 native navigation and observation handling. Keep source-derived expectations

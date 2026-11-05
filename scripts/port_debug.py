@@ -11,6 +11,88 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def audit_sanity(work, builds):
+    """Verify bounded pipeline comparisons, independently of declared pass flags."""
+    def text(value):
+        return isinstance(value, str) and bool(value.strip())
+
+    def artifact(name):
+        if not text(name) or Path(name).is_absolute():
+            raise ValueError('sanity artifact must be a local workspace file')
+        path = (work / name).resolve(strict=True)
+        path.relative_to(work)
+        if not path.is_file():
+            raise ValueError('sanity artifact must be a file')
+        return path
+
+    def verified(item):
+        path = artifact(item.get('path'))
+        if hashlib.sha256(path.read_bytes()).hexdigest() != item.get('sha256'):
+            raise ValueError('stale sanity artifact hash')
+        return path
+
+    policy = json.loads((work / 'debug/qa-policy.json').read_text())['original_fidelity_sanity']
+    if policy.get('enabled') is not True:
+        raise ValueError('pipeline completion requires original-fidelity sanity enabled')
+    manifest_path = artifact(policy.get('manifest'))
+    manifest = json.loads(manifest_path.read_text())
+    record = json.loads(artifact(policy.get('record')).read_text())
+    if (manifest.get('version') != 1 or record.get('version') != 1
+            or record.get('manifest_sha256') != hashlib.sha256(manifest_path.read_bytes()).hexdigest()
+            or record.get('status') != 'passed'):
+        raise ValueError('missing, failed or stale sanity results')
+    identity = manifest.get('identity', {})
+    for key in ('rom', 'build', 'assets'):
+        verified(identity.get(key, {}))
+    if builds != {identity['build']['sha256']}:
+        raise ValueError('QA build must match the sanity executable SHA-256')
+    checks = manifest.get('comparisons')
+    rows = record.get('comparisons')
+    if not isinstance(checks, list) or not checks or not isinstance(rows, list):
+        raise ValueError('sanity needs comparisons')
+    ids = [c.get('id') for c in checks]
+    if (any(not text(i) for i in ids) or len(set(ids)) != len(ids)
+            or [r.get('id') for r in rows] != ids):
+        raise ValueError('sanity results must cover every comparison in order')
+    aspects = set()
+    for check, row in zip(checks, rows):
+        aspect = check.get('aspect')
+        if aspect not in {'rendering', 'scrolling', 'animation', 'audio'}:
+            raise ValueError('unknown sanity comparison aspect')
+        aspects.add(aspect)
+        if any(not text(check.get(k)) for k in ('expectation', 'alignment', 'format')):
+            raise ValueError('sanity comparison needs expectation, format and frame/sample alignment')
+        verified(check.get('setup', {}))
+        reference = check.get('reference', {})
+        if reference.get('producer') != 'original-emulator' or not text(reference.get('emulator')):
+            raise ValueError('sanity reference must identify the original emulator')
+        verified(reference.get('recipe', {}))
+        original = verified(reference)
+        native = verified(row.get('native', {}))
+        if original.samefile(native):
+            raise ValueError('original and native captures must be separate artifacts')
+        expected, actual = original.read_bytes(), native.read_bytes()
+        if not expected or len(expected) != len(actual):
+            raise ValueError('empty or incompatible sanity captures')
+        mismatches = sum(a != b for a, b in zip(expected, actual))
+        if (type(row.get('different_bytes')) is not int
+                or row['different_bytes'] != mismatches or row.get('status') != 'passed'):
+            raise ValueError('incorrect or failed sanity comparison result')
+        review = row.get('review', {})
+        if (review.get('status') != 'accepted' or
+                any(not text(review.get(k)) for k in ('criteria', 'rationale'))):
+            raise ValueError('sanity comparison needs completed presentation review')
+        if mismatches:
+            # Intentional differences must be declared independently of native output.
+            if not text(check.get('intentional_difference')):
+                raise ValueError('sanity capture differs from original')
+            source = verified(check.get('difference_source', {}))
+            if source.samefile(original) or source.samefile(native):
+                raise ValueError('intentional difference needs source evidence independent of captures')
+    if aspects != {'rendering', 'scrolling', 'animation', 'audio'}:
+        raise ValueError('sanity must cover rendering, scrolling, animation and audio')
+
+
 def acceptance_contract(milestone=None, final=False, smoke_only=False):
     if smoke_only:
         return dict(version=5, status="agreed", policy="initial_smoke_and_exact_frame_comparisons",
@@ -109,6 +191,8 @@ def audit(work):
             for name in evidence:
                 artifact(name)
     artifact(qa.get('report'))
+    if smoke_only:
+        audit_sanity(work, {row['build'] for result in passes for row in result['checks']})
     return dict(ok=True, passes=required_passes, checks_per_pass=len(ids),
                 acceptance=acceptance['policy'], semantic_correctness_assessed=False)
 

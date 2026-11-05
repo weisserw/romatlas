@@ -39,14 +39,111 @@ class ContractTests(unittest.TestCase):
         (self.work/'debug'/name).write_text(json.dumps(value)+'\n')
 
     def test_pipeline_smoke_contract_requires_one_bounded_suite(self):
-        self.write('acceptance.json', port_debug.acceptance_contract(smoke_only=True))
-        self.qa['passes'] = self.qa['passes'][:1]
-        self.write('qa.json', self.qa)
+        self.pipeline_sanity()
         self.assertEqual(port_debug.audit(self.work)['passes'], 1)
         self.qa['passes'] = []
         self.write('qa.json', self.qa)
         with self.assertRaises(ValueError):
             port_debug.audit(self.work)
+
+    def pipeline_sanity(self):
+        self.write('acceptance.json', port_debug.acceptance_contract(smoke_only=True))
+        self.qa['passes'] = self.qa['passes'][:1]
+        def capture(name, data):
+            (self.work/name).write_bytes(data)
+            return dict(path=name, sha256=hashlib.sha256(data).hexdigest())
+        identity = {key: capture(key, key.encode()) for key in ('rom', 'build', 'assets')}
+        setup = capture('setup.py', b'# Synthetic deterministic capture recipe\n')
+        self.sanity = dict(version=1, identity=identity, comparisons=[])
+        self.sanity_results = dict(version=1, status='passed', comparisons=[])
+        for aspect in ('rendering', 'scrolling', 'animation', 'audio'):
+            reference = capture(aspect+'-original.raw', bytes([0, 0, 0, 255, 255, 255, 255, 255]))
+            reference.update(producer='original-emulator', emulator='synthetic', recipe=setup)
+            native = capture(aspect+'-native.raw', bytes([0, 0, 0, 255, 255, 255, 255, 255]))
+            self.sanity['comparisons'].append(dict(id=aspect, aspect=aspect, setup=setup,
+                expectation='Source-backed synthetic output', alignment='Frame 60 / sample 0',
+                format='raw fixture bytes', reference=reference))
+            self.sanity_results['comparisons'].append(dict(id=aspect, native=native,
+                different_bytes=0, status='passed', review=dict(status='accepted',
+                    criteria='Expected synthetic pattern', rationale='Both pixels match the independent fixture')))
+        for row in self.qa['passes'][0]['checks']:
+            row['build'] = identity['build']['sha256']
+        self.write('qa.json', self.qa)
+        self.write_sanity()
+
+    def write_sanity(self):
+        self.write('sanity.json', self.sanity)
+        self.sanity_results['manifest_sha256'] = hashlib.sha256(
+            (self.work/'debug/sanity.json').read_bytes()).hexdigest()
+        self.write('sanity-results.json', self.sanity_results)
+
+    def test_pipeline_rejects_self_baselines_stale_missing_failed_and_unreviewed_evidence(self):
+        for failure in ('missing', 'stale', 'self', 'producer', 'review', 'failed',
+                        'disabled', 'coverage', 'build', 'recipe', 'escape', 'manifest',
+                        'missing-original', 'empty', 'size', 'metric'):
+            with self.subTest(failure=failure):
+                self.pipeline_sanity()
+                policy = json.loads((self.work/'debug/qa-policy.json').read_text())
+                policy['original_fidelity_sanity']['enabled'] = failure != 'disabled'
+                self.write('qa-policy.json', policy)
+                check = self.sanity['comparisons'][0]
+                row = self.sanity_results['comparisons'][0]
+                if failure == 'self': row['native'] = check['reference']
+                if failure == 'producer': check['reference']['producer'] = 'native-port'
+                if failure == 'review': row['review']['status'] = 'pending'
+                if failure == 'failed': row['status'] = 'failed'
+                if failure == 'coverage': self.sanity['comparisons'].pop()
+                if failure == 'recipe': check['reference']['recipe']['sha256'] = '0'*64
+                if failure == 'escape': row['native']['path'] = '../outside.raw'
+                if failure == 'metric': row['different_bytes'] = False
+                if failure in ('empty', 'size'):
+                    data = b'' if failure == 'empty' else b'x'
+                    (self.work/row['native']['path']).write_bytes(data)
+                    row['native']['sha256'] = hashlib.sha256(data).hexdigest()
+                    if failure == 'empty':
+                        (self.work/check['reference']['path']).write_bytes(data)
+                        check['reference']['sha256'] = hashlib.sha256(data).hexdigest()
+                self.write_sanity()
+                if failure == 'missing': (self.work/'debug/sanity-results.json').unlink()
+                if failure == 'missing-original': (self.work/check['reference']['path']).unlink()
+                if failure == 'stale': (self.work/row['native']['path']).write_bytes(b'stale')
+                if failure == 'build': (self.work/'build').write_bytes(b'rebuilt')
+                if failure == 'manifest': (self.work/'debug/sanity.json').write_text('{}')
+                with self.assertRaises((ValueError, OSError)):
+                    port_debug.audit(self.work)
+
+    def test_pipeline_recomputes_difference_and_rejects_clear_only_renderer(self):
+        self.pipeline_sanity()
+        row = self.sanity_results['comparisons'][0]
+        blank = bytes([0, 0, 0, 255]*2)
+        (self.work/row['native']['path']).write_bytes(blank)
+        row['native']['sha256'] = hashlib.sha256(blank).hexdigest()
+        self.write_sanity()
+        with self.assertRaisesRegex(ValueError, 'incorrect'):
+            port_debug.audit(self.work)
+        row['different_bytes'] = 3
+        self.write_sanity()
+        with self.assertRaisesRegex(ValueError, 'differs from original'):
+            port_debug.audit(self.work)
+
+    def test_intentional_difference_requires_independent_source(self):
+        self.pipeline_sanity()
+        check = self.sanity['comparisons'][0]
+        row = self.sanity_results['comparisons'][0]
+        data = bytes([1, 0, 0, 255, 255, 255, 255, 255])
+        (self.work/row['native']['path']).write_bytes(data)
+        row['native']['sha256'] = hashlib.sha256(data).hexdigest()
+        row['different_bytes'] = 1
+        check['intentional_difference'] = 'Source-backed rounding difference'
+        self.write_sanity()
+        with self.assertRaises(ValueError): port_debug.audit(self.work)
+        check['difference_source'] = row['native']
+        self.write_sanity()
+        with self.assertRaisesRegex(ValueError, 'independent of captures'):
+            port_debug.audit(self.work)
+        check['difference_source'] = check['setup']
+        self.write_sanity()
+        self.assertTrue(port_debug.audit(self.work)['ok'])
 
     def test_complete_contract_and_installer_preserve_working_records(self):
         self.assertTrue(port_debug.audit(self.work)['ok'])

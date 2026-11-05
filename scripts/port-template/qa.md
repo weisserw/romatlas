@@ -24,6 +24,17 @@ results, capture paths and review judgments. Never learn expectations from port
 output or silently disable failing comparisons. Existing reviewed equivalent initial
 sanity evidence may be reused when its build/assets and scope remain valid.
 
+Pipeline completion enforces the comparison evidence schema in DEBUGGING.md,
+under "Pipeline comparison evidence". Populate debug/sanity.json and
+debug/sanity-results.json at the paths configured by debug/qa-policy.json.
+Retain separate original-emulator and native captures, hashed setup/capture recipes,
+ROM/executable/asset identities, alignment, actual difference counts and completed
+presentation reviews. The audit recomputes byte differences; a native screenshot
+or its hash alone cannot pass. Use the executable SHA-256 as each QA check's build.
+Store comparable decoded raw pixels/PCM, not differently encoded image/audio files.
+Declare intentional differences with independent source evidence; never relabel a
+missing renderer or failed implementation as an intentional difference.
+
 Record the bounded scope in debug/plan.json using stable checks with reproducible
 setup, expectations, applicable aspects and coverage links. Mark the plan ready.
 Record one successful execution of that plan in debug/qa.json (passes number 1),
