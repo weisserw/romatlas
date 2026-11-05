@@ -1,0 +1,17 @@
+# Round 2 disassembly handoff
+
+ROM classification: 98.80% (259011 / 262160 bytes classified; 3149 bytes unknown).
+
+Incomplete. Whole-ROM totals:19620 Code,108319 Data,131072 Image. Gain91797:3977 Code (3780 proposed+197 connected continuations),87820 Data.2815 regions all bear evidence; every prior region preserved exactly. Structure, execution and readability are separate metrics.
+
+Checkpoint [maps/round2-disassembly.json](../../maps/round2-disassembly.json), current map and internal state all have SHA256`a50228a71f93e34e2c3da8fd3a35aeddaee01cc6f511437c6ed8bfc85c0f3e9a`. Fresh [verification](../round2-disassembly-verification.json) confirms byte_identical=true; output [generated/round2-disassembly](../../generated/round2-disassembly). ROM hash remains116efb88dfbf7f262309b705dbcb236ffb1d8fb9159071ef49ba45b36dfb2494.
+
+Independent review: [review.md](review.md), [independent-review.json](independent-review.json), [fresh code listing](code-review.txt), [accepted continuations](accepted-continuations.json). All proposal conflicts, exact template domains/payloads, packed/tree endpoints,128 script directory words and every code view checked against primary ROM/evidence. A KIL alternate entry at19C77 was rejected as an unsupported operand interpretation; valid JSR still covers the byte, so union unchanged. Bank2 directory permutation is valid, not an assumed sorted layout. Short direct continuations add197 bytes under exact predecessor contracts. Data interpretations remain appropriately bounded; generic stream regions do not invent per-record boundaries. All five ready lead IDs now verified with appended history.
+
+Exact physical unknown complement, possible CPU aliases and neighboring region IDs: [unknown.json](unknown.json),35 gaps. Detailed whole-ROM/per-bank counts and retained actual opcode-root scope: [classification.json](classification.json), [per-bank.md](per-bank.md). Retained actual fetch root union7282 physical starts/15612 contexts, all classified Code; this is not a full-game execution coverage claim.
+
+Next: separate full current-source commentary, then redirect. Existing round1 commentary and reading-after.asm remain byte-identical and valid for unchanged portions; they are preserved, not updated in this phase. Newly generated source requires review; final editorial audit remains pending.
+
+Concrete remaining avenues: bank6 bridge/title inline text and control mixtures (especially physical18175..1835F,18439..1867D,18840..18A65); script/PPU helper gaps after known calls need exact return/bank and inline-data contracts; fixed tail1FF86..2000A has regular lookup-looking bytes adjacent to a return and vectors, requiring consumer/reference/boundary inspection. These are fresh residual entry points, not terminal rejections or claims of no gain. Normal gameplay/representative later states and initialized ending evidence were reused from the redirect; unchanged playback had reduced structural prospect. This pass does not declare broad gameplay or structural investigation exhausted.
+
+Toolkit:1 confirmed documentation/API issue NES-001,0 suspected bugs,0 separate missing features,0 blockers. [Persistent report](../toolkit-issues.md); use buttons arrays. All new review/apply servers closed; any future runtime needs configured release serve, map.load, emulator.start, snapshot import and input reassertion. No toolkit/ROM/commentary modifications, cleanup, deletion, archive or publication.

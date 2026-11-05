@@ -1,0 +1,279 @@
+{
+  "version": 1,
+  "round": 1,
+  "input_contract": "NES emulator.input uses {port:1,buttons:[...]}; buttons:[] releases. Earlier button/pressed requests were ignored (NES-001).",
+  "milestones": [
+    {
+      "id": "R1-attract",
+      "milestone": "title and attract animation",
+      "status": "visited",
+      "route": "fresh emulator.start, idle150; earlier first-gameplay.py inputs were silently ignored",
+      "evidence": [
+        "round1/title.snapshot",
+        "round1/selection-discovery.json"
+      ],
+      "reachability": "natural idle"
+    },
+    {
+      "id": "R1-bridge",
+      "milestone": "ship bridge dialog and planetary navigation",
+      "status": "visited",
+      "route": "from intro-wait.snapshot, Start2/release2/wait60 using correct array input; A pulses with waits progress dialog, then rotating Cyberia map and landing preparation",
+      "evidence": [
+        "round1/actual-menu.snapshot",
+        "round1/bridge-end.snapshot",
+        "round1/cyberia-entry.snapshot"
+      ],
+      "reachability": "natural"
+    },
+    {
+      "id": "R1-Cyberia",
+      "milestone": "Cyberia landing and basic platform/combat/inventory mechanics",
+      "status": "visited",
+      "route": "Natural ship route; final walkout wait240 then right+B30, right+A30, release/Start; see console/helpers and durable snapshots",
+      "evidence": [
+        "round1/planet-ready.snapshot",
+        "round1/cyberia-play.snapshot"
+      ]
+    },
+    {
+      "id": "R1-Turvia",
+      "milestone": "later planet with inverted gravity",
+      "status": "visited",
+      "reason": "next practical test: Continue password QDJ24 M5HLB XN6Z3 GHFKD; inspect password RAM buffer and use documented memory edits",
+      "route": "Import password-screen.snapshot; patch20 alphabet indices at$0410; Start; wait180; A; partial420 tick budget +90; traced right/A/B30; opposite left/A/B30 after240",
+      "evidence": [
+        "round1/turvia-land.snapshot",
+        "round1/turvia-action.ppm",
+        "round1/turvia-actual.snapshot"
+      ],
+      "artificial": true
+    },
+    {
+      "id": "R1-asteroids",
+      "milestone": "asteroid recoil travel",
+      "status": "visited",
+      "reason": "password 4XQBN K7PSD SHDC8 R5GNM; password input contract pending",
+      "route": "late_route password; restore asteroid-land.snapshot; A4 separated60; wait660; left+B30/right+B30",
+      "evidence": [
+        "round1/asteroid-continued.snapshot",
+        "round1/asteroid-recoil.ppm"
+      ],
+      "artificial": true
+    },
+    {
+      "id": "R1-Telos",
+      "milestone": "late Telos planet",
+      "status": "visited",
+      "reason": "Machine room plus representative later Telos rooms37 and39 now visited through source-record entry contracts; see R1R-Telos37/39.",
+      "evidence": [
+        "round1/final-boss-land.snapshot"
+      ],
+      "artificial": true,
+      "history": [
+        {
+          "status": "visited",
+          "reason": "Endgame room reached using final-boss password; broad Telos maze not explored"
+        }
+      ]
+    },
+    {
+      "id": "R1-final",
+      "milestone": "final boss and ending",
+      "status": "visited",
+      "reason": "Agathos machine, distinct spaceship boss and initialized ending scenes visited. Source-backed artificial damage/boarding contracts reached special2C; The End2A was independently initialized and visually confirmed. No natural fight/ending claim.",
+      "route": "MM0K2RSF!3C4FPDDGL2! buffer; late_route; A6+660 reaches last dialogue; restore final-continued.snapshot; A+120 then right/B30 and A/B30",
+      "evidence": [
+        "round1/boss-engaged.snapshot",
+        "round1/boss-engaged.ppm"
+      ],
+      "artificial": true,
+      "history": [
+        {
+          "status": "attempted",
+          "reason": "Agathos machine phases and initialized ending2A/2B/2C visited. Natural defeat and the equipped-item final branch remain under investigation; no natural ending claim."
+        }
+      ]
+    },
+    {
+      "id": "R1-Effluvia",
+      "milestone": "Effluvia",
+      "status": "deferred",
+      "reason": "Single easy-gain pass visited natural first planet, inverted-gravity planet, recoil space and endgame boss. Last distinct alternatives gave small gains; additional planet-specific contracts can be investigated in redirect; no claim all gameplay exhausted."
+    },
+    {
+      "id": "R1-Sauria",
+      "milestone": "Sauria",
+      "status": "deferred",
+      "reason": "Single easy-gain pass visited natural first planet, inverted-gravity planet, recoil space and endgame boss. Last distinct alternatives gave small gains; additional planet-specific contracts can be investigated in redirect; no claim all gameplay exhausted."
+    },
+    {
+      "id": "R1-Vernia",
+      "milestone": "Vernia",
+      "status": "deferred",
+      "reason": "Single easy-gain pass visited natural first planet, inverted-gravity planet, recoil space and endgame boss. Last distinct alternatives gave small gains; additional planet-specific contracts can be investigated in redirect; no claim all gameplay exhausted."
+    },
+    {
+      "id": "R1-Utopia",
+      "milestone": "Utopia",
+      "status": "deferred",
+      "reason": "Single easy-gain pass visited natural first planet, inverted-gravity planet, recoil space and endgame boss. Last distinct alternatives gave small gains; additional planet-specific contracts can be investigated in redirect; no claim all gameplay exhausted."
+    },
+    {
+      "id": "R1-Odar",
+      "milestone": "Odar",
+      "status": "deferred",
+      "reason": "Single easy-gain pass visited natural first planet, inverted-gravity planet, recoil space and endgame boss. Last distinct alternatives gave small gains; additional planet-specific contracts can be investigated in redirect; no claim all gameplay exhausted."
+    },
+    {
+      "id": "R1-Volcania",
+      "milestone": "Volcania",
+      "status": "deferred",
+      "reason": "Single easy-gain pass visited natural first planet, inverted-gravity planet, recoil space and endgame boss. Last distinct alternatives gave small gains; additional planet-specific contracts can be investigated in redirect; no claim all gameplay exhausted."
+    },
+    {
+      "id": "R1R-special2c",
+      "milestone": "special ship in stars scene",
+      "status": "visited",
+      "artificial": true,
+      "route": "restore round1/boss-engaged.snapshot; buttons[]; RAM B9..BB=[44,0,0],1A=9; step60+60; supported pending-mode dispatch",
+      "evidence": [
+        "redirect/r1-assets-stage-damage/special2c-120.snapshot",
+        "redirect/r1-assets-stage-damage/special2c-120.png"
+      ]
+    },
+    {
+      "id": "R1R-ending2a",
+      "milestone": "framed Rad waving ending screen",
+      "status": "visited",
+      "artificial": true,
+      "route": "restore special2c-120.snapshot;buttons[];RAM B9..BB=[42,0,0],1A=9;step120;A+B30;release",
+      "evidence": [
+        "redirect/r1-assets-stage-damage/special2a-action.snapshot",
+        "redirect/r1-assets-stage-damage/special2a-action.png",
+        "redirect/r1-assets-stage-damage/ending2a-settled.png"
+      ],
+      "limitation": "Initialized artificial stage shortcut; natural boss defeat not established",
+      "observed_result": "Fully displayed The End screen with waving Rad."
+    },
+    {
+      "id": "R1R-ending2b",
+      "milestone": "Rad closing monologue",
+      "status": "visited",
+      "artificial": true,
+      "route": "restore special2c-120.snapshot;buttons[];RAM B9..BB=[43,0,0],1A=9;step120;A+B30;release",
+      "evidence": [
+        "redirect/r1-assets-stage-damage/special2b-action.snapshot",
+        "redirect/r1-assets-stage-damage/special2b-action.png"
+      ],
+      "limitation": "Initialized artificial stage shortcut; natural boss defeat not established"
+    },
+    {
+      "id": "R1R-Telos37",
+      "milestone": "Later Telos stage 37",
+      "status": "visited",
+      "artificial": true,
+      "route": "Restore boss-engaged.snapshot; buttons[]; write RAM B9..BB=[37, 3, 64] and1A=9; wait120 untraced, then5 traced frames and right+A+B30.",
+      "source_record_physical": 75530,
+      "evidence": [
+        "redirect/r1-assets-stage-damage/telos37-recipe.json",
+        "redirect/r1-assets-stage-damage/telos37-action.snapshot",
+        "redirect/r1-assets-stage-damage/telos37-action.png"
+      ],
+      "observed_result": "Distinct initialized platform/maze room with movement/jump/attack inputs and actual opcode-context capture."
+    },
+    {
+      "id": "R1R-Telos39",
+      "milestone": "Later Telos stage 39",
+      "status": "visited",
+      "artificial": true,
+      "route": "Restore boss-engaged.snapshot; buttons[]; write RAM B9..BB=[39, 126, 80] and1A=9; wait120 untraced, then5 traced frames and right+A+B30.",
+      "source_record_physical": 75516,
+      "evidence": [
+        "redirect/r1-assets-stage-damage/telos39-recipe.json",
+        "redirect/r1-assets-stage-damage/telos39-action.snapshot",
+        "redirect/r1-assets-stage-damage/telos39-action.png"
+      ],
+      "observed_result": "Distinct initialized platform/maze room with movement/jump/attack inputs and actual opcode-context capture."
+    },
+    {
+      "id": "R1R-machine-clear",
+      "milestone": "Machine defeat and freed NPC phase",
+      "status": "visited",
+      "artificial": true,
+      "route": "Exact two-response and equipped-item recipe in boss-contract.md; no PC or ROM edit.",
+      "evidence": [
+        "redirect/r1-assets-stage-damage/boss-second-response360.snapshot",
+        "redirect/r1-assets-stage-damage/boss-second-response360.png"
+      ],
+      "observed_result": "RAMDA=100, brain inactive, machine gone, freed NPC script9915."
+    },
+    {
+      "id": "R1R-ship-boss",
+      "milestone": "Distinct spaceship boss in gravity-free rocky area",
+      "status": "visited",
+      "artificial": true,
+      "route": "Source A601 entry contract: pending[stage1D,8,2D],frame_requests9;wait120,trace5,right+B30.",
+      "evidence": [
+        "redirect/r1-assets-stage-damage/late-boss-shortcut.py",
+        "redirect/r1-assets-stage-damage/late-boss29-action.snapshot",
+        "redirect/r1-assets-stage-damage/late-boss29-action.png"
+      ],
+      "observed_result": "Stage29; template19 with250 generic health andcustomDD=6; actual fight/movement inputs executed."
+    },
+    {
+      "id": "R1R-ship-board",
+      "milestone": "Spaceship defeat and departure into special2C",
+      "status": "visited",
+      "artificial": true,
+      "route": "Use the actual class28 rocket slot3 and derived contact side/center contract, DD=1, full responseA036; then documented class1 boarding responseA0C0. Exact patches and budgets retained.",
+      "evidence": [
+        "redirect/r1-assets-stage-damage/ship-contact-patches.json",
+        "redirect/r1-assets-stage-damage/ship-contact-contract.py",
+        "redirect/r1-assets-stage-damage/ship-boarding.py",
+        "redirect/r1-assets-stage-damage/ship-board360.snapshot",
+        "redirect/r1-assets-stage-damage/ship-board360.png"
+      ],
+      "observed_result": "DD=0 disabled ship, then initialized mode80/stage2C ship-in-stars scene. Natural contacts not asserted."
+    }
+  ],
+  "password_contract": {
+    "clean_snapshot": "round1/password-screen.snapshot",
+    "address": 1040,
+    "length": 20,
+    "alphabet": "0123456789BCDFGHJKLMNPQRSTVWXZ!$",
+    "buffer_evidence": [
+      "round1/password-before.json",
+      "round1/password-after.json",
+      "round1/password-two.json",
+      "round1/password-handler-decode.json"
+    ],
+    "validation": "Start handler checks indices <32, decodes $0432..$0443, validates two checksum symbols",
+    "recipe_source": "round1/helpers.py late_route; exact20-byte writes; clear buttons after restoration; snapshot is pre-edit"
+  },
+  "coverage_note": "Broad best-effort progression includes natural first planet and ship navigation, later inverted gravity, asteroid travel, later Telos maze rooms, machine and spaceship bosses, major departure transition and initialized closing/The End scenes. Remaining planet permutations and unmodified closing-dialogue timing are not claimed exhausted; no separate hardware/game compatibility claim follows.",
+  "terminal_progression_review": {
+    "checkpoint": "maps/round3-disassembly.json",
+    "coordinator_review": "analysis/coordinator/rejection-review.md",
+    "research_review": "analysis/redirect/r3-residual-contract-review/rejection-review.md",
+    "scope": "Representative broad best-effort progression; not exhaustive game completion or natural-ending proof.",
+    "visited_systems": [
+      "natural ship/first-planet platform-combat-inventory",
+      "artificial inverted gravity",
+      "artificial asteroid recoil",
+      "artificial later Telos transitions",
+      "artificial machine contact clear",
+      "artificial spaceship contact/boarding/departure",
+      "initialized closing monologue and The End"
+    ],
+    "deferred_ids": [
+      "R1-Effluvia",
+      "R1-Sauria",
+      "R1-Vernia",
+      "R1-Utopia",
+      "R1-Odar",
+      "R1-Volcania"
+    ],
+    "disposition": "Original per-pass deferral reasons are retained as history. Terminal review found no concrete unvisited major-system shortcut or address producer that would discriminate the three fixed-bank isolated RTS bytes; represented mechanics and ending paths are already covered. Unvisited planet permutations and natural fight/dialogue timing are not asserted exhausted. No unchanged replay is required."
+  }
+}

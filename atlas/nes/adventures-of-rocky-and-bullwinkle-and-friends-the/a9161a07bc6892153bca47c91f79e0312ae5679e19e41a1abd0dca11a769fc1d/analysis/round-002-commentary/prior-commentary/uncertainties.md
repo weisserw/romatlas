@@ -1,0 +1,13 @@
+# Round 001 commentary uncertainties
+
+Current-source readability is complete; these are semantic/structural frontiers, not skipped source. Unknown spans retain explicit physical boundaries and no invented decoding. Existing classification and all physical identities remain unchanged.
+
+- Scene descriptors and stream consumers: LoadSceneDescriptor reads 23 bytes and initializes seven pointers. Tile/attribute/palette/platform/event/wall/special-surface roles follow consumers, but complete stream extents and all scene fields are unresolved. Continue SCENE-DATA-001 at physical $1D1F1 and $1D2E6 with bounded immutable reads in the descriptor-selected data bank. Do not infer pointer-table code from values.
+- Event interpreter at physical $D67..$E57 uses opcode conditions and synthetic indirect calls. EventReplacePageTable discards stacked values. Follow this stack contract and coupled column/object initialization before another ENDING-001 terminal transition; the unchanged edge patch already failed.
+- Fixed helpers SelectPrgPair/SwitchPrgPair preserve physical upper PRG banks but change the lower execution view and explicitly enable interrupts. STATIC-CALL-001 should establish helper-specific bank/register/stack contracts before extending disassembly across calls. CPU numeric operands and raw data-label locations are not physical storage identities.
+- Player form bit 2 changes animation/motion choices; TogglePlayerForm is a mechanical name. The character identity and special-surface identity remain tentative. BeginThrownAction probably implements observed bomb input; only the exact state/slot/velocity changes are asserted.
+- Entity private states, some type-specific handlers, descriptor meanings and auxiliary modes 1/2 remain mechanically described. Incomplete handlers have explicit neighboring raw gaps and unresolved direct-call notes; there is no claim to have recovered their unknown continuation.
+- Sound decoding has packed waits, opcode classes, envelopes, priorities and timer writes. Some command tails, note-period table structure and pitch-sequence body remain unknown. Do not infer all audio assets or global stream bounds from these consumers.
+- Generic data uses exact maximal uniform-run evidence. The inspection checked neighboring references and conflicting code; this supports non-code without identifying original padding purpose or a full map format. Caption tile identities and CHR scene ownership remain unresolved.
+
+Natural reachability, artificial execution, structural classification, current-source readability and final editorial acceptance remain separate. Broad boss/ending coverage remains deferred as recorded in scenarios.json. No new runtime or structural experiment was performed in commentary.

@@ -1,0 +1,12 @@
+{
+  "byte_identical": true,
+  "ok": true,
+  "rom_sha256": "5208825f7cc79bf1d17cc959872b2246cce3be31962fcb6bc534c20f2ef95519",
+  "source_sha256": {
+    "audio-data.asm": "5a798dda4ce7aa31f7c8bfdc6af2b1d796a30d5bd7d990f9ae7d762019cf4faf",
+    "composite-sprites.asm": "e24e4f5bd8e5d9ccead4e8ee4507413e8b742c2e823d0d020e08b1e1dc1d8106",
+    "game.asm": "00039a274255982f5e22a71117f56cdbac2591607b156f5fff45a663514b3c43",
+    "paired-sprites.asm": "81ba5398e275d85551852fdae7fc57182dc2d994ac5c6021337ccc060e3028fb",
+    "symbols.inc": "9602f2aa0f89f746baf19996f9b13273656da1cfc5c1560ac407cb510fb7c870"
+  }
+}

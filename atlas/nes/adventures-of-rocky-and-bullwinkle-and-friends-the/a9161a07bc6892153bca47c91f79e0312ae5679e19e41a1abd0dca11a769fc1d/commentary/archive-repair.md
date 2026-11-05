@@ -1,0 +1,13 @@
+# Archive repair
+
+The archive failed because commentary/source/mapping.json was the stale round-001 map (503 classified regions, next_id 504), identical to the preserved prior-commentary source map. The final frozen baseline, generated before/mapping.json and maps/current.json agree byte-for-byte (1613 classified regions, next_id 1614; SHA256 d6af065d7fd00334045ea58046b2704e3d4a51caa5f3b6be8db0abc7461ea863). The archive contract cannot encode changed non-assembly metadata as editorial source edits.
+
+Replaced only source/mapping.json with the existing final baseline map. This reconciles a stale ancillary snapshot with the completed source's actual structural checkpoint; it introduces no new classification. The NES build uses game.asm and layout.cfg, not mapping.json. Reviewed the changed metadata against the final checkpoint and both round inventories; ROM identity fields are unchanged. The original stale map and archive-options.json are retained in analysis/archive-repair-backups/, with pre-repair protected-file hashes. No assembly, labels, comments, review credit or frozen artifacts were edited or regenerated. archive-options.json now includes this final document and retains every prior inclusion and omission.
+
+Verification: the supported strict commentary audit freshly rebuilt byte-identically and passed 1614 scaffold entries / 1637 reviewed units, with editorial_audit=true. The annotated game.asm remains SHA256 3469e121290d07901143b0f305d10e3f7af56ca4c2a4cf731baf882569eb39b6. All 12 recorded protected file hashes, including input/game.nes, frozen before files, review.json and frozen baseline/state, remain unchanged. The audit refreshed verification, audit and the reading copy under the existing contract.
+
+The disposable archive probe uses the requested argv and all current archive-options selections. Its result is recorded after execution below. Only the disposable /tmp probe is published; the real destination is left to the runner. No toolkit edits, downloads, disassembly restart or runtime research occurred.
+
+Residual limitations remain those in the final handoffs: physical [$3327,$332A) is Unknown; classification is incomplete despite rounded 100% coverage. Natural ending progression, boss encounters, exhaustive gameplay and full hardware compatibility remain unverified. Historical evidence and final conclusions are retained locally. Archive restoration requires the original ROM and pinned tools.
+
+Probe result: exit 0, ok=true, exact_source=true, byte_identical=true, editorial_complete=true; no review-status reasons. Local machine-readable command/output: analysis/archive-repair-probe.json. A second probe includes this result in the archived final document.

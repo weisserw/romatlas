@@ -1,0 +1,9 @@
+# Round 3 commentary progress
+
+Full current-source readability complete. All 2864 scaffold intervals are reviewed; zero classified-source backlog. Classified 262157/262160 (100.00% rounded), with 3 unknown bytes explicitly incomplete. Code21976, Data109109, CHR131072. No map or runtime evidence changes.
+
+Entire prior commentary preserved at analysis/round3-commentary/prior-commentary before fresh preparation. 2815 exact classified physical/kind/evidence intervals retain sound prior prose/review and all19620 old Code bytes. New47 intervals/1114instructions reviewed under67 substantive units; seven stale gap caveats, the prior UI/navigation data structure and affected references reconciled. Shared RAM aliases distinguish bridge, password, column editing and inventory blink uses; audio_fade_enabled now connects producer and consumer. New dialogue and all five nested navigation records have explicit readable representation. Remaining game identities are localized in uncertainties.md.
+
+Fresh configured-release commentary verification: byte_identical=true; reading-after.asm refreshed from the exact verified source. analysis/round3-commentary/readability-report.json checks scaffold/evidence identity, full scope/source links, prior prose carry, hashes and exact reading expansion. Source hashes and map identity are recorded in that report and handoff. Final editorial_audit remains pending; no final audit command ran. No deferred classified source ranges.
+
+Separate redirect is next for the three isolated RTS alternatives. C807 jumps RAM0000, not003E; initialized target/use unresolved. CAF6 coherent static routine has no caller claim. Patterned tail has no specific consumer claim. These do not force residual classification. Toolkit: sole confirmed NES-001 documentation/API issue;0suspected/0missing features/0blockers; no new toolkit issues found. No ROM/toolkit edits, runtime server, archive/publication or cleanup. All artifacts local.

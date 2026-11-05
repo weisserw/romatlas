@@ -1,0 +1,198 @@
+{
+  "version": 1,
+  "phase": "round-001-disassembly",
+  "milestones": [
+    {
+      "id": "startup",
+      "milestone": "Title and presentation",
+      "status": "visited",
+      "route": "Natural reset; no buttons through frame608; Start2/release90; Start2/release120; Start2/release90; exact RPC requests in evidence/rpc-direct.jsonl. Earlier generic button/pressed calls ignored; exclude them.",
+      "observed_result": "Title at608; credits700; level1 intro914",
+      "evidence": [
+        "analysis/evidence/after-wait.png",
+        "analysis/evidence/after-start.png",
+        "analysis/evidence/start3.png"
+      ]
+    },
+    {
+      "id": "level1",
+      "milestone": "Level 1 representative gameplay",
+      "status": "visited",
+      "route": "Continue start3.snapshot120 frames, right+A90, right+B45, release, Select2/release30",
+      "observed_result": "Playable Frostbite Falls at frame1355 (warp-1.png); natural A jump and B bomb observed later; bomb HUD10->9. Initial route portion during loading retained as failed timing evidence.",
+      "evidence": [
+        "analysis/evidence/level1-entry.png",
+        "analysis/evidence/level1-play.png"
+      ]
+    },
+    {
+      "id": "later-levels",
+      "milestone": "Later levels and distinct systems",
+      "status": "visited",
+      "route": "Controller2 B,A,A,Start,A,B,B,A with2frames pressed and2released each; then B2/release90 and right+A+B30, repeated6.",
+      "observed_result": "Source-supported RAM flag/index shortcut initialized selectors2,6,7,8,10; visits were artificial, not natural progression. Original during-load eight-button sequence did not enable warp.",
+      "evidence": [
+        "analysis/scratch/batch4.py"
+      ]
+    },
+    {
+      "id": "boss-ending",
+      "milestone": "Boss/final level/ending",
+      "status": "attempted",
+      "reason": "Final scene10 initialized and exercised. Near-right-edge camera/player patch produced stale/corrupt streamed graphics, accepted execution and565 new code bytes, but no ending or verified boss. Coupled map-column/entity-stream initialization contract remains unknown; redirect must establish it before retrying this approach. Subsequent materially different supported RunExitFlag shortcut reached terminal win presentation; boss remains unverified. See ending-supported-exit-flag."
+    },
+    {
+      "id": "scene-2",
+      "milestone": "Railway/log area",
+      "status": "visited",
+      "route": "Restore warp-1.snapshot; release both ports; write RAM$078F=$FF,$0790=1; port2 B2frames/release60frames; wait300frames trace disabled; right+A45/right+B30/release. Complete requests/results in rpc-direct.jsonl; scene.py script.",
+      "context": {
+        "prg_banks": [
+          0,
+          1,
+          14,
+          15
+        ]
+      },
+      "artificial": true,
+      "observed_result": "Railway/log area visible after initialized transition and representative movement/ability inputs; ending not claimed.",
+      "evidence": [
+        "analysis/evidence/scene-2-play.png",
+        "analysis/evidence/scene-2.snapshot",
+        "analysis/evidence/scene-2-discovery.json",
+        "analysis/evidence/scene-2-contexts.json"
+      ]
+    },
+    {
+      "id": "scene-6",
+      "milestone": "Desert, cactus and plane hazards",
+      "status": "visited",
+      "route": "Restore warp-1.snapshot; release both ports; write RAM$078F=$FF,$0790=5; port2 B2frames/release60frames; wait300frames trace disabled; right+A45/right+B30/release. Complete requests/results in rpc-direct.jsonl; scene.py script.",
+      "context": {
+        "prg_banks": [
+          0,
+          1,
+          14,
+          15
+        ]
+      },
+      "artificial": true,
+      "observed_result": "Desert, cactus and plane hazards visible after initialized transition and representative movement/ability inputs; ending not claimed.",
+      "evidence": [
+        "analysis/evidence/scene-6-play.png",
+        "analysis/evidence/scene-6.snapshot",
+        "analysis/evidence/scene-6-discovery.json",
+        "analysis/evidence/scene-6-contexts.json"
+      ]
+    },
+    {
+      "id": "scene-7b",
+      "milestone": "Ship deck and water",
+      "status": "visited",
+      "route": "Restore warp-1.snapshot; release both ports; write RAM$078F=$FF,$0790=6; port2 B2frames/release60frames; wait90frames trace disabled; right+A45/right+B30/release. Complete requests/results in rpc-direct.jsonl; scene.py script.",
+      "context": {
+        "prg_banks": [
+          0,
+          1,
+          14,
+          15
+        ]
+      },
+      "artificial": true,
+      "observed_result": "Ship deck and water visible after initialized transition and representative movement/ability inputs; ending not claimed.",
+      "evidence": [
+        "analysis/evidence/scene-7b-play.png",
+        "analysis/evidence/scene-7b.snapshot",
+        "analysis/evidence/scene-7b-discovery.json",
+        "analysis/evidence/scene-7b-contexts.json"
+      ]
+    },
+    {
+      "id": "scene-8b",
+      "milestone": "Asian/island architecture",
+      "status": "visited",
+      "route": "Restore warp-1.snapshot; release both ports; write RAM$078F=$FF,$0790=7; port2 B2frames/release60frames; wait90frames trace disabled; right+A45/right+B30/release. Complete requests/results in rpc-direct.jsonl; scene.py script.",
+      "context": {
+        "prg_banks": [
+          0,
+          1,
+          14,
+          15
+        ]
+      },
+      "artificial": true,
+      "observed_result": "Asian/island architecture visible after initialized transition and representative movement/ability inputs; ending not claimed.",
+      "evidence": [
+        "analysis/evidence/scene-8b-play.png",
+        "analysis/evidence/scene-8b.snapshot",
+        "analysis/evidence/scene-8b-discovery.json",
+        "analysis/evidence/scene-8b-contexts.json"
+      ]
+    },
+    {
+      "id": "scene-10b",
+      "milestone": "Final indoor area with moose portrait",
+      "status": "visited",
+      "route": "Restore warp-1.snapshot; release both ports; write RAM$078F=$FF,$0790=9; port2 B2frames/release60frames; wait300frames trace disabled; right+A45/right+B30/release. Complete requests/results in rpc-direct.jsonl; scene.py script.",
+      "context": {
+        "prg_banks": [
+          0,
+          1,
+          14,
+          15
+        ]
+      },
+      "artificial": true,
+      "observed_result": "Final indoor area with moose portrait visible after initialized transition and representative movement/ability inputs; ending not claimed.",
+      "evidence": [
+        "analysis/evidence/scene-10b-play.png",
+        "analysis/evidence/scene-10b.snapshot",
+        "analysis/evidence/scene-10b-discovery.json",
+        "analysis/evidence/scene-10b-contexts.json"
+      ]
+    },
+    {
+      "id": "natural-mechanics",
+      "milestone": "Natural jump/bomb/selection and special input",
+      "status": "visited",
+      "route": "Restore warp-1.snapshot and release ports; natural-character.py Select2/release30/right+A45/B15 observed jump/bomb; character_still.py wait90/Select15/release2/right+B45 retries standing-still prerequisite.",
+      "artificial": false,
+      "observed_result": "Bomb HUD10->9 and jumping moose; standing-still retry yields white moving special-effect sprite after right+B. Exact sprite/character transition remains commentary question; do not claim independently confirmed Rocky flight. Added810+259 code bytes.",
+      "evidence": [
+        "analysis/evidence/natural-character.png",
+        "analysis/evidence/natural-character.snapshot",
+        "analysis/evidence/character-still-switched.png",
+        "analysis/evidence/character-still-special.png",
+        "analysis/evidence/character-still.snapshot"
+      ]
+    },
+    {
+      "id": "ending-edge-attempt",
+      "milestone": "Practical final-stage ending shortcut",
+      "status": "attempted",
+      "route": "Restore scene-10b.snapshot; release ports; patch RAM$073B..$073D=[0,$E0,2] and$072B..$072C=[0,$40]; right+B90/release. Fields source-supported by fixed-point camera/player arithmetic$8290-$8358 and final stage$0740/$0741=$0300 bound.",
+      "artificial": true,
+      "observed_result": "Accepted execution and565 new code bytes; partially blank/corrupt background and later enemies, no terminal screen. Patch did not initialize dependent streaming state; do not retry unchanged.",
+      "evidence": [
+        "analysis/evidence/ending-edge-attempt.png",
+        "analysis/evidence/ending-edge-attempt.snapshot",
+        "analysis/evidence/ending-edge-attempt-discovery.json"
+      ]
+    },
+    {
+      "id": "ending-supported-exit-flag",
+      "milestone": "Terminal win presentation",
+      "status": "visited",
+      "artificial": true,
+      "route": "Restore scene-10b.snapshot; release ports1/2; write only RAM$0783=$FF, independently established from final scene event physical$1E50 payload83 07 FF and main loop$80DC ->$E2C9. Run20x30 frames (max_operations3000000,timeout_ms15000 per call).",
+      "observed_result": "Visible YOU WIN!! screen at360frames; artificial terminal presentation verified. Boss encounter and natural progression remain unverified.",
+      "evidence": [
+        "analysis/redirect/r001-static-streams/ending-test-plan.md",
+        "analysis/redirect/r001-static-streams/ending-rpc.jsonl",
+        "analysis/redirect/r001-static-streams/ending-360.png",
+        "analysis/redirect/r001-static-streams/ending.snapshot"
+      ]
+    }
+  ],
+  "status": "single disassembly pass completed; ROM incomplete"
+}

@@ -1,0 +1,6 @@
+# Round2 redirect: inline and bank contracts
+Active; input maps/round2-disassembly.json SHA256 a50228a71f93e34e2c3da8fd3a35aeddaee01cc6f511437c6ed8bfc85c0f3e9a. Classification unchanged259011/262160,3149unknown35gaps. Commentary readability complete; editorial audit pending.
+
+Fresh method: inspect exact residual complement and current-source predecessor/callee contracts. First bank12 CPU8000 bridge/message code, where prior immediate-fallthrough method deliberately excluded JSR. Establish whether callee preserves ordinary RTS stack (ShowText uses ordinary RTS, no inline consumption), follow missing continuations and distinguish explicitly addressed text streams. Then independent fixed-tail lookup/data and other helper/PPU/script gaps. Static structure versus natural reachability remain separate. Save decoded primary listings and candidate boundaries; no map edits.
+
+Prior r1-assets-stage-damage accepted combined batch remains immutable, referenced only selectively. No unchanged runtime replay. Stop each local graph on concrete missing contract/conflicting role or diminished prospect, then assess independent known avenues; ready batch follows completed productive research. Nonterminal phase.

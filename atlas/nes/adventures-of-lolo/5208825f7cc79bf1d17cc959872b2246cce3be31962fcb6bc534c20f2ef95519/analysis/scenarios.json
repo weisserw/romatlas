@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "round": 1,
+  "evidence": "pass001-rpc.jsonl",
+  "milestones": [
+    {
+      "milestone": "intro/title/menu",
+      "status": "visited",
+      "route": "Idle380, Start2/release45, Start2/release45. Partial startup first request timed out at80; all budgets in transcript.",
+      "evidence": [
+        "title2.ppm",
+        "start.ppm"
+      ]
+    },
+    {
+      "milestone": "Floor1 room",
+      "status": "visited",
+      "route": "Continue castle/briefing: idle45+600, Right+A30,Up30,Start2/release180+180. Real room atframe1541. Right+A24,Down24/release.",
+      "evidence": [
+        "room-ready.ppm",
+        "room-ready.snapshot.json"
+      ]
+    },
+    {
+      "milestone": "Midgame room25",
+      "status": "visited",
+      "route": "Artificial RAM55=24,57=99,67=1. Release inputs, run240frames. Then Left+A24,Down24/release; PRG[0,1,2,3].",
+      "evidence": [
+        "room25.ppm",
+        "room25.snapshot.json",
+        "room25-ram.json"
+      ]
+    },
+    {
+      "milestone": "Final room50",
+      "status": "visited",
+      "route": "Artificial RAM55=49,67=1. Release,24traced+216untraced frames. Left+A24,Up24/release; PRG[0,1,2,3].",
+      "evidence": [
+        "room50.ppm",
+        "room50.snapshot.json",
+        "room50-ram.json"
+      ]
+    },
+    {
+      "milestone": "Ending",
+      "status": "visited",
+      "route": "From last-room natural main-loop contract: RAM61=1,6f=0; release24traced+600untraced frames. Inspected reunion/heart and subsequent castle captures; see observed_result.",
+      "evidence": [
+        "pre-ending.snapshot.json",
+        "ending.ppm",
+        "ending.snapshot.json",
+        "terminal.ppm",
+        "end-screen.ppm",
+        "end-screen.snapshot.json"
+      ],
+      "observed_result": "Accepted clear transition and ending corridor reunion/heart close-up; subsequent castle view captured atframe4037,1872frames after the clear patch. No terminal credits claim."
+    },
+    {
+      "milestone": "Other floor transitions/mechanics",
+      "status": "deferred",
+      "reason": "Special floor-clear transition now visited in separate round003-a milestone. Specific water/bridge/enemy permutations remain deferred: selected room25/50 captures and mechanically named probe/push handlers do not provide a documented particular target/action contract; would require additional semantic tile/room mapping/navigation. Representative rooms, movement/shoot attempts, floor transition and ending visited; no exhaustive mechanics claim."
+    },
+    {
+      "milestone": "Final-room reload initialization replay",
+      "status": "visited",
+      "route": "Restore room1-play.snapshot.json(frame1589), release inputs,trace.clear,trace.configure enabled capacity0;55=49,57=99,67=1;five48frame steps each max_operations2000000 timeout_ms15000, PRG[0,1,2,3].",
+      "observed_result": "Distinct room50 layout atframe1829;2091 contextual roots,zero aggregate drops.",
+      "evidence": [
+        "room50-replay.ppm",
+        "room50-replay.snapshot.json",
+        "pass001-trace-summary-replay.json"
+      ]
+    },
+    {
+      "milestone": "Special room5 clear \u2192 Floor2 scene \u2192 room6",
+      "status": "visited",
+      "route": "Restore analysis/redirect/round003-a/room5.snapshot.json frame1829 (derived from room1 via55=4,57=99,67=1 and240frames), release all buttons; clear61=1,player6D=goal92=112,player6F=goal93=176. 15x16traced frames max500000ops/15000ms; then selected240+480untraced frames via bounded calls. PRG[0,1,2,3]. Follow-up restore after-special snapshot;Right+A16frames/release16,4x8frames max500000ops/15000ms.",
+      "observed_result": "Actual fetches9971/997D/999F/99AA;99B1 exactly88;99D7/99D9/A7B8 each1. Zero aggregate drops1526roots. Floor2 congratulations visible frame2309; initialized room6 visible frame2789,room5/progression1/lives98. Earlier ordinary-Y shortcut rejected by exact special-room coordinate gate; runtime/client budget/pagination failures preserved. Room6 follow-up frame2821:1100traced roots/zeroaggregate drops; input attempted,XY112/192/shots0 unchanged,initial-lock/freeze1. No successful movement/projectile claim. Entry-delay review:8frame fade precedes lock setup; normal source clears lock on direction, not a timer. No supported extra wait identified; attempted-with-lock limit retained.",
+      "evidence": [
+        "analysis/redirect/round003-a/progression-results.md",
+        "analysis/redirect/round003-a/corrected-progression-coverage.json",
+        "analysis/redirect/round003-a/corrected-progression-summary.json",
+        "analysis/redirect/round003-a/floor-scene.ppm",
+        "analysis/redirect/round003-a/floor-scene.snapshot.json",
+        "analysis/redirect/round003-a/after-special-transition.ppm",
+        "analysis/redirect/round003-a/after-special-transition.snapshot.json",
+        "analysis/redirect/round003-a/room6-exercise-results.json",
+        "analysis/redirect/round003-a/room6-exercised.ppm",
+        "analysis/redirect/round003-a/room6-exercised.snapshot.json"
+      ]
+    }
+  ],
+  "review_history": [
+    {
+      "round": 3,
+      "attempt": "round003-a",
+      "evidence": "analysis/redirect/round003-a/progression-results.md",
+      "result": "Reviewed later/ending milestones, inspected room25/50 frames, newly visited special-clear/floor2/room6; no terminal credits claim."
+    }
+  ]
+}
