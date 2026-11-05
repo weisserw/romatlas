@@ -1,0 +1,35 @@
+# Coordinator completion audit
+
+Objective retained: execute the entire goal.md sequential coordinator workflow to its
+documented whole-ROM-complete OR justified terminal-incomplete handoff, with current
+readable source/verification and explicit archive document selection. Outcome here is
+**terminal incomplete**, not whole-ROM classification complete. Exactly three bytes
+remain Unknown. This audit does not redefine success as an intermediate checkpoint.
+
+| Requirement and verification scope | Authoritative current evidence | Finding |
+| --- | --- | --- |
+| Read governing goal/policy/workflow, resume current state, separate sequential phase workers with compact inputs | goal.md; evidence-policy.md; workflow.md; coordinator/status.md; individual round1/2/3 disassembly, commentary and redirect handoffs | Three ordered rounds completed; worker contexts were separate and no competing phase writers ran. |
+| Persist round/phase/input/output/checkpoint/lead/outcome/verification and resume interrupted work | analysis/progress.md; leads.json pass/attempt histories; all phase handoffs; round2 same-phase metadata gate repair | Commentary interruption/gate failure resumed in that phase before redirect. No initialized state overwritten. |
+| Verified baseline, evidence-backed bank-aware classification and exact unknown complement | baseline-verification.json; final checkpoint/current state; round2 independent review/mechanical checks; round3 annotation-only map diff; current-audit.json | Counts are physical unique bytes, exclude unknown/raw fallback. Header16 and all16 PRG8K banks accounted;3 Unknown remain. |
+| Print classification percentage after every disassembly before commentary and in terminal handoff | Coordinator user-facing boundary reports, recorded in status.md; respective disassembly handoffs; analysis/terminal-handoff.md | Round1 50.20%; rounds2/3 rounded100.00% explicitly incomplete with3unknown. No rounded-completion claim. |
+| Broad bounded gameplay/progression, RAM contracts, reproducible evidence and retention | scenarios.json, rpc/context records, snapshots/captures; gameplay.md confirmation update | Twelve visited milestones, four explicit same-zone deferrals; patches/presses/releases/budgets/context recorded. All evidence paths checked; terminal screen directly inspected. Artificial status and limits retained. |
+| Practical specific-role inspection before generic Data; static contracts separate from reachability | round2-disassembly/review.md; redirect r1 final/audited consumer/code/format artifacts and generic-data-review.json | Supported specific Code/Data/Text/Image separated; generic fallback has pattern/neighbor/consumer rationale. Four local routines accepted on contracts without invented callers. Hidden foot-probe code and26byte helper contradiction corrected. |
+| Thorough connected and independent redirect, preserve rejection/supersession history, no arbitrary first-lead/byte stop | round1-redirect-handoff.md; unique redirect attempt records; round2/3 handoffs; leads.json | Scene/actor/boss/audio/PPU/data opportunities accumulated coherently. Wrong NMI, table extents and stride premise corrected; old attempts retained. No productive frontier or ready lead remains. |
+| Rejection review and coordinator personal primary inspection before terminal incomplete | residual-rejection-review.md; terminal-research-decision.md; residual-primary-check.json; residual-expanded-references.json; residual-retained-fetches.json; r3 rejection review | Three exact one-byte claims evaluated; actual neighboring bytes/word ownership/9109 decoded starts/18 retained contexts checked. No caller prerequisite or absence-as-Data inference. Competing roles still fit; forced execution is nondiscriminating. |
+| Full current-source readability including older backlog and concrete previously reviewed defects | final-editorial-handoff.md; commentary/editorial-audit.md; current actual source, symbols and review | All5453 regions covered with814compact/7250embedded units. Prior sound credit carried; meaningful routine/branch/data/field/constant explanations and uncertainty retained. Final real-source defects repaired. |
+| Strict review inventory/source locations, refreshed reading and fresh byte identity; final editorial audit | final-editorial/location-contract-validation.json, helper-editorial-status.json, validation-hashes.json; commentary/audit.json, verification.json, reading-after.asm | Official audit passes, status complete=true/reasons=[], current hashes match. Paths and Code-region units repaired and revalidated, not merely marked reviewed. |
+| Valid final store/map, required annotations and exact current-source verification artifacts | coordinator/final-map-store-validation.json; current-audit.json; maps/round3-disassembly-final.json and verification | Configured binary validates both store and map. All classified regions have evidence; current/frozen/checkpoint identities agree; final source hashes match actual files/audit/reading. |
+| Preserve input, history, checkpoints, prior commentary; no toolkit change/archive/delete/publish | ROM identity; original raw baseline hash; round-2/round-3 snapshots; artifact histories; explicit phase records and restricted write scope | Input unchanged, original baseline preserved. Completed records retained, handoff path typo corrected by selected addendum. No toolkit edits, commercial-ROM/asset download, archive execution, cleanup or publication performed. |
+| Inspect archive.py document-selection contract; account every unrecognized Markdown and preserve final results | coordinator/archive-selection-contract.md; archive-options.json; coordinator/document-selection-audit.json | Explicit additional final/history selections; copied workflow scaffolding only omitted. Every applicable Markdown accounted, valid relative paths, no selected/omitted overlap. No final conclusions omitted to make archive pass. |
+| Terminal handoff with counts/checkpoint/source/leads/verification and honest limits; no blocked work hidden as success | analysis/terminal-handoff.md; current-audit.json; latest progress and leads | Documented justified terminal incomplete. No interrupted productive frontier or external blocker. Whole-ROM classification remains false; unknown roles stay Unknown and reopening criterion remains recorded. |
+
+Final editorial changes are source-only: one stale base-volume comment and one distinct
+mask name; five matching review summaries corrected. Their actual diff was inspected
+against preserved prior source. Byte identity alone was not used to accept prose.
+
+All required current evidence is present. No archive creation, cleanup or publishing
+is a remaining authorized step. A future genuinely new structural constraint may
+resume ROM analysis; unchanged planning is not required to complete this orchestration.
+The final coordinator verification record is analysis/current-audit.json and document
+selection receipt is coordinator/document-selection-audit.json. Goal status is updated
+only after those current-state checks pass.

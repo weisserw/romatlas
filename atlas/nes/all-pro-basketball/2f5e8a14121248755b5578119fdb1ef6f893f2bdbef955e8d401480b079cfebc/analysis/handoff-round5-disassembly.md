@@ -1,0 +1,9 @@
+# Round5 disassembly — genuine handoff; writer released
+
+ROM classification: 99.99% (262137 / 262160 bytes classified; 23 bytes unknown).
+
+pass-005-handoff verified byte-identical; map/state SHA256 82d320766ec544075688f17d16b57ad0e578d8ac6f49216312ba65db284ac439. ROM unchanged. Accepted1StaticCode byte R4-MODE13-RETURN at [1C253,1C254), CPU C243 fixedbank14. Independent review confirms actual19word table index13=43C2 at1C247, ASL/indexed pointer load/indirect JMP dispatcher and mainloop JSR C1A4 ordinary return frame. No natural producer or observed execution claim. Evidence and exact bank counts: analysis/round5-disassembly/{review.json,fresh-decode.json,rpc.json,result.json,residual.json}; verification analysis/pass-005-handoff-verification.json.
+
+Residual23bytes/9intervals: [2410,2413), [659D,659E), [A410,A413), [E59D,E59E), [1D357,1D35A), [1DF41,1DF42), [1EE13,1EE16), [1F7C9,1F7CA), [1F7DE,1F7E5). No fresh evidence beyond the accepted byte; existing claim-local ambiguity review retained at analysis/redirect/r4-mode-return-20261105/claim-review.md. No terminal exhaustion claim or gameplay replay. Connected return reaches accepted mainloop C1A7.
+
+Next full current-source commentary must preserve/carry existing commentary into generated/pass-005-handoff, remove obsolete isolated-RTS-entry-unresolved statement for this newly supported handler, retain precise eleven-record indicator table excluding followingFA, then verify readability and byte identity. Redirect follows; final editorial audit remains pending. No toolkit issues found (analysis/toolkit-issues.md). All incoming map regions and existing commentary preserved; no toolkit edits, cleanup, archive, sharing, runtime mutation or publication. Inspection server exited; no live operations. Writer released for coordinator handoff.

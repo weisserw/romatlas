@@ -1,0 +1,198 @@
+[
+  {
+    "id": "R1-runtime1",
+    "milestone": "startup and attempted one-frame selection",
+    "status": "visited",
+    "route_script": "analysis/round1-disassembly/runtime1.py",
+    "recipe": "Script records exact presses/releases and frame/operation/time budgets; starts from named durable snapshot file. RPC logs preserve accepted outputs.",
+    "evidence": "analysis/round1-disassembly/direct-rpc.jsonl",
+    "natural_reachability": true,
+    "artificial": false
+  },
+  {
+    "id": "R1-runtime2",
+    "milestone": "New Game/Continue menu",
+    "status": "visited",
+    "route_script": "analysis/round1-disassembly/runtime2.py",
+    "recipe": "Script records exact presses/releases and frame/operation/time budgets; starts from named durable snapshot file. RPC logs preserve accepted outputs.",
+    "evidence": "analysis/round1-disassembly/direct-rpc.jsonl",
+    "natural_reachability": true,
+    "artificial": false
+  },
+  {
+    "id": "R1-runtime3",
+    "milestone": "new game flash transition",
+    "status": "visited",
+    "route_script": "analysis/round1-disassembly/runtime3.py",
+    "recipe": "Script records exact presses/releases and frame/operation/time budgets; starts from named durable snapshot file. RPC logs preserve accepted outputs.",
+    "evidence": "analysis/round1-disassembly/direct-rpc.jsonl",
+    "natural_reachability": true,
+    "artificial": false
+  },
+  {
+    "id": "R1-runtime4",
+    "milestone": "player team roster",
+    "status": "visited",
+    "route_script": "analysis/round1-disassembly/runtime4.py",
+    "recipe": "Script records exact presses/releases and frame/operation/time budgets; starts from named durable snapshot file. RPC logs preserve accepted outputs.",
+    "evidence": "analysis/round1-disassembly/direct-rpc.jsonl",
+    "natural_reachability": true,
+    "artificial": false
+  },
+  {
+    "id": "R1-runtime5",
+    "milestone": "CPU team roster",
+    "status": "visited",
+    "route_script": "analysis/round1-disassembly/runtime5.py",
+    "recipe": "Script records exact presses/releases and frame/operation/time budgets; starts from named durable snapshot file. RPC logs preserve accepted outputs.",
+    "evidence": "analysis/round1-disassembly/direct-rpc.jsonl",
+    "natural_reachability": true,
+    "artificial": false
+  },
+  {
+    "id": "R1-runtime6-recovery",
+    "milestone": "court direction and match entry",
+    "status": "attempted",
+    "route_script": "analysis/round1-disassembly/runtime6-recovery.py",
+    "recipe": "Script records exact presses/releases and frame/operation/time budgets; starts from named durable snapshot file. RPC logs preserve accepted outputs.",
+    "evidence": "analysis/round1-disassembly/direct-rpc.jsonl",
+    "natural_reachability": true,
+    "artificial": false
+  },
+  {
+    "id": "R1-latergame",
+    "milestone": "later periods, match result, tournament finals, championship/ending",
+    "status": "attempted",
+    "reason": "Second period and fourth-period result visited artificially. Actual league finals/championship/credits remain deferred to result/password contract lead, not terminally exhausted.",
+    "hypothesis": "Finals password BEOLEHPPHRMR from cited FAQ; not confirmed.",
+    "historical_checkpoint": true,
+    "superseded_by": [
+      "R1-RD-FINALS-ACTIVE",
+      "R1-RD-CHAMPIONSHIP",
+      "R1-RD-ENDING-EXIT"
+    ],
+    "current_outcome": "Finals active mechanics, championship trophy/congratulations terminal and Start exit were subsequently visited by documented artificial shortcuts. Original reason is preserved as the round1 checkpoint; no separate credits scroll or natural tournament completion is claimed."
+  },
+  {
+    "id": "R1-distinct",
+    "milestone": "watch/versus, pause, shooting/steal/free throw/dunk",
+    "status": "attempted",
+    "reason": "Natural pause/resume and active movement/A/B exercised from clean match snapshot. Watch/versus and free-throw/dunk remain unvisited; no claim of exhaustive mechanics."
+  },
+  {
+    "id": "R1-active-match",
+    "milestone": "first period, tipoff, active court",
+    "status": "visited",
+    "route_scripts": [
+      "runtime6-recovery.py",
+      "runtime7.py",
+      "runtime8.py",
+      "runtime9.py"
+    ],
+    "snapshot": "analysis/round1-disassembly/r9-freeplay.snapshot",
+    "observed_result": "Actual players advanced on court; effective banks [10,11,14,15] in active state. A/B movement/shoot recipes attempted, some during transition; scoring not claimed.",
+    "artificial": false
+  },
+  {
+    "id": "R1-clock-expiry",
+    "milestone": "period expiration",
+    "status": "visited",
+    "route": "Restore r9-freeplay.snapshot; RAM $6B..$70=[1,48,48,109,48,48]; release all buttons;120 frames/max_operations10000000/timeout60000",
+    "observed_result": "$9C=2, mode $27=9, substate $80=2; period-end camera return underway.",
+    "evidence": "analysis/round1-disassembly/r9-expire-ram.json",
+    "artificial": true
+  },
+  {
+    "id": "R1-second-period",
+    "milestone": "second period",
+    "status": "visited",
+    "artificial": true,
+    "recipe": "Restore r10-period-transition.snapshot (mode9/substate3); write RAM $01B4=1;release buttons;2 frames. Write $01B4=1 again;120 frames. max_operations10000000/timeout60000 per step.",
+    "observed_result": "2ND PERIOD screen; $92=1, mode0/substate1.",
+    "snapshot": "analysis/round1-disassembly/r11-nextperiod.snapshot"
+  },
+  {
+    "id": "R1-final-period-result",
+    "milestone": "fourth-period end and match result",
+    "status": "visited",
+    "artificial": true,
+    "recipe": "Restore r10-period-transition.snapshot; RAM $92=3; $77-$7C=[49,48,48,48,48,48]; cosmetic timer $01B4=1,2frames then $01B4=1,160frames; buttons released.",
+    "observed_result": "Actual victory/result animation, mode11/substate1/period4, unequal scores100:000.",
+    "snapshot": "analysis/round1-disassembly/r12-finalresult.snapshot"
+  },
+  {
+    "id": "R1-post-result",
+    "milestone": "post-match winner display and continuation gate",
+    "status": "attempted",
+    "artificial": true,
+    "route_script": "analysis/round1-disassembly/runtime15.py",
+    "snapshot": "analysis/round1-disassembly/r15-post-release.snapshot",
+    "observed_result": "WINNER100:000 result animation completed; bounded wait/A/release stayed on result display. Continue/password/ending not claimed.",
+    "next": "R1-PASSWORD-FINALS redirect lead; inspect exit gate before repeated button trials.",
+    "historical_checkpoint": true,
+    "superseded_by": [
+      "R1-RD-CONTINUE-FINALS",
+      "R1-RD-CHAMPIONSHIP",
+      "R1-RD-ENDING-EXIT"
+    ]
+  },
+  {
+    "id": "R1-RD-CONTINUE-FINALS",
+    "milestone": "initialized Continue password and finals CPU-team route",
+    "status": "visited",
+    "artificial": true,
+    "recipe": "analysis/redirect/r1-dispatch-data-20261105/password-runtime.py",
+    "observed_result": "ASCII B1..BC password accepted; D4=34, CPU team selector actual frame",
+    "evidence": [
+      "analysis/redirect/r1-dispatch-data-20261105/finals-password-result.png",
+      "analysis/redirect/r1-dispatch-data-20261105/finals-password-result-contexts.json"
+    ]
+  },
+  {
+    "id": "R1-RD-FINALS-ACTIVE",
+    "milestone": "final tournament match active court and movement/B action",
+    "status": "visited",
+    "artificial": true,
+    "recipe": [
+      "analysis/redirect/r1-dispatch-data-20261105/finals-route.py",
+      "analysis/redirect/r1-dispatch-data-20261105/finals-court.py",
+      "analysis/redirect/r1-dispatch-data-20261105/finals-start.py",
+      "analysis/redirect/r1-dispatch-data-20261105/finals-end.py"
+    ],
+    "observed_result": "D4=34, mode1/scene5 active court, right+B20 frames and released10 exercised",
+    "evidence": [
+      "analysis/redirect/r1-dispatch-data-20261105/finals-active.snapshot",
+      "analysis/redirect/r1-dispatch-data-20261105/finals-active-contexts.json"
+    ]
+  },
+  {
+    "id": "R1-RD-CHAMPIONSHIP",
+    "milestone": "championship trophy and congratulations/statistics terminal",
+    "status": "visited",
+    "artificial": true,
+    "recipe": [
+      "analysis/redirect/r1-dispatch-data-20261105/finals-result-advance.py",
+      "analysis/redirect/r1-dispatch-data-20261105/ending-route.py",
+      "analysis/redirect/r1-dispatch-data-20261105/ending-terminal.py"
+    ],
+    "observed_result": "Stage35, mode16/scene6, trophy and CONGRATULATIONS YOU WON THE CHAMPIONSHIP RESULTS WIN34 LOSE01 visually inspected; no separate credits scroll claimed",
+    "evidence": [
+      "analysis/redirect/r1-dispatch-data-20261105/championship-screen.png",
+      "analysis/redirect/r1-dispatch-data-20261105/championship-terminal.png",
+      "analysis/redirect/r1-dispatch-data-20261105/championship-terminal.snapshot",
+      "analysis/redirect/r1-dispatch-data-20261105/championship-terminal-contexts.json"
+    ]
+  },
+  {
+    "id": "R1-RD-ENDING-EXIT",
+    "milestone": "Start exit from terminal ending",
+    "status": "visited",
+    "artificial": true,
+    "recipe": "analysis/redirect/r1-dispatch-data-20261105/ending-terminal.py",
+    "observed_result": "Start3/release60 transitions terminal mode16/scene6 to mode7/scene1 New Game/Continue menu",
+    "evidence": [
+      "analysis/redirect/r1-dispatch-data-20261105/championship-exit.snapshot",
+      "analysis/redirect/r1-dispatch-data-20261105/championship-exit-contexts.json"
+    ]
+  }
+]

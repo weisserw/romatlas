@@ -1,0 +1,145 @@
+{
+  "format": "coordinator-final-verification-record",
+  "version": 1,
+  "terminal_outcome": "justified-incomplete",
+  "ready_for_archive_preparation": true,
+  "whole_rom_classification_complete": false,
+  "classification_report": "ROM classification: 100.00% (131085 / 131088 bytes classified; 3 bytes unknown).",
+  "total_physical_bytes": 131088,
+  "classified_physical_bytes": 131085,
+  "unknown_physical_bytes": 3,
+  "unknown_intervals": [
+    [
+      117608,
+      117609
+    ],
+    [
+      122120,
+      122121
+    ],
+    [
+      127720,
+      127721
+    ]
+  ],
+  "kind_counts": {
+    "Data": 59461,
+    "Image": 52000,
+    "Code": 19010,
+    "Text": 614
+  },
+  "header_classified_bytes": 16,
+  "per_prg8k_bank": [
+    {
+      "physical_prg8k_bank": 0,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "physical_prg8k_bank": 1,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "physical_prg8k_bank": 2,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "physical_prg8k_bank": 3,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "physical_prg8k_bank": 4,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "physical_prg8k_bank": 5,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "physical_prg8k_bank": 6,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "physical_prg8k_bank": 7,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "physical_prg8k_bank": 8,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "physical_prg8k_bank": 9,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "physical_prg8k_bank": 10,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "physical_prg8k_bank": 11,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "physical_prg8k_bank": 12,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "physical_prg8k_bank": 13,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "physical_prg8k_bank": 14,
+      "classified": 8190,
+      "unknown": 2
+    },
+    {
+      "physical_prg8k_bank": 15,
+      "classified": 8191,
+      "unknown": 1
+    }
+  ],
+  "current_map_state_checkpoint_sha256": "0ca03ff1a520d52325c68310613d72f5bc5fc9f74812c7716b7e0a98a696b960",
+  "input_rom_sha256": "405d964901e113aacc0f1eae640823ebaf1faf7619535342470c215fc0c9452b",
+  "source_sha256": {
+    "game.asm": "ab538bf392d027a90eb36cdb69c5bd847aadde4069c1ddf71ca02c48abd7ae3f",
+    "symbols.inc": "597c411b68101d02fcc60323b3fa679a253622a066775107659ca5951665de65"
+  },
+  "reviewed_regions": 5453,
+  "compact_units": 814,
+  "embedded_units": 7250,
+  "validated_source_locations": 13517,
+  "source_byte_identical": true,
+  "reading_copy_matches_source": true,
+  "editorial_acceptance_complete": true,
+  "map_and_store_validation": "analysis/coordinator/final-map-store-validation.json",
+  "official_editorial_audit": "commentary/audit.json",
+  "terminal_rejection_review": "analysis/coordinator/terminal-research-decision.md",
+  "document_selection": "analysis/coordinator/document-selection-audit.json",
+  "archive_options_sha256": "18209d6a8ed31abfeee7afb301b3ae0be0a722cba9533679774ee61dd47c0872",
+  "additional_documents_selected": 27,
+  "duplicate_templates_omitted": 9,
+  "verified_leads": 8,
+  "ready_leads": 0,
+  "scenario_status_counts": {
+    "visited": 12,
+    "deferred": 4
+  },
+  "all_scenario_evidence_exists": true,
+  "archive_executed": false,
+  "cleanup_or_publication_executed": false,
+  "toolkit_modified": false,
+  "rom_compatibility_claim": "No full hardware/game compatibility or exhaustive reachability claim."
+}

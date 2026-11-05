@@ -1,0 +1,26 @@
+# Round7 commentary — full current-source readability complete; writer released
+
+Fresh byte-identical verification passed and commentary/reading-after.asm was refreshed. Full current-source scope: 30102 Code bytes and 232042 classified non-code bytes; all 5196 scaffold entries reviewed, 580 semantic units and 13989 decoded instructions. No classified-source readability gaps remain. Final editorial audit pending; no audit run.
+
+Before fresh preparation the entire previous commentary was copied to analysis/round-7/commentary-round6 and its original directory retained at analysis/round-7/commentary-round6-working-directory. All 27 files are byte-identical between those preserved paths, recorded in analysis/round7-commentary/preservation.json. Both paths must remain accounted for during later archive selection; no deletion or cleanup occurred.
+
+Exact physical range/kind/effective-view comparison changes only [0x1F7E3,0x1F7E5) from Unknown to Static Code. Full prior readability credit reused by unchanged physical identities, dependencies and source locations. All 579 prior semantic units, 2086 source names and 13988 instructions retained. Complete current scaffold, meaningful-unit prose, alias/instruction carry and all eight unknown boundary notes checked; this is full-scope assessment, not a small repair gate.
+
+PromptStateTwoConditional_UpperCopy at CPU F7D3 in effective banks [10,11,14,15] uses Z directly from the accepted LDA0190/CMP02 predecessor. The accepted not-taken suffix sets prompt state two and displays C1/C0. The taken edge CPU F7B4 maps to physical1F7C4 inside accepted indicator Data and remains malformed. No correct whole guard, callable routine, actual incoming edge, observed execution, natural use or state!=2 entry contract is established. Obsolete unknown-BEQ claims replaced throughout current source, review and uncertainties; frozen history remains preserved.
+
+Eleven four-byte indicator records remain [0x1F79D,0x1F7C9), ending6C; F765 X+=4/stop2C excludes following FA. GameMode13Return retains table index13/interior word1C247 and the ordinary main-loop JSR return-frame explanation, without natural-selection claim. Classified data/header/CHR retains established mechanics, formats, consumers and honest game-meaning limits. Exact artwork/AI identities and natural use of historical copies remain unresolved meanings.
+
+Exact16 unknown bytes/8intervals: [0x2410,0x2413), [0x659D,0x659E), [0xA410,0xA413), [0xE59D,0xE59E), [0x1D357,0x1D35A), [0x1DF41,0x1DF42), [0x1EE13,0x1EE16), [0x1F7C9,0x1F7CA). Each has an explanatory source note. Classification262144/262160 remains incomplete; readability and byte fidelity do not establish whole-ROM classification or final editorial acceptance.
+
+Evidence: analysis/round7-commentary/{preservation.json,carry-comparison.json,dependency-check.json,readability-check.json,verification.json}; commentary/verification.json and reading-after.asm. Map/state SHA256 fe9c9215f9062aef290d6c7d93d66aee3cc6419eb79ca892ac949aa8c6c3262c. ROM SHA256 unchanged 2f5e8a14121248755b5578119fdb1ef6f893f2bdbef955e8d401480b079cfebc.
+
+Next phase: redirect using the exact residual complement and analysis/redirect/r6-branch-role-20261105/claim-review.md. No terminal exhaustion claim. No runtime operations, toolkit edits, cleanup, archive, publishing or external sharing. No toolkit issues found. No live operations. Writer released after full current-source readability and fresh verification gate.
+
+
+## Final editorial acceptance
+
+Reused valid full current-source review and checked changed dependencies, symbols and all unknown boundaries against actual source. Fixed the misnamed/misdescribed five-byte copied sound prefix; removed repetitive unrelated boundary warnings and corrected branch-context wording in source and both inventories. All 5196 entries/580 units remain reviewed; source line locations are preserved. Final editorial metadata is reviewed; see editorial-audit.md and analysis/final-editorial/actual-checks.json. Final audit result follows in audit.json/verification.json. Classification remains incomplete: 262144/262160 classified, 16 unknown bytes in eight intervals.
+
+Final audit metadata corrections: normalized 5776 inherited location references to paths relative to commentary/source; then added 4557 clipped reviewed records for Code entries already fully contained in existing semantic spans, choosing the smallest containing span. There remain 580 semantic identities, now represented by 5137 unit inventory records. The first two audit attempts stopped at these metadata gates before final verification; the corrected final audit is running.
+
+Final corrected audit PASSED: byte-identical rebuild, current source SHA256 5059b169f1a620d9034ef1cee07b2193f753269e94508f534093dd3e6b67c7d2, fresh reading copy, 5196 regions / 5137 inventory records / 580 semantic identities. Configured binary, ROM, map/state and symbols unchanged. Editorial writer released; no live operations. See analysis/handoff-final-editorial.md.

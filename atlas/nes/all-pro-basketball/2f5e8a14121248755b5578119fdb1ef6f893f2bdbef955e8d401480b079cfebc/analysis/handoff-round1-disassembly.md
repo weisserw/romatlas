@@ -1,0 +1,19 @@
+# Round 1 disassembly handoff
+
+Pass complete; ROM incomplete. Ready for full current-source commentary, then redirect.
+
+ROM classification: 70.76% (185492 / 262160 bytes classified; 76668 bytes unknown).
+
+Authoritative state: `analysis/state.json`; portable map: `maps/current.json`. Fresh verified checkpoint: `maps/pass-001-handoff.json`, `generated/pass-001-handoff`, [verification](pass-001-handoff-verification.json). Internal validation, exported-map validation and byte-identical generated rebuild passed. Input SHA256 remains workspace identity. Map SHA256: `7e1cea97bebb88c1699ecd25ed5b9e6cb9df4beddd2a522d9936e7e5c6cf8886`.
+
+16,766 code bytes and 168,726 data/text/image/header/vector bytes classified; all classified bytes have structural evidence. [Exact counts and unknown complement](round1-disassembly/final-counts.json), [per-bank ledger](progress.md). Execution coverage is separate: 6,265 unique physical opcode starts / 11,443 contextual starts, with every recorded ROM start now inside classified code. Static code and exact duplicate sound routines have no invented natural-reachability claim.
+
+Natural route visited title -> New Game -> player/CPU rosters -> court directions -> arena intro -> first period/tipoff -> active match. Pause/resume, movement/A/B paths exercised from clean `r9-freeplay.snapshot`. Long selection transitions require settling; use successful scripts/snapshots instead of repeating one-frame inputs. Artificial clock patch `$6B..$70=[1,48,48,109,48,48]` produces actual period expiry; understood end timers `$01B4=1` twice produce 2ND PERIOD. Branch `$92=3` plus ASCII scores `$77..$7C=100:000` produces final-period victory/WINNER screen. Exact inputs/releases/budgets are in [scenarios](scenarios.json), `round1-disassembly/runtime*.py`, with per-step snapshots/RAM/screens/contexts. Artificial visits do not establish natural late-game reachability.
+
+Latest result branch: `round1-disassembly/r15-post-release.snapshot`, frame 2413, post-match winner display. Bounded waits/A/release did not establish password/ending. Finals password `BEOLEHPPHRMR` is sourced in [gameplay](gameplay.md), untested. Do not claim championship/credits, free throws or dunk cutaways.
+
+Structural gains include complete CHR tile section/header/vectors, fetched code, validated JMP service entries and connected direct control targets, patterned records/sparse bitfields and encoded tournament-dialogue slices. Final closure plateaued at 9,586 contextual candidates plus 18 post-result instructions. Accepted generic data requires no semantic guess. Mixed banks contain embedded code; do not label whole banks from a sampled data pattern. Primary artifacts: `expanded-final-candidates.json`, `expanded-final-references.json`, `expanded-final-diagnostics.json`, `post-result-discovery.json`, `data-pattern-review.json`, `final-data-pattern-review.json` under round1-disassembly.
+
+Concrete next tasks are in [leads](leads.json): resolve bank12 indirect selectors/handler slices; connect result exit/password generation and Continue editor encoding to finals/ending; inspect remaining mixed PRG consumers and clearly non-code slices using exact unknown complement. Preserve resolved clock/period contracts and snapshots. Remaining work needs these contracts; repeated early-game play or arbitrary RAM writes would not resolve them. This is a productive pass stopping point, not terminal exhaustion.
+
+Commentary must cover all currently classified source; a few entry labels were added, but full readability/editorial audit is pending. No toolkit issues found; [report](toolkit-issues.md) has 0 bugs/suspected bugs/missing features and no blockers. No toolkit modifications, publishing, archival or deletion. All processes finished; no live server handle is required. Historical working artifacts remain preserved.

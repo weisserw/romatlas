@@ -1,0 +1,500 @@
+{
+  "version": 1,
+  "round": 1,
+  "phase": "disassembly",
+  "input_api": "emulator.input port1 buttons replacement array; [] releases; snapshots require reassertion",
+  "scenarios": [
+    {
+      "id": "R1-title",
+      "milestone": "Title",
+      "status": "visited",
+      "recipe": {
+        "start": "emulator.start",
+        "frames": 52,
+        "note": "Initial180-frame request timed out at52; state inspected."
+      },
+      "observed_result": "Amagon title/copyright visible; effective banks12,13,14,15.",
+      "evidence": [
+        "round1-disassembly/title.ppm",
+        "round1-disassembly/title-state.json"
+      ],
+      "artificial": false
+    },
+    {
+      "id": "R1-start",
+      "milestone": "Zone1-1 natural gameplay",
+      "status": "visited",
+      "recipe": {
+        "start": "title.snapshot",
+        "buttons": "Full replacement arrays, port1. Wait through title then [start]3 frames; []90 frames; bounded waits until firstgame snapshot frame997.",
+        "exact_log": "round1-disassembly/rpc.jsonl"
+      },
+      "observed_result": "Zone1-1 introduction then playable scene; b5 demo flag read0. Early button/pressed experiments had no effect and are excluded.",
+      "evidence": [
+        "round1-disassembly/firstgame.ppm",
+        "round1-disassembly/firstgame.snapshot"
+      ],
+      "artificial": false
+    },
+    {
+      "id": "R1-scene-2",
+      "milestone": "Zone2 jungle",
+      "status": "visited",
+      "recipe": {
+        "snapshot": "firstgame.snapshot",
+        "writes": [
+          {
+            "address": 34,
+            "bytes": [
+              2
+            ]
+          },
+          {
+            "address": 53,
+            "bytes": [
+              13,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "buttons_initial": [],
+        "trace_frames_initial": 3,
+        "untraced_wait_frames": 100,
+        "buttons_action": [
+          "right",
+          "a",
+          "b"
+        ],
+        "traced_action_frames": 15,
+        "buttons_final": [],
+        "budget_each": "max_operations=10000000, timeout_ms=30000",
+        "context": "Initial snapshot [12,13,14,15]; loader switches by descriptor; actual action states captured.",
+        "note": "First test also wrote b5=0, then120 untraced frames+10 traced, then20 right+a+b action frames; exact log records this variant."
+      },
+      "observed_result": "Scene displayed with distinct terrain; movement/jump and bullet consumption observed. Final scene12 shows Alien Overlord; filename ending is historical, not terminal proof.",
+      "evidence": [
+        "round1-disassembly/zone2.ppm",
+        "round1-disassembly/zone2-contexts.json"
+      ],
+      "artificial": true
+    },
+    {
+      "id": "R1-scene-4",
+      "milestone": "Zone3 river",
+      "status": "visited",
+      "recipe": {
+        "snapshot": "firstgame.snapshot",
+        "writes": [
+          {
+            "address": 34,
+            "bytes": [
+              4
+            ]
+          },
+          {
+            "address": 53,
+            "bytes": [
+              13,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "buttons_initial": [],
+        "trace_frames_initial": 3,
+        "untraced_wait_frames": 100,
+        "buttons_action": [
+          "right",
+          "a",
+          "b"
+        ],
+        "traced_action_frames": 15,
+        "buttons_final": [],
+        "budget_each": "max_operations=10000000, timeout_ms=30000",
+        "context": "Initial snapshot [12,13,14,15]; loader switches by descriptor; actual action states captured."
+      },
+      "observed_result": "Scene displayed with distinct terrain; movement/jump and bullet consumption observed. Final scene12 shows Alien Overlord; filename ending is historical, not terminal proof.",
+      "evidence": [
+        "round1-disassembly/zone3.ppm",
+        "round1-disassembly/zone3-contexts.json"
+      ],
+      "artificial": true
+    },
+    {
+      "id": "R1-scene-6",
+      "milestone": "Zone4 rain forest",
+      "status": "visited",
+      "recipe": {
+        "snapshot": "firstgame.snapshot",
+        "writes": [
+          {
+            "address": 34,
+            "bytes": [
+              6
+            ]
+          },
+          {
+            "address": 53,
+            "bytes": [
+              13,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "buttons_initial": [],
+        "trace_frames_initial": 3,
+        "untraced_wait_frames": 100,
+        "buttons_action": [
+          "right",
+          "a",
+          "b"
+        ],
+        "traced_action_frames": 15,
+        "buttons_final": [],
+        "budget_each": "max_operations=10000000, timeout_ms=30000",
+        "context": "Initial snapshot [12,13,14,15]; loader switches by descriptor; actual action states captured."
+      },
+      "observed_result": "Scene displayed with distinct terrain; movement/jump and bullet consumption observed. Final scene12 shows Alien Overlord; filename ending is historical, not terminal proof.",
+      "evidence": [
+        "round1-disassembly/zone4.ppm",
+        "round1-disassembly/zone4-contexts.json"
+      ],
+      "artificial": true
+    },
+    {
+      "id": "R1-scene-8",
+      "milestone": "Zone5 mountain",
+      "status": "visited",
+      "recipe": {
+        "snapshot": "firstgame.snapshot",
+        "writes": [
+          {
+            "address": 34,
+            "bytes": [
+              8
+            ]
+          },
+          {
+            "address": 53,
+            "bytes": [
+              13,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "buttons_initial": [],
+        "trace_frames_initial": 3,
+        "untraced_wait_frames": 100,
+        "buttons_action": [
+          "right",
+          "a",
+          "b"
+        ],
+        "traced_action_frames": 15,
+        "buttons_final": [],
+        "budget_each": "max_operations=10000000, timeout_ms=30000",
+        "context": "Initial snapshot [12,13,14,15]; loader switches by descriptor; actual action states captured."
+      },
+      "observed_result": "Scene displayed with distinct terrain; movement/jump and bullet consumption observed. Final scene12 shows Alien Overlord; filename ending is historical, not terminal proof.",
+      "evidence": [
+        "round1-disassembly/zone5.ppm",
+        "round1-disassembly/zone5-contexts.json"
+      ],
+      "artificial": true
+    },
+    {
+      "id": "R1-scene-10",
+      "milestone": "Zone6 beach",
+      "status": "visited",
+      "recipe": {
+        "snapshot": "firstgame.snapshot",
+        "writes": [
+          {
+            "address": 34,
+            "bytes": [
+              10
+            ]
+          },
+          {
+            "address": 53,
+            "bytes": [
+              13,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "buttons_initial": [],
+        "trace_frames_initial": 3,
+        "untraced_wait_frames": 100,
+        "buttons_action": [
+          "right",
+          "a",
+          "b"
+        ],
+        "traced_action_frames": 15,
+        "buttons_final": [],
+        "budget_each": "max_operations=10000000, timeout_ms=30000",
+        "context": "Initial snapshot [12,13,14,15]; loader switches by descriptor; actual action states captured."
+      },
+      "observed_result": "Scene displayed with distinct terrain; movement/jump and bullet consumption observed. Final scene12 shows Alien Overlord; filename ending is historical, not terminal proof.",
+      "evidence": [
+        "round1-disassembly/zone6.ppm",
+        "round1-disassembly/zone6-contexts.json"
+      ],
+      "artificial": true
+    },
+    {
+      "id": "R1-scene-11",
+      "milestone": "Zone6 second scene",
+      "status": "visited",
+      "recipe": {
+        "snapshot": "firstgame.snapshot",
+        "writes": [
+          {
+            "address": 34,
+            "bytes": [
+              11
+            ]
+          },
+          {
+            "address": 53,
+            "bytes": [
+              13,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "buttons_initial": [],
+        "trace_frames_initial": 3,
+        "untraced_wait_frames": 100,
+        "buttons_action": [
+          "right",
+          "a",
+          "b"
+        ],
+        "traced_action_frames": 15,
+        "buttons_final": [],
+        "budget_each": "max_operations=10000000, timeout_ms=30000",
+        "context": "Initial snapshot [12,13,14,15]; loader switches by descriptor; actual action states captured."
+      },
+      "observed_result": "Scene displayed with distinct terrain; movement/jump and bullet consumption observed. Final scene12 shows Alien Overlord; filename ending is historical, not terminal proof.",
+      "evidence": [
+        "round1-disassembly/zone6boss.ppm",
+        "round1-disassembly/zone6boss-contexts.json"
+      ],
+      "artificial": true
+    },
+    {
+      "id": "R1-scene-12",
+      "milestone": "Final boss arena",
+      "status": "visited",
+      "recipe": {
+        "snapshot": "firstgame.snapshot",
+        "writes": [
+          {
+            "address": 34,
+            "bytes": [
+              12
+            ]
+          },
+          {
+            "address": 53,
+            "bytes": [
+              13,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "buttons_initial": [],
+        "trace_frames_initial": 3,
+        "untraced_wait_frames": 100,
+        "buttons_action": [
+          "right",
+          "a",
+          "b"
+        ],
+        "traced_action_frames": 15,
+        "buttons_final": [],
+        "budget_each": "max_operations=10000000, timeout_ms=30000",
+        "context": "Initial snapshot [12,13,14,15]; loader switches by descriptor; actual action states captured."
+      },
+      "observed_result": "Scene displayed with distinct terrain; movement/jump and bullet consumption observed. Final scene12 shows Alien Overlord; filename ending is historical, not terminal proof.",
+      "evidence": [
+        "round1-disassembly/ending.ppm",
+        "round1-disassembly/ending-contexts.json"
+      ],
+      "artificial": true
+    },
+    {
+      "id": "R1-scene-1",
+      "milestone": "Zone1 second scene",
+      "status": "visited",
+      "recipe": {
+        "snapshot": "firstgame.snapshot",
+        "writes": [
+          {
+            "address": 34,
+            "bytes": [
+              1
+            ]
+          },
+          {
+            "address": 53,
+            "bytes": [
+              13,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "buttons_initial": [],
+        "trace_frames_initial": 3,
+        "untraced_wait_frames": 100,
+        "buttons_action": [
+          "right",
+          "a",
+          "b"
+        ],
+        "traced_action_frames": 15,
+        "buttons_final": [],
+        "budget_each": "max_operations=10000000, timeout_ms=30000",
+        "context": "Initial snapshot [12,13,14,15]; loader switches by descriptor; actual action states captured."
+      },
+      "observed_result": "Scene displayed with distinct terrain; movement/jump and bullet consumption observed. Final scene12 shows Alien Overlord; filename ending is historical, not terminal proof.",
+      "evidence": [
+        "round1-disassembly/zone1bossarea.ppm",
+        "round1-disassembly/zone1bossarea-contexts.json"
+      ],
+      "artificial": true
+    },
+    {
+      "id": "R1-end",
+      "milestone": "Final boss defeat route, rescue boat and terminal ending",
+      "status": "visited",
+      "recipe": {
+        "snapshot": "ending.snapshot",
+        "writes": [
+          {
+            "address": 146,
+            "bytes": [
+              3
+            ]
+          },
+          {
+            "address": 416,
+            "bytes": [
+              0
+            ]
+          },
+          {
+            "address": 496,
+            "bytes": [
+              1
+            ]
+          }
+        ],
+        "route": "[]; trace3frames; disable trace250+250frames; trace15; then disable250+250; trace10; then disable250+250; trace5. Each step10M operations/30s.",
+        "contract": "bank6 $b78f defeat substate3; $b7e4 onward animates boat; fixed states2/3/19/20/21/14/15/16/17/18. All artificial."
+      },
+      "observed_result": "Rescue boat seen; terminal-later frame2648 displays YOU SURVIVED YOUR MISSION / THE END. Main state18 confirmed.",
+      "evidence": [
+        "round1-disassembly/ending-shortcut.ppm",
+        "round1-disassembly/terminal-later.ppm",
+        "round1-disassembly/terminal-later-state.json",
+        "round1-disassembly/the-end.snapshot"
+      ],
+      "artificial": true
+    },
+    {
+      "id": "R1-mega",
+      "milestone": "Megagon transformation and laser input",
+      "status": "visited",
+      "recipe": {
+        "snapshot": "firstgame.snapshot",
+        "writes": [
+          {
+            "address": 53,
+            "bytes": [
+              8,
+              1,
+              0,
+              0
+            ]
+          },
+          {
+            "address": 60,
+            "bytes": [
+              0
+            ]
+          }
+        ],
+        "steps": "trace3; write $01f0=1; trace5; [up,b]10 frames; []",
+        "contract": "state8 $c52d initiates transform; state12 $c54e completes and returns saved state1."
+      },
+      "observed_result": "Large Megagon displayed. Up+B exercised; score was zero so laser availability/damage not established.",
+      "evidence": [
+        "round1-disassembly/mega-attempt.ppm",
+        "round1-disassembly/mega-attempt-contexts.json"
+      ],
+      "artificial": true
+    },
+    {
+      "id": "R1-deferred-3",
+      "milestone": "Scene 3",
+      "status": "deferred",
+      "recipe": "Same-zone representative scenes visited; redirect can reuse established scene initializer if specific mechanics/handler evidence warrants.",
+      "observed_result": "No visit claimed.",
+      "evidence": [
+        "round1-disassembly/scene-init-decode.json"
+      ],
+      "artificial": true
+    },
+    {
+      "id": "R1-deferred-5",
+      "milestone": "Scene 5",
+      "status": "deferred",
+      "recipe": "Same-zone representative scenes visited; redirect can reuse established scene initializer if specific mechanics/handler evidence warrants.",
+      "observed_result": "No visit claimed.",
+      "evidence": [
+        "round1-disassembly/scene-init-decode.json"
+      ],
+      "artificial": true
+    },
+    {
+      "id": "R1-deferred-7",
+      "milestone": "Scene 7",
+      "status": "deferred",
+      "recipe": "Same-zone representative scenes visited; redirect can reuse established scene initializer if specific mechanics/handler evidence warrants.",
+      "observed_result": "No visit claimed.",
+      "evidence": [
+        "round1-disassembly/scene-init-decode.json"
+      ],
+      "artificial": true
+    },
+    {
+      "id": "R1-deferred-9",
+      "milestone": "Scene 9",
+      "status": "deferred",
+      "recipe": "Same-zone representative scenes visited; redirect can reuse established scene initializer if specific mechanics/handler evidence warrants.",
+      "observed_result": "No visit claimed.",
+      "evidence": [
+        "round1-disassembly/scene-init-decode.json"
+      ],
+      "artificial": true
+    }
+  ]
+}

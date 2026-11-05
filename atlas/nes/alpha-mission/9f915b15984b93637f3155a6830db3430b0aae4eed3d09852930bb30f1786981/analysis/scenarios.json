@@ -1,0 +1,697 @@
+[
+  {
+    "id": "D001-S01",
+    "milestone": "Title and attract gameplay",
+    "status": "visited",
+    "route": {
+      "reset": true,
+      "startup_requested_frames": 180,
+      "startup_actual_frames": 147,
+      "timeout_ms": 30000,
+      "trace_capacity": 0,
+      "later_untraced_frames": [
+        2,
+        180,
+        600
+      ],
+      "input_correction": "Initial button/pressed calls ignored; all released. Attract execution remains natural."
+    },
+    "observed_result": "Alpha Mission title then weapon demonstration and area1 enemies/items.",
+    "evidence": [
+      "disassembly-001/initial.png",
+      "disassembly-001/game.png",
+      "disassembly-001/after-intro.png",
+      "disassembly-001/title.snapshot.json",
+      "disassembly-001/after-intro.snapshot.json",
+      "disassembly-001/trace-timeout.json"
+    ],
+    "artificial": false,
+    "context": {
+      "prg_banks": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "D001-S02",
+    "milestone": "Start real player",
+    "status": "visited",
+    "route": {
+      "base": "disassembly-001/after-intro.snapshot.json",
+      "inputs": [
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 3
+        },
+        {
+          "buttons": [],
+          "frames": 180
+        },
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 3
+        },
+        {
+          "buttons": [],
+          "frames": 180
+        }
+      ],
+      "per_step_timeout_ms": 30000
+    },
+    "observed_result": "First edge returns attract mode to title; second enters real-player gameplay, $25=$C8.",
+    "evidence": [
+      "disassembly-001/real-player.snapshot.json",
+      "disassembly-001/player-started.snapshot.json",
+      "disassembly-001/ram-player-started.json"
+    ],
+    "artificial": false,
+    "context": {
+      "prg_banks": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "D001-S03",
+    "milestone": "Attract runtime code graph",
+    "status": "visited",
+    "route": {
+      "base": "disassembly-001/after-intro.snapshot.json",
+      "frames": 45,
+      "max_operations": 2000000,
+      "timeout_ms": 20000,
+      "inputs": "Intended a,b,right used obsolete button/pressed syntax; ignored."
+    },
+    "observed_result": "Natural attract mode 1,527 unique opcode starts; observed successors connect renderer and active enemy handler.",
+    "evidence": [
+      "disassembly-001/runtime-natural-summary.json",
+      "disassembly-001/runtime-natural-coverage.json",
+      "disassembly-001/runtime-natural-candidates.json",
+      "disassembly-001/runtime-listing.txt"
+    ],
+    "artificial": false,
+    "context": {
+      "prg_banks": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "D001-area06",
+    "milestone": "area06 initialized environment",
+    "status": "visited",
+    "route": {
+      "base": "disassembly-001/player-started.snapshot.json",
+      "ram_patches": [
+        {
+          "address": 40,
+          "bytes": [
+            0
+          ]
+        },
+        {
+          "address": 41,
+          "bytes": [
+            112,
+            0
+          ]
+        },
+        {
+          "address": 37,
+          "bytes": [
+            204
+          ]
+        },
+        {
+          "address": 223,
+          "bytes": [
+            20
+          ]
+        }
+      ],
+      "inputs": [
+        {
+          "buttons": [],
+          "frames": 180
+        },
+        {
+          "buttons": [
+            "a",
+            "b",
+            "left"
+          ],
+          "frames": 20
+        },
+        {
+          "buttons": [],
+          "frames": 0
+        }
+      ],
+      "initialize_max_operations": 12000000,
+      "action_max_operations": 1000000,
+      "initialize_timeout_ms": 30000,
+      "action_timeout_ms": 15000
+    },
+    "observed_result": "Correct scroll/checkpoint, initialized terrain, active ship/projectiles and actual accepted instruction fetches. Displayed area numbers are sourced from checkpoint table; clear/boss completion not asserted.",
+    "evidence": [
+      "disassembly-001/area06-recipe.json",
+      "disassembly-001/area06-ram-action.json",
+      "disassembly-001/area06-trace.json",
+      "disassembly-001/area06-action.ppm",
+      "disassembly-001/area06-entry.snapshot.json"
+    ],
+    "artificial": true,
+    "context": {
+      "prg_banks": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "D001-area12",
+    "milestone": "area12 initialized environment",
+    "status": "visited",
+    "route": {
+      "base": "disassembly-001/player-started.snapshot.json",
+      "ram_patches": [
+        {
+          "address": 40,
+          "bytes": [
+            0
+          ]
+        },
+        {
+          "address": 41,
+          "bytes": [
+            252,
+            0
+          ]
+        },
+        {
+          "address": 37,
+          "bytes": [
+            204
+          ]
+        },
+        {
+          "address": 223,
+          "bytes": [
+            20
+          ]
+        }
+      ],
+      "inputs": [
+        {
+          "buttons": [],
+          "frames": 180
+        },
+        {
+          "buttons": [
+            "a",
+            "b",
+            "left"
+          ],
+          "frames": 20
+        },
+        {
+          "buttons": [],
+          "frames": 0
+        }
+      ],
+      "initialize_max_operations": 12000000,
+      "action_max_operations": 1000000,
+      "initialize_timeout_ms": 30000,
+      "action_timeout_ms": 15000
+    },
+    "observed_result": "Correct scroll/checkpoint, initialized terrain, active ship/projectiles and actual accepted instruction fetches. Displayed area numbers are sourced from checkpoint table; clear/boss completion not asserted.",
+    "evidence": [
+      "disassembly-001/area12-recipe.json",
+      "disassembly-001/area12-ram-action.json",
+      "disassembly-001/area12-trace.json",
+      "disassembly-001/area12-action.ppm",
+      "disassembly-001/area12-entry.snapshot.json"
+    ],
+    "artificial": true,
+    "context": {
+      "prg_banks": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "D001-area13",
+    "milestone": "area13 initialized environment",
+    "status": "visited",
+    "route": {
+      "base": "disassembly-001/player-started.snapshot.json",
+      "ram_patches": [
+        {
+          "address": 40,
+          "bytes": [
+            0
+          ]
+        },
+        {
+          "address": 41,
+          "bytes": [
+            26,
+            1
+          ]
+        },
+        {
+          "address": 37,
+          "bytes": [
+            204
+          ]
+        },
+        {
+          "address": 223,
+          "bytes": [
+            20
+          ]
+        }
+      ],
+      "inputs": [
+        {
+          "buttons": [],
+          "frames": 180
+        },
+        {
+          "buttons": [
+            "a",
+            "b",
+            "left"
+          ],
+          "frames": 20
+        },
+        {
+          "buttons": [],
+          "frames": 0
+        }
+      ],
+      "initialize_max_operations": 12000000,
+      "action_max_operations": 1000000,
+      "initialize_timeout_ms": 30000,
+      "action_timeout_ms": 15000
+    },
+    "observed_result": "Correct scroll/checkpoint, initialized terrain, active ship/projectiles and actual accepted instruction fetches. Displayed area numbers are sourced from checkpoint table; clear/boss completion not asserted.",
+    "evidence": [
+      "disassembly-001/area13-recipe.json",
+      "disassembly-001/area13-ram-action.json",
+      "disassembly-001/area13-trace.json",
+      "disassembly-001/area13-action.ppm",
+      "disassembly-001/area13-entry.snapshot.json"
+    ],
+    "artificial": true,
+    "context": {
+      "prg_banks": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "D001-final-base",
+    "milestone": "final-base initialized environment",
+    "status": "visited",
+    "route": {
+      "base": "disassembly-001/player-started.snapshot.json",
+      "ram_patches": [
+        {
+          "address": 40,
+          "bytes": [
+            0
+          ]
+        },
+        {
+          "address": 41,
+          "bytes": [
+            22,
+            1
+          ]
+        },
+        {
+          "address": 37,
+          "bytes": [
+            204
+          ]
+        },
+        {
+          "address": 223,
+          "bytes": [
+            20
+          ]
+        }
+      ],
+      "inputs": [
+        {
+          "buttons": [],
+          "frames": 180
+        },
+        {
+          "buttons": [
+            "a",
+            "b",
+            "left"
+          ],
+          "frames": 20
+        },
+        {
+          "buttons": [],
+          "frames": 0
+        }
+      ],
+      "initialize_max_operations": 12000000,
+      "action_max_operations": 1000000,
+      "initialize_timeout_ms": 30000,
+      "action_timeout_ms": 15000
+    },
+    "observed_result": "Correct scroll/checkpoint, initialized terrain, active ship/projectiles and actual accepted instruction fetches. Displayed area numbers are sourced from checkpoint table; clear/boss completion not asserted.",
+    "evidence": [
+      "disassembly-001/final-base-recipe.json",
+      "disassembly-001/final-base-ram-action.json",
+      "disassembly-001/final-base-trace.json",
+      "disassembly-001/final-base-action.ppm",
+      "disassembly-001/final-base-entry.snapshot.json"
+    ],
+    "artificial": true,
+    "context": {
+      "prg_banks": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "D001-S08",
+    "milestone": "Representative first boss",
+    "status": "visited",
+    "route": {
+      "base": "disassembly-001/player-started.snapshot.json",
+      "ram_patches": [
+        {
+          "address": 40,
+          "bytes": [
+            0,
+            22,
+            0
+          ]
+        },
+        {
+          "address": 37,
+          "bytes": [
+            204
+          ]
+        },
+        {
+          "address": 223,
+          "bytes": [
+            20
+          ]
+        }
+      ],
+      "initialization": {
+        "frames": 180,
+        "buttons": [],
+        "max_operations": 12000000,
+        "timeout_ms": 30000
+      },
+      "then_ram_patch": {
+        "address": 40,
+        "bytes": [
+          239,
+          22,
+          0
+        ]
+      },
+      "action": {
+        "frames": 30,
+        "buttons": [
+          "a",
+          "b"
+        ],
+        "max_operations": 2000000,
+        "timeout_ms": 15000
+      }
+    },
+    "observed_result": "Boss actor $40 active at $0620, $E8=1; boss/projectiles rendered, 1,747 distinct accepted opcode starts, aggregate_dropped=0.",
+    "evidence": [
+      "disassembly-001/boss01.png",
+      "disassembly-001/boss01-ram.json",
+      "disassembly-001/boss01-summary.json",
+      "disassembly-001/boss01.snapshot.json"
+    ],
+    "artificial": true,
+    "context": {
+      "prg_banks": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "D001-S09",
+    "milestone": "Armor menu and Octo activation",
+    "status": "visited",
+    "route": {
+      "base": "disassembly-001/player-started.snapshot.json",
+      "patches": [
+        {
+          "address": 218,
+          "bytes": [
+            255,
+            128
+          ]
+        },
+        {
+          "address": 224,
+          "bytes": [
+            0
+          ]
+        },
+        {
+          "address": 91,
+          "bytes": [
+            0
+          ]
+        }
+      ],
+      "menu_inputs": [
+        {
+          "buttons": [
+            "select"
+          ],
+          "frames": 3
+        },
+        {
+          "buttons": [],
+          "frames": 17
+        }
+      ],
+      "branch_base": "disassembly-001/armor-menu.snapshot.json",
+      "then_patch": {
+        "address": 180,
+        "bytes": [
+          64,
+          64
+        ]
+      },
+      "activation_inputs": [
+        {
+          "buttons": [
+            "select"
+          ],
+          "frames": 3
+        },
+        {
+          "buttons": [
+            "a",
+            "b"
+          ],
+          "frames": 20
+        }
+      ],
+      "max_operations": 1000000,
+      "timeout_ms": 15000
+    },
+    "observed_result": "Menu displayed; center cancellation preserved separately. Occupied cell1 activated Octo: $B0=1, inventory $DA=$FE, weapons rendered.",
+    "evidence": [
+      "disassembly-001/armor-menu.png",
+      "disassembly-001/octo-activation.png",
+      "disassembly-001/octo-activation-ram.json",
+      "disassembly-001/octo-activation-summary.json",
+      "disassembly-001/octo-activation.snapshot.json"
+    ],
+    "artificial": true,
+    "context": {
+      "prg_banks": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "D001-S10",
+    "milestone": "Final base defeat / terminal loop or ending",
+    "status": "attempted",
+    "route": {
+      "base": "disassembly-001/final-base-action.snapshot.json",
+      "patch": {
+        "address": 40,
+        "bytes": [
+          239,
+          21,
+          1
+        ]
+      },
+      "inputs": [
+        {
+          "buttons": [
+            "a",
+            "b"
+          ],
+          "frames": 3
+        },
+        {
+          "buttons": [],
+          "frames": 17
+        },
+        {
+          "buttons": [
+            "a",
+            "b"
+          ],
+          "frames": 240
+        },
+        {
+          "buttons": [],
+          "frames": 0
+        }
+      ],
+      "max_operations": 12000000,
+      "timeout_ms": 30000
+    },
+    "observed_result": "Base environment rendered; final command set $E8=6,$ED=1. Expected destruction parts are not initialized by shortcut. State/scroll stayed frozen through 240 firing frames; no defeat/ending observed.",
+    "evidence": [
+      "disassembly-001/base-trigger.png",
+      "disassembly-001/base-trigger-ram.json",
+      "disassembly-001/base-trigger-summary.json",
+      "disassembly-001/base-battle-ram.json",
+      "disassembly-001/base-battle.snapshot.json"
+    ],
+    "artificial": true,
+    "context": {
+      "prg_banks": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "reason": "Missing accepted spawn/terrain-dependent final-base part initialization contract. Redirect should investigate event list and boss object slots; do not repeat unchanged patch."
+  },
+  {
+    "id": "D001-S11",
+    "milestone": "Other middle areas and bosses",
+    "status": "deferred",
+    "route": {
+      "available_checkpoints": "See gameplay.md"
+    },
+    "observed_result": "Representative later environments, boss and armor mechanic covered; per-area permutations unnecessary for this pass.",
+    "evidence": [],
+    "artificial": true,
+    "context": {
+      "prg_banks": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "reason": "Further gameplay does not change current structural classification; final base initialization remains the concrete useful continuation."
+  },
+  {
+    "id": "R001-S10",
+    "milestone": "Final-base five parts, auxiliary core, artificial defeat and ordinary post-base loop",
+    "status": "visited",
+    "artificial": true,
+    "context": {
+      "prg_banks": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "route": {
+      "scripts": [
+        "redirect/r001-final-base/probe.py",
+        "redirect/r001-final-base/damage.py",
+        "redirect/r001-final-base/terminal.py",
+        "redirect/r001-final-base/loop-action.py"
+      ],
+      "base": "disassembly-001/player-started.snapshot.json",
+      "summary": "Initialize cell0114; patch0115 pixel6F, advance4x100frames; inject hit20/damage28/source5F into five records,2+40+24frames; core at06C0 hit20/damage28/source53,2frames; patch011A pixelEF,4frames;180+180frames then30frames A+B+Left."
+    },
+    "observed_result": "Five parts allocated, E8 6\u21922\u21921; auxiliary core type0F allocated; core E8/ED\u21920; loop resets progress0002 and difficulty+4; banner then moving ship/projectiles observed. All gameplay artificial; no ending/credits or natural completion asserted. Prior failed D001-S10 retained unchanged.",
+    "evidence": [
+      "redirect/r001-final-base/spawn-ram1.json",
+      "redirect/r001-final-base/auxiliary-ram.json",
+      "redirect/r001-final-base/core-fetch-coverage-all.json",
+      "redirect/r001-final-base/loop-boundary-ram.json",
+      "redirect/r001-final-base/loop-action.png",
+      "redirect/r001-final-base/loop-action.snapshot.json"
+    ]
+  },
+  {
+    "id": "R001-S11",
+    "milestone": "Special hit-source5F later-loop branch",
+    "status": "visited",
+    "artificial": true,
+    "context": {
+      "prg_banks": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "route": {
+      "script": "redirect/r001-final-base/special-branch.py",
+      "base": "redirect/r001-final-base/auxiliary.snapshot.json"
+    },
+    "observed_result": "Core source5F sets F1=1; crossing011A retains high progress1 and reaches011B; crossing0124 resets to0102 and difficulty+4. This is a shortcut branch observation, not representative gameplay throughout extension or credits.",
+    "evidence": [
+      "redirect/r001-final-base/special-core-ram.json",
+      "redirect/r001-final-base/special-first-boundary-ram.json",
+      "redirect/r001-final-base/special-loop-boundary-ram.json"
+    ]
+  }
+]

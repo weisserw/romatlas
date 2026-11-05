@@ -1,0 +1,13 @@
+# Round6 disassembly — genuine handoff; writer released
+
+ROM classification: 99.99% (262142 / 262160 bytes classified; 18 bytes unknown).
+
+Accepted R5-PROMPT-STATE-PREDICATE only [0x1F7DE,0x1F7E3), five Static Code bytes, LDA $0190/CMP #$02, CPU F7CE/F7D1 context [10,11,14,15]. Original specific paired-prompt predicate, current independent zero/two writes with C2/BF and C1/C0 text identities, and later same-field text/route consumers jointly establish local finite comparison role beyond decode/origin. Executable-form residue remains a global alternative, but these specific combined constraints support the local fragment. No standalone routine, complete guard, actual caller, natural use or observed execution claim. The BEQ [1F7E3,1F7E5) targets indicator fields at1F7C4 and remains Unknown. No state!=2 premise. Independent exact rationale: analysis/round6-disassembly/review.json. Fresh three-instruction decode includes excluded BEQ for negative scope; rpc.json records only supported five-byte annotation.
+
+All incoming regions retained exactly; one region added. Connected suffix/services already classified, with no newly supported unknown continuation. Other residual claims retain the localized competing-role review in analysis/redirect/r5-frontier-20261105/claim-review.md; no unchanged runtime replay, RAM edits or gameplay repetition. Representative finals/championship terminal/Start-exit evidence reused. No terminal exhaustion claim.
+
+Fresh map.validate/save/export and pass-006-handoff byte-identical checkpoint succeeded (analysis/pass-006-handoff-verification.json). Map/state SHA256 66d4dd2c3cd62fce5a5ac6b79879c9c5ac3a862ca9b81094401a93c33fb72e30. ROM unchanged. Exact per-bank and residual machine ledger: analysis/round6-disassembly/result.json and residual.json. Existing commentary preserved; new generated source requires full current-source commentary carry/review, including narrowing seven-byte guard notes to only excluded BEQ and preserving indicator FA exclusion. Final editorial audit pending. Commentary then redirect required. No toolkit issues found; analysis/toolkit-issues.md. No toolkit edits, cleanup, archive, publication or external sharing; server exited with no live operations.
+
+Residual18bytes/9intervals: [2410,2413), [659D,659E), [A410,A413), [E59D,E59E), [1D357,1D35A), [1DF41,1DF42), [1EE13,1EE16), [1F7C9,1F7CA), [1F7E3,1F7E5).
+
+Fresh checkpoint generated/pass-006-handoff. Evidence: analysis/round6-disassembly/{review.json,fresh-decode.json,rpc.json,validation.json,result.json,residual.json}. Writer released for commentary, then redirect.

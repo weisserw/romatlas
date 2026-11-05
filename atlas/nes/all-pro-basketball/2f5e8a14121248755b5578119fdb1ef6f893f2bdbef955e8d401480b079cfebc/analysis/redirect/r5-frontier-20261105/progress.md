@@ -1,0 +1,1 @@
+Completed ready handoff: five-byte localized prompt-state predicate proposal. Fresh decode3instructions includes explicitly excludedBEQ. Exact input residual23bytes/9intervals, proposed5Code, prospective18bytes/9intervals. All other identified avenues reviewed in claim-review.md; no runtime replay. ROM/map/state/source unchanged. Server closed; no live operations.

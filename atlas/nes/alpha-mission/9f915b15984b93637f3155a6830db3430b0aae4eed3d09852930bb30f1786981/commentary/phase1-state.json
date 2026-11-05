@@ -1,0 +1,2665 @@
+{
+  "format": "romatlas-nes-map",
+  "version": 1,
+  "image_sha256": "9f915b15984b93637f3155a6830db3430b0aae4eed3d09852930bb30f1786981",
+  "image_size": 65552,
+  "regions": [
+    {
+      "id": 1,
+      "offset": 82,
+      "length": 144,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_8042",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 32834,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "offset": 256,
+      "length": 420,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_80F0",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33008,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "offset": 680,
+      "length": 33,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_8298",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33432,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "offset": 725,
+      "length": 94,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_82C5",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33477,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "offset": 828,
+      "length": 239,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_832C",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33580,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "offset": 1103,
+      "length": 98,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_843F",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33855,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "offset": 1255,
+      "length": 424,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_84D7",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34007,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "offset": 1691,
+      "length": 125,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_868B",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34443,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "offset": 2257,
+      "length": 158,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_88C1",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35009,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "offset": 2438,
+      "length": 265,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_8976",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35190,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "offset": 3034,
+      "length": 231,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_8BCA",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35786,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "offset": 3283,
+      "length": 9,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_8CC3",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36035,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "offset": 3685,
+      "length": 185,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_8E55",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36437,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "offset": 4598,
+      "length": 103,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_91E6",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37350,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "offset": 4742,
+      "length": 108,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_9276",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37494,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "offset": 4889,
+      "length": 99,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_9309",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37641,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "offset": 5009,
+      "length": 194,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_9381",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37761,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "offset": 5487,
+      "length": 25,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_955F",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38239,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "offset": 5526,
+      "length": 1,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_9586",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38278,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "offset": 6239,
+      "length": 7,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_984F",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38991,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "offset": 7354,
+      "length": 392,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_9CAA",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40106,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "offset": 14274,
+      "length": 57,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_B7B2",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47026,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "offset": 14436,
+      "length": 112,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_B854",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47188,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "offset": 14769,
+      "length": 560,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_B9A1",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47521,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "offset": 15393,
+      "length": 72,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_BC11",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48145,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "offset": 15658,
+      "length": 355,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_BD1A",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48410,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "offset": 16048,
+      "length": 179,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_BEA0",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48800,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "offset": 16251,
+      "length": 165,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_BF6B",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49003,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "offset": 16793,
+      "length": 68,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_C189",
+      "comment": "",
+      "evidence": "Validated vector roots and eight-entry state RTS dispatch ($80B3-$80E1), bounded connected direct control flow; fixed CNROM PRG [0,1,2,3]. Decoded and inspected in analysis/disassembly-001/expanded-listing.txt. Structural inference; natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49545,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "offset": 0,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "INES_Header",
+      "comment": "",
+      "evidence": "Validated iNES magic and size/mapper fields: 2 PRG units, 4 CHR units, mapper 3, no trainer; workspace inspection.",
+      "views": []
+    },
+    {
+      "id": 31,
+      "offset": 16,
+      "length": 66,
+      "kind": "Text",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Developer_Credits",
+      "comment": "",
+      "evidence": "Contiguous human-readable ASCII developer credit strings from PRG start to validated reset entry at physical $52. Includes TAB separators.",
+      "views": []
+    },
+    {
+      "id": 32,
+      "offset": 240,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "State_RTS_Targets",
+      "comment": "",
+      "evidence": "Eight big-endian target-minus-one pairs. Consumer $80B9 masks state with $0E and pushes high then low; RTS adds one. Table ends at $80F0 code entry; all eight contracts decode coherently.",
+      "views": []
+    },
+    {
+      "id": 33,
+      "offset": 676,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "CHR_Bank_Select_Values",
+      "comment": "",
+      "evidence": "Bytes $30,$31,$32,$33 at CPU $8294-$8297. Reset/gameplay read then write same CPU aliases, selecting CNROM CHR bank through bus-conflict-safe ROM values; exact four-entry range before $8298 handler.",
+      "views": []
+    },
+    {
+      "id": 34,
+      "offset": 32778,
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "CPU_Interrupt_Vectors",
+      "comment": "",
+      "evidence": "Three little-endian hardware vector words at CPU $FFFA-$FFFF: NMI $815D, reset $8042, IRQ $8293. Validated entry routines.",
+      "views": []
+    },
+    {
+      "id": 35,
+      "offset": 32784,
+      "length": 8192,
+      "kind": "Image",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "CHR_Pattern_Bank_0",
+      "comment": "",
+      "evidence": "iNES CHR-ROM partition, CNROM 8 KiB PPU pattern bank; tiles are two 8-byte bitplanes per 8x8 image. Hardware separates CHR from CPU PRG; four-bank selector supported by $8294-$8297.",
+      "views": []
+    },
+    {
+      "id": 36,
+      "offset": 40976,
+      "length": 8192,
+      "kind": "Image",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "CHR_Pattern_Bank_1",
+      "comment": "",
+      "evidence": "iNES CHR-ROM partition, CNROM 8 KiB PPU pattern bank; tiles are two 8-byte bitplanes per 8x8 image. Hardware separates CHR from CPU PRG; four-bank selector supported by $8294-$8297.",
+      "views": []
+    },
+    {
+      "id": 37,
+      "offset": 49168,
+      "length": 8192,
+      "kind": "Image",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "CHR_Pattern_Bank_2",
+      "comment": "",
+      "evidence": "iNES CHR-ROM partition, CNROM 8 KiB PPU pattern bank; tiles are two 8-byte bitplanes per 8x8 image. Hardware separates CHR from CPU PRG; four-bank selector supported by $8294-$8297.",
+      "views": []
+    },
+    {
+      "id": 38,
+      "offset": 57360,
+      "length": 8192,
+      "kind": "Image",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "CHR_Pattern_Bank_3",
+      "comment": "",
+      "evidence": "iNES CHR-ROM partition, CNROM 8 KiB PPU pattern bank; tiles are two 8-byte bitplanes per 8x8 image. Hardware separates CHR from CPU PRG; four-bank selector supported by $8294-$8297.",
+      "views": []
+    },
+    {
+      "id": 39,
+      "offset": 3870,
+      "length": 397,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_8F0E",
+      "comment": "",
+      "evidence": "Connected static control flow supplemented by accepted instruction/RTS successor observations from unmodified attract-gameplay frames 929-974; decoded/inspected analysis/disassembly-001/runtime-listing.txt. No input effect asserted: old button/pressed parameters were ignored; later correction documented. PRG slots [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36622,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "offset": 4526,
+      "length": 72,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_919E",
+      "comment": "",
+      "evidence": "Connected static control flow supplemented by accepted instruction/RTS successor observations from unmodified attract-gameplay frames 929-974; decoded/inspected analysis/disassembly-001/runtime-listing.txt. No input effect asserted: old button/pressed parameters were ignored; later correction documented. PRG slots [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37278,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "offset": 8672,
+      "length": 135,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_A1D0",
+      "comment": "",
+      "evidence": "Connected static control flow supplemented by accepted instruction/RTS successor observations from unmodified attract-gameplay frames 929-974; decoded/inspected analysis/disassembly-001/runtime-listing.txt. No input effect asserted: old button/pressed parameters were ignored; later correction documented. PRG slots [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41424,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "offset": 9329,
+      "length": 9,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_A461",
+      "comment": "",
+      "evidence": "Connected static control flow supplemented by accepted instruction/RTS successor observations from unmodified attract-gameplay frames 929-974; decoded/inspected analysis/disassembly-001/runtime-listing.txt. No input effect asserted: old button/pressed parameters were ignored; later correction documented. PRG slots [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42081,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "offset": 16416,
+      "length": 85,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_C010",
+      "comment": "",
+      "evidence": "Connected static control flow supplemented by accepted instruction/RTS successor observations from unmodified attract-gameplay frames 929-974; decoded/inspected analysis/disassembly-001/runtime-listing.txt. No input effect asserted: old button/pressed parameters were ignored; later correction documented. PRG slots [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49168,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "offset": 16933,
+      "length": 2283,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "PRG_Record_Data",
+      "comment": "",
+      "evidence": "Begins after terminal RTS at physical $4224. Repeated byte-pair records, address directory and encoded sprite sequences; renderer $8FE0 computes pointer directory $C29F+2*graphic ID, score routine $91BA reads pairs at $C215+2*object ID. Full range inspected as non-instruction repeated record content; precise constituent extents not claimed. No conflicting code candidates or fetches in saved vector/state/runtime graphs.",
+      "views": []
+    },
+    {
+      "id": 45,
+      "offset": 19216,
+      "length": 1280,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Demo_Audio_Data",
+      "comment": "",
+      "evidence": "Repeated timed input pairs ($CB00 consumed by $9239/$9243), audio pointer headers/sequences ($CB98/$CF26 consumed by $B9B6/$BA0B), compact repeated command/note patterns. Physical boundaries partition contiguous non-code data, not a claimed exhaustive audio schema. Inspected chunk patterns and nearby references; no conflicting code evidence.",
+      "views": []
+    },
+    {
+      "id": 46,
+      "offset": 20496,
+      "length": 10370,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "PRG_Encoded_Data_A",
+      "comment": "",
+      "evidence": "Repeated visual/level record arrays and bounded low-cardinality byte patterns; terrain consumers $9D17-$9E31, progression/event consumers $863C/$8976 reference this part of PRG. Entire range inspected in 256-byte chunks and data content/consumer context supports non-code. Exact original table organization unresolved; no conflicting code evidence.",
+      "views": []
+    },
+    {
+      "id": 47,
+      "offset": 30866,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Initial_Sprite_Palette",
+      "comment": "",
+      "evidence": "16-byte palette copy: $8130 sets Y=$10, reads $F881,Y for Y=$10 down to1 and writes $075F,Y. Exact source CPU $F882-$F891, physical $7892-$78A1. Values in NES palette domain.",
+      "views": []
+    },
+    {
+      "id": 48,
+      "offset": 30882,
+      "length": 1896,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "PRG_Encoded_Data_B",
+      "comment": "",
+      "evidence": "Palette bytes, indexed movement-pointer directory ($F8D2 via $9288), signed movement patterns ($F932 via $9050), and coordinate/event record streams ($FCxx-$FFxx via $863C/$8976). Full physical interval inspected as repeated structured non-code, generic extent avoids unsupported semantic table boundaries. Ends immediately at hardware vectors. No conflicting candidate/fetch evidence.",
+      "views": []
+    },
+    {
+      "id": 49,
+      "offset": 4850,
+      "length": 39,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Progress_Checkpoints",
+      "comment": "",
+      "evidence": "13 records of little-endian scroll checkpoint plus displayed area number, consumed at $92B6-$92D3 and $BD78-$BD91; ascending scroll thresholds 2,24,46,68,90,112,140,164,186,208,230,252,282 and area IDs1..13. Adjacent code at $92E1 and $9309 bounds exact 39 bytes.",
+      "views": []
+    },
+    {
+      "id": 50,
+      "offset": 1201,
+      "length": 54,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Object_OAM_Offsets",
+      "comment": "",
+      "evidence": "27 two-byte OAM pointer/offset records. Initializer $8480-$849E reads successive bytes at $84A1,X and stops after X=$36; bounded 54 bytes immediately before $84D7 state handler.",
+      "views": []
+    },
+    {
+      "id": 51,
+      "offset": 1067,
+      "length": 36,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Initial_Object_Records",
+      "comment": "",
+      "evidence": "Nine four-byte initialization records. $83BA-$8414 initializes loop count9, reads four bytes from $841B,X per object, advances X four times; exact36 bytes before $843F.",
+      "views": []
+    },
+    {
+      "id": 52,
+      "offset": 15329,
+      "length": 32,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "APU_Periods",
+      "comment": "",
+      "evidence": "16 little-endian pitch period entries; consumers $BADA/$BB72 mask note low nibble then double it, read $BBD1/$BBD2. Exact32-byte finite domain.",
+      "views": []
+    },
+    {
+      "id": 53,
+      "offset": 15361,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Audio_Command_Flags",
+      "comment": "",
+      "evidence": "16-byte flag lookup at CPU $BBF1 indexed by low nibble ($BA93-$BA98/$BB45-$BB4A). Adjacent finite period and duration arrays bound this lookup.",
+      "views": []
+    },
+    {
+      "id": 54,
+      "offset": 15377,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Audio_Note_Durations",
+      "comment": "",
+      "evidence": "16-byte duration lookup at CPU $BC01 indexed by upper note nibble ($BB01-$BB0A). Exact nibble domain; adjacent $BC11 code.",
+      "views": []
+    },
+    {
+      "id": 55,
+      "offset": 1822,
+      "length": 423,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_870E",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34574,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 56,
+      "offset": 2736,
+      "length": 298,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_8AA0",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35488,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "offset": 3635,
+      "length": 50,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_8E23",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36387,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 58,
+      "offset": 4519,
+      "length": 7,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_9197",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37271,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 59,
+      "offset": 5212,
+      "length": 141,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_944C",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37964,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "offset": 5362,
+      "length": 72,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_94E2",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38114,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "offset": 5458,
+      "length": 29,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_9542",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38210,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 62,
+      "offset": 5543,
+      "length": 101,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_9597",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38295,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 63,
+      "offset": 5668,
+      "length": 206,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_9614",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38420,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "offset": 5949,
+      "length": 290,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_972D",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38701,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "offset": 6246,
+      "length": 41,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_9856",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38998,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "offset": 7746,
+      "length": 732,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_9E32",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40498,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "offset": 8542,
+      "length": 130,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_A14E",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41294,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 68,
+      "offset": 8839,
+      "length": 490,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_A277",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41591,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 69,
+      "offset": 9338,
+      "length": 273,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_A46A",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42090,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 70,
+      "offset": 9623,
+      "length": 7,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_A587",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42375,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 71,
+      "offset": 9806,
+      "length": 178,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_A63E",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42558,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 72,
+      "offset": 10288,
+      "length": 98,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_A820",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43040,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 73,
+      "offset": 10498,
+      "length": 158,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_A8F2",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43250,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 74,
+      "offset": 10904,
+      "length": 764,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_AA88",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43656,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 75,
+      "offset": 11924,
+      "length": 491,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_AE84",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44676,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 76,
+      "offset": 12525,
+      "length": 525,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_B0DD",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45277,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 77,
+      "offset": 13136,
+      "length": 221,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_B340",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45888,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 78,
+      "offset": 13457,
+      "length": 88,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_B481",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46209,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 79,
+      "offset": 13551,
+      "length": 258,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_B4DF",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46303,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 80,
+      "offset": 13813,
+      "length": 50,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_B5E5",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46565,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 81,
+      "offset": 13866,
+      "length": 56,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_B61A",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46618,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 82,
+      "offset": 14142,
+      "length": 8,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_B72E",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46894,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 83,
+      "offset": 15465,
+      "length": 173,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_BC59",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48217,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 84,
+      "offset": 16511,
+      "length": 185,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_C06F",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49263,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 85,
+      "offset": 16700,
+      "length": 93,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_C12C",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49452,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 86,
+      "offset": 16861,
+      "length": 72,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_C1CD",
+      "comment": "",
+      "evidence": "Supported RTS dispatcher entry contracts: actor ($8EFB-$8F0D), stage event ($866B-$867E), spawn ($86FA-$8707), weapon ($9577-$9586), armor ($8CA2-$8CB0), collision ($BF30-$BF48). High/low target-minus-one pairs, independently bounded directory endpoints, coherent shared object/RAM/stack contracts and connected direct branches/calls; no data-barrier conflicts. All 6,243 candidates decoded to official instructions; analysis/disassembly-001/all-dispatch-listing.txt. Static structure; natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49613,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 87,
+      "offset": 4327,
+      "length": 192,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Actor_RTS_Targets",
+      "comment": "",
+      "evidence": "96 big-endian target-minus-one pairs at $90D7-$9196, used by $8EFB-$8F0D doubling nonnegative object ID and pushing high/low. Repeated default target $9197 immediately follows directory and retires unsupported actors. All target routines preserve coherent object/stack contracts and direct control flow; last entries IDs $5D/$5E are active projectile/item handlers. Natural selection of every ID not asserted.",
+      "views": []
+    },
+    {
+      "id": 88,
+      "offset": 1679,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Boss_Spawn_RTS_Targets",
+      "comment": "",
+      "evidence": "Six big-endian target-minus-one records: $8771,$87A3,$87CB,$87F3,$8850,$8893. Consumer $866B-$867E reads low nibble of stage command, doubles it, pushes both bytes; six supported stage commands in $FB78 sequence. Bounds between $867E RTS and $868B code.",
+      "views": []
+    },
+    {
+      "id": 89,
+      "offset": 1816,
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Special_Spawn_RTS_Targets",
+      "comment": "",
+      "evidence": "Three encoded RTS records following $8707 RTS and preceding first handler $870E. Consumer $86FA-$8707 masks spawn command low3 bits and doubles; entries0/1 share $870E, entry2 $8726. Classifies supported directory slice without asserting values3..7 are intended.",
+      "views": []
+    },
+    {
+      "id": 90,
+      "offset": 5527,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Weapon_RTS_Targets",
+      "comment": "",
+      "evidence": "Eight high/low target-minus-one pairs following weapon dispatch and preceding first handler $9597. Weapon IDs indexed via doubled armor selector and mapped input/state contracts. Coherent handler entries $9597,$9614,$961A,$9679,$972D,$9733,$9770,$9776.",
+      "views": []
+    },
+    {
+      "id": 91,
+      "offset": 3265,
+      "length": 18,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Armor_RTS_Targets",
+      "comment": "",
+      "evidence": "Nine big-endian target-minus-one pairs. Grid selection $8C49-$8C5E produces a menu-cell index; the $8DFB lookup maps occupied cells to armor IDs1..8 (0 means none); $8CA2-$8CAF doubles chosen armor ID and pushes entry. Directory ends at $8CC3 supported helper. Nondefault entries $8E38/$8E23 implement armor activation.",
+      "views": []
+    },
+    {
+      "id": 92,
+      "offset": 16227,
+      "length": 24,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Projectile_Collision_RTS_Targets",
+      "comment": "",
+      "evidence": "12 high/low target-minus-one pairs between $BF52 RTS and $BF6B routine. Dispatcher $BF2C-$BF48 doubles object IDs >=$53 using biased bases $BEAD/$BEAE. Actor creation and coherent six shared collision-handler families support mapped projectile contracts; exact directory boundary independent of selected runtime IDs.",
+      "views": []
+    },
+    {
+      "id": 93,
+      "offset": 226,
+      "length": 14,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_80D2",
+      "comment": "",
+      "evidence": "Item RTS directory $B652-$B683 uses actor ID $10-$28 with biased base $B632, stack return $B617; coherent score/inventory/lives/warp consumers. Isolated helpers $80D2 (PPU latch/address $2234), $82B9 (recorder init), $924D/$9265 (timed controller recording, direct mutual references), $9578 (armor expiry): exact adjacent routine/table boundaries, coherent hardware/RAM flow and returns independently support code structure. See residual-decode files; entry/caller/natural reachability unproven for isolated helpers. PRG [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 32978,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 94,
+      "offset": 713,
+      "length": 12,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_82B9",
+      "comment": "",
+      "evidence": "Item RTS directory $B652-$B683 uses actor ID $10-$28 with biased base $B632, stack return $B617; coherent score/inventory/lives/warp consumers. Isolated helpers $80D2 (PPU latch/address $2234), $82B9 (recorder init), $924D/$9265 (timed controller recording, direct mutual references), $9578 (armor expiry): exact adjacent routine/table boundaries, coherent hardware/RAM flow and returns independently support code structure. See residual-decode files; entry/caller/natural reachability unproven for isolated helpers. PRG [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33465,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 95,
+      "offset": 4701,
+      "length": 41,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_924D",
+      "comment": "",
+      "evidence": "Item RTS directory $B652-$B683 uses actor ID $10-$28 with biased base $B632, stack return $B617; coherent score/inventory/lives/warp consumers. Isolated helpers $80D2 (PPU latch/address $2234), $82B9 (recorder init), $924D/$9265 (timed controller recording, direct mutual references), $9578 (armor expiry): exact adjacent routine/table boundaries, coherent hardware/RAM flow and returns independently support code structure. See residual-decode files; entry/caller/natural reachability unproven for isolated helpers. PRG [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37453,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 96,
+      "offset": 5512,
+      "length": 14,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_9578",
+      "comment": "",
+      "evidence": "Item RTS directory $B652-$B683 uses actor ID $10-$28 with biased base $B632, stack return $B617; coherent score/inventory/lives/warp consumers. Isolated helpers $80D2 (PPU latch/address $2234), $82B9 (recorder init), $924D/$9265 (timed controller recording, direct mutual references), $9578 (armor expiry): exact adjacent routine/table boundaries, coherent hardware/RAM flow and returns independently support code structure. See residual-decode files; entry/caller/natural reachability unproven for isolated helpers. PRG [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38264,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 97,
+      "offset": 13863,
+      "length": 3,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_B617",
+      "comment": "",
+      "evidence": "Item RTS directory $B652-$B683 uses actor ID $10-$28 with biased base $B632, stack return $B617; coherent score/inventory/lives/warp consumers. Isolated helpers $80D2 (PPU latch/address $2234), $82B9 (recorder init), $924D/$9265 (timed controller recording, direct mutual references), $9578 (armor expiry): exact adjacent routine/table boundaries, coherent hardware/RAM flow and returns independently support code structure. See residual-decode files; entry/caller/natural reachability unproven for isolated helpers. PRG [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46615,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 98,
+      "offset": 13997,
+      "length": 55,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_B69D",
+      "comment": "",
+      "evidence": "Item RTS directory $B652-$B683 uses actor ID $10-$28 with biased base $B632, stack return $B617; coherent score/inventory/lives/warp consumers. Isolated helpers $80D2 (PPU latch/address $2234), $82B9 (recorder init), $924D/$9265 (timed controller recording, direct mutual references), $9578 (armor expiry): exact adjacent routine/table boundaries, coherent hardware/RAM flow and returns independently support code structure. See residual-decode files; entry/caller/natural reachability unproven for isolated helpers. PRG [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46749,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 99,
+      "offset": 14061,
+      "length": 81,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_B6DD",
+      "comment": "",
+      "evidence": "Item RTS directory $B652-$B683 uses actor ID $10-$28 with biased base $B632, stack return $B617; coherent score/inventory/lives/warp consumers. Isolated helpers $80D2 (PPU latch/address $2234), $82B9 (recorder init), $924D/$9265 (timed controller recording, direct mutual references), $9578 (armor expiry): exact adjacent routine/table boundaries, coherent hardware/RAM flow and returns independently support code structure. See residual-decode files; entry/caller/natural reachability unproven for isolated helpers. PRG [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46813,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 100,
+      "offset": 14150,
+      "length": 116,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Code_B736",
+      "comment": "",
+      "evidence": "Item RTS directory $B652-$B683 uses actor ID $10-$28 with biased base $B632, stack return $B617; coherent score/inventory/lives/warp consumers. Isolated helpers $80D2 (PPU latch/address $2234), $82B9 (recorder init), $924D/$9265 (timed controller recording, direct mutual references), $9578 (armor expiry): exact adjacent routine/table boundaries, coherent hardware/RAM flow and returns independently support code structure. See residual-decode files; entry/caller/natural reachability unproven for isolated helpers. PRG [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46902,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 101,
+      "offset": 819,
+      "length": 9,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Area_Banner_Stream",
+      "comment": "",
+      "evidence": "PPU stream at CPU $8323 pointed to by $82E8-$82EE; address $220C, text SYD, tile controls, terminator FE. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 102,
+      "offset": 2245,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Boss_Palette_Selectors",
+      "comment": "",
+      "evidence": "$88AF indexes small palette-offset selector bytes; bounded between dispatch tail and object constructor. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 103,
+      "offset": 2415,
+      "length": 23,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Spawn_Configuration",
+      "comment": "",
+      "evidence": "Compact low-valued selector arrays and signed horizontal coordinates, indexed consumers $8959/$8927/$8944; intervening array boundaries not claimed. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 104,
+      "offset": 2703,
+      "length": 33,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Pickup_Selectors",
+      "comment": "",
+      "evidence": "Repeated selector bytes and power-of-two bit masks. Biased-index consumers $8A04/$8A4B select from this area using object IDs; next executable helper at $8AA0. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 105,
+      "offset": 3292,
+      "length": 343,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Armor_Menu_Data",
+      "comment": "",
+      "evidence": "Nine little-endian PPU-stream pointers at $8CCC, terminated menu name/tile command streams; bitmask and armor selection arrays ($8DD3/$8DFB). Streams consumed by $BC11; exact internal tables not all claimed. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 106,
+      "offset": 4267,
+      "length": 60,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Object_Draw_Offsets",
+      "comment": "",
+      "evidence": "Signed coordinate offsets for metasprite rendering, $8F82/$8FA2 read $909B,Y. Clear symmetric groups and code/table boundaries. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 107,
+      "offset": 4988,
+      "length": 21,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Continue_Sequence_And_GameOver_Stream",
+      "comment": "",
+      "evidence": "First8 bytes input-bit sequence compared at $9356 with counter limit8; following PPU text stream begins $9374 and ends FE before $9381 code. Semantic stream boundary retained as one data region. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 108,
+      "offset": 5203,
+      "length": 9,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Weapon_Input_Flags",
+      "comment": "",
+      "evidence": "Nine-byte input/mode flags indexed at $938C. Small power-of-two values; independently bounded by adjacent routines. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 109,
+      "offset": 5353,
+      "length": 9,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Player_Graphic_Selectors",
+      "comment": "",
+      "evidence": "Nine small graphic IDs at $94D9 indexed by $948A; bounded by two executable routines. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 110,
+      "offset": 5434,
+      "length": 24,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Projectile_Offsets",
+      "comment": "",
+      "evidence": "Repeated low-valued offset grids adjacent weapon handlers, biased-index data uses; exact semantic subdivisions unresolved. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 111,
+      "offset": 5644,
+      "length": 24,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Weapon_Sprite_Records",
+      "comment": "",
+      "evidence": "Eight three-byte records at $95FC: signed offsets and tile IDs, consumers $95C2/$95D5/$95E1. 24 bytes between supported routines. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 112,
+      "offset": 5874,
+      "length": 75,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Weapon_Animation_Data",
+      "comment": "",
+      "evidence": "Repeated three-byte positioning/sprite records followed by other compact weapon layout arrays; consumers $96B0/$B4EA. No conflicting code evidence; constituent extents unresolved. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 113,
+      "offset": 6287,
+      "length": 1067,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Animation_OAM_Data",
+      "comment": "",
+      "evidence": "Forty little-endian OAM-list pointers ($987F-$98CE) indexed by countdown1..40 at $97E6, followed by zero-terminated OAM quadruplets (Y,tile,attribute,X). All lists use aligned4-byte records and permitted attribute patterns; long repeated hidden-sprite records at end. No executable content; complete bytes reviewed. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 114,
+      "offset": 8478,
+      "length": 64,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Enemy_Spawn_Coordinates",
+      "comment": "",
+      "evidence": "Repeated coordinate-pair grids adjoining enemy constructors; finite values on aligned screen grids. Nearby constructor refs inspected; precise per-pattern extent unresolved. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 115,
+      "offset": 8807,
+      "length": 32,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Enemy_Motion_Headers",
+      "comment": "",
+      "evidence": "Eight four-byte records: little-endian movement-stream pointer plus two signed/position bytes, $A1EB-$A203 reads $A257..$A25A at stride4. Exact32-byte range. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 116,
+      "offset": 9611,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Enemy_Direction_Flags",
+      "comment": "",
+      "evidence": "Power-of-two flag bytes, repeated small lookup domains between routines. Nearby enemy control consumers checked; no code conflict. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 117,
+      "offset": 9630,
+      "length": 176,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Enemy_Control_Data",
+      "comment": "",
+      "evidence": "Long repeated $10/$20/$30 runs and small lookup patterns, indexed consumer including $A5C6,X; exact subordinate schemas unresolved. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 118,
+      "offset": 9984,
+      "length": 304,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Enemy_Pattern_Data_A",
+      "comment": "",
+      "evidence": "Little-endian pattern pointer directory and repeated coordinate/trajectory grids, consumers $A6B9/$A7ED. Bounded between routines; no code evidence. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 119,
+      "offset": 10386,
+      "length": 112,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Enemy_Sprite_Layouts",
+      "comment": "",
+      "evidence": "Four-byte signed-coordinate/tile/attribute patterns with repeated mirror attributes; nearby enemy draw code inspected. Full range visibly record data. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 120,
+      "offset": 10656,
+      "length": 248,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Enemy_Pattern_Data_B",
+      "comment": "",
+      "evidence": "Repeated signed coordinate-pair grids, pointer words and motion patterns, consumers $A94D and related indexed reads use $A9CC; exact internal extents unresolved. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 121,
+      "offset": 11668,
+      "length": 256,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Enemy_Motion_Sequences",
+      "comment": "",
+      "evidence": "Repeated two-byte motion/timing patterns (signed vector/control nibble plus duration); consumers $A28B/$A2DF/$A34B and $AE0C/$AE3F/$AE62. Distinct repeated command format, no code conflict. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 122,
+      "offset": 12415,
+      "length": 110,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Base_Destruction_Tile_Streams",
+      "comment": "",
+      "evidence": "Little-endian PPU-stream pointers at $B06F and FE-terminated tile/address scripts, used by $B03D and $BC11. Exact constituent script partition not all claimed. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 123,
+      "offset": 13050,
+      "length": 86,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Enemy_Sprite_Offsets_A",
+      "comment": "",
+      "evidence": "Repeated signed coordinate-pair grid and alternating tile/attribute mask bytes, consumer $B1F5. Bounded non-code record content. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 124,
+      "offset": 13357,
+      "length": 100,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Enemy_Sprite_Offsets_B",
+      "comment": "",
+      "evidence": "Repeated signed coordinates and FF00/FF40 alternating attribute patterns adjoining enemy handlers. Checked nearby consumer context; exact subdivisions unresolved. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 125,
+      "offset": 13545,
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Projectile_Position_Offsets",
+      "comment": "",
+      "evidence": "Six signed coordinate bytes, $B4C3/$B4DA indexed $B4D9,Y; table is bounded by neighboring routines. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 126,
+      "offset": 13809,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Projectile_Draw_Offsets",
+      "comment": "",
+      "evidence": "Four bytes: FC18 0419, used by $B5CE/$B5D6 signed offset/tile selection, bounded before $B5E5 handler. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 127,
+      "offset": 13922,
+      "length": 75,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Item_Handlers_And_Flags",
+      "comment": "",
+      "evidence": "25 big-endian target-minus-one item-handler entries at $B652-$B683 (biased actor ID $10..$28); 25 flag bytes at $B684-$B69C consumed through biased $B674,X. Exact neighboring handler boundary $B69D; repeated defaults and all item contracts verified. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 128,
+      "offset": 14052,
+      "length": 9,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Item_Upgrade_Parameters",
+      "comment": "",
+      "evidence": "Three rows of three bytes for mask/maximum/increment, $B6C3/$B6C6/$B6CE use biased $B6C0/$B6C3/$B6C6 plus item type. Nine bounded low-valued bytes. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 129,
+      "offset": 14266,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Armor_Inventory_Masks",
+      "comment": "",
+      "evidence": "Eight power-of-two bits used by $B7A4 through biased $B78A,X for armor item types; exact8-byte array before title routine. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 130,
+      "offset": 14331,
+      "length": 105,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Title_PPU_Stream",
+      "comment": "",
+      "evidence": "PPU address/tile stream, FD address changes, FE terminator; includes readable TM AND 1987 / SNK / licensed-by text, pointer $B7EB used by title setup. Also patterned title tile data; exact internal subdivisions not claimed. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 131,
+      "offset": 14548,
+      "length": 221,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Title_Tile_Rows",
+      "comment": "",
+      "evidence": "Fixed20-byte rows, consumed by $B86B/$B884 from CPU $B8C4; FF blank tiles, small graphic-index rows, terminal zero at region end before audio init. Non-code patterned rows. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 132,
+      "offset": 15638,
+      "length": 20,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Directional_Lookups",
+      "comment": "",
+      "evidence": "Small symmetric coordinate/sector lookup permutations next to math helpers; bounded by neighboring code, semantic entry grouping unresolved. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 133,
+      "offset": 16013,
+      "length": 35,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "BCD_And_HUD_Tiles",
+      "comment": "",
+      "evidence": "25-byte binary-to-BCD values0..24 at $BE7D, then FF and HUD tile IDs at $BE96. Multiple indexed score/lives/HUD consumers; data boundaries before $BEA0. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 134,
+      "offset": 16501,
+      "length": 10,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Collision_Extents_A",
+      "comment": "",
+      "evidence": "Repeated doubled width/height constants 0A/0C/0E, used by biased indexed collision lookup; bounded before next handler. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    },
+    {
+      "id": 135,
+      "offset": 16696,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Collision_Extents_B",
+      "comment": "",
+      "evidence": "Four collision extent constants0A/0C/0E/0E between executable collision helpers. Nearby indexed consumer inspected; exact isolated lookup meaning not overclaimed. Physical range and complete bytes with checked consumer references in analysis/disassembly-001/residual-data-review.json; repeated non-instruction patterns and code boundaries independently support generic Data where detailed schema is unresolved. Static structure only.",
+      "views": []
+    }
+  ],
+  "next_id": 136
+}
