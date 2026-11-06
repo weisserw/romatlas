@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "game": "Arch Rivals (NES)",
+  "input_contract": {
+    "press": "emulator.input {buttons:[...],port:1}",
+    "release": "emulator.input {buttons:[],port:1}"
+  },
+  "milestones": [
+    {
+      "milestone": "startup/copyright/title/attract instructions",
+      "status": "visited",
+      "route": "Fresh emulator, trace on capacity0, step60frames; title.snapshot. Further no-input waits in reach_court.py/advance.py/start_game.py (old button/pressed fields were ignored).",
+      "evidence": [
+        "round-01/title.snapshot",
+        "round-01/title.png",
+        "round-01/contexts.json"
+      ]
+    },
+    {
+      "milestone": "team/player selection and first-quarter court",
+      "status": "visited",
+      "route": "start-game.snapshot; four cycles Start60, release60 (proper_input.py); proper-final.snapshot then release600frames (court_play.py). Normal inputs.",
+      "observed_result": "Tyrone vs Vinnie, score0-0,03:49; short right+B/right+A/left/B/A/releases each3frames traced.",
+      "evidence": [
+        "round-01/court-clean.snapshot",
+        "round-01/court-clean.png",
+        "round-01/contexts-court-all.json"
+      ]
+    },
+    {
+      "milestone": "quarter1 coaches",
+      "status": "visited",
+      "route": "court-clean.snapshot, RAM059e..05a1=[48,48,48,48],05e6=0,05d4=14; release20tracedframes then300untraced. progression.py0.",
+      "artificial": true,
+      "observed_result": "state7 coaches advertisement.",
+      "evidence": [
+        "round-01/quarter-0.snapshot",
+        "round-01/quarter-0.png",
+        "round-01/contexts-quarter-0.json"
+      ]
+    },
+    {
+      "milestone": "halftime and third-quarter court",
+      "status": "visited",
+      "route": "Same clock patch with05e6=1;20traced+300untraced. follow_milestones.py1:3traced; twice A30/release300 plus3traced. continue_transition.py1:release1200, then right+A/B/release each3traced.",
+      "artificial": true,
+      "observed_result": "Halftime state11, then quarter2court03:44 after supported transition initializes next quarter/direction.",
+      "evidence": [
+        "round-01/quarter-1.png",
+        "round-01/continued-1-1.png",
+        "round-01/continued-1.snapshot",
+        "round-01/contexts-continued-1.json"
+      ]
+    },
+    {
+      "milestone": "quarter3 coaches",
+      "status": "visited",
+      "route": "Same clock patch with05e6=2; progression.py2; follow_milestones.py2 exercises A/release.",
+      "artificial": true,
+      "observed_result": "state9 coaches tips; transition back to fourth-quarter court not separately visited.",
+      "evidence": [
+        "round-01/quarter-2.snapshot",
+        "round-01/quarter-2.png",
+        "round-01/contexts-follow-2.json"
+      ]
+    },
+    {
+      "milestone": "fourth-quarter expiry/final score",
+      "status": "visited",
+      "route": "Same clock patch with05e6=3; progression.py3; state16FINAL SCORE; short actual fetch window sampled from saved final.",
+      "artificial": true,
+      "evidence": [
+        "round-01/quarter-3.snapshot",
+        "round-01/quarter-3.png",
+        "round-01/contexts-follow-3.json"
+      ]
+    },
+    {
+      "milestone": "statistics/leaderboard",
+      "status": "visited",
+      "route": "endstate_repair.py then qualified_entry.py / finish_entry.py / select_entry_end.py / entry_to_leaderboard.py; exact patches/budgets in attempt.",
+      "artificial": true,
+      "observed_result": "Corrected decimal17=$11 statistics. Consistent source-backed50point qualification -> record$1B -> initials$12 -> FINAL SCORE$10 -> statistics$11 -> leaderboard$15 (AAA50/100%) -> title$01. Artificial only.",
+      "evidence": [
+        "redirect/r01-structural-contracts/ending-repair.png",
+        "redirect/r01-structural-contracts/qualified-entry-9.png",
+        "redirect/r01-structural-contracts/leaderboard-advance-0.png",
+        "redirect/r01-structural-contracts/leaderboard-advance-1.snapshot"
+      ],
+      "history": [
+        {
+          "milestone": "statistics/leaderboard",
+          "status": "attempted",
+          "route": "follow_milestones.py3 twice Start30/release300, then continue_transition.py3 release1200, ending_probe.py A/release/Start/release/B/release30 each.",
+          "artificial": true,
+          "observed_result": "State17 stays blank. Final-score milestone established; expected score entry/stat screens unresolved. No arbitrary RAM brute force.",
+          "evidence": [
+            "round-01/continued-3.snapshot",
+            "round-01/continued-3-1.png",
+            "round-01/ending-probe.snapshot"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": "alternate two-player and rare interaction permutations",
+      "status": "deferred",
+      "reason": "Representative match, endings, record/entry and overtime systems now visited. Exhaustive alternate-player/input/rare interaction permutations are outside broad representative progression; no identified concrete unknown-ROM lead requires them."
+    },
+    {
+      "milestone": "sudden-death overtime and initialized overtime court",
+      "status": "visited",
+      "artificial": true,
+      "route": "overtime_route.py equal000 score + quarter3/endphase3; overtime_continue.py at initialized$1A patchesRAM30/31=[1,1] and runs supported BeginNextQuarter; right+A/B/release3frames each.",
+      "observed_result": "Actual SUDDEN DEATH OVERTIME; state0,QuarterIndex4 and01:00 court, representative mechanics exercised.",
+      "evidence": [
+        "redirect/r01-structural-contracts/overtime-0.png",
+        "redirect/r01-structural-contracts/overtime-court.png",
+        "redirect/r01-structural-contracts/overtime-court-contexts.json"
+      ]
+    }
+  ],
+  "budgets": {
+    "all_step_calls": "bounded max_operations and timeout recorded in cited scripts",
+    "trace": "capacity0 bounded aggregates; summary files retain dropped detail counts; aggregate_dropped checked separately"
+  },
+  "snapshot_rule": "All snapshots local. Import then reassert intended buttons. Artificial patches never establish natural reachability."
+}

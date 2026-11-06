@@ -1,0 +1,2603 @@
+{
+  "format": "romatlas-nes-map",
+  "version": 1,
+  "image_sha256": "a109072d9fd1e2190b263b825ac74ce4ea040da2fd8e60d91e844f5e484f39bf",
+  "image_size": 65552,
+  "regions": [
+    {
+      "id": 1,
+      "offset": 0,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "INES_Header",
+      "comment": "",
+      "evidence": "NES magic and parsed iNES header: 2 PRG units, 4 CHR units, mapper 3 CNROM; matches rom.info.",
+      "views": []
+    },
+    {
+      "id": 2,
+      "offset": 32784,
+      "length": 32768,
+      "kind": "Image",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "CHR_TileBanks",
+      "comment": "",
+      "evidence": "iNES CHR extent: four 8 KiB CNROM pattern banks; physical PPU tile storage, separate from CPU executable PRG. Runtime renders title and five event backgrounds from this storage.",
+      "views": []
+    },
+    {
+      "id": 3,
+      "offset": 32778,
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "InterruptVectors",
+      "comment": "",
+      "evidence": "Three little-endian CPU vectors at $FFFA-$FFFF: NMI $FB74, Reset $F9F9, IRQ $FFF0. IRQ targets uniform FF sentinel; pointer does not prove IRQ code.",
+      "views": []
+    },
+    {
+      "id": 4,
+      "offset": 31436,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "TaskHandlerPointers",
+      "comment": "",
+      "evidence": "CPU $FA9D-$FAA9 loads word at $FABC+Y and indirect-jumps. Scheduler iterates exactly 8 slots ($0308=0..7), Y=slot*2; therefore eight handler addresses. Connected contract decoded in analysis/round-001/connected-disassembly.txt.",
+      "views": []
+    },
+    {
+      "id": 5,
+      "offset": 2304,
+      "length": 36,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ScreenRecords",
+      "comment": "",
+      "evidence": "Six 6-byte records consumed by $8639: $A1*6 selects PPU control, palette selector, PPU script pointer, and handler pointer. Proven selectors 0..5 set by menu and completion paths; exact word targets inspected in screen-N-decode.json. Extent claim limited to this finite domain.",
+      "views": []
+    },
+    {
+      "id": 6,
+      "offset": 16,
+      "length": 166,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ReadControllerAndMat",
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 32768,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "offset": 198,
+      "length": 578,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 32950,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "offset": 824,
+      "length": 374,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33576,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "offset": 1209,
+      "length": 185,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33961,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "offset": 1456,
+      "length": 113,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34208,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "offset": 1605,
+      "length": 217,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34357,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "offset": 1842,
+      "length": 95,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34594,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "offset": 1985,
+      "length": 24,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34737,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "offset": 2029,
+      "length": 217,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "RenderResults",
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34781,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "offset": 2340,
+      "length": 93,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35092,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "offset": 2507,
+      "length": 237,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35259,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "offset": 2750,
+      "length": 108,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35502,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "offset": 2902,
+      "length": 45,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35654,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "offset": 2951,
+      "length": 87,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35703,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "offset": 3040,
+      "length": 94,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35792,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "offset": 5595,
+      "length": 179,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38347,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "offset": 5798,
+      "length": 1174,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38550,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "offset": 7159,
+      "length": 570,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39911,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "offset": 8065,
+      "length": 2870,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40817,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "offset": 10960,
+      "length": 201,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43712,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "offset": 11233,
+      "length": 46,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43985,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "offset": 11342,
+      "length": 23,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44094,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "offset": 11502,
+      "length": 44,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44254,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "offset": 11706,
+      "length": 74,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44458,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "offset": 12121,
+      "length": 204,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44873,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "offset": 12525,
+      "length": 175,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45277,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "offset": 12895,
+      "length": 36,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45647,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "offset": 13369,
+      "length": 113,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46121,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "offset": 13485,
+      "length": 101,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46237,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "offset": 13596,
+      "length": 392,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46348,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "offset": 14090,
+      "length": 159,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46842,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "offset": 14251,
+      "length": 165,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47003,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "offset": 14496,
+      "length": 200,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47248,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "offset": 14716,
+      "length": 345,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47468,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "offset": 15083,
+      "length": 166,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47835,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "offset": 15261,
+      "length": 143,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48013,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "offset": 15412,
+      "length": 241,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48164,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "offset": 16345,
+      "length": 197,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49097,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "offset": 16550,
+      "length": 31,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49302,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "offset": 17234,
+      "length": 63,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49986,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "offset": 17309,
+      "length": 89,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 50061,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "offset": 17444,
+      "length": 24,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 50196,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "offset": 17484,
+      "length": 93,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 50236,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "offset": 26784,
+      "length": 375,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 59536,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "offset": 27164,
+      "length": 36,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 59916,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "offset": 27264,
+      "length": 9,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 60016,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "offset": 27349,
+      "length": 22,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 60101,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "offset": 27480,
+      "length": 8,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 60232,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "offset": 27505,
+      "length": 8,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 60257,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "offset": 27733,
+      "length": 9,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 60485,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 56,
+      "offset": 27850,
+      "length": 859,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 60602,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "offset": 31241,
+      "length": 195,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Reset",
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 63993,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 58,
+      "offset": 31470,
+      "length": 273,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 64222,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 59,
+      "offset": 31751,
+      "length": 134,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 64503,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "offset": 31889,
+      "length": 876,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI, eight-slot task scheduler, six screen-handler contracts and captured ordinary/artificial event successor graph. Full contiguous decode reviewed; no overlapping instruction boundaries or unofficial-opcode anomalies. Fixed CNROM PRG banks [0,1,2,3]. Static role; natural reachability is separately limited to traced routes. See round-001/final-static-discovery-*.json, event-?-discovery-*.json and classified-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 64641,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "offset": 27200,
+      "length": 64,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "AudioCommandReturnPointers",
+      "comment": "",
+      "evidence": "Audio interpreter $EA18-$EA2F distinguishes commands >=$E0, masks $1F, doubles index, pushes table high then low and RTS. Exactly 32 encoded target-minus-one words; handlers recovered by adding one. See classified-disassembly.txt and audio-discovery-*.json.",
+      "views": []
+    },
+    {
+      "id": 62,
+      "offset": 16629,
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ObjectZeroHandlerPointer",
+      "comment": "",
+      "evidence": "Task startup explicitly initializes $057F=0; $C043 copies to object field +7. $C0A2 reads that field, doubles it and loads $C0E5/$C0E6 before indirect jump. Only first word structurally claimed here; other selector/table bounds deferred.",
+      "views": []
+    },
+    {
+      "id": 63,
+      "offset": 16645,
+      "length": 57,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "HandlerCode_4105",
+      "comment": "",
+      "evidence": "Connected control-flow from finite audio command dispatch contracts (target-plus-one stack/RTS semantics) or independently initialized object type zero. Validated official instructions and exact fixed-bank [0,1,2,3] boundaries; static role, reachability not implied. See audio-discovery-*.json, extra-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49397,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "offset": 17661,
+      "length": 13,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "HandlerCode_44FD",
+      "comment": "",
+      "evidence": "Connected control-flow from finite audio command dispatch contracts (target-plus-one stack/RTS semantics) or independently initialized object type zero. Validated official instructions and exact fixed-bank [0,1,2,3] boundaries; static role, reachability not implied. See audio-discovery-*.json, extra-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 50413,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "offset": 27159,
+      "length": 5,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "HandlerCode_6A17",
+      "comment": "",
+      "evidence": "Connected control-flow from finite audio command dispatch contracts (target-plus-one stack/RTS semantics) or independently initialized object type zero. Validated official instructions and exact fixed-bank [0,1,2,3] boundaries; static role, reachability not implied. See audio-discovery-*.json, extra-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 59911,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "offset": 27273,
+      "length": 76,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "HandlerCode_6A89",
+      "comment": "",
+      "evidence": "Connected control-flow from finite audio command dispatch contracts (target-plus-one stack/RTS semantics) or independently initialized object type zero. Validated official instructions and exact fixed-bank [0,1,2,3] boundaries; static role, reachability not implied. See audio-discovery-*.json, extra-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 60025,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "offset": 27371,
+      "length": 109,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "HandlerCode_6AEB",
+      "comment": "",
+      "evidence": "Connected control-flow from finite audio command dispatch contracts (target-plus-one stack/RTS semantics) or independently initialized object type zero. Validated official instructions and exact fixed-bank [0,1,2,3] boundaries; static role, reachability not implied. See audio-discovery-*.json, extra-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 60123,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 68,
+      "offset": 27488,
+      "length": 17,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "HandlerCode_6B60",
+      "comment": "",
+      "evidence": "Connected control-flow from finite audio command dispatch contracts (target-plus-one stack/RTS semantics) or independently initialized object type zero. Validated official instructions and exact fixed-bank [0,1,2,3] boundaries; static role, reachability not implied. See audio-discovery-*.json, extra-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 60240,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 69,
+      "offset": 27513,
+      "length": 220,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "HandlerCode_6B79",
+      "comment": "",
+      "evidence": "Connected control-flow from finite audio command dispatch contracts (target-plus-one stack/RTS semantics) or independently initialized object type zero. Validated official instructions and exact fixed-bank [0,1,2,3] boundaries; static role, reachability not implied. See audio-discovery-*.json, extra-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 60265,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 70,
+      "offset": 27742,
+      "length": 108,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "HandlerCode_6C5E",
+      "comment": "",
+      "evidence": "Connected control-flow from finite audio command dispatch contracts (target-plus-one stack/RTS semantics) or independently initialized object type zero. Validated official instructions and exact fixed-bank [0,1,2,3] boundaries; static role, reachability not implied. See audio-discovery-*.json, extra-disassembly.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 60494,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 71,
+      "offset": 28709,
+      "length": 4,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "UploadedAPUStoreTemplate",
+      "comment": "",
+      "evidence": "$EFFD-$F008 copies exactly physical $7025-$7028 into RAM $01C6-$01C9 using source $F014+Y for Y=4..1. Template is STA $4000; RTS, its operand low byte patched at $01C7. Observed RAM fetches remain RAM identity. Static ROM template contract, not natural direct execution at $F015.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 61461,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 72,
+      "offset": 3134,
+      "length": 2461,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "MenuAndTextData",
+      "comment": "",
+      "evidence": "Repeated PPU command prefixes ($20-$23), run counts, tiled patterns and encoded text alphabet; consumers queue script pointers through $FC81 and parse at $FCE2. Boundary after preceding screen routines and before event-init code. Checked 256-byte windows and connected code references; no conflicting code starts. Generic Data classification does not claim one complete script schema.",
+      "views": []
+    },
+    {
+      "id": 73,
+      "offset": 17674,
+      "length": 9110,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "GraphicsRecordData",
+      "comment": "",
+      "evidence": "Starts with C5xx pointer words, then repeated tile indices, low-alphabet nametable/attribute patterns, uniform bitfield blocks, palette-like records and repeated 4-byte sprite records. Helper code ends RTS at physical $4509; sound engine begins $68A0. Bounded all-256-byte-window sample review and referenced consumers (sprite/PPU routines) support non-code throughout; precise subobject schemas deferred.",
+      "views": []
+    },
+    {
+      "id": 74,
+      "offset": 28713,
+      "length": 2528,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "AudioSequenceData",
+      "comment": "",
+      "evidence": "Frequency-like word series followed by low-alphabet envelope patterns and repeated command/note streams interpreted by the sound engine; finite $E0-$FF command dispatch and note path distinguish these from 6502 code. Start follows exact four-byte uploaded APU-store template; reset starts at $7A09. Reviewed every 256-byte window and audio consumers, no conflicting code starts. Generic Data; track schemas/individual bounds remain unresolved.",
+      "views": []
+    },
+    {
+      "id": 75,
+      "offset": 32765,
+      "length": 13,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Thirteen uniform FF bytes between preceding routine RTS at physical $7FFC and hardware vector words at $800A. IRQ vector points into this run; no instruction fetch evidence. Uniformity and exact surrounding barriers justify generic non-code; no specific fill purpose claimed.",
+      "views": []
+    },
+    {
+      "id": 76,
+      "offset": 182,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Low-valued paired bit/mask patterns; adjacent arithmetic helper selects these as data. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 77,
+      "offset": 776,
+      "length": 48,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Two parallel selector/coordinate arrays plus sprite record constants, loaded by $82D3/$82D8 and $82E4/$82E9; bounded menu selector domains. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 78,
+      "offset": 1198,
+      "length": 11,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "PPU queue record immediately passed as pointer $849E to $FC81; terminator zero before next routine. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 79,
+      "offset": 1569,
+      "length": 36,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated sprite field records (coordinates/tile/attributes), follows record constructor and precedes screen routine. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 80,
+      "offset": 1822,
+      "length": 20,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Monotonic/repeated tile ID values $44..$4B and non-instruction formatting between certificate routines. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 81,
+      "offset": 1937,
+      "length": 48,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated 4-byte sprite records and small coordinate arrays consumed by title rendering; no branch entry into records. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 82,
+      "offset": 2009,
+      "length": 20,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Five repeated 4-byte selector/sprite records after event-menu renderer RTS and before results routine. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 83,
+      "offset": 2246,
+      "length": 58,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated little-endian PPU script pointers and small score lookup arrays consumed by result-screen rendering; exact boundary at six screen records. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 84,
+      "offset": 2433,
+      "length": 74,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated RAM-address/field initializers loaded by $894D; low-alphabet field arrays and reset defaults. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 85,
+      "offset": 2744,
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Six small selector/length constants between menu text routines; explicit adjacent indexed data consumers. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 86,
+      "offset": 2858,
+      "length": 44,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated 21xx/22xx PPU address words and small alphabet/coordinate values beside name-entry UI. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 87,
+      "offset": 2947,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Four low-valued arithmetic/layout constants between name-entry helpers. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 88,
+      "offset": 5774,
+      "length": 24,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated selector/setup records adjacent event initializer, used through indexed loads. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 89,
+      "offset": 7729,
+      "length": 336,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Mat-input mapping constants followed by five repeated timed-input byte streams; $9C3E-$9C67 selects stream, $9C6A-$9CA4 decodes low3 input and upper5 duration, FF sentinel. Specific full per-stream extents not asserted. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 90,
+      "offset": 10935,
+      "length": 25,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Small repeated motion/property indices 02/0A/0B with table-like boundaries between movement handlers. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 91,
+      "offset": 13586,
+      "length": 10,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Ten low-valued repeated selector constants between completed routine and next official code. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 92,
+      "offset": 14416,
+      "length": 80,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Dense low-alphabet repeated property/mask values, table context next to per-event collision tests. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 93,
+      "offset": 14696,
+      "length": 20,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated low-valued motion/property indices, same repeated format as earlier counterpart. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 94,
+      "offset": 15404,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Exact descending bit-mask sequence $80,$40,$20,$10,$08,$04,$02,$01, adjacent bit-test consumer. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 95,
+      "offset": 15653,
+      "length": 692,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated low-alphabet object/property records and regular value layouts between sprite consumers and task initialization; no connected code starts. Semantics and precise subtable layout deferred. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 96,
+      "offset": 16542,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Eight small sound effect IDs loaded at $C006 by object-type selector. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 97,
+      "offset": 16581,
+      "length": 48,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Eight repeated six-field object property records; $C04B-$C062 reads four motion fields then two sprite-size fields. Data role; full selector validity separately unresolved. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 98,
+      "offset": 16631,
+      "length": 14,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Seven additional adjacent little-endian object handler words; consumer at $C0A6/$C0A9. Targets remain hypotheses until handler contracts investigated; Data classification only. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 99,
+      "offset": 17297,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Twelve low-valued repeated audio-effect constants read by object teardown at $C374. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 100,
+      "offset": 17398,
+      "length": 46,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Low-valued probability/parameter arrays consumed by random property selection at $C394-$C3DE; generic data without claiming individual extents. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 101,
+      "offset": 17468,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Four repeated four-byte sprite field records passed as $C42C pointer to $C47A. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 102,
+      "offset": 31452,
+      "length": 18,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated numeric scheduler masks and AA/55/reset signature constants, read by reset at $FA41; between task pointers and startup helper. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 103,
+      "offset": 31743,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Fixed bus-conflict/CHR selection lookup constants adjacent NMI RTI and reset helpers; indexed mapper selection uses ROM values. No execution entry. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 104,
+      "offset": 31885,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Four low-valued fill constants indexed by the PPU clearing routine at $FC5F; follows RTS and precedes next helper. Positive repeated layout and exact neighboring classified code/data boundaries support non-code; see analysis/round-001/data-slice-review.json. Specific subobject meanings remain qualified.",
+      "views": []
+    },
+    {
+      "id": 105,
+      "offset": 1394,
+      "length": 62,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "AEF1 calls8562 with sprite slot25, origins from completion animation; gate flags/score, decimal sprite draw85A0 and known descriptor consumerFF98, exact RTS859F. Independent disassembly review round002: analysis/round-002/review.md; primary decoder and consumer evidence: analysis/redirect/round-001-contracts/. Structural role Static; natural reachability unclaimed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34146,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 106,
+      "offset": 6972,
+      "length": 42,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Preserve A/X/Y; X=2*$16-2, resolve tile IDs $1C/$1D with known $9AF8 descriptor resolver, copy two tile pairs through known $9ACC then restore stack; independent static tile-strip helper contract. Independent disassembly review round002: analysis/round-002/review.md; primary decoder and consumer evidence: analysis/redirect/round-001-contracts/. Structural role Static; natural reachability unclaimed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39724,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 107,
+      "offset": 7014,
+      "length": 145,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated 16-byte $10/$11 runs followed by sparse four-byte count records, begins after helper RTS and ends at accepted $9BE7 entry. Non-code pattern; no complete semantic schema claimed. Independent disassembly review round002: analysis/round-002/review.md; primary decoder and consumer evidence: analysis/redirect/round-001-contracts/. Structural role Static; natural reachability unclaimed.",
+      "views": []
+    },
+    {
+      "id": 108,
+      "offset": 11161,
+      "length": 72,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "AB66 producer installsAB88 -> AB89; chain installsABA8 -> ABA9 thenABC4 -> ABC5 thenACCC -> ACCD; each matching state reset/draw/delay/install/RTS. Independent disassembly review round002: analysis/round-002/review.md; primary decoder and consumer evidence: analysis/redirect/round-001-contracts/. Structural role Static; natural reachability unclaimed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43913,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 109,
+      "offset": 11279,
+      "length": 63,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "ABD1 producer installsABFE -> ABFF; collision reposition loop through known BB56, event gate branches ACCD/AC3E and clamp then ACCD. Independent disassembly review round002: analysis/round-002/review.md; primary decoder and consumer evidence: analysis/redirect/round-001-contracts/. Structural role Static; natural reachability unclaimed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44031,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 110,
+      "offset": 11365,
+      "length": 137,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "AC3E producer installsAC54 -> AC55; finite six-animation cycles through ACA2/ACBF, then ACCD to event-specific recovery helpers. Independent disassembly review round002: analysis/round-002/review.md; primary decoder and consumer evidence: analysis/redirect/round-001-contracts/. Structural role Static; natural reachability unclaimed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44117,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 111,
+      "offset": 11546,
+      "length": 160,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "ACDE producer installsAD09 -> AD0A; paired-pose six-count continuation chain AD45/AD62/AD78; clear movement, raft state and return. Independent disassembly review round002: analysis/round-002/review.md; primary decoder and consumer evidence: analysis/redirect/round-001-contracts/. Structural role Static; natural reachability unclaimed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44298,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 112,
+      "offset": 11780,
+      "length": 341,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "ADB6 finish installsADF3 -> ADF4; five16-step staged sprite loops; AE7D/AEB3/AF2D installed throughAB5B; connected outcome score animation branches toB3B9; AF35 finalizer reachedB426. Independent disassembly review round002: analysis/round-002/review.md; primary decoder and consumer evidence: analysis/redirect/round-001-contracts/. Structural role Static; natural reachability unclaimed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44532,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 113,
+      "offset": 12325,
+      "length": 190,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "B015 start countdown through B037/B05D/B079/B09A stack continuations; B0B9 shared finalizer clears initialization flag, selects event audio, sets collision enable and RTS. Independent disassembly review round002: analysis/round-002/review.md; primary decoder and consumer evidence: analysis/redirect/round-001-contracts/. Structural role Static; natural reachability unclaimed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45077,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 114,
+      "offset": 12515,
+      "length": 10,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "B0C5 reads event-indexed five-byte audio selection at B0D3; immediately duplicated five bytes through B0DD accepted resource-loader entry. Second copy generic data. Independent disassembly review round002: analysis/round-002/review.md; primary decoder and consumer evidence: analysis/redirect/round-001-contracts/. Structural role Static; natural reachability unclaimed.",
+      "views": []
+    },
+    {
+      "id": 115,
+      "offset": 12700,
+      "length": 195,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "B0DD loads ten event/variant resource records: coordinate arrays, seven ten-word pointer tables, ten CHR selections and ten row strides; B18C vertical origins five bytes + remaining arrays. Direct indexed consumer constraints and noninstruction content; exact internal formats optional. Independent disassembly review round002: analysis/round-002/review.md; primary decoder and consumer evidence: analysis/redirect/round-001-contracts/. Structural role Static; natural reachability unclaimed.",
+      "views": []
+    },
+    {
+      "id": 116,
+      "offset": 12931,
+      "length": 438,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "B0B6 entersB273; five16-step animation growth loops callB33F/B350/B365/B38F/B3A4, chainB2FE/B32B viaAB5B; B3B9 reachedAF32 and six pose cycles B3FF/B41C thenAF35. Independent disassembly review round002: analysis/round-002/review.md; primary decoder and consumer evidence: analysis/redirect/round-001-contracts/. Structural role Static; natural reachability unclaimed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45683,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 117,
+      "offset": 13988,
+      "length": 7,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "B694 four-byte sprite descriptor explicitly selected by B64C renderer; B697 three decoration Y coordinates read by loop Y=3..1 (base B697 yields B698..B69A); precise split may use generic data for seven-byte resource extent. Independent disassembly review round002: analysis/round-002/review.md; primary decoder and consumer evidence: analysis/redirect/round-001-contracts/. Structural role Static; natural reachability unclaimed.",
+      "views": []
+    },
+    {
+      "id": 118,
+      "offset": 13995,
+      "length": 95,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "B69B collision-search helper reached from new B6E6 conditional branch; B6D4 called at ACDB, decrements coordinate until collision clear, bounded fallback to B69B and final adjustment. Independent disassembly review round002: analysis/round-002/review.md; primary decoder and consumer evidence: analysis/redirect/round-001-contracts/. Structural role Static; natural reachability unclaimed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46747,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 119,
+      "offset": 15061,
+      "length": 22,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "New objectC1EE callsBAC5; preserveX, derive collision probe from object coordinateY then knownBB07, restoreX and RTS. Independent disassembly review round002: analysis/round-002/review.md; primary decoder and consumer evidence: analysis/redirect/round-001-contracts/. Structural role Static; natural reachability unclaimed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47813,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 120,
+      "offset": 15249,
+      "length": 12,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Independent static collision entry: if auxiliary state0545 nonzero return clear carry throughBB74; else query fixed vertical80 and playerX via fallthrough knownBB8D. Contract matches BB8D scratch0F/player coordinate query; no actual caller/natural reachability claimed. Independent disassembly review round002: analysis/round-002/review.md; primary decoder and consumer evidence: analysis/redirect/round-001-contracts/. Structural role Static; natural reachability unclaimed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48001,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 121,
+      "offset": 16702,
+      "length": 450,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "C12E,C14D,C18C,C261 selected by initialized object types1,2,3,4/6/7; shared X task/Y collision contract, finite state and animation paths. C2EF RTS stops before inline descriptors. Independent disassembly review round002: analysis/round-002/review.md; primary decoder and consumer evidence: analysis/redirect/round-001-contracts/. Structural role Static; natural reachability unclaimed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49454,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 122,
+      "offset": 17152,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Three four-byte sprite descriptors C2F0/C2F4/C2F8; C2D0 masks state by0C then adds C2F0 and passes descriptor pointer to FF98. Consumer can also compute index12 for counter8/9 because SBC uses carry clear from CMP13; that aliases following C2FC code. No complete selector domain or exclusive-use assertion; three visibly four-byte descriptors remain a bounded non-code island between RTS and supported handler entry. Independent disassembly review round002: analysis/round-002/review.md; primary decoder and consumer evidence: analysis/redirect/round-001-contracts/. Structural role Static; natural reachability unclaimed.",
+      "views": []
+    },
+    {
+      "id": 123,
+      "offset": 17164,
+      "length": 70,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "C2FC shared handler for types5/7 with task counter, signed-speed reversal, C499 motion and C43C animation; C32A teardown marks negative task state and falls through accepted C342 removal path. Independent disassembly review round002: analysis/round-002/review.md; primary decoder and consumer evidence: analysis/redirect/round-001-contracts/. Structural role Static; natural reachability unclaimed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49916,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 124,
+      "offset": 17577,
+      "length": 84,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Selected handlers callC499 motion integration (two components, bounds carry), C4CC horizontal bound carry test, C4D9 signed acceleration into task fraction/integer fields. C4ED known integrator completes exact consumer contract. Independent disassembly review round002: analysis/round-002/review.md; primary decoder and consumer evidence: analysis/redirect/round-001-contracts/. Structural role Static; natural reachability unclaimed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 50329,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    }
+  ],
+  "next_id": 125
+}

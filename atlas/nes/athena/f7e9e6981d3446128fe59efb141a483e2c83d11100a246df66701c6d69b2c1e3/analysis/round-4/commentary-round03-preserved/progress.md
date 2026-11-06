@@ -1,0 +1,11 @@
+# Round 3 commentary progress
+
+Current-source readability is complete for round03-disassembly-reviewed-final. Prior full commentary is preserved intact at analysis/round-3/commentary-round02-preserved, before fresh preparation. The fresh baseline is current map/state SHA256 55a0ad55c4785fc44585933422a031a3e6e284ee2df6c8588dcc13d152cf9ceb.
+
+All 695 unchanged scaffold spans retain valid round-two review and maintained prose. The three changed spans integrate 12 bytes: title normal-return jump (3 Code), stage-indexed tile backing (7 generic Data), and current-cache index specialization (2 Code). Added descriptive code entries and the title toggle destination; preserved established stage tile and RAM aliases. Source diff is analysis/round-3/commentary-source.diff. No stale assembly was blindly substituted: only physical matches were carried, changed boundaries were reconciled to current scaffold/decode, and the rebuilt ROM is byte-identical.
+
+All 698 regions and 476 compact units are reviewed with refreshed current-source locations and physical bounds. The full 131088-byte location index is complete; code units have four-slot physical-bank contexts, spanning units cross only same-kind spans, and no understood raw numeric RAM/branch operand remains. Prior whole-source review credit and corrected semantics remain sound; the explicit diff introduces no broader dependency change. Remaining six Unknown intervals retain honest source notes. No known readability frontier or skipped classified range remains.
+
+Meaning limits: stage backing does not establish seven- or fourteen-entry schemas or natural selector bounds; D49F's coherent default-index contract does not establish a natural caller. Older actor/asset identities and natural ending/credits progression remain unresolved. See uncertainties.md. No structural redirect question arose from this integration.
+
+Fresh supported verification passed byte-identically; reading-after.asm refreshed. See verification.json and analysis/round-3/commentary-consistency-final.json. Final editorial_audit remains pending for coordinator terminal acceptance. No classification, map, toolkit, input ROM, archive, deletion or publication changes.

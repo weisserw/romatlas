@@ -1,0 +1,14 @@
+# Commentary uncertainties
+
+Current-source readability covers every classified span; 47,315 unknown bytes remain structurally unresolved. Gap notes explain this locally. No classifications changed.
+
+- Mapper 7 selects the entire 32 KiB CPU window. Routine symbols identify physical source within that window. RAM helper calls at $0750-$07ff may switch banks; a CPU return address alone does not establish the returned physical bank. Static return summaries belong in redirect.
+- Frame and screen-loader vector tables are consumed by screen selectors, but their complete extents and all selector domains remain unresolved. See ResetAndFrameDispatch, DispatchScreenLoader, DispatchAudioCommand and UploadScoresAndClock. Numeric table operands remain exact CPU views.
+- Player arrays are reasonably named from the coherent movement/rendering consumers. World X is scaled into PlayerScaledX for comparisons; screen X has a high byte and low byte. Elevation is subtracted from depth for OAM Y. These mechanical roles do not identify every special basketball move. ReservedPlayerE8, PlayerCounter94 and other unexplained fields intentionally retain address identity.
+- Shared scratch and player arrays are reused outside gameplay. Intermission, entry-grid and selection code now uses local aliases for those bytes; these aliases describe phase-local roles, not independent storage.
+- Ball action/trajectory names describe the visible phase machine. Shot, contact, recovery and court-object identity are not universally established; local prose gives the exact timer, bounds, table and ownership mechanics without assigning unsupported game meanings.
+- Audio channels use four-byte strides. Modulation/envelope roles are coherent from APU consumers; exact low-token command table extent and all musical effects remain unresolved.
+- State $17 initialization after FINAL SCORE remains unresolved. Artificial clock/quarter routes do not prove natural statistics/leaderboard or character-entry reachability. Character-entry code is structurally classified from supported contracts; natural selection is a separate question.
+- Generic data boundaries and non-code roles carry forward sound phase-1 inspection. Uniform/repeated data need no invented format. Planar CHR-RAM graphics are 16 bytes per tile, but source slices need not begin on a tile boundary and individual tile semantics remain unresolved.
+
+Concrete redirect checks: bound the screen/audio/HUD dispatch domains using consumer arithmetic and independent endpoints; inspect RAM bank-helper return contracts before propagating successors; inspect state $17 dependencies and compare score/entry initialization. Preserve physical ranges and effective banks, and evaluate generic data separately from exact table format. These questions do not invalidate current readability or authorize speculative decoding.

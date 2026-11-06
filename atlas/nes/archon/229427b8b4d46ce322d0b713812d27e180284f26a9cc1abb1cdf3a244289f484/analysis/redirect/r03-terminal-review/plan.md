@@ -1,0 +1,6 @@
+# Round03 redirect: residual inference review
+Input maps/pass-003-final.json; state analysis/state.json; current-source gate analysis/round03-commentary-handoff.md. 131080 classified / 131088; six intervals/eight bytes unknown.
+
+Target: determine whether accepted two-byte consumer correction or completed current-source review changes the six residual role claims. Prior r02 method/outcome: bank-aware boundaries, consumer/clone/reference evidence retained code/data ambiguity. Changed fact: corrected map/source is now accepted; review scope is inference dependency and current exact complement, not rerunning prior experiments. Discriminating result: a changed accepted consumer/control/stack contract or previously overbroad rejection supporting a localized role; otherwise reuse sound reasoning. Stop when primary artifacts and current-source dependencies expose no justified revised inference or concrete discriminating experiment.
+
+Frontier: decisive r02 oscillator clone, F075 bypass and F9DF copy endpoints retrieved; inspect remaining decoded endpoints, current source residuals and uncertainty notes; refresh complement and retain immutable history. No proposal yet. No runtime replay or map/source mutation.

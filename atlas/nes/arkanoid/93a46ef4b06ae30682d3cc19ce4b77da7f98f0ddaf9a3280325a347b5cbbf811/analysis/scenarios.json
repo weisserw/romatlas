@@ -1,0 +1,209 @@
+[
+  {
+    "id": "R1-attract",
+    "milestone": "Title and attract/demo gameplay",
+    "status": "visited",
+    "reachability": "natural attract; no functional user input",
+    "recipe": "play.py used generic button/pressed schema, which NES ignores because it expects buttons array. Initial trace partial budgets reached 173 frames; moreplay.py untraced travel reached1133. All initial calls recorded in probe.jsonl.",
+    "observed": "Title identifies Arkanoid; active.png is attract stage14. Initial ordinary-player claim corrected.",
+    "evidence": [
+      "analysis/round01/title.png",
+      "analysis/round01/active.png",
+      "analysis/round01/probe.jsonl"
+    ]
+  },
+  {
+    "id": "R1-player",
+    "milestone": "Ordinary single-player start",
+    "status": "visited",
+    "reachability": "natural",
+    "recipe": "Import title.snapshot (restores frame38 directly; name/load is unnecessary); Start2frames was too early, then220frames produced player.snapshot at frame260 title. Import player.snapshot, buttons=[start]3frames, buttons=[]300frames ->natural.snapshot frame563. Context [0,1,2,3].",
+    "observed": "natural.png shows PLAYER1 READY round1. Launch/movement during this route not yet recorded beyond ready screen.",
+    "evidence": [
+      "analysis/round01/natural.png",
+      "analysis/round01/natural.snapshot",
+      "analysis/round01/visits.py"
+    ]
+  },
+  {
+    "id": "R1-stage15",
+    "milestone": "Later stage15",
+    "status": "visited",
+    "reachability": "artificial RAM shortcut; subsequent instruction fetches observed in artificial state",
+    "recipe": "From player.snapshot frame260, empty buttons; patch RAM $21=15, $1A=15, $1F=0, $0A=5, $013B=0. Step200frames creates stage-15.snapshot frame460; initializer $940D consumes player stage and dependent data. Import stage snapshot; empty buttons; patch $013B=0, step3; patch $0138=1, step3; A10frames, right10frames, release. All steps max_operations20M timeout30s; trace enabled only exercise windows, capacity0, Instruction/ControlFlow detail filter.",
+    "observed": "Main state $0A=$10, source stage retained; distinct brick layout/boss displayed; ball launched and paddle moved, as visited PNG shows. Both read/write/fetch aggregates saved; no aggregate drops.",
+    "evidence": [
+      "analysis/round01/visited-15.png",
+      "analysis/round01/visited-15.snapshot",
+      "analysis/round01/visits-coverage.json",
+      "analysis/round01/batch-evidence.jsonl"
+    ]
+  },
+  {
+    "id": "R1-stage34",
+    "milestone": "Later stage34",
+    "status": "visited",
+    "reachability": "artificial RAM shortcut; subsequent instruction fetches observed in artificial state",
+    "recipe": "From player.snapshot frame260, empty buttons; patch RAM $21=34, $1A=34, $1F=0, $0A=5, $013B=0. Step200frames creates stage-34.snapshot frame460; initializer $940D consumes player stage and dependent data. Import stage snapshot; empty buttons; patch $013B=0, step3; patch $0138=1, step3; A10frames, right10frames, release. All steps max_operations20M timeout30s; trace enabled only exercise windows, capacity0, Instruction/ControlFlow detail filter.",
+    "observed": "Main state $0A=$10, source stage retained; distinct brick layout/boss displayed; ball launched and paddle moved, as visited PNG shows. Both read/write/fetch aggregates saved; no aggregate drops.",
+    "evidence": [
+      "analysis/round01/visited-34.png",
+      "analysis/round01/visited-34.snapshot",
+      "analysis/round01/visits-coverage.json",
+      "analysis/round01/batch-evidence.jsonl"
+    ]
+  },
+  {
+    "id": "R1-stage36",
+    "milestone": "DoH boss",
+    "status": "visited",
+    "reachability": "artificial RAM shortcut; subsequent instruction fetches observed in artificial state",
+    "recipe": "From player.snapshot frame260, empty buttons; patch RAM $21=36, $1A=36, $1F=0, $0A=5, $013B=0. Step200frames creates stage-36.snapshot frame460; initializer $940D consumes player stage and dependent data. Import stage snapshot; empty buttons; patch $013B=0, step3; patch $0138=1, step3; A10frames, right10frames, release. All steps max_operations20M timeout30s; trace enabled only exercise windows, capacity0, Instruction/ControlFlow detail filter.",
+    "observed": "Main state $0A=$10, source stage retained; distinct brick layout/boss displayed; ball launched and paddle moved, as visited PNG shows. Both read/write/fetch aggregates saved; no aggregate drops.",
+    "evidence": [
+      "analysis/round01/visited-36.png",
+      "analysis/round01/visited-36.snapshot",
+      "analysis/round01/visits-coverage.json",
+      "analysis/round01/batch-evidence.jsonl"
+    ]
+  },
+  {
+    "id": "R1-ending",
+    "milestone": "Ending narrative / terminal transition",
+    "status": "visited",
+    "reachability": "artificial main-state transition, no natural boss defeat claimed",
+    "recipe": "Import visited-36.snapshot; empty buttons, patch RAM $0A=$60,$013B=0; step30frames ->terminal.snapshot; trace3frames; separate import terminal.snapshot and untraced200frames ->terminal-later.snapshot. $93B1 handler initializes ending via$A111, scroll advances to239, main state becomes$35.",
+    "observed": "terminal-later.png visibly states DoH demolished and Vaus escaped; ending narrative reached. Boss defeat sequence and subsequent return/title not yet tested.",
+    "evidence": [
+      "analysis/round01/terminal-later.png",
+      "analysis/round01/terminal-later.snapshot",
+      "analysis/round01/lastplay.py"
+    ]
+  },
+  {
+    "id": "R1-distinct-mechanics",
+    "milestone": "Powerup acquisition, warp and two-player alternation",
+    "status": "deferred",
+    "reason": "Representative late stages/boss and ending reached; static map already covers connected major systems. Pickup/collision-specific RAM contracts would require redirect research, not repeated unguided play.",
+    "superseded_by": [
+      "R1R-capsules",
+      "R1R-warp",
+      "R1R-player2"
+    ]
+  },
+  {
+    "id": "R1R-natural-active",
+    "milestone": "Natural single-player active stage1",
+    "status": "visited",
+    "reachability": "natural unedited execution from natural snapshot",
+    "recipe": "natural.snapshot; release180frames, A3frames, right15frames, release. No RAM/register edits.",
+    "observed": "state$10, stage1, mask1; paddle movement/active ball; natural-launched capture.",
+    "evidence": [
+      "analysis/redirect/r01-20261106-a/runtime-v2.py",
+      "analysis/redirect/r01-20261106-a/runtime.jsonl",
+      "analysis/redirect/r01-20261106-a/summary.json",
+      "analysis/redirect/r01-20261106-a/natural-launched.ppm"
+    ]
+  },
+  {
+    "id": "R1R-capsules",
+    "milestone": "Seven capsule effects and laser firing",
+    "status": "visited",
+    "reachability": "artificial RAM state; subsequent execution observed in bounded sampled windows",
+    "recipe": "Restore visited-15 per type; patch$8C=type,$91=RAM[$114],$94=RAM[$11A]+4; step3. Type5 followup repositions ball[$37,$38]=[$70,$60] before each10frames x4, A3frames.",
+    "observed": "All7 consumed: slow/catch1/expand2/multiballmask7/laser4/escape/lives3->4. Type3/type5 source names reversed. LaserEnabled1, LaserActiveMask3 observed.",
+    "evidence": [
+      "analysis/redirect/r01-20261106-a/runtime-v2.py",
+      "analysis/redirect/r01-20261106-a/runtime.jsonl",
+      "analysis/redirect/r01-20261106-a/summary.json",
+      "analysis/redirect/r01-20261106-a/followup.py",
+      "analysis/redirect/r01-20261106-a/followup.jsonl",
+      "analysis/redirect/r01-20261106-a/followup-summary.json",
+      "analysis/redirect/r01-20261106-a/laser-shot.png"
+    ]
+  },
+  {
+    "id": "R1R-warp",
+    "milestone": "Escape gate and stage15->16",
+    "status": "visited",
+    "reachability": "artificial RAM state; subsequent execution observed in bounded sampled windows",
+    "recipe": "Acquire type6 as above; translate all6paddleX pieces by$B8-currentRightX; step3,70,120. Import resulting stage16 initializer; documented framehold0 and readytimer1 shortcuts; A/right exercise.",
+    "observed": "PaddleEscaping1; remainingbricks/ballmask0; actual AdvanceRound stage16; active$10 stage16 after complete initializer. Early capture warp-stage16-exercised remainedstate7 and is not active proof.",
+    "evidence": [
+      "analysis/redirect/r01-20261106-a/followup.py",
+      "analysis/redirect/r01-20261106-a/followup.jsonl",
+      "analysis/redirect/r01-20261106-a/followup-summary.json",
+      "analysis/redirect/r01-20261106-a/stage-complete.py",
+      "analysis/redirect/r01-20261106-a/stage-complete.jsonl",
+      "analysis/redirect/r01-20261106-a/stage-complete-summary.json",
+      "analysis/redirect/r01-20261106-a/warp-stage16-active.snapshot"
+    ]
+  },
+  {
+    "id": "R1R-boss-ending-return",
+    "milestone": "Boss-count destruction through ending-return/title",
+    "status": "visited",
+    "reachability": "artificial RAM state; subsequent execution observed in bounded sampled windows",
+    "recipe": "From visited-36, patch[$166,$167]=[16,15],[$18A,$18B]=[0,0]; bounded step2 then60/200windows. Actual counter consumer initiates state30 and timed strip erasure,31/32/60/61/35. Restore final, shorten existing delay[$18E,$18F]=[0,1], step2; clear$13B hold as recorded during ending-return initializer; final$63->$00->$01.",
+    "observed": "Destruction strips, ending story, game-over/return display and title input reached through connected scheduler. No natural boss hits or defeat claim.",
+    "evidence": [
+      "analysis/redirect/r01-20261106-a/runtime-v2.py",
+      "analysis/redirect/r01-20261106-a/runtime.jsonl",
+      "analysis/redirect/r01-20261106-a/summary.json",
+      "analysis/redirect/r01-20261106-a/followup.py",
+      "analysis/redirect/r01-20261106-a/followup.jsonl",
+      "analysis/redirect/r01-20261106-a/followup-summary.json",
+      "analysis/redirect/r01-20261106-a/finish.py",
+      "analysis/redirect/r01-20261106-a/finish.jsonl",
+      "analysis/redirect/r01-20261106-a/finish-summary.json",
+      "analysis/redirect/r01-20261106-a/ending-return-title.png"
+    ]
+  },
+  {
+    "id": "R1R-player2",
+    "milestone": "Two-player selector, initialized active player2 and port2 movement",
+    "status": "visited",
+    "reachability": "artificial RAM state; subsequent execution observed in bounded sampled windows",
+    "recipe": "Restore visited-15; patch$18=1,$19=0,$1D/$1E=3,$24=1,$0A=$52,$13B=0; step3 then200. Framehold/readytimer shortcuts recorded. Input port2 right5frames, release.",
+    "observed": "Actual dispatcher chooses player2, loads stage1 and active state10; paddleX88->103 under port2 input. Natural player-death alternation unproved.",
+    "evidence": [
+      "analysis/redirect/r01-20261106-a/runtime-v2.py",
+      "analysis/redirect/r01-20261106-a/runtime.jsonl",
+      "analysis/redirect/r01-20261106-a/stage-complete.py",
+      "analysis/redirect/r01-20261106-a/stage-complete-summary.json",
+      "analysis/redirect/r01-20261106-a/two-player.py",
+      "analysis/redirect/r01-20261106-a/two-player.jsonl",
+      "analysis/redirect/r01-20261106-a/two-player-summary.json"
+    ]
+  },
+  {
+    "id": "R1R-menu-first",
+    "milestone": "Natural two-player menu attempt on retained player snapshot",
+    "status": "attempted",
+    "reachability": "natural inputs; unsuccessful selection",
+    "recipe": "Import player.snapshot; Select3/release3/Start3/release300; second attempt first waits30frames.",
+    "observed": "First mode remained0; second wait alreadystate4 (snapshot has pending start latch). Not proof of natural two-player selection; records retained; revised clean-emulator start test separate.",
+    "evidence": [
+      "analysis/redirect/r01-20261106-a/two-player.py",
+      "analysis/redirect/r01-20261106-a/two-player.jsonl",
+      "analysis/redirect/r01-20261106-a/two-player-summary.json",
+      "analysis/redirect/r01-20261106-a/menu-check.py",
+      "analysis/redirect/r01-20261106-a/menu-check.jsonl",
+      "analysis/redirect/r01-20261106-a/menu-check-summary.json"
+    ]
+  },
+  {
+    "id": "R1R-natural-two-player-selected",
+    "milestone": "Natural two-player menu selection/start",
+    "status": "visited",
+    "reachability": "natural clean emulator start, no RAM/register changes",
+    "recipe": "Fresh emulator.start; buttons[]280frames; select3frames; []3; start3; []; then300frames; calls individually <=40frames/max_operations20M/timeout30s.",
+    "observed": "Natural TwoPlayerMode1, player life counters3 each, GameState4 player intro. After300frames stillintro4; snapshot name clean-two-player-ready is not READY proof. Prior player.snapshot trials had latched Start and did not select mode1. No further menu exploration needed for this batch.",
+    "evidence": [
+      "analysis/redirect/r01-20261106-a/clean-menu.py",
+      "analysis/redirect/r01-20261106-a/clean-menu.jsonl",
+      "analysis/redirect/r01-20261106-a/clean-menu-summary.json",
+      "analysis/redirect/r01-20261106-a/clean-two-player-ready.snapshot"
+    ]
+  }
+]

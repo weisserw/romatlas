@@ -1,0 +1,6 @@
+# Round004 redirect residual inference review
+Checkpoint pass-004, state/map d32f95247f3c547c153f2215edb55e3ad99070fb0dea4fe852c0f4952229a5f8. Current-source readability complete; final editorial pending. No map/source modifications authorized in this phase.
+
+Target physical [118069,118072), CPU [$CD25,$CD28), physical bank14 in slot C000; bytes A0 01 FF. Prior barrier: preceding tail JMP prevents fallthrough; independent CD28 entry, no direct reference. Changed method: do not require caller; split A001 and FF, decode alternate entries and analyze semantic rejoin, compare unofficial-opcode prevalence and local record evidence. Expected discrimination: a coherent supported prefix/helper precondition or independently bounded noncode pattern could support a proposal even without reachability. Stop if all local alternatives remain only plausible decoding or unsupported short-data hypotheses. No artificial execution: forcing PC would choose an unsupported entry and would not discriminate intended structure.
+
+Primary evidence: immutable ROM bytes, current map views, classified source neighbors, configured-binary alternative decoding. Historical round003 evidence used only for relevant reference/neighbor conclusions. Preserve all historical records.

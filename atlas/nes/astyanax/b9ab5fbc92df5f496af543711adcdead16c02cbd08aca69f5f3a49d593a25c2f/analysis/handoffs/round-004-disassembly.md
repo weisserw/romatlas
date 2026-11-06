@@ -1,0 +1,11 @@
+# Round004 disassembly — pass004 verified, ROM incomplete
+
+ROM classification: 100.00% (262157 / 262160 bytes classified; 3 bytes unknown).
+
+Accepted4171bytes1403Code2768Data,190newStatic regions; all2420 oldregions preserved.2610totalregions44406Codebytes,100% evidence annotations. [Review](../round-004/review-decisions.md), [audit](../round-004/independent-review.json), [consumers](../round-004/consumer-review.txt), [accepted](../round-004/accepted-regions.json).641views/48groups fresh decode, pointer/powers/contexts and data boundaries verified. AllthreeR003ready leads verified; structural acceptance separate from natural reachability.
+
+[Pass004](../../maps/pass-004.json), state/current SHA256d32f95247f3c547c153f2215edb55e3ad99070fb0dea4fe852c0f4952229a5f8; [verification](../pass-004-verification.json) ok/byte_identical=true. ROM unchangedb9ab5fbc92df5f496af543711adcdead16c02cbd08aca69f5f3a49d593a25c2f. Authored source/symbol hashes unchanged [preservation](../round-004/source-preservation.json); frozen/review/history intact.
+
+Correction: physical01D557/CPU D547 JSR8000Resource4/5 selector0→824F; physical01D55A/CPU D54A JSRMapMain; physical01D55D/CPU D54D onward0/1. Candidate contexts already correct, historical redirect prose mixed address spaces; use explicit identities. IRQ CHR2..5 preserves2/3, audio restoresMain08, resource6 tails conditional. Player5word/3setter and7return witnesses partial; seven24bit powers then11byte clear helper; C519 saturating+1clamp20.
+
+Residual physical01CD35..01CD38 CPUCD25..CD28 A001FF,3bytes/1interval: [complement](../round-004/unknown-complement.json), [counts](../round-004/counts.json), [summary](../round-004/summary.json). No predecessor fallthrough/directreference; coherent code versus shortdata unresolved. Rounded100.00% does not mean complete. No terminal exhaustion claim. Next full current-source commentary for4171newbytes then residual evidence-policy rejection review in redirect. No new gameplay question, Stage2/4/6 mechanics/THE END retained; runtime4976starts4198natural/3086artificial overlapping unchanged. No toolkit issues found; [report](../toolkit-issues.md). No toolkit/ROM/source edits, publication/archive/deletion/cleanup.

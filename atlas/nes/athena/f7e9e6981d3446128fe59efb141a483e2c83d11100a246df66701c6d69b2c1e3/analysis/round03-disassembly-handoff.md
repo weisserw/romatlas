@@ -1,0 +1,15 @@
+# Round 3 disassembly handoff
+
+One productive disassembly pass completed; whole-ROM classification remains incomplete.
+
+ROM classification: 99.99% (131073 / 131088 bytes classified; 15 bytes unknown).
+
+33022 Code,98051 Data including16-byte header. Three ready R02 leads independently accepted as Static structural roles: title normal-JSR-return fallthrough physical01C490..01C493 Code; stage indexed tile backing01BE04..01BE0B generic Data; current-cache default-prefix01D4AF..01D4B1 Code. D49F was expressly compared with accepted D955/DA4C/DF95 field/count specialization standards. Structural role and actual caller remain separate. Stage backing does not establish a seven- or fourteen-entry schema. See [independent primary review](round03/independent-review.md), [fresh configured decode](round03/fresh-primary-decode.json), [classification and per-bank counts](round03/classification.json). Lead outcomes/history preserved in leads.json; progress/investigation appended.
+
+Saved analysis/state.json and exported maps/current.json validate. Fresh checkpoint **round03-disassembly-reviewed-final** verified whole-file byte-identically: [verification](round03-disassembly-reviewed-final-verification.json). Map SHA25655a0ad55c4785fc44585933422a031a3e6e284ee2df6c8588dcc13d152cf9ceb. Exact checkpoint map maps/round03-disassembly-reviewed-final.json equals current map. ROM unchanged.
+
+Six residual half-open physical intervals:00F9C3..00F9C7(4EA),018232..018235(3EA),01944E..019451(JMPD17E spare-thunk ambiguity),01967F..019680(RTS),01E609..01E60A(RTS),01F2D1..01F2D4(JSRE108 clearflag-prefix ambiguity). Localized primary competing interpretations remain valid in redirect/r02-local-contracts/rejection-review.md and review above. No supported connected new bytes were left outside this acceptance; downstream bodies already classified. No arbitrary fragment execution or unchanged long replay: stage0/2/4/6/13, boss/postboss routes and ending limitations were reused. This pass is not a terminal-exhaustion claim; changed independent entry/field-family/non-code-envelope evidence could reopen residuals.
+
+**Next commentary must carry sound prior source/review and integrate12new bytes without rewriting unchanged work.** Maintained commentary/source untouched throughout disassembly. Prior full review and hash provenance: [round2 commentary handoff](round02-commentary-handoff.md); input integrity round03/input-integrity.json. game.asm SHA2563e3d0e3867ee6a81072e9e640e729b13758303975a747a511728001452e23826; constants.inc3dbd69c2a6e52732e793843266402817a1bacdb1d436203c3da562f659dd46b8. Its three newly accepted Unknown notes need precise reconciliation; other residual notes remain honest. Prior698-region/473-unit review carries for unchanged spans, with location/count reconciliation as necessary. Final editorial/archive audit remains pending.
+
+[Toolkit issues](toolkit-issues.md): no toolkit issues found. No toolkit changes, source rewrite, archive, cleanup/deletion or publication. Disk8.4GiB free, scratch44KiB. Local evidence and historical checkpoints preserved.

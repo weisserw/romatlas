@@ -1,0 +1,13 @@
+# Coordinator terminal rejection review
+
+Reviewed round 002 redirect handoff, `analysis/redirect/round-002-residual-contracts/review.md`, `encoded-audit.json`, `source-evidence.txt`, and primary `decode-0bde.json`, `decode-34aa.json`, `decode-37a9.json` under the prior contracts attempt. Current checkpoint is pass-002-disassembly-final; this accepts workflow exhaustion, not whole-ROM classification.
+
+- Physical [0BDE,0BE0): LDY zero would prepare the accepted queue consumer, but preceding profile code jumps over it. The consumer proves the hypothetical effect, not an independent wrapper boundary or role. Data versus optional entry remains ambiguous; generic Data lacks positive pattern/container evidence.
+- [34AA,34AD): JMP B4F0 matches neighboring penalty joins, positive code plausibility. The actual branch ladder bypasses this isolated jump and all supported penalty blocks add independent counter behavior. No required record placement or independently supported entry distinguishes a redundant stub from bytes. The review assessed this stronger shared-destination inference rather than rejecting legal decoding alone.
+- [37A9,37AA) and [37AA,37AB): each RTS byte can be an empty routine or data/padding. The preceding supported routine returns, so no fallthrough establishes either. Two canonical return opcodes do not independently establish a uniform non-code run. Each claim was localized rather than rejected as an entire gap.
+
+Simple encoded targets and target-minus-one searches are empty, but only constrain those representations; they do not disprove computed/split producers or code generally. Accepted longer uncalled helpers possess multiple compatible stack/data/control contracts absent here. No universal caller or natural-execution prerequisite was imposed. Existing indirect dispatch and producer domains were triaged; no concrete residual-linked producer or revised discriminating experiment emerged. Arbitrary execution would demonstrate mechanics without resolving structure.
+
+The five-event progression checklist, artificial actual finish/results and separate synthetic certificate evidence meet documented broad best-effort exploration, with natural peripheral-dependent completion unclaimed. No unchanged gameplay or rejected experiment needs replay. Descriptor alias and generic-resource semantics stay qualified within independently classified structures.
+
+Decision: accept justified terminal incomplete, seven unknown bytes; no new disassembly cycle. Final editorial audit, current-source verification and document-selection accounting remain required before terminal orchestration handoff. This is not a blocker, ROM completion or authorization to archive/clean/publish.

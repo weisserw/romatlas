@@ -1,0 +1,12 @@
+# Round 02 disassembly handoff
+
+One full pass complete; **ROM incomplete**. ROM classification: 100.00% (262159 / 262160 bytes classified; 1 bytes unknown).
+Accepted118135 unique Static bytes (18895 code,99240 data), preserving every old region exactly. Total code29527,data101560,image131072; exact [counts](../round-02/classification-counts.json).
+
+Fresh round-02-disassembly checkpoint/current/store SHA256 c2f9133cdb39a2b157df5db1758ea669e25f441c8e97d127cee34af3b47d819d; [verification](../round-02-disassembly-verification.json) confirms ok and byte_identical. [Map](../../maps/round-02-disassembly.json), [generated source](../../generated/round-02-disassembly/game.asm). [Preservation](../round-02/preservation-check.json): ROM and prior commentary source/symbols unchanged.
+
+Independent role review [notes](../round-02/review-notes.md), [checks](../round-02/independent-review.json), [acceptance](../round-02/acceptance.json). Reviewed stack-aware inline barriers, effective mapper contracts/partial contexts, sound Y-preserving and nonlinear return paths, DMC alignment versus original-length subtraction, exact scene endpoints/output budgets, finite sprite/description/palette/motion records, utility copies and bounded generic evidence. All five ready leads marked verified with results/history. No new Observed coverage; broad gameplay evidence reused; final-arena/GrandChampion captures inspected.
+
+Residual [physicalCBDF..CBE0](../round-02/unknown-complement.json), bank6 CPU8BCF,byte60, remains materially ambiguous. Primary preceding sound loop already returns/jumps and next routine begins8BD0; no independent typed data or routine-family entry discriminates it. Prior [assessment](../redirect/r01-consumers-20261105/residual-assessment.md) remains sound on this narrow claim. Do not run arbitrary RTS merely to restate CPU semantics. This is not terminal workflow exhaustion.
+
+Next phase: preserve/carry existing commentary and provide full current-source commentary for the enlarged classified scope, then redirect residual review. commentary/source/game.asm and symbols.inc were deliberately untouched, retaining round01 readable work. New generated source has classification evidence but does not satisfy current-source commentary gate. No archive/cleanup/publishing/toolkit changes/further agents. All owned servers/jobs stopped. No toolkit issues found; [report](../toolkit-issues.md), no blockers.

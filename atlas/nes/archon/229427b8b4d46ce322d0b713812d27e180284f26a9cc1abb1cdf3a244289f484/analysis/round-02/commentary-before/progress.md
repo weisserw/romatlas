@@ -1,0 +1,13 @@
+# Round01 current-source commentary complete
+
+Input: maps/pass-001-final.json and analysis/state.json, frozen in baseline.json and phase1-state.json. Structural classification remains109551/131088 bytes (83.57%):10739 Code,98812 Data,21537 Unknown. No classification or reachability credit was added.
+
+Reviewed all5116 instruction regions and31 Data regions, including the full existing readability backlog. Source has218 named routine/block explanations,666 descriptive routine/branch/call labels and280 RAM/hardware/table aliases, with shared-array offsets used in operands. All180 Unknown spans have local boundary/uncertainty notes; known inline contracts are distinguished from unpromoted structural records. The5327-record scaffold is preserved;249 meaningful routine/block/Data units are recorded with physical identities, context notes and source locations. Per-instruction unit references point to the corresponding meaningful routine explanation.
+
+Covered combat initialization/outcome, fighter/projectile motion and collisions, computer control, arena obstacles/attributes, title/options, music/effects, reset/NMI/bank switching, PPU uploads, palette fades, board selection/movement, power-square/survivor tests, initial placement and the classified computer-move/special-action fragments. Generic non-code banks retain honest bank-level format/consumer notes without inventing subranges.
+
+Corrected an initial draft's row/column aliases against primary rendering/indexing: $61=row,$63=column; $6B=candidate row,$6C=candidate column. Corrected the power-square predicate to distinguish empty-square fallback from sole ownership. Reviewed the alternate physical1F684 TXA entry and retained the overlapping BIT encoding exactly. A numeric array-offset edit initially changed a byte; the mismatch was caught by verification and corrected before the final rebuild.
+
+Fresh final verification passed byte-identically. ROM SHA256 remains229427b8b4d46ce322d0b713812d27e180284f26a9cc1abb1cdf3a244289f484; source game.asm SHA2561c1a9ecb022eac6839a608c3b801e79d9ee27c503f9f0f0d7733621c51c3efe1. reading-after.asm refreshed after this verification. Frozen before/ and phase1 maps/state unchanged. See verification.json and ../analysis/round01-commentary-integrity.json.
+
+Current-source readability has no pending classified ranges. Unresolved meanings and opaque structural gaps are documented in uncertainties.md and ../analysis/round01-commentary-questions.md. Whole-ROM classification and final editorial acceptance remain separate: editorial_audit is pending and no final audit was run. No archive, publication, cleanup or deletion was performed; all artifacts remain local.

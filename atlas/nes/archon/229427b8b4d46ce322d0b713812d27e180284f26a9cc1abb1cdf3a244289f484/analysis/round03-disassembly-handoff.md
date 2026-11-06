@@ -1,0 +1,9 @@
+# Round03 disassembly handoff
+
+ROM classification: 99.99% (131080 / 131088 bytes classified; 8 bytes unknown).
+
+Authoritative maps/pass-003-final.json, generated/pass-003-final and analysis/state.json; byte-identical verified. 23122Code/107958Data/8Unknown. New two-byte Static Data ProjectileOriginYAdjustmentByDirection at00ABF; exact direct bounded consumer independently confirmed. Existing60byte region11047 renamed ComputerArenaDistanceParameters and stale placement evidence corrected. IMPORTANT0678 derives from067A+3; preserved early/historical wording is not authoritative. Detailed findings/metrics/integrity/RPC at analysis/disassembly/r03-review. An unchanged pass-003 checkpoint from before successful annotation is retained; use pass-003-final.
+
+Existing commentary/source/game.asm unchanged for migration. Full current-source commentary required, then redirect; final editorial audit pending. Replace ABF no-data-role/adjacent return prose and count10→8. Four stale scope comments:10820 collision neighbor accepted CheckProjectileAgainstOpponent/Work0;30358 EncounterPalettes accepted;30908 AdvanceTextPointerAndWait continuation accepted;36631 downstream movement route accepted. Carry cancellation7 bypasses only store, still dispatches eighth pointerE202. See r02-residual-review/consistency-recipe.md and source-primary.txt.
+
+Remaining exact8byte residuals and localized review in metrics/findings and r02 rejection-review. No new discriminating contract; RTS stubs and JMP→RTS remain Code/Data ambiguous, no caller-as-universal-prerequisite. Rejection history preserved. Board/arena/ending/Teleport evidence reused, no unchanged replay. No toolkit issues newly found; NES-001 remains nonblocking. ROM/source/toolkit unchanged; no archive/publication/cleanup/deletion. Not terminal exhaustion or completion.

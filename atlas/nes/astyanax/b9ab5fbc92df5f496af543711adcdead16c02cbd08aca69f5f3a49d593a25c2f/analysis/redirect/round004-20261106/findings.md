@@ -1,0 +1,6 @@
+# Round004 redirect findings
+Completed exact residual audit without map/source changes. Corrected two potentially overbroad rejections: FF is a complete legal ISC instruction overlapping CD28, and CD26 offers an entirely official ORA prefix. Neither decoding alone supports code. Generic data was reviewed independently, including A001/FF subclaims; no repeated pattern or bounded noncode contract discriminates it. No artificial execution was performed because it would only select a manufactured entry/precondition.
+
+See rejection-review.md and primary-audit.json for decisive artifacts, scope and competing interpretations. Current complement exactly [118069,118072), bank14/C000, CPUCD25..CD28. Current source all2610 classified regions readable, final editorial pending. Configured decoder read-only. ROM/state/current map hashes unchanged. Prior Stage2/4/6 and ending evidence reused, no replay. No toolkit issues found. No ready lead; terminal incomplete rationale awaits coordinator inspection.
+
+Coordinator caught initial contextual-decode physical offset error. Invalid context-CD*.json retained only as history; corrected context-corrected-CD*.json now verify intended fixed14 addresses and operands. See superseded-context-warning.md. CLI and raw/map audit were correct.

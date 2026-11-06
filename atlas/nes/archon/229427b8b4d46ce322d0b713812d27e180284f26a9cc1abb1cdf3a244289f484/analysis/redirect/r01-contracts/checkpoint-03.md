@@ -1,0 +1,10 @@
+# Redirect active checkpoint03
+All original actionable avenues now investigated: exactinlinehelpers and connected continuations; terminal predicate plus actualartificialwinnerdisplay; sevenhuman/sevencomputer/seveneffect/eightselection handlers; threeAIroute andnineaudio handlers; finitegraphicsdomain0..19; practicalteleportmechanicinvocation.
+
+A source-grounded independentcontract pass found substantial additionalstructuralcode (pause/PPUclear/APUdemonstration/menu rendering/acceptedterrainclone/attributeexpansion), with exact preconditions and actualentryunknown explicitly recorded in independent-contracts.md. These were not rejected merelyforlackofcaller. Packagedgraph yielded12366 genuinelyunknownCodebytes+380inlineData, zeroillegalstops or inlinecodeconflicts. CandidateData40blocks8205bytes initially, now refined/final-data-proposals adds the remaining exact menu/text/sprite/timingblocks and corrects priority/countlabels. New generated research artifactsremainproposals; state/map/sourceunchanged.
+
+Original explicitinstructions nottoinventsemanticlabels applies: a labeldescribingactualbyteformat/consumer isusedwhenestablished, otherwisegenericData. IsolatedRTS opcodes remainunknown whereonlylegaldecodewouldsupportcode. Lastknownresidual8791 aftercode/inline, mostclearlynoncodeandnowData proposals, notanexhaustionassessment.
+
+Teleport mode86 target selection persisted after event05ED-only patches (source/destinationandsettle negative results preserved); one improved boundedcontrollerA+debouncezero+064A/B coordinatewriteralignment trial currentlyrunning session59905 (scriptteleport-controller.py), notareplayofsameeventpatch. Previouswizardmenu andtargetselectionremainverifiedartificialvisits. If no actualpiececommit, record thatlimitandstop unchangedmechanictests; allassociatedhandlersalreadystructurallytraced, so no classificationblocker.
+
+Finishingfrontier: collectfinalcontrolleroutcome, compose exact candidatecoverage/residualledger from batch-graph+finalData, persistleads and combinedhandoff forindependentdisassemblyreview. No new toolkitissues;NES-001nonblockingremains. No terminalincompleteorwholeROMcompletionclaim.

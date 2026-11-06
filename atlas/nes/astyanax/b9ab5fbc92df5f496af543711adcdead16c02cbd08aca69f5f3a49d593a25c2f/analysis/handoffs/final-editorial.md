@@ -1,0 +1,9 @@
+# Final editorial — accepted classified source; ROM incomplete
+
+All2610 current classified regions /262157bytes and1262 unique meaningful units accepted, zero pending readability. Full current inventory remains in review.json.current_review and current-review.json. Preserved frozen pass001/scaffold2043 and prior history; reused sound review. Fixed physical815 gravity-data unit reference, source-relative audit paths, missing baseline code-unit links; updated source acceptance header and exact residual physical/CPU note. No instruction bytes changed.
+
+[Editorial findings](../../commentary/editorial-audit.md), [supported audit with explicit current-map supplement](../../commentary/audit.json), [current inventory/physical-source check](../final-editorial/current-inventory-audit.json), [fresh verification](../final-editorial/verification.json), [reading copy](../../commentary/reading-after.asm). Supported audit ok=true/byte_identical=true; baseline2043 regions/1785 unit-overlap references are not current semantic totals. Current map/state SHA256d32f95247f3c547c153f2215edb55e3ad99070fb0dea4fe852c0f4952229a5f8. Source763ca2e85d249a1efe6365363715fa473ff532fe0fb00a38294cfd10b1e9a20f; symbolsbe3f6ffd5664f378f5cc7e3eb4da10f7d5d6e45757af4c431c6f070a99a60900.
+
+Residual3bytes A001FF physical[01CD35,01CD38),CPU[CD25,CD28),PRG14 stay unknown. [Coordinator rationale](../coordinator-rejection-review.md) references corrected context-corrected decodes, never invalid initial context-CD artifacts. Partial selectors, generic schemas and natural production remain explicit uncertainties. No structural research/classification performed. Whole-ROM classification incomplete; orchestration/document accounting remains coordinator work.
+
+No toolkit issues found. No ROM/map/state/toolkit changes, archive, deletion, cleanup or publication.

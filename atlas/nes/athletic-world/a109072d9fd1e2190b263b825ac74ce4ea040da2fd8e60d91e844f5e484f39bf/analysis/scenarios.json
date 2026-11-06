@@ -1,0 +1,254 @@
+{
+  "version": 1,
+  "round": 1,
+  "scenarios": [
+    {
+      "id": "R1-TITLE",
+      "milestone": "Title/menu",
+      "status": "visited",
+      "route_or_patch": "emulator.start; trace enabled; buttons []; attempted180frames/10s => timeout retains54frames. Snapshot title.snapshot at54. Start2frames, release,40frames => menu96.",
+      "observed_result": "Title and training menu rendered; timeout explicitly partial.",
+      "evidence": [
+        "round-001/startup.ppm",
+        "round-001/event-menu.snapshot"
+      ],
+      "artificial": false,
+      "prg_banks": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "R1-EVENT-0",
+      "milestone": "Hurdles",
+      "status": "visited",
+      "route_or_patch": "Import event-menu.snapshot; reassert []; Start2frames; release;3x40frames, each timeout15s and max_operations default10million. Snapshot event-N.snapshot atframe218.",
+      "observed_result": "Correct distinct event backdrop/init shown; race waits for floor mat. Ordinary init fetches captured; artificial selector for indices1..4.",
+      "evidence": [
+        "round-001/event-0.ppm",
+        "round-001/event-0.snapshot",
+        "round-001/explore-events.py"
+      ],
+      "artificial": false,
+      "prg_banks": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "R1-EVENT-1",
+      "milestone": "Animal Trail",
+      "status": "visited",
+      "route_or_patch": "Import event-menu.snapshot; reassert []; RAM032C=1; Start2frames; release;3x40frames, each timeout15s and max_operations default10million. Snapshot event-N.snapshot atframe218.",
+      "observed_result": "Correct distinct event backdrop/init shown; race waits for floor mat. Ordinary init fetches captured; artificial selector for indices1..4.",
+      "evidence": [
+        "round-001/event-1.ppm",
+        "round-001/event-1.snapshot",
+        "round-001/explore-events.py"
+      ],
+      "artificial": true,
+      "prg_banks": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "R1-EVENT-2",
+      "milestone": "Dark Tunnel",
+      "status": "visited",
+      "route_or_patch": "Import event-menu.snapshot; reassert []; RAM032C=2; Start2frames; release;3x40frames, each timeout15s and max_operations default10million. Snapshot event-N.snapshot atframe218.",
+      "observed_result": "Correct distinct event backdrop/init shown; race waits for floor mat. Ordinary init fetches captured; artificial selector for indices1..4.",
+      "evidence": [
+        "round-001/event-2.ppm",
+        "round-001/event-2.snapshot",
+        "round-001/explore-events.py"
+      ],
+      "artificial": true,
+      "prg_banks": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "R1-EVENT-3",
+      "milestone": "Hop a Log",
+      "status": "visited",
+      "route_or_patch": "Import event-menu.snapshot; reassert []; RAM032C=3; Start2frames; release;3x40frames, each timeout15s and max_operations default10million. Snapshot event-N.snapshot atframe218.",
+      "observed_result": "Correct distinct event backdrop/init shown; race waits for floor mat. Ordinary init fetches captured; artificial selector for indices1..4.",
+      "evidence": [
+        "round-001/event-3.ppm",
+        "round-001/event-3.snapshot",
+        "round-001/explore-events.py"
+      ],
+      "artificial": true,
+      "prg_banks": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "R1-EVENT-4",
+      "milestone": "Rafting",
+      "status": "visited",
+      "route_or_patch": "Import event-menu.snapshot; reassert []; RAM032C=4; Start2frames; release;3x40frames, each timeout15s and max_operations default10million. Snapshot event-N.snapshot atframe218.",
+      "observed_result": "Correct distinct event backdrop/init shown; race waits for floor mat. Ordinary init fetches captured; artificial selector for indices1..4.",
+      "evidence": [
+        "round-001/event-4.ppm",
+        "round-001/event-4.snapshot",
+        "round-001/explore-events.py"
+      ],
+      "artificial": true,
+      "prg_banks": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "R1-MAT",
+      "milestone": "Representative mat-controlled movement",
+      "status": "attempted",
+      "route_or_patch": "Import event-0.snapshot. 16x run_until main PC801E, max100000operations/5s. Write0326=[6,6,2,4] cyclic, step1operation each injection.",
+      "observed_result": "Accepted execution;0523 became5 and continuation bytes38/39 became14/B0. Display still intro; no claim of running full event.",
+      "evidence": [
+        "round-001/mat-shortcut.py",
+        "round-001/mat-shortcut.snapshot"
+      ],
+      "artificial": true,
+      "prg_banks": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "R1-FLAG",
+      "milestone": "Supported last-event completion shortcut",
+      "status": "attempted",
+      "route_or_patch": "Import event-4.snapshot; RAM0328=1,032C=4,002B=40.5x40frames then A held12x40frames.",
+      "observed_result": "Stayed pre-race; flag present but scheduler completion path not reached. No certificate claim from this attempt.",
+      "evidence": [
+        "round-001/terminal-shortcut.py",
+        "round-001/terminal-final.snapshot"
+      ],
+      "artificial": true,
+      "prg_banks": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "R1-RESULTS",
+      "milestone": "Results/physical attributes",
+      "status": "visited",
+      "route_or_patch": "Import event-4.snapshot; buttons[]. Write030B=4,A1/A2=3/0,0328=1,B3=1,0594=50,05A4=50; RAM01FC=[67,FA]; step1operation for instruction boundary; registers PC8635,stackFB (synthetic JSR returnFA68).40frames/15s.",
+      "observed_result": "Correct readable result screen; actual accepted fetches.",
+      "evidence": [
+        "round-001/terminal-direct-chr0.py",
+        "round-001/direct-screen-3-chr0.ppm"
+      ],
+      "artificial": true,
+      "prg_banks": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "R1-CERT",
+      "milestone": "Ending/certificate",
+      "status": "visited",
+      "route_or_patch": "Same synthetic JSR recipe as results but A1=4.030B=4 required to restore CHR bank0 before screen rendering.40frames/15s.",
+      "observed_result": "Readable Beginner Course 5th Degree certificate rendered. Synthetic entry, not natural progression completion. Earlier screen4/5 calls without030B yielded corrupted tile graphics; retained.",
+      "evidence": [
+        "round-001/direct-screen-4-chr0.ppm",
+        "round-001/direct-screen-4-chr0.snapshot",
+        "round-001/terminal-direct-chr0.py"
+      ],
+      "artificial": true,
+      "prg_banks": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "R1-EXPERT",
+      "milestone": "Expert course/certificate",
+      "status": "deferred",
+      "route_or_patch": "Screen5 synthetic call tried without CHR restore; not repeated because corrected beginner certificate already exercises common rendering and static screen5 contract uses same handler.",
+      "observed_result": "Expert unique course obstacles and natural ending untested; floor mat unsupported. Distinct event systems represented by five initialized events.",
+      "evidence": [
+        "round-001/direct-screen-5.ppm",
+        "toolkit-issues.md"
+      ],
+      "artificial": true,
+      "prg_banks": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "R1-REDIRECT-RAFT-START-FINISH",
+      "milestone": "Rafting start countdown, staged intro and finish animation",
+      "status": "visited",
+      "artificial": true,
+      "prg_banks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "route_or_patch": "Import round-001/event-4.snapshot, reassert[]. run_untilPC801E max100000operations/3000ms then RAM0326=6 for146 cycles, then6,6,2,4 to total180 cycles; operation1 after each edit. Set002B=2,10x40frames/10000ms; saveafter-finish. Restoreafter-finish,5x40frames/10000ms. Exact scripts/logs preserve sequence.",
+      "observed_result": "Actual B015/B037/B09A/B273 start paths, ADF4/AE7D/AEB3/AF2D/B3B9 finish and AF35 finalizer fetched; frame1001 EventFlags42, MovementState0. Frames show Rafting completion pose.389 unique starts in initial unknown intervals fetched artificially; natural completion unverified.",
+      "evidence": [
+        "redirect/round-001-contracts/progression.py",
+        "redirect/round-001-contracts/progression-first-rpc.jsonl",
+        "redirect/round-001-contracts/finish-animation.py",
+        "redirect/round-001-contracts/progression-rpc.jsonl",
+        "redirect/round-001-contracts/finish-final.snapshot",
+        "redirect/round-001-contracts/finish-final.ppm.png",
+        "redirect/round-001-contracts/new-artificial-fetches.json"
+      ]
+    },
+    {
+      "id": "R1-REDIRECT-LIFECYCLE-RESULTS",
+      "milestone": "Last-event lifecycle into results through ordinary transition",
+      "status": "visited",
+      "artificial": true,
+      "prg_banks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "route_or_patch": "Import finish-final.snapshot, reassert[]; RAM0328=1 selects Beginner mode before pending208-frame lifecycle wait ends;6x40frames/10000ms. No PC/register/CHR edit.",
+      "observed_result": "Results screen rendered correctly through existing lifecycle; flags0, event selector0, mode1. Ratings all0 because distance sum remains0 on artificial shortcut; no certificate produced on this route. Existing synthetic certificate visit remains separate.",
+      "evidence": [
+        "redirect/round-001-contracts/lifecycle-terminal.py",
+        "redirect/round-001-contracts/lifecycle-terminal-rpc.jsonl",
+        "redirect/round-001-contracts/lifecycle-terminal.snapshot",
+        "redirect/round-001-contracts/lifecycle-terminal.ppm.png",
+        "redirect/round-001-contracts/lifecycle-terminal-state.json"
+      ]
+    }
+  ]
+}

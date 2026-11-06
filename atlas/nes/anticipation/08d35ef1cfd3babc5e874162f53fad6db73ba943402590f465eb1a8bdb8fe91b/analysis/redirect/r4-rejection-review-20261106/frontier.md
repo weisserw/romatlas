@@ -1,0 +1,1 @@
+Completed primary rejection review; no useful revised inference/test or ready lead. Exact map complement recomputed: 27 bytes at 2707..2708,5E61..5E7A,5E83..5E84. No interruption, no replay. Coordinator must inspect rejection-review.md and cited primary artifacts before terminal acceptance. Final editorial audit pending. No writer/RPC active.

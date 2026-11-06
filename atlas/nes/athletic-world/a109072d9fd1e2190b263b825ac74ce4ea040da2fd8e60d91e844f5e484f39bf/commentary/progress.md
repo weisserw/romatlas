@@ -1,0 +1,23 @@
+# Commentary progress
+
+Prepared verified baseline. All semantic review entries are pending.
+
+## Round 002 active reconciliation
+
+Prior complete tree retained in analysis/round-002/commentary-prior-round-001. Supported fresh baseline prepared against pass-002-disassembly-final, then 104 unchanged classified spans carried by exact physical boundaries. All 20 added ranges have been read; 66 routine contracts, symbolic control targets, task/storage aliases and data/unknown notes added. First edited-source byte-identical verification passed. Remaining: dependency consistency review, current full-ROM ledger/source-location reconciliation, uncertainties/scope assessment and fresh verify/read handoff. No active byte range is being deferred; current source readability is still in progress. Final editorial audit stays pending.
+
+## Round 002 — full current-source readability complete
+
+Input pass-002-disassembly-final; current/new frozen map and state eacaab08bf873b7224a198c2c6d6988a84474041c5c37c1d01e4246ee6491fab. Preserved entire prior tree at analysis/round-002/commentary-prior-round-001. Reused 104 unchanged classified entries and prior review, covered all 20 added ranges, and reconciled affected continuation/object/data dependencies. Added 66 routine contracts (315 total), named transfers/storage, symbolic entry-minus-one installs and concise new data roles. Fixed type-4 versus shared type-5/7 naming, shared start-decoration flow and stale type-zero/unknown-body prose. Explicit C2F0 descriptor/code alias and collision-Y-index caveats remain qualified.
+
+All 65,545 classified bytes now readable; all seven unknown bytes have local physical-boundary notes. All 127 scaffold entries and 363 units reviewed with current locations and valid bounds; no numeric control-transfer/raw memory operands or known naming/comment gaps remain. Scope assessment: analysis/commentary-round-002/readability-assessment.md and scope-assessment.json. Remaining game identities/units/resource schemas are explicit uncertainty, not deferred readability.
+
+Fresh final configured-binary verification ok=true,byte_identical=true; reading-after.asm refreshed. game.asm SHA256 48d44093914ab5cc9ed9eb343112ad3e1ae5a32ae1dbee809f2108a4f692f2d7; symbols.inc a2ff58a4a495dbcb5904b498b59e36fac3147d7d06c1f5566ce92c859d2c7776; reading copy 3276a5a4c6c0ab09c4121b8990fadf98e8ea79a8e52e4370270d01bbdfbb9810. ROM unchanged. Final editorial audit remains pending and was not invoked. No source range remains pending for this phase. Next redirect/reconciliation examines exact seven-byte residuals; whole-ROM classification remains incomplete. No toolkit/ROM edits, deletion, archive, publish, commit, subagents or live processes. Disk 8.3 GiB free.
+
+## Final targeted editorial acceptance — complete
+
+After coordinator review of terminal structural residuals, reused the complete valid round-001/002 source review and inspected concrete naming, boundary, certainty and dependency risks. Corrected fourteen misleading scratch-derived branch names, including object type/state conditions and PPU count/command paths; exact list analysis/final-editorial/branch-renames.json. No instruction bytes or source line counts changed. Corrected ledger locations to game.asm:line relative to commentary/source, as required by the supported audit. Preserved pre-final source/symbols/review/reading/verification/progress in analysis/final-editorial/before; prior entire round-001 tree remains intact.
+
+All 127 scaffold entries and 363 units reviewed; code-unit names/actual PCs/source lines and all 79 code extents checked against physical bounds. No known editorial work remains. commentary/editorial-audit.md records scope/findings and honest limitations; review.json editorial_audit is reviewed with notes. Supported commentary.py audit passed ok=true, byte_identical=true, editorial_audit=true, reviewed_regions=127, reviewed_units=363, and refreshed reading-after.asm. Final hashes/results: analysis/final-editorial/result.json and analysis/handoff-final-editorial.md. Source game.asm now 915518f61e3abff050040b52e9e0fed274ea1c3ee601f2187da41968f4b0bea9; reading copy 828e6f88bd1147a1590ca8be2e92788f42c2d6879598e201e037db4d49c7ddbe. Earlier hashes above remain historical and their exact source is preserved in the pre-final snapshot.
+
+Classification remains incomplete: 65,545/65,552 classified, seven Unknown bytes with explicit notes. Map/state/frozen baseline and ROM unchanged. Final editorial acceptance does not establish natural progression or full compatibility. No archive, deletion, publish, commit, toolkit/ROM edit, replay, subagents or live process. Disk 8.3 GiB free. Single writer released for coordinator acceptance/options.

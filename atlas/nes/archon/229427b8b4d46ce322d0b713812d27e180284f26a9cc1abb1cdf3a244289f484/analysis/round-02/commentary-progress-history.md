@@ -1,0 +1,13 @@
+# Round02 commentary in progress
+
+Entire prior commentary preserved at ../analysis/round-02/commentary-before before fresh preparation. Fresh baseline is maps/pass-002-final.json (map SHA256309999c210ff7f476e6da91342d4cd4aab4a929fe8125ece4e8e7060d5f0c947), with 23122 Code /107956 Data /10 Unknown bytes.
+
+Migration carries 5144 exact physical range/kind source blocks and compatible prior review records; changed ranges use freshly generated source. Shared aliases and prose retained. Source first rebuilt byte-identically after migration. Prior source tails containing formerly Unknown spans were explicitly excluded from carried blocks; fresh current boundaries govern the new source.
+
+Frontier: 5987 new/changed source blocks require readability review; carried records also require dependency/correction checks and updated source locations. See ../analysis/round-02/migration-frontier.json. No successful handoff yet. editorial_audit remains pending. No final audit, archive, publication, cleanup or toolkit edits.
+
+Second coherent editorial batch:183 explicit routines/control-flow units now cover5081 new Code blocks, including board selection/path validation, seven special actions and cancellation, computer square scoring/route selection, sprite-script mechanics, inline attribute/stack helpers and fixed-bank display loaders. Full new compact instruction inventory inspected through physical $1FEE9. Fresh byte-identical verification passed (source SHA84662a86ffa62112d3bb3e186a0b465c6a1b27bcdb8b80ba923c39ae3e3d2b9f). Data annotations, inherited-routine gap integration and correction/dependency audit remain; review.json source locations await final refresh. See editorial-frontier.json for exact ranges.
+
+Current frontier: all184 new/changed Data blocks have local consumer/format notes, including96 inline records,20 actor graphics prefixes and20 remaining slot segments. All new Code inspected; inherited routine gaps/tails integrated under their physical routine/dependency identities. Stale prior 'still Unknown' claims removed; C381 description corrected to$0800, press/release and960-byte clear retained correctly. Added context-aware mechanical names for AI candidate arrays/route state and shared audio-demo fields. Cancellation correction and physical$004CF table-role correction are recorded in ../analysis/round02-commentary-questions.md and uncertainties.md. Portable map unchanged.
+
+Current operation: refresh all11138 scaffold records and meaningful units with current source locations, then final byte-identical verification and reading-copy refresh. These administrative consistency checks and phase handoff remain; no classified source range is intentionally deferred. Final editorial acceptance remains pending.

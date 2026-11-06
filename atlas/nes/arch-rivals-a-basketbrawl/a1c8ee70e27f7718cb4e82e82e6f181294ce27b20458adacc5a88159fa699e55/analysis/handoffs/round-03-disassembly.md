@@ -1,0 +1,13 @@
+# Round 3 disassembly — ready for separate commentary
+
+ROM classification: 99.98% (131063 / 131088 bytes classified; 25 bytes unknown).
+
+Accepted all172 StaticCode bytes/9 intervals from R02-STATIC-CONTRACTS with explicit supported entry preconditions and unresolved natural reachability: physical[501,511),[588,598),[631,639),[852,887),[887,888),[85286,85288),[85336,85338),[92745,92823),[94198,94224). Fresh exact configured-binary decodes match proposals; independent source-role review in analysis/round-03/review.md, fresh-decodes.json and neighbor-contracts.json. Menu/bank-return, frame setup, vector IRQ, cursor/OAM and paired-player/interaction contracts independently supported. No actual-fetch claim; no new gameplay route. Connected downstream paths already classified, representative progression evidence reused.
+
+Checkpoint maps/pass-003.json=current.json; analysis/state.json saved/validated. Fresh generated/pass-003 verified byte_identical=true in analysis/pass-003-verification.json; map SHAabdf52d80a33eaea0dec7221345bc528bc753a54414722ae4fb66b0c39ddd0a8. Code30230, Data37807 including header16, Image63026. Exact per-bank counts in analysis/round-03/summary.json and progress.md: PRG8bank0 classified8174 unknown18; bank1 classified8185 unknown7; all other banks8192/0. Internal1110 regions.
+
+Exact residual25bytes/7 intervals in round-03/unknown-ledger.json: five isolated JMP triples[2021,2024),[5213,5216),[6759,6762),[6936,6939),[11508,11511); small ambiguities[6068,6074),[10593,10597). All effective bank0[0,1,2,3]; these span physical8KiB banks0/1. Targets support destination roles but do not prove source opcode role. Small literal-looking patterns lack discriminating code/data constraints, not merely unknown meaning. No automatic classification. Redirect should inspect concrete computed-entry/containing-layout evidence or corrected inference; this pass is not terminal exhaustion review.
+
+Entire commentary tree and ROM hashes unchanged (identities-before/after.json). Separate commentary must carry/reverify full current source, cover172 newCode bytes, remove stale unknown/dependency descriptions at newly classified intervals, and preserve remaining uncertainty. Existing full reviewed source is in commentary/source, with successful verification unchanged. Final editorial audit remains pending. No commentary/audit/redirect performed in this phase.
+
+Lead R02-STATIC-CONTRACTS verified; no rejection. Prior attempt records immutable. No new toolkit issue; NES-001 remains with workaround in analysis/toolkit-issues.md. No toolkit/input edits, archive, publication or cleanup. ROM incomplete.

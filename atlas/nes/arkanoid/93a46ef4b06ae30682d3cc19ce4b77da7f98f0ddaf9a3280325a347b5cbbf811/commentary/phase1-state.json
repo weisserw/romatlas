@@ -1,0 +1,1945 @@
+{
+  "format": "romatlas-nes-map",
+  "version": 1,
+  "image_sha256": "93a46ef4b06ae30682d3cc19ce4b77da7f98f0ddaf9a3280325a347b5cbbf811",
+  "image_size": 49168,
+  "regions": [
+    {
+      "id": 1,
+      "offset": 16,
+      "length": 142,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Reset",
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 32768,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "offset": 171,
+      "length": 2,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "IRQ",
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 32923,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "offset": 176,
+      "length": 837,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "NMI",
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 32928,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "offset": 1081,
+      "length": 303,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33833,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "offset": 1396,
+      "length": 118,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34148,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "offset": 1520,
+      "length": 1430,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34272,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "offset": 2986,
+      "length": 703,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35738,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "offset": 3701,
+      "length": 123,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36453,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "offset": 3830,
+      "length": 88,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36582,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "offset": 4198,
+      "length": 135,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36950,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "offset": 4352,
+      "length": 114,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37104,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "offset": 4485,
+      "length": 200,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37237,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "offset": 4713,
+      "length": 51,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37465,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "offset": 4780,
+      "length": 716,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37532,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "offset": 5502,
+      "length": 276,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38254,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "offset": 5787,
+      "length": 159,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38539,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "offset": 6075,
+      "length": 484,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38827,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "offset": 6889,
+      "length": 76,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39641,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "offset": 7029,
+      "length": 639,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39781,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "offset": 7911,
+      "length": 17,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40663,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "offset": 8008,
+      "length": 80,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40760,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "offset": 8138,
+      "length": 17,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40890,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "offset": 8157,
+      "length": 145,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40909,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "offset": 8410,
+      "length": 144,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41162,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "offset": 8618,
+      "length": 14,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41370,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "offset": 8888,
+      "length": 96,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41640,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "offset": 9082,
+      "length": 277,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41834,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "offset": 10020,
+      "length": 591,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42772,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "offset": 10623,
+      "length": 122,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43375,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "offset": 10748,
+      "length": 625,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43500,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "offset": 12189,
+      "length": 707,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44941,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "offset": 12900,
+      "length": 477,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45652,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "offset": 13381,
+      "length": 484,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46133,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "offset": 13869,
+      "length": 413,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46621,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "offset": 14286,
+      "length": 159,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47038,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "offset": 14488,
+      "length": 1,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47240,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "offset": 14501,
+      "length": 67,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47253,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "offset": 14586,
+      "length": 91,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47338,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "offset": 14683,
+      "length": 631,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47435,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "offset": 15335,
+      "length": 123,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48087,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "offset": 15467,
+      "length": 310,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48219,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "offset": 15801,
+      "length": 109,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48553,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "offset": 15978,
+      "length": 1426,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48730,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "offset": 17409,
+      "length": 122,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 50161,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "offset": 17576,
+      "length": 232,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 50328,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "offset": 29648,
+      "length": 486,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 62400,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "offset": 30357,
+      "length": 332,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ recursive control flow under CNROM fixed PRG [0,1,2,3]; decoded boundaries reviewed in analysis/round01/candidate-disassembly.txt. Structural claim; not every branch observed.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 63109,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "offset": 0,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "INESHeader",
+      "comment": "",
+      "evidence": "Validated iNES parser: mapper 3, 32 KiB PRG, 16 KiB CHR, no trainer.",
+      "views": []
+    },
+    {
+      "id": 49,
+      "offset": 32778,
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "InterruptVectors",
+      "comment": "",
+      "evidence": "Three little endian vectors $80A0/$8000/$809B independently agree with startup and interrupt code contracts.",
+      "views": []
+    },
+    {
+      "id": 50,
+      "offset": 32784,
+      "length": 16384,
+      "kind": "Image",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "CHRPatterns",
+      "comment": "",
+      "evidence": "iNES declared CHR-ROM span, two CNROM 8 KiB pattern banks; exact 16-byte planar NES tile encoding. PPU pattern storage, not CPU PRG.",
+      "views": []
+    },
+    {
+      "id": 51,
+      "offset": 173,
+      "length": 3,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 52,
+      "offset": 1013,
+      "length": 68,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 53,
+      "offset": 1384,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 54,
+      "offset": 1514,
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 55,
+      "offset": 2950,
+      "length": 36,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 56,
+      "offset": 3689,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 57,
+      "offset": 3824,
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 58,
+      "offset": 3918,
+      "length": 280,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 59,
+      "offset": 4333,
+      "length": 19,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 60,
+      "offset": 4466,
+      "length": 19,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 61,
+      "offset": 4685,
+      "length": 28,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated four-byte palette groups with NES color indices; adjacent palette transfer routines establish non-code.",
+      "views": []
+    },
+    {
+      "id": 62,
+      "offset": 4764,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 63,
+      "offset": 5496,
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 64,
+      "offset": 5778,
+      "length": 9,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 65,
+      "offset": 5946,
+      "length": 129,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 66,
+      "offset": 6559,
+      "length": 330,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 67,
+      "offset": 6965,
+      "length": 64,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated four-byte palette groups with NES color indices; adjacent palette transfer routines establish non-code.",
+      "views": []
+    },
+    {
+      "id": 68,
+      "offset": 7668,
+      "length": 243,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated PPU-address/count/tile command bytes with $FF delimiters consumed by $A3C3 command interpreter; precise stream grouping left unresolved.",
+      "views": []
+    },
+    {
+      "id": 69,
+      "offset": 7928,
+      "length": 80,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 70,
+      "offset": 8088,
+      "length": 50,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated PPU-address/count/tile command bytes with $FF delimiters consumed by $A3C3 command interpreter; precise stream grouping left unresolved.",
+      "views": []
+    },
+    {
+      "id": 71,
+      "offset": 8155,
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 72,
+      "offset": 8302,
+      "length": 108,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 73,
+      "offset": 8554,
+      "length": 64,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 74,
+      "offset": 8632,
+      "length": 256,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 75,
+      "offset": 8984,
+      "length": 98,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated PPU-address/count/tile command bytes with $FF delimiters consumed by $A3C3 command interpreter; precise stream grouping left unresolved.",
+      "views": []
+    },
+    {
+      "id": 76,
+      "offset": 10611,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 77,
+      "offset": 10745,
+      "length": 3,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 78,
+      "offset": 11373,
+      "length": 816,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 79,
+      "offset": 12896,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 80,
+      "offset": 13377,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 81,
+      "offset": 13865,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 82,
+      "offset": 14282,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 83,
+      "offset": 14489,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 84,
+      "offset": 14568,
+      "length": 18,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated PPU-address/count/tile command bytes with $FF delimiters consumed by $A3C3 command interpreter; precise stream grouping left unresolved.",
+      "views": []
+    },
+    {
+      "id": 85,
+      "offset": 14677,
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 86,
+      "offset": 15314,
+      "length": 21,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 87,
+      "offset": 15458,
+      "length": 9,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 88,
+      "offset": 15777,
+      "length": 24,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 89,
+      "offset": 15910,
+      "length": 68,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated PPU-address/count/tile command bytes with $FF delimiters consumed by $A3C3 command interpreter; precise stream grouping left unresolved.",
+      "views": []
+    },
+    {
+      "id": 90,
+      "offset": 17404,
+      "length": 5,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 91,
+      "offset": 17531,
+      "length": 45,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded gap between reviewed control-flow routines; inspected raw bytes, adjacent consumers and indexed ROM references in candidate-disassembly.txt. Repeated low-valued records, tile/coordinate sequences or uniform bytes distinguish non-code; specific semantics/individual table extents not asserted.",
+      "views": []
+    },
+    {
+      "id": 92,
+      "offset": 159,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "WarmBootSignature",
+      "comment": "",
+      "evidence": "Reset compares first six bytes at $808F and copies twelve bytes to $0360 on mismatch, with X bounds $06/$0C; exact initialized signature span, not code.",
+      "views": []
+    },
+    {
+      "id": 93,
+      "offset": 17808,
+      "length": 320,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Indexed graphics/animation consumers near $C000–$C57F; raw bytes are repeated tile sequences, coordinate deltas, $FF separators and zero runs. Reviewed through exact level-record boundary $C6C0; generic non-code, individual schemas unresolved.",
+      "views": []
+    },
+    {
+      "id": 94,
+      "offset": 18128,
+      "length": 9216,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "StageRecords",
+      "comment": "",
+      "evidence": "Initializer $956E subtracts one from validated stage index 1..$24, constructs $C6C0+256*(stage-1), copies bounded record through Y=$FF, and uses final byte as count. 36 aligned 256-byte records; repeated block grids and zero tails, no conflicting control-flow entries.",
+      "views": []
+    },
+    {
+      "id": 95,
+      "offset": 27344,
+      "length": 2304,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "StageAttributes",
+      "comment": "",
+      "evidence": "Same stage initializer constructs $EAC0+64*(stage-1), copies X=$40 bytes into stage buffer. Stage index domain 1..36 and source ends at audio jump entry $F3C0. Repeated packed two-bit nametable attributes with zero margins.",
+      "views": []
+    },
+    {
+      "id": 96,
+      "offset": 32698,
+      "length": 80,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Uniform 80-byte $FF suffix ends exactly before six validated interrupt vector bytes. Boundary inspected against prior sound bytes; no conflicting code evidence. Generic data, fill purpose not claimed.",
+      "views": []
+    },
+    {
+      "id": 97,
+      "offset": 9359,
+      "length": 29,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ClearAttributePage",
+      "comment": "",
+      "evidence": "Static contract A supplies PPU address high byte, writes low $C0, clears exactly 64 bytes through $2007 and resets scroll before RTS. Self-contained PPU routine independently supported by coherent hardware writes, bounded loop and exact return. Actual caller unresolved; legal decoding alone was not used. remaining-code.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42111,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 98,
+      "offset": 9388,
+      "length": 632,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "AdditionalPPUCommands",
+      "comment": "",
+      "evidence": "Inspected whole span after exact RTS at $A49B: repeated PPU address/count/tile command streams and $FF delimiters, matching $A3C3 interpreter. No control-flow entry conflict; no individual stream extents claimed.",
+      "views": []
+    },
+    {
+      "id": 99,
+      "offset": 14445,
+      "length": 43,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "EraseLifeIcon",
+      "comment": "",
+      "evidence": "Static entry precondition $0E is a life-icon count; decrement, bound <6, index six PPU address words at $B889, erase two tiles with $2D and resume established $B823 exit. Independent bounded table/hardware-output/control contract. Caller/natural entry unresolved. remaining-code.txt.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47197,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 100,
+      "offset": 30134,
+      "length": 223,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "SoundCommandHandlers",
+      "comment": "",
+      "evidence": "Interpreter masks command low nibble, indexes 16-word dispatch table via pointer at $F7D1, and JMP ($E6). All 16 targets inspected; sound-discovery.json proves connected handler graph covers exact interval. Handler preconditions X=voice, Y=stream position, $E4/$E5=stream. Commands edit channel/envelope fields and rejoin established interpreter. Structural only; reachability of individual commands unresolved.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 62886,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 101,
+      "offset": 30689,
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "SoundDispatchBase",
+      "comment": "",
+      "evidence": "Two-byte pointer $F7D3 read by established $F510 dispatcher; source base for exact low-nibble dispatch indexing.",
+      "views": []
+    },
+    {
+      "id": 102,
+      "offset": 30691,
+      "length": 32,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "SoundDispatchTargets",
+      "comment": "",
+      "evidence": "16 little-endian words addressed by 2*(command&15); all target contracts inspected and sound-handler control flow verified. Exact finite selector extent independent of selected runtime values.",
+      "views": []
+    },
+    {
+      "id": 103,
+      "offset": 30723,
+      "length": 1975,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "SoundTablesAndStreams",
+      "comment": "",
+      "evidence": "Bounded inspection of entire interval: descending little-endian pitch periods; repeated duration/value envelope records; pointer banks and repeated $F0..$FF sound commands with note/duration bytes. Established audio routines reference $F7F3/$F7FB/$F8A3/$F8AB/$F8EB/$F90F and interpret streams through $E4. No conflicting code entries. Exact subdivision beyond dispatch table remains unresolved; generic non-code, not a claimed exhaustive sound schema.",
+      "views": []
+    }
+  ],
+  "next_id": 104
+}

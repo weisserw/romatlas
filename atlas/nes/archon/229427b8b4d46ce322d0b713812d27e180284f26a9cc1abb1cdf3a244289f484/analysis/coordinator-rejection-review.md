@@ -1,0 +1,13 @@
+# Coordinator rejection review
+
+The round03 terminal review was examined against the r02 localized review and decisive primary artifacts, not accepted on hashes or attempt counts. Classification remains 131080 / 131088 bytes; eight bytes remain Unknown. This accepts a justified terminal incomplete structural assessment, subject to final editorial and verification acceptance.
+
+Primary artifacts inspected: redirect/r02-residual-review/oscillator-boundary-comparison.json and decode-8e70.json, decode-a465.json, decode-dbff.json, decode-dc0c.json, decode-f075.json and decode-f9df.json, alongside redirect/r03-terminal-review/rejection-review.md and the current commentary handoff.
+
+The oscillator comparison supports 102 bytes with only relocated jump operands; the next byte differs from the accepted clone. Its proof ends at the first return and cannot classify the extra return. The palette-adjacent return lies outside the independently bounded ten-by-twelve-byte palette format; failure of a 121-byte palette claim does not reject generic data, but the single byte remains indistinguishable from a return entry. The board-write and copy decodes each contain a complete return before an extra return byte and a separately established next object. Neither prior routine needs the residual byte.
+
+At F075 the conditional branch and unconditional jump both reach F080, bypassing F07D. The residual JMP DBFF and residual RTS at DBFF form coherent possible no-op code, but this is only a trivial mutual interpretation without an independently established handler slot, stateful routine contract or specific non-code envelope. Bypass rules out local fallthrough only, not indirect entry. The repeated return opcode in disconnected gaps does not establish a contiguous non-code pattern. No absence-of-caller rule or natural-reachability prerequisite is being imposed.
+
+The strongest alternatives remain isolated return/no-op entries versus residual data. Exact bounds are supported; structural roles remain materially ambiguous. Arbitrary patched execution would test already-known opcode mechanics rather than distinguish the alternatives. Accepted consumer corrections and the new two-byte table affect no residual endpoint. No concrete corrected inference or discriminating test emerged from this review. Reuse this sound review on unchanged premises; do not launch an empty classification cycle.
+
+Final editorial audit, fresh verification and final document-selection reconciliation remain pending. Workflow termination does not establish whole-ROM classification or complete hardware/game compatibility.

@@ -1,0 +1,13 @@
+# Round 1 commentary handoff
+
+Current-source readability complete; ROM classification incomplete. 71.92% classified (47143/65552), 18409 unknown. No structural/map changes.
+
+Checkpoint: r1-disassembly-final with independently maintained commentary/source. Fresh configured-release [verification](r1-commentary-final-verification.json): byte_identical=true. Source hash 6301fb28ce2860160827f6cbf86f9ae6a8da7cb820f7c075f01df65891710f8b. [Final consistency check](commentary-r1/final-check.json) confirms unchanged input and byte-equal analysis/state.json, maps/current.json and frozen disassembly map. [Reading copy](../commentary/reading-after.asm) refreshed after final edits; before/baseline retained.
+
+Scope: all 11566 classified code bytes, 280 routine/continuation units, all 5593 physical scaffold entries reviewed for readability; five data regions, CHR image region and 124 unknown intervals explained. [Inventory](../commentary/review.json), [compact scope](commentary-r1/scope.json), [progress](../commentary/progress.md). No current-source readability gaps remain. Unknown scaffolds' reviewed status means their opacity is explained, never structural classification. Final editorial audit remains pending and was not invoked.
+
+Examples: NmiFrameDispatcher resets stack and dispatches a RAM callback; PollControllers derives fresh button edges; SelectAndDecodePuzzle handles used-bit selection and CHR/PRG payloads; DrawMetasprite documents tile/offset/attribute records and OAM stride; sound command handlers explain mechanical note/timer/envelope/repeat behavior; PPU rectangle/text writers document bounded formats. Routine, branch, RAM, object/sound field, hardware and consumer-view table symbols are consistent. Reused zero-page aliases and uncertain interpretations are identified in source.
+
+Redirect leads R1-001..004 remain actionable. Investigate large packed command streams and consumers, callback install sites, exact residual boundaries, and practical feature transitions. [Uncertainties](../commentary/uncertainties.md) links source mechanisms; prior disassembly handoff/scenarios preserve concrete state contracts. Large generic data is accepted non-code; complete table schemas are not prerequisites for that acceptance. Consumer aliases into unknown storage do not prove boundaries. Rejected physical 0x2AA7 remains only the impossible loop fallthrough, not a neighborhood rejection.
+
+No toolkit issues found; [report](toolkit-issues.md). Temporary source syntax errors were corrected and freshly verified. No toolkit modifications, publication, archive, deletion or commit. No RPC remains live. Coordinator may proceed to redirect; worker did not launch it.

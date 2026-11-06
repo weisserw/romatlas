@@ -1,0 +1,4 @@
+# Redirect R01 contracts — active
+Input maps/pass-001-final.json; state analysis/state.json; commentary source hash 1c1a9ecb022eac6839a608c3b801e79d9ee27c503f9f0f0d7733621c51c3efe1. Classification 109551/131088, unknown21537. Read current commentary handoff/questions, evidence-policy and workflow. No structural edits in redirect.
+
+Frontier: derive additional fixed stack-inline helper counts and inspect supported JSR/continuations, then close connected discoveries including dispatch tables/consumers. Independent next avenues: terminal turn boundary, special-action handler domain, asset upload bounds. Prior ending/wizard failures reopen only on newly explicit source contracts. Research artifacts here; completed results immutable. No terminal exhaustion proposed. Disk 8.4GiB free; no deletion authorized/performed.

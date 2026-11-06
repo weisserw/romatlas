@@ -1,0 +1,2 @@
+# Ready frontier
+R3-001 three-byte double-write prefix ready for independent disassembly. Review and primary contract resolve prior clobbered-coordinate objection at its actual scope; no purpose claim. All supported continuation code/data already classified. Other residual intervals individually examined and no stronger actionable method found; see review.md. No pending productive experiment, no RPC/live writer. This ready checkpoint is not terminal exhaustion or final acceptance.

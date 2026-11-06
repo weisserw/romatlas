@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "round": 1,
+  "bank_context": {
+    "prg_banks": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "title-start",
+      "milestone": "title and natural stage 1",
+      "status": "visited",
+      "recipe": "rpc_worker.py: 90 neutral frames, ineffective legacy start 2 frames, 30 neutral; play001.py correct Start 2 +20 neutral; play002.py 180 neutral, Start held20, release120. Every frame call chunked at10. Correct NES input schema buttons array.",
+      "observed": "Arkista Ring title then natural outdoor stage 1",
+      "artificial": false,
+      "evidence": [
+        "startup.ppm",
+        "gameplay2.ppm",
+        "gameplay2.snapshot.json"
+      ]
+    },
+    {
+      "id": "late-initial",
+      "milestone": "first shortcut experiment",
+      "status": "attempted",
+      "recipe": "stages001.py restores gameplay2; set stage $03D0 and PC $8552 SP=$FF; banner timer $20/$21=[1,0].",
+      "observed": "Black screen, CPU sprite-zero wait $C4DD; $19 retained scrolling mode. Last stage incomplete process exit143; preserved artifacts, no retry with unchanged premise.",
+      "artificial": true
+    },
+    {
+      "id": "late-fixed",
+      "milestone": "stages 8,24,31,32",
+      "status": "visited",
+      "recipe": "stages002.py restore clean gameplay2 for each; input []; one CPU operation; RAM $03D0=[7,23,30,31], $19=0; PC=$8552 SP=$FF. Step10 frames; RAM $20/$21=[1,0]; step20; right+a20; up+a20; release. Effective banks [0,1,2,3].",
+      "observed": "Distinct labyrinth, arena, ring arena and outdoor temple maps confirmed in stage-fixed-08/24/31/32.ppm. Actual instruction fetches and movement/shoot budgets captured. HUD naming remains STAGE00 because $30 display counter intentionally not patched; no natural progression claim.",
+      "artificial": true,
+      "evidence": [
+        "round001-stages-fixed-results.json",
+        "round001-stages-fixed-coverage.json",
+        "round001-stages-fixed-trace.json"
+      ]
+    },
+    {
+      "id": "ending-wrap",
+      "milestone": "fourth-loop ending and subsequent continuation",
+      "status": "visited",
+      "recipe": "ending001.py restore clean gameplay2; finish one operation; RAM $03D0=31,$2E=3; PC=$BC5E SP=$FF. Neutral300 frames untraced, trace5. ending002.py restores ending snapshot, neutral600 then trace3.",
+      "observed": "Ending text THANKS FOR HELPING ME / SAVE ARKISTA displayed. Later capture shows Christine status page STAGE01, so persistent terminal screen not established. Supported transition initializes state and wraps cycle to fourth completion; untraced interval is frame/state evidence, only final sampled fetches count execution coverage.",
+      "artificial": true,
+      "evidence": [
+        "ending.ppm",
+        "ending-terminal.ppm",
+        "ending.snapshot.json",
+        "ending-terminal.snapshot.json"
+      ]
+    },
+    {
+      "id": "boss-combat",
+      "milestone": "full boss fight, inventory item use, loop1 wrap",
+      "status": "deferred",
+      "reason": "Stage31 ring arena representative visit succeeded; full fight and earlier-loop transition were not naturally completed. Redirect should resolve entity-handler selectors and item initialization from bounded table contracts instead of repeating long movement."
+    }
+  ]
+}

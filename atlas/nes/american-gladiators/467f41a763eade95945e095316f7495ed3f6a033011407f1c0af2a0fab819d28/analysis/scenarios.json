@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "phase": "round-01-disassembly",
+  "milestones": [
+    {
+      "milestone": "copyright/player/start-password menus",
+      "status": "visited",
+      "route": "initial.py, progressplay.py, menus.py; input buttons arrays (old singular-button attempts ineffective); full actual frames in rpc.jsonl",
+      "evidence": [
+        "traces/round-01/menus-1.ppm",
+        "analysis/round-01/menus-contexts.json"
+      ]
+    },
+    {
+      "milestone": "level1 Joust platform event",
+      "status": "visited",
+      "route": "menus.py Start/release pairs then events.py settle,A,release,right+A+B; actual frame1114; banks[2,3,14,15]",
+      "observed_result": "platform arena and running contender; event title/difficulty inferred default, mode not independently decoded",
+      "evidence": [
+        "traces/round-01/action.ppm",
+        "analysis/round-01/events-contexts.json"
+      ],
+      "snapshot": "analysis/round-01/events.snapshot.json"
+    },
+    {
+      "milestone": "other four selectable events",
+      "status": "visited",
+      "reason": "all five distinct screens confirmed by follow-0..4.ppm; built-in level3 password; Down 0..4 then Start, 600-frame bounded settling and 20-frame Right+A+B action; trace context coverage retained"
+    },
+    {
+      "milestone": "level3 password shortcut",
+      "status": "visited",
+      "route": "shortcut.py: restore menu.snapshot; Start/release, Down/release, A B B A B with releases, Start; later.py settles",
+      "observed_result": "LEVEL03 LIVES10 five-event selection at frame1290",
+      "snapshot": "analysis/round-01/later-menu.snapshot.json",
+      "evidence": [
+        "traces/round-01/later-2.ppm",
+        "analysis/round-01/shortcut-contexts.json"
+      ]
+    },
+    {
+      "milestone": "final Eliminator and ending",
+      "status": "attempted",
+      "reason": "terminal.py artificial direct entry froze; full initialization contract remains unknown; recipe rejected, investigate completion-mask transition rather than repeat",
+      "patch_recipe": "restore later-menu.snapshot; operation1; RAM0591/0592=4 or5,0590=5,0595=31; registers PC89F2 or8B89,stackFF; banks0,1,14,15; max10 initialization frames, 5x120 settling frames,20 action frames",
+      "evidence": [
+        "analysis/round-01/terminal.py",
+        "analysis/round-01/eliminator.json",
+        "analysis/round-01/rpc.jsonl"
+      ]
+    },
+    {
+      "milestone": "final Eliminator",
+      "status": "visited",
+      "artificial": true,
+      "route": "completion-scheduler.py level3 transition, portrait confirm then final-arena.py Right+A+B",
+      "patch_recipe": "follow-0.snapshot; operation1;0591=3(final)or4(ending),0595=1F,0584=0,0554=0,0576=1; preserve registers/stack; bounded frames per script",
+      "observed_result": "final obstacle arena with contender and active input",
+      "evidence": [
+        "/root/romatlas-batch/467f41a763eade95945e095316f7495ed3f6a033011407f1c0af2a0fab819d28/workspace/analysis/redirect/r01-consumers-20261105/final-arena.png",
+        "/root/romatlas-batch/467f41a763eade95945e095316f7495ed3f6a033011407f1c0af2a0fab819d28/workspace/analysis/redirect/r01-consumers-20261105/runtime.jsonl",
+        "/root/romatlas-batch/467f41a763eade95945e095316f7495ed3f6a033011407f1c0af2a0fab819d28/workspace/analysis/redirect/r01-consumers-20261105/completion-contexts.json",
+        "/root/romatlas-batch/467f41a763eade95945e095316f7495ed3f6a033011407f1c0af2a0fab819d28/workspace/analysis/redirect/r01-consumers-20261105/final-arena-contexts.json"
+      ]
+    },
+    {
+      "milestone": "congratulations/terminal password screen",
+      "status": "visited",
+      "artificial": true,
+      "route": "completion-scheduler.py level4 transition, supported parent through ending code",
+      "patch_recipe": "follow-0.snapshot; operation1;0591=3(final)or4(ending),0595=1F,0584=0,0554=0,0576=1; preserve registers/stack; bounded frames per script",
+      "observed_result": "CONGRATULATIONS!! AMERICAN GLADIATORS GRAND CHAMPION and password",
+      "evidence": [
+        "/root/romatlas-batch/467f41a763eade95945e095316f7495ed3f6a033011407f1c0af2a0fab819d28/workspace/analysis/redirect/r01-consumers-20261105/scheduler-ending.png",
+        "/root/romatlas-batch/467f41a763eade95945e095316f7495ed3f6a033011407f1c0af2a0fab819d28/workspace/analysis/redirect/r01-consumers-20261105/runtime.jsonl",
+        "/root/romatlas-batch/467f41a763eade95945e095316f7495ed3f6a033011407f1c0af2a0fab819d28/workspace/analysis/redirect/r01-consumers-20261105/completion-contexts.json",
+        "/root/romatlas-batch/467f41a763eade95945e095316f7495ed3f6a033011407f1c0af2a0fab819d28/workspace/analysis/redirect/r01-consumers-20261105/final-arena-contexts.json"
+      ]
+    }
+  ],
+  "passes": [
+    {
+      "phase": "round-01-redirect",
+      "attempt": "/root/romatlas-batch/467f41a763eade95945e095316f7495ed3f6a033011407f1c0af2a0fab819d28/workspace/analysis/redirect/r01-consumers-20261105"
+    }
+  ]
+}

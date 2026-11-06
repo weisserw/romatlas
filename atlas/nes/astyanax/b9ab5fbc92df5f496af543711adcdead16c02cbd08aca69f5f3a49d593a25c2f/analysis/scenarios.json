@@ -1,0 +1,151 @@
+{
+  "version": 1,
+  "round": 1,
+  "scenarios": [
+    {
+      "id": "startup-title",
+      "milestone": "title",
+      "status": "visited",
+      "route": [
+        {
+          "buttons": [],
+          "frames_requested": 300,
+          "timeout_ms": 10000,
+          "observed_frames": 44
+        },
+        {
+          "buttons": [],
+          "frames_requested": 180,
+          "timeout_ms": 20000,
+          "observed_frames": 119
+        },
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 2
+        },
+        {
+          "buttons": [],
+          "frames": 100
+        },
+        {
+          "buttons": [],
+          "frames": 100
+        }
+      ],
+      "result": "ASTYANAX title ready at frame365, natural execution; no RAM edits",
+      "evidence": [
+        "round-001/contexts.json",
+        "round-001/title_ready.png",
+        "round-001/title.snapshot"
+      ]
+    },
+    {
+      "id": "stage-select",
+      "milestone": "later levels",
+      "status": "attempted",
+      "route": "From title snapshot: Up Down Left Right B B B B Start, each held2 frames released2 frames; advance80 frames",
+      "result": "Transition in progress; frame immediately after sequence black",
+      "evidence": [
+        "round-001/buttons.png"
+      ]
+    },
+    {
+      "id": "late-boss",
+      "milestone": "boss and final area",
+      "status": "deferred",
+      "reason": "Stage select acceptance/selection pending"
+    },
+    {
+      "id": "ending",
+      "milestone": "ending and credits",
+      "status": "deferred",
+      "reason": "Demo select and ending code ready for next bounded test"
+    },
+    {
+      "id": "stage2-mechanics",
+      "milestone": "Stage2-1 Redroad",
+      "status": "visited",
+      "route": "stage-select snapshot; Start2/release2; wait90; right+B60,right+A30; wait240 untraced; right+B60,right+A30;release",
+      "result": "ROUND2-1 REDROAD transition followed by visible player, terrain, HUD; natural built-in cheat route, actual traced gameplay",
+      "evidence": [
+        "round-001/stage2-mechanics.png",
+        "round-001/stage2-mechanics-contexts.json",
+        "round-001/stage2-mechanics.snapshot"
+      ]
+    },
+    {
+      "id": "ending-view",
+      "milestone": "ending scene",
+      "status": "visited",
+      "route": "title snapshot; U U U D D D A B Start hold2/release2; wait120 untraced; B B A A B A U D Start hold2/release2; wait300 untraced, trace60",
+      "result": "Demo selector accepted; ending dialogue scene with hero and princess, text I APPRECIATE; credits not yet verified",
+      "evidence": [
+        "round-001/demo-select.png",
+        "round-001/ending-view.png",
+        "round-001/ending-view-contexts.json",
+        "round-001/ending-view.snapshot"
+      ]
+    },
+    {
+      "id": "stage6-patch",
+      "milestone": "Stage6-2",
+      "status": "visited",
+      "route": "Restore clean stage-select snapshot; RAM $03E4=9; A2/release2; wait350 untraced; trace right+B60 and A+B30",
+      "result": "Actual castle gameplay with HUD R6-2, player and large enemy sprites. Attack/jump90 traced frames after untraced350-frame initialization; artificial menu index9.",
+      "evidence": [
+        "round-001/menu-9646.json",
+        "round-001/stage6-patched-entry.png",
+        "round-001/stage6-patched-play-contexts.json",
+        "round-001/stage6-patched-play.snapshot"
+      ]
+    },
+    {
+      "id": "stage4-play",
+      "milestone": "Stage4-1 cave mechanics",
+      "status": "visited",
+      "route": "stage-select snapshot; RAM$03E4=4; A2/release2; untraced180+170; traced right+B60,A30;release",
+      "result": "HUD R4-1 and cave/platform scene visible, player movement/attack/jump exercised; artificial entry",
+      "evidence": [
+        "round-001/stage4-play.png",
+        "round-001/stage4-play-contexts.json",
+        "round-001/stage4-play.snapshot"
+      ]
+    },
+    {
+      "id": "ending-pages",
+      "milestone": "ending later scenes/credits",
+      "status": "attempted",
+      "route": "ending-view snapshot;16*(Start2/release2+90) untraced then30traced;24*(Start2/release2+180) then30traced; repeat24*(Start2/release2+180) then30traced",
+      "result": "Progressed final dialogue and reached THE END; final terminal capture assessed in round001 disassembly. Credits not observed after bounded continuation.",
+      "evidence": [
+        "round-001/ending-after-pages.png",
+        "round-001/ending-credits-attempt.png",
+        "round-001/ending-terminal-attempt.png",
+        "round-001/ending-final.png",
+        "round-001/ending-final.snapshot"
+      ]
+    }
+  ],
+  "latest_summary": {
+    "visited": [
+      "title",
+      "stage selector",
+      "Stage2-1 Redroad gameplay",
+      "Stage4-1 cave gameplay (artificial selector4)",
+      "Stage6-2 castle gameplay (artificial selector9)",
+      "demo selector",
+      "ending dialogue",
+      "THE END"
+    ],
+    "boss": "Encounter room/enemy interaction attempted via Stage6-2 then right+B540 untraced+60 traced; final boss identity/defeat unverified. Needs position/room transition contract research.",
+    "credits": "Not observed; ending terminal THE END confirmed after bounded64 Start-page attempts and240-frame reveal. No endless retry.",
+    "other_stages": "Stages1,3,5 not individually visited this pass; selected forest/cave/castle cover representative systems. Supported menu index domain0..9 and stage snapshots reusable.",
+    "ending_evidence": [
+      "round-001/ending-final.png",
+      "round-001/ending-final.snapshot"
+    ],
+    "completed_phase": "round001-disassembly"
+  }
+}

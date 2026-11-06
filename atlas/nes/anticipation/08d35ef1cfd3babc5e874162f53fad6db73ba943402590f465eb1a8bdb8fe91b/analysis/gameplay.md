@@ -1,0 +1,9 @@
+# Gameplay familiarization — Anticipation
+
+Identified locally by rendered ANTICIPATION title and copyright 1988 Rare. ROM is mapper1, 32 KiB PRG / 32 KiB CHR. Region/revision beyond NES-AP-USA-compatible interface remains unverified.
+
+Instruction booklet transcript: https://www.world-of-nintendo.com/manuals/nes/anticipation.shtml (NES-AP-USA), consulted 2026-11-06. Sourced hypotheses used in experiments: Start begins; setup selects human count, computer count, difficulty using left/right and A; puzzle buzz controls depend on player count; letter cursor uses directions and A/B. Higher boards add feature/drop-out squares. These controls were checked against local setup, board, drawing and input frames; detailed player assignments remain partly unconfirmed.
+
+Local progression contracts (static code + artificial experiments): $AC human count, $AD minus one computer count; initialization $865F fills $04CE,y with 1 for humans or $80 for computers. First patch $AC=2 was initially mistaken for adding an AI, corrected after consumer inspection. Per-player board-position $0403,y (and copy $0409,y) has board in high nibble; $88 current displayed board, $A3 twice board index; $8F/$90 are board transition parameters loaded from CPU $B3F8,x (not established as ROM pointers). Initialization continuation $86D4 runs after player records exist and regenerates board. Durable game-init snapshot supplies that prerequisite; r1/session-log.jsonl records patches and budgets.
+
+Level3 visit confirmed by LEVEL 3 frame and distinct board geometry. Ending: inspected block $B326 checks promotion flag $A1=1, difficulty extension $B7=0, current board $88=2, timer $03=0 then jumps $C297. Artificial entry with these conditions produced WINNER trophy scene (r1/ending-attempt.ppm and snapshot). This establishes execution in artificial state, not an ordinary winning route. No password/cheat was sourced or used. No external descriptions classify ROM bytes.

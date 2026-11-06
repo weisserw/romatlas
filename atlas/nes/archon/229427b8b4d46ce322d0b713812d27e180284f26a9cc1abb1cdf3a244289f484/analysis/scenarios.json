@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "phase": "round01_redirect",
+  "input_contract": "NES complete replacement buttons array, port1; release buttons:[]",
+  "milestones": [
+    {
+      "milestone": "copyright and animated title",
+      "status": "visited",
+      "route": "emulator.start then bounded frame steps",
+      "evidence": [
+        "round01-title.ppm",
+        "round01-attack.snapshot"
+      ],
+      "note": "Original driver per-button input attempts had no effect; these are attract frames only."
+    },
+    {
+      "milestone": "menu and game setup",
+      "status": "visited",
+      "route": "title: buttons:[start] 2 frames; release30; A2 release30 selects one player; A2 release45 selects light; A2 release60 selects light first",
+      "evidence": [
+        "round01-session-rpc.jsonl",
+        "r01-actual-menu.ppm",
+        "r01-options.ppm",
+        "r01-board.ppm"
+      ]
+    },
+    {
+      "milestone": "strategy board and movement",
+      "status": "visited",
+      "route": "Natural setup then bounded untraced introduction fast-forwards to frame2394; cursor left20,release2,A2,release30; no complete natural move confirmed.",
+      "evidence": [
+        "r01-introend.ppm",
+        "r01-before-shortcuts.snapshot",
+        "round01-session-rpc.jsonl"
+      ]
+    },
+    {
+      "milestone": "arena combat and firing",
+      "status": "visited",
+      "reason": "requires initialized board or understood transition RAM contract",
+      "route": "Artificial source/target selection: r01-before-shortcuts snapshot; RAM60..63=[4,4,1,1],0615=0,A3 release20; add dark knight14 at0472,target61=4/63=2;05ED=80 then80frames. Exact intermediate failed A pulses in RPC log. Exercise A+right60,B+up30,A+right60.",
+      "evidence": [
+        "r01-force-selection.ppm",
+        "r01-arena-b.ppm",
+        "r01-arena-combat.ppm",
+        "r01-arena-visited.snapshot"
+      ],
+      "note": "Actual fetches after patches prove artificial-scenario execution only."
+    },
+    {
+      "milestone": "wizard spells",
+      "status": "visited",
+      "reason": "Source-grounded invocationcontract resolved; previous failedroutesretained inhistory.",
+      "route": "ArtificialD510 nonzeroSelectionMode80 + wizard ID8/type1 preconditions in wizard-revised.py; menu down2/release12/A2 enters teleport. ControllerA pulseswith0614/0615zero and064A/B source/targetcoordinates acceptID6row3col0 thenemptyrow4col2;100boundedsettleframes commitpiece6atrow4col2 andclearoldcell.",
+      "evidence": [
+        "redirect/r01-contracts/wizard-revised-menu.png",
+        "redirect/r01-contracts/wizard-revised-effect.png",
+        "redirect/r01-contracts/teleport-complete-1.png",
+        "redirect/r01-contracts/teleport-complete-1-board.json",
+        "redirect/r01-contracts/coverage-audit.json",
+        "redirect/r01-contracts/wizard-revised.py",
+        "redirect/r01-contracts/teleport-controller.py",
+        "redirect/r01-contracts/teleport-complete.py"
+      ],
+      "history": [
+        {
+          "milestone": "wizard spells",
+          "status": "attempted",
+          "reason": "No spell menu observed. Selector/state contract remains incomplete; do not repeat without understanding current callback and wizard trigger.",
+          "route": "Restore clean pre-shortcut snapshot;60..63=[4,4,0,0],0615=0,A3 release20;05ED=80 release40; B2release30.",
+          "evidence": [
+            "r01-wizard-spell-attempt.ppm",
+            "r01-wizard-b-release.ppm",
+            "round01_wizard.py"
+          ]
+        }
+      ],
+      "note": "Actualartificialfetches/menu and one complete spell mechanic; no claimnaturallyinvoked or allspellsplayed."
+    },
+    {
+      "milestone": "alternate side/demo",
+      "status": "deferred",
+      "reason": "Deferredwithreducedprospect: representative naturalsetup/board, artificialarena/fire, complete teleportmechanic andwinnertransitionvisited; allsupportedalternate dispatchpaths structurallyinspected. No residualunknownfragment connectscrediblyto alternatemenupermutations; noexhaustive gameplayclaim."
+    },
+    {
+      "milestone": "ending/win screen",
+      "status": "visited",
+      "reason": "Revisedpremise traced actualturnboundary andseparatePieceStrengthpredicate; oldboardonlydeletionfailurepreserved.",
+      "route": "Restore naturalbefore-shortcuts snapshot; board044C+81 IDs18..35->80 andPieceStrength04DF..04F0->00; PC D183 afterinstructionboundary, established boardcontext[0,1,14,15]. Boundedsteps reachgameended, then A+Start40/release40 advanceswinnerdisplay.",
+      "evidence": [
+        "redirect/r01-contracts/terminal-2.png",
+        "redirect/r01-contracts/terminal-action.png",
+        "redirect/r01-contracts/gameplay.py",
+        "redirect/r01-contracts/gameplay-more.py",
+        "redirect/r01-contracts/terminal-coverage-paged.json",
+        "redirect/r01-contracts/terminal-contexts-paged.json"
+      ],
+      "history": [
+        {
+          "milestone": "ending/win screen",
+          "status": "attempted",
+          "reason": "Movement/board screens observed, no win/credits screen. Board disappearance alone insufficient; exact end-turn/victory predicates need redirect research.",
+          "route": "Restore selected-knight snapshot; set all dark18..127 cells to80; target row4col2 and05ED=80;120frame bounded timeout then80frame settle.",
+          "evidence": [
+            "round01-ending-patch.json",
+            "r01-ending-attempt.ppm",
+            "r01-ending-settle.ppm"
+          ]
+        }
+      ],
+      "note": "Actualartificialending/winnerdisplay:1TURNS/THELIGHTSIDEWINS; naturalcompletionunproven."
+    }
+  ],
+  "completed_pass": "round01",
+  "history": [
+    {
+      "phase": "round01_disassembly",
+      "note": "Prior round01 scenario statuses/routes preserved in eachmilestone.history before redirectupdates."
+    }
+  ]
+}

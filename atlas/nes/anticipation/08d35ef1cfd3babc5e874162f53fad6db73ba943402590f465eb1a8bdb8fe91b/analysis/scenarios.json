@@ -1,0 +1,166 @@
+{
+  "version": 1,
+  "round": 1,
+  "effective_prg_banks": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "evidence_root": "analysis/r1",
+  "trace": {
+    "enabled_for_observations": true,
+    "capacity": 0,
+    "aggregate_dropped": 0,
+    "detail_drops": "intentional; final-trace.json"
+  },
+  "route_log": "analysis/r1/session-log.jsonl",
+  "snapshot_rules": "Import named file, explicitly release/reassert intended buttons. Snapshots preserve CPU/input/mapper but not trace history. Provisional filenames do not themselves identify screen state.",
+  "milestones": [
+    {
+      "id": "S1",
+      "milestone": "title/startup",
+      "status": "visited",
+      "natural": true,
+      "recipe": "Reset/start; trace capacity0; requested180 frames timeout15000ms stopped at actual frame67. Start6 frames, release30; A+Start120, release -> frame223.",
+      "result": "ANTICIPATION title then setup background",
+      "evidence": [
+        "r1/title.ppm",
+        "r1/startup-trace.json",
+        "r1/setup.snapshot.json"
+      ]
+    },
+    {
+      "id": "S2",
+      "milestone": "setup menus",
+      "status": "visited",
+      "natural": true,
+      "recipe": "Import setup snapshot; release buttons; setup A pulses2 frames separated by prompt-settling waits. Actual commands after frame620 in session-log.jsonl.",
+      "result": "human-count and computer-count prompts verified; later $AC interpretation corrected",
+      "evidence": [
+        "r1/computer-select.snapshot.json",
+        "r1/setup-settled.snapshot.json",
+        "r1/menu-handler.json"
+      ]
+    },
+    {
+      "id": "S3",
+      "milestone": "level1 board and drawing",
+      "status": "visited",
+      "natural": false,
+      "recipe": "From setup frame968 patch RAM$AC=2; wait160 untraced, A2 traced then request100 traced frames (timeout20000ms, actual state saved). Advance bounded board/puzzle batches as log.",
+      "result": "two-human level1 board; MAN-MADE drawing and bottom alphabet displayed",
+      "evidence": [
+        "r1/game-init.snapshot.json",
+        "r1/puzzle-start.snapshot.json",
+        "r1/puzzle-active.snapshot.json",
+        "r1/puzzle-active.ppm"
+      ]
+    },
+    {
+      "id": "S4",
+      "milestone": "buzz/letter selection",
+      "status": "attempted",
+      "natural": false,
+      "recipe": "From puzzle-active: A2, release25; patch player kind RAM$04CF=$80; Right2 then A2, release20.",
+      "result": "puzzle rendering and input path exercised, no complete successful typed answer; player-control assignment not fully resolved",
+      "evidence": [
+        "r1/answer-entry.snapshot.json",
+        "r1/letter-selection.snapshot.json",
+        "r1/game-initialization.json"
+      ],
+      "additional_evidence": [
+        "redirect/r1-consumers-20261106/feature-square.snapshot.json",
+        "redirect/r1-consumers-20261106/feature-square-after-a.snapshot.json",
+        "redirect/r1-consumers-20261106/runtime2-log.jsonl"
+      ],
+      "additional_result": "A2 in initialized category4 late drawing changes callback$8C7B->$A3D3 and displays answer/alphabet scene. A complete typed correct answer still unconfirmed."
+    },
+    {
+      "id": "S5",
+      "milestone": "level2",
+      "status": "visited",
+      "prior_status": {
+        "status": "deferred",
+        "reason": "Not separately visited; supported position/board-parameter shortcut is available, but representative later-board budget targeted stage3 and distinct stage4. No claim of exhaustive gameplay."
+      },
+      "natural": false,
+      "recipe": "Restore game-init; release buttons; operation1; RAM$0403/$0409=$10,$88=1,$8F/$90=[1,$BF],$A3=2; PC$86D4 stack$FF.80 untraced+10 traced frames, Down2/release30. runtime.py and exact log.",
+      "result": "LEVEL2 distinct board and YELLOW PUZZLE after marker/input progression, visibly confirmed.",
+      "evidence": [
+        "redirect/r1-consumers-20261106/runtime-log.jsonl",
+        "redirect/r1-consumers-20261106/level2-board.snapshot.json",
+        "redirect/r1-consumers-20261106/level2-mechanic.png"
+      ]
+    },
+    {
+      "id": "S6",
+      "milestone": "level3",
+      "status": "visited",
+      "natural": false,
+      "recipe": "Import game-init snapshot; release; operation1 -> boundary. Patch RAM$0403=$20,$0409=$20,$88=2,$8F/$90=[1,$BF],$A3=4; set PC$86D4 stack$FF. Run80 traced frames; subsequent requested160 traced timeout yielded actual71 frames, Down2 and30 frames.",
+      "result": "LEVEL3 distinct board geometry, moving marker and BLUE PUZZLE selection; later drawing not confirmed",
+      "evidence": [
+        "r1/stage3-reinitialize.snapshot.json",
+        "r1/stage3-puzzle.snapshot.json",
+        "r1/stage3-answer.snapshot.json",
+        "r1/session-log.jsonl"
+      ]
+    },
+    {
+      "id": "S7",
+      "milestone": "level4/high-difficulty board",
+      "status": "visited",
+      "natural": false,
+      "recipe": "Exact script r1/stage4.py: restore game-init; RAM$0403/$0409=$30,$88=3,$8F/$90=[2,$7F],$A3=6,$B7=1; PC$86D4 stack$FF; requested80 traced frames timeout then180 untraced and10 traced.",
+      "result": "LEVEL4 disconnected board geometry, marker movement and BLUE PUZZLE selection. Distinct board render confirmed.",
+      "evidence": [
+        "r1/stage4-board.snapshot.json",
+        "r1/stage4-progression.snapshot.json",
+        "r1/stage4-progression.ppm"
+      ]
+    },
+    {
+      "id": "S8",
+      "milestone": "feature/drop-out square mechanic",
+      "status": "visited",
+      "prior_status": {
+        "status": "deferred",
+        "reason": "Stage4 board visited; feature/drop-out trigger contract not yet isolated. Avoided arbitrary RAM brute-force. Redirect R1-004 can inspect $78 board-action values and ordinary transition consumer before patching."
+      },
+      "natural": false,
+      "recipe": "Restore stage4-progression, release, operation1; patch currentplayer0 square$0403/$0409=$31,phase$78=$70,SceneCountdown$9B=0,flags$B8=0,timer$B9=0; PC$ACBA stack$FF. Traced frames40+40+40+30. Separate restore with square$32, same other fields;150 frames then A2/release60.",
+      "result": "Real$9A87 square flags select$80 drop-out, actual fetches execute$ACFC drop block and LEVEL4->LEVEL3 render. Square$32 selects category4 late drawing; A-buzz enters answer scene. Full feature semantics/variants unresolved.",
+      "evidence": [
+        "redirect/r1-consumers-20261106/runtime2-log.jsonl",
+        "redirect/r1-consumers-20261106/drop-traced-contexts.json",
+        "redirect/r1-consumers-20261106/drop-traced.snapshot.json",
+        "redirect/r1-consumers-20261106/feature-later.png",
+        "redirect/r1-consumers-20261106/feature-square-after-a.png"
+      ]
+    },
+    {
+      "id": "S9",
+      "milestone": "ending/winner",
+      "status": "visited",
+      "natural": false,
+      "recipe": "Import pre-ending snapshot (stage3 initialized). Release/reassert buttons; operation1 reaches boundary. RAM$A1=1,$B7=0,$03=0; PC$B326 stack$FF; requested100 traced frames timeout with actual saved;160 untraced +5 traced.",
+      "result": "WINNER trophy terminal scene reached through inspected terminal-test ->$C297; image retained; natural winning route not claimed",
+      "evidence": [
+        "r1/completion-transition.json",
+        "r1/ending-entry.json",
+        "r1/pre-ending.snapshot.json",
+        "r1/ending-attempt.snapshot.json",
+        "r1/ending-attempt.ppm",
+        "r1/ending-screen.snapshot.json"
+      ]
+    },
+    {
+      "id": "S10",
+      "milestone": "additional credits/terminal screens",
+      "status": "unavailable",
+      "reason": "No separate credits sequence identified; winner scene is confirmed terminal presentation. No claim that none exists."
+    }
+  ],
+  "redirect_evidence_root": "analysis/redirect/r1-consumers-20261106/"
+}

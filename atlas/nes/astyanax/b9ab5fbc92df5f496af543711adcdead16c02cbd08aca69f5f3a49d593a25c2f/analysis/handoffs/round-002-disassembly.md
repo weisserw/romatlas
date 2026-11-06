@@ -1,0 +1,15 @@
+# Round002 disassembly handoff — pass002 verified, incomplete ROM
+
+ROM classification: 84.77% (222243 / 262160 bytes classified; 39917 bytes unknown).
+
+Accepted55183 bytes (27632Code/27551Data) from combined redirect proposals, all Static. Code39499 bytes;2217 classified regions, all evidence annotated. [Fresh map](../../maps/pass-002.json) SHA256aa5bc54ceebed0be0c35d2a9012b6b6de91dcd9345a4927ff8db4850addee119; current map identical. [Verification](../pass-002-verification.json) ok/byte_identical=true. ROM unchanged SHA256b9ab5fbc92df5f496af543711adcdead16c02cbd08aca69f5f3a49d593a25c2f.
+
+Review [decisions](../round-002/review-decisions.md), [independent audit](../round-002/independent-review.json), [fresh consumer listing](../round-002/consumer-review.txt), [accepted regions](../round-002/accepted-regions.json).11926 instruction starts/305 decode groups match; all execution-view identities/control boundaries pass. Code supported by independently reviewed routine/caller/consumer/stack contracts, not legal decode alone. Audio return continuations conditional on RAM08 matching caller bank pair; no blind mapper preservation. Fixed banks14/15 use C000/E000 per corrected addendum.
+
+Data all18 descriptors and layout-index constraints reviewed, inclusive spawn count1+4*(count+1). Mechanical chain exceptions13→15 gap222 and15→16 alternate/shared row order invalidate universal chain only, not independently bounded noncode containers; gaps unaccepted. Special4/5 spawn86E5 excluded; only bounded row/layout/tile/palette slices. Partial actor/scene table domains and natural selection unresolved; exact pointer-data slices accepted independently. All five ready leads marked verified with prior history preserved.
+
+Exact residual39917 bytes/331 intervals: [unknown complement](../round-002/unknown-complement.json); [per-bank counts](../round-002/counts.json); [summary](../round-002/summary.json). Map frontiers remain contextual bank shadow contracts, indirect selector bounds, stack-reset transitions and mixed residuals. This is ordinary handoff, not terminal exhaustion; no new runtime evidence or repeated gameplay. Prior scenarios Stage2/4/6 mechanics and THE END remain representative evidence. Runtime coverage unchanged4976 unique starts(4198 natural/3086 artificial overlapping).
+
+Next: full current-source commentary for pass002, then redirect from resulting map. Commentary/source game.asm86daa9065ecf285aaeb66dcd00d1e46287ac7675a7a76f66b75c6b67492cd95d and symbols.incb036e6927b97c7acea2403d1bc8ac8773896bbb07c1fdff21ff0b01248ff110b remain unchanged, verified [source-preservation](../round-002/source-preservation.json). Preserve that authored source and frozen/before/review records while syncing new classification; generated/pass-002 is a separate new checkpoint. Prior current-source readability applies only pass001; whole-ROM editorial gates pending.
+
+No toolkit issues found; [report](../toolkit-issues.md). No blockers, toolkit edits, input changes, archive, cleanup, deletion or publication.

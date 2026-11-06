@@ -1,0 +1,40 @@
+{
+  "byte_identical": true,
+  "ok": true,
+  "rom_sha256": "b9ab5fbc92df5f496af543711adcdead16c02cbd08aca69f5f3a49d593a25c2f",
+  "source_sha256": {
+    "game.asm": "763ca2e85d249a1efe6365363715fa473ff532fe0fb00a38294cfd10b1e9a20f",
+    "symbols.inc": "be3f6ffd5664f378f5cc7e3eb4da10f7d5d6e45757af4c431c6f070a99a60900"
+  },
+  "reviewed_regions": 2043,
+  "reviewed_units": 1785,
+  "editorial_audit": true,
+  "scope": "final editorial acceptance of all current classified source; whole-ROM classification incomplete",
+  "current_map_sha256": "d32f95247f3c547c153f2215edb55e3ad99070fb0dea4fe852c0f4952229a5f8",
+  "current_inventory": {
+    "ok": true,
+    "map_sha256": "d32f95247f3c547c153f2215edb55e3ad99070fb0dea4fe852c0f4952229a5f8",
+    "classified_regions": 2610,
+    "classified_bytes": 262157,
+    "semantic_units": 1262,
+    "pending_readability_ranges": 0,
+    "unknown_ranges": [
+      {
+        "offset": 118069,
+        "length": 3,
+        "physical_hex": "[01CD35,01CD38)",
+        "cpu_hex": "[CD25,CD28)",
+        "prg_bank": 14,
+        "bytes": "A0 01 FF"
+      }
+    ],
+    "rom_classification_complete": false,
+    "source_locations_valid": true,
+    "current_inventory_matches_state": true,
+    "source_sha256": {
+      "game.asm": "763ca2e85d249a1efe6365363715fa473ff532fe0fb00a38294cfd10b1e9a20f",
+      "symbols.inc": "be3f6ffd5664f378f5cc7e3eb4da10f7d5d6e45757af4c431c6f070a99a60900"
+    }
+  },
+  "baseline_scaffold_note": "reviewed_units counts 1785 baseline overlap references, not unique current semantic units; current unique units=1262"
+}

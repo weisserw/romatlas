@@ -1,0 +1,3 @@
+# R4 redirect rejection review
+Input r4-disassembly-final; current source dfdf77b5953921c6d64a6330e7db53e40639388df0e8ac8f8ba75ce2ed5bef1a. No mutation of classification/source/state/binary.
+Review primary R1 ambiguous fragments, R2/R3 decode and accepted neighboring source. Reuse unchanged caller/reference and progression evidence. Review candidate subclaims at A6F7, DE51/DE57/DE59/DE65, DE73; inspect whether combined semantics establish structural code independently of natural entry. No experiment is authorized by a mere unresolved interpretation. Stop when no credible revised discriminator remains; preserve exact complement and terminal reasoning for coordinator.

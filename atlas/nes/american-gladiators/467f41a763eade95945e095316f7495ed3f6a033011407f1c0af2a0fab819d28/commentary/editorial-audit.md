@@ -1,0 +1,15 @@
+# Final editorial acceptance
+
+Current source passes final editorial review for its classified scope. This accepts readability, not whole-ROM classification: physical $CBDF remains explicitly unknown. The map classifies 262159 of 262160 bytes.
+
+Reused valid full-scope review from both sequential commentary passes and the preserved round01 version. The current scope includes 29527 code, 101560 data and 131072 CHR bytes, 20257 scaffold regions and 2258 distinct reviewed source units. The coordinator checked corrected nested unit objects and source-relative locations across the full scaffold, source hashes, map/state identity, and representative explanations rather than requiring an unchanged-source reread.
+
+Targeted acceptance checked title/actor motion and loop explanations; scheduler/stack-aware inline arguments and bank contracts; event-local mechanical fields and final utility-copy differences; sound command/callback/return/envelope behavior; DMC alignment versus original-start length; finite sprite/rectangle/motion formats; encoded graphics/scene bounds; generic per-range pattern/reference rationales; CHR allocation; and the explicit residual note. Source uses shared RAM/hardware definitions and semantic routines/internal entries. Mechanical flag joins are explained by surrounding behavioral prose. Unknown game meanings retain useful mechanical descriptions and uncertainty.
+
+Concrete carried defects were corrected: obsolete unclassified-continuation prose, IRQ uncertainty superseded by accepted RTI, unresolved raw operands where new semantic aliases exist, equal-valued RAM versus button-mask substitution, directory-only sound handler names/opcode constants, and generic data comments localized to their prior inspection evidence. Targeted searches found no pending-code/TODO review placeholders or stale unclassified claims.
+
+No known naming/comment readability backlog remains. Natural sound selection, some event field meanings, generic schemas and artwork identities remain explicit semantic limits, not omitted source work. [Current uncertainties](uncertainties.md), [commentary handoff](../analysis/handoffs/round-02-commentary.md), and [residual rejection review](../analysis/redirect/r02-residual-review-20261106/rejection-review.md) retain those limits.
+
+Final toolkit audit and fresh byte-identical verification follow this editorial decision. They validate metadata/fidelity and do not by themselves measure prose quality or classify the residual. No archive, cleanup, publishing, toolkit edits, or compatibility claim is authorized or performed.
+
+Final toolkit audit completed successfully: [audit.json](audit.json) records ok, byte_identical and editorial_audit true, with 20257 reviewed scaffold entries and 20257 nested reviewed-unit occurrences representing 2258 distinct source units. Fresh source hashes match the current files; the reading copy was refreshed. [Final verification](../analysis/final-acceptance/final-verification.json) records exact hashes and successful map/store validation. Structural classification remains incomplete by one byte.

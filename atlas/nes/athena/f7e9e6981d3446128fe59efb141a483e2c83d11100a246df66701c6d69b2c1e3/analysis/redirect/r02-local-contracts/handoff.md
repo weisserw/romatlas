@@ -1,0 +1,15 @@
+# Round02 redirect combined supported batch
+
+Input checkpoint **round02-disassembly-reviewed-final**, accepted131061/131088 bytes (33017Code,98044Data,27Unknown in9intervals), following completed current-source readability at analysis/round02-commentary-handoff.md. Redirect changed research/lead records only. Maintained source/map/state and ROM identities are preserved in integrity.json; map hash6b3b9c949a34093a1c23d94fcb4ba421c10049f3b5d8bf93946862397b5aa39f.
+
+**Three ready leads propose5Code+7Data=12new bytes; none is accepted by redirect.** See ../../leads.json and [proposals.json](proposals.json):
+
+- R02-TITLE-REPEAT-FALLTHROUGH: physical01C490..01C493, fixed CPUC480..C483. Prior lone-JMP rejection missed the normal return from accepted JSR C532. This is direct supported control flow.
+- R02-STAGE-TILE-BACKING: physical01BE04..01BE0B, effective lower banks12/13, CPUBDF4..BDFB. Accepted BDE9 CMPBDF4,Y is the direct indexed tile-value consumer. Generic Data only; no complete table schema or natural stage-domain assertion. Higher indices can alias following code.
+- R02-CURRENT-CACHE-PREFIX: physical01D4AF..01D4B1, fixed CPUD49F..D4A1. LDA7D defaults the independently established current cache index for the accepted A-index terrain/list API. Same-family current-index path and accepted A/Y field-prefix standards supply independent structural support beyond decoding. Review this narrower static specialization expressly; no actual caller asserted.
+
+All9residuals received localized primary source/decode and targeted pointer review. [unknown-ledger.json](unknown-ledger.json) is the exact unchanged accepted complement with CPU/bank/neighbors/dispositions. [rejection-review.md](rejection-review.md) preserves historical rejection scope, decisive primary evidence, independent constraints and competing interpretations for each. This is a ready-batch checkpoint, **not terminal exhaustion**. If all accepted, residual15bytes in6intervals:00F9C3..00F9C7(4EA),018232..018235(3EA),01944E..019451(JMPD17E spare thunk ambiguity),01967F..019680(RTS),01E609..01E60A(RTS),01F2D1..01F2D4(JSRE108 clearflag prefix ambiguity).
+
+Fresh configured-binary bounded primary decode, exact source excerpts and targeted exact/entry-minus-one searches are retained. No extra natural runtime was needed; artificial successful execution would not discriminate these tiny fragments. Source uncertainty/table/mapper notes and known connected continuations were reassessed; no identified productive independent avenue was deliberately postponed. Existing stage0/2/4/6/13, boss/postboss routes and credits limitations were reused. No unchanged long replay or arbitrary state sweep. Further supported task/field/format evidence would reopen specific residuals; lack of natural execution alone does not reject them.
+
+Return the combined batch to independent disassembly, then full current-source commentary and redirect. Final editorial/archive audit remains pending coordinator gate. No map/classification/source/toolkit edit, deletion, archive or publication. Disk8.4GiB free; scratch44KiB at check. Research and historical attempts retained.

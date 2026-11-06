@@ -1,0 +1,18 @@
+# Round 001 commentary handoff
+
+Current-source readability complete; ROM remains incomplete. Continue to redirect.
+
+Frozen structural checkpoint maps/pass-001.json SHA256 1a328745e1ab3f23d4293e9ead30db6be74285b8424edc1ca61b589a5245ceed; maps/current.json unchanged. Classification167060/262160 (63.72%): code11867, data24104, text17, CHR131072, unknown95100/225 intervals. No structural changes or additional execution claims. Exact unknown complement and bank counts remain analysis/round-001/unknown-complement.json and counts.json.
+
+Readability covered all1818 classified regions and5721 instructions, arranged as204 contiguous code islands with740 named labels and descriptive shared symbols. Full review scaffold2043 entries retained,157 semantic units; zero pending readability ranges. Unknown intervals have explicit opaque boundary notes. Generic data retains original evidence and uncertainty, CHR has tile-format notes. Source explanations cover player/actor/HUD/audio/text/mapper/PPU/level mechanics. Examples: PlayerInitialize uses PlayerEntryTargetXLo/Hi; PlayerVerticalMotion explains jump hold/gravity clamp; ActorSpawnWindow explains four-byte records and16-byte slots; EnqueuePpuTransfer explains four-slot queue/carry; level metatile code explains tile/attribute/collision consumers. Scratch aliases remain neutral because helpers reuse them.
+
+Files: commentary/source/game.asm and symbols.inc; commentary/review.json; commentary/uncertainties.md; commentary/progress.md; commentary/current-source-checkpoint.json. Essential meaning is in source/Markdown, not only supporting TSV. Frozen before/, baseline.json and phase1-state.json preserved. Final editorial_audit intentionally pending for whole-ROM acceptance; no final audit/archive performed.
+
+Fresh commentary/verification.json confirms byte_identical=true and ok=true; ROM hash b9ab5fbc92df5f496af543711adcdead16c02cbd08aca69f5f3a49d593a25c2f. Final source/game.asm SHA25686daa9065ecf285aaeb66dcd00d1e46287ac7675a7a76f66b75c6b67492cd95d, symbols.inc b036e6927b97c7acea2403d1bc8ac8773896bbb07c1fdff21ff0b01248ff110b. reading-after.asm freshly expanded. No classified readability gaps knowingly deferred.
+
+Redirect questions (existing leads remain applicable):
+- R001-CALL-CONTEXT: main dispatch physical1E010..1E0DF and guarded mapper/audio wrappers1E3E9..1E4DE explain bank mechanics, but caller/callee return-bank summaries remain unresolved. Trace supported19 handlers and connected callees with explicit effective banks.
+- R001-INDIRECT: scene dispatch005CC0..005D43/007801..007828 and audio command handling018D05..019136 expose concrete selector/stream consumers. Follow state mutations and command fetch/dispatch; establish supported domains and connected handler/data extents without assuming complete word tables from selected indices.
+- R001-LEVEL-DATA: descriptor decoder near1F445 explains21-byte stage records and downstream row/layout/metatile/palette/spawn pointer roles. Follow consumers in switched resource banks4/6/8 using supported mapper context; shared source identifies tile expansion, attribute quadrants and collision-strip storage. Do not confuse unresolved semantic formats with necessarily unresolved code/data roles.
+
+Other semantic uncertainty: actor species, exact meter/action names, audio musical roles, text encoding and $FB control's unclassified E692 continuation. These are documented locally and do not block current-source readability. No new runtime experiment or terminal-exhaustion claim. No toolkit issues found; analysis/toolkit-issues.md remains persistent. No toolkit edits, publication, archive, cleanup or input mutation.

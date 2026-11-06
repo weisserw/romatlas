@@ -1,0 +1,21 @@
+# Coordinator record
+
+## Workflow and acceptance
+
+Round 1 began from the initialized progress record. Separate sequential phase workers are required: disassembly, complete current-source commentary, then redirect. No competing phase writers. Phase completion must be checked against compact handoffs and primary artifacts. Disassembly completion percentages must be printed before commentary and in the terminal handoff. An interrupted phase resumes in that phase.
+
+Terminal acceptance remains unproven. It requires either evidence-backed whole-ROM classification plus final editorial acceptance, or justified terminal incomplete after coordinator inspection of redirect rejection reasoning and decisive artifacts. Both require current-source readability, refreshed reading copy, fresh byte-identical verification, exact residual counts and a resumable checkpoint. Orchestration completion does not itself mean whole-ROM classification.
+
+## Archive document-selection contract inspected
+
+Inspected `/root/romatlas/scripts/archive.py`, especially `FINAL` and `archive()` document selection (lines 18–30 and 377–404). This was read-only; archive was not run.
+
+For NES, built-in `FINAL` map paths replace `.sym` with `.json`. Additional `documents` must be existing workspace-relative Markdown files under `analysis/` or `commentary/`, excluding `analysis/toolkit-issues.md` and parent traversal. `omitted_documents` may not overlap selected final artifacts. Every recursive Markdown file in these folders must be accounted for unless built in, explicitly selected/omitted, one of the recognized toolkit/prompt/workflow/AGENTS files, or inside a `before`/`source` path component. Additional final documents are explicitly selected rather than inferred from names. Final handoffs, conclusions and investigation history needed to understand the result must be retained. Disposable scratch alone may be omitted. `archive-options.json` will be finalized and checked against the then-current file inventory before terminal handoff. No archive execution, cleanup or publication is authorized.
+
+## Terminal-incomplete rejection review accepted
+
+After round02 redirect, inspected `analysis/round02/redirect-handoff.md`, `analysis/redirect/r02-20261106-a/rejection-review.md` and `identity-and-residual.json`, plus r01 `rejection-review.md`, `residual-evidence.json`, `reset-primary.txt`, `dispatch-domain.json` and `unknown-ledger.json`. These supply exact claim scope, competing interpretations, independent reset/stack/signature constraints, negative-reference scope and consistency comparisons with accepted unobserved code. Current map/state hash is unchanged from the primary evidence. The review does not substitute hash checks for reasoning.
+
+Accepted the reasoning: the complete JMP at physical[155,158) prevents reset fallthrough; the supported reset stack and interrupt contracts do not establish a separate return routine at158. Missing direct references and the independently finite sound domain narrow those routes without disproving orphan code. Reset compare/copy establishes signature[159,171) without covering158. No uniform pattern or bounded non-code format covers the isolated60. Thus neither bare RTS decoding nor an assumed separator proves the required code/data role. The accepted static helpers have independent multiple-instruction contracts, unlike this byte; no universal live-caller or fetch requirement is imposed. Narrowing is impossible for this one-byte interval. No corrected inference or useful concrete next test was identified. Artificial RTS execution would not discriminate intended code from data. This is justified terminal incomplete, not blocked research or whole-ROM completion.
+
+Round1 redirect produced concrete behavior corrections, so the coordinator ran the full round2 sequence rather than accepting terminal prematurely. Round2 independently accepted and corrected capsule3 expansion/capsule5 laser naming and ending CHRbank1 prose; redirect confirmed changed dependencies and reused the unchanged residual reasoning. Final editorial acceptance was then assigned to a separate sequential worker. Archive preparation remains read-only contract inspection and document selection; no archive or cleanup authorized.

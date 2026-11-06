@@ -1,0 +1,13 @@
+# Round 1 commentary handoff
+
+Status: current-source readability complete. Whole-ROM classification remains incomplete: 83,773 / 131,088 bytes classified (63.91%); 47,315 unknown. No structural annotations changed and maps/current.json still equals maps/pass-001.json. No final editorial/archive acceptance claim.
+
+Prepared fresh from pass-001; preserved commentary/before, baseline.json, phase1-state.json and reading-before.asm. Maintained commentary/source/game.asm and symbols.inc independently. Reading-after.asm refreshed after the final fresh byte-identical verification. Verification: commentary/verification.json, byte_identical=true, input SHA a1c8ee70e27f7718cb4e82e82e6f181294ce27b20458adacc5a88159fa699e55. Final source hashes are recorded there and checked against disk.
+
+Scope: ALL currently classified source read and explained: 18,680 code bytes, 1,947 data bytes (including header), 63,146 image bytes. 982 physical review partitions, 124 routine/structure groups, 1,355 descriptive physical-aware code labels, 274 RAM/hardware/constants/phase-local aliases. Every unknown span has a local explanatory note (262 spans). No pending current-source readability ranges. review.json scaffold identities/ranges are intact; editorial_audit remains pending for final acceptance.
+
+Examples: reset/frame dispatch; four-player/ball movement and fractional accumulators; metasprite records and OAM clipping; audio channels, envelopes and command streams; sprite depth sort/crowding; ASCII score/quarter clock; computer-generated controller input; rectangle/marker-delimited nametable streams and CHR-RAM page uploads. Shared RAM has phase-local intermission/entry/selection names. Exact address-size encodings preserved. See commentary/progress.md, uncertainties.md and semantic-units.json.
+
+Unresolved meanings: exact special move names and some field/court-object identities; complete selector/dispatch table extents; RAM-helper bank-preserving return summaries; per-tile meanings; state $17 initialization and natural statistics/leaderboard/entry reachability. These are explicit local uncertainties, not skipped readable-source ranges. No speculative classifications added. Structural followups should use existing R01-DISPATCH/R01-RETURN/R01-ENDSTATE leads and the source constraints in uncertainties.md, with physical ranges/effective banks. No redirect or new disassembly performed here.
+
+Toolkit: no new issues; NES-001 remains documented with its workaround in analysis/toolkit-issues.md. No toolkit changes, final audit, archive, publishing or cleanup. All source/assets/evidence remain local.

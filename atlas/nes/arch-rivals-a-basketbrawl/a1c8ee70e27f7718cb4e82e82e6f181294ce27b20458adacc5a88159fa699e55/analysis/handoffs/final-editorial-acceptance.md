@@ -1,0 +1,9 @@
+# Final editorial acceptance — passed
+
+Terminal investigation outcome remains INCOMPLETE:99.98% classification(131063/131088),25 unknown bytes/7 intervals; checkpoint pass-003 unchanged. Coordinator sound terminal rationale is analysis/coordinator/rejection-review.md. No investigation reopened.
+
+Targeted final review reused1117 reviewed scaffold entries and520 unique physical units, addressing concrete gaps in older source. Replaced36 numeric zero-page trajectory operands(E9..ED) with five shared mechanical symbols after inspecting producers/consumers. Checked generic data boundaries, uncertainty, new static contracts, graphics/code overlap and statistics$11 versus credits$17. Corrected1637 review anchors to source-root-relative paths; linked516 continuation Code entries to existing containing reviewed units. Full scaffold retained;1036 audit unit links represent520 unique identities. Detailed findings/remaining semantics: commentary/editorial-audit.md; counts/evidence: analysis/editorial/.
+
+Supported python3 /root/romatlas/scripts/commentary.py audit WORKSPACE passed: byte_identical=true, editorial_audit=true,1117 reviewed regions,1036 reviewed unit links. Fresh commentary/audit.json and verification.json agree; reading-after.asm refreshed. game.asm SHA950bc14a3e5b2cc492ae9775596cffb24f0a8d22bdd38153aefbe0ae444ff3ad; symbols.inc SHA53729d1ca98205e84ae31f1d3ae9825aab19eedf628fcc42ad734ffe979dd016. Post-audit hashes checked.
+
+Input SHA unchanged; current map=pass-003=commentary baseline, state=frozen phase1 state. No structural changes, toolkit edits, archive, publication or cleanup. Some action/profile/counter/music meanings and natural static-entry routes remain explicitly unresolved;25 structural unknown bytes remain verbatim. Existing NES-001 documentation/input issue remains nonblocking; no new toolkit issue found. Coordinator may continue its separate document selection/completion audit.

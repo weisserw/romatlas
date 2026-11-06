@@ -1,0 +1,7 @@
+# Final editorial handoff
+
+Final editorial acceptance completed for pass-004. All104 scaffold entries/185 units reviewed; no pending readability ranges. Reused valid prior reviews and checked concrete naming/CHR/paddle/unknown dependencies plus full inventory consistency. No source defect remained; only stale current uncertainty-record lead wording corrected. No promising structural issue arose. Details: ../commentary/editorial-audit.md.
+
+Official commentary.py audit succeeded: editorial_audit=true, byte_identical=true,49,168bytes. Fresh rebuild and reading-after.asm refresh completed. Evidence: ../commentary/{audit.json,verification.json,review.json}. Source SHA256 ec0812116fc091be71e54fe81f5b7952e28c9c77cf6ebe404f3366bdcbcea9aa; ROM93a46ef4b06ae30682d3cc19ce4b77da7f98f0ddaf9a3280325a347b5cbbf811; state/current map each7ef2ecee997233933621d94fad8ca9fc4dac60c4b10c5978cdf9bc39b0668fd3; reading69eef8b0139fe0ec8e987222f8f6beb73795ac289d55c58a0055d9bab50a1c09.
+
+Terminal incomplete classification remains49,167/49,168; sole unknown physical[$009E,$009F), CPU$808E=$60, PRG[0,1,2,3]. Coordinator accepted scoped round2 rejection review before editorial acceptance. No ready leads. Readability/fidelity acceptance does not classify this byte or establish global execution/hardware compatibility. Natural powers/boss defeat/player alternation, mixed data subdivisions and artwork/sound identities retain documented limitations. No toolkit issues found; toolkit-issues.md. No source/map/state/input/toolkit edits, archive/publication/deletion/cleanup.

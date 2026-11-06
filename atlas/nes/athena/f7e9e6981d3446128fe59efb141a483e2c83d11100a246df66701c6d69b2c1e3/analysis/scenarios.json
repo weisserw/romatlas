@@ -1,0 +1,238 @@
+{
+  "version": 1,
+  "round": 1,
+  "scenarios": [
+    {
+      "milestone": "Title and new-game initialization",
+      "status": "visited",
+      "route": "Reset trace enabled capacity0. Requested180 frames stopped timeout at66; requested240 max_operations5000000 stopped budget at234. Start2 frames/release;120 frames =>356. Right/A/B180 =>536; Right/B180 =>716. Budgets max_operations6000000 timeout40000 for180-frame gameplay.",
+      "result": "Athena title confirmed; tile scene confirmed at716; active player unconfirmed.",
+      "evidence": [
+        "round01/title2.ppm.png",
+        "round01/forest2.ppm.png",
+        "round01/clean-before-patch.snapshot.json"
+      ]
+    },
+    {
+      "milestone": "Health/time assistance",
+      "status": "attempted",
+      "route": "From716, write ram95=[15], ram92=[59], Right/A/B180 request max_operations6000000 timeout40000; timeout inspected at879.",
+      "result": "No sustained-play conclusion; one-shot assistance, not freeze.",
+      "evidence": [
+        "round01/patched-play.ppm.png"
+      ]
+    },
+    {
+      "milestone": "Later stage selector 2",
+      "status": "attempted",
+      "route": "Stage2: clean716 restore;release;ram9C=[2]; operation1 to boundary;pc=E73C;120 traced frames max_operations5000000 timeout50000;300 untraced frames max_operations10000000 timeout10000;Right/B30 traced frames max_operations1000000 timeout15000.",
+      "context": "Entry fixed-bank E73C, effective [0,1,14,15] at clean snapshot; bank transitions performed by setup code. Artificial state, no natural reachability claim.",
+      "result": "Scene graphics changed, active player not confirmed; no boss/ending demonstrated. $94 remains0.",
+      "evidence": [
+        "round01/stage2-play.ppm.png"
+      ]
+    },
+    {
+      "milestone": "Later stage selector 4",
+      "status": "attempted",
+      "route": "Restore clean716;release;ram9C=[4];pc=E73C at saved instruction boundary.420 untraced frames max_operations15000000 timeout20000. Right/A/B30 traced frames max_operations1000000 timeout15000;release.",
+      "context": "Entry fixed-bank E73C, effective [0,1,14,15] at clean snapshot; bank transitions performed by setup code. Artificial state, no natural reachability claim.",
+      "result": "Scene graphics changed, active player not confirmed; no boss/ending demonstrated. $94 remains0.",
+      "evidence": [
+        "round01/stage4-play.ppm.png"
+      ]
+    },
+    {
+      "milestone": "Later stage selector 6",
+      "status": "attempted",
+      "route": "Restore clean716;release;ram9C=[6];pc=E73C at saved instruction boundary.420 untraced frames max_operations15000000 timeout20000. Right/A/B30 traced frames max_operations1000000 timeout15000;release.",
+      "context": "Entry fixed-bank E73C, effective [0,1,14,15] at clean snapshot; bank transitions performed by setup code. Artificial state, no natural reachability claim.",
+      "result": "Scene graphics changed, active player not confirmed; no boss/ending demonstrated. $94 remains0.",
+      "evidence": [
+        "round01/stage6-play.ppm.png"
+      ]
+    },
+    {
+      "milestone": "Terminal/ending selector7",
+      "status": "attempted",
+      "route": "Restore clean716;release;ram9C=[7];pc=E73C at saved instruction boundary.420 untraced frames max_operations15000000 timeout20000. Right/A/B30 traced frames max_operations1000000 timeout15000;release.",
+      "context": "Entry fixed-bank E73C, effective [0,1,14,15] at clean snapshot; bank transitions performed by setup code. Artificial state, no natural reachability claim.",
+      "result": "Scene graphics changed, active player not confirmed; no boss/ending demonstrated. $94 remains0.",
+      "evidence": [
+        "round01/stage7-play.ppm.png"
+      ]
+    },
+    {
+      "milestone": "Bosses and verified ending",
+      "status": "deferred",
+      "reason": "Need complete concurrent player/scene initialization contract; scene-only E73C shortcut insufficient. Redirect lead R01-PROGRESSION.",
+      "id": "R01-initial-boss-ending-deferral",
+      "historical": true,
+      "superseded_by": [
+        "R01-complete-stage-0",
+        "R01-complete-stage-13",
+        "R01-boss-gate",
+        "R01-boss-terminal",
+        "R01-credits"
+      ],
+      "current_resolution": "The complete task04/player initialization prerequisite was resolved. Representative boss and post-boss terminal scenes were visited artificially; natural defeat and credits remain unverified. Original deferral reason is retained as history."
+    },
+    {
+      "id": "R01-complete-stage-0",
+      "milestone": "Forest complete player initialization",
+      "status": "visited",
+      "route": "Restore clean716, releaseallbuttons;94=1,9C=0,PC=E460,stack47,X=Y=0,currenttask04. Task tableC3A5/C3B3 establishesentrycontract. Supported reveal stages continued to1694.",
+      "result": "Visible activeplayer and initialized scene; artificial state. Controls exercised for2/4/6/13, including jump/action and actor/projectiles for6. No natural reachability claim.",
+      "context": "Mapper2; bank transitions bygame; effective contexts captured per accepted fetch. E460 entryfixed[0,1,14,15], sprites[6,7,14,15], actors[12,13,14,15].",
+      "evidence": [
+        "analysis/redirect/r01-connected/stage0-advanced-runtime.json",
+        "analysis/redirect/r01-connected/stage0-advanced.png",
+        "analysis/redirect/r01-connected/stage0-advanced.snapshot.json"
+      ]
+    },
+    {
+      "id": "R01-complete-stage-2",
+      "milestone": "Sea/cavern complete initialized gameplay",
+      "status": "visited",
+      "route": "Restore clean716, releaseallbuttons;94=1,9C=2,PC=E460,stack47,X=Y=0,currenttask04. Task tableC3A5/C3B3 establishesentrycontract. 1000untracedframes max_operations35000000 timeout25000; Right/A/B60tracedframes max_operations2500000 timeout15000.",
+      "result": "Visible activeplayer and initialized scene; artificial state. Controls exercised for2/4/6/13, including jump/action and actor/projectiles for6. No natural reachability claim.",
+      "context": "Mapper2; bank transitions bygame; effective contexts captured per accepted fetch. E460 entryfixed[0,1,14,15], sprites[6,7,14,15], actors[12,13,14,15].",
+      "evidence": [
+        "analysis/redirect/r01-connected/visit2-runtime.json",
+        "analysis/redirect/r01-connected/visit2-contexts.json",
+        "analysis/redirect/r01-connected/visit2-exercise.png",
+        "analysis/redirect/r01-connected/visit2-setup.snapshot.json"
+      ]
+    },
+    {
+      "id": "R01-complete-stage-4",
+      "milestone": "Ice complete initialized gameplay",
+      "status": "visited",
+      "route": "Restore clean716, releaseallbuttons;94=1,9C=4,PC=E460,stack47,X=Y=0,currenttask04. Task tableC3A5/C3B3 establishesentrycontract. 1000untracedframes max_operations35000000 timeout25000; Right/A/B60tracedframes max_operations2500000 timeout15000.",
+      "result": "Visible activeplayer and initialized scene; artificial state. Controls exercised for2/4/6/13, including jump/action and actor/projectiles for6. No natural reachability claim.",
+      "context": "Mapper2; bank transitions bygame; effective contexts captured per accepted fetch. E460 entryfixed[0,1,14,15], sprites[6,7,14,15], actors[12,13,14,15].",
+      "evidence": [
+        "analysis/redirect/r01-connected/visit4-runtime.json",
+        "analysis/redirect/r01-connected/visit4-contexts.json",
+        "analysis/redirect/r01-connected/visit4-exercise.png",
+        "analysis/redirect/r01-connected/visit4-setup.snapshot.json"
+      ]
+    },
+    {
+      "id": "R01-complete-stage-6",
+      "milestone": "Labyrinth complete initialized gameplay",
+      "status": "visited",
+      "route": "Restore clean716, releaseallbuttons;94=1,9C=6,PC=E460,stack47,X=Y=0,currenttask04. Task tableC3A5/C3B3 establishesentrycontract. 1000untracedframes max_operations35000000 timeout25000; Right/A/B60tracedframes max_operations2500000 timeout15000.",
+      "result": "Visible activeplayer and initialized scene; artificial state. Controls exercised for2/4/6/13, including jump/action and actor/projectiles for6. No natural reachability claim.",
+      "context": "Mapper2; bank transitions bygame; effective contexts captured per accepted fetch. E460 entryfixed[0,1,14,15], sprites[6,7,14,15], actors[12,13,14,15].",
+      "evidence": [
+        "analysis/redirect/r01-connected/visit6-runtime.json",
+        "analysis/redirect/r01-connected/visit6-contexts.json",
+        "analysis/redirect/r01-connected/visit6-exercise.png",
+        "analysis/redirect/r01-connected/visit6-setup.snapshot.json"
+      ]
+    },
+    {
+      "id": "R01-complete-stage-13",
+      "milestone": "Final labyrinth complete initialized gameplay",
+      "status": "visited",
+      "route": "Restore clean716, releaseallbuttons;94=1,9C=13,PC=E460,stack47,X=Y=0,currenttask04. Task tableC3A5/C3B3 establishesentrycontract. 1000untracedframes max_operations35000000 timeout25000; Right/A/B60tracedframes max_operations2500000 timeout15000.",
+      "result": "Visible activeplayer and initialized scene; artificial state. Controls exercised for2/4/6/13, including jump/action and actor/projectiles for6. No natural reachability claim.",
+      "context": "Mapper2; bank transitions bygame; effective contexts captured per accepted fetch. E460 entryfixed[0,1,14,15], sprites[6,7,14,15], actors[12,13,14,15].",
+      "evidence": [
+        "analysis/redirect/r01-connected/visit13-runtime.json",
+        "analysis/redirect/r01-connected/visit13-contexts.json",
+        "analysis/redirect/r01-connected/visit13-exercise.png",
+        "analysis/redirect/r01-connected/visit13-setup.snapshot.json"
+      ]
+    },
+    {
+      "id": "R01-final-page0B",
+      "milestone": "Direct final-page shortcut",
+      "status": "attempted",
+      "route": "analysis/redirect/r01-connected/final_arena.py",
+      "result": "Warp to0B didnotinitializeboss; onlyplayerremained. Sourcepin is postboss condition, not encounter initializer.",
+      "evidence": [
+        "analysis/redirect/r01-connected/final-arena-runtime.json",
+        "analysis/redirect/r01-connected/final-arena.png"
+      ]
+    },
+    {
+      "id": "R01-boss-page5",
+      "milestone": "Final boss selector37 spawn",
+      "status": "attempted",
+      "route": "analysis/redirect/r01-connected/boss_visit.py",
+      "result": "Stage13 bitmapBD38/BDA8 selects37 onpage5; actor37 spawnedflag02world6. Notyetinitializedbecause90A8 viewportgate.",
+      "evidence": [
+        "analysis/redirect/r01-connected/boss-page5-runtime.json",
+        "analysis/redirect/r01-connected/boss-page5.png"
+      ]
+    },
+    {
+      "id": "R01-boss-approach",
+      "milestone": "Bounded boss approach",
+      "status": "attempted",
+      "route": "analysis/redirect/r01-connected/boss_approach.py",
+      "result": "Right/B240framesdidnotcrossviewportgate; playerblocked/fell. New exact90A8 sourcecorrectedproximitypremise.",
+      "evidence": [
+        "analysis/redirect/r01-connected/boss-approach-runtime.json",
+        "analysis/redirect/r01-connected/boss-approach.png"
+      ]
+    },
+    {
+      "id": "R01-boss-gate",
+      "milestone": "Composite final boss37 initialized and exercised",
+      "status": "visited",
+      "route": "analysis/redirect/r01-connected/boss_gate.py",
+      "result": "Exactviewportgate cameraE7=C0 crossesboss(6,BB) fromcamera5. Active37,AE,AF,B0,A8,A9,B1,3B andprojectilesobserved; artificial.",
+      "evidence": [
+        "analysis/redirect/r01-connected/boss-gate-runtime.json",
+        "analysis/redirect/r01-connected/boss-gate-contexts.json",
+        "analysis/redirect/r01-connected/boss-gate.png",
+        "analysis/redirect/r01-connected/boss-gate.snapshot.json"
+      ]
+    },
+    {
+      "id": "R01-boss-terminal",
+      "milestone": "Post-boss terminal throne scene",
+      "status": "visited",
+      "route": "analysis/redirect/r01-connected/boss_death.py",
+      "result": "Reproduced92F6..9301 deathcontract: clearednonplayerflags, slot1flag0C,069D/06CB=0.600untraced+60tracedframes; F3=2,bossinactive,score100000,blue throne/statue chamber, playerworld0B inF2CAyieldloop. Artificial post-defeat terminal scene; credits and natural defeat unverified.",
+      "evidence": [
+        "analysis/redirect/r01-connected/boss-death-runtime.json",
+        "analysis/redirect/r01-connected/boss-death-contexts.json",
+        "analysis/redirect/r01-connected/boss-death.png",
+        "analysis/redirect/r01-connected/boss-death.snapshot.json"
+      ]
+    },
+    {
+      "id": "R01-credits",
+      "milestone": "Credits beyond post-boss terminal scene",
+      "status": "deferred",
+      "reason": "No supported separate credits transition identified. SourceF2C4..F2DD pinsstage13/page0B inyieldloop after9379..93A9 postboss teleport/reward/audio. Ending best-effort documented; no arbitrary flag or actor sweep justified.",
+      "evidence": [
+        "analysis/redirect/r01-connected/boss37-terminal-tail.json",
+        "analysis/redirect/r01-connected/boss-death-runtime.json"
+      ]
+    }
+  ],
+  "current_progression_summary": {
+    "status": "representative broad progression and terminal-scene best effort complete; natural defeat/credits unverified",
+    "visited": [
+      "R01-complete-stage-0",
+      "R01-complete-stage-2",
+      "R01-complete-stage-4",
+      "R01-complete-stage-6",
+      "R01-complete-stage-13",
+      "R01-boss-gate",
+      "R01-boss-terminal"
+    ],
+    "unverified": [
+      "natural boss defeat",
+      "credits beyond post-boss scene"
+    ],
+    "remaining_supported_method": null,
+    "evidence_review": "analysis/redirect/r05-residual-reasoning-review/rejection-review.md",
+    "historical_records": "Earlier attempts/deferrals remain intact; resolved general initialization deferral is explicitly marked historical/superseded."
+  }
+}
