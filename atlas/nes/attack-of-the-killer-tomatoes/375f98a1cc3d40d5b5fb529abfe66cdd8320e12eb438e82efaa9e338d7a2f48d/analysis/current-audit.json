@@ -1,0 +1,163 @@
+{
+  "version": 1,
+  "status": "terminal-incomplete",
+  "classification_complete": false,
+  "checkpoint": "pass-006-final",
+  "classified_bytes": 262126,
+  "image_bytes": 262160,
+  "percentage": 99.99,
+  "unknown_bytes": 34,
+  "unknown_ranges": [
+    {
+      "offset": 7301,
+      "length": 1
+    },
+    {
+      "offset": 9468,
+      "length": 5
+    },
+    {
+      "offset": 9620,
+      "length": 1
+    },
+    {
+      "offset": 10799,
+      "length": 1
+    },
+    {
+      "offset": 17835,
+      "length": 2
+    },
+    {
+      "offset": 23799,
+      "length": 1
+    },
+    {
+      "offset": 23856,
+      "length": 1
+    },
+    {
+      "offset": 23871,
+      "length": 1
+    },
+    {
+      "offset": 23886,
+      "length": 1
+    },
+    {
+      "offset": 23915,
+      "length": 1
+    },
+    {
+      "offset": 23930,
+      "length": 1
+    },
+    {
+      "offset": 23987,
+      "length": 1
+    },
+    {
+      "offset": 29261,
+      "length": 1
+    },
+    {
+      "offset": 29869,
+      "length": 1
+    },
+    {
+      "offset": 30188,
+      "length": 1
+    },
+    {
+      "offset": 30210,
+      "length": 1
+    },
+    {
+      "offset": 47574,
+      "length": 1
+    },
+    {
+      "offset": 47788,
+      "length": 1
+    },
+    {
+      "offset": 47889,
+      "length": 1
+    },
+    {
+      "offset": 48487,
+      "length": 1
+    },
+    {
+      "offset": 48536,
+      "length": 1
+    },
+    {
+      "offset": 121006,
+      "length": 1
+    },
+    {
+      "offset": 124252,
+      "length": 1
+    },
+    {
+      "offset": 124405,
+      "length": 2
+    },
+    {
+      "offset": 125465,
+      "length": 1
+    },
+    {
+      "offset": 126432,
+      "length": 1
+    },
+    {
+      "offset": 126451,
+      "length": 1
+    },
+    {
+      "offset": 127391,
+      "length": 1
+    }
+  ],
+  "classified_kinds": {
+    "Data": 99154,
+    "Code": 45996,
+    "Image": 116976
+  },
+  "current_source_readability": "complete",
+  "final_editorial_acceptance": "passed",
+  "byte_identical": true,
+  "map_validation": "passed configured binary store validate and map validate",
+  "source_locations_checked": 34358,
+  "reviewed_scaffold_entries": 14779,
+  "reviewed_top_level_units": 687,
+  "reviewed_embedded_associations": 18892,
+  "terminal_rejection_review": "analysis/coordinator-rejection-review.json",
+  "editorial_audit": "commentary/audit.json",
+  "source_hashes": {
+    "entries-commentary-units4.inc": "cbe90f6477c7ddca0b60947a9889a4e032a67dda03e10ba2aa05b3366d505339",
+    "entries-commentary-units6.inc": "bed6ae5d99cbba6d199adf55df60717b847f7c680e53d4742d2282acfbddf169",
+    "entries-commentary-units8.inc": "bbc3ff049675ed31a1d37e33a8d639a3f80fad653d9fa76e55aec30babcde613",
+    "fixed-entries.inc": "9bba17c0bc006bdae266118cb67a91f0091a34860a148ce09b992e69f89c82d4",
+    "game.asm": "0313c6e9e5d5ee6389595e388c031c2e519417632c7f27578091d3f93234ca8e",
+    "round002-entries.inc": "111ad2e119fcce7496cf81f4320f6d1c0123317e5f2f11f3fa6d5c31066abf9e",
+    "round003-entries.inc": "653d1c33a08c5a6aebfef58459544d0c03ae490ce01559eb8100852b1760b642",
+    "round004-entries.inc": "80c93ac75c87f109b7aaebcf722fd5955d5b89192eaee2bd4c58e5deedff680d",
+    "round005-entries.inc": "1f03fa69d2abb42921ad3302424aedf4547b34bf3f0ff9accb4eed10bbc725a6",
+    "scene-entries.inc": "ca64e2288f245aa74114912f0ee6cf6dba0942cbdac0c3b8f49b252c14a9743c",
+    "symbols.inc": "cfa2709a769c43881c24043584323129cd29f267ef30cb3f493a1b729b1ccb6f"
+  },
+  "rom_sha256": "375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d",
+  "map_sha256": "6f60cafafa039c6f901acf0666aa2fa81db83a96594ca1181105c9497520248b",
+  "reading_sha256": "7b7d72e0e5283b4766537bdef6abee602b28bc37a31217cd3222e7a5154fb9e5",
+  "limitations": [
+    "34 RTS bytes in28 intervals remain materially ambiguous code versus stored data",
+    "Boss and ending milestones attempted but not successfully confirmed; saved justified shortcut attempts retained",
+    "Structural classification does not establish natural reachability or full compatibility"
+  ],
+  "archive_executed": false,
+  "cleanup_executed": false,
+  "published": false
+}

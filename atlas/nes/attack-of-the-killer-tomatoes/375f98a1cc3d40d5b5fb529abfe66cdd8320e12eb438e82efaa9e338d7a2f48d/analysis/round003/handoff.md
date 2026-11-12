@@ -1,0 +1,11 @@
+# Round003 disassembly handoff
+
+Single easy-gain disassembly pass complete; ROM incomplete. ROM classification: 84.55% (221651 / 262160 bytes classified; 40509 bytes unknown).
+
+Accepted all510 proposed exact intervals /40434 distinct new bytes:1065Code+37081Data+2288Image. Current totals23183Code,81492Data,116976Image. Independent primary review: review.md;476 exact Code regions decoded via configured release API and data constraints independently recomputed in independent-review.json. accepted.json retains exact views/provenance; counts.json contains complete per-bank counts and exact unknown complement. All new provenance Static. No execution coverage or natural reachability expansion; prior saved runtime evidence retained.
+
+State/current/pass-003-final map SHA256 a5fd2a6856cc5964af3fe38872eacf33f3dbea93b29eb983e72f3e0d294477bc. API and CLI map validation passed; generated/pass-003-final verified byte_identical=true for262160 bytes (analysis/pass-003-final-verification.json). ROM SHA256 unchanged375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d. Existing source unchanged SHA256 9925f61269c76ed79ab4cf8b93fb91822fdb855859a8f60b48a14f5176fc9e58, with prior full181217-byte readability credit preserved; newly classified40434 bytes still require commentary incorporation/full current-source review. No regenerate-over-source; preserve historical prior snapshot. Final editorial audit pending.
+
+Lead histories L012–L014 verified; scenarios preserved. Connected primary control/inline-record/service/resource continuations reviewed; no extra justified unknown extension found. Residual concrete prerequisites: unattached9FB3 entry contract; A255 consumer and bounds; row-sharing schema if specific layout desired; particular success-linked actor/state or04D1 producer for boss/credits identity. InvalidFF resource headers remain excluded due Code contradictions. Saved stage0A/terminal routes offer no new discriminator, so no replay. This ordinary easy-gain stop is not terminal exhaustion and does not initiate commentary/redirect. Subsequent current-source review may expose a new method.
+
+No toolkit issues found; analysis/toolkit-issues.md. No toolkit edits, ROM/source edits, archive, publishing or cleanup. All evidence local.

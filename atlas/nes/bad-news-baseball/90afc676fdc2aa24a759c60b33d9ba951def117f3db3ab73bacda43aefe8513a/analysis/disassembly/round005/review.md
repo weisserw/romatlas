@@ -1,0 +1,9 @@
+# Round005 independent disassembly review
+
+Resumed active pass; directory initially empty, authoritative state/current map pass-004-final. Exactly one pass, R012 plus bounded connected inspection. Primary evidence: analysis/redirect/round004-a/primary-evidence.json; current commentary/source/game.asm lines18235..18275,20415..20485,20575..20620. ROM raw records independently checked.
+
+Accept physical0x19E99..0x19E9B04/03 Static Data, CPU9E89/9E8A effective slots[12,13,14,15]. TestBatContact explicitly assigns Work04EB3/4 for swing phases0E/06. InitializeBattedBallTrajectory loads selector, excludes values below3, and under negative Work04E6 reads9E86,X then TAX. Supported conditional3/4 accesses exactly these cells; next BB0F indexed offset contributes to BallDirection. No global selector domain/natural invocation assumed. Preceding LDA01/RTS ends9E88; following multiplication routine starts9E8B. Executable9E86 origin remains Code. Positive consumer, finite writers, downstream role and independent boundaries discriminate lookup suffix from unsupported NOPzp prelude. Original table grouping unclaimed.
+
+Connected selector writers, random-term additions, BB0F read, BallDirection store and multiplier boundary already classified. No additional unknown continuation supported. Broad mode/fielding/ending/credits-return scenarios reused without unchanged replay.
+
+Residual physical0x10530..0x10534C8C8C860 unknown. Primary audio review analysis/redirect/round004-a/review.md checks32-way dispatcher,851E/851F return, duplicate84DD skip-three path,8524 interleaved period origin and different-bank screen8520 alias. Helper analogy supplies semantics without independent entry; period indexed reads cannot extend backwards. Sparse audio storage remains competing interpretation. No artificial entry or repetitive experiment. Positive incomplete handoff, not terminal exhaustion.

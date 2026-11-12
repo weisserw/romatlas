@@ -1,0 +1,100 @@
+{
+  "version": 1,
+  "round": 1,
+  "context": {
+    "mapper": 3,
+    "prg_banks": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "execution_budget": {
+    "per_step_max_operations": 10000000,
+    "timeout_ms": 30000
+  },
+  "restore_rule": "Import active.snapshot in a new same-build server, reassert buttons [], trace history is session-local. All later scenario branches restore active at frame 1471, PC $9A98, SP $7E.",
+  "snapshots": {
+    "clean": "analysis/round-001/clean.snapshot",
+    "map": "analysis/round-001/street.snapshot",
+    "active": "analysis/round-001/active.snapshot"
+  },
+  "milestones": [
+    {
+      "id": "startup_map_street",
+      "status": "visited",
+      "recipe": "Reset, trace on. First 180-frame call timed out at frame5; next120->125. Start2/release60->187. 240-frame call timeout advanced to330. Start2/release90->422. Up+A+B30/release->452. Trace off600 call hit 10M operation budget at787. Start2/release180->969 map. Trace on Up+A+B20/release->989; trace off240->1229 street; trace on Up+A+B20/release->1249. Start2/release then trace off200->1451. Trace on Up+A+B20/release->1471 active snapshot.",
+      "observed_result": "Natural map selection and street seen; startup budget stops retained usable state.",
+      "evidence": "analysis/round-001/street-ready.ppm"
+    },
+    {
+      "id": "street_completion_mode_patch",
+      "status": "attempted",
+      "recipe": "Restore active; patch $05C8=$81 then $04F1=0; trace off180; trace on Up+A+B15/release. Restore and repeat $82 and $83 with120 untraced+10 traced. $83 additionally300 untraced, timer $04EA..EC=$30 and $03B8=0,240 untraced+12 traced.",
+      "observed_result": "Street completion reached bonus count (99 then59) rather than immediate bonus systems. Artificial incomplete-count contract; superseded by decoded main entry.",
+      "evidence": "analysis/round-001/cafe-active.ppm"
+    },
+    {
+      "id": "cafe",
+      "status": "visited",
+      "recipe": "Restore active/buttons []; one operation boundary step; registers PC=$8187,SP=$80. Trace off300; trace on Up+A+B10/release; trace off300 -> screenshot cafe-next. Start+A2/release,120 untraced,12 traced Up+A+B.",
+      "observed_result": "Cafe initialized visibly after intro; subsequent branch returned toward street. Natural cafe reachability not established; late trace window missed some cafe-specific execution.",
+      "evidence": "analysis/round-001/cafe-next.ppm"
+    },
+    {
+      "id": "school",
+      "status": "visited",
+      "recipe": "Restore active/buttons []; PC=$81AF,SP=$80; trace off300+100; trace on Up+A+B10/release; trace off150; trace on Up+B20/release.",
+      "observed_result": "Initialized classroom with Lorraine/hearts visible; bounded representative inputs. Artificial main-loop entry.",
+      "evidence": "analysis/round-001/school-play.ppm"
+    },
+    {
+      "id": "dance",
+      "status": "visited",
+      "recipe": "Restore active/buttons []; PC=$81D7,SP=$80; trace off300+250; trace on Up+A+B20/release.",
+      "observed_result": "Distinct dance stage visible with guitar/dancers/hearts; artificial initialized entry.",
+      "evidence": "analysis/round-001/dance-play.ppm"
+    },
+    {
+      "id": "driving",
+      "status": "visited",
+      "recipe": "Import active.snapshot (import restores directly; named load is unnecessary), release buttons; one operation; PC=$D1FC SP=$80; four calls60 frames max3M operations timeout15s with Instruction aggregate tracing. Frame1711 selected. Import driving-direct.snapshot, up/right45 frames then release. RouteRow $CD=$FB, three60-frame bounded calls discriminated end latch.",
+      "observed_result": "Artificial initialized road/car/speedHUD visible; X $6E->$8C, speed30->38 under controls. Stage$11 and NMI$D669 confirmed; patched row reached StreetActive=0. Direct entry lacks caller frame, so after-return behavior is not main outcome evidence.",
+      "evidence": [
+        "analysis/redirect/round-001-attempt-001/driving-direct.png",
+        "analysis/redirect/round-001-attempt-001/driving-steered.ppm",
+        "analysis/redirect/round-001-attempt-001/runtime-log.jsonl"
+      ],
+      "history": [
+        {
+          "recipe": "Restore active/buttons []; PC=$81FB,SP=$80; trace off300+250; trace on Up+A+B20/release; patch $0660=$58; Up+A20/release.",
+          "observed_result": "PC advanced into driving-related routines, but retained frames black. Speed patch did not establish valid visible driving or success; redirect should identify missing transition contract.",
+          "evidence": "analysis/round-001/driving-play.ppm",
+          "status": "attempted"
+        }
+      ]
+    },
+    {
+      "id": "later_street_stage15",
+      "status": "attempted",
+      "recipe": "Restore active/buttons []; $D2=$0F; PC=$80F4,SP=$80; trace off120; trace on Up+A+B20/release.",
+      "observed_result": "Stage initialization executed under artificial selector; retained output insufficient to claim full representative late street play.",
+      "evidence": "analysis/round-001/late-street-active.ppm"
+    },
+    {
+      "id": "ending_screen",
+      "status": "visited",
+      "recipe": "Restore active/buttons []; PC=$820F,SP=$80; trace on12; trace off300; trace on8.",
+      "observed_result": "Congratulations message visible; explicit artificial success-screen branch, not a complete driving route or credits reachability proof.",
+      "evidence": "analysis/round-001/ending.ppm"
+    },
+    {
+      "id": "natural_ending_transition",
+      "status": "deferred",
+      "recipe": "Caller-correct next method: enter PC=$8200 (JSR $D1FC), then locate/approach type12 object and reach speed >=$58 for $B3A7 success interaction. End-row patch alone only clears StreetActive.",
+      "observed_result": "Visible driving and bounded control/end-latch visit now established artificially. Natural success interaction and return to result card remain unobserved; further play has diminishing structural prospects after full dependent graph proposal.",
+      "evidence": "analysis/redirect/round-001-attempt-001/structural-findings.md"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+# Round 002 commentary handoff
+
+Current-source readability is complete; no deferred ranges. Final editorial/archive acceptance remains pending and no final audit was run. Stop this sequential commentary phase here; no redirect, disassembly, archive, cleanup, toolkit edit or publication was performed.
+
+Checkpoint: analysis/round-002-commentary-final-checkpoint.json. Structural input: round-002-disassembly-final-verified. Current/frozen map and state SHA256 all remain 676ee71971b543a3a3f7122047bb699b5d2042e48116f72fe358c12a1e2b6849. Earlier disassembly checkpoint without -verified remains historical/superseded.
+
+The ENTIRE round 1 commentary was moved intact before fresh preparation to analysis/round-002/commentary-history/round-001-complete; preserved-files-sha256.json inventories it. Physical-range carry reused 93 unchanged classified regions and all 226 valid prior units, checking affected consumers and re-verifying edited assembly. The former nineteen unknown intervals are now 24 freshly reviewed records. Current commentary/review.json retains the new 117-record full-ROM scaffold and 311 reviewed units: 79 added code units, six data-container units. All new structural provenance remains Static; no new execution/reachability claim.
+
+Source explains all 875 new instructions, including title NMI; player/car jump-count-loop commands; object behaviors, commands and hit families; replacement/reward lookups; actor-disable helpers; and all bonus command payloads/return tails. Descriptive routine/branch labels and RAM/table/OAM field symbols replace understood numeric addresses consistently. Data notes summarize bounded consumer/pattern inspection without inventing complete original segmentation. Six lookup bytes at physical $3e04..$3e0a remain separate from code restarting at $3e0a.
+
+Corrections include: player reset sets cooldown 5, not animation 5; player commands request boundary reposition or signal failure; bonus threshold advances only below X=$91; script entries include their exact INY prologues; standalone $9c44 returns the unsaturated sum without storing it and writes high/fractions only at saturation. Standalone helper callers remain unestablished. Historical redirect prose mislabeled StreetEndRow as $0666: actual byte-identical operands use $0664; $0666 is ScrollSpeedDelayed. Driving spawn tables index ScrollSpeedTwiceDelayed, not a proven lane.
+
+Updated driving notes incorporate the bounded direct-entry visible road/car/HUD and steering evidence. Natural success, valid caller return and ending remain unresolved. Current uncertainties.md records these limits plus original table segmentation, artistic/tune meaning and some shared state/type distinctions. These are explained interpretation limits, not skipped readability or outstanding structural proposals.
+
+Fresh commentary.py verify passed byte-identically after edits and at handoff; report analysis/round-002-commentary-final-verification.json. commentary.py read refreshed reading-after.asm. Source SHA256 game.asm 8028ee7fd3e78b93da86a6eff3a17eb5b9cc565878ff3731b1a5efb705996189; symbols.inc c303e1b57ca6d4fac179bf4c9d26612ff544b08ad876a09a911ed3a58b0fbec5. ROM remains workspace identity 046af920590c2361d465bd0e86f04bba5b2f25fd7d89bea2e7f331d1117fd98f.
+
+Classification remains separately established at 65552/65552 bytes, 0 unknown. Final editorial audit remains pending. Existing NES-001 read and retained; no new toolkit finding. All ROM/source/assets/evidence remain local; no live writer/runtime server was started.

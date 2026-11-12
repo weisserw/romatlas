@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "rom_sha256": "90afc676fdc2aa24a759c60b33d9ba951def117f3db3ab73bacda43aefe8513a",
+  "map_sha256": "a839d376085c7bc579e260056f5bf4c81fceb3316622389bfcfa63d9f3cb4b02",
+  "state_sha256": "a839d376085c7bc579e260056f5bf4c81fceb3316622389bfcfa63d9f3cb4b02",
+  "image_size": 262160,
+  "previous": "analysis/round-005/commentary",
+  "comparison": "before-round005"
+}

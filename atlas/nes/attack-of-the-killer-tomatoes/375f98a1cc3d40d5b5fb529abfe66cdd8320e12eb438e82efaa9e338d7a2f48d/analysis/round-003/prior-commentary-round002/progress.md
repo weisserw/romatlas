@@ -1,0 +1,19 @@
+# Round002 commentary active
+
+Entire prior commentary preserved at analysis/round-002/prior-commentary-round001. Fresh baseline is map b87f350b989813988facedc2b41e1bc591cbeeedc0d0a5cab9d0e01f566e944f. Exact physical/kind/end matches carry prior source prose, symbols and reviewed units; newly classified ranges remain pending.
+
+Exact pending frontier: review.json status=pending, initially6992 Code and17120 Data bytes. No redirect or final editorial audit. Verification follows carry batch.
+
+Batch1 complete: all6992 new Code and17120 new Data bytes now have source explanations and coherent unit names. Preserved prior15126 Code+141979 Data/Image review by exact physical range; full4287-entry scaffold has zero pending regions. Added inline-record, trigger/list, palette, panel descriptor, callback/motion, audio directory/curve/music payload, resource-config and CHR5 template format descriptions. Added RAM/request/transition/APU symbols and bank-context aliases. Intentional audio BIT9379/LDY937A entry retains exact primary bytes and an interior CPU alias only.
+
+Fresh batch verification passed byte_identical=true (game.asm aaabaa600527ab8234d35cae238315e649d0f9097bfdf058ed639acaf9a0c126). ACTIVE final consistency/readability checks remain: compact instruction-granular export scaffolding; check carried/new references and names; fresh verify and reading copy. Final editorial audit stays pending. No redirect.
+
+## Round002 current-source readability complete
+
+All current classified source is covered:3865 Code scaffold regions /22118 bytes,74 Data regions /44411 bytes,28 Image regions /114688 bytes;320 unknown gaps /80943 bytes have explicit exact-byte uncertainty notes. Full4287-entry scaffold is intact and reviewed, with550 reviewed routine/structure units and zero pending records. scope.json records exact totals. Classification remains69.12%; this is current-source readability, not whole-ROM classification or final editorial acceptance.
+
+Final consistency checked the complete inventory and affected carried dependencies. Corrected stale allocation/script/audio/resource prose, named the recovered helpers and request/RAM/APU fields, connected carried references to current bank-aware symbols, gave transition routes explicit destination parameters and kept uncertain narrative names unresolved. Typed inline records, trigger leaves with handler-minus1 words, directories, palette/motion/curve tables and CHR origin words expose established formats. The music container names parsed section/phrase/note objects while retaining packed envelopes and their intentional overlaps. Compacted2927 instruction-granular generated fragments into221 coherent source groups without changing scaffold identities or bytes. Prior sound review was reused rather than reread cosmetically.
+
+Final fresh verification: commentary/verification.json byte_identical=true against all262160 input bytes. game.asm SHA2569925f61269c76ed79ab4cf8b93fb91822fdb855859a8f60b48a14f5176fc9e58. reading-after.asm refreshed after the final source edit. ROM SHA256375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d unchanged. maps/current.json, analysis/state.json, baseline.json and phase1-state.json all remain b87f350b989813988facedc2b41e1bc591cbeeedc0d0a5cab9d0e01f566e944f.
+
+No classified naming/comment frontier remains. uncertainties.md distinguishes unresolved boss/credits identity, complex pair2 A040 stream schema, graphics resource source/header/endpoints, other mixed CHR4/6/7 layouts and original actor/song/art meanings. No runtime replay, structural map edit, toolkit change, publication, archive or cleanup. Editorial audit remains pending for terminal acceptance. The entire previous commentary remains analysis/round-002/prior-commentary-round001. Local analysis/round002/commentary-*.py files are one-time edit records; do not rerun them over maintained source. Compact handoff: analysis/round002/commentary-handoff.md.

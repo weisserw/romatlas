@@ -1,0 +1,183 @@
+{
+  "version": 1,
+  "scenarios": [
+    {
+      "id": "startup",
+      "milestone": "Introduction/title",
+      "status": "visited",
+      "artificial": false,
+      "route": [
+        {
+          "buttons": [],
+          "frames": 180
+        },
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 2
+        },
+        {
+          "buttons": [],
+          "frames": 60
+        }
+      ],
+      "evidence": [
+        "analysis/evidence/startup180.snapshot.json",
+        "analysis/evidence/afterstart.ppm.png"
+      ],
+      "script": "analysis/scratch/batch.py and explore.py"
+    },
+    {
+      "id": "team-selection",
+      "milestone": "Team/lineup/pitcher selection",
+      "status": "visited",
+      "artificial": false,
+      "route": "From menu.snapshot, A-only inputs did not advance. match.py uses Start2/release20 five times.",
+      "evidence": [
+        "analysis/evidence/match.snapshot.json",
+        "analysis/evidence/lineupconfirm4.ppm"
+      ]
+    },
+    {
+      "id": "baseball-game",
+      "milestone": "Batting/pitching and pause substitutions",
+      "status": "visited",
+      "artificial": false,
+      "script": "analysis/scratch/mechanics.py",
+      "route": "From match snapshot:empty120; A30/release60;down+A30/release60;B10/release30;Start2/release20;A2/release20.",
+      "result": "Batting/pitching screen and batter-change menu. Does not prove completed hit, fielding play or side transition.",
+      "evidence": [
+        "analysis/evidence/mechanics3.ppm.png",
+        "analysis/evidence/mechanics9.ppm.png",
+        "analysis/evidence/mechanics.snapshot.json"
+      ]
+    },
+    {
+      "id": "late-innings",
+      "milestone": "Ninth inning",
+      "status": "visited",
+      "artificial": true,
+      "script": "analysis/scratch/ninth.py",
+      "recipe": "Restore final-password.snapshot; RAM0302=16,006C=0;empty120 untraced;Start2/release30 traced. Then050C=2/050D=2;empty120 traced.",
+      "result": "9INN TOP visible and instruction fetches accepted. Count/outs attempt did not establish side transition.",
+      "evidence": [
+        "analysis/evidence/ninth-ready.ppm.png",
+        "analysis/evidence/ninth-recipe.json",
+        "analysis/evidence/ninth.snapshot.json"
+      ]
+    },
+    {
+      "id": "game-results",
+      "milestone": "Victory/results/password/next opponent",
+      "status": "visited",
+      "artificial": true,
+      "recipe": "late.py restores mechanics.snapshot;RAM0302=22,0305=10,0306=0,006C=0;empty120. results.py Start2/release30 five times.",
+      "evidence": [
+        "analysis/evidence/results2.ppm.png",
+        "analysis/evidence/results.snapshot.json",
+        "analysis/evidence/late-recipe.json"
+      ]
+    },
+    {
+      "id": "final-password",
+      "milestone": "Final campaign game",
+      "status": "visited",
+      "artificial": true,
+      "script": "analysis/scratch/final_password.py",
+      "recipe": "Restore password.snapshot;16indices/glyphs injected at05A0/0580;F3=0;Start2/release20 six times.",
+      "result": "Password validation accepted; Chicago vs Toronto initialized.",
+      "evidence": [
+        "analysis/evidence/final-password-recipe.json",
+        "analysis/evidence/final-password5.ppm.png",
+        "analysis/evidence/final-password.snapshot.json"
+      ]
+    },
+    {
+      "id": "tournament-ending",
+      "milestone": "Final victory ending",
+      "status": "visited",
+      "artificial": true,
+      "script": "analysis/scratch/ending.py and ending_wait.py",
+      "recipe": "Final-password snapshot;established result patches0302=22,0305=10,0306=0,006C=0;empty30;8xStart2/release30;empty1200 untraced+30traced.",
+      "result": "GAME11 victory and engine7 parade C team Victory! Credits completion not claimed.",
+      "evidence": [
+        "analysis/evidence/ending2.ppm.png",
+        "analysis/evidence/ending-wait.ppm.png",
+        "analysis/evidence/ending-wait.snapshot.json"
+      ]
+    },
+    {
+      "id": "fielding-side-transition",
+      "milestone": "Sustained fielding/side transition",
+      "status": "visited",
+      "reason": "Visited via successful established outs=3 side-transition recipe and separate Special fielding route; earlier insufficient outs=2 attempt preserved in history.",
+      "evidence": [
+        "analysis/redirect/round001-a/side3.png",
+        "analysis/redirect/round001-a/side-contexts.json",
+        "analysis/redirect/round001-a/special-play2.png",
+        "analysis/redirect/round001-a/special-play-contexts.json"
+      ],
+      "artificial": true,
+      "recipe": "ninth.snapshot; buttons[]; clear trace,enable capacity0;RAM050D=3;4x120frame calls(max_operations20000000,timeout30000).",
+      "result": "HalfInning16->17,fielding side1->0,outs3->0;9INN BOT. Natural Special CPU route separately shows fielding engine4phase7.",
+      "history": [
+        {
+          "review": "round005-a",
+          "superseded_reason": "Specific strikes/outs patch plus120frames did not demonstrate transition. Need consumer/state contract, avoid repeated idle play.",
+          "clarification": "Later result/evidence establishes current visited status; earlier limitation remains historical."
+        }
+      ]
+    },
+    {
+      "id": "alternate-modes",
+      "milestone": "All-star/spectator/girls modes",
+      "status": "visited",
+      "reason": "Visited AllStar and Special via natural menu initialization and girls roster via documented artificial variant patch; representative mechanics exercised.",
+      "recipe": "analysis/redirect/round001-a/runtime2.py; analysis/redirect/round001-a/special_finish.py; analysis/redirect/round001-a/girls.py",
+      "result": "AllStar1P natural titleSelect2 route initialized distinct roster/match. Special natural titleSelect4 plus extraStart confirmations reachesCPU match andfielding. Girls roster71=1 before initialization; substitution menu shows alternative names/art.",
+      "evidence": [
+        "analysis/redirect/round001-a/allstar2-visited.png",
+        "analysis/redirect/round001-a/special-play2.png",
+        "analysis/redirect/round001-a/girls-play.png"
+      ],
+      "history": [
+        {
+          "review": "round005-a",
+          "superseded_reason": "Representative match/password/late-inning/ending systems covered this pass. Distinct selection/variant contracts remain useful redirect routes; not declared unreachable.",
+          "clarification": "Later result/evidence establishes current visited status; earlier limitation remains historical."
+        }
+      ]
+    },
+    {
+      "id": "credits-terminal",
+      "milestone": "Full credits/terminal completion",
+      "status": "visited",
+      "reason": "Visited ART WORK credits and completed delay-only artificial acceleration to opening introduction; earlier killed long wait preserved in history.",
+      "artificial": true,
+      "result": "ART WORK credits observed after1800ordinary emptyframes from ending-wait snapshot. Delay-only acceleration then completes remaining ending55script and returns opening introduction(engine1).",
+      "recipe": "ending-later.snapshot;360frames total in two180frame batches;before everyframe RAMF4/F5=0;all commands execute. Then15traced frames. Initial6000frame untraced wait externally terminatedsignal143 with noresult; no completion credited to it.",
+      "evidence": [
+        "analysis/redirect/round001-a/ending-later.png",
+        "analysis/redirect/round001-a/ending-fast-progress.json",
+        "analysis/redirect/round001-a/ending-fast2-progress.json",
+        "analysis/redirect/round001-a/ending-fast2.png",
+        "analysis/redirect/round001-a/ending-fast2-state.json"
+      ],
+      "history": [
+        {
+          "review": "round005-a",
+          "superseded_reason": "Ending parade confirmed after bounded wait; no exhaustive presentation/credits sequence claimed.",
+          "clarification": "Later result/evidence establishes current visited status; earlier limitation remains historical."
+        }
+      ]
+    }
+  ],
+  "reviews": [
+    {
+      "attempt": "round005-a",
+      "result": "All10 representative milestones visited; no unvisited later-game/ending shortcut remains; natural full tournament unclaimed.",
+      "evidence": "analysis/redirect/round005-a/review.md"
+    }
+  ]
+}

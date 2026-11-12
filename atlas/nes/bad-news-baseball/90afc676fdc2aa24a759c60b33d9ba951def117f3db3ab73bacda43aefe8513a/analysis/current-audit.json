@@ -1,0 +1,41 @@
+{
+  "checkpoint": "pass-005-final-reviewed",
+  "classification_complete": false,
+  "workflow_terminal": "justified incomplete after independent rejection review",
+  "image_size": 262160,
+  "classified_bytes": 262156,
+  "unknown_bytes": 4,
+  "unknown_intervals": [
+    [
+      66864,
+      66868
+    ]
+  ],
+  "kind_counts": {
+    "Data": 94527,
+    "Image": 131072,
+    "Code": 36557
+  },
+  "regions": 1541,
+  "all_classified_regions_have_evidence": true,
+  "no_classification_overlaps": true,
+  "rom_sha256": "90afc676fdc2aa24a759c60b33d9ba951def117f3db3ab73bacda43aefe8513a",
+  "map_sha256": "a839d376085c7bc579e260056f5bf4c81fceb3316622389bfcfa63d9f3cb4b02",
+  "source_sha256": "ea8947206254f1a3596a253aa370d67b18e924249794dc33aeff0d1c6a1de01c",
+  "reading_copy_matches": true,
+  "editorial_audit": {
+    "byte_identical": true,
+    "ok": true,
+    "rom_sha256": "90afc676fdc2aa24a759c60b33d9ba951def117f3db3ab73bacda43aefe8513a",
+    "source_sha256": {
+      "game.asm": "ea8947206254f1a3596a253aa370d67b18e924249794dc33aeff0d1c6a1de01c"
+    },
+    "reviewed_regions": 1542,
+    "reviewed_units": 1449,
+    "editorial_audit": true
+  },
+  "rejection_review": "analysis/coordinator-rejection-review.md",
+  "archive_executed": false,
+  "cleanup_executed": false,
+  "published": false
+}

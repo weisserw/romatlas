@@ -1,0 +1,25 @@
+# Round001 commentary record
+
+Prepared from maps/current.json (a10e5d449f1da16d2fcb15bb5c2ee2514d66c7caae0b953ac076906bf7de2b54); before/ and phase1-state.json remain frozen. No prior commentary existed.
+
+Batch 1: source-only symbols and comments for the fixed-bank scroll-column builder, NMI frame service, PPU/CHR/PRG selectors, controller reader, palette operations, health adjustment, pause gating and bank-service wrappers. Review credit: 121 code fragments / 2053 bytes; all 21 data regions, 28 planar-image banks and 331 unknown gaps have role/uncertainty notes. Full-ROM scaffold preserved. Numeric force-addressing prefixes retained.
+
+Fresh verify after this batch: byte_identical=true; input SHA256 375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d. Source hashes recorded in verification.json. No toolkit issues found.
+
+Pending: 798 code regions /13073 code bytes. This is ACTIVE, not successful/ready for redirect. Continue remaining fixed-bank metasprite/actor/camera helpers and all lower-bank scene/upload/gameplay routines. Exact per-region frontier is review.json status=pending; mechanical-units.json records credited CPU intervals in fixed physical banks14/15. analysis/round001/commentary-edit.py is the initial batch helper, not a regeneration workflow; preserve source edits on continuation.
+
+Batch 2: all classified code in physical PRG banks14/15 now reviewed (5566 code bytes total across both batches). Added metasprite header/flip/clipping/emission, stack-based nonlocal return contracts, sorted OAM requests, world-coordinate/collision/trigger lookup, actor dispatch/culling/proximity, scene-script handlers, HUD/time and camera helpers. Replaced repeated routine paragraphs with one explanation per coherent unit. Interior fixed-bank branch targets use routine-scoped CPU aliases; all exact encodings preserved.
+
+The script interpreter clarifies provisional names: $0700/$0701 form SceneScriptPointerLo/Hi and $0702 is SceneScriptDelay. These symbols supersede the earlier busy/start interpretation. Added explicit structure-of-arrays actor/sprite fields and screen/world/camera coordinate symbols. 9560 code bytes remain pending, all in physical banks0..13. Exact regions remain status=pending; no redirect yet. Batch2 fresh verify byte_identical=true.
+
+## Phase complete — current-source readability
+
+All current source is covered: 919 code regions /15126 code bytes;21 data regions /27291 bytes;28 planar-image regions /114688 bytes;331 opaque unknown gaps /105055 bytes. Full1299-entry review scaffold retained and reviewed;260 meaningful routine/structure units recorded. Zero pending regions. See scope.json for exact per-bank code counts and review.json for physical intervals/source links. This is not final editorial/archive acceptance; editorial_audit remains pending as required.
+
+Batch3 covered scene updates/transition/script starters in physical pairs0/1 and2/3. Batch4 covered pair4/5 panel reveal/fade, row tile/attribute uploads, script text and table-driven actor setup. Batch5 covered pair6/7 actor state/motion/collision, spawn strategies, player animation, item/effect handling and controller-driven scene actors. Batch6 covered pair8/9 fixed-point player movement/camera following and music/sound-effect sequencing. Final source-wide consistency added stable field/constant operands and explicit handler-overlay names; fixed-point and synthetic-stack contracts are described where consumed. Long routine summaries appear once, with named continuation/path aliases rather than repeated paragraphs.
+
+Concrete corrections: $0700/$0701 script pointer, $0702 delay; QueryPlayerCollisionRegions begins at $DAC8; FollowLinkedActor at pair6/7 $B23F and AnimateSceneActorPhase at $B270. Area triggers use initial four-byte X-only records followed by six-byte X/Y records; high header nibble skips Y comparisons, not records. These corrections preserve every source byte and are reflected in source. Actor state/variant fields are explicitly overlaid by handlers, not universally animation counters.
+
+Final verification: commentary/verification.json byte_identical=true against all262160 input bytes, input SHA256375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d. Final game.asm SHA25637a739f50caa0fe9919aa891eed528de58e59bce6983fc2f0a37b048c2780af1; remaining include hashes are recorded by verification.json. reading-after.asm refreshed after the final source edit. Maps/current.json, maps/pass-001-final.json, analysis/state.json, commentary/baseline.json and phase1-state.json all retain SHA256a10e5d449f1da16d2fcb15bb5c2ee2514d66c7caae0b953ac076906bf7de2b54.
+
+No remaining classified-source frontier. Remaining classification/mechanics questions are in uncertainties.md; concrete leads L005–L008 remain separate. ROM classification stays incomplete at59.93%, with105055 unknown bytes. No runtime exploration was repeated. No toolkit issues found. Source, ROM/assets and evidence remain local; no archive/publish/cleanup/toolkit edits performed. Local commentary helper scripts are one-time edit records; do not rerun them over the maintained source.

@@ -1,0 +1,250 @@
+{
+  "version": 1,
+  "scenarios": [
+    {
+      "id": "startup",
+      "milestone": "title",
+      "route": "reset; trace enabled capacity 0; 30 frames max_operations 10000000 timeout_ms 30000; then trace disabled 300 frames same bounds",
+      "result": "Back to the Future Part II & III title confirmed by capture at frame 330; 518 fetched instruction starts in first 30 frames",
+      "status": "visited",
+      "evidence": [
+        "round-001/summary.json",
+        "round-001/later.ppm.png",
+        "round-001/later.snapshot"
+      ]
+    },
+    {
+      "id": "early-input",
+      "milestone": "start attempt",
+      "route": "From frame 330 snapshot: start press2/release15/press2/release15; right press15; a press15/release15; right release2, all frames, traces on capacity0, max_operations1000000 timeout_ms10000 each",
+      "result": "Still title at frame411, 214 instruction starts observed; title delay suspected",
+      "status": "attempted",
+      "evidence": [
+        "round-001/gameplay-summary.json",
+        "round-001/gameplay.snapshot"
+      ]
+    },
+    {
+      "id": "long-startup",
+      "milestone": "timeout",
+      "route": "Initial traced reset 180 frames timeout_ms30000",
+      "result": "execution timeout; discarded live session, repeat bounded30 successful",
+      "status": "attempted"
+    },
+    {
+      "id": "later-game",
+      "milestone": "Part III and ending",
+      "status": "deferred",
+      "reason": "Password route identified; menu and RAM contract not yet tested"
+    },
+    {
+      "id": "correct-input",
+      "milestone": "intro",
+      "route": "playing.snapshot; buttons array start3/empty30/right30/right+a15/right15/empty2 frames max_operations1500000 timeout_ms10000",
+      "result": "almanac narrative intro reached",
+      "status": "visited",
+      "evidence": [
+        "round-001/fixed-game.snapshot",
+        "round-001/fixed-game-contexts.json"
+      ]
+    },
+    {
+      "id": "skip-intro",
+      "milestone": "street gameplay",
+      "route": "fixed-game.snapshot; empty600 frames then start3/empty30/right30/right+a15/right15/empty2/select3/empty15/b3/empty15; then10 repetitions start3/empty90",
+      "result": "street gameplay reached, HUD and player visible",
+      "status": "visited",
+      "evidence": [
+        "round-001/post-intro.snapshot",
+        "round-001/post-intro.ppm.png",
+        "round-001/replay-intro.py",
+        "round-001/replay-skip-intro.py"
+      ]
+    },
+    {
+      "id": "active-street",
+      "milestone": "movement and mechanics",
+      "route": "post-intro.snapshot; right30/right+a30/right30/up10/empty10/down10/empty10/select3/empty15/b3/empty15 frames, trace capacity0, max_operations1500000 timeout_ms15000",
+      "result": "player moved and jumped; HUD changed;3568 contextual roots",
+      "status": "visited",
+      "evidence": [
+        "round-001/street-play.snapshot",
+        "round-001/street-play.ppm.png",
+        "round-001/active-contexts.json"
+      ]
+    },
+    {
+      "id": "part3-password",
+      "milestone": "Part III shortcut",
+      "route": "playing.snapshot; B2/B+Select3/empty15 then90 frames; snapshot password-ready; patch RAM$0250 and$0104 to ASCII FLUXCAPACITORISTHEPOWER; Select3/empty3/Start3/empty30; wait300; Start3/empty300;10x(Start3/empty60)",
+      "result": "password screen exited to title and new intro eventually ALL WAS WELL; PartIII gameplay confirmation pending",
+      "status": "attempted",
+      "evidence": [
+        "round-001/password-ready.snapshot",
+        "round-001/password-ready-ram.json",
+        "round-001/replay-password-patch.py",
+        "round-001/part3-start.snapshot"
+      ]
+    },
+    {
+      "id": "part3-canyon",
+      "milestone": "Part III outdoor gameplay",
+      "route": "part3-start.snapshot;10x(Start3/empty90), trace off; trace on capacity0; right30/right+a20/right20/up5/empty5; max_operations1500000 timeout_ms30000 per traced chunk",
+      "result": "distinct canyon terrain, moved/jumping player confirmed;3219 contextual fetch roots, artificial state from password patch",
+      "status": "visited",
+      "evidence": [
+        "round-001/part3-play.snapshot",
+        "round-001/part3-play.ppm.png",
+        "round-001/part3-play-contexts.json",
+        "round-001/replay-part3-play.py"
+      ]
+    },
+    {
+      "id": "other-periods",
+      "milestone": "1955/alternate1985/2015 transitions and interiors",
+      "status": "visited",
+      "history": [
+        {
+          "status": "deferred",
+          "reason": "Time-travel/room initializer and RAM contract unresolved; street Select/B sample did not establish transition. Concrete consumer tracing handoff; no arbitrary RAM flag sweep."
+        }
+      ],
+      "route": "Artificial C23D initialization from street snapshot; requested79/7A/7B=[1F or2F,2C,01], align <=16singlecycle calls; PC C23D stackFF P24; empty30/30,right20,right+A20,empty10. Eachstep max_operations1500000 timeout_ms15000.",
+      "result": "current76=1F or2F, distinct forest/platform/water scenes and moved/jumping player, actual fetched contexts; period names not independently assigned",
+      "evidence": [
+        "redirect/round-001-a/progression-transition.py",
+        "redirect/round-001-a/area-transition-31.png",
+        "redirect/round-001-a/area-transition-47.png",
+        "redirect/round-001-a/area-transition-31-contexts.json",
+        "redirect/round-001-a/area-transition-47-contexts.json"
+      ]
+    },
+    {
+      "id": "ending",
+      "milestone": "ending/credits",
+      "status": "visited",
+      "history": [
+        {
+          "status": "deferred",
+          "reason": "Inventory/object-return completion contract unknown; PartIII shortcut tested successfully, no supported ending shortcut yet. Recover consumers before state patches."
+        }
+      ],
+      "route": "Artificial PartIII snapshot; setE3=C0/E4=FF, cycle-align PC C32D stackFF P24; actual item30..39 gate entersC462/CD7F. Bounded ending animation observations; then explicit finite-list skip77=22, PC CDA0 stackFD P24 from ending-later snapshot. Continue120 then360frames in30framecalls after finite palette waits.",
+      "result": "THE END and score visibly confirmed in ending-final-7.png. Natural completion not claimed; later scene confirmed after inventory gate and animation skip.",
+      "evidence": [
+        "redirect/round-001-a/ending-test.py",
+        "redirect/round-001-a/ending-terminal.py",
+        "redirect/round-001-a/ending-final.py",
+        "redirect/round-001-a/ending-final-7.png",
+        "redirect/round-001-a/ending-final-contexts.json",
+        "redirect/round-001-a/ending-scene-records.json"
+      ]
+    },
+    {
+      "id": "redirect-area-31",
+      "milestone": "Additional initialized area$1F",
+      "status": "visited",
+      "route": "redirect/round-001-a/progression-transition.py",
+      "result": "Artificial supported area initialization, scene confirmed and right/jump exercised",
+      "evidence": [
+        "redirect/round-001-a/area-transition-31.png",
+        "redirect/round-001-a/area-transition-31-contexts.json",
+        "redirect/round-001-a/area-transition-31.snapshot"
+      ]
+    },
+    {
+      "id": "redirect-area-47",
+      "milestone": "Additional initialized area$2F",
+      "status": "visited",
+      "route": "redirect/round-001-a/progression-transition.py",
+      "result": "Artificial supported area initialization, scene confirmed and right/jump exercised",
+      "evidence": [
+        "redirect/round-001-a/area-transition-47.png",
+        "redirect/round-001-a/area-transition-47-contexts.json",
+        "redirect/round-001-a/area-transition-47.snapshot"
+      ]
+    },
+    {
+      "id": "redirect-pc-setup-errors",
+      "milestone": "Artificial initialization setup",
+      "status": "attempted",
+      "route": "progression.py then progression-init.py, retained separately",
+      "result": "First PCedit rejected missingregistersobject; second unsupported instruction step and edit refused midinstruction. Neither demonstrated area visit; corrected cycle-boundary method succeeded.",
+      "evidence": [
+        "redirect/round-001-a/area-31-pc.json",
+        "redirect/round-001-a/area-init-31-align.json",
+        "redirect/round-001-a/area-init-31-pc.json"
+      ]
+    }
+  ],
+  "correction": "Earlier button/pressed routes sent no input because NES requires buttons array; their traces prove only passive title execution. These historical attempts preserved.",
+  "round002_review": {
+    "status": "reviewed saved successful later-game/ending evidence",
+    "new_runtime_runs": 0,
+    "reason": "No changed conditions or concrete unresolved runtime question; saved exact fetch/decode/capture evidence independently reviewed. Natural progression remains unresolved; no replay needed.",
+    "evidence": [
+      "round-002/observed-review.json",
+      "round-002/review-notes.md"
+    ]
+  },
+  "round003_review": {
+    "status": "reviewed saved representative progression and terminal evidence",
+    "new_runtime_runs": 0,
+    "reason": "Successful street/PartIII/area1F/2F/THE END recipes/captures unchanged; no new discriminating gameplay question;no unchanged replay.",
+    "evidence": [
+      "round-003/review-notes.md"
+    ]
+  },
+  "round004_review": {
+    "status": "reused saved representative progression and ending evidence",
+    "new_runtime_runs": 0,
+    "reason": "Existing street/PartIII/areas1F/2F/THE END actual captures/fetches and recipes reviewed; current finite consumer/structural contracts do not need unchanged replay. No new unvisited milestone identified for this pass.",
+    "evidence": [
+      "round-004/review-notes.md",
+      "redirect/round-001-a/findings.md"
+    ]
+  },
+  "round004_redirect_review": {
+    "status": "reused saved representative progression and terminal evidence",
+    "new_runtime_runs": 0,
+    "reason": "Saved street/PartIII/areas1F/2F/THE END recipes, captures and fetches remain unchanged; exact static bank/table/script contracts supplied discriminating evidence, no unchanged replay. No new unvisited milestone identified.",
+    "evidence": [
+      "redirect/round-004-a/findings.md",
+      "handoffs/round-004-redirect.md"
+    ]
+  },
+  "round005_review": {
+    "status": "reused saved representative progression and ending evidence",
+    "new_runtime_runs": 0,
+    "reason": "Street/PartIII/areas1F/2F/THE END actual captures/fetches and exact routes unchanged; no new discriminating gameplay question or unvisited milestone identified for this structural pass.",
+    "evidence": [
+      "round-005/review-notes.md",
+      "redirect/round-001-a/findings.md"
+    ]
+  },
+  "round006_review": {
+    "status": "reused saved representative progression and ending evidence",
+    "new_runtime_runs": 0,
+    "reason": "Street/PartIII/areas1F/2F/THE END actual captures/fetches and exact routes unchanged; no new discriminating gameplay question or unvisited milestone identified for this structural pass.",
+    "evidence": [
+      "round-006/review-notes.md",
+      "redirect/round-001-a/findings.md"
+    ]
+  },
+  "round006_redirect_review": {
+    "status": "reused saved representative progression and terminal evidence",
+    "new_runtime_runs": 0,
+    "reason": "Current source and saved street/PartIII/areas1F/2F/THEEND recipes/captures/fetches reviewed; no unvisited broad milestone or changed experiment discriminates local80FF and three isolated tail fragments. Consumer grammar and primary static contracts provide useful discrimination; no unchanged replay.",
+    "evidence": [
+      "redirect/round-006-a/findings.md",
+      "redirect/round-006-a/rejection-review.md",
+      "redirect/round-001-a/findings.md"
+    ]
+  },
+  "round007_review": {
+    "status": "reused representative progression and ending evidence",
+    "new_runtime_runs": 0,
+    "reason": "No changed condition or discrimination; existing street/PartIII/areas1F/2F/THE END evidence applicable",
+    "evidence": "round-007/review-notes.md"
+  }
+}

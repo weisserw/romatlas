@@ -1,0 +1,2659 @@
+{
+  "format": "romatlas-nes-map",
+  "version": 1,
+  "image_sha256": "046af920590c2361d465bd0e86f04bba5b2f25fd7d89bea2e7f331d1117fd98f",
+  "image_size": 65552,
+  "regions": [
+    {
+      "id": 1,
+      "offset": 67,
+      "length": 663,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 32819,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "offset": 782,
+      "length": 359,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33534,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "offset": 1151,
+      "length": 23,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33903,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "offset": 1182,
+      "length": 19,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33934,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "offset": 1895,
+      "length": 294,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34647,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "offset": 2601,
+      "length": 217,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35353,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "offset": 4051,
+      "length": 58,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36803,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "offset": 4886,
+      "length": 147,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37638,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "offset": 5068,
+      "length": 322,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37820,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "offset": 5507,
+      "length": 78,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38259,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "offset": 6077,
+      "length": 213,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38829,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "offset": 6484,
+      "length": 423,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39236,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "offset": 7032,
+      "length": 15,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39784,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "offset": 7129,
+      "length": 123,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39881,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "offset": 7274,
+      "length": 12,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40026,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "offset": 7450,
+      "length": 199,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40202,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "offset": 7909,
+      "length": 276,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40661,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "offset": 10872,
+      "length": 157,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43624,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "offset": 12143,
+      "length": 41,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44895,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "offset": 15500,
+      "length": 16,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48252,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "offset": 15976,
+      "length": 515,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48728,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "offset": 17377,
+      "length": 15,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 50129,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "offset": 17889,
+      "length": 508,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 50641,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "offset": 18610,
+      "length": 15,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 51362,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "offset": 19493,
+      "length": 518,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 52245,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "offset": 20230,
+      "length": 32,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 52982,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "offset": 20435,
+      "length": 22,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 53187,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "offset": 21004,
+      "length": 258,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 53756,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "offset": 21506,
+      "length": 267,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 54258,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "offset": 21963,
+      "length": 53,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 54715,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "offset": 22591,
+      "length": 222,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 55343,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "offset": 22913,
+      "length": 137,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 55665,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "offset": 25179,
+      "length": 307,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 57931,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "offset": 25494,
+      "length": 218,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 58246,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "offset": 25738,
+      "length": 40,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 58490,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "offset": 31488,
+      "length": 888,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 64240,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "offset": 0,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "InesHeader",
+      "comment": "",
+      "evidence": "Parsed iNES header independently establishes mapper 3, 32 KiB PRG and 32 KiB CHR boundaries.",
+      "views": []
+    },
+    {
+      "id": 38,
+      "offset": 16,
+      "length": 51,
+      "kind": "Text",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "BuildIdentification",
+      "comment": "",
+      "evidence": "Printable ASCII title/revision/build credit immediately precedes validated Reset entry at file 0x43; exact extent checked against bytes.",
+      "views": []
+    },
+    {
+      "id": 39,
+      "offset": 32784,
+      "length": 32768,
+      "kind": "Image",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ChrPatternBanks",
+      "comment": "",
+      "evidence": "Parsed iNES CHR-ROM section; CNROM CHR bank switching exposes four 8 KiB banks to PPU pattern space; NES 16-byte planar tile storage, distinct from CPU PRG.",
+      "views": []
+    },
+    {
+      "id": 40,
+      "offset": 32778,
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "CpuVectors",
+      "comment": "",
+      "evidence": "Final three little-endian PRG words are NMI=$8461, Reset=$8033, IRQ=$8464; targets decoded and checked against reset/NMI/RTI contracts.",
+      "views": []
+    },
+    {
+      "id": 41,
+      "offset": 25778,
+      "length": 73,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Uniform FF interval after established code/data boundary; independently inspected entire run and neighbors, no conflicting instruction candidates.",
+      "views": []
+    },
+    {
+      "id": 42,
+      "offset": 25851,
+      "length": 5615,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded inspection of repeated low-valued tile grids followed by FF-delimited small-value paired records; no instruction candidate conflicts. References and neighboring sound driver at 0x7b00 checked. Non-code pattern evidence only; original segmentation and semantics unresolved.",
+      "views": []
+    },
+    {
+      "id": 43,
+      "offset": 31466,
+      "length": 22,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Uniform FF suffix between paired record data and independently established sound-driver code at 0x7b00.",
+      "views": []
+    },
+    {
+      "id": 44,
+      "offset": 32758,
+      "length": 20,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Uniform FF interval immediately before independently located CPU vectors; preceding records and absence of conflicting code checked.",
+      "views": []
+    },
+    {
+      "id": 45,
+      "offset": 1241,
+      "length": 654,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33993,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "offset": 2189,
+      "length": 57,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34941,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "offset": 2323,
+      "length": 66,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35075,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "offset": 2459,
+      "length": 11,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35211,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "offset": 2509,
+      "length": 92,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35261,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "offset": 2889,
+      "length": 67,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35641,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "offset": 3777,
+      "length": 251,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36529,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "offset": 4109,
+      "length": 777,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36861,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "offset": 5033,
+      "length": 35,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37785,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "offset": 5390,
+      "length": 117,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38142,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "offset": 6290,
+      "length": 194,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39042,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 56,
+      "offset": 6907,
+      "length": 125,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39659,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "offset": 7047,
+      "length": 82,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39799,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 58,
+      "offset": 7286,
+      "length": 29,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40038,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 59,
+      "offset": 7649,
+      "length": 260,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40401,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "offset": 11061,
+      "length": 1082,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43813,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "offset": 12184,
+      "length": 141,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44936,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 62,
+      "offset": 12427,
+      "length": 191,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45179,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 63,
+      "offset": 12658,
+      "length": 120,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45410,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "offset": 12951,
+      "length": 102,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45703,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "offset": 15154,
+      "length": 346,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47906,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "offset": 15709,
+      "length": 120,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48461,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "offset": 16491,
+      "length": 886,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49243,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 68,
+      "offset": 17392,
+      "length": 369,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 50144,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 69,
+      "offset": 18397,
+      "length": 213,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 51149,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 70,
+      "offset": 18625,
+      "length": 494,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 51377,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 71,
+      "offset": 19131,
+      "length": 258,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 51883,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 72,
+      "offset": 20011,
+      "length": 219,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 52763,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 73,
+      "offset": 20262,
+      "length": 173,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 53014,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 74,
+      "offset": 20457,
+      "length": 189,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 53209,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 75,
+      "offset": 20673,
+      "length": 257,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 53425,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 76,
+      "offset": 21262,
+      "length": 244,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 54014,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 77,
+      "offset": 21773,
+      "length": 143,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 54525,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 78,
+      "offset": 22016,
+      "length": 314,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 54768,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 79,
+      "offset": 22813,
+      "length": 100,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control flow and/or accepted runtime instruction fetches. Fixed CNROM PRG slots [0,1,2,3]; exact instruction boundaries inspected in analysis/round-001 discovery records.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 55565,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 80,
+      "offset": 1141,
+      "length": 10,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded increasing lookup bytes 1,1,2..9; preceding IRQ RTI and following routine boundary inspected.",
+      "views": []
+    },
+    {
+      "id": 81,
+      "offset": 1174,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Eight-entry increasing 0..7 table between decoded routines.",
+      "views": []
+    },
+    {
+      "id": 82,
+      "offset": 1201,
+      "length": 40,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Eight single-bit masks followed by repeated four-byte NES palette groups with universal backdrop 0F; neighboring controller and screen code inspected.",
+      "views": []
+    },
+    {
+      "id": 83,
+      "offset": 5585,
+      "length": 492,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated numeric lookup ramps, descending little-endian coordinate pairs, zero runs and display records between independently established code endpoints. Indexed consumers and nearby routines checked; precise original segmentation remains unresolved.",
+      "views": []
+    },
+    {
+      "id": 84,
+      "offset": 7315,
+      "length": 135,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated small lookup values, palette groups and display records immediately before map screen initializer; non-instruction layout inspected.",
+      "views": []
+    },
+    {
+      "id": 85,
+      "offset": 8185,
+      "length": 2687,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Map progression records, paired stage selectors, little-endian stage-layout addresses consumed by $94D8, low-valued tile-layout records and repeated encoded graphics data. Entire interval inspected, no code candidates conflict; exact subtable formats not all established.",
+      "views": []
+    },
+    {
+      "id": 86,
+      "offset": 11029,
+      "length": 32,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated VRAM address pairs and bounded pointer words between established code endpoints; no code interpretation asserted.",
+      "views": []
+    },
+    {
+      "id": 87,
+      "offset": 17761,
+      "length": 128,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated four-byte NES palette groups and small display records between independently established code endpoints.",
+      "views": []
+    },
+    {
+      "id": 88,
+      "offset": 19389,
+      "length": 104,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated four-byte NES palette groups and small display records between independently established code endpoints.",
+      "views": []
+    },
+    {
+      "id": 89,
+      "offset": 20930,
+      "length": 74,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated four-byte NES palette groups and small display records between independently established code endpoints.",
+      "views": []
+    },
+    {
+      "id": 90,
+      "offset": 25486,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Small bounded numeric lookup table immediately before established code.",
+      "views": []
+    },
+    {
+      "id": 91,
+      "offset": 25712,
+      "length": 26,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Thirteen ascending 16-bit offset values, terminal physical endpoint confirmed by following established routine. Precise semantic table extent/consumer deferred.",
+      "views": []
+    },
+    {
+      "id": 92,
+      "offset": 32376,
+      "length": 382,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Sound-driver referenced numeric ramps, bit masks, frequency words, pointer words and paired record values; neighboring sound code and vector suffix checked. Clearly non-code; exact subtable interpretation deferred.",
+      "views": []
+    },
+    {
+      "id": 93,
+      "offset": 14803,
+      "length": 351,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Tail of unresolved mixed interval localized: repeated FF-delimited short low-value records followed by repeated small-value lookup arrays, ending exactly at established routine 0x3b32. Preceding pointer words and following code inspected; no conflicting code candidates. Original table segmentation and meaning unresolved.",
+      "views": []
+    },
+    {
+      "id": 94,
+      "offset": 730,
+      "length": 52,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Round 002 independent review: Installed title NMI save/restore/RTI contract. Exact immutable boundaries and consumer/control contracts reviewed in analysis/round-002/review.md; configured decode in code-review-decode.json; positive non-code patterns and anchored container boundaries in analysis/redirect/round-001-attempt-001/data-inspection.json and structural-findings.md. Static structure only; no natural reachability claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33482,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 95,
+      "offset": 2246,
+      "length": 77,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Round 002 independent review: Player and car interpreter commands plus consumer-anchored non-code containers. Exact immutable boundaries and consumer/control contracts reviewed in analysis/round-002/review.md; configured decode in code-review-decode.json; positive non-code patterns and anchored container boundaries in analysis/redirect/round-001-attempt-001/data-inspection.json and structural-findings.md. Static structure only; no natural reachability claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34998,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 96,
+      "offset": 2389,
+      "length": 70,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Round 002 independent review: Player and car interpreter commands plus consumer-anchored non-code containers. Exact immutable boundaries and consumer/control contracts reviewed in analysis/round-002/review.md; configured decode in code-review-decode.json; positive non-code patterns and anchored container boundaries in analysis/redirect/round-001-attempt-001/data-inspection.json and structural-findings.md. Static structure only; no natural reachability claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35141,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 97,
+      "offset": 2470,
+      "length": 39,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Round 002 independent review: Player and car interpreter commands plus consumer-anchored non-code containers. Exact immutable boundaries and consumer/control contracts reviewed in analysis/round-002/review.md; configured decode in code-review-decode.json; positive non-code patterns and anchored container boundaries in analysis/redirect/round-001-attempt-001/data-inspection.json and structural-findings.md. Static structure only; no natural reachability claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35222,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 98,
+      "offset": 2818,
+      "length": 71,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Round 002 independent review: Player and car interpreter commands plus consumer-anchored non-code containers. Exact immutable boundaries and consumer/control contracts reviewed in analysis/round-002/review.md; configured decode in code-review-decode.json; positive non-code patterns and anchored container boundaries in analysis/redirect/round-001-attempt-001/data-inspection.json and structural-findings.md. Static structure only; no natural reachability claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35570,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 99,
+      "offset": 2956,
+      "length": 821,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Round 002 independent review: Player and car interpreter commands plus consumer-anchored non-code containers. Exact immutable boundaries and consumer/control contracts reviewed in analysis/round-002/review.md; configured decode in code-review-decode.json; positive non-code patterns and anchored container boundaries in analysis/redirect/round-001-attempt-001/data-inspection.json and structural-findings.md. Static structure only; no natural reachability claim.",
+      "views": []
+    },
+    {
+      "id": 100,
+      "offset": 21916,
+      "length": 47,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Round 002 independent review: Player and car interpreter commands plus consumer-anchored non-code containers. Exact immutable boundaries and consumer/control contracts reviewed in analysis/round-002/review.md; configured decode in code-review-decode.json; positive non-code patterns and anchored container boundaries in analysis/redirect/round-001-attempt-001/data-inspection.json and structural-findings.md. Static structure only; no natural reachability claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 54668,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 101,
+      "offset": 22330,
+      "length": 261,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Round 002 independent review: Player and car interpreter commands plus consumer-anchored non-code containers. Exact immutable boundaries and consumer/control contracts reviewed in analysis/round-002/review.md; configured decode in code-review-decode.json; positive non-code patterns and anchored container boundaries in analysis/redirect/round-001-attempt-001/data-inspection.json and structural-findings.md. Static structure only; no natural reachability claim.",
+      "views": []
+    },
+    {
+      "id": 102,
+      "offset": 12325,
+      "length": 102,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Round 002 independent review: Street object behavior/script/hit and projectile handlers with dependent helper and non-code records. Exact immutable boundaries and consumer/control contracts reviewed in analysis/round-002/review.md; configured decode in code-review-decode.json; positive non-code patterns and anchored container boundaries in analysis/redirect/round-001-attempt-001/data-inspection.json and structural-findings.md. Static structure only; no natural reachability claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45077,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 103,
+      "offset": 12618,
+      "length": 40,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Round 002 independent review: Street object behavior/script/hit and projectile handlers with dependent helper and non-code records. Exact immutable boundaries and consumer/control contracts reviewed in analysis/round-002/review.md; configured decode in code-review-decode.json; positive non-code patterns and anchored container boundaries in analysis/redirect/round-001-attempt-001/data-inspection.json and structural-findings.md. Static structure only; no natural reachability claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45370,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 104,
+      "offset": 12778,
+      "length": 173,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Round 002 independent review: Street object behavior/script/hit and projectile handlers with dependent helper and non-code records. Exact immutable boundaries and consumer/control contracts reviewed in analysis/round-002/review.md; configured decode in code-review-decode.json; positive non-code patterns and anchored container boundaries in analysis/redirect/round-001-attempt-001/data-inspection.json and structural-findings.md. Static structure only; no natural reachability claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45530,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 105,
+      "offset": 13053,
+      "length": 310,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Round 002 independent review: Street object behavior/script/hit and projectile handlers with dependent helper and non-code records. Exact immutable boundaries and consumer/control contracts reviewed in analysis/round-002/review.md; configured decode in code-review-decode.json; positive non-code patterns and anchored container boundaries in analysis/redirect/round-001-attempt-001/data-inspection.json and structural-findings.md. Static structure only; no natural reachability claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45805,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 106,
+      "offset": 13363,
+      "length": 1440,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Round 002 independent review: Street object behavior/script/hit and projectile handlers with dependent helper and non-code records. Exact immutable boundaries and consumer/control contracts reviewed in analysis/round-002/review.md; configured decode in code-review-decode.json; positive non-code patterns and anchored container boundaries in analysis/redirect/round-001-attempt-001/data-inspection.json and structural-findings.md. Static structure only; no natural reachability claim.",
+      "views": []
+    },
+    {
+      "id": 107,
+      "offset": 15516,
+      "length": 193,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Round 002 independent review: Street object behavior/script/hit and projectile handlers with dependent helper and non-code records. Exact immutable boundaries and consumer/control contracts reviewed in analysis/round-002/review.md; configured decode in code-review-decode.json; positive non-code patterns and anchored container boundaries in analysis/redirect/round-001-attempt-001/data-inspection.json and structural-findings.md. Static structure only; no natural reachability claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48268,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 108,
+      "offset": 15829,
+      "length": 47,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Round 002 independent review: Street object behavior/script/hit and projectile handlers with dependent helper and non-code records. Exact immutable boundaries and consumer/control contracts reviewed in analysis/round-002/review.md; configured decode in code-review-decode.json; positive non-code patterns and anchored container boundaries in analysis/redirect/round-001-attempt-001/data-inspection.json and structural-findings.md. Static structure only; no natural reachability claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48581,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 109,
+      "offset": 15876,
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Round 002 independent review: Street object behavior/script/hit and projectile handlers with dependent helper and non-code records. Exact immutable boundaries and consumer/control contracts reviewed in analysis/round-002/review.md; configured decode in code-review-decode.json; positive non-code patterns and anchored container boundaries in analysis/redirect/round-001-attempt-001/data-inspection.json and structural-findings.md. Static structure only; no natural reachability claim.",
+      "views": []
+    },
+    {
+      "id": 110,
+      "offset": 15882,
+      "length": 12,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Round 002 independent review: Street object behavior/script/hit and projectile handlers with dependent helper and non-code records. Exact immutable boundaries and consumer/control contracts reviewed in analysis/round-002/review.md; configured decode in code-review-decode.json; positive non-code patterns and anchored container boundaries in analysis/redirect/round-001-attempt-001/data-inspection.json and structural-findings.md. Static structure only; no natural reachability claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48634,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 111,
+      "offset": 15894,
+      "length": 82,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Round 002 independent review: Street object behavior/script/hit and projectile handlers with dependent helper and non-code records. Exact immutable boundaries and consumer/control contracts reviewed in analysis/round-002/review.md; configured decode in code-review-decode.json; positive non-code patterns and anchored container boundaries in analysis/redirect/round-001-attempt-001/data-inspection.json and structural-findings.md. Static structure only; no natural reachability claim.",
+      "views": []
+    },
+    {
+      "id": 112,
+      "offset": 19119,
+      "length": 12,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Round 002 independent review: Shared bonus opcode handler family, connected disable-actor callees and adjacent data container. Exact immutable boundaries and consumer/control contracts reviewed in analysis/round-002/review.md; configured decode in code-review-decode.json; positive non-code patterns and anchored container boundaries in analysis/redirect/round-001-attempt-001/data-inspection.json and structural-findings.md. Static structure only; no natural reachability claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 51871,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 113,
+      "offset": 20646,
+      "length": 27,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Round 002 independent review: Shared bonus opcode handler family, connected disable-actor callees and adjacent data container. Exact immutable boundaries and consumer/control contracts reviewed in analysis/round-002/review.md; configured decode in code-review-decode.json; positive non-code patterns and anchored container boundaries in analysis/redirect/round-001-attempt-001/data-inspection.json and structural-findings.md. Static structure only; no natural reachability claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 53398,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 114,
+      "offset": 23050,
+      "length": 674,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Round 002 independent review: Shared bonus opcode handler family, connected disable-actor callees and adjacent data container. Exact immutable boundaries and consumer/control contracts reviewed in analysis/round-002/review.md; configured decode in code-review-decode.json; positive non-code patterns and anchored container boundaries in analysis/redirect/round-001-attempt-001/data-inspection.json and structural-findings.md. Static structure only; no natural reachability claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 55802,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 115,
+      "offset": 23724,
+      "length": 1455,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Round 002 independent review: Shared bonus opcode handler family, connected disable-actor callees and adjacent data container. Exact immutable boundaries and consumer/control contracts reviewed in analysis/round-002/review.md; configured decode in code-review-decode.json; positive non-code patterns and anchored container boundaries in analysis/redirect/round-001-attempt-001/data-inspection.json and structural-findings.md. Static structure only; no natural reachability claim.",
+      "views": []
+    },
+    {
+      "id": 116,
+      "offset": 4028,
+      "length": 23,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Round 002 independent review: Complete rising-edge input and saturating meter-add contracts; actual caller unresolved. Exact immutable boundaries and consumer/control contracts reviewed in analysis/round-002/review.md; configured decode in code-review-decode.json; positive non-code patterns and anchored container boundaries in analysis/redirect/round-001-attempt-001/data-inspection.json and structural-findings.md. Static structure only; no natural reachability claim. No located caller. Meter helper returns unsaturated bounded sum in A; saturation stores 3 and clears fraction.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36780,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 117,
+      "offset": 7252,
+      "length": 22,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Round 002 independent review: Complete rising-edge input and saturating meter-add contracts; actual caller unresolved. Exact immutable boundaries and consumer/control contracts reviewed in analysis/round-002/review.md; configured decode in code-review-decode.json; positive non-code patterns and anchored container boundaries in analysis/redirect/round-001-attempt-001/data-inspection.json and structural-findings.md. Static structure only; no natural reachability claim. No located caller. Meter helper returns unsaturated bounded sum in A; saturation stores 3 and clears fraction.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40004,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    }
+  ],
+  "next_id": 118
+}

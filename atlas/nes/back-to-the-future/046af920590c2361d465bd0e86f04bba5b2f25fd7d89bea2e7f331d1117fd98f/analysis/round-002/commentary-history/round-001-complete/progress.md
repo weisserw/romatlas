@@ -1,0 +1,15 @@
+# Round 001 commentary — active
+
+Prepared from round-001-disassembly-final; initial verification byte-identical. Full source readability pending. Reading $8033..$9305 now; edits and review credit not yet applied. Remaining: all 112 regions / entire source listing. No final audit run.
+
+Applied first full-inventory readability draft: 226 semantic routine/control-block notes, 778 control-flow labels and 378 hardware/RAM/table symbols. All 7705 original source lines inspected. Fresh verify passed byte-identically (source game.asm f49137b1775f6145d60d86e6c4696b022fd38703a4165c1993b7a5f119a80b88). Scope spans reset/main mode dispatch, route/history, player collision/animation, strip/attribute rendering, ten-object interpreter, cafe/school/dance/driving and seven-voice audio. Still active: semantic accuracy and symbol-offset pass, data/unknown notes and inventory review records; do not redirect yet.
+
+## Round 001 commentary — complete current-source phase
+
+Checkpoint `round-001-commentary-final`, based on unchanged `round-001-disassembly-final`. Read and explained the entire current classified listing, all accepted data/CHR boundaries and all nineteen unknown intervals. All 112 full-ROM scaffold records reviewed; 226 meaningful routine units recorded. Source contains 778 named control-flow destinations (721 semantic starts plus local return labels), 440 declared hardware/RAM/table/encoding symbols, and additional base-plus-offset substitutions for understood structure fields. Explicit widths, instruction order and raster timing remain intact.
+
+Covered reset/main modes, route history, player motion/collision/script dispatch, nametable strip/attribute construction, timer/score/meter/HUD, ten-slot object physics/interpreter, projectile systems, cafe/school/dance/driving, CHR-backed RLE/text, fades and seven-voice audio. Corrected draft interpretations of per-sprite attributes and countdown zero handling during the accuracy pass. Unknown handler extents, mixed tables, artistic meanings and driving prerequisites are documented in commentary/uncertainties.md; no classified-source readability remains deferred.
+
+Fresh handoff verification passed byte-identically with configured release binary; report analysis/round-001-commentary-final-verification.json. Source hashes: game.asm 0ba36906e5252fb5bfe7928e22fcd728d214afd93b9a745037904ae194073005; symbols.inc d27533cf7ed145918b0ab40044c65b171339a06f9e908de9fbe168086fca68b8. Reading copy refreshed at commentary/reading-after.asm. Structural state/map/frozen baseline hash remains 5176915eb58cb7ad441494c0df2f162baffc5b3e64b05100545c82f4c300b94c; input ROM hash unchanged. Classification remains 59496/65552 (90.76%), 6056 unknown.
+
+Final editorial audit remains pending and was not invoked. Toolkit issue NES-001 is unchanged; no additional findings, toolkit changes, publishing or archive work. Exact remaining commentary ranges: none for current source. Next phase: redirect through analysis/handoffs/round-001-commentary.md and its concrete questions.

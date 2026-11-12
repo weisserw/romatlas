@@ -1,0 +1,21 @@
+# Current-source uncertainties — round 001
+
+All currently classified instructions and binary spans have local explanations. Unknown intervals remain unchanged and explicitly marked as unclassified fidelity emission. Numerical operands remain where roles are unsupported; shared scratch retains address names when its meaning changes by routine. The final editorial audit remains pending.
+
+## Structural conflicts to review in redirect
+
+1. Physical **113941..113958**, CPU **$BD05..$BD15**, effective banks **[12,13,14,15]**, is classified Static Code by `expanded-candidates.json` / `expanded-decodes.json` (region-4200 onward). The instruction at physical **113909**, CPU **$BCE5**, reads `$BD05,Y`. The preceding camera-displacement computation clamps Y to **0..31**, independently supporting a 32-byte direction lookup at physical **113941..113973**. Current classified decode begins repeated `ORA ($01,X)` and then unofficial ISC bytes. In contrast, the preceding `LDY #$1F; BNE $BCE5` cannot fall through with those flags; static discovery appears to have retained the infeasible successor. Inspect that discovery edge and all references before changing structure. This conflicts with a callable-code interpretation, not with byte fidelity. Source label `ConflictingCameraDirectionTable` preserves the existing instructions and states the conflict locally. Other indexed arrays at $BD25/$BD45 supply the two scroll-step bytes; do not infer their full extent solely from adjacency.
+
+2. Physical **129121..129126**, CPU **$F851..$F855**, effective banks **[12,13,14,15]**, is classified Static Code by `part3-expanded-candidates.json` / `part3-expanded-decodes.json` (region-5163 onward). Consumers at physical **128998** / CPU **$F7D6**, and physical **129075** / CPU **$F823**, use `$F851,Y` with Y loaded from objectType. Negative values suppress terrain processing; zero/nonzero affects terrain removal. The competing role is an object-type terrain policy table, whose full extent is still unresolved. The preceding `INC $02DE,X; BNE $F814` can syntactically fall through on wrap, so inspect the field's initialization/range before rejecting that edge; do not assume impossible fallthrough from opcode pattern alone. Source label `ConflictingObjectTerrainTypeTable` explicitly avoids claiming an actual routine.
+
+Primary local source: [game.asm](source/game.asm). Frozen structural provenance is in [phase1-state.json](phase1-state.json), with exact context per instruction. Both conflicts remain unchanged for this commentary phase; classification counts are provisional evidence, not proof of correctness.
+
+## Mechanical explanations with unresolved game meaning
+
+- Object scripts in PRG12: eight slots, high-bit commands, three-byte handler/count descriptors and normal frame/duration pairs are explained. Command/game animation names remain tentative; dispatch targets need their own supported context. PartIII artificial execution is not natural reachability.
+- Audio in PRG11: lower and upper four-slot groups, channel ownership, event/command streams, durations, instruments and APU writes are named. Musical cue identities, some command-three tails and modulation implementation remain unknown. Audio constants remain numeric unless their hardware role is certain.
+- Spawn/area state: three-byte column records, duplicate suppression by record identity, signed camera position and terrain-cell decoding are explained. Complete time-period/area/inventory initialization and the password-to-world transition remain redirect work. No arbitrary RAM contracts are inferred.
+- Writable frame hooks at physical 127941..127953 jump through four RAM pointers initialized to an RTS stub. Later pointer assignments and intended scene callbacks need recovery; the pointer instruction itself does not prove any target.
+- Uniform classified PRG data uses the prior bounded pattern/boundary inspection evidence. No fill purpose or semantic layout is invented. CHR backing is described as planar NES pattern tiles; tile identities and selection are unresolved.
+
+No remaining current-source readability range is deferred. Unknown meaning is explained locally rather than used to skip established mechanics. Whole-ROM classification remains incomplete: 117788 bytes unknown.

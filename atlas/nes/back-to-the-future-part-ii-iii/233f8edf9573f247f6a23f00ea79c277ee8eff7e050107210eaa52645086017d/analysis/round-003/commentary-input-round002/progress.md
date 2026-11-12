@@ -1,0 +1,22 @@
+# Commentary progress
+
+Prepared verified baseline. All semantic review entries are pending.
+
+Round002 bounded batch: carried 5154 unchanged physical regions with prior symbols/prose; newly described runs 0..41 of 109. Remaining runs 42..108 and new Data/unknown boundary reconciliation pending. Full current-source review not yet complete.
+
+Round002 bounded batch: carried 5154 unchanged physical regions with prior symbols/prose; newly described runs 0..108 of 109. Remaining runs 109..108 and new Data/unknown boundary reconciliation pending. Full current-source review not yet complete.
+
+## Round002 data and dependency review
+All 109 newly classified code runs have saved explanations; no code-run backlog remains (the earlier automatic remaining 109..108 line means an empty set). All 34 new Data regions and every current Unknown interval now have local role/boundary notes, with camera arrays, paired password strings/pointers and terrain policy/slope limits explicit. Prior 5154 exact-region edits carried; corrected old Code bytes replaced by current Data with obsolete conflict warnings retired. Bank-aware flow naming resolved 693 numeric control edges and leaves 26 explicitly local unresolved edges. Added established fields and repaired constant-versus-RAM alias collisions during consistency checking. Fresh data-batch verify passed byte-identical. Remaining checks: finish mechanical wording/symbol consistency, preserve/reconcile review inventory units and source locations, fresh final verification and reading refresh. Phase remains commentary until these checks finish.
+
+## Round002 current-source readability complete
+
+Input/checkpoint remains pass-002-disassembly, map/state SHA256 40ea782f16e1af1e4512f2388dc161d07561ab70976924ec3ed75c6422d275e5. The previous commentary is preserved intact under analysis/round-002/commentary-input-round001/. Fresh baseline preparation carried 5154 exact unchanged regions by physical offset/length/kind; affected camera/terrain units were trimmed at corrected Data boundaries, with valid earlier review retained.
+
+Full current inventory: 8812 reviewed scaffold spans, including 8482 Code instruction regions (17941 bytes), 83 Data spans, one CHR Image and 246 Unknown intervals. The 325 routine/structure units cover every Code region; coverage report has no missing or pending readability ranges. All 109 new Code runs (7107 new bytes) and 34 new Data regions (7051 new bytes plus 22 corrected Code bytes) are explained. Every unknown and binary boundary has a local note. Effective physical bank contexts appear at meaningful entries. Descriptive subentries, branch names, existing/new RAM roles and hardware symbols are used consistently; unrelated same-number CPU aliases and immediate constants are kept distinct from RAM and banked physical identities.
+
+Newly readable mechanisms include area resource pointers, metatile mutation/attribute and strip uploads, facing-aware contact rectangles, scene interaction/timer/palette passes, editable overlay/password cursor and mismatch handling, sprite rectangle construction and finite presentation sequences, player support attachment, object-type/audio arbitration, twelve-byte area descriptors, initial camera/column setup, and frame hook setters/wrappers. Camera and terrain obsolete conflict warnings, password mismatch claims, child vertical-high tail and concrete field misnamings were reconciled. Remaining indirect calls are explicit local uncertainties; they are not skipped mechanics or speculative target assignments.
+
+Fresh final verify: ok=true and byte_identical=true. Source hashes: game.asm ad0b8c120b5b438dfec0ab9ba058d95f41f888bb733be48d85e8ccac4babe8aa; symbols.inc 651a033776ad11d9d3c9f10231b13872aabb2251f9c9b00ed8a0be68305ed2f6. Reading-after.asm refreshed afterwards. ROM, current map and current state hashes remain unchanged. Final editorial_audit remains pending; no audit/archive/publishing/cleanup, toolkit edits or emulator replay occurred. Disk has 7.8 GiB free; scratch remains 32 KiB. No new toolkit issues.
+
+No source readability range remains deferred. Whole-ROM classification remains incomplete: 158530/262160 bytes (60.47%), with 103630 unknown. Current-source readability is not final editorial acceptance or whole-ROM completion. See analysis/handoffs/round-002-commentary.md for the compact handoff and uncertainties.md for semantic/return-bank questions.

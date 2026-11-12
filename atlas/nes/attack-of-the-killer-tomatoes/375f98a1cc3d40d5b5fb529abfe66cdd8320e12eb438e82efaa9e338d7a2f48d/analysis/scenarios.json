@@ -1,0 +1,934 @@
+{
+  "version": 1,
+  "phase": "round001-disassembly",
+  "execution_limits": {
+    "max_operations": 10000000,
+    "timeout_ms": 30000,
+    "unit": "frame",
+    "startup_traced_route_max_operations": 20000000
+  },
+  "trace": {
+    "enabled": true,
+    "capacity": 0,
+    "notes": "Zero detail intentionally drops detail, aggregates retained. Always clear before a forward trace. Import snapshots, reassert buttons. Initial 180 traced-frame attempt timed out and was abandoned by fresh emulator start; retained startup.json is successful rerun.",
+    "aggregate_dropped_checks": {
+      "analysis/round001/mode6-summary.json": 0,
+      "analysis/round001/mode2-summary.json": 0,
+      "analysis/round001/milestone6-summary.json": 0,
+      "analysis/round001/mode9-summary.json": 0,
+      "analysis/round001/milestone9-summary.json": 0,
+      "analysis/round001/mode0-summary.json": 0,
+      "analysis/round001/summary.json": 0,
+      "analysis/round001/milestone4-summary.json": 0,
+      "analysis/round001/mode8-summary.json": 0,
+      "analysis/round001/mode7-summary.json": 0,
+      "analysis/round001/mode3-summary.json": 0,
+      "analysis/round001/mode4-summary.json": 0,
+      "analysis/round001/milestone8-summary.json": 0,
+      "analysis/round001/milestone7-summary.json": 0,
+      "analysis/round001/level1-summary.json": 0
+    }
+  },
+  "startup_route": [
+    {
+      "buttons": [],
+      "frames": 30,
+      "trace": true
+    },
+    {
+      "buttons": [
+        "start"
+      ],
+      "frames": 2,
+      "trace": true
+    },
+    {
+      "buttons": [],
+      "frames": 30,
+      "trace": true
+    },
+    {
+      "buttons": [
+        "right",
+        "a",
+        "b"
+      ],
+      "frames": 30,
+      "trace": true
+    },
+    {
+      "buttons": [],
+      "frames": 300,
+      "trace": false
+    },
+    {
+      "buttons": [
+        "start"
+      ],
+      "frames": 2,
+      "trace": false
+    },
+    {
+      "buttons": [],
+      "frames": 180,
+      "trace": false
+    }
+  ],
+  "clean_snapshot": "analysis/round001/level1.snapshot.json",
+  "scenarios": [
+    {
+      "id": "mode0",
+      "restore": "analysis/round001/level1.snapshot.json",
+      "artificial": true,
+      "patches": [
+        {
+          "address": 1814,
+          "value": 0
+        },
+        {
+          "address": 49,
+          "value": 0
+        },
+        {
+          "address": 38,
+          "value": 1
+        },
+        {
+          "address": 1826,
+          "value": 200
+        },
+        {
+          "address": 1816,
+          "value": 9
+        }
+      ],
+      "steps": [
+        {
+          "buttons": [],
+          "frames": 180,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "right",
+            "a",
+            "b"
+          ],
+          "frames": 15,
+          "trace": true
+        }
+      ],
+      "snapshot": "analysis/round001/mode0.snapshot.json",
+      "evidence": [
+        "analysis/round001/mode0.png",
+        "analysis/round001/mode0-ram.json",
+        "analysis/round001/mode0-summary.json",
+        "analysis/round001/mode0-roots.json"
+      ],
+      "bank_context": {
+        "prg_banks": [
+          0,
+          1,
+          14,
+          15
+        ]
+      }
+    },
+    {
+      "id": "mode2",
+      "restore": "analysis/round001/level1.snapshot.json",
+      "artificial": true,
+      "patches": [
+        {
+          "address": 1814,
+          "value": 0
+        },
+        {
+          "address": 49,
+          "value": 2
+        },
+        {
+          "address": 38,
+          "value": 1
+        },
+        {
+          "address": 1826,
+          "value": 200
+        },
+        {
+          "address": 1816,
+          "value": 9
+        }
+      ],
+      "steps": [
+        {
+          "buttons": [],
+          "frames": 180,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "right",
+            "a",
+            "b"
+          ],
+          "frames": 15,
+          "trace": true
+        }
+      ],
+      "snapshot": "analysis/round001/mode2.snapshot.json",
+      "evidence": [
+        "analysis/round001/mode2.png",
+        "analysis/round001/mode2-ram.json",
+        "analysis/round001/mode2-summary.json",
+        "analysis/round001/mode2-roots.json"
+      ],
+      "bank_context": {
+        "prg_banks": [
+          0,
+          1,
+          14,
+          15
+        ]
+      }
+    },
+    {
+      "id": "mode3",
+      "restore": "analysis/round001/level1.snapshot.json",
+      "artificial": true,
+      "patches": [
+        {
+          "address": 1814,
+          "value": 0
+        },
+        {
+          "address": 49,
+          "value": 3
+        },
+        {
+          "address": 38,
+          "value": 1
+        },
+        {
+          "address": 1826,
+          "value": 200
+        },
+        {
+          "address": 1816,
+          "value": 9
+        }
+      ],
+      "steps": [
+        {
+          "buttons": [],
+          "frames": 180,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "right",
+            "a",
+            "b"
+          ],
+          "frames": 15,
+          "trace": true
+        }
+      ],
+      "snapshot": "analysis/round001/mode3.snapshot.json",
+      "evidence": [
+        "analysis/round001/mode3.png",
+        "analysis/round001/mode3-ram.json",
+        "analysis/round001/mode3-summary.json",
+        "analysis/round001/mode3-roots.json"
+      ],
+      "bank_context": {
+        "prg_banks": [
+          0,
+          1,
+          14,
+          15
+        ]
+      }
+    },
+    {
+      "id": "mode4",
+      "restore": "analysis/round001/level1.snapshot.json",
+      "artificial": true,
+      "patches": [
+        {
+          "address": 1814,
+          "value": 0
+        },
+        {
+          "address": 49,
+          "value": 4
+        },
+        {
+          "address": 38,
+          "value": 1
+        },
+        {
+          "address": 1826,
+          "value": 200
+        },
+        {
+          "address": 1816,
+          "value": 9
+        }
+      ],
+      "steps": [
+        {
+          "buttons": [],
+          "frames": 180,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "right",
+            "a",
+            "b"
+          ],
+          "frames": 15,
+          "trace": true
+        }
+      ],
+      "snapshot": "analysis/round001/mode4.snapshot.json",
+      "evidence": [
+        "analysis/round001/mode4.png",
+        "analysis/round001/mode4-ram.json",
+        "analysis/round001/mode4-summary.json",
+        "analysis/round001/mode4-roots.json"
+      ],
+      "bank_context": {
+        "prg_banks": [
+          0,
+          1,
+          14,
+          15
+        ]
+      }
+    },
+    {
+      "id": "mode6",
+      "restore": "analysis/round001/level1.snapshot.json",
+      "artificial": true,
+      "patches": [
+        {
+          "address": 1814,
+          "value": 0
+        },
+        {
+          "address": 49,
+          "value": 6
+        },
+        {
+          "address": 38,
+          "value": 1
+        },
+        {
+          "address": 1826,
+          "value": 200
+        },
+        {
+          "address": 1816,
+          "value": 9
+        }
+      ],
+      "steps": [
+        {
+          "buttons": [],
+          "frames": 120,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "right",
+            "a",
+            "b"
+          ],
+          "frames": 15,
+          "trace": true
+        }
+      ],
+      "snapshot": "analysis/round001/mode6.snapshot.json",
+      "evidence": [
+        "analysis/round001/mode6.png",
+        "analysis/round001/mode6-ram.json",
+        "analysis/round001/mode6-summary.json",
+        "analysis/round001/mode6-roots.json"
+      ],
+      "bank_context": {
+        "prg_banks": [
+          0,
+          1,
+          14,
+          15
+        ]
+      }
+    },
+    {
+      "id": "mode7",
+      "restore": "analysis/round001/level1.snapshot.json",
+      "artificial": true,
+      "patches": [
+        {
+          "address": 1814,
+          "value": 0
+        },
+        {
+          "address": 49,
+          "value": 7
+        },
+        {
+          "address": 38,
+          "value": 1
+        },
+        {
+          "address": 1826,
+          "value": 200
+        },
+        {
+          "address": 1816,
+          "value": 9
+        }
+      ],
+      "steps": [
+        {
+          "buttons": [],
+          "frames": 120,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "right",
+            "a",
+            "b"
+          ],
+          "frames": 15,
+          "trace": true
+        }
+      ],
+      "snapshot": "analysis/round001/mode7.snapshot.json",
+      "evidence": [
+        "analysis/round001/mode7.png",
+        "analysis/round001/mode7-ram.json",
+        "analysis/round001/mode7-summary.json",
+        "analysis/round001/mode7-roots.json"
+      ],
+      "bank_context": {
+        "prg_banks": [
+          2,
+          3,
+          14,
+          15
+        ]
+      }
+    },
+    {
+      "id": "mode8",
+      "restore": "analysis/round001/level1.snapshot.json",
+      "artificial": true,
+      "patches": [
+        {
+          "address": 1814,
+          "value": 0
+        },
+        {
+          "address": 49,
+          "value": 8
+        },
+        {
+          "address": 38,
+          "value": 1
+        },
+        {
+          "address": 1826,
+          "value": 200
+        },
+        {
+          "address": 1816,
+          "value": 9
+        }
+      ],
+      "steps": [
+        {
+          "buttons": [],
+          "frames": 120,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "right",
+            "a",
+            "b"
+          ],
+          "frames": 15,
+          "trace": true
+        }
+      ],
+      "snapshot": "analysis/round001/mode8.snapshot.json",
+      "evidence": [
+        "analysis/round001/mode8.png",
+        "analysis/round001/mode8-ram.json",
+        "analysis/round001/mode8-summary.json",
+        "analysis/round001/mode8-roots.json"
+      ],
+      "bank_context": {
+        "prg_banks": [
+          2,
+          3,
+          14,
+          15
+        ]
+      }
+    },
+    {
+      "id": "mode9",
+      "restore": "analysis/round001/level1.snapshot.json",
+      "artificial": true,
+      "patches": [
+        {
+          "address": 1814,
+          "value": 0
+        },
+        {
+          "address": 49,
+          "value": 9
+        },
+        {
+          "address": 38,
+          "value": 1
+        },
+        {
+          "address": 1826,
+          "value": 200
+        },
+        {
+          "address": 1816,
+          "value": 9
+        }
+      ],
+      "steps": [
+        {
+          "buttons": [],
+          "frames": 120,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "right",
+            "a",
+            "b"
+          ],
+          "frames": 15,
+          "trace": true
+        }
+      ],
+      "snapshot": "analysis/round001/mode9.snapshot.json",
+      "evidence": [
+        "analysis/round001/mode9.png",
+        "analysis/round001/mode9-ram.json",
+        "analysis/round001/mode9-summary.json",
+        "analysis/round001/mode9-roots.json"
+      ],
+      "bank_context": {
+        "prg_banks": [
+          2,
+          3,
+          14,
+          15
+        ]
+      }
+    },
+    {
+      "id": "milestone6",
+      "restore": "analysis/round001/mode6.snapshot.json",
+      "artificial": true,
+      "steps": [
+        {
+          "buttons": [
+            "up"
+          ],
+          "frames": 45,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "down"
+          ],
+          "frames": 45,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "right",
+            "b"
+          ],
+          "frames": 90,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "a"
+          ],
+          "frames": 10,
+          "trace": false
+        },
+        {
+          "buttons": [],
+          "frames": 20,
+          "trace": false
+        },
+        {
+          "buttons": [],
+          "frames": 15,
+          "trace": true
+        }
+      ],
+      "evidence": [
+        "analysis/round001/milestone6-summary.json",
+        "analysis/round001/milestone6.snapshot.json"
+      ],
+      "notes": "No additional RAM patches; snapshot input explicitly replaced."
+    },
+    {
+      "id": "milestone7",
+      "restore": "analysis/round001/mode7.snapshot.json",
+      "artificial": true,
+      "steps": [
+        {
+          "buttons": [
+            "right",
+            "b"
+          ],
+          "frames": 90,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "a"
+          ],
+          "frames": 10,
+          "trace": false
+        },
+        {
+          "buttons": [],
+          "frames": 60,
+          "trace": false
+        },
+        {
+          "buttons": [],
+          "frames": 15,
+          "trace": true
+        }
+      ],
+      "evidence": [
+        "analysis/round001/milestone7-summary.json",
+        "analysis/round001/milestone7.snapshot.json"
+      ],
+      "notes": "No additional RAM patches; snapshot input explicitly replaced."
+    },
+    {
+      "id": "milestone8",
+      "restore": "analysis/round001/mode8.snapshot.json",
+      "artificial": true,
+      "steps": [
+        {
+          "buttons": [
+            "right",
+            "b"
+          ],
+          "frames": 90,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "up"
+          ],
+          "frames": 30,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "a"
+          ],
+          "frames": 10,
+          "trace": false
+        },
+        {
+          "buttons": [],
+          "frames": 60,
+          "trace": false
+        },
+        {
+          "buttons": [],
+          "frames": 15,
+          "trace": true
+        }
+      ],
+      "evidence": [
+        "analysis/round001/milestone8-summary.json",
+        "analysis/round001/milestone8.snapshot.json"
+      ],
+      "notes": "No additional RAM patches; snapshot input explicitly replaced."
+    },
+    {
+      "id": "milestone9",
+      "restore": "analysis/round001/mode9.snapshot.json",
+      "artificial": true,
+      "steps": [
+        {
+          "buttons": [],
+          "frames": 180,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "b"
+          ],
+          "frames": 60,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "right",
+            "a",
+            "b"
+          ],
+          "frames": 60,
+          "trace": false
+        },
+        {
+          "buttons": [],
+          "frames": 15,
+          "trace": true
+        }
+      ],
+      "evidence": [
+        "analysis/round001/milestone9-summary.json",
+        "analysis/round001/milestone9.snapshot.json"
+      ],
+      "notes": "No additional RAM patches; snapshot input explicitly replaced."
+    },
+    {
+      "id": "milestone4",
+      "restore": "analysis/round001/mode4.snapshot.json",
+      "artificial": true,
+      "steps": [
+        {
+          "buttons": [],
+          "frames": 300,
+          "trace": false
+        },
+        {
+          "buttons": [],
+          "frames": 300,
+          "trace": false
+        },
+        {
+          "buttons": [],
+          "frames": 300,
+          "trace": false
+        },
+        {
+          "buttons": [],
+          "frames": 15,
+          "trace": true
+        }
+      ],
+      "evidence": [
+        "analysis/round001/milestone4-summary.json",
+        "analysis/round001/milestone4.snapshot.json"
+      ],
+      "notes": "No additional RAM patches; snapshot input explicitly replaced."
+    }
+  ],
+  "progression_checklist": [
+    {
+      "milestone": "copyright/title",
+      "route": "startup_route",
+      "status": "visited",
+      "observed_result": "Title/copyright identified locally.",
+      "evidence": "analysis/round001/"
+    },
+    {
+      "milestone": "street gameplay",
+      "route": "startup_route",
+      "status": "visited",
+      "observed_result": "Natural Start, street movement/jump.",
+      "evidence": "analysis/round001/"
+    },
+    {
+      "milestone": "story/intro",
+      "route": "mode2/mode3",
+      "status": "visited",
+      "observed_result": "Dialogue and street introduction displayed.",
+      "evidence": "analysis/round001/"
+    },
+    {
+      "milestone": "sewer",
+      "route": "mode6/milestone6",
+      "status": "visited",
+      "observed_result": "Sewer scene; directional, jump and B inputs; maze exit not confirmed.",
+      "evidence": "analysis/round001/"
+    },
+    {
+      "milestone": "factory",
+      "route": "mode7/milestone7",
+      "status": "visited",
+      "observed_result": "Factory scene; movement/jump inputs.",
+      "evidence": "analysis/round001/"
+    },
+    {
+      "milestone": "scaffolding",
+      "route": "mode8/milestone8",
+      "status": "visited",
+      "observed_result": "Doomsday structure scene; movement/jump/up inputs.",
+      "evidence": "analysis/round001/"
+    },
+    {
+      "milestone": "boss encounter",
+      "route": "mode9/milestone9",
+      "status": "attempted",
+      "observed_result": "Tomato chamber entered, wait/throw/move/jump; no boss spawned. Needs room/spawn state contract. Redirectround001-r01 recovered allocators and full doorway script; stage0A visited artificially, still no identified boss. Arbitrary stage/actor changes deferred pending a specific actor/variant success prerequisite.",
+      "evidence": "analysis/round001/",
+      "redirect_evidence": "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round001-r01/room10-script-recipe.json"
+    },
+    {
+      "milestone": "ending/credits",
+      "route": "mode4/milestone4",
+      "status": "attempted",
+      "observed_result": "Explosion scene entered,900 extra frames; no credits. Victory interpretation unconfirmed. Needs mode/state prerequisites. Redirectround001-r01 proved persistentA999 stop; distinct lives0/substage5 script completes toscene1, but narrative ending/credits remains unconfirmed. Further waits/flags need a specific success/selector writer.",
+      "evidence": "analysis/round001/",
+      "redirect_evidence": "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round001-r01/terminal-zero-lives-recipe.json"
+    }
+  ],
+  "replay_implementation": [
+    "analysis/scratch/runtime.py",
+    "analysis/scratch/explore.py",
+    "analysis/scratch/play.py",
+    "analysis/scratch/progression.py",
+    "analysis/scratch/screens.py",
+    "analysis/scratch/milestones.py"
+  ],
+  "redirect_investigations": [
+    {
+      "id": "round001-r01-room10-reentry",
+      "milestone": "boss encounter prerequisite",
+      "status": "attempted",
+      "recipe": "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round001-r01/room10-recipe.json",
+      "observed_result": "070A/B write trace proves stage0A by15frames, but incomplete reentry subsequently returns02. No boss identified.",
+      "evidence": [
+        "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round001-r01/room10-stage-writes.json",
+        "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round001-r01/room10-final.png",
+        "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round001-r01/room10-trace.json"
+      ]
+    },
+    {
+      "id": "round001-r01-room10-script",
+      "milestone": "stage0A chamber via full supported script",
+      "status": "visited",
+      "artificial": true,
+      "recipe": "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round001-r01/room10-script-recipe.json",
+      "observed_result": "FullB0A5/B35F doorway configuration reachesstage0A by150frames, stable180; actors23/23/02, no boss identity or natural use proven.",
+      "evidence": [
+        "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round001-r01/room10-script.png",
+        "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round001-r01/room10-script-roots.json",
+        "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round001-r01/room10-script-trace.json"
+      ]
+    },
+    {
+      "id": "round001-r01-terminal-zero-lives",
+      "milestone": "alternate terminal scene transition",
+      "status": "visited",
+      "artificial": true,
+      "recipe": "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round001-r01/terminal-zero-lives-recipe.json",
+      "continuation_budgets": [
+        120,
+        240,
+        240
+      ],
+      "observed_result": "Scene4 lives0/substage5 selectsA96F script; bounded progression advances and returnscene1. Rocket-like sparse captures, no credits identified.",
+      "evidence": [
+        "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round001-r01/terminal-zero-lives.png",
+        "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round001-r01/terminal-zero-lives-roots.json",
+        "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round001-r01/terminal-follow-ram2.json",
+        "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round001-r01/terminal-follow2.png"
+      ]
+    },
+    {
+      "id": "round002-r01-narrative-selector-review",
+      "milestone": "boss and ending/credits discriminator",
+      "status": "deferred",
+      "route": "static review of D6DD/E921/04D1 and new factory streams; reuse retained round001-r01 successful shortcuts",
+      "observed_result": "No new runtime observation. New factory scripts reuse transition machinery without a victory/credits discriminator; replay unchanged room10/A999 waits would not distinguish narrative identity.",
+      "missing_prerequisite": "specific actor/state success condition or04D1 producer linked to successful progression",
+      "evidence": [
+        "analysis/redirect/round002-r01/findings.md",
+        "analysis/redirect/round001-r01/room10-script-recipe.json",
+        "analysis/redirect/round001-r01/terminal-zero-lives-recipe.json"
+      ]
+    },
+    {
+      "id": "round003-r01-success-writer-contracts",
+      "milestone": "boss and ending/credits discriminator",
+      "status": "deferred",
+      "route": "Read-only review of all scene constructors, 04D1 writers, geometry callbacks and newly bounded dialogue/credit storage; reuse prior supported room10 and zero-lives routes.",
+      "observed_result": "No new runtime observation. 04D1 assignments are constructor/default-transition values; readable credits exist as stored Data, not an observed terminal screen. No new success-linked writer discriminates an ending experiment.",
+      "missing_prerequisite": "success-linked gameplay condition or a supported alternative transition, rather than unchanged waiting/arbitrary RAM permutations",
+      "evidence": [
+        "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round003-r01/findings.md",
+        "analysis/redirect/round001-r01/room10-script-recipe.json",
+        "analysis/redirect/round001-r01/terminal-zero-lives-recipe.json"
+      ]
+    },
+    {
+      "id": "round004-r01-writer-context",
+      "milestone": "boss and ending/credits discriminator",
+      "status": "deferred",
+      "route": "Current accepted04D1 writers and new field routines inspected statically; prior room10 and zero-lives recipes retained.",
+      "observed_result": "No new emulator observation. Ten accepted04D1 writers remain modeconstructor/menu/death/defaulttransition assignments; current-source residual references identify no concrete success-linked gameplay writer. Newly recovered actor tracking/control lacks an independently identified narrative success outcome.",
+      "missing_prerequisite": "A gameplay success condition tied to the relevant actor/state or scene request; unchanged waiting and arbitrary mode permutations do not discriminate it.",
+      "evidence": [
+        "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round004-r01/residual-references.json",
+        "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round004-r01/findings.md",
+        "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round004-r01/mode4d1-a.txt",
+        "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round004-r01/mode4d1-b.txt",
+        "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round004-r01/mode4d1-c.txt",
+        "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round004-r01/mode4d1-d.txt",
+        "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round004-r01/mode4d1-e.txt",
+        "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round004-r01/mode4d1-f.txt",
+        "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round004-r01/mode4d1-g.txt",
+        "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round004-r01/mode4d1-h.txt",
+        "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round004-r01/mode4d1-i.txt",
+        "/root/romatlas-batch/375f98a1cc3d40d5b5fb529abfe66cdd8320e12eb438e82efaa9e338d7a2f48d/workspace/analysis/redirect/round004-r01/mode4d1-j.txt",
+        "analysis/redirect/round001-r01/room10-script-recipe.json",
+        "analysis/redirect/round001-r01/terminal-zero-lives-recipe.json"
+      ]
+    },
+    {
+      "attempt": "round005-r01",
+      "status": "reviewed; no new runtime",
+      "finding": "Full STA/STX/STY04D1 scan adds omitted STX86C9 initialization: SceneClass+1, wraps5->0, not success-linked. Existing stage0A/zero-lives negative routes unchanged; no new concrete ending shortcut.",
+      "evidence": [
+        "analysis/redirect/round005-r01/current-edges.json",
+        "analysis/redirect/round005-r01/scene-writer-source.txt",
+        "analysis/redirect/round005-r01/findings.md",
+        "analysis/redirect/round001-r01/room10-script-recipe.json",
+        "analysis/redirect/round001-r01/terminal-zero-lives-recipe.json"
+      ]
+    },
+    {
+      "attempt": "round006-r01",
+      "status": "reviewed; no new runtime",
+      "finding": "Reviewed broad progression checklist, full doorway stage0A recipe and alternate lives0/substage5 terminal recipe against primary contracts and retained outcomes. Existing supported shortcuts already attempted; no newly justified success-linked actor/flag/transition arises from indirect-consumer and residual review. Boss and ending remain attempted, not confirmed; no unchanged waiting or arbitrary state sweep.",
+      "evidence": [
+        "analysis/redirect/round006-r01/rejection-review.md",
+        "analysis/redirect/round006-r01/indirect-consumers.txt",
+        "analysis/redirect/round001-r01/room10-script-recipe.json",
+        "analysis/redirect/round001-r01/terminal-zero-lives-recipe.json",
+        "analysis/redirect/round005-r01/scene-writer-source.txt"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+# Round006 commentary handoff
+
+Input **pass-006-disassembly**, map/state SHA256 **2513dedafed5398b7ab7d62b63f7ca347d721c6958d1f2137be98aa35c6f8084**. Full prior commentary/history preserved before fresh preparation at [commentary-input-round005](../round-006/commentary-input-round005/). ROM, maps and internal state unchanged.
+
+**Full current-source readability complete**, separately from classification and final editorial acceptance. All16,932 scaffold regions and2,321 meaningful units reviewed with refreshed source locations;16,911 exactphysical classified reviews carried with unchanged views, all17newregions reconciled plus four Unknown boundaries. No pending readability ranges, missing code coverage or missing data prose: [coverage](../round-006/commentary-coverage.json), [finalchecks](../round-006/commentary-final-checks.json). Source and review remain local in commentary/.
+
+New source explains helper/stack/bank preconditions, secondary grid bitset, sprite coordinate stack restoration, script priority/timer promotion, decimal result, allocation success/failure and packed coordinate expansion, area upload/reload, audio scan restoration and spawn cursor retreat. BD76 selects$16 and branchesBD83 to sharedLDY1/upload, then$18; affected shared uploader prose updated. Bounded25-byte command list and nine-byte initialization table have specific format/consumer notes; remaining repeated patterns retain generic Data without original-schema/global-domain inventions. No new natural/observed reachability claim.
+
+Fresh final [verification](../../commentary/verification.json) **byte-identical**; [readingcopy](../../commentary/reading-after.asm) refreshed. [Progress](../../commentary/progress.md), [uncertainties](../../commentary/uncertainties.md). Final **editorial_audit remains pending**, reserved for coordinator final acceptance; no audit/archive/publish/cleanup performed.
+
+ROM remains **incomplete**:262153/262160 classified (rounded100.00%), exact7unknownbytes/fourintervals78036..78037,105403..105405,118249..118252,130858..130859. Their local notes preserve unresolved separateentry/stack/control or non-code-envelope evidence; isolated legal decoding does not decide role. Redirect frontier remains [primarydisassemblyreview](../round-006/review-notes.md), [complement](../round-006/unknown-complement.json), prior R005 frontier; this productive handoff is not terminal exhaustion. No new semantic blocker or promised classification proposal.
+
+Existing [toolkitissues](../toolkit-issues.md) NES-001/NES-002 remain nonblocking; no new toolkit issues found. Configured binary/toolkit unchanged. Saved broad gameplay evidence reused, no unchanged replay. Handoff disk6.9GiBfree, scratch32KiB; no cleanup.

@@ -1,0 +1,22 @@
+# Round003 redirect handoff — ready combined batch
+
+Input/output structural checkpoint remains **pass-003-disassembly**. Current map and state SHA256: **291758555315a83340815774c6461b664d55eabcb52f36c9fb692deda6b80d72**. ROM classification is unchanged: **164676/262160 (62.82%)**, **97484 unknown**. Current-source readability remains complete for this unchanged checkpoint; final editorial acceptance is pending.
+
+Two ready leads are persisted in [leads.json](../leads.json):
+
+- **R003-consumer-resource-data:** 74798 unique unknown Static Data bytes.
+- **R003-command-predicate-continuations:** 4779 unique unknown Static Code bytes at 2210 starts.
+
+The combined **79577-byte proposal** has **zero accepted bytes** in redirect. If every proposal is accepted, 17907 unknown bytes remain. This is not a terminal exhaustion assessment.
+
+Authoritative artifacts in [round-003-a](../redirect/round-003-a/): [summary](../redirect/round-003-a/proposal-summary.json), [findings](../redirect/round-003-a/findings.md), [Data candidates](../redirect/round-003-a/data-candidates.json), [Data primary claims](../redirect/round-003-a/final-data-evidence.json), [Code candidates/views](../redirect/round-003-a/command-candidates.json), [Code decodes](../redirect/round-003-a/command-decodes.json), [118 Code run reviews](../redirect/round-003-a/code-run-review.json), [preconditions](../redirect/round-003-a/proposal-preconditions.json), [exact unknown ledger](../redirect/round-003-a/unknown-complement.json), [frontier review](../redirect/round-003-a/frontier-review.json). All proposal self-overlap, Code/Data overlap and existing classified-byte overlap checks passed. Data has 751 merged bank-split unknown runs backed by 11196 local claims.
+
+Consumer work covers twenty packed PPU descriptors whose sources each decode to exactly 1024 output bytes; palette copies; 58 area map headers and their nested eight-cell and seventeen-byte graphics objects; 116 spawn/proximity streams containing 2988 records; 505 sprite frame payloads; three alternate rectangle families; scene descriptors and 17 text sources; audio tables with 376 command and 1214 event tokens plus 28 instruments; and 1573 script tokens with 138 concrete predicate references. Generic bank-two lower records are separately localized after bounded reference, neighbor and pattern review. Specific schemas, original generators and natural selector domains are not prerequisites for those non-code claims.
+
+Connected Code work follows 49 script commands, ten subcommands, concrete predicates, fifteen current-source direct unknown edges, 78 bounded initializer entries and six bounded effect entries. Initializer type 0..77 is separate from the earlier object-dispatch 0..86 contract. Masked effect indices 6/7 yield RAM $0341/$0002 and are excluded from the local 0..5 handler contract. RTS bytes at $E652/$E660/$E69E remain Code; only their seven following slot values are proposed Data.
+
+The final corrected inference permits purposeful fixed-bank continuations with **[null, null, 14, 15]** under a normal-return precondition. Unknown window return banks do not require rejecting those fixed physical instructions. Lower aliases still stop without a bank fact. Explicit wrappers select bank zero for decimal helpers; $F439/$F44F select two, $F461/$F3E3 select four, and $F3EB/$F76B/$DE45 restore six. Generic $C80E returns the caller's X-selected bank; no universal preservation claim is made. Script predicates, object slots, coordinates, queue capacity and successful allocation at $843F retain explicit local contracts.
+
+Remaining frontier: stateful script return/loop addresses and arbitrary predicate preservation; unresolved lower-window aliases after caller-dependent bank changes; and residual mixed code/data outside supported footprints. The frontier review gives primary artifacts and local missing facts. No unchanged proof replay or arbitrary-state execution is needed to review this batch. Saved ordinary/artificial street, Part III areas $1F/$2F and THE END evidence was reused; no new emulator mutation occurred.
+
+ROM, map, state and source hashes match the commentary handoff. No map/source/toolkit edits, archive, publishing or cleanup. Existing [NES-001/NES-002](../toolkit-issues.md) remain nonblocking; no new toolkit issues found. Next: independent disassembly review of both leads, then full current-source commentary and redirect.

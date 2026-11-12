@@ -1,0 +1,28 @@
+# Round005 active redirect findings
+
+Input pass-005-disassembly, map/state SHA256 504f8246c54888d097dec9bc54bce35a53575b00f2518c8d443e76d339adc34f. Current readability complete. Map/source/ROM untouched. 167 unknown bytes in 21 intervals remain authoritative until independent annotation.
+
+Corrected method: prior recursive preservation walker rejected all mapper writes and some leaf summaries; its failure is not a proof of a nonreturning helper. Inspect exact contracts and independent consumer footprints instead of requiring natural selectors.
+
+* 116617..116626 ($C779..C782 fixed bank14): current source lines60816..60840 has LDY #08, LDA $C779,Y, STA $04D5,Y, DEY/BPL. Nine-byte bounded initialization copy; complete exact read footprint. Prior mixed-tag ambiguity is superseded by independent consumer.
+* 80301..80326 ($B99D..B9B6 pair4,physical8/9): source NextPresentationListPair $CDA0 increments $77 twice from initial FE; selects pair4 and reads B99D,X/B99E,X. First zero command is offset24. Exact paired command/parameter list plus one-byte terminator. Downstream wrappers do not determine extent; linear list cursor does. Need finish cursor-preservation check before final proposal.
+* 98665..98676: LoadObjectScriptPointer $820E..8240 is a leaf (only fixed RAM stores, pointer reads), returns same pair6 and X. Eleven-byte arbitration continuation supported.
+* 125894..125896: RequestLowerAudio $D332..D352 leaf, only RAM writes, fixed code; LDX $3A restores saved scan index before accepted DEX.
+* 78588..78596: exact sibling bitset routine to accepted set/test helpers; B31A is bounded balanced PHA/PLA mask/index leaf. New static sibling contract; no natural caller claim.
+* 114054..114058: UploadPpuDescriptor both raw/packed exits explicitly select pair6, not arbitrary preservation. Supported continuation LDA16/BNE BD8A.
+
+Active frontier: finish connected spawn consumer/allocator normal-return and stack balance; verify scene loader BD65 continuation and packed sprite BA2E bank restoration; review remaining script fragments as bounded non-code independently of stateful natural continuation. No runtime replay; broad gameplay routes retained.
+
+## Final combined structural review
+
+Fresh configured-binary analysis.decode on all21 bounded windows is saved in fresh-decodes.json. It corrects the preliminary branch statement above: **114054..114058 decodes LDA #$16 / BNE $BD83**, sharing LDY #1 and the second UploadPpuDescriptor call. Both raw and packed upload exits explicitly select pair6; they do not preserve arbitrary lower banks. Proposal.json and primary-source.txt carry the corrected inference.
+
+Connected spawn graph closed: 800E removes slot1 through fixed RAM-only D528 leaf; 9363 saves recordY with PHA9397; phase53&1 selects Y33/A B0 orY35/A B2; bounded808A allocation returns failure XFF or initialized slot. Resource compatibility D472 changes CHR0 only, neverPRG; palette helpers use RAM. PLA93C0/TAY restores recordY on both outcomes. Failure branches9351; success shifts packed record coordinate into objectXhigh/low and returnsA1. This jointly supports 103357..103409 plus 103226..103233. No843F failure-path contract is reused: 808A has its own balanced failureRTS. Exact records, valid RAM resource pointers, stack and aligned MMC1 remain local preconditions; natural supply is unclaimed.
+
+BD65 scene-load graph closed: setsY1, reaches resource03/06 uploads, both terminate restoringpair6, then BD8A..BE33 balances temporary stack values and performs bounded PPU fills withoutPRG changes. This supports BC10..BC15 reset continuation. BA2E sprite tail similarly uses FF1B's own bank save/restore before outer PLA B9E2. F20A decimal return restores its caller's bank throughF1C4/F1D0; RAM-only audio leaves do not invalidate it. These independent helper checks replace the prior generic recursive-walker rejection on mapper writes.
+
+Independent data avenues closed together: nine-byteC779 copy from literalLDY8 loop; twelve command/parameter pairs B99D plus zero terminator at+24 fromCDA0 cursor grammar; four repeated ten-byte object-script records ending111850..111860 with final DA B4 family-pointer cell113678..113680; two-byte14/08 frame-duration fragment within repeated82/04 + frame/duration +98/lo/B0 pattern; isolated28 within long zero/small-value record payload. For the latter script/pointer/framing patterns, classify only generic non-code/pattern roles; original arrays, stream reachability and runtime selection remain unclaimed. Pointer correspondence is combined with independent repeated format/boundaries, not used alone as code evidence.
+
+All17 proposed intervals total160bytes:111Code +49Data. No accepted bytes changed; exact current complement remains167bytes/21intervals. If independently accepted without changes, projected residual is7bytes/fourintervals:78036..78037 RTS,105403..105405 80FF,118249..118252 JMPCCCB,130858..130859 RTS. Each is reviewed in frontier-review.json. This is a productive combined handoff, not terminal exhaustion. No concrete supported continuation is deferred merely for scope. Remaining fragments lack discriminating local structure after source/neighbor/control-reference checks; no speculative fill or unchanged runtime replay is proposed.
+
+Existing broad street/PartIII/areas1F/2F/THEEND scenarios remain saved; their replay does not discriminate these local byte roles. Current-source uncertainties and the three finite high-column prefix limitations were checked; unknown original high-array ends do not create additional structural unknown bytes. Numeric bank-limited controls do not identify another supported physical entry into the four residuals.

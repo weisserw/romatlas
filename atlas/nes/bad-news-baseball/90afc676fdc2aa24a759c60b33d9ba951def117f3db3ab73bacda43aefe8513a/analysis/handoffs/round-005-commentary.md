@@ -1,0 +1,11 @@
+# Round005 commentary handoff
+
+Complete for ALL current-source readability; no pending or deferred ranges. Classification remains INCOMPLETE262156/262160 (rounded100.00%): four unknown audio bytes, physical half-open10530..10534. Final editorial/archive acceptance remains pending; no terminal exhaustion claim.
+
+Checkpoint pass-005-final-reviewed; map SHA256a839d376085c7bc579e260056f5bf4c81fceb3316622389bfcfa63d9f3cb4b02. Fresh verification ok=true,byte_identical=true; source SHA25649b40995602d089aab96a790c07f628db23414a50301fc7a68da93b1780b9414. reading-after.asm refreshed afterward. ROM hash unchanged.
+
+Preserved full prior commentary at analysis/round-005/commentary. Carried1540 classified regions, all valid review credit/prose/metadata; reconciled two new Data cells19E99..19E9B. All1542 scaffold entries and1448 units reviewed. Full inventory gate checks physical scaffold, source references, unique labels, exact complement, incbin bounds and preservation of all17861 prior instruction/data directives with one equivalent symbolic operand substitution.2706 labels;29342 source lines. Baseline/state/mapping match current checkpoint; before-round005 is current frozen comparison. Scoped checks analysis/round-005/commentary-review-checks.json.
+
+Named TrajectoryContactSelectorRemapSuffix and indexed TrajectorySelectorRemapBase. Source explains selectors3/4 remapped to4/3 for negative Work04E6, then direction-offset indexing. Effective banks[12,13,14,15]; overlapping executable base remains Code. Natural invocation, complete selector domain and original grouping unclaimed. The four audio bytes retain helper-versus-storage uncertainty: dispatcher does not select8520, identical helper is analogy, following period table starts8524, screen-bank alias differs physically. No meaningful proper subinterval independently supported. Primary evidence analysis/disassembly/round005/review.md and analysis/redirect/round004-a/review.md,primary-evidence.json.
+
+Next separate redirect owns terminal scope assessment under evidence-policy.md. No final audit/redirect/archive execution/publication/cleanup/toolkit/input edits or emulator run. No archive-options.json change. All internal source/assets/evidence stay local. This worker has stopped writing.

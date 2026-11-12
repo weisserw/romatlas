@@ -1,0 +1,13 @@
+# Commentary progress
+
+Prepared verified baseline. All semantic review entries are pending.
+
+Initial complete-source inspection: read all 129 contiguous classified Code runs (physical 570..130858 with gaps) in source order. Mechanical systems identified: palette fades, signed fixed-point object integration, eight-channel audio script interpreter and APU arbitration, eight-slot object script interpreter, renderer/NMI upload queue, metatile scrolling/collision, controller polling and random generator. Editing/naming and review credit remain pending; this inspection is not completed readability. Exact table/code conflicts: physical 113941..113958 (CPU $BD05..$BD15, PRG13) consumed by $BCE5; physical 129121..129126 (CPU $F851..$F855, PRG15) consumed by $F7D6/$F823. Both remain Code as frozen; redirect must inspect provenance and exact table extent.
+
+## Round001 current-source readability complete
+
+Reviewed every current scaffold entry: 5331 physical spans, comprising 5164 classified spans and 167 unknown intervals. All 5114 instruction spans (10856 bytes) have coherent routine/block explanations; 129 contiguous-run units inventory the complete Code scope. Added 665 routine/branch labels, 179 RAM roles and hardware/button constants; known operands use consistent symbols. Named systems include NMI upload queue/stack reuse, raster timing, palette fades, object command interpreter/parallel arrays, audio arbitration and APU programming, signed position integration, spawn records, collision rectangles and terrain sampling. Unknown intervals, generic data and CHR backing each have explicit local boundary/role notes. Existing classification/provenance is preserved.
+
+Consistency review corrected the frame-sampled area-counter description, retained Observed/Static provenance in source headers, and checked controller constants and bank-resolved call/branch labels. Structural conflicts are recorded in uncertainties.md and kept explicit in source. No readability backlog remains; meanings/structure questions are deferred, not source ranges. Review entries/units are reviewed; editorial_audit stays pending for final acceptance.
+
+Fresh final verification: `python3 /root/romatlas/scripts/commentary.py verify .` reports ok=true, byte_identical=true. `read .` refreshed reading-after.asm. See verification.json. Source game.asm SHA256 f815da862289df49c7df35175aef9f279eb4f798136ed95d3b93c97b769279b9; symbols.inc SHA256 99e77ee2b5eaae68c335d0d48b0f6f48ad196e62839439e0d535f6ac1f6e6d08. ROM and both phase-one state/map hashes remain unchanged. No final audit, archive, publication, toolkit edits, classification changes or cleanup occurred.

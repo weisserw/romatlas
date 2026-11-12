@@ -1,0 +1,70 @@
+{
+  "status": "passed",
+  "terminal_path": "whole-ROM classified plus final editorial acceptance",
+  "classification": {
+    "total": 65552,
+    "classified": 65552,
+    "unknown": 0,
+    "percent": "100.00",
+    "by_kind": {
+      "Data": 14294,
+      "Text": 51,
+      "Code": 18439,
+      "Image": 32768
+    },
+    "contiguous_nonoverlapping": true,
+    "all_regions_evidence_and_provenance": true,
+    "code_fixed_bank_views": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "commentary": {
+    "reviewed_regions": 117,
+    "reviewed_units": 314,
+    "editorial_accepted": true,
+    "final_checkpoint_hashes_verified": true,
+    "fresh_byte_identical": true,
+    "reading_copy_hash_verified": true
+  },
+  "phase_handoffs": [
+    "analysis/handoffs/round-001-disassembly.md",
+    "analysis/handoffs/round-001-commentary.md",
+    "analysis/handoffs/round-001-redirect.md",
+    "analysis/handoffs/round-002-disassembly.md",
+    "analysis/handoffs/round-002-commentary.md",
+    "analysis/handoffs/round-002-redirect.md"
+  ],
+  "final_editorial_handoff": "analysis/handoffs/final-editorial.md",
+  "verification_reports": [
+    "analysis/final-editorial-store-validation.json",
+    "analysis/final-editorial-map-validation.json",
+    "analysis/final-editorial-verified-verification.json",
+    "commentary/audit.json"
+  ],
+  "active_ready_leads": [],
+  "rejection_review": "not applicable to whole-ROM terminal path: no residual unknown candidates; independent redirect assessment retained",
+  "limits": [
+    "natural driving success/ending not demonstrated",
+    "standalone helper live callers not established",
+    "original full data/art/tune semantics not recovered",
+    "no full hardware/game compatibility claim"
+  ],
+  "rom_sha256": "046af920590c2361d465bd0e86f04bba5b2f25fd7d89bea2e7f331d1117fd98f",
+  "map_sha256": "676ee71971b543a3a3f7122047bb699b5d2042e48116f72fe358c12a1e2b6849",
+  "configured_binary_sha256": "8ff56b0b1cf8d2a3aca5430c70d34280ae3db36fc6774919062db4ea63843f82",
+  "archive_executed": false,
+  "cleanup_executed": false,
+  "publication": false,
+  "document_selection": {
+    "status": "passed",
+    "report": "analysis/coordinator/archive-selection-check.json",
+    "options": "archive-options.json",
+    "additional_final_documents": 14,
+    "omitted_duplicate_instruction_copies": 3,
+    "unaccounted_markdown": 0
+  },
+  "phase_workers": "all completed; no live phase writer at terminal handoff"
+}
