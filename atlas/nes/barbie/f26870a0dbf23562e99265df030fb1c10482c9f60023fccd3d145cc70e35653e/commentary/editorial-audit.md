@@ -1,0 +1,14 @@
+# Final editorial acceptance — classification incomplete
+
+Current map/checkpoint: pass-004-final, SHA256 `23adea33fb84196e636168943c2024d693895008653a6ac8d81d2ae306655c5d`.
+Final source SHA256 `089233d039dbff51f216e5cb31556335ed22debcdd4461fab7371c03420367a0`.
+
+The coordinator accepts current-source readability, reusing the four completed phase reviews and physical-identity carry-forward. The current inventory covers all 2483 scaffold ranges, all 39621 classified Code bytes, 903 semantic code units / 1532 fragments and 1352 named data structures. Independent interval checking found no Code bytes outside reviewed-unit coverage. Unknown bytes have mechanical explanations and explicit competing interpretations. This acceptance does not classify those bytes or assert natural reachability, ordinary game completion or full hardware compatibility.
+
+Targeted final checks revisited the changed secret-screen palette/resource-return contract, player horizontal-speed reduction and facing suffix, primary/alternate audio entry, inclusive CHR upload, and primary/secondary inline spawn formats. Preserved explanations distinguish mapper selections from effective physical banks, RAM execution from immutable source identity, sixteen-byte column records from eleven-byte metatiles, actual relocation from exact copying, and resource extent from natural selector coverage. Source/review metadata and bounded prior dependency corrections supply full review credit; a new whole-source reread was not required.
+
+Two concrete stale sentences were repaired: DrawInitialStageWorld incorrectly said its now-classified target was undecoded, and CallBankedRoutine incorrectly described its now-classified selection helper as a gap. Both now describe the existing trampoline/helper. Instructions, bytes, labels, line count and map classifications are unchanged. Corresponding review summaries were updated; prior source/review/verification/coverage are preserved under analysis/final-acceptance/before-editorial. Exact changes are in analysis/final-acceptance/editorial-revisions.json, final coverage in analysis/final-acceptance/coverage.json.
+
+No remaining known naming/comment/field/constant or source-location backlog was identified. Toolkit audit provides final inventory/source-location validation, a fresh byte-identical rebuild and refreshed reading copy; its report is commentary/audit.json. The semantic/prose decision rests on the completed reviews and targeted checks, not on the rebuild alone.
+
+Classification is incomplete: 262147 / 262160 bytes classified, 13 Unknown bytes in ten ranges, despite rounded 100.00%. Terminal reasoning is separately recorded in analysis/coordinator-rejection-review.md and the final redirect handoff. No archive, deletion, cleanup, publication or toolkit change was performed.

@@ -1,0 +1,11 @@
+# Exact remaining graph barrier: four-byte slot selector
+
+Claim: physical[00ee6f,00ee73), CPUae5f..ae62 under effective PRG[6,7,14,15], remains Static Data (`ObjectSlotSelectorTable`, current map region609).
+
+Primary inspection: selector-barrier.json decodes physical00ee50..00ee57 as four LSRs, AND03, TAX, LDAae5f,X. Thus actual consumer independently selects exactly four bytes01,02,00,02. Physical00ee6a loads PlayerAnimationFrame0538 intoX; physical00ee6d BPLae63 jumps over the four-byte table to physical00ee73, whose existing Code starts a valid OAM update. Current commentary/source/game.asm `ObjectSlotSelectorTable` and original current-map region609 evidence preserve the original correction; the apparent ORA/BRK fallthrough was explicitly rejected as a table interpretation.
+
+The v6 walk reaches this edge through source-reviewed movement wrapperD550->bank3AC87 player rendering, not via a newly observed fetch atae5f. Its state abstraction tracks knownZ/C but not the entire allowed PlayerAnimationFrame/N domain, so it conservatively explores the BPL false edge. This is an overapproximate invalid/unsupported-negative-frame path, not positive evidence of code. Consumer extent, four small slot IDs, branch-around boundary and established next routine jointly support Data without requiring a complete global writer-domain proof. A hypothetical negative frame could enter ORA/BRK/unofficial bytes; that does not independently establish an intended trap/dual-use routine. No such role is asserted.
+
+Decision: keep the table Data; exclude the false-edge bytes from code proposal. Classify the separately supported preceding/following code. No random negative-frame experiment is justified: artificial entry could demonstrate CPU mechanics but would not settle intended code/data role. Natural negative-frame validity is still unclaimed; no additional structural byte gain is credible from this barrier under current evidence. The ready batch is nonterminal and does not require this domain question to close.
+
+Historical primary correction: analysis/disassembly-r1/commit-code.py lines1..3 lists[00ee6f,00ee73) among three explicit inline-data barriers. This matches current region609's consumer-based rationale; the decision was rechecked above rather than inherited from history alone.

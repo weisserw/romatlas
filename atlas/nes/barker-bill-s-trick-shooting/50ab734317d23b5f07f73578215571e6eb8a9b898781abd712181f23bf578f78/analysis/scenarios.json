@@ -1,0 +1,179 @@
+{
+  "version": 1,
+  "round": 2,
+  "snapshot": "analysis/evidence/title-shortcut-snapshot.json",
+  "common_recipe": {
+    "restore": true,
+    "buttons": [],
+    "ram_patches": {
+      "0x0600": "main state selector",
+      "0x0624": 1
+    },
+    "trace": {
+      "enabled": true,
+      "capacity": 0
+    },
+    "frames": 45,
+    "max_operations": 2500000,
+    "timeout_ms": 15000,
+    "artificial": true
+  },
+  "milestones": [
+    {
+      "selector": 0,
+      "milestone": "title",
+      "status": "visited",
+      "evidence": "analysis/evidence/ready.png",
+      "reachability": "artificial initializer except natural startup/title/top-five observation"
+    },
+    {
+      "selector": 1,
+      "milestone": "Balloon Saloon",
+      "status": "visited",
+      "evidence": "analysis/evidence/progression-experiments.json",
+      "reachability": "artificial initializer except natural startup/title/top-five observation"
+    },
+    {
+      "selector": 2,
+      "milestone": "Flying Saucers",
+      "status": "visited",
+      "evidence": "analysis/evidence/progression-experiments.json",
+      "reachability": "artificial initializer except natural startup/title/top-five observation"
+    },
+    {
+      "selector": 3,
+      "milestone": "Window Pains",
+      "status": "visited",
+      "evidence": "analysis/evidence/progression-experiments.json",
+      "reachability": "artificial initializer except natural startup/title/top-five observation"
+    },
+    {
+      "selector": 4,
+      "milestone": "Bill's Thrills introduction",
+      "status": "visited",
+      "evidence": "analysis/evidence/progression-experiments.json",
+      "reachability": "artificial initializer except natural startup/title/top-five observation"
+    },
+    {
+      "selector": 5,
+      "milestone": "Trixie's Shot",
+      "status": "visited",
+      "evidence": "analysis/evidence/progression-experiments.json",
+      "reachability": "artificial initializer except natural startup/title/top-five observation"
+    },
+    {
+      "selector": 6,
+      "milestone": "slot bonus",
+      "status": "visited",
+      "evidence": "analysis/evidence/progression-experiments.json",
+      "reachability": "artificial initializer except natural startup/title/top-five observation"
+    },
+    {
+      "selector": 7,
+      "milestone": "top-five/result display",
+      "status": "visited",
+      "evidence": "analysis/evidence/ready.png",
+      "reachability": "artificial initializer except natural startup/title/top-five observation"
+    },
+    {
+      "selector": 8,
+      "milestone": "mode menu",
+      "status": "visited",
+      "evidence": "analysis/evidence/progression-experiments.json",
+      "reachability": "artificial initializer except natural startup/title/top-five observation"
+    },
+    {
+      "selector": 9,
+      "milestone": "title-return transition",
+      "status": "visited",
+      "evidence": "analysis/evidence/progression-experiments.json",
+      "reachability": "artificial initializer except natural startup/title/top-five observation"
+    },
+    {
+      "milestone": "Balloon Saloon round 99",
+      "status": "visited",
+      "recipe": "restore common snapshot; RAM0600=1,0624=1,06F2=98,0627=99; 15 frames traced,300 untraced,15 traced; buttons released",
+      "observed": "HUD R99,99 credits; moving balloons/butterfly and character; context[4,5,6,7]",
+      "evidence": "analysis/evidence/round-confirmed-1.png"
+    },
+    {
+      "milestone": "Bills Thrills round9",
+      "status": "visited",
+      "recipe": "same but0600=4,06F2=8",
+      "observed": "R9 title introduction with both characters animating after330 frames; target throwing not yet demonstrated",
+      "evidence": "analysis/evidence/round-confirmed-4.png"
+    },
+    {
+      "milestone": "Trixies Shot round9",
+      "status": "visited",
+      "recipe": "same but0600=5,06F2=8",
+      "observed": "R9 scene; animation advanced; no Zapper hits",
+      "evidence": "analysis/evidence/round-confirmed-5.ppm"
+    },
+    {
+      "milestone": "natural target hits and credit/score transitions",
+      "status": "unavailable",
+      "reason": "Zapper absent from documented toolkit input support, NES-001"
+    },
+    {
+      "milestone": "finite ending/credits",
+      "status": "unavailable",
+      "reason": "Manual describes repeating rounds capped at99 rather than finite ending; round99 visited artificially. No ending claimed."
+    },
+    {
+      "milestone": "round shortcut first hypothesis",
+      "status": "attempted",
+      "recipe": "RAM0625=98 or9 with same state initialization and0627=99; 150frames",
+      "observed": "HUD stayed R1; rejects0625 as round field; source/HUD proved06F2 instead",
+      "evidence": "analysis/evidence/later-experiments.json"
+    },
+    {
+      "milestone": "Bill's Thrills target throwing and recovery",
+      "status": "visited",
+      "route": "artificial source-backed timer/animation-gate shortcut",
+      "recipe": "bills_shortcut.py in analysis/redirect/r01-20261113-a; imported title snapshot, buttons released, scene0600=4/init0624=1,45untraced frames; initial gate043B=0/043C=64/0444=0;2frame steps clearing043B through successive initializers;0438=2 at phase5; then2+6x10traced frames",
+      "observed": "phase6 projectile initialized X171/Y120; after10framesY52; after20framesphase7/Y244;72traced artificial frames,1576contextual roots,aggregate_dropped0; optical hit not tested",
+      "evidence": [
+        "analysis/redirect/r01-20261113-a/bills-shortcut-results.json",
+        "analysis/redirect/r01-20261113-a/bills-shortcut-contexts.json",
+        "analysis/redirect/r01-20261113-a/bills-throw-end.png"
+      ],
+      "supersedes": "Earlier intro-only limitations remain historical; throwing now demonstrated artificially."
+    }
+  ],
+  "natural_startup": {
+    "steps": "Start emulator,trace enabled capacity0; request180frames timed out at98; Start2frames/release90; Start2/release45; disable trace300;disable trace900;Start2/release30;disable trace300;Start2/release30. See exported snapshots for exact replay points; timeout partial frame count recorded.",
+    "evidence": [
+      "analysis/evidence/title.png",
+      "analysis/evidence/ready.png",
+      "analysis/evidence/selection-snapshot.json"
+    ],
+    "claim": "Natural displays only; no claim of naturally completing rounds or scoring."
+  },
+  "redirect_reviews": [
+    {
+      "attempt": "r01-20261113-a",
+      "finite_ending": "Prior manual-based repeating-game assessment retained. Unreferenced static B147 (bank4) tests round99+score9999 and sets transition flagFE; no supported caller/scene transition to an ending found. Arbitrary invocation would not establish an intended ending. No new ending claim.",
+      "natural_scoring": "Still unavailable due NES-001."
+    },
+    {
+      "attempt": "r03-20261113-a",
+      "checkpoint": "pass-003-accepted",
+      "result": "Reviewed existing distinct galleries/high-round/Bill throwing milestones and optical/ending limits; no new supported shortcut or discriminating experiment. Reused evidence, no gameplay replay.",
+      "evidence": "analysis/redirect/r03-20261113-a/findings.md"
+    }
+  ],
+  "disassembly_reviews": [
+    {
+      "round": 2,
+      "checkpoint": "pass-002-final",
+      "status": "reused preserved evidence",
+      "summary": "Reviewed all listed progression milestones and existing failed/unsupported ending routes. All galleries/high rounds and Bill target throwing/recovery already visited artificially. No unchanged replay or arbitrary isolated-byte invocation; natural target hits remain unavailable NES-001. Reused271new accepted artificial fetch roots from saved Bills trace.",
+      "evidence": [
+        "analysis/redirect/r01-20261113-a/bills-shortcut-contexts.json",
+        "analysis/redirect/r01-20261113-a/bills-shortcut-results.json",
+        "analysis/disassembly/r02-review/review-notes.md"
+      ]
+    }
+  ]
+}

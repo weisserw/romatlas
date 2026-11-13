@@ -1,0 +1,1689 @@
+{
+  "format": "romatlas-nes-map",
+  "version": 1,
+  "image_sha256": "38bb5e24ad2ddf1cbac99e85284585bb1150a89b5f661d822ce903abba58c43e",
+  "image_size": 65552,
+  "regions": [
+    {
+      "id": 1,
+      "offset": 0,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "CartridgeHeader",
+      "comment": "",
+      "evidence": "iNES header verified by inspect: section sizes, mapper 3, mirroring, no trainer.",
+      "views": []
+    },
+    {
+      "id": 2,
+      "offset": 32784,
+      "length": 8192,
+      "kind": "Image",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ChrPatternBank0",
+      "comment": "",
+      "evidence": "iNES CHR-ROM extent; CNROM switches four 8 KiB pattern banks. NES 16-byte planar tiles; no CPU execution mapping.",
+      "views": []
+    },
+    {
+      "id": 3,
+      "offset": 40976,
+      "length": 8192,
+      "kind": "Image",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ChrPatternBank1",
+      "comment": "",
+      "evidence": "iNES CHR-ROM extent; CNROM switches four 8 KiB pattern banks. NES 16-byte planar tiles; no CPU execution mapping.",
+      "views": []
+    },
+    {
+      "id": 4,
+      "offset": 49168,
+      "length": 8192,
+      "kind": "Image",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ChrPatternBank2",
+      "comment": "",
+      "evidence": "iNES CHR-ROM extent; CNROM switches four 8 KiB pattern banks. NES 16-byte planar tiles; no CPU execution mapping.",
+      "views": []
+    },
+    {
+      "id": 5,
+      "offset": 57360,
+      "length": 8192,
+      "kind": "Image",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ChrPatternBank3",
+      "comment": "",
+      "evidence": "iNES CHR-ROM extent; CNROM switches four 8 KiB pattern banks. NES 16-byte planar tiles; no CPU execution mapping.",
+      "views": []
+    },
+    {
+      "id": 6,
+      "offset": 32778,
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "InterruptVectors",
+      "comment": "",
+      "evidence": "Validated little endian NMI/reset/IRQ vector words $8436/$83D3/$8A77.",
+      "views": []
+    },
+    {
+      "id": 7,
+      "offset": 1149,
+      "length": 32,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "DispatchTargets_846D",
+      "comment": "",
+      "evidence": "Inline selector dispatch pointer words following JSR $8D31. Dispatcher pulls return address, doubles selector and tail jumps through selected little endian pointer. Table ends at adjacent handler entry $848D; all words target coherent handlers, instruction/data barrier. Natural selector coverage separate. See dispatch-evidence.md.",
+      "views": []
+    },
+    {
+      "id": 8,
+      "offset": 1192,
+      "length": 28,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "DispatchTargets_8498",
+      "comment": "",
+      "evidence": "Inline selector dispatch pointer words following JSR $8D31. Dispatcher pulls return address, doubles selector and tail jumps through selected little endian pointer. Table ends at adjacent handler entry $84B4; all words target coherent handlers, instruction/data barrier. Natural selector coverage separate. See dispatch-evidence.md.",
+      "views": []
+    },
+    {
+      "id": 9,
+      "offset": 1893,
+      "length": 14,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "DispatchTargets_8755",
+      "comment": "",
+      "evidence": "Inline selector dispatch pointer words following JSR $8D31. Dispatcher pulls return address, doubles selector and tail jumps through selected little endian pointer. Table ends at adjacent handler entry $8763; all words target coherent handlers, instruction/data barrier. Natural selector coverage separate. See dispatch-evidence.md.",
+      "views": []
+    },
+    {
+      "id": 10,
+      "offset": 2136,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "DispatchTargets_8848",
+      "comment": "",
+      "evidence": "Inline selector dispatch pointer words following JSR $8D31. Dispatcher pulls return address, doubles selector and tail jumps through selected little endian pointer. Table ends at adjacent handler entry $8854; all words target coherent handlers, instruction/data barrier. Natural selector coverage separate. See dispatch-evidence.md.",
+      "views": []
+    },
+    {
+      "id": 11,
+      "offset": 2230,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "DispatchTargets_88A6",
+      "comment": "",
+      "evidence": "Inline selector dispatch pointer words following JSR $8D31. Dispatcher pulls return address, doubles selector and tail jumps through selected little endian pointer. Table ends at adjacent handler entry $88B6; all words target coherent handlers, instruction/data barrier. Natural selector coverage separate. See dispatch-evidence.md.",
+      "views": []
+    },
+    {
+      "id": 12,
+      "offset": 2293,
+      "length": 18,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "DispatchTargets_88E5",
+      "comment": "",
+      "evidence": "Inline selector dispatch pointer words following JSR $8D31. Dispatcher pulls return address, doubles selector and tail jumps through selected little endian pointer. Table ends at adjacent handler entry $88F7; all words target coherent handlers, instruction/data barrier. Natural selector coverage separate. See dispatch-evidence.md.",
+      "views": []
+    },
+    {
+      "id": 13,
+      "offset": 2406,
+      "length": 14,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "DispatchTargets_8956",
+      "comment": "",
+      "evidence": "Inline selector dispatch pointer words following JSR $8D31. Dispatcher pulls return address, doubles selector and tail jumps through selected little endian pointer. Table ends at adjacent handler entry $8964; all words target coherent handlers, instruction/data barrier. Natural selector coverage separate. See dispatch-evidence.md.",
+      "views": []
+    },
+    {
+      "id": 14,
+      "offset": 2487,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "DispatchTargets_89A7",
+      "comment": "",
+      "evidence": "Inline selector dispatch pointer words following JSR $8D31. Dispatcher pulls return address, doubles selector and tail jumps through selected little endian pointer. Table ends at adjacent handler entry $89B3; all words target coherent handlers, instruction/data barrier. Natural selector coverage separate. See dispatch-evidence.md.",
+      "views": []
+    },
+    {
+      "id": 15,
+      "offset": 5301,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "DispatchTargets_94A5",
+      "comment": "",
+      "evidence": "Inline selector dispatch pointer words following JSR $8D31. Dispatcher pulls return address, doubles selector and tail jumps through selected little endian pointer. Table ends at adjacent handler entry $94B5; all words target coherent handlers, instruction/data barrier. Natural selector coverage separate. See dispatch-evidence.md.",
+      "views": []
+    },
+    {
+      "id": 16,
+      "offset": 7063,
+      "length": 10,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "DispatchTargets_9B87",
+      "comment": "",
+      "evidence": "Inline selector dispatch pointer words following JSR $8D31. Dispatcher pulls return address, doubles selector and tail jumps through selected little endian pointer. Table ends at adjacent handler entry $9B91; all words target coherent handlers, instruction/data barrier. Natural selector coverage separate. See dispatch-evidence.md.",
+      "views": []
+    },
+    {
+      "id": 17,
+      "offset": 995,
+      "length": 154,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33747,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "offset": 1181,
+      "length": 11,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33933,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "offset": 1220,
+      "length": 146,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33972,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "offset": 1368,
+      "length": 256,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34120,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "offset": 1640,
+      "length": 253,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34392,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "offset": 1907,
+      "length": 229,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34659,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "offset": 2148,
+      "length": 82,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34900,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "offset": 2246,
+      "length": 47,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34998,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "offset": 2311,
+      "length": 95,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35063,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "offset": 2420,
+      "length": 67,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35172,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "offset": 2499,
+      "length": 376,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35251,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "offset": 2880,
+      "length": 11,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35632,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "offset": 2909,
+      "length": 193,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35661,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "offset": 3103,
+      "length": 432,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35855,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "offset": 3595,
+      "length": 217,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36347,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "offset": 3941,
+      "length": 61,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36693,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "offset": 4018,
+      "length": 188,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36770,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "offset": 4222,
+      "length": 91,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36974,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "offset": 4348,
+      "length": 181,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37100,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "offset": 4548,
+      "length": 753,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37300,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "offset": 5317,
+      "length": 94,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38069,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "offset": 5429,
+      "length": 290,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38181,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "offset": 6108,
+      "length": 54,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38860,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "offset": 6171,
+      "length": 174,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38923,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "offset": 6541,
+      "length": 428,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39293,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "offset": 7055,
+      "length": 8,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39807,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "offset": 7073,
+      "length": 317,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39825,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "offset": 7842,
+      "length": 484,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40594,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "offset": 8518,
+      "length": 190,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41270,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "offset": 8716,
+      "length": 226,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41468,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "offset": 9056,
+      "length": 103,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41808,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "offset": 9483,
+      "length": 464,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42235,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "offset": 10000,
+      "length": 1370,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42752,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "offset": 11378,
+      "length": 17,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44130,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "offset": 11431,
+      "length": 30,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44183,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "offset": 11700,
+      "length": 208,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44452,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "offset": 11940,
+      "length": 108,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44692,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "offset": 12052,
+      "length": 845,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Barrier-aware bounded vector and dispatch-handler control-flow traversal; official instructions, coherent calls/branches/returns and hardware/RAM consumers inspected. Inline dispatch tables excluded. Overlapping operand-entry tricks at $87D5/$87D6, $8CDF/$8CE0 and $A040/$A041 are intentional convergent alternate streams. NMI epilogue $848E supported by synthetic return pushed at $8462. Static role; natural reachability not asserted. See candidate-listing.txt and discovery-barriers-* in analysis/disassembly/round001.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44804,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "offset": 11461,
+      "length": 38,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "TerrainResponseTargets",
+      "comment": "",
+      "evidence": "Terrain-response indirect dispatch consumed by $AC97..$ACB2, 19 little endian vectors; bounds end at lowest adjacent handler $ACDB; selector mapping and coherent handlers support structural role. Natural terrain coverage separate.",
+      "views": []
+    },
+    {
+      "id": 56,
+      "offset": 2891,
+      "length": 18,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static coherent NMI epilogue/renderer/shift-helper or terrain-response dispatch graph; entry contracts, complete official instruction streams, sound/arithmetic effects and returns inspected. See batch2-listing.txt. Natural entry coverage separate.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35643,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "offset": 3102,
+      "length": 1,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static coherent NMI epilogue/renderer/shift-helper or terrain-response dispatch graph; entry contracts, complete official instruction streams, sound/arithmetic effects and returns inspected. See batch2-listing.txt. Natural entry coverage separate.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35854,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 58,
+      "offset": 11499,
+      "length": 201,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static coherent NMI epilogue/renderer/shift-helper or terrain-response dispatch graph; entry contracts, complete official instruction streams, sound/arithmetic effects and returns inspected. See batch2-listing.txt. Natural entry coverage separate.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44251,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 59,
+      "offset": 2875,
+      "length": 5,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "SetRenderingMask",
+      "comment": "",
+      "evidence": "Complete display-mask helper: LDA #$1E, STA $1F, RTS; exact boundary after preceding display-enable helper RTS and before next clear-display entry. Independent static routine contract sets shadow rendering mask. Natural call not established.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35627,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "offset": 16,
+      "length": 979,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "TerrainLookupData",
+      "comment": "",
+      "evidence": "Repeated small tile/material lookup values; $9525/$955F consume indexed $8004/$8044/$80E4/$8184/$81C4/$8204 blocks and $AB78 consumes $82D4. Ends at validated reset entry $83D3. Static structural inference; lack of execution alone was not used. Bounds use physical offset and adjacent independently classified objects.",
+      "views": []
+    },
+    {
+      "id": 61,
+      "offset": 1366,
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "SetupChoiceDestinations",
+      "comment": "",
+      "evidence": "Bytes $44/$6A are zero-page setup destinations: CPU $850B LDA $8546,X; $850E TAY; $8511 STA $0000,Y stores menuSelection. Exact two-byte extent bounded by adjacent code. Fixed PRG[0,1,2,3]; Static structural inference, no new reachability claim. Independently reviewed R001-R01; analysis/disassembly/round002/review.md.",
+      "views": []
+    },
+    {
+      "id": 62,
+      "offset": 1624,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "HandicapCursorSprites",
+      "comment": "",
+      "evidence": "Four repeated four-byte OAM records loaded by $8569 X=15..0; exact 16-byte extent. Static structural inference; lack of execution alone was not used. Bounds use physical offset and adjacent independently classified objects.",
+      "views": []
+    },
+    {
+      "id": 63,
+      "offset": 3535,
+      "length": 60,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "PaletteAndUiParameters",
+      "comment": "",
+      "evidence": "Palette load consumers $8DB5/$8EC7; repeated four-entry NES palette groups and adjacent small parameter arrays. Combined role data; individual array bounds not all recovered. Static structural inference; lack of execution alone was not used. Bounds use physical offset and adjacent independently classified objects.",
+      "views": []
+    },
+    {
+      "id": 64,
+      "offset": 3812,
+      "length": 129,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "UI tile/script data with repeated $23 tiles, command bytes and run patterns; nearby $8DFB menu drawing and pointer consumers inspected. No code conflict; specific command subdivisions deferred. Static structural inference; lack of execution alone was not used. Bounds use physical offset and adjacent independently classified objects.",
+      "views": []
+    },
+    {
+      "id": 65,
+      "offset": 4002,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "CoursePalette",
+      "comment": "",
+      "evidence": "Four repeated four-byte NES palette records; adjacent drawing consumer $8EC7 and fixed 16-byte palette transfers. Static structural inference; lack of execution alone was not used. Bounds use physical offset and adjacent independently classified objects.",
+      "views": []
+    },
+    {
+      "id": 66,
+      "offset": 4206,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "SetupPalette",
+      "comment": "",
+      "evidence": "Four repeated four-byte NES palette records indexed by X=15..0 at $9051. Static structural inference; lack of execution alone was not used. Bounds use physical offset and adjacent independently classified objects.",
+      "views": []
+    },
+    {
+      "id": 67,
+      "offset": 4313,
+      "length": 35,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated palette/tile parameter patterns following drawing routine jump and preceding $90EC code. Read references and adjoining drawing consumers inspected; no supported executable entry. Static structural inference; lack of execution alone was not used. Bounds use physical offset and adjacent independently classified objects.",
+      "views": []
+    },
+    {
+      "id": 68,
+      "offset": 4529,
+      "length": 19,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Monotonic 19-byte numeric conversion/placement lookup between RTS and $91B4 entry; indexed references inspected. Static structural inference; lack of execution alone was not used. Bounds use physical offset and adjacent independently classified objects.",
+      "views": []
+    },
+    {
+      "id": 69,
+      "offset": 5411,
+      "length": 18,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Small repeated parameter and pointer-like lookup values following dispatch handler RTS, before $9525 executable entry; consumers inspected; schema not claimed. Static structural inference; lack of execution alone was not used. Bounds use physical offset and adjacent independently classified objects.",
+      "views": []
+    },
+    {
+      "id": 70,
+      "offset": 5719,
+      "length": 389,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "UiScriptData",
+      "comment": "",
+      "evidence": "Pointer-indexed UI bytecode/tile text records consumed by $9622; visible bounded repeated command/tile patterns up to $97CC routine. Static data; text alphabet and each record bounds deferred. Static structural inference; lack of execution alone was not used. Bounds use physical offset and adjacent independently classified objects.",
+      "views": []
+    },
+    {
+      "id": 71,
+      "offset": 6162,
+      "length": 9,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Nine small repeated numeric parameter values bounded by preceding JMP and $980B entry; adjacent UI/score consumer inspected. Static structural inference; lack of execution alone was not used. Bounds use physical offset and adjacent independently classified objects.",
+      "views": []
+    },
+    {
+      "id": 72,
+      "offset": 6345,
+      "length": 196,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ScoreMessageData",
+      "comment": "",
+      "evidence": "Pointer-indexed variable-length tile text/message records following string-output RTS, before $997D arithmetic routine; repeated count/tile patterns. Full schema deferred. Static structural inference; lack of execution alone was not used. Bounds use physical offset and adjacent independently classified objects.",
+      "views": []
+    },
+    {
+      "id": 73,
+      "offset": 6969,
+      "length": 86,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded monotonic/quantized numeric and small parameter arrays referenced by club/shot logic; repeated values conflict with instruction stream. Exact meaning not claimed. Static structural inference; lack of execution alone was not used. Bounds use physical offset and adjacent independently classified objects.",
+      "views": []
+    },
+    {
+      "id": 74,
+      "offset": 7390,
+      "length": 452,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ShotSpriteData",
+      "comment": "",
+      "evidence": "Numeric lookup prefixes and little endian sprite record pointers consumed by $9C56/$9C65 through $8BD6 drawing, followed by repeated OAM/tile records. These are sprite data pointers, not executable roots. Bounds next established $9E92 entry. Static structural inference; lack of execution alone was not used. Bounds use physical offset and adjacent independently classified objects.",
+      "views": []
+    },
+    {
+      "id": 75,
+      "offset": 8326,
+      "length": 192,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ShotAngleLookupData",
+      "comment": "",
+      "evidence": "Two bounded 16-bit monotonic/quantized lookup families consumed by $9F8D/$9F92 and $A04A/$A04F. Numeric pattern, indexed arithmetic consumers and exact adjacent routine boundaries establish data; original generator unknown. Static structural inference; lack of execution alone was not used. Bounds use physical offset and adjacent independently classified objects.",
+      "views": []
+    },
+    {
+      "id": 76,
+      "offset": 8708,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Eight small scalar coefficients indexed at $A1EB; bounded by preceding RTS and $A1FC entry. Static structural inference; lack of execution alone was not used. Bounds use physical offset and adjacent independently classified objects.",
+      "views": []
+    },
+    {
+      "id": 77,
+      "offset": 8942,
+      "length": 114,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ClubParameterData",
+      "comment": "",
+      "evidence": "Repeated four-byte club thresholds consumed by $A2B6..$A2C9 and adjacent club coefficient arrays; bounded by $A350 routine. Individual schemas partly unresolved. Static structural inference; lack of execution alone was not used. Bounds use physical offset and adjacent independently classified objects.",
+      "views": []
+    },
+    {
+      "id": 78,
+      "offset": 9159,
+      "length": 324,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "HoleParameterData",
+      "comment": "",
+      "evidence": "18-hole parameter blocks and lookup pointers indexed by $61 in $A350; 8-byte stride primary records plus auxiliary course values. Repeated record layout and consumer control/data flow inspected; full field names deferred. Static structural inference; lack of execution alone was not used. Bounds use physical offset and adjacent independently classified objects.",
+      "views": []
+    },
+    {
+      "id": 79,
+      "offset": 9947,
+      "length": 53,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ObjectSpriteData",
+      "comment": "",
+      "evidence": "Little endian pointer prefix and repeated sprite command records, consumed by adjacent sprite generation paths. No executable target claim; ends at established $A700 routine. Static structural inference; lack of execution alone was not used. Bounds use physical offset and adjacent independently classified objects.",
+      "views": []
+    },
+    {
+      "id": 80,
+      "offset": 11370,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Eight repeated small material/property values following RTS and before $AC62 course initialization; local indexed consumers inspected. Static structural inference; lack of execution alone was not used. Bounds use physical offset and adjacent independently classified objects.",
+      "views": []
+    },
+    {
+      "id": 81,
+      "offset": 11395,
+      "length": 36,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "HoleWindParameters",
+      "comment": "",
+      "evidence": "Two 18-entry per-hole small parameter arrays loaded by $AC64/$AC6B, bounded by $AC97 terrain handler. Static structural inference; lack of execution alone was not used. Bounds use physical offset and adjacent independently classified objects.",
+      "views": []
+    },
+    {
+      "id": 82,
+      "offset": 11908,
+      "length": 32,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "32-byte repeated signed/unsigned motion coefficient patterns after arithmetic RTS, before sound-reset $AE94. Nearby references inspected; exact organization unresolved. Static structural inference; lack of execution alone was not used. Bounds use physical offset and adjacent independently classified objects.",
+      "views": []
+    },
+    {
+      "id": 83,
+      "offset": 12048,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "SoundChannelMasks",
+      "comment": "",
+      "evidence": "Four channel mask values between sound routine RTS and $AF04 update routine; audio consumers inspected. Static structural inference; lack of execution alone was not used. Bounds use physical offset and adjacent independently classified objects.",
+      "views": []
+    },
+    {
+      "id": 85,
+      "offset": 12897,
+      "length": 24,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "NotePeriodWords",
+      "comment": "",
+      "evidence": "Twelve little-endian APU period words: PlaySoundNote masks low nibble, rejects >=12, doubles accepted index and reads $B251/$B252,Y; octave shifts follow. Fixed PRG[0,1,2,3]; structural evidence only. analysis/disassembly/round002/review.md.",
+      "views": []
+    },
+    {
+      "id": 87,
+      "offset": 13009,
+      "length": 88,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "SoundDescriptors",
+      "comment": "",
+      "evidence": "Twenty-two four-byte records: slot offset, channel mode, stream low/high (high OR $20). StartSound stride4, supported final selector $15, all slot/mode fields and first stream boundary $B319 jointly establish extent; not all IDs claimed naturally selected. Fixed PRG[0,1,2,3]; structural evidence only. analysis/disassembly/round002/review.md.",
+      "views": []
+    },
+    {
+      "id": 88,
+      "offset": 13097,
+      "length": 828,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "SoundStreams",
+      "comment": "",
+      "evidence": "Twenty-two four-byte headers followed by two-byte commands/notes and single-byte terminal $FF. Header/decoder/loop consumers and each bounded endpoint verified. Streams0..5 loop via B0,02 before trailing FF; their tail FF is not claimed executed. Stream21 consumes final FF at physical $3664; exclusive end $3665. See sound-verification.json and review.md. Fixed PRG[0,1,2,3]; structural evidence only. analysis/disassembly/round002/review.md.",
+      "views": []
+    },
+    {
+      "id": 89,
+      "offset": 13925,
+      "length": 18853,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "CourseUiAndRemainingSoundData",
+      "comment": "",
+      "evidence": "Audio frequency/parameter tables and repeated music command records immediately after sound update RTS $B250; long FF run; $B700 pointer list and large repeated compressed course/UI command streams; $F3C2 pointer list and tiled/material lookup records; final uniform FF run up to interrupt vectors. Inspected each 256-byte window plus boundary bytes, all direct references from accepted code and known pointer consumers ($9266..$928F,$92A4..$92B6,$AF17,$B0E0,$B244). Repeated command/value records and uniform suffixes establish non-code; exact subformats and semantics are deliberately not claimed. No conflicting instruction-fetch or static control-flow evidence. See data-inspection.md. Static structural inference; lack of execution alone was not used. Bounds use physical offset and adjacent independently classified objects. Refinement excludes preceding verified sound schemas; generic remainder starts $3665 after final sound FF, not $3664. Fixed PRG[0,1,2,3]; structural evidence only. analysis/disassembly/round002/review.md.",
+      "views": []
+    },
+    {
+      "id": 90,
+      "offset": 12921,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ChannelEnableMasks",
+      "comment": "",
+      "evidence": "Four hardware-channel ownership/enable bits; masked channel index AND $03 and GuardSoundChannel/ClaimSoundChannel consumers establish extent. Fixed PRG[0,1,2,3]; structural inference, no natural selection or new execution claim. Independently verified R002-R01; analysis/disassembly/round003/review.md.",
+      "views": []
+    },
+    {
+      "id": 91,
+      "offset": 12925,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ChannelCapabilityFlags",
+      "comment": "",
+      "evidence": "Four capability flags read by TickSoundEngine after channel mode AND $03; flags control triangle/noise/volume paths. Fixed PRG[0,1,2,3]; structural inference, no natural selection or new execution claim. Independently verified R002-R01; analysis/disassembly/round003/review.md.",
+      "views": []
+    },
+    {
+      "id": 92,
+      "offset": 12929,
+      "length": 48,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "VibratoOffsets",
+      "comment": "",
+      "evidence": "Three sixteen-phase signed vibrato banks. Accepted 22-stream selectors yield offsets $00,$10,$20; A3 argument AND $70 combined with frame AND $0F. Unrestricted engine selectors are not asserted to have arrays. Fixed PRG[0,1,2,3]; structural inference, no natural selection or new execution claim. Independently verified R002-R01; analysis/disassembly/round003/review.md.",
+      "views": []
+    },
+    {
+      "id": 93,
+      "offset": 12977,
+      "length": 32,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "NonzeroEnvelopeAmplitudes",
+      "comment": "",
+      "evidence": "Two sixteen-phase nibble-amplitude banks for encoded envelope IDs1/2. Four-iteration phase loop yields nibble0..15. CPU EnvelopeAmplitudes=$B291 is a biased base overlapping third vibrato bank; ID0 bypasses access, actual bank1 starts $B2A1. End independently bounded by descriptors at $B2C1. Fixed PRG[0,1,2,3]; structural inference, no natural selection or new execution claim. Independently verified R002-R01; analysis/disassembly/round003/review.md.",
+      "views": []
+    }
+  ],
+  "next_id": 94
+}

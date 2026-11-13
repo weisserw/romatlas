@@ -1,0 +1,6 @@
+# Active round03 redirect
+Input maps/round03-disassembly-complete.json, identical analysis/state.json; 112348 classified,18740 unknown,156 gaps. Commentary source SHA256 d38771dc648e7feb91e608734ae43ddf4bc67ab4f1ca6f280828d9fad400d1cb; current-source readability complete, final editorial pending.
+
+Changed method: prior graph invalidated lowerbank context at every indirect write and refused return summaries without scoped RAM-write contracts. Newly completed commentary provides mechanical destinations and caller preconditions. Retrieve exact offending writes and their pointer producers; derive local pointer/high-byte/index bounds rather than demanding natural execution. CB6D already resolved independently and excluded from rejection reuse. Target unresolved DE20/DFFE,DEAE/DEC1,DED9,DFEB,E636/E649/E7A5 plus actual residual indirect selectors. Stop individual method on unsupported pointer origins, contradictory bounds or repetitive results; follow connected handlers while productive and then assess independent residual structure. Research only; no classification/source/map modifications.
+
+Initial disk check:6.0GiB available,analysis708MiB. No scratch cleanup authorized/needed. No broad progression replay; documented ending snapshots retained.

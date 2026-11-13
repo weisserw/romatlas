@@ -1,0 +1,11 @@
+# Final editorial handoff
+
+FINAL EDITORIAL ACCEPTANCE PASSED. Full current-source readability remains complete; no pending editorial range. Supported `commentary.py audit .` passed fresh byte-identical rebuilding and reading-copy refresh: commentary/audit.json and commentary/verification.json, 1710 reviewed scaffold entries, 1761 local unit records (1484 distinct names). Actual reasoning/scope: commentary/editorial-audit.md; inventory/identity evidence: analysis/final-editorial-coverage.json.
+
+Reused prior valid review, corrected generated-handler RTS opcode prose, graphics-directory versus payload format wording, a known character-field operand and stale claims that accepted neighboring menu/creation/battle/overlay/audio/event code remained raw/unknown. Normalized 2561 existing source locations; indexed 277 spanning-unit fragments and recorded 633 already-reviewed named source blocks where the audit required local Code coverage. No new structural or semantic claim was inferred merely to satisfy the audit. Current scaffold, source line positions, valid prior prose and prior 25-file trees preserved.
+
+Final source SHA256 7cf7a0d349c929a8996af1970c955614544f165b47f3a2c410f7afd86075106a. ROM unchanged: 14aca6e380a0fecfede60825f145dbd31a20b1f5b037b902f714b5d364379693. Map/state/checkpoint/frozen baseline unchanged: 165f81bd4144e5ddb8712506c572218948bc6e214a3d87b968dea3d8c715a123; checkpoint maps/round05-disassembly-complete.json.
+
+Overall ROM status remains INCOMPLETE, not blocked: 131085/131088 bytes =99.997711461%, rounded100.00%; Unknown physical00943D/014E64/01D284. Coordinator already accepted unchanged terminal rejection reasoning; this worker did not reopen or classify those bytes. Honest name-stack, count-shrink/defeat, dynamic callback/audio origin and nested-format limitations remain. No full hardware compatibility or natural full-game reachability claim.
+
+No toolkit issues found during this final work; initial audit failures were corrected metadata defects, with the prior nonblocking PRG-RAM-write limitation unchanged in analysis/toolkit-issues.md. No toolkit/ROM/map/state change, archive execution, publication, cleanup or deletion. Source/assets stay local. Coordinator owns overall final handoff and archive-options.json.

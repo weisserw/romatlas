@@ -1,0 +1,4 @@
+# Disassembly R3 independent review
+Input pass-002-final, R2 manifest39360 proposed bytes. Preserve all previous evidence and commentary. Review physical instruction and bounded Data contracts independently; classify Static role separately from unresolved natural reachability. Verify intentional modulation overlap with one physical primary decode. Recompute container parsers in separate r3 directory, inspect bank/stack/inline barriers and decoded candidates. Reuse five-stage/final artificial progression, avoid repetition without concrete discriminating question. Validate/save/export and unique byte-identical checkpoint; record exact residual ledger and lead outcomes. Active frontier: all six R2 leads ready; no annotation yet.
+
+Completed full independent batch acceptance and verified pass-003-final. No proposed span rejected. Exact1984-byte residual retained; next separate current-source commentary/redirect, no terminal assessment.

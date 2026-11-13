@@ -1,0 +1,7 @@
+# Current unresolved meanings
+
+Specific move names, individual property-field meanings, six script-event counter names and some decorative lookup groupings remain uncertain. Native predicate mechanics and formats are explained locally. Counted controller-port output is separate from ordinary input; intended peripheral semantics and compatibility remain unresolved. Property container B56F has11 cells per array versus12 render frames; no speculative extension was made. Broad mixed graphics windows retain unknown original subasset boundaries.
+
+The three remaining unknown bytes are physical1AC2F/1DBB3/1DDC5, CPUAC1F/DBA3/DDB5 in effective banks[12,13,14,15]. Each is $60; an isolated RTS encoding cannot distinguish a potential callable/no-op return from inert data. Four former residual bytes now have Static generic-data boundaries; their stage/VM encoding affinities do not establish selected programs or original organization.
+
+Round001 uncertainty notes and source are preserved intact under analysis/round-002/commentary-pass-001/commentary. Their D18B Observed-BRK premise is superseded: it was Static false fallthrough and is now the first camera offset. Stage/resource/VM stream extents are now established by round002 structural review; exact game-event names and natural execution of every path remain unproved. Captions are fifteen16-byte records endingF439, where a rooted script begins.

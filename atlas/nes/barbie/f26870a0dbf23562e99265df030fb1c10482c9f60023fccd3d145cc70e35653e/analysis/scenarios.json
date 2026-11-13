@@ -1,0 +1,454 @@
+{
+  "version": 1,
+  "round": 1,
+  "input_api": "NES emulator.input uses buttons array; [] releases all buttons. Preliminary button/pressed calls silently released all and did not constitute presses.",
+  "tracing": {
+    "capacity": 0,
+    "enabled": true,
+    "kinds": [
+      "Instruction",
+      "ControlFlow",
+      "BankSwitch"
+    ],
+    "aggregate_dropped": 0,
+    "detail_drops": "Expected zero-detail eviction; no aggregate drops. Read/write counts also maintained. Full summary disassembly-r1/trace-summary.json."
+  },
+  "natural_route": {
+    "status": "visited",
+    "milestones": [
+      "copyright",
+      "title",
+      "credits",
+      "Once upon a dream",
+      "bedroom story",
+      "dream intro",
+      "sports-store gameplay"
+    ],
+    "replay": "Import prepatch.snapshot (credits scene2, frame3319); buttons:[start]3 frames, []180 frames then10 traced \u2192 scene3.snapshot; Start3, []300 then20 traced \u2192 scene4.snapshot; Start3, []180 then10 traced \u2192 scene12; Start3, []up to60 frames/2.5M operations/10s \u2192 naturalgame.snapshot (partial timeout), stage4 scene16; Right+A+B60 frames/2.5M/15s, Select+Down10/500k/5s, [] \u2192 played.snapshot. All prior waits no buttons.",
+    "evidence": [
+      "disassembly-r1/scene3.snapshot",
+      "disassembly-r1/scene4.snapshot",
+      "disassembly-r1/naturalgame.snapshot",
+      "disassembly-r1/played.snapshot",
+      "disassembly-r1/ram-naturalgame.json",
+      "disassembly-r1/ram-played.json"
+    ],
+    "correction": "Earlier progress misidentified natural scene as13; actual RAM proves scene16, stage4."
+  },
+  "progression_checklist": [
+    {
+      "milestone": "bakery/platform environment",
+      "scene": 13,
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": "Restore scene4.snapshot; buttons:[]; write RAM $2f=scene and $24=1; trace enabled; up to90 frames/4M operations/15s, then buttons:[right,a,b]30 frames/1.5M/8s; release[]. Inspect actual state/frame; timeout is partial execution.",
+      "result": {
+        "scene": 13,
+        "stage_index": 1,
+        "banks": {
+          "prg_banks": [
+            4,
+            5,
+            14,
+            15
+          ]
+        },
+        "frames": 3937
+      },
+      "evidence": [
+        "disassembly-r1/scene-13.png",
+        "disassembly-r1/scene-13.snapshot",
+        "disassembly-r1/shortcut-scenarios.json"
+      ]
+    },
+    {
+      "milestone": "galleria environment",
+      "scene": 14,
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": "Restore scene4.snapshot; buttons:[]; write RAM $2f=scene and $24=1; trace enabled; up to90 frames/4M operations/15s, then buttons:[right,a,b]30 frames/1.5M/8s; release[]. Inspect actual state/frame; timeout is partial execution.",
+      "result": {
+        "scene": 14,
+        "stage_index": 2,
+        "banks": {
+          "prg_banks": [
+            2,
+            3,
+            14,
+            15
+          ]
+        },
+        "frames": 3934
+      },
+      "evidence": [
+        "disassembly-r1/scene-14.png",
+        "disassembly-r1/scene-14.snapshot",
+        "disassembly-r1/shortcut-scenarios.json"
+      ]
+    },
+    {
+      "milestone": "underwater environment",
+      "scene": 15,
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": "Restore scene4.snapshot; buttons:[]; write RAM $2f=scene and $24=1; trace enabled; up to90 frames/4M operations/15s, then buttons:[right,a,b]30 frames/1.5M/8s; release[]. Inspect actual state/frame; timeout is partial execution.",
+      "result": {
+        "scene": 15,
+        "stage_index": 3,
+        "banks": {
+          "prg_banks": [
+            4,
+            5,
+            14,
+            15
+          ]
+        },
+        "frames": 3929
+      },
+      "evidence": [
+        "disassembly-r1/scene-15.png",
+        "disassembly-r1/scene-15.snapshot",
+        "disassembly-r1/shortcut-scenarios.json"
+      ]
+    },
+    {
+      "milestone": "sports-store environment",
+      "scene": 16,
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": "Restore scene4.snapshot; buttons:[]; write RAM $2f=scene and $24=1; trace enabled; up to90 frames/4M operations/15s, then buttons:[right,a,b]30 frames/1.5M/8s; release[]. Inspect actual state/frame; timeout is partial execution.",
+      "result": {
+        "scene": 16,
+        "stage_index": 4,
+        "banks": {
+          "prg_banks": [
+            6,
+            7,
+            14,
+            15
+          ]
+        },
+        "frames": 3934
+      },
+      "evidence": [
+        "disassembly-r1/scene-16.png",
+        "disassembly-r1/scene-16.snapshot",
+        "disassembly-r1/shortcut-scenarios.json"
+      ]
+    },
+    {
+      "milestone": "music-stage environment",
+      "scene": 17,
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": "Restore scene4.snapshot; buttons:[]; write RAM $2f=scene and $24=1; trace enabled; up to90 frames/4M operations/15s, then buttons:[right,a,b]30 frames/1.5M/8s; release[]. Inspect actual state/frame; timeout is partial execution.",
+      "result": {
+        "scene": 17,
+        "stage_index": 5,
+        "banks": {
+          "prg_banks": [
+            8,
+            9,
+            14,
+            15
+          ]
+        },
+        "frames": 3930
+      },
+      "evidence": [
+        "disassembly-r1/scene-17.png",
+        "disassembly-r1/scene-17.snapshot",
+        "disassembly-r1/shortcut-scenarios.json"
+      ]
+    },
+    {
+      "milestone": "congratulations result screen",
+      "scene": 5,
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": "Restore scene4.snapshot; buttons:[]; RAM $2f=scene,$24=1; up to60 frames/2.5M operations/10s, Start3/200k/3s, release[].",
+      "actual_scene": 5,
+      "evidence": [
+        "disassembly-r1/late-5.png",
+        "disassembly-r1/late-scenarios.json"
+      ]
+    },
+    {
+      "milestone": "soda-shop exterior scene",
+      "scene": 6,
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": "Restore scene4.snapshot; buttons:[]; RAM $2f=scene,$24=1; up to60 frames/2.5M operations/10s, Start3/200k/3s, release[].",
+      "actual_scene": 6,
+      "evidence": [
+        "disassembly-r1/late-6.png",
+        "disassembly-r1/late-scenarios.json"
+      ]
+    },
+    {
+      "milestone": "return/title transition",
+      "scene": 7,
+      "status": "attempted",
+      "reachability": "artificial",
+      "recipe": "Restore scene4.snapshot; buttons:[]; RAM $2f=scene,$24=1; up to60 frames/2.5M operations/10s, Start3/200k/3s, release[].",
+      "actual_scene": 1,
+      "evidence": [
+        "disassembly-r1/late-7.png",
+        "disassembly-r1/late-scenarios.json"
+      ]
+    },
+    {
+      "milestone": "bedroom return scene",
+      "scene": 8,
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": "Restore scene4.snapshot; buttons:[]; RAM $2f=scene,$24=1; up to60 frames/2.5M operations/10s, Start3/200k/3s, release[].",
+      "actual_scene": 8,
+      "evidence": [
+        "disassembly-r1/late-8.png",
+        "disassembly-r1/late-scenarios.json"
+      ]
+    },
+    {
+      "milestone": "underwater shell scene",
+      "scene": 9,
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": "Restore scene4.snapshot; buttons:[]; RAM $2f=scene,$24=1; up to60 frames/2.5M operations/10s, Start3/200k/3s, release[].",
+      "actual_scene": 9,
+      "evidence": [
+        "disassembly-r1/late-9.png",
+        "disassembly-r1/late-scenarios.json"
+      ]
+    },
+    {
+      "milestone": "fountain scene",
+      "scene": 10,
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": "Restore scene4.snapshot; buttons:[]; RAM $2f=scene,$24=1; up to60 frames/2.5M operations/10s, Start3/200k/3s, release[].",
+      "actual_scene": 10,
+      "evidence": [
+        "disassembly-r1/late-10.png",
+        "disassembly-r1/late-scenarios.json"
+      ]
+    },
+    {
+      "milestone": "ballroom ending-like scene",
+      "scene": 11,
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": "Restore scene4.snapshot; buttons:[]; RAM $2f=scene,$24=1; up to60 frames/2.5M operations/10s, Start3/200k/3s, release[].",
+      "actual_scene": 11,
+      "evidence": [
+        "disassembly-r1/late-11.png",
+        "disassembly-r1/late-scenarios.json"
+      ]
+    },
+    {
+      "milestone": "ballroom terminal sequence",
+      "status": "visited",
+      "reachability": "artificial; completion semantics unresolved",
+      "recipe": "After scene11 branch and release, tracing off300frames/10M/15s then tracing on20frames/1M/5s.",
+      "evidence": [
+        "disassembly-r1/ballroom.png",
+        "disassembly-r1/ballroom.snapshot"
+      ]
+    },
+    {
+      "milestone": "boss encounters and natural game completion",
+      "status": "deferred",
+      "reason": "Superseded missing-contract premise: later source-backed checkpoint tests visited all five final encounters, including jukebox, and an explicit artificial goal/result/exterior/ballroom route. Natural defeat and full ordinary ending remain unclaimed; no new discriminating route resolves the residual13 bytes. See redirect/r1-resource-contract/handoff.md and current redirect/r4-residual-contract/frontier.md.",
+      "history": [
+        {
+          "phase": "initial disassembly frontier",
+          "record": {
+            "status": "deferred",
+            "reason": "Representative levels and shell/fountain/ballroom sequences visited; no verified boss-state or goal-position contract. Avoid arbitrary RAM brute force; redirect should trace existing stage handlers and outcome triggers using successful snapshots."
+          }
+        }
+      ],
+      "final_review": "Representative encounters and terminal presentation visited with bounded documented shortcuts; natural completion remains unresolved, not an unfinished authorized experiment."
+    },
+    {
+      "milestone": "bakery shake endpoint",
+      "status": "visited",
+      "reachability": "artificial",
+      "scene": 13,
+      "checkpoint": 3,
+      "recipe": "boss-probe.py: clean scene4 restore; exact source-derived checkpoint threshold, supported scene transition,70-frame bounded load then Right/A/B15 frames; load timeout retains partial state, RAM confirms load finished.",
+      "result": "Correct scene/type/checkpoint, StageLoadPending0, endpoint image and subsequent instructions observed. No defeat claim.",
+      "evidence": [
+        "redirect/r1-resource-contract/boss-scenarios.json",
+        "redirect/r1-resource-contract/boss-13.png",
+        "redirect/r1-resource-contract/boss-13.snapshot"
+      ]
+    },
+    {
+      "milestone": "pizza endpoint",
+      "status": "visited",
+      "reachability": "artificial",
+      "scene": 14,
+      "checkpoint": 3,
+      "recipe": "boss-probe.py: clean scene4 restore; exact source-derived checkpoint threshold, supported scene transition,70-frame bounded load then Right/A/B15 frames; load timeout retains partial state, RAM confirms load finished.",
+      "result": "Correct scene/type/checkpoint, StageLoadPending0, endpoint image and subsequent instructions observed. No defeat claim.",
+      "evidence": [
+        "redirect/r1-resource-contract/boss-scenarios.json",
+        "redirect/r1-resource-contract/boss-14.png",
+        "redirect/r1-resource-contract/boss-14.snapshot"
+      ]
+    },
+    {
+      "milestone": "underwater final puzzle",
+      "status": "visited",
+      "reachability": "artificial",
+      "scene": 15,
+      "checkpoint": 2,
+      "recipe": "boss-probe.py: clean scene4 restore; exact source-derived checkpoint threshold, supported scene transition,70-frame bounded load then Right/A/B15 frames; load timeout retains partial state, RAM confirms load finished.",
+      "result": "Correct scene/type/checkpoint, StageLoadPending0, endpoint image and subsequent instructions observed. No defeat claim.",
+      "evidence": [
+        "redirect/r1-resource-contract/boss-scenarios.json",
+        "redirect/r1-resource-contract/boss-15.png",
+        "redirect/r1-resource-contract/boss-15.snapshot"
+      ]
+    },
+    {
+      "milestone": "dressing room endpoint",
+      "status": "visited",
+      "reachability": "artificial",
+      "scene": 16,
+      "checkpoint": 3,
+      "recipe": "boss-probe.py: clean scene4 restore; exact source-derived checkpoint threshold, supported scene transition,70-frame bounded load then Right/A/B15 frames; load timeout retains partial state, RAM confirms load finished.",
+      "result": "Correct scene/type/checkpoint, StageLoadPending0, endpoint image and subsequent instructions observed. No defeat claim.",
+      "evidence": [
+        "redirect/r1-resource-contract/boss-scenarios.json",
+        "redirect/r1-resource-contract/boss-16.png",
+        "redirect/r1-resource-contract/boss-16.snapshot"
+      ]
+    },
+    {
+      "milestone": "jukebox final encounter",
+      "status": "visited",
+      "reachability": "artificial",
+      "scene": 17,
+      "checkpoint": 1,
+      "recipe": "boss-probe.py: clean scene4 restore; exact source-derived checkpoint threshold, supported scene transition,70-frame bounded load then Right/A/B15 frames; load timeout retains partial state, RAM confirms load finished.",
+      "result": "Correct scene/type/checkpoint, StageLoadPending0, endpoint image and subsequent instructions observed. No defeat claim.",
+      "evidence": [
+        "redirect/r1-resource-contract/boss-scenarios.json",
+        "redirect/r1-resource-contract/boss-17.png",
+        "redirect/r1-resource-contract/boss-17.snapshot"
+      ]
+    },
+    {
+      "milestone": "final stage goal / stage-result / scripted exterior / ballroom chain",
+      "status": "visited",
+      "reachability": "artificial",
+      "recipe": "Starting boss17 checkpoint1: artificial JSR stack entry to proven goal helpereb48;180frames fade then wait music5; patch0488=0 only to satisfy explicit handler gate; result scene5. Patch scene5 counter074a=ff/066b=0 ->scene6. Scene6 mode bit6 blocks Start as predicted; patch exact source gate05f2=98/074a=ff ->scene11;A3/release30 exercises presentation.",
+      "result": "Scene17->5->6->11 observed in actual game transitions; final ballroom image captured. Not natural defeat, ordinary full completion or full credits.",
+      "evidence": [
+        "redirect/r1-resource-contract/ending-entry.json",
+        "redirect/r1-resource-contract/ending-steps.json",
+        "redirect/r1-resource-contract/ending-gate-steps.json",
+        "redirect/r1-resource-contract/ending-result-steps.json",
+        "redirect/r1-resource-contract/ending-route-steps.json",
+        "redirect/r1-resource-contract/ending-terminal-steps.json",
+        "redirect/r1-resource-contract/ending-terminal.png",
+        "redirect/r1-resource-contract/ending-terminal.snapshot"
+      ]
+    }
+  ],
+  "round2_disassembly": {
+    "milestone": "final music-stage encounter movement and goal-state gate checks",
+    "status": "visited",
+    "reachability": "normal inputs within inherited artificial initialized final checkpoint state",
+    "snapshot": "redirect/r1-resource-contract/boss-17.snapshot",
+    "replay": [
+      {
+        "buttons": [
+          "right",
+          "a",
+          "b"
+        ],
+        "frames": 30
+      },
+      {
+        "buttons": [],
+        "frames": 15
+      },
+      {
+        "buttons": [
+          "left",
+          "b"
+        ],
+        "frames": 30
+      },
+      {
+        "buttons": [],
+        "frames": 15
+      }
+    ],
+    "budget_per_step": {
+      "max_operations": 3000000,
+      "timeout_ms": 10000
+    },
+    "result": "90 frames;37 new physical fetched starts/84 observed bytes,6 static successors/15 bytes; no aggregate drops; no natural boss defeat or completion claimed",
+    "evidence": [
+      "disassembly-r2/runtime-steps.json",
+      "disassembly-r2/runtime-contexts.json",
+      "disassembly-r2/runtime-summary.json",
+      "disassembly-r2/runtime-discovery.json",
+      "disassembly-r2/music-final-gameplay.snapshot",
+      "disassembly-r2/music-final-gameplay.ppm"
+    ],
+    "progression_review": "Reuse five final-checkpoint environments and supported artificial goal/result/exterior/ballroom transitions from redirect R1; no startup/long-route replay needed."
+  },
+  "round3_disassembly": {
+    "status": "visited",
+    "milestone": "targeted overlapping audio entry mechanics",
+    "snapshot": "redirect/r1-resource-contract/boss-17.snapshot",
+    "artificial": true,
+    "buttons": [],
+    "patches": [
+      {
+        "registers": {
+          "pc": 37556,
+          "y": 0
+        }
+      },
+      {
+        "registers": {
+          "pc": 37559,
+          "y": 0
+        }
+      }
+    ],
+    "restore_between": true,
+    "context": {
+      "prg_banks": [
+        8,
+        9,
+        14,
+        15
+      ]
+    },
+    "budget": "Each trial<=500 operation steps, each count1/max_operations10000/timeout1000ms; first12-step primary attempt retained. No frames/progression route repeated.",
+    "observed": "AlternateLDY2 reaches92B9; primaryLDY4 fetch then pending interrupt, did not return within bound. No observed provenance imported.",
+    "evidence": [
+      "disassembly-r3/overlap-runtime.json",
+      "disassembly-r3/overlap-runtime-interrupted.json"
+    ],
+    "progression_review": "Prior five-stage and artificial result/exterior/ballroom visits retained; no new progression obstacle or discriminating route question. Broad natural completion remains unresolved."
+  },
+  "round4_disassembly": {
+    "status": "visited",
+    "milestone": "Review prior broad progression evidence; no replay",
+    "observed": "Prior five-stage/final encounter/artificial result/exterior/ballroom coverage retained. This batch is structural consumer/static work, no fresh runtime evidence or natural reachability claim.",
+    "route": "Reuse prior scenarios; no inputs, RAM edits or register edits performed.",
+    "evidence": [
+      "disassembly-r4/review.md",
+      "redirect/r3-inline-residual/handoff.md"
+    ],
+    "reason": "No concrete new progression question discriminates the13residual bytes."
+  }
+}

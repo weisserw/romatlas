@@ -1,0 +1,9 @@
+# Round04 redirect complete: ready combined batch
+
+Input map/state SHA256 d9c0309c8498244467257fff3e319114080b4b9bf9422f4b33373560d52fe258; classified122849/131088 (93.71%), Unknown8239/72gaps. Current-source readability accepted and source unchanged; final editorial audit pending.
+
+Research complete, not interrupted:8036 Code bytes/3540 starts +200 Data bytes/7 regions =8236 proposed,0 accepted this phase. Exact physical/context/conflict/partition audit passes. Hypothetical residual3 bytes/3 gaps at00943D,014E64,01D284. Final package: code-proposals.json,data-proposals.json,unknown-ledger.json,conflict-audit.json. Primary semantics and limits:ram-contracts.md,findings.md. Remaining-byte rationale:rejection-review.md and four-byte-primary-review.json. D95B was reopened from actualD0A3 function-table cell6 and is now proposed; no corresponding independent role supports the other three.
+
+All identified productive effect, battle-maintenance/damage/reward, callback bank/footprint, Guild/formation/name stack, title/control, cash remainder and localized Data avenues were investigated together. No promising concrete structural method remains unworked against the three residual bytes. Broader count-shrink/empty-name-retry semantics stay conditional and are not claimed correct/exhausted. No new runtime replay; prior ending/progression evidence reused.
+
+Next: independent disassembly of both ready leads, then full current-source commentary and redirect. Required next commentary correction:857F is a formation-ID0..7 /16-byte directory, distinct from F759 characterID0..15 /43-byte records; commentary-dependencies.json. No map/source/state/toolkit/ROM modifications or archive/publication/cleanup/deletion. Configuredbinary hash8ff56b0b1cf8d2a3aca5430c70d34280ae3db36fc6774919062db4ea63843f82.

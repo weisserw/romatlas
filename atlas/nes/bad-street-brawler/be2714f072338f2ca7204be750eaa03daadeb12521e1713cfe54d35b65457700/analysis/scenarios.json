@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "phase": "round-001-redirect-ready",
+  "scenarios": [
+    {
+      "id": "startup",
+      "milestone": "splash and title",
+      "route": "No effective controller input in initial driver/explore/start-game: shared button/pressed fields ignored by NES adapter. Natural reset/title execution only; exact budgets and timeout states in linked drivers.",
+      "observed": "Splash/title visited; no attack or menu response claimed from ignored fields.",
+      "evidence": [
+        "round-001/driver.py",
+        "round-001/explore.py",
+        "round-001/title-contexts.json",
+        "round-001/menu-contexts.json",
+        "round-001/play-right-contexts.json",
+        "round-001/play-right.snapshot.json"
+      ],
+      "status": "visited"
+    },
+    {
+      "id": "game-start",
+      "milestone": "mode selection, practice, stage1",
+      "route": "accepted-start.py buttons=[start] press2f, buttons=[] release40f repeated3; practice.py aligns menu with 300f wait then start10f/release60f; fight.py A30f/B30f/START10f/release60f then right+A120f/right+B120f/up+A+B60f; actual timeout states retained.",
+      "status": "visited",
+      "observed": "one-player menu, stage1 practice punching bag and fight screen",
+      "evidence": [
+        "round-001/accepted-start-0.ppm.png",
+        "round-001/stage1-ready.ppm.png",
+        "round-001/fight-ready.ppm.png",
+        "round-001/fight-action.snapshot.json"
+      ]
+    },
+    {
+      "id": "later-stages",
+      "milestone": "representative later locations and bosses",
+      "status": "visited",
+      "route": "later-stages.py: restore fight-action snapshot; release; operation1; RAM22=[4,9,14]; PC=D014, stack=FF; trace windows60/20A/20B/10START/60release/40right+A/30up+B frames; effective banks [12,13,14,15]. Intro refinement: each action snapshot restored, buttons=[], trace disabled240f, then trace enabled/cleared, right+A50f, up+B30f, release; later-action.py.",
+      "observed": "Stage5 Fifth Avenue,10 Tenth Street,15 The End of the Road practice+active fights, player attacks and different enemies; artificial initialization explicitly marked.",
+      "evidence": [
+        "round-001/stage5-practice.ppm.png",
+        "round-001/stage5-active.ppm",
+        "round-001/stage10-active.ppm.png",
+        "round-001/stage15-active.ppm.png",
+        "round-001/later-stages.py",
+        "round-001/stage15.py",
+        "round-001/later-action.py"
+      ]
+    },
+    {
+      "id": "ending",
+      "milestone": "stage15/ending",
+      "status": "visited",
+      "route": "ending.py: stage15-active snapshot, buttons=[], trace enabled/clear, operation1 align, PC D255/stackFF, 60f traced,300f untraced,60f traced, START10f/release60f.",
+      "observed": "Duke waving from car, money raining: ending illustration; START leaves ending. Artificial post-stage dispatcher entry, natural stage completion not claimed.",
+      "evidence": [
+        "round-001/ending-entry.ppm.png",
+        "round-001/ending-later.ppm.png",
+        "round-001/ending-start.snapshot.json",
+        "round-001/ending.py"
+      ]
+    },
+    {
+      "id": "boss-transitions",
+      "milestone": "stage6/12 midboss and natural stage clear scoring",
+      "status": "deferred",
+      "reason": "Representative boss6/12 and clear/scoring/post-stage visits were subsequently completed by redirect-boss6, redirect-boss12 and redirect-clear-scoring. Natural boss defeat/stage-clear route remains unproved; artificial routes establish observed scenarios only. No currently supported new structural discriminator requires repeating these visits.",
+      "history": [
+        {
+          "phase": "round001-disassembly",
+          "status": "deferred",
+          "reason": "Representative active combat and ending already visited; exact boss trigger/position and stage-clear animation contracts remain useful redirect investigation, avoiding speculative RAM edits. Post-stage dispatch shortcut skips these transitions."
+        }
+      ],
+      "representative_coverage_superseded_by": [
+        "redirect-boss6",
+        "redirect-boss12",
+        "redirect-clear-scoring"
+      ],
+      "terminal_disposition": "Representative broad-progression requirement satisfied; natural route not claimed and no required pending experiment."
+    },
+    {
+      "id": "redirect-boss6",
+      "milestone": "stage6 boss sequence and action",
+      "status": "visited",
+      "route": "redirect/r001-connected-20261112/boss-visits.py: initializerRAM22=5 PC D014/stackFF;60f, START10f/release300f; stream16/17=8239;300f; right+A90f/up+B60f. No direct object-state writes.",
+      "observed": "Final mark-all/wait-empty/halt/music/delay/spawn logic creates swan-like enemy, rendered and attacks exercised. Artificial script selection, natural boss route/defeat unproved.",
+      "evidence": [
+        "redirect/r001-connected-20261112/stage6-bosswait.png",
+        "redirect/r001-connected-20261112/stage6-bossaction.snapshot.json"
+      ]
+    },
+    {
+      "id": "redirect-boss12",
+      "milestone": "stage12 large boss sequence and action",
+      "status": "visited",
+      "route": "redirect/r001-connected-20261112/boss-visits.py RAM22=11/D014 then stream841C; same initialization/actions asboss6. clear-tests.py refinement restoresbossaction,180f release thenright+A60f/up+B40f.",
+      "observed": "Large red humanoid boss rendered onstage12 and attacks exercised; object type12 template14. Artificial progression, defeat/natural selection unproved.",
+      "evidence": [
+        "redirect/r001-connected-20261112/stage12-bossvisible.png",
+        "redirect/r001-connected-20261112/stage12-bossexercised.snapshot.json"
+      ]
+    },
+    {
+      "id": "redirect-clear-scoring",
+      "milestone": "full stage clear scoring and post-stage CityHall cartoon",
+      "status": "visited",
+      "route": "Restorestage6-bossaction; alignoperation; RAM16/17=8248, clock08..0A=[0,2,0], player05F1=2;70f traced snapshot. Subsequent300f traced timed out and not claimed complete. Resume70f snapshot with3x100f untraced and10f traced. Exact drivers/patches retained.",
+      "observed": "Terminal87writesB1 through ordinary interpreter; D902 converts time/health toscore and returns into post-stage CityHall hamburger cartoon. Artificial terminal shortcut does not prove boss defeated.",
+      "evidence": [
+        "redirect/r001-connected-20261112/clear-patch.json",
+        "redirect/r001-connected-20261112/clear-tests.log",
+        "redirect/r001-connected-20261112/clear-tests-resume.log",
+        "redirect/r001-connected-20261112/clear-resume.py",
+        "redirect/r001-connected-20261112/clear-scoring.snapshot.json",
+        "redirect/r001-connected-20261112/clear-later.png"
+      ]
+    }
+  ]
+}

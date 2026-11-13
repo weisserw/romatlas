@@ -1,0 +1,3 @@
+# Uniform PRG non-code inspection
+
+Four exact maximal FF runs inspected with 16-byte neighbors: [0x3E9C,0x4010), [0xDFC1,0xE017), [0xE191,0xE210), [0xFF19,0x10003). First terminates a 16 KiB bank following repeated 04/05 bytes. Other runs lie among visibly patterned data or immediately before fixed-bank high vectors/trampolines. No accepted instruction fetch overlaps these intervals (checked against current classified code). Uniformity and independently inspected transitions support generic non-code classification, without asserting original linker fill or specific object meaning. No known consumer found in bounded observed code inspection. Other shorter repeated runs deferred rather than assuming broad semantic objects.

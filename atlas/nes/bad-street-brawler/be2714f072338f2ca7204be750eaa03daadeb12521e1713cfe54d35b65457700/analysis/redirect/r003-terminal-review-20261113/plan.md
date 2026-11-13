@@ -1,0 +1,7 @@
+# Round003 redirect reasoning review
+
+Input pass-003 state/map SHA67db4c98e95d432b6caf57006f381944c440f7c1a726f9fda64957ee07acd308; source d2ed49b216c1a7c3d93c43068bcfea480c070401682fa59813927defd51a3748. Read current handoffs, evidence-policy.md and prompts/redirect.txt before assessment.
+
+Target claims: each singleton60 at physical1AC2F/1DBB3/1DDC5, CPUAC1F/DBA3/DDB5 main[12,13,14,15], is native return code versus inert generic data. Prior localized review: r002-residual-20261113/results.md and local-audit.json. No substantive retry is presumed: inspect decisive primary bytes/current source and determine whether corrected premises or combined independent constraints yield a discriminating inference. Caller absence is neither a universal code prerequisite nor evidence of unusedness. A balanced stack is a legitimate hypothetical RTS calling precondition but alone supplies no independent intended-code role.
+
+Method: read exact consumer and neighbor intervals; compare with retained primary reference results and scope. Check current exact complement and independent avenues already identified. Reopen only if a concrete format/control/target-construction discriminator appears. Otherwise preserve sound rejections, record exact insufficiency and hand terminal-incomplete rationale to coordinator for independent acceptance. No classification/source edits, emulator replay or final editorial audit.

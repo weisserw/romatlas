@@ -1,0 +1,237 @@
+{
+  "version": 1,
+  "round": 1,
+  "phase": "disassembly",
+  "game": "Bandai Golf: Challenge Pebble Beach",
+  "context": {
+    "prg_banks": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "actions": "analysis/disassembly/round001/actions.jsonl",
+  "patches": "analysis/disassembly/round001/patches.jsonl",
+  "initial_route": {
+    "reset": true,
+    "trace": {
+      "enabled": true,
+      "capacity": 2000,
+      "kinds": "all"
+    },
+    "first_step": {
+      "unit": "frame",
+      "count": 120,
+      "timeout_ms": 10000,
+      "max_operations": 10000000
+    },
+    "result": "timeout partial progress frame44; inspected title. Then capacity0 Instruction/ControlFlow.",
+    "inputs": [
+      {
+        "buttons": [
+          "start"
+        ],
+        "frames": 3
+      },
+      {
+        "buttons": [],
+        "frames": 60
+      },
+      {
+        "buttons": [
+          "start"
+        ],
+        "frames": 3
+      },
+      {
+        "buttons": [],
+        "frames": 30
+      },
+      {
+        "buttons": [
+          "b"
+        ],
+        "frames": 3
+      },
+      {
+        "buttons": [],
+        "frames": 30
+      },
+      {
+        "buttons": [
+          "a"
+        ],
+        "frames": 3
+      },
+      {
+        "buttons": [],
+        "frames": 30
+      },
+      {
+        "buttons": [
+          "a"
+        ],
+        "frames": 3
+      },
+      {
+        "buttons": [],
+        "frames": 30
+      },
+      {
+        "buttons": [
+          "a"
+        ],
+        "frames": 3
+      },
+      {
+        "buttons": [],
+        "frames": 30
+      },
+      {
+        "buttons": [
+          "b"
+        ],
+        "frames": 3
+      },
+      {
+        "buttons": [],
+        "frames": 40
+      },
+      {
+        "buttons": [
+          "a"
+        ],
+        "frames": 3
+      },
+      {
+        "buttons": [],
+        "frames": 45
+      }
+    ]
+  },
+  "milestones": [
+    {
+      "milestone": "title and player/tee/handicap menus",
+      "status": "visited",
+      "artificial": false,
+      "evidence": [
+        "title.png",
+        "menu.png",
+        "setup2.png",
+        "setup3.png"
+      ]
+    },
+    {
+      "milestone": "initial 18-hole scorecard",
+      "status": "visited",
+      "artificial": false,
+      "evidence": [
+        "hole1.snapshot.json",
+        "hole1.png",
+        "tee1.png"
+      ]
+    },
+    {
+      "milestone": "hole1 course overview and shot/club choice",
+      "status": "visited",
+      "artificial": false,
+      "evidence": [
+        "course1.png",
+        "course1.snapshot.json",
+        "shot-menu.png",
+        "shot-menu.snapshot.json",
+        "club-change.ppm"
+      ]
+    },
+    {
+      "milestone": "natural swing/power/strike timing",
+      "status": "attempted",
+      "artificial": false,
+      "result": "Golfer and power meter visited; repeated A timing not sufficient to prove ball flight. Long operation interrupted by host process lifetime; durable shot-menu snapshot supports replay.",
+      "evidence": [
+        "flight1.snapshot.json",
+        "flight1.png",
+        "swing-replay1.ppm",
+        "power-running.ppm"
+      ]
+    },
+    {
+      "milestone": "representative ball physics",
+      "status": "visited",
+      "artificial": true,
+      "route": "physics.py initial replay; restore course1, $2E=5,$2F=8,$30=2; $5B..$5F=[24,24,0,24,16],$60=0; release2,A3,release30.",
+      "evidence": [
+        "physics-replay.snapshot.json",
+        "physics-replay-contexts-0.json",
+        "physics-replay-contexts-1000.json",
+        "physics-replay-trace.json"
+      ],
+      "result": "Actual accepted fetches at $A136, $8951 and $A755; final main state8. 1507 distinct saved ROM roots."
+    },
+    {
+      "milestone": "hole9 later course and club mechanics",
+      "status": "visited",
+      "artificial": true,
+      "route": "milestones.py hole=8",
+      "evidence": [
+        "hole9-course.png",
+        "hole9-club.png",
+        "hole9-course.snapshot.json",
+        "hole9-club.snapshot.json"
+      ],
+      "result": "Frame evidence confirms OUT 9, changed coastal layout and club screen; artificial hole-loader route."
+    },
+    {
+      "milestone": "hole18 final course and club mechanics",
+      "status": "visited",
+      "artificial": true,
+      "route": "milestones.py hole=17",
+      "evidence": [
+        "hole18-course.png",
+        "hole18-club.png",
+        "hole18-club.snapshot.json"
+      ],
+      "result": "Visually confirmed IN18, 558 yards/par5 coastal layout and club screen; scores artificial."
+    },
+    {
+      "milestone": "terminal scorecard and return to title",
+      "status": "visited",
+      "artificial": true,
+      "route": "terminal.py: restore hole18-club; release; $61=17,$0200=$80,$0240=$80,$2E=9,$2F=5; release2,A3,release55; Start3,release30.",
+      "evidence": [
+        "terminal-scorecard.png",
+        "terminal-return.png",
+        "terminal-scorecard.snapshot.json",
+        "terminal-return.snapshot.json",
+        "terminal-contexts-0.json"
+      ],
+      "result": "Completion handler increments hole17->18; final main7/sub7 scorecard; Start returns title. Artificial round scores."
+    },
+    {
+      "milestone": "bosses",
+      "status": "unavailable",
+      "reason": "Golf game; no boss system identified in manual or local state structure."
+    },
+    {
+      "milestone": "putting on green",
+      "status": "visited",
+      "artificial": true,
+      "result": "Near-cup player position shortcut naturally resolves terrain $06CD=$48, club13; zoomed green/PT capture. Putt test observes $A136 and $8951 with main state8. 1649 ROM instruction starts.",
+      "route": "physics.py: target $75..$77=[122,1,54]; $0216..$021D=[13,0,118,1,0,54,0,0],$2E=3,$2F=0; idle35,A3,idle35. Then $2E=5,$2F=8,$30=2,$5B..$5F=[16,16,0,16,16]; release3,A3,release35.",
+      "evidence": [
+        "putting-club.png",
+        "putting-club.snapshot.json",
+        "putt-moving.snapshot.json",
+        "putt-contexts-0.json",
+        "putt-contexts-1000.json",
+        "putt-trace.json"
+      ]
+    },
+    {
+      "milestone": "bunker/water/out-of-bounds and two-player variants",
+      "status": "deferred",
+      "reason": "Representative normal swing, late coastal holes, putting and terminal transitions covered; exhaustive collision/terrain or multiplayer permutations do not offer classification gains now. Terrain response graph structurally classified; semantics remain commentary topics."
+    }
+  ]
+}

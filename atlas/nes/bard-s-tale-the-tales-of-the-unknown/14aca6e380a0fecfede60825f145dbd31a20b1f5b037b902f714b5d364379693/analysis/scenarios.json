@@ -1,0 +1,146 @@
+{
+  "version": 1,
+  "milestones": [
+    {
+      "milestone": "Startup/title",
+      "status": "visited",
+      "route": "Reset -> 142 frames partial bounded startup snapshot; continue idle 300 frames. Earlier button/pressed inputs had no effect. Correct Start pulse using buttons array at confirmed title.",
+      "evidence": [
+        "analysis/round01/startup-snapshot.json",
+        "analysis/round01/release.png",
+        "analysis/round01/continue3.py"
+      ],
+      "reachability": "natural"
+    },
+    {
+      "milestone": "Guild and menus",
+      "status": "visited",
+      "route": "From continue-snapshot, port1 buttons[start] 15 frames, release75, idle120 -> Guild; B20/release30 -> main menu; B60 -> party menu; down25/release60 -> cursor1.",
+      "evidence": [
+        "analysis/round01/guild-ready.json",
+        "analysis/round01/guild-ready.png",
+        "analysis/round01/party-menu.png"
+      ],
+      "reachability": "natural"
+    },
+    {
+      "milestone": "Character creation",
+      "status": "visited",
+      "route": "Restore create-nav-settle; patch RAM03D9=5 from independently inspected menu selector/cursor contract; A75 -> Create submenu. Further A75 -> class menu pending, snapshots retained.",
+      "evidence": [
+        "analysis/round01/name-entry-decode.json",
+        "analysis/round01/finish-name.json",
+        "analysis/round01/finish-name.png"
+      ],
+      "reachability": "artificial after cursor patch",
+      "observed_result": "Created Warrior AA and added to active party; complete party/HUD visible in field-ready.png. Cursor/name patches make lineage artificial."
+    },
+    {
+      "milestone": "Town/field systems",
+      "status": "visited",
+      "route": "Area probe1 active: restore guild-ready; RAM0202=1,0203=FF; positions7B=13,7C=5; clear known NMI request flags; PC=C108 stackFF at operation boundary, 120frame budget. See area_probe.py.",
+      "evidence": [
+        "analysis/round01/field-ready.json",
+        "analysis/round01/field-ready.png",
+        "analysis/round01/leave-guild-decode.json"
+      ],
+      "reachability": "artificial",
+      "observed_result": "Leave Guild by ordinary input after artificial party setup produced complete Skara Brae viewport/minimap and Warrior AA HUD; field-ready snapshot reusable."
+    },
+    {
+      "milestone": "Cellar/sewers",
+      "status": "visited",
+      "reason": "Area loader0202 and C108 reinitialization contract being tested; source walkthrough gives later routes but no RAM contract.",
+      "route": "Corrected EC93 PPU-disable then C108 initialization, area0202=1/0203=FF, positions13,5, stack01FE=07/01FF=C1, PC EC93/stackFD/P24; Up30 after bounded initialization.",
+      "observed_result": "Cellar label/minimap, no stale Guild tiles; Up moved marker. Subsequent0340=FF encounter-threshold patch/Up100 produced two visible enemies. Combat commands pending. Battle bank12/13 initialized and text identified Sorcerer groups; combat command selection still pending. Fight and Attack selected, target chosen, enemy spell narration began and AA HUD appeared (combat-target-select.png); final bounded turn result pending. Final snapshot combat-turn: Arc Fire narration, AA HP12/action Attack visible; no resolved damage/victory/defeat claimed. Last90frames yielded42new bytes; no repetitive further text cycling.",
+      "evidence": [
+        "analysis/round01/area_transition.py",
+        "analysis/round01/transition1-init.png",
+        "analysis/round01/transition1-movement.png",
+        "analysis/round01/cellar-encounter.png",
+        "analysis/round01/text-delay-decode.json"
+      ]
+    },
+    {
+      "milestone": "Catacombs/castle",
+      "status": "attempted",
+      "reason": "Corrected area6 transition was interrupted externally (143) after an initial fade capture but before movement/final snapshot; no Castle visit claimed. Resume from field-ready recipe with checkpoints per stage rather than repeating opaque manual play.",
+      "evidence": [
+        "analysis/round01/transition6-init.json",
+        "analysis/round01/transition6-init.png",
+        "analysis/round01/area_transition_later.py"
+      ]
+    },
+    {
+      "milestone": "Kylearan/Mangar towers, bosses",
+      "status": "visited",
+      "reason": "Need area/battle selector contract; broad representative shortcut planned after initial transition check.",
+      "route": "area_probe.py15 uses same clean Guild snapshot and initialization recipe; selector15 is within inspected16-cell property arrays.",
+      "observed_result": "Corrected transition15 produced M-Tower label/minimap and Up movement; no boss fight or ending triggered. Dark viewport/absent HUD after reinitializer remain limitations, so ordinary full-game progression not inferred.",
+      "evidence": [
+        "analysis/round01/transition15-init.png",
+        "analysis/round01/transition15-movement.png",
+        "analysis/round01/transition15.json"
+      ]
+    },
+    {
+      "milestone": "Ending/credits",
+      "status": "attempted",
+      "reason": "No ending trigger contract known; inspect loader/dispatch selectors before any entry attempt; redirect question if bounded shortcuts cannot initialize.",
+      "route": "Final-area15 visit plus practical walkthrough-derived coordinate11,14 hypothesis: from11,13 facing0, threshold0340=0, Up120.",
+      "observed_result": "Map moved but no boss/ending event. Need ROM event record alignment; do not brute force RAM/coordinates.",
+      "evidence": [
+        "analysis/round01/mangar-coordinate.json",
+        "analysis/round01/mangar-coordinate.png",
+        "analysis/gameplay.md"
+      ]
+    },
+    {
+      "milestone": "Mangar finalboss from corrected event record",
+      "status": "visited",
+      "reachability": "artificial",
+      "route": "boss-gate.py:restoretransition15;operationboundary;7B..7E=12,14,0,0;1FE..1FF=E6,C5;0340=0;PCD00E/stackFD/P24;run_untilF607;inspect06FC andclear0;run_untilD627;oneoperation;60frames.",
+      "observed_result": "ActualD114acceptedfetches,EncounterType1=56/count1,Mangarportrait/name;no combatwinclaimed.",
+      "evidence": [
+        "analysis/redirect/round01-r02/boss5-state.json",
+        "analysis/redirect/round01-r02/boss5.png",
+        "analysis/redirect/round01-r02/boss5-contexts.json"
+      ]
+    },
+    {
+      "milestone": "Ending narrative,credits,andterminal THE END",
+      "status": "visited",
+      "reachability": "artificial",
+      "route": "ending_probe.py beginsD139fromboss5state/stackFF/P24 (bank12victory85A6 checks02AA9 thenD139). Encodedacktexts observed. ending_terminal.py fromsavedfrontier enters80CFgraphics19->run_until80D7 thenPC80DC/stackFF skipssecondlongdialogue. credits_finish.py restorescreditsstate,usesRAM57=1 each4framechunk becauseNMIunconditionallydecrements.",
+      "observed_result": "Narrative relief/warmbreeze,PROJECT MANAGERcredit,andBARD S TALE/TALES OF THE UNKNOWN/THE END screen;actualPC81C0/effective6,7,14,15/stackFF/0250counter28 after16chunks. Naturalrouteandcombatvictorynotclaimed.",
+      "evidence": [
+        "analysis/redirect/round01-r02/ending-release1.png",
+        "analysis/redirect/round01-r02/ending-ack2.png",
+        "analysis/redirect/round01-r02/ending-terminal.png",
+        "analysis/redirect/round01-r02/credits-finish.png",
+        "analysis/redirect/round01-r02/credits-finish-state.json",
+        "analysis/redirect/round01-r02/credits-finish-contexts.json"
+      ]
+    },
+    {
+      "milestone": "Round03 initialized combat enemy-defeat bookkeeping",
+      "status": "visited",
+      "route": "Import round03-r04/runtime-combat-clean.json, step one operation to instruction boundary; internal RAM0310=00,030D=FF,030E=FF; PC917A enters understood HP-store block with banks12/13/14/15. Six100000-operation chunks, alternating A/release. Clean alternative:192frames A/release without patches.",
+      "observed_result": "Clean alternative left counts1/2/2. Patched artificial scenario changed encounter group0 type0328 from19 to0 and count032B from1 to0 by second chunk;949C exit not reached within600000operations.23 unknown retiredROMroots, all already proposed StaticCode; no global return or natural reachability claim.",
+      "evidence": [
+        "analysis/redirect/round03-r04/runtime-damage-recipe.json",
+        "analysis/redirect/round03-r04/runtime-damage-results.json",
+        "analysis/redirect/round03-r04/runtime-damage-contexts.json",
+        "analysis/redirect/round03-r04/runtime-damage-unknown-fetches.json",
+        "analysis/redirect/round03-r04/runtime-clean-context-baseline.json"
+      ]
+    }
+  ],
+  "input_schema": {
+    "port": 1,
+    "buttons": [
+      "start"
+    ]
+  },
+  "notes": "Set buttons=[] to release; reassert after snapshot import. Snapshot export itself does not advance release polling; insert 3 release frames before next pulse. Each route logs requests/responses under analysis/round01/rpc-*.jsonl."
+}

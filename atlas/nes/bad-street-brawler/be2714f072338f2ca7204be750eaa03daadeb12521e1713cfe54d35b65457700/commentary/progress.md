@@ -1,0 +1,9 @@
+# Final current-source editorial acceptance
+
+Pass-003 map/state SHA256 67db4c98e95d432b6caf57006f381944c440f7c1a726f9fda64957ee07acd308. Counts: 13986 code, 117099 data including header, three unknown; 131085/131088 classified (rounded 100.00%), INCOMPLETE. Readability and final editorial acceptance pass; structural completion is separate.
+
+Reused full current-source readability credit for all 6724 scaffold entries and prior 412 retained unit records. Targeted final review confirmed all eleven recorded scope corrections and 35 immediate-alias removals, checked new generic-data notes and bank0 instrument alias, and corrected callable/no-op residual wording. Fixed stale nested summaries and source links, six generic unit summaries and the obsolete camera-BRK inventory premise. Normalized data-unit references to reviewed objects, synchronized nested canonical summaries/ranges and verified exact named source anchors. Removing the duplicate obsolete camera alias leaves 411 distinct canonical units. Details: editorial-audit.md; analysis/final-unit-anchor-check.json. Prior source/review/history remain intact.
+
+No remaining current-source readability frontier. The three unknown bytes are physical1AC2F/1DBB3/1DDC5, CPUAC1F/DBA3/DDB5 in [12,13,14,15]. Each $60 remains potential callable/no-op return versus inert data; no unusedness follows from absent accepted references. Other semantic/natural-selection limits remain in uncertainties.md. No structural/map edits.
+
+Final source game.asm SHA256 4387fdb27c6a55e603c41dc9baf16cf1a7a57bebfe774a8707dbbf6bf818243e. Supported final audit rebuild and reading copy results are in audit.json, verification.json and analysis/final-acceptance-handoff.md. NES-001 remains sole known toolkit issue, no blocker. No toolkit edits, archive, publication or cleanup.

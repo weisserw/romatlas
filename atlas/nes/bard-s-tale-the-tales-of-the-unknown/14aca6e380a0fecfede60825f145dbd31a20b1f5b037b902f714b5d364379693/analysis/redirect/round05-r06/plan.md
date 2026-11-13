@@ -1,0 +1,7 @@
+# Round05 redirect r06 plan and assessment
+
+Input current-source readability gate: analysis/handoff-round05-commentary.md. No map/source mutations authorized. Unique attempt; primary completed histories reused.
+
+Question: do the final three RTS bytes have a supported static Code or generic Data role after the round05 acceptance? Prior barrier: legal single opcode without distinguishing entry/format evidence. Changed evidence: the 8236-byte proposal is independently accepted, and full current source is readable; recompute the exact complement and inspect whether those accepted contracts supply a new constraint. Method: inspect actual preceding unconditional transfers, next entries, encoded references/literal pointer limitations and D95B consumer; compare combined constraints with strongest competitors. Stop this method if accepted neighboring contracts provide no discriminating entry, pattern or extent fact. No automatic replay of the previous search.
+
+Independent avenues: current source callbacks/upload templates, audio continuations, name retry, conditional party loop, mixed containers and broad ending routes are assessed against primary prior artifacts and present source. New tests require an identified causal mechanism or corrected inference; arbitrary pointer/stack/gameplay sweeps are excluded. An actionable method continues this same phase; a sound absence of useful revised method permits terminal-incomplete coordinator review.

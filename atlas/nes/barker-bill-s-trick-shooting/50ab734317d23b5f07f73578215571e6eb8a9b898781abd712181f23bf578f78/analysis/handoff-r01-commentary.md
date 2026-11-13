@@ -1,0 +1,15 @@
+# Round 1 commentary handoff
+
+Current-source readability complete; ROM classification incomplete. Ready for redirect. No classified-source readability scope deliberately deferred; final editorial/archive audit remains pending.
+
+Scope: all 720 scaffold entries reviewed, including 498 code fragments / 12,476 code bytes / 5,553 accepted instructions, six data regions, one CHR region and 215 explicitly explained unknown intervals / 52,235 bytes. 101 functional reading units cover main scene control, all current gallery/reel fragments, fixed-bank utilities, OAM/VRAM/HUD and audio. Descriptive routine/branch/storage symbols include scene-specific aliases for reused RAM. Table aliases name consumers without claiming unknown byte extents.
+
+Durable local source: [commentary/source/game.asm](../commentary/source/game.asm); [reading copy](../commentary/reading-after.asm); [full inventory](../commentary/review.json); [unit scopes](../commentary/units-r01.json); [coverage](../commentary/coverage-r01.json); [symbols](../commentary/symbols-r01.json); [progress](../commentary/progress.md). Frozen before/baseline/state preserved. All assets remain local.
+
+Fresh [verification](../commentary/verification.json) passes byte-identically. Source SHA256 5f6f3b59d74116f019b9c3254548026087beaf07ba7458c591f868b39fbf5e7a. Reading copy refreshed after that check. Input SHA256 remains 50ab734317d23b5f07f73578215571e6eb8a9b898781abd712181f23bf578f78. maps/current.json and analysis/state.json remain db252197fe7e5c3fb4e479eaee7888427f006a35a798a9899b20f09f1a665cda, checkpoint pass-001-final. No map/classification mutations: 144,389/196,624 classified (73.43%), 52,235 unknown.
+
+[Concrete unresolved questions](../commentary/uncertainties.md) supply exact source links and bounded investigations. Priority: return-address dispatcher tables (R01-L001), especially main unknown $0C0F5..$0C10B with independent startup defaults at $0C109/$0C10A; consumer-anchored metasprite/tileblock/attribute and parallel animation/reel stream batches (R01-L004); late-gallery target-throwing/transition contracts; audio stream formats and record commit semantics. Evaluate claims using evidence-policy.md; natural reachability and original author intent are separate from structural evidence. Generic non-code remains acceptable where a specific format is unresolved.
+
+Important retained meanings: round_number=$06F2 is capped at 99 and independently used by HUD. auxiliary_count=$0625 is separate; prior round hypothesis was rejected. Scores are little endian, capped at 9999; high-RAM records are signature/checksum-validated, not battery-backed. The $FF unofficial-opcode fragment remains accepted observed code but purpose/normal entry is uncertain. Expansion-register writes do not prove FDS hardware use.
+
+Toolkit: no new commentary findings; [report](toolkit-issues.md) retains NES-001 Zapper missing feature, zero confirmed/suspected bugs, no structural-work blocker. No toolkit edits, archive, deletion or publication. Free disk about 6.6 GiB; shared scratch 208 KiB.

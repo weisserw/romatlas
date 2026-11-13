@@ -1,0 +1,15 @@
+# Coordinator residual-rejection precheck
+
+This is preparation for terminal review, not a terminal handoff. Round 3 commentary is still active; subsequent redirect must assess the current readable context before stopping. The prior turn was progress (accepted-byte disassembly handoff and separate commentary launch); this continuation revalidated the same live worker and inspected stopping premises.
+
+Inspected the exact claims and strongest alternatives in [round 2 rejection review](../redirect/r02-20261113-a/rejection-review.md), the decisive [primary byte neighborhoods and address hits](../redirect/r01-20261113-a/seven-byte-primary-review.json), and [source/control/table extracts](../redirect/r02-20261113-a/primary-source-extracts.json). Rechecked all six bytes, neighborhoods and cited occurrence neighborhoods against input/game.nes; [results](residual-primary-check.json) match the expected input hash.
+
+The corrected generic-data reasoning for 02A21 has already been accepted independently. It does not extend to the remaining six bytes: they have no corresponding aligned data target plus closing record grammar. The old zero-count rejection is not inherited here.
+
+403A: the prior RTS excludes fallthrough only. A standalone BRK and an inert zero remain compatible with exact code neighbors; no local non-code grammar favors generic data. 41AC: seven complete dispatch words end before this RTS-shaped byte and next handler starts after it. The table cannot be extended by half a word; that endpoint alone distinguishes neither a no-op stub nor datum.
+
+42E8, 4999 and 60CE: previous tail jumps impose no continuation contract on the following return-shaped byte. The review explicitly compares accepted JMP/RTS examples with incoming branch edges, rather than requiring execution or a live caller universally. The independently accepted isolated routines also have meaningful multi-instruction field/helper contracts, unlike these one-byte alternatives. The 4999 address-word hits are overlapping frame-89 bytes; this refutes those pointer interpretations only, not all possible stub entry.
+
+A1B2: two pointer words and two four-byte palette sequences account independently for the preceding twelve-byte object. This exact extent does not prove a generic-data suffix. The apparent A1A2 occurrence crosses actual immediate-load instructions, so it supplies no aligned pointer role. A lone RTS stub remains a competing interpretation.
+
+No shared encoding/uniform run/container links the six. Unknown semantics or natural selection are not imposed as extra prerequisites. The remaining uncertainty is code-versus-data itself. Arbitrarily entering each byte would show CPU mechanics without discriminating storage role; absence of execution or references alone is not used as data proof. On these unchanged premises I found no useful corrected inference/test in this review. New evidence or the pending redirect could still reopen a localized claim. Do not mark ROM classification complete from rounded percentages or this precheck.

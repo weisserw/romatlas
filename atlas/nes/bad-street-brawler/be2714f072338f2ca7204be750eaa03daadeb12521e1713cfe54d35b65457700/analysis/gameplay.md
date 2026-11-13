@@ -1,0 +1,8 @@
+# Bad Street Brawler (NES, probable USA)
+Identified by runtime title and Mattel/Beam Software 1989 splash. ROM revision not externally matched.
+
+Manual transcription: https://www.world-of-nintendo.com/manuals/nes/bad_street_brawler.shtml (consulted 2026-11-12). Describes START to open selection, up/down for mode, START again; START exits practice. Directional pad walks/jumps/crouches, A/B select attacks. Fifteen stages with three attacks per stage; park, street, docks, center, rail yard locations. These are experiment hypotheses until tested against this ROM. No ROM/assets downloaded. GameFAQs guide fetch unavailable.
+
+Local confirmation: corrected full-array START reaches one-player menu, subsequent START starts stage1 practice, START exits practice. Runtime frames confirm title and stage names. Artificial selector shortcut and ending route are documented in scenarios/round001 handoff; these do not establish ordinary later-game reachability. Stages5/10/15 active fights and ending car/money illustration visited. Stage6/12 distinct boss triggers remain untested. A/B attacks and up jumping exercised in natural stage1 and artificial later stages.
+
+Round001 redirect local confirmation: supported final-stage-script boundary shortcut produced stage6 swan-like boss and stage12 large red humanoid boss; actions exercised. Terminal87 shortcut invoked full clock/energy scoring and CityHall post-stage hamburger cartoon. These are artificial script/clock/health edits, not natural boss defeats. Snapshots/recipes in scenarios.json and redirect/r001-connected-20261112/. Encoded ROM instructions refer to a controller glove; output signaling data is structurally recovered but actual peripheral behavior/compatibility remains unverified.

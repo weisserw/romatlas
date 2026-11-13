@@ -1,0 +1,11 @@
+{
+  "byte_identical": true,
+  "ok": true,
+  "rom_sha256": "14aca6e380a0fecfede60825f145dbd31a20b1f5b037b902f714b5d364379693",
+  "source_sha256": {
+    "game.asm": "7cf7a0d349c929a8996af1970c955614544f165b47f3a2c410f7afd86075106a"
+  },
+  "reviewed_regions": 1710,
+  "reviewed_units": 1761,
+  "editorial_audit": true
+}

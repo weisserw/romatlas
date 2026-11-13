@@ -1,0 +1,222 @@
+{
+  "orchestration_complete": true,
+  "terminal_outcome": "justified-terminal-incomplete",
+  "classification_complete": false,
+  "blocked": false,
+  "required_work_remaining": [],
+  "checkpoint": "pass-003",
+  "classified_bytes": 131085,
+  "total_bytes": 131088,
+  "unknown_bytes": 3,
+  "classification_percentage_display": "100.00% (rounded; incomplete)",
+  "kinds": {
+    "Data": 117099,
+    "Code": 13986
+  },
+  "unknown_physical_offsets": [
+    109615,
+    121779,
+    122309
+  ],
+  "unknown_cpu_addresses": [
+    "AC1F",
+    "DBA3",
+    "DDB5"
+  ],
+  "effective_prg_banks": [
+    12,
+    13,
+    14,
+    15
+  ],
+  "rom_sha256": "be2714f072338f2ca7204be750eaa03daadeb12521e1713cfe54d35b65457700",
+  "state_map_sha256": "67db4c98e95d432b6caf57006f381944c440f7c1a726f9fda64957ee07acd308",
+  "source_sha256": "4387fdb27c6a55e603c41dc9baf16cf1a7a57bebfe774a8707dbbf6bf818243e",
+  "editorial_complete": true,
+  "byte_identical": true,
+  "reading_copy_matches_source": true,
+  "store_and_portable_map_validate": true,
+  "canonical_units": 411,
+  "reviewed_regions": 6724,
+  "nested_reviewed_units": 6696,
+  "sequential_phase_workers": [
+    {
+      "round": 1,
+      "phase": "disassembly",
+      "separate_worker": "/root/round1_disassembly",
+      "handoff": "analysis/round-001-disassembly-handoff.md"
+    },
+    {
+      "round": 1,
+      "phase": "commentary",
+      "separate_worker": "/root/round1_commentary",
+      "handoff": "analysis/round-001-commentary-handoff.md"
+    },
+    {
+      "round": 1,
+      "phase": "redirect",
+      "separate_worker": "/root/round1_redirect",
+      "handoff": "analysis/round-001-redirect-handoff.md"
+    },
+    {
+      "round": 2,
+      "phase": "disassembly",
+      "separate_worker": "/root/round2_disassembly",
+      "handoff": "analysis/round-002-disassembly-handoff.md"
+    },
+    {
+      "round": 2,
+      "phase": "commentary",
+      "separate_worker": "/root/round2_commentary",
+      "handoff": "analysis/round-002-commentary-handoff.md"
+    },
+    {
+      "round": 2,
+      "phase": "redirect",
+      "separate_worker": "/root/round2_redirect",
+      "handoff": "analysis/round-002-redirect-handoff.md"
+    },
+    {
+      "round": 3,
+      "phase": "disassembly",
+      "separate_worker": "/root/round3_disassembly",
+      "handoff": "analysis/round-003-disassembly-handoff.md"
+    },
+    {
+      "round": 3,
+      "phase": "commentary",
+      "separate_worker": "/root/round3_commentary",
+      "handoff": "analysis/round-003-commentary-handoff.md"
+    },
+    {
+      "round": 3,
+      "phase": "redirect",
+      "separate_worker": "/root/round3_redirect",
+      "handoff": "analysis/round-003-redirect-handoff.md"
+    }
+  ],
+  "final_acceptance_worker": "/root/final_acceptance",
+  "archive_options_sha256": "95ceb49b04642de97c9c6b2caacddf65bb45dc084f4ca57a0c2583e57b29acf7",
+  "markdown_inventory_unrecognized": [],
+  "archive_executed": false,
+  "cleanup_executed": false,
+  "published": false,
+  "toolkit_modified": false,
+  "requirements": [
+    {
+      "requirement": "Sequential separate phase-worker coordinator workflow, resume and checkpoint/lead history",
+      "status": "proved",
+      "evidence": [
+        "analysis/progress.md",
+        "analysis/leads.json",
+        "analysis/round-001-disassembly-handoff.md",
+        "analysis/round-001-commentary-handoff.md",
+        "analysis/round-001-redirect-handoff.md",
+        "analysis/round-002-disassembly-handoff.md",
+        "analysis/round-002-commentary-handoff.md",
+        "analysis/round-002-redirect-handoff.md",
+        "analysis/round-003-disassembly-handoff.md",
+        "analysis/round-003-commentary-handoff.md",
+        "analysis/round-003-redirect-handoff.md"
+      ]
+    },
+    {
+      "requirement": "Evidence-backed byte counts, physical identities, effective banks and unknown complement without false whole-ROM completion",
+      "status": "proved",
+      "evidence": [
+        "analysis/state.json",
+        "maps/current.json",
+        "analysis/round-003/classification-counts.json",
+        "analysis/round-003/unknown-complement.json",
+        "analysis/final-handoff.md"
+      ]
+    },
+    {
+      "requirement": "Bounded static and broad best-effort gameplay progression including later areas, bosses, transitions and ending",
+      "status": "proved",
+      "evidence": [
+        "analysis/scenarios.json",
+        "analysis/gameplay.md",
+        "analysis/round-001-disassembly-handoff.md",
+        "analysis/round-001-redirect-handoff.md"
+      ],
+      "limits": "Natural defeat/completion and universal path execution unproved; exact artificial routes retained. Legacy boss item explicitly reconciled with later visits."
+    },
+    {
+      "requirement": "Continuous productive redirect and scope-correct terminal rejection review with coordinator primary-evidence inspection",
+      "status": "proved",
+      "evidence": [
+        "analysis/redirect/r001-connected-20261112/frontier.md",
+        "analysis/redirect/r002-residual-20261113/results.md",
+        "analysis/redirect/r003-terminal-review-20261113/results.md",
+        "analysis/terminal-rejection-review.md"
+      ]
+    },
+    {
+      "requirement": "Full currently classified source readability, meaningful code/data/branch/variable symbols, uncertainty and final editorial fixes",
+      "status": "proved",
+      "evidence": [
+        "commentary/editorial-audit.md",
+        "commentary/review.json",
+        "analysis/final-unit-anchor-check.json",
+        "analysis/final-coordinator-source-check.json",
+        "analysis/final-acceptance-handoff.md"
+      ],
+      "scope": "6724 reviewed regions,411 distinct canonical units,6696 exact nested canonical matches;13986 code-byte unit coverage; prior data region review credit retained."
+    },
+    {
+      "requirement": "Fresh byte-identical source verification, reading copy, valid internal store and portable map",
+      "status": "proved",
+      "evidence": [
+        "analysis/pass-003-verification.json",
+        "analysis/final-map-validation.json",
+        "commentary/verification.json",
+        "commentary/audit.json",
+        "commentary/reading-after.asm",
+        "analysis/final-coordinator-source-check.json"
+      ]
+    },
+    {
+      "requirement": "Input ROM unchanged and historical evidence/source/checkpoints preserved locally",
+      "status": "proved",
+      "evidence": [
+        "workspace.json",
+        "analysis/round-002/preservation-audit.json",
+        "analysis/round-003/preservation-audit.json",
+        "analysis/final-coordinator-source-check.json",
+        "analysis/round-002/commentary-pass-001/commentary/progress.md",
+        "analysis/round-003/commentary-pass-002/commentary/progress.md"
+      ]
+    },
+    {
+      "requirement": "Inspect archive document-selection contract; explicit final selection/disposable omission; account for every unrecognized Markdown",
+      "status": "proved",
+      "evidence": [
+        "analysis/archive-preparation.md",
+        "archive-options.json",
+        "analysis/archive-document-inventory.json"
+      ],
+      "scope": "42 Markdown files;26 explicit additional final selections;6 duplicate-instruction omissions;0 unrecognized;all final conclusions/handoffs selected."
+    },
+    {
+      "requirement": "No toolkit changes, archive execution, deletion/cleanup or publication; toolkit findings reported without fixing toolkit",
+      "status": "proved",
+      "evidence": [
+        "analysis/toolkit-issues.md",
+        "analysis/final-handoff.md",
+        "analysis/final-acceptance-handoff.md"
+      ],
+      "scope": "Configured release binary used;one NES-001 documented workaround,no blocker;authorized work retained locally."
+    },
+    {
+      "requirement": "Reach documented terminal handoff without relabeling incomplete classification or blocked work as ROM success",
+      "status": "proved",
+      "evidence": [
+        "analysis/final-handoff.md",
+        "analysis/terminal-rejection-review.md",
+        "analysis/final-acceptance-handoff.md"
+      ],
+      "outcome": "Justified terminal incomplete,not blocked,not whole-ROM complete;no required work remains in orchestration."
+    }
+  ]
+}

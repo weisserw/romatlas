@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "pass": "pass-001",
+  "runtime_support": "mapper 5 rejected by configured debugger",
+  "milestones": [
+    {
+      "milestone": "startup/title",
+      "status": "attempted",
+      "route": [
+        {
+          "method": "emulator.start",
+          "params": {}
+        }
+      ],
+      "observed_result": "explicit unsupported debugger mapper 5 error; no accepted instruction fetch",
+      "evidence": "analysis/disassembly/pass-001/rpc.jsonl"
+    },
+    {
+      "milestone": "character/scenario/difficulty menus",
+      "status": "unavailable",
+      "reason": "MMC5 runtime unsupported; text confirms menu concepts only"
+    },
+    {
+      "milestone": "ordinary strategy turns and diplomacy",
+      "status": "unavailable",
+      "reason": "MMC5 runtime unsupported; no RAM patches attempted"
+    },
+    {
+      "milestone": "battle and expedition mechanics",
+      "status": "unavailable",
+      "reason": "MMC5 runtime unsupported"
+    },
+    {
+      "milestone": "later scenarios and major transitions",
+      "status": "unavailable",
+      "reason": "MMC5 runtime unsupported; four scenario years visible in text"
+    },
+    {
+      "milestone": "victory/defeat/ending screens",
+      "status": "unavailable",
+      "reason": "MMC5 runtime unsupported; feast and barbarian terminal messages identified statically"
+    }
+  ]
+}

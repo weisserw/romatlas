@@ -1,0 +1,8 @@
+# Redirect R4 closed research frontier
+No ready lead, zero proposed/accepted bytes. Terminal incomplete is proposed for coordinator primary reasoning inspection, not automatic acceptance.
+
+Completed: current mapped17726-start direct/base reference audit; exact10range neighbor/consumer review; all6 installed presentation/stage object-table endpoints plus2drawing tables; known reserved-hook comparison; independent narrow2FFsuffix review; current source uncertainties and progression checklist review. No unfinished productive experiment or supported continuation is deferred.
+
+Remaining natural producer56, broader resource-return behavior, natural selectors/defeat/credits, and artwork/sound meanings have no new concrete mechanism resolving these13bytes. The accepted complete helpers and Data resource containers already localize those contracts; requiring their natural producer or universal bank preservation would add irrelevant prerequisites. Saved five-stage/final/result/exterior/ballroom routes already address broad progression; repeating them does not distinguish the exact residual models. No new scenario or RAM patch is justified by a discriminating question.
+
+Reopen exact ranges on an independently anchored reserved-entry contract, typed layout/consumer/alignment relationship, or other evidence whose predictions differ between empty-entry and filler/scalar models; or for1D53A..1D53E a consumer/encoded origin or independently coherent overlap-entry contract handlingScratch06 and side effects. Natural fetch sufficient, not necessary. No arbitrary decode/execution, whole-source reread or new round alone changes these constraints.

@@ -1,0 +1,25 @@
+# Coordinator terminal rejection review
+
+Decision: accept the redirect workflow's justified terminal incomplete handoff under unchanged evidence. This closes orchestration, not whole-ROM classification. No blocker is being disguised as success. Exact remaining complement is 13 bytes / ten half-open physical ranges at pass-004-final; classification remains 262147 / 262160 (rounded 100.00%).
+
+Primary records inspected: analysis/redirect/r4-residual-contract/rejection-review.json, primary-audit.json, current-source-neighbors.txt, endpoint-pattern.json, handler-installs-and-dispatch.txt, and current source/map. Reviewed all ten claim-specific combinations of observations, competing roles, negative-result scope and reopening conditions. Source bytes and preceding/following instruction/table boundaries were inspected directly, including the known initializer counterexample and bank-call synthetic-return implementation.
+
+## Nine isolated RTS bytes
+
+Physical bytes at 008521, 009eb9, 009f17, 00c447, 010503, 01da2b, 01e13d, 01e5af and 01ef25 are each `$60`. Three follow independently bounded handler tables. The others follow an already complete return, a terminating jump/return pair, or a guaranteed taken branch; the following code/data has an independent start or word phase. These facts defeat claims that an existing routine or callback table needs to extend over them. They do not prove either standalone empty Code or scalar/alignment Data.
+
+The coordinator autonomously requested a stronger organizational comparison. All six installed presentation/stage tables and two drawing tables were compared. Three odd main-table endpoints contain `$60` before an even handler; even endpoints lead directly to Code. All nine residual bytes are odd and precede even starts. This is genuine independent alignment evidence.
+
+Its limit was tested against a decisive current-ROM counterexample: physical 01ee40 is an existing return, 01ee41 is EmptyTileEffectInitializer's return, and 01ee42 begins UpdatePendingTileEffect. InitializeStageSubsystems explicitly calls the odd initializer (current source line 31962); current map region 574 is Observed Code. Thus the same placement pattern is compatible with a real empty entry. The counterexample limits the proposed parity-only non-code inference, not all possible layout reasoning. No universal live-caller prerequisite is introduced. A lone return's hypothetical calling convention supplies behavior but no additional discriminator, unlike the independently supported operation/shared-tail contracts of accepted short initializers.
+
+## Four-byte island, with independent suffix assessment
+
+Physical [01d53a,01d53e) contains `2c d5 ff ff`, between InitializeStageSubsystems' return and CallBankedRoutine's independently established STX Scratch06 entry. The little-endian D52C self-pointer / FFFF marker is a plausible data interpretation; a typed consumer or specific original layout is not demanded merely for generic Data.
+
+The two FF suffix bytes [01d53c,01d53e) were assessed independently. Two-byte uniformity here does not establish non-code: localized official/unofficial decodings can overlap the following STX and join at STY Scratch07. The accepted audio LDY/BIT alternate entry demonstrates that crossing a known entry cannot itself reject Code. Conversely, the island decodings skip Scratch06 initialization and add writes/flag effects without an independently supported contract. Invented scratch preconditions would not prove an alternate bank-call wrapper. Neither generic non-code nor coherent alternate Code is sufficiently distinguished by the combined bytes, bounded neighbors and current consumer/flow evidence. Longer uniform fills and multi-record typed patterns accepted elsewhere provide stronger independent structure; their acceptance does not force this short island to pass.
+
+## Stopping and resumption
+
+The review does not propagate missing references into proof of Data, deadness or rejection of static Code. Current mapped reference scans are explicitly nonexhaustive for computed accesses. Structural role and natural use remain separate. Previously accepted adjacent helpers and Data regions are unaffected. The worker reviewed remaining resource/stack/selector questions and progression records; none offers a new concrete discriminating method for these exact bytes. Repeating broad gameplay or arbitrarily executing a return/overlap would establish CPU mechanics, not intended role.
+
+After the corrected organizational comparison and split-island assessment, no useful revised inference/test remains identified. Reuse this assessment on unchanged premises rather than relaunching an empty cycle. Reopen the exact interval if a supported controlling entry, typed consumer/layout/encoded origin, or independently coherent alternative side-effect/stack contract supplies predictions that discriminate the competing roles. Natural execution is sufficient evidence for execution but is not required for a structural reopening. Records, maps, source and routes remain local and resumable.

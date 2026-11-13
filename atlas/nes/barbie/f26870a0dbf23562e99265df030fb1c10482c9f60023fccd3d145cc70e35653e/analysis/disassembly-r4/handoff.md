@@ -1,0 +1,11 @@
+# Disassembly R4 → coordinator/current-source commentary
+
+ROM classification: 100.00% (262147 / 262160 bytes classified; 13 bytes unknown).
+
+Incomplete;13Unknown bytes remain despite rounded100.00%. Accepted full1971-byte R3 proposal union,166annotations:978StaticCode/993StaticData; no rejected proposed span. Counts Code39621/Data100816/Text110/Image121600; [exact counts/per-bank/provenance](final-counts.json). Fresh **pass-004-final** [verification](../pass-004-final-verification.json) byte-identical262160-byte rebuild. Map/state SHA256 `23adea33fb84196e636168943c2024d693895008653a6ac8d81d2ae306655c5d`. Input unchanged; existing commentary source preservedSHA1543a2efd50c7f8c0ec99a64bf52d64d7c09d4394fda01db1ddc6074fa630ca5.
+
+[Independent semantic review](review.md), [audit](independent-audit.json), [configured55extents427starts](configured-decodes.json), [accepted166annotations](accepted-regions.json). Actual58inline/572-byte consumer/slot/type/savedreturn endpoints independently checked;53Data421-byte roles and55Code978-byte field/control/stack/sharedsuffix/context contracts reviewed. No decode-only or arbitrary-return inference. AllnewbytesStatic; reachability separate. Lowerbanksnull forfixedcode except explicitaudio8/9; allprioraliases/collisionFF/noisepointers/track0/577bytecaveats preserved.
+
+[Residual ledger](unknown-ledger.json): nine isolated60 bytes8521,9EB9,9F17,C447,10503,1DA2B,1E13D,1E5AF,1EF25 and four1D53A..1D53E2CD5FFFF. Emptyreturn/scalar/padding and pointer/sentinel/opaqueinstruction alternatives remain unresolved. No materially new discriminating test identified here; nonterminal pass, separate current-source commentary/redirect next. No supported ready continuation withheld. Prior five-stage/final/artificial result/exterior/ballroom progression reused; no new runtime/reachability claim.
+
+R3-001..003 verified, progress/investigation/scenarios/gameplay/toolkit report updated. Next commentary reads **generated/pass-004-final/game.asm** in full, preserving existingsource/evidence. No commentary/redirect/final editorial audit performed. No new toolkit issues found; [persistent report](../toolkit-issues.md) one suspected/twodocumented missing features, no blocker. Ownservers exited. No toolkit/ROM edits, archive/deletion/publication.

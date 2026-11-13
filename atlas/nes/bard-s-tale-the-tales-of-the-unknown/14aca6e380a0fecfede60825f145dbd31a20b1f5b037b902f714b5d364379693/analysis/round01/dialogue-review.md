@@ -1,0 +1,3 @@
+# Dialogue data boundary review
+
+Physical DA46..FFAD is mixed encoded-message/pointer data, FFAD..10006 is89 zero bytes. Leading code ends JMP DEE6 atDA43..DA45. Pointer atDA6C targets CPU9B26=physicalDB36 in context[6,7,14,15]; table group begins with descriptor and subgroup addresses after five small values. Character encoding and low control bytes repeat throughout. Checked whole bank7 distribution and leading/trailing context, current map and saved contextual roots for conflicting code (none). Exact individual strings/format not inferred. Last10 bank-pair bytes10006..10010 retained unknown; reset stub/vector interpretation needs CPU alias context.

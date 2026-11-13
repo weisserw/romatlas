@@ -1,0 +1,36 @@
+{
+  "classification_complete": false,
+  "workflow_outcome": "terminal_incomplete",
+  "image_size": 393232,
+  "classified_bytes": 393225,
+  "unknown_bytes": 7,
+  "unknown_ranges": [
+    {
+      "offset": 246009,
+      "length": 1
+    },
+    {
+      "offset": 260610,
+      "length": 6
+    }
+  ],
+  "percentage": 99.99821988037596,
+  "kind_counts": {
+    "Data": 231707,
+    "Code": 16285,
+    "Text": 14161,
+    "Image": 131072
+  },
+  "evidence_coverage_classified_bytes": 393225,
+  "provenance": "Static",
+  "observed_execution_bytes": 0,
+  "state_equals_portable_map": true,
+  "state_cli_validate": true,
+  "portable_map_cli_validate": true,
+  "rom_sha256": "0fdf23e58b2409edf0a1372b109b47afcc935c7a7a38961519a188599f931257",
+  "map_sha256": "9f118b5bc70cc7b78fd6b6d278959540d6ba70510f957682fd59c1e2c9d1cabc",
+  "checkpoint": "pass-003",
+  "rejection_review": "analysis/redirect/redirect-003/review.md",
+  "editorial_complete": true,
+  "final_editorial_audit": "commentary/audit.json"
+}

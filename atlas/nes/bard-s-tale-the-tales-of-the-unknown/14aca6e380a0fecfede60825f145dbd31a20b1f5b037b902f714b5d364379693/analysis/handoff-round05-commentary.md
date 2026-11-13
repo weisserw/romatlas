@@ -1,0 +1,13 @@
+# Round05 commentary handoff
+
+COMMENTARY COMPLETE for the entire current source; no readable-source backlog. This is not whole-ROM completion or final editorial acceptance. Exactly 131085/131088 bytes classified (99.997711461%, rounded 100.00%); three isolated Unknown bytes remain.
+
+Current source: commentary/source/game.asm; refreshed commentary/reading-after.asm. All 1710 scaffold entries and 851 units reviewed. Scope: 1563 Code/50144 bytes, 144 Data/80941 bytes including header, three explained Unknown bytes. Carried 1632 prior physical classified regions/711 units and completed all 75 new regions (8036 Code +200 Data bytes), adding 65 meaningful subunits. Entire prior 25-file tree preserved at analysis/round-05/commentary-prior-round04 with verified commentary-preservation.json. Full assessment: analysis/round-05/commentary-coverage.json; progress and uncertainties in commentary/.
+
+Corrected 857F formation domain: IDs 0..7, BB8D/BB9D/BBAD eight-word directories of sixteen-byte records; F759 separately character IDs 0..15/43-byte records. Source now explicitly describes the unpopped empty-name retry frame. Preserve A177/A1BB count-stable/nonlethal predicates, no-empty-finish name protocol, D316 PendingEventSelector 0..32/readable-resource and saved-selector ABI, actual callback preservation/bank restore, A09C/A0AA two-byte saved-pointer stack, renderer $21/$22 clobber versus $44..$49 preservation. Cash index/word-offset/remainder aliases remain distinct.
+
+Fresh final verification byte_identical=true: analysis/round05-commentary-verification.json and commentary/verification.json. Source SHA256 c441ec249a4e203f3408b1f244949cdfc9162813ec059d2d2df9442bba14fb3d; unchanged ROM SHA256 14aca6e380a0fecfede60825f145dbd31a20b1f5b037b902f714b5d364379693. Map/state/checkpoint/frozen baseline SHA256 165f81bd4144e5ddb8712506c572218948bc6e214a3d87b968dea3d8c715a123.
+
+Residual Unknown physical $00943D/$014E64/$01D284 retain no-op entry versus surplus return/fill ambiguity. D95B has separate table-cell evidence and cannot classify them by analogy. Other uncertainties: empty-finish recursion/overflow, global count-shrink/all-defeat correctness, dynamic upload/callback and audio selector origins, nested resource schemas and original game meanings. No natural reachability/full hardware compatibility/global return claim.
+
+Final editorial audit remains pending, reserved for terminal acceptance; not run here. No redirect, map/state/classification/toolkit/ROM edit, replay, archive/publication, cleanup or deletion. archive-options.json remains coordinator-owned. Coordinator decides the next workflow phase.

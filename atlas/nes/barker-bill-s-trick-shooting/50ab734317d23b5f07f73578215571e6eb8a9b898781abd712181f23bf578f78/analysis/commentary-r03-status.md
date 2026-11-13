@@ -1,0 +1,1 @@
+Round 3 / commentary complete. Scope 951/951 entries, 298/298 scopes; 950 physical-identity carries plus new datum; dependencies and stale motion summary rechecked; fresh byte-identical verification and reading refresh passed. No pending readability ranges. Final editorial audit pending; next redirect. See handoff-r03-commentary.md.

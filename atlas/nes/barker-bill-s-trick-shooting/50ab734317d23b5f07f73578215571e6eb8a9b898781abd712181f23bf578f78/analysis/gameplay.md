@@ -1,0 +1,13 @@
+# Gameplay familiarization — round 1
+
+Local title: Trick Shooting, ©1989 Nintendo. Likely Barker Bill's Trick Shooting; external US manual is ©1990, so revision/title uncertainty remains.
+
+Manual transcription: https://www.world-of-nintendo.com/manuals/nes/barker_bil_trick_shooting.shtml (read 2026-11-13). Controller 1 Select chooses mode, Start starts/pauses; Zapper in port 2 supplies shots. Four selections: Balloon Saloon, Flying Saucers, Window Pains, Fun Follies. Combined mode adds Trixie's Shot at round 4, Bill's Thrills at round 9 and slot-machine bonuses. Rounds cap at 99; credits expire into a score/top-five screen, then title. No finite ending described.
+
+Confirmed locally: startup title and Balloon Saloon score/top-five screen. Artificial main-state initialization with RAM $0600=1,2,3 and $0624=1 produces distinct Balloon Saloon, Flying Saucers and Window Pains scenes; see progression experiments. This is artificial reachability, not evidence of natural selection. Ordinary controller input cannot supply the required Zapper shots in current toolkit.
+
+Round1 correction and progression: RAM $0625 is not the displayed round (failed patch kept HUD R1). $06F2 is independently consumed by HUD, incremented with cap $63, and patching98 before gallery initialization produced visible R99. $0627=99 produced99 credits. State4/5 with $06F2=8 produced R9. See confirmed-round-experiments.json and selected frames. Bill's animated introduction still persisted after330 frames; target throwing and Zapper scoring remain unresolved.
+
+Round1 redirect update: Bill's Thrills target throwing and recovery now demonstrated artificially. Preserved normal scene initializer, shortened source-backed timer gates, then satisfied actor frame2 at state5; state6 initialized projectile X171/Y120, after10framesY52, after20framesstate7/Y244.72traced artificial frames,1576accepted contextual opcode roots, aggregate_dropped0. Exact recipe/results and selected snapshots/frame: analysis/redirect/r01-20261113-a/bills_shortcut.py and bills-shortcut-results.json. Optical hits still unavailable; no natural route claimed. Newly inspected unreferenced B147 (bank4) checks round99+score9999 then writes transitionFE; no supported caller/ending route found, so it does not revise the finite-ending assessment into an ending claim.
+
+Round2 disassembly reused these saved representative routes and actual artificial fetches; no unchanged gameplay replay. Scene5 rendering always selects round-derived grids11..18, so the default scene5 grid is not proof of a consumed tile block. E816/E837 control triangle audio, not DPCM. No new natural progression or finite ending claim.

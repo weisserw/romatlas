@@ -1,0 +1,16 @@
+# Round002 ready batch frontier
+
+Research complete for this coherent ready4-byte batch, not terminal exhaustion. No live process, map/source mutation or pending runtime experiment. No competing writer observed. Accepted map/source/ROM identities remain the handoff authorities.
+
+Run `python3 analysis/redirect/r002-residual-20261113/local-audit.py` only if independent reproduction is useful; do not repeat old parsers/gameplay. `proposals.json` contains exact two Static genericData claims:805A length1 andF822 length3. `unknown-ledger.json` refreshes the actual unchanged five-interval/seven-byte complement, separates proposed4 from accepted0 and records three remaining unknownRTS bytes. `results.md` contains actual negative scope, independent constraints, strongest alternatives, and worker shorthand corrections with primary dispatch evidence. `editorial-backlog.json` lists seven stale current-source scope claims for the next readability/editorial pass.
+
+Next phase: independent disassembly review of both claims in one batch. If accepted, count131085/131088classified; code13986/data117099/unknown3. Preserve exact prior annotations and unselected-entry uncertainty. Run required byte-identical verification and current-source commentary before redirect. The proposed labels remain empty; do not invent semantic stage0 or a live standalone program atF822.
+
+Deferred avenues have actual reasons:
+
+- AC1F,DBA3,DDB5: exact singletonRTS values have mutually compatible independent no-op-entry and inert-data interpretations. Supported neighboring contracts end before them; available native/VM fields provide no distinguishing target. ArtificialJSR is nondiscriminating. Reopen on a supported indirect/split pointer writer or structural pattern that actually distinguishes those roles, not merely another successful RTS run. Compact localized rejection review inresults.md is reusable while its premises remain unchanged.
+- B56F11vs12: exact current property structure is already established. Type8/25 metadata/template paths inspected; response/action joins lose persistent actor/state conditions. Native mechanics/data all classified, no residual-byte connection or justified extent revision. A forcedframe11 run would test behavior without resolving current structural ambiguity; no arbitrary runtime test scheduled.
+- Peripheral meaning, field/move names, mixed graphics original splits: current consumers establish accepted structural roles; no new discriminating source or specific residual reference. No unchanged gameplay repetition. Broad naturalstage1, artificial5/10/15, bosses6/12, scoring/poststage and ending records remain reusable.
+- Missing-code-looking commentary: seven statements are stale scope prose, resolved against accepted graph/targets rather than new unknown roots. Editorial work follows structural review; redirect did not modify source.
+
+If independent review rejects a candidate, retrieve its exact primary counterexample and evaluate the localized narrower generic-data claim again; do not inherit an overbroad 'no caller' rejection. Any concrete improved inference/test continues redirect. Terminal assessment, if later appropriate, needs coordinator inspection of residual-specific rejection reasoning. This ready handoff is not such a terminal assessment.
