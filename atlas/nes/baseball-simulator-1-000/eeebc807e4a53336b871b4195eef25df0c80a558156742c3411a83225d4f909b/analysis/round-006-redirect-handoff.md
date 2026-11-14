@@ -1,0 +1,16 @@
+# Round006 redirect handoff
+
+Recommend terminal **incomplete**, pending coordinator review of reasoning and primary evidence. No ready lead or justified revised test survived this pass; proposed0/accepted0bytes. This is not ROM or goal completion.
+
+Input/current/state/checkpoint `maps/round-006-disassembly-final.json` SHA256 `9693711a84a622e470d5e1ae492735ca2404fffe6b7778d316054494c7c21637`; source `19180bcbe08750c7974381bb8beeefbd9e6c9a57bb9759906b90d8a967eab69a`; ROM unchanged. Classification remains262127/262160 (99.99%): Code76639, non-CHRData54416,CHR131072,Unknown33/16spans. Per-bank code/data/unknown: `analysis/round-006-disassembly/bank-counts.json`. Unknown bank totals3:3,6:1,7:5,10:9,11:2,13:1,14:2,15:10; all other banks0.
+
+Coordinator review targets:
+
+- Compact claim/subclaim review: `analysis/redirect/r006-residual-review/rejection-review.md`. T: isolated JSR/JMP9bytes; R: isolated returns11bytes; N:numeric trailer3; A:actor orphan2; F:fixed-prefix split8. Each includes actual negative scope, combined independent constraints, strongest alternative and why a discriminating revised test is unavailable. No caller/origin/working-downstream prerequisite imposed.
+- Decisive **current** primary: `analysis/redirect/r006-residual-review/unknown-ledger.json` exact raw/context/neighbors/limited incoming-edge scan; `local-source.txt` actual current source with original line numbers; `target-primary.json` raw target neighborhoods E696/E678/C403/8B64/8BAF. Historical primary/reviews linked inside review, not inherited by judgment alone.
+- Fresh source-lead scan: `source-lead-scan.json`, dispositions in review's last section; dispatcher/table/bank callbacks, generic labels, unexplained numeric/PPU/IRQ structures inspected. No explicit unreviewed source gaps. Dynamic callbacks still need physical-bank identity when making target claims; current raw descriptor targets do not select a residual alias. Accepted-Code direct-edge scan found no residual entry, explicitly limited to this method.
+- `gameplay-review.md`: actual selected GAMESET, natural Ultra pitch and MOVE images viewed; primary Season$87/timer shortcuts and Start/A9BD2 interception failures inspected. No changed active-widget/parent/entry contract; no unchanged replay/arbitrary RAM or rare-contact sweep. Broad best effort leaves Season terminal/contact/credits unresolved, without universal unreachability claims.
+
+`analysis/leads.json` retains all prior entries/outcomes and adds pass with empty added/updated/ready arrays. Research ledger, investigation/progress and scenario review appended. No maps/state/source/ROM/toolkit changed. Current-source readability complete and fresh byte-identical verification reused from `analysis/round-006-commentary-verification.json`; final812Code-row meaningful-unit metadata frontier and final editorial/archive audit remain separate and pending. No archive/cleanup/publication performed.
+
+No new toolkit issues found (0newconfirmed/0suspected/0missing features). Existing TK-001 confirmed input-schema mismatch remains nonblocking, `analysis/toolkit-issues.md`. Disk5.8GiB free; this attempt contains compact text/JSON only, no capture/trace batch or disposable scratch produced. Checkpoint identity comparison: `analysis/redirect/r006-residual-review/checkpoint-check.json`.

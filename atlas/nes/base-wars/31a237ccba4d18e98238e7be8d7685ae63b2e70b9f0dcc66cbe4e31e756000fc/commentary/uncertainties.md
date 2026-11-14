@@ -1,0 +1,21 @@
+# Current source uncertainties
+
+Current-source readability is complete. These are limits on meaning, contracts and whole-game behavior, not deferred source annotation.
+
+- Audio stream calls, return cursors, command dispatch and newly bounded metadata are explained. Cyclic streams do not establish universal termination within one tick. Complete musical grammar and original sound names remain unresolved. Physical $135B5 is now the paired X/A restoration continuation, conditional on the called helper returning; this does not prove universal audio-tick termination.
+- Typed-editor final store at physical $0917C requires pointer $08/$09 preservation through the display helpers. That remains conditional. Nonlocal paired PLA exits, including pause/preview/title/contact/action-list channels, are explained as exits from enclosing callers, not ordinary nested returns.
+- Logical mapper saved tags zero through six are supported. Fixed bank code does not provide a tag-seven identity byte; mapper register values remain distinct from effective physical bank indices.
+- Actor-type text at physical $089FE..$08A26 is five eight-byte names. Separate equipment label containers have eight eight-byte rows. Physical $1A1EC is executed RTS $60 and an input-mask alias; only the following $08/$02/$01 suffix is Data. The scanner loop shown visits indices three through one.
+- The ranking ratio uses multiplication by1000 and division by the combined byte total under its no-overflow input contract. Original statistic names/units remain tentative. Nonzero-quantity member-selection loops require an eligible member; all-zero arrays have no local termination proof.
+- Field/pitch/action state mechanics, interpolation, contact quantities, equipment installation/refund/repair and CPU purchase plans are explained. Original action names, coefficient units, complete natural selector domains and precise original declarations for some generic backing remain unresolved. Unknown storage stays unknown even when a behavioral unit spans the containing physical interval.
+- Representative purchase/install/debit, duel, pitch/result and ending evidence exists. A complete natural pennant/end-game route and clean ending initialization remain unproved. No full hardware/game compatibility follows from readable byte-identical assembly.
+
+Final editorial acceptance reviews these remaining limits; none is an annotation backlog. Earlier detailed uncertainty records remain in analysis/round-001 through round-004/commentary and analysis/final-editorial-before/uncertainties.md.
+
+Field tile/attribute bases at physical $1327C have readers and indirect consumers. Field chunks cross older uniform Data boundaries; sprite grid/sparse backing has shared origins, generic parser gaps and reserved attribute bits. A zero grid header alone does not prove a safe zero-dimension render path. Image selector completeness, animation domains and complete natural coordinate coverage remain caller preconditions. Pitcher lists emit the first triplet before testing the next image terminator.
+
+Corrected joint-role proof and independent disassembly005 review establish three wrappers and five generic Data gaps. Source explains cursor/channel/Y, selected-actor and ordinary stack entry contracts without claiming natural reachability. The printable signature ends before nine generic Data bytes; no footer/checksum/padding schema is established. Marker search examines exactly four shared RAM cells and returns matching X or $FF.
+
+Exactly four single RTS bytes remain Unknown: physical $00418E / CPU $817E and $0047F0 / CPU $87E0 in [2,3,14,15], physical $018643 / CPU $8633 and $01A42A / CPU $A41A in [12,13,14,15]. Empty routine with an ordinary return stack versus return-valued residue remains materially ambiguous. Caller absence does not prove data. Terminal redirect005 review found no distinguishing supported inference or useful revised test; this does not assert exhaustive computed-pointer or natural-reachability proof. See analysis/redirect/round005-a/terminal-review.md.
+
+Current-source readability and final editorial review are complete independently of whole-ROM classification, which remains 262156/262160. Natural full pennant remains unverified. Byte-identical rebuilding establishes fidelity, not game/hardware completeness or original intent.

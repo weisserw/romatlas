@@ -1,0 +1,17 @@
+# Commentary 001 — interrupted; resume this phase
+
+This is NOT a successful readability handoff. No redirect or final audit. Same prepared baseline must resume; do not prepare/regenerate source again.
+
+Frozen input/checkpoint: maps/pass-001.json, analysis/pass-001-verification.json, commentary/baseline.json and phase1-state.json. Phase-1 classification remains 160941/262160 bytes (61.39%), ROM incomplete. maps/current.json and analysis/state.json unchanged.
+
+Current editable local source: commentary/source/game.asm. Reading copy commentary/reading-after.asm refreshed. Latest fresh verification byte_identical=true; source SHA-256 83f97828b204d8ef26630da4fef3404a3bbe5c36b83d53e58e051094c38c86f0; ROM SHA-256 unchanged. commentary/verification.json is authoritative.
+
+Readability achieved: 9364/17440 Code bytes reviewed instruction by instruction, in PRG00/02/03/04/05/14/15. 415 named behavioral blocks recorded in review.json. Audio engine has 53 dedicated state symbols; 76 shared state/hardware symbols added. Explained sound streams/envelopes/modulation/DMC, ending animation, pennant HUD/roster/shop/ranking, fixed-bank arithmetic/dispatch, banked calls, VRAM queue/compression, controllers, reset/save checksums, pause unwind, NMI/IRQ/mapper operations. Numeric control operands replaced only when accepted contexts agree on a named physical target. All non-code/header/CHR/vector/unknown boundaries have honest source notes and review credit; unknowns remain unknown.
+
+Remaining readability: exactly 8076 Code bytes, all pending intervals in commentary/readability-remaining.json. PRG08 starts $1124F, PRG09 $12018, PRG10 $14C2E, PRG11 $17F3A, PRG12 $18333, PRG13 $1A011. Read full current source for those banks, including later fragments. One byte of a classified instruction crosses the PRG12/13 accounting boundary, so scaffold-start-bank totals differ by one from physical per-bank ledger. Do not mark these intervals reviewed without actual instruction/behavior review.
+
+Resume tools: analysis/commentary-001-tools/baseline-compact.txt has exact physical offsets/CPU aliases and original instructions. Existing semantic annotations in source supersede its numeric listing. add_notes.py can append new named blocks; each earlier batch script and harmonize.py is non-idempotent and must NOT be rerun wholesale. fix_mapper_aliases.py safely resolves named targets from map contexts and restores mapper addresses on ROM reads/calls. save_review.py currently credits banks {0,2,3,4,5,14,15}; expand that set only after genuine review and rerun to refresh source references/remaining intervals. Its status remains interrupted until phase complete.
+
+Outstanding consistency after remaining banks: harmonize their known RAM/field names, check coherent block/routine span inventory, correct concrete semantic defects, verify fresh byte identity and refresh reading copy. Preserve valid prior review; source is not generated boilerplate. Full-source readability must finish before redirect. Editorial audit remains reserved for final acceptance.
+
+Unresolved questions and supported limits: commentary/uncertainties.md. Ending clean initialization/natural reachability unresolved; shop purchase tail unknown; ranking exact statistic formula unclassified; audio tables/IDs/sample extents unknown. Prior redirect leads remain in analysis/leads.json. No new structural classification or toolkit edits. Existing NES-001 confirmed docs/input bug remains nonblocking; no new commentary toolkit findings. No ROM change, archive, publication, deletion or cleanup.

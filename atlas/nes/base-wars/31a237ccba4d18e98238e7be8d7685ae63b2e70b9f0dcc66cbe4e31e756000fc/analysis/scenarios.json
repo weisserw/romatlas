@@ -1,0 +1,209 @@
+{
+  "version": 1,
+  "phase": "disassembly-001",
+  "input_contract": {
+    "method": "emulator.input",
+    "params": "buttons array, port 1 default; [] releases",
+    "step": "emulator.step unit=frame, max_operations=10000000, timeout_ms=20000; tap means hold10frames, release10frames unless specified",
+    "trace": "bounded zero-detail aggregates; mixed snapshot branches preserved cumulatively, not a single chronological replay"
+  },
+  "milestones": [
+    {
+      "milestone": "startup/title",
+      "status": "visited",
+      "route": "fresh emulator.start; 99 traced frames (180 requested but timeout), then 180 untraced frames; title snapshot at381 after additional input attempts",
+      "observed": "copyright and BASE WARS title",
+      "evidence": [
+        "disassembly-001/title.ppm.png",
+        "disassembly-001/title2.ppm.png",
+        "disassembly-001/title.snapshot.json"
+      ]
+    },
+    {
+      "milestone": "open match and pitching",
+      "status": "visited",
+      "route": "from title after ready delay, start enters mode; A play ball, A SF, right then A NY, down eight distinct presses to1inning, A, down then A, A confirms other mode, A/A lineups, A playball; wait180+30frames after playball animation; A then60frames",
+      "observed": "TOP1 SF batter against NY pitcher; pitching animation and later batted ball",
+      "evidence": [
+        "disassembly-001/pitch.snapshot.json",
+        "disassembly-001/pitch.ppm.png",
+        "disassembly-001/pitch-action.ppm.png",
+        "disassembly-001/batch2-contexts.json"
+      ]
+    },
+    {
+      "milestone": "late inning / match-result shortcut",
+      "status": "attempted",
+      "route": "import pitch.snapshot.json; [] release; write ram $0068=[2,0,2] (strikes2 balls0 outs2); A tap;180untraced+30traced frames; right+A30traced then release180untraced+20traced",
+      "observed": "batted-ball fielding, no confirmed inning change or match result; sourced variables remain hypotheses beyond visible counters",
+      "evidence": [
+        "disassembly-001/outs-shortcut.ppm.png",
+        "disassembly-001/outs-shortcut-state.json",
+        "disassembly-001/fielding-shortcut.ppm"
+      ]
+    },
+    {
+      "milestone": "combat",
+      "status": "visited",
+      "reason": "Bounded fielding/first-base throw attempt did not initiate a close base play. Need runner/fielder/ball ownership contract; no arbitrary RAM sweep.",
+      "evidence": [
+        "redirect/round001-a/combat-shortcut-recipe.json",
+        "redirect/round001-a/combat-contexts.json",
+        "redirect/round001-a/combat-before-controls.ppm.png",
+        "redirect/round001-a/combat-after-controls.ppm.png"
+      ],
+      "attempt_history": [
+        {
+          "milestone": "combat",
+          "status": "deferred",
+          "reason": "Bounded fielding/first-base throw attempt did not initiate a close base play. Need runner/fielder/ball ownership contract; no arbitrary RAM sweep.",
+          "evidence": [
+            "disassembly-001/fielding-shortcut.ppm"
+          ]
+        }
+      ],
+      "route": "Artificial field.snapshot shortcut matching natural close-play tail:30=6,26=6,61=0,DC=0,04DC/04D9=0;8traced+90untraced init; right+A8traced+60untraced; release30frames",
+      "observed": "Two robot duel with names, health panels, visible movement/attack;1023 actual fetched contextual roots in banks6/7; natural collision route unobserved."
+    },
+    {
+      "milestone": "ending/congratulations",
+      "status": "visited",
+      "artificial": true,
+      "route": "pre-ending.snapshot.json; write ram $0030=[15], $0034=[15];30traced frames then180untraced+30traced",
+      "observed": "city scene and CONGRATULATIONS; graphical artifacts indicate partial initialization; no natural ending reachability or clean complete credits claim",
+      "evidence": [
+        "disassembly-001/ending-cheat-consumer.json",
+        "disassembly-001/ending-patch.ppm.png",
+        "disassembly-001/ending-patch2.ppm.png",
+        "disassembly-001/ending.snapshot.json"
+      ]
+    },
+    {
+      "milestone": "pennant configuration / rosters / standings",
+      "status": "visited",
+      "route": "mode.snapshot.json is mode menu reached by B from open team selection; right,A enters pennant. A selects SF; right,A,A selects Toronto/Texas; Start completes selection; roster configuration reached; six distinct Start taps reached confirmation; A accepts. Options snapshot saved. Down,A visited rankings; B/up/right/A visited Change; A/A reached match standings.",
+      "observed": "3-team league, roster edits, pennant options, ranking categories, change configuration and match standings",
+      "evidence": [
+        "disassembly-001/pennant-options.snapshot.json",
+        "disassembly-001/pennant-accept.ppm.png",
+        "disassembly-001/shop-teams.ppm.png",
+        "disassembly-001/shop-entry.ppm.png",
+        "disassembly-001/shop-parts.ppm.png"
+      ]
+    },
+    {
+      "milestone": "parts shop / weapons",
+      "status": "visited",
+      "route": "Restore disassembly001/final-shop snapshot; release4frames,down10/release10,A8/release45; restore successive selected snapshots,A8/release50 three times to draw roster/select/confirm equipment. No RAM/register edits; all step calls <=50frames/3millionoperations/10seconds.",
+      "observed": "Affordable item1 costs50 stored units vs100 funds; funds100->50 (display10000->5000), roster equipment$68A8 0->2, duplicate checksum bytes$6030/$6033 134->136. Completed purchase and installation confirmed by source-linked writes.",
+      "evidence": [
+        "redirect/round002-a/shop-cheaper.py",
+        "redirect/round002-a/shop-recipient.py",
+        "redirect/round002-a/shop-equip.py",
+        "redirect/round002-a/shop-apply.py",
+        "redirect/round002-a/shop-cheaper.png",
+        "redirect/round002-a/shop-recipient.png",
+        "redirect/round002-a/shop-apply-low-roster.json",
+        "redirect/round002-a/shop-apply.snapshot.json"
+      ],
+      "attempt_history": [
+        {
+          "milestone": "parts shop / weapons",
+          "status": "visited",
+          "route": "import pennant-options.snapshot.json; [] release; right tap selects shop; A tap+60traced frames enters shop. A tap+20traced selects SF. Two A taps interspersed15traced frames to shopping dialogue; shop.snapshot.json saved. A30traced+release30untraced opens category list. A20traced+release30untraced opens prices. A20traced+release30untraced retains weapon list (insufficient funds for default12500 item).",
+          "observed": "shop welcome, funds10000, shopping/repair/data choices, part categories and weapon price list; bounded purchase attempt did not select recipient",
+          "evidence": [
+            "disassembly-001/shop.snapshot.json",
+            "disassembly-001/real-shop.ppm.png",
+            "disassembly-001/shop-buy.ppm.png",
+            "disassembly-001/shop-prices.ppm",
+            "disassembly-001/shop-purchase.ppm",
+            "disassembly-001/shop-recipient.ppm.png"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": "levels/bosses",
+      "status": "unavailable",
+      "reason": "Sports game, no conventional level/boss ladder. Pennant completion and full credits remain unverified; shortcut ending and representative systems visited."
+    },
+    {
+      "milestone": "ending stable publisher screen",
+      "status": "visited",
+      "route": "Artificial title.snapshot entry, exact patches ending-title-patches.json; normal bounded progression toframe8197 andphase55; trace8finalframes. Individual frame requests/timeouts and actual states saved; do not count requestedframes as actual.",
+      "observed": "Intact city/road, congratulations and roster-name transitions; final PRESENTED BY/KONAMI. Small stray tile remains. CPU8B28 actually fetched in stable final state. No natural ending claim.",
+      "evidence": [
+        "redirect/round001-a/ending-title-patches.json",
+        "redirect/round001-a/ending-progress.snapshot.json",
+        "redirect/round001-a/ending-finish-ram-6.json",
+        "redirect/round001-a/ending-finish-contexts.json",
+        "redirect/round001-a/ending-final.ppm.png"
+      ]
+    },
+    {
+      "milestone": "half-inning transition",
+      "status": "visited",
+      "artificial": true,
+      "route": "Restore clean pitch snapshot; RAM62=1,68/69/6A=2/0/2,86=2,96=1 selects supported completed-pitch strike event.8traced+360untraced+8traced; acknowledge resultsA8/release120.",
+      "observed": "Third strike/out processed;0447 changes00->80, side6B0->1, strikes/balls/outs clear; acknowledged scoreboard returns visible BTM1 pitch scene with reversed teams. No natural completion claim.",
+      "evidence": [
+        "redirect/round002-a/half-inning-gated-recipe.json",
+        "redirect/round002-a/half-inning-gated-final-flags.json",
+        "redirect/round002-a/half-ack-final.png",
+        "redirect/round002-a/half-ack-final.snapshot.json"
+      ],
+      "attempt_history": [
+        {
+          "method": "Event62=1 plusstrikes/outs only",
+          "result": "No change while flight86 gate unsatisfied; source184D1 requires86>=2 and96=1. Preserved half-inning-* evidence; corrected gated method materially different."
+        }
+      ]
+    },
+    {
+      "milestone": "match result screen and acknowledgement",
+      "status": "visited",
+      "artificial": true,
+      "route": "Restore field snapshot;30=10,34=0,04B0..04B3=0 mirrors source13A70 transition.8traced+360untraced thenA8/release120.",
+      "observed": "OPEN MODE RESULTS scoreboard; acknowledgement returns global30=5. Same scoreboard also observed after gated real half-inning mechanics.",
+      "evidence": [
+        "redirect/round002-a/inning-shortcut-recipe.json",
+        "redirect/round002-a/inning-final.png",
+        "redirect/round002-a/result-final-state.json"
+      ]
+    }
+  ],
+  "review_disassembly_002": {
+    "decision": "Reuse documented natural menu/match routes and artificial duel/ending snapshots; no unchanged replay required. Accepted saved actual fetch roots directly, broadly exercising representative systems already.",
+    "milestone_review": "Sports game no later-level/boss ladder. Duel movement/attack and stable terminal publisher screen visited. Late inning/result and successful purchase remain unobserved; repeating failed shortcuts adds no structural evidence. Returning shop tail classified Static from contracts.",
+    "evidence": [
+      "redirect/round001-a/combat-shortcut-recipe.json",
+      "redirect/round001-a/ending-finish-contexts.json",
+      "disassembly-002/code-review.json"
+    ]
+  },
+  "review_disassembly_003": {
+    "decision": "Reuse broad successful progression evidence; no unchanged replay without new question.",
+    "milestones": "Purchase and installation/debit, duel mechanics, thirdout/half-inning BTM1, match-results acknowledgement, artificial ending/publisher visited; natural full pennant completion not claimed.",
+    "evidence": [
+      "handoff-redirect-002-ready.md",
+      "disassembly-003/structural-review.md"
+    ]
+  },
+  "review_disassembly_004": {
+    "decision": "Reuse valid broad progression evidence; residual local code/data ambiguity has no changed gameplay question requiring replay.",
+    "milestones": "Purchase/install/debit, duel, pitching/third-out, BTM1, match-results and ending publisher visited; natural full pennant not claimed.",
+    "evidence": [
+      "disassembly-004/structural-review.md",
+      "handoff-redirect-003-ready.md"
+    ]
+  },
+  "review_disassembly_005": {
+    "decision": "Reuse broad representative progression; no changed runtime question for residual roles.",
+    "evidence": [
+      "redirect/round004-a/progression-review.md",
+      "disassembly-005/structural-review.md"
+    ],
+    "natural_full_pennant": "unverified"
+  }
+}

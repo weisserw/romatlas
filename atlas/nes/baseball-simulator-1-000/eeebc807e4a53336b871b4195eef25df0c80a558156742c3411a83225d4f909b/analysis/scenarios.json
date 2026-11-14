@@ -1,0 +1,177 @@
+{
+  "version": 1,
+  "scenarios": [
+    {
+      "id": "S001",
+      "milestone": "Boot/title/attract",
+      "status": "visited",
+      "route": "Reset; wait 983 frames in bounded chunks. Initial button/pressed attempts silently set no buttons (TK-001). Another 600-frame wait exposes attract batting.",
+      "result": "Confirmed Baseball Simulator 1.000 title, natural automatic attract batting; no player control claimed.",
+      "evidence": [
+        "round-001/intro-more-2.ppm.png",
+        "round-001/wait600.ppm.png",
+        "round-001/after-intro.snapshot"
+      ]
+    },
+    {
+      "id": "S002",
+      "milestone": "Exhibition setup and live batting",
+      "status": "visited",
+      "route": "Use full buttons arrays: from attract Start3, release25 -> title; Start3, release20 -> initialization; A2/release10 twice; wait60; A2/release45 -> team selection. A2/release35 three times; wait60; A5/release90; wait90 -> matchup prompt. Start3/release45; four A3/release30 confirmations -> PLAY BALL. Export batting.snapshot. Restore it, release all, wait300 frames, then left+A90, release. Budgets 0.5M/5s for presses, 1-5M/5-25s for releases, 15M/25s for 300-frame wait. Some waits timed out retaining state.",
+      "result": "Boston vs Detroit, Dome, pitcher/lineup setup, live top-1 batting and batter movement. No hit, later inning or full game proven.",
+      "evidence": [
+        "round-001/pregame.ppm.png",
+        "round-001/pitcher-lineup-3.ppm.png",
+        "round-001/real-batting.ppm.png",
+        "round-001/batting.snapshot",
+        "round-001/real-batting.snapshot"
+      ]
+    },
+    {
+      "id": "S003",
+      "milestone": "Counter shortcut toward half-inning",
+      "status": "attempted",
+      "patch": {
+        "space": "ram",
+        "address": 160,
+        "bytes": [
+          2,
+          0,
+          2
+        ]
+      },
+      "route": "From pregame continuation after A+down90/release60, save counters then patch $A0/$A1/$A2, release all and run120 frames (6M operations/30s). Restore clean batting.snapshot before alternative.",
+      "result": "Artificial top-1 batting visible with two outs. Counter thresholds support strike/ball/out hypothesis; no half-inning transition or ending established.",
+      "evidence": [
+        "round-001/strike-counter-contract.json",
+        "round-001/game-counters-before.json",
+        "round-001/game-counters-after.json",
+        "round-001/artificial-third-out.ppm.png"
+      ]
+    },
+    {
+      "id": "S004",
+      "milestone": "Edit mode",
+      "status": "visited",
+      "route": "Restore select-mode.snapshot, release45, down2/release2/down2/release2, A3/release60 -> Edit submenu; save mode-current.snapshot. Restore it, A3/release45 -> Edit team selector.",
+      "result": "Edit ENTER submenu and team selector observed; roster editing not yet exercised.",
+      "evidence": [
+        "round-001/edit-current.ppm.png",
+        "round-001/edit-enter.ppm.png",
+        "round-001/edit-enter.snapshot"
+      ]
+    },
+    {
+      "id": "S005",
+      "milestone": "Later inning/side progression, representative pitching and match terminal",
+      "status": "visited",
+      "reason": "Need accepted inning/side transition RAM contract; practical A0/A1/A2 shortcut attempted but not sufficient. Follow L002 with clean batting snapshot and source consumers. No arbitrary RAM brute force.",
+      "history": [
+        {
+          "milestone": "Later innings, fielding/pitching, Ultra powers, match terminal screen",
+          "status": "deferred",
+          "reason": "Need accepted inning/side transition RAM contract; practical A0/A1/A2 shortcut attempted but not sufficient. Follow L002 with clean batting snapshot and source consumers. No arbitrary RAM brute force."
+        }
+      ],
+      "route": "Artificial supported transition/inning/scores patches and exact85CA outcome completion; ordinary A pitching from initialized9INBOT. Full calls/budgets in redirect runtime logs.",
+      "result": "Top1->bottom1, initialized9INBOT, visible pitch delivery/ball and GAME SET. No credits or natural terminal reachability claim.",
+      "evidence": [
+        "analysis/redirect/r001-static-contracts/progression-runtime.json",
+        "analysis/redirect/r001-static-contracts/half-inning-5.png",
+        "analysis/redirect/r001-static-contracts/bottom-nine.png",
+        "analysis/redirect/r001-static-contracts/bottom-nine-pitch.png",
+        "analysis/redirect/r001-static-contracts/terminal-finish.png",
+        "analysis/redirect/r001-static-contracts/terminal-finish-runtime.json"
+      ]
+    },
+    {
+      "id": "S006",
+      "milestone": "Season simulation and season terminal results",
+      "status": "attempted",
+      "reason": "Missing active widget/port/action/parent-transition contract for SKIP-before-initialization; unchanged waits/input sweeps have reduced prospect.",
+      "history": [
+        {
+          "status": "deferred",
+          "reason": "Actual-title manual supports five-game AUTO simulation; concrete next route L002. Retain separate from match ending."
+        }
+      ],
+      "route": "Ordinary Season->PLAY->Atlantic->stadium->schedule->six AUTO teams->opener->TOP/BOT AUTO->WATCH/SKIP->pitcher/lineup->PLAY BALL. Multiple bounded improved shortcuts retained.",
+      "result": "Setup/ordinary AUTO selections and PLAY BALL visited. Five-game cursor not committed: actual PRG-RAM6007=165. Direct late87/timer patches failed to advance season; A/Start9BD2 commit intercepts did not match. Season terminal unvisited.",
+      "evidence": [
+        "analysis/redirect/r001-static-contracts/season-auto-start.png",
+        "analysis/redirect/r001-static-contracts/season-pair-auto.png",
+        "analysis/redirect/r001-static-contracts/season-starting-lineup.png",
+        "analysis/redirect/r001-static-contracts/season-shortcut-runtime.json",
+        "analysis/redirect/r001-static-contracts/season-timer-fix-runtime.json",
+        "analysis/redirect/r001-static-contracts/season-commit-skip-runtime.json",
+        "analysis/redirect/r001-static-contracts/season-commit-skip-a-runtime.json"
+      ]
+    },
+    {
+      "id": "S007",
+      "milestone": "Wrong-game stage hypotheses",
+      "status": "attempted",
+      "result": "Rejected game mismatch: Arkista identification was unrelated temporary PNG. Three title-restored patches ($03D0=15,30,123; $03D6=10; $03DC=255), Start3/release45/right+B20 were actually empty input because old API fields; no later-level evidence.",
+      "evidence": [
+        "round-001/run-v2.log",
+        "round-001/patch-stage-15.ppm.png"
+      ]
+    },
+    {
+      "id": "S008",
+      "milestone": "Live fielding contact and Ultra powers",
+      "status": "attempted",
+      "reason": "Round002 broad best-effort: actual defensive CHANGE/MOVE interface visited from artificial9INBOT; bounded selection/movement/confirmation/exit performed. No successful live-ball contact/catch or exact fielder displacement established.",
+      "evidence": [
+        "analysis/round-002-disassembly/manual-timeout.ppm.png",
+        "analysis/round-002-disassembly/manual-position.ppm.png",
+        "analysis/round-002-disassembly/manual-move-fielder-runtime.json"
+      ],
+      "history": [
+        {
+          "status": "deferred",
+          "reason": "Representative pitching/inning/terminal transitions exercised. Atlantic League lacks Ultra powers; a contact/fielding or Ultra-state initialization contract remains missing, and no current ROM-specific question justifies rare-interaction forcing. Broad best effort, not exhaustive fidelity."
+        }
+      ],
+      "route": "Import bottom-nine.snapshot; release2/Start3/release3/A3/release12 -> field menu. Down2/release2/A2 selectsMOVE; directional selector/A/right10/A. Further Up/Up/A/right12/A/B exits; exact calls and budgets in manual runtime files.",
+      "result": "Full defensive diamond and CHANGE/MOVE/END menu confirmed. MOVE selector visible. B-only pre-pitch field-view route failed to display that view; Start/A supplied a practical alternate. No live-contact result."
+    },
+    {
+      "id": "S009",
+      "milestone": "Ultra-team match initialization and representative special pitching",
+      "status": "visited",
+      "route": "Ordinary full-buttons arrays from select-mode.snapshot: A3/release45, A3/release60 -> team grid; Down2/release3 twice -> Ultra row; A3/release25/Right2/release3/A3/release45 -> stadium. A3/release90/release60 with early confirmations, final matchup screen. Start3/release45/four A3+release30 confirmations/release60 -> PLAYBALL. Ten release30 chunks -> live1INTOP. B3/release15, B3/A15/release12; later Up2/release3/Up2/release3/Down2/release3 -> special icon; A18/release10 -> delivery. Exact actual timing/order in runtime logs overrides this compact route.",
+      "result": "AL-SW versus Super logos, live green-uniform Ultra game, point displays100/120. A pitch produced STRIKE199mph and120->117; deliberate double-Up/down altered icon, A delivery consumed117->114. Distinctive pitching mechanism confirmed without artificial RAM edits. Earlier filename ultra-special-hit reflects attempted B input, not a confirmed hit; live-side/control identity inferred from pitching response, no successful hitting claim.",
+      "evidence": [
+        "analysis/round-002-disassembly/ultra-pregame.ppm.png",
+        "analysis/round-002-disassembly/ultra-batting.ppm.png",
+        "analysis/round-002-disassembly/ultra-special-hit.ppm.png",
+        "analysis/round-002-disassembly/ultra-pitch-select.ppm.png",
+        "analysis/round-002-disassembly/ultra-pitch-delivery.ppm.png"
+      ]
+    },
+    {
+      "id": "S010",
+      "milestone": "Ultra half-inning shortcut",
+      "status": "attempted",
+      "patch": {
+        "space": "ram",
+        "A2": 3,
+        "AD": 136
+      },
+      "route": "Restore natural ultra-batting.snapshot; disable tracing; patch A2=3,AD=88; six30-frame releases,2M operations/20s each.",
+      "result": "Still1INTOP with STRIKE199mph after180 frames; no side transition established in this timing/state. Earlier round001 shortcut cannot be assumed to work at arbitrary update point. No unchanged retry. Natural special-pitch route supplies representative Ultra visit.",
+      "evidence": [
+        "analysis/round-002-disassembly/ultra-half-inning-runtime.json",
+        "analysis/round-002-disassembly/ultra-half-inning.ppm.png"
+      ]
+    }
+  ],
+  "reviews": [
+    {
+      "pass_id": "round-006-redirect",
+      "result": "Reused representative S005/S008/S009 after inspecting selected actual images; primary Season shortcut/timer/Start/A intercept logs reviewed with localized negative scope. No corrected actionable transition contract; S006/S010 outcomes unchanged. No gameplay replay.",
+      "evidence": "analysis/redirect/r006-residual-review/gameplay-review.md"
+    }
+  ]
+}

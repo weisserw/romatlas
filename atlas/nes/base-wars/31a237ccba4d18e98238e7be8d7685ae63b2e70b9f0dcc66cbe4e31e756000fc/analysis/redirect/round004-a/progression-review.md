@@ -1,0 +1,9 @@
+# Supported pennant completion gate review
+
+Broad representative gameplay remains valid: pitching/thirdout/BTM1, purchase/install/debit, duel, results acknowledgement, full artificial ending transitions and publisher screen. Natural full pennant remains unverified.
+
+New independent route reviewed from primary source game.asm41173..41453: physicalA602..A652 (CPU A5F2..A642), pair[4,5,14,15], counts selected teams6109..610E stoppingFF, then each unequal team/opponent pair. It reads6358+(team<<4|opponent) and6358+(team<<4|opponent|08), compares sum6108 and returns on unfinished pair. Complete bounded loops write30=0F,80=0. Results acknowledgement CPUA577..A58A calls it from persistent-context28!=0 after controller bit7/timer gate. This is a supported ending-selection route, not proof all schedule states naturally occur.
+
+Proposed discriminating shortcut: restore initialized results snapshot, change persistent schedule/result backing to completed counts, acknowledge and observe actual predicate branch into ending. Required bytes6108/list6109/result6358 are cartridge RAM. Primary docs /root/romatlas/docs/nes.md54..56 state emulator.memory.write edits only internal RAM0..2048; no supported PRG-RAM write operation is available. No unsupported API, snapshot-payload edits or toolkit modifications used. Patching PC/loop indices after comparisons would bypass exactly the predicate being tested and reproduce already visited direct ending shortcut; unchanged ordinary result replay adds no information. Therefore no new runtime call was justified. Natural schedule completion would require match accumulation; that is not a bounded practical improvement over representative existing visits for these local residual structures.
+
+This capability limit is not a structural classification prerequisite. Preserve actual initial/ending snapshots and all prior route records; no endroute success or exhaustion beyond this test is claimed.

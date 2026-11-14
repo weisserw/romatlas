@@ -1,0 +1,28 @@
+# Redirect004 active research
+
+Input: commentary004 complete; pass004verified,262128classified/32unknown12ranges. Source60102fb59892f20ed62a468ceef0e54f3b84372748ef726ae4a9feca86510b1a. Exact primary ledger/source windows saved. No structural/source/ROM/toolkit mutations.
+
+Method: retrieve primary neighbor/consumer evidence and prior rejection scopes; combine structural contracts without requiring natural entry. Footer generic-data alternative specifically considers bounded signature/vector context and complete decode, not checksum semantics. Tiny wrappers need more than legal decoding; direct references and pointer audit from round003 remain valid and scoped. No unchanged runtime replay.
+
+Active: exact per-candidate rejection review; footer narrower noncode hypothesis; broad progression review of natural pennant prerequisite from source/history. No terminal decision yet.
+
+## Combined ready checkpoint
+
+Input pass004verified:262128/262160accepted classified,32Unknownbytes/12ranges. Commentary004 current-source readability complete:50138Codebytes,443Data/1Imagecontainers. Source60102fb59892f20ed62a468ceef0e54f3b84372748ef726ae4a9feca86510b1a. Classification remains unchanged in redirect.
+
+Ready:28formerlyUnknownbytes,10Code (four instructions across three wrappers) and18genericData in five exact gaps. R004-FOOTER-GENERIC, R004-TINY-ROUTINES, R004-TINY-GENERIC. Independent disassembly must validate/apply; acceptance wouldleave4bytes/4rangesUnknown. This is a ready research batch, not terminal completeness/exhaustion.
+
+Primary artifacts: analysis/redirect/round004-a/joint-role-proof.json; code-proposals.json; data-proposals-v2.json; footer-proof.json; fresh-residual-decodes.json; source-*.txt; irq-primary.txt. Initial9byte-only ready-result.json/data-proposals.json and rejection-review.json are preserved history, superseded by ready-result-v2.json/data-proposals-v2.json/rejection-review-v2.json. Do not run non-idempotent package.py/revise.py again.
+
+Corrected reasoning: wrappers need no independent state transformation or natural caller if actual domain-local target, bounded local layout and coherent stack/continuation contracts jointly identify role.825B reenters the adjacent audio command-family parser at cursor increment8222;B4E9 tails to same-subsystem duel idle resetB09C;A1C3 calls finite four-marker scanner9FE1 thenRTS, corroborated by adjacent marker input scanner using the same helper/037A array. No observed/natural reachability asserted.
+
+GenericData exact intervalsB63(1),B140(3),1C2E4(3),1CAF6(2),20001(9). No semantic schema,label,padding,checksum,table domain or generator claim. FF and3A94 cannot form complete coherent instructions without borrowing grounded next routine bytes.3A94 IS a complete943Aword, correcting the old contrary phrase.03/07/08 is a bounded low-value block whose full SLO/PHP reading has no supported local stack role.00/04/00 BRK reading was checked against actualFABA IRQ saves/sharedRTI: under supported handler family firstBRK resumesC2D6 and second resumesC2D8, inside independentC2D7LDA operand. DE/DF remains dynamic; this is conditional on established handler family, not a universal interrupt promise. Footer combines independently bounded metadata/vector adjacency with complete incoherent four-unofficial-op sequence and7926currentCode operand conflict checks (zero hits). Unofficial instructions or location alone are insufficient; arbitrary dead-fragment possibility does not veto practical noncode.
+
+Exact remaining candidates if accepted:418E CPU817E [2,3,14,15];47F0 CPU87E0 samepair;18643 CPU8633 [12,13,14,15];1A42A CPUA41A samepair. Each is oneRTS. The instruction is a complete, plausible empty routine with ordinaryJSRstack, while RTS-valued residue is also plausible. Table omissions/neighbor returns remove specific entry routes but do not choose structural role. These are materially ambiguous, not rejected merely for missing natural fetch. Primary source/previous pointer coincidences reviewed in remaining-dispositions.json/rejection-review-v2.json. No arbitrary sweep.
+
+Independent progression avenue: sourceA5F2 schedule-completion predicate reached from results acknowledgementA577 documented in progression-review.md. It needs cartridgeRAM schedule6108/list6109/matrix6358 modifications for useful bounded forced-completion test; supported NES memory.write is internalRAM0..2048only. No unsupported API/snapshot editing/toolkit mutation used. PC/loop-index bypass would skip tested predicate and duplicate prior ending shortcut. Representative purchase/duel/thirdout/BTM1/results/full artificial ending already visited; natural full pennant remains unverified. No unchanged gameplay replay justified.
+
+Practical current opportunities reviewed: every residual primary window/decoder, actual neighbors/callees, prior all-Code direct controls/reads and pointer scopes, domain-local wrapper mechanics, tiny constant/word forms, footer bound and complete decode, actual BRK IRQ contract. No additional connected unknown backing remains behind these accepted callees; no useful independent revised test remains besides independent structural review of this batch. The fourRTS role ambiguity is retained without forcing completion.
+
+ROM/source/maps/state/configuredbinary unchanged, integrity.json records hashes; currentmap equals pass004verified parsed object. No live server, runtime replay, structural mutation, toolkit edit, archive,publish,deletion or cleanup. NES001/002/003 reports preserved. Current-source commentary must rerun after accepted structural change; final editorial audit remains reserved/pending.
+
