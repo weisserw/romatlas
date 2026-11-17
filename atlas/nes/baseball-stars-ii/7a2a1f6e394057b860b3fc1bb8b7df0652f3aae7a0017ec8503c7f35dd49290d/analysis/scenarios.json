@@ -1,0 +1,249 @@
+{
+ "version": 1,
+ "notes": "Routes are frame-stepped from emulator.start (power-on) with emulator.step unit=frame. Step notation 'button:hold:release' = hold button(s) for N frames then release for M frames; '_' = no buttons. Route helpers: scratch/route.py (ROUTES), scratch/go2.py (prefix '!' = trace enabled for that step). Tracing: trace.configure enabled=true capacity=0 (aggregates only); tracing slows emulation ~9x so non-new segments were run with tracing disabled. Snapshot files (same-build, local only) in scratch/snaps/. Artificial RAM patches are marked; their execution is observed-in-artificial-state, not natural reachability.",
+ "milestones": [
+  {
+   "id": "S01",
+   "milestone": "Power-on, copyright/title, main menu",
+   "route": "route.py 'mainmenu': _:0:140 start:3:60 start:3:60",
+   "snapshot": "scratch/snaps/mainmenu.json (frame 266)",
+   "result": "Main menu LEAGUE PLAY/VIEW TEAM/MAKE TEAM/VS/END PLAY",
+   "status": "visited",
+   "evidence": "observed coverage (scratch/observed.json)"
+  },
+  {
+   "id": "S02",
+   "milestone": "VS -> COMPUTER PLAY full CPU-vs-CPU game (prior worker, 35k frames)",
+   "route": "route.py 'vsmenu' then 'cpu_play'; then repeated (trace off 1200 frames, trace on A:4 + 196 frames) via scratch/cpugame.py",
+   "snapshot": "scratch/snaps/cpu_start.json, cpuB_17.json, resume_35047.json",
+   "result": "Pitching/batting/fielding/base running animations, scoreboard; LS vs HE 0-0 through 9 innings",
+   "status": "visited",
+   "evidence": "scratch/cpugame.log, cpugame2.log"
+  },
+  {
+   "id": "S03",
+   "milestone": "League: make league (2 teams, 3 games)",
+   "route": "from S01: a:3:90 up:3:20 a:3:90 a:3:60 right:3:20 a:3:120 a:3:150",
+   "snapshot": "scratch/snaps/league_made.json (frame 842)",
+   "result": "SELECT TEAM grid, KEEP/CHANGE confirm, back to main menu",
+   "status": "visited",
+   "evidence": "trace aggregates; unique instructions 11924 -> 12810"
+  },
+  {
+   "id": "S04",
+   "milestone": "League menu: SEE STANDINGS (grid + G/W/L/PCT/GB table)",
+   "route": "from S03: a:3:120 down:3:20 a:3:120 right:3:60 a:3:120 ... start:3:120 returns",
+   "snapshot": null,
+   "result": "standings screens drawn",
+   "status": "visited",
+   "evidence": "unique 12905 -> 13575"
+  },
+  {
+   "id": "S05",
+   "milestone": "League: CONTINUE PLAY, game not watched (simulated result + homerun list)",
+   "route": "league menu a:3:150 a:3:150 a:3:150 (watch prompt, default NO) a:3:300",
+   "snapshot": "scratch/snaps/league_watchq.json (watch prompt)",
+   "result": "Simulated line score TM 5 - LS 2 and HOMERUNS list",
+   "status": "visited",
+   "evidence": "unique 14158 -> 16298"
+  },
+  {
+   "id": "S06",
+   "milestone": "League completion: LEAGUE CHAMPION ending (trophy, celebration)",
+   "route": "3 simulated games via repeated a:3:150 a:3:100 a:3:250 a:3:200 x3",
+   "snapshot": "scratch/snaps/league_champion.json (frame ~6152)",
+   "result": "TEMPE MATADORS / LEAGUE CHAMPION celebration screen, A returns to main menu",
+   "status": "visited",
+   "evidence": "trace aggregates (frames 6152-7488)"
+  },
+  {
+   "id": "S07",
+   "milestone": "VIEW TEAM: roster, batter and pitcher detail, OTHER ABILITIES",
+   "route": "from scratch/snaps/mainmenu_after_league.json: down:3:20 a:3:150 a:3:150 a:3:120 b:3:80 down x4 a:3:120 a:3:120",
+   "snapshot": "scratch/snaps/mainmenu_after_league.json",
+   "result": "SELECT PLAYER roster, ability bar screens",
+   "status": "visited",
+   "evidence": "unique 17093 -> 18100"
+  },
+  {
+   "id": "S08",
+   "milestone": "MAKE TEAM (speciality CONSISTENT HITTERS, team Rockets, confirm)",
+   "route": "from mainmenu_after_league: down down a:3:150 a:3:200 a:3:200 a:3:250",
+   "snapshot": "scratch/snaps/mainmenu_madeteam.json",
+   "result": "Main menu gains ACQUIRE PLAYER / RELEASE PLAYER / REMOVE TEAM",
+   "status": "visited",
+   "evidence": "unique 18223 -> 19046"
+  },
+  {
+   "id": "S09",
+   "milestone": "RELEASE PLAYER (Holcom released cut-scene) then ACQUIRE PLAYER rookie, sign contract, bonus points",
+   "route": "from mainmenu_madeteam: down x3 a a a a a (release), then right down a a (acquire), a a a a, right a a, up a start",
+   "snapshot": null,
+   "result": "City cut-scene 'HOLCOM WAS RELEASED!!'; ROOKIE/VETERAN/STAR menu; ROOK 2 contract and BONUS POINT allocation",
+   "status": "visited",
+   "evidence": "unique 19309 -> 20262; ACQUIRE with full roster does nothing"
+  },
+  {
+   "id": "S10",
+   "milestone": "1P vs COMPUTER: batting, pitching/fielding, TIME menu (line up, relief pitcher)",
+   "route": "mainmenu.json + route.py 'vsmenu','p1_play'; A every 60 frames until $0497=1; mixed d-pad/A/B; start:3:90 a a down a",
+   "snapshot": "scratch/snaps/p1_fielding.json",
+   "result": "relief pitcher changes Zerger->Ptacek->Carter",
+   "status": "visited",
+   "evidence": "unique 28279 -> 29999"
+  },
+  {
+   "id": "S11",
+   "milestone": "Late innings / extra innings / GAME OVER (artificial)",
+   "route": "resume_35047.json, run untraced to 6th top; ARTIFICIAL: write $0497=16 (half-inning index, 0=1st top) -> 9th top..11th top tie; snapshot cpu_11thtop.json; ARTIFICIAL: write $0499=1 (home score; $0498=visitor) during top half; ~1500 frames untraced then traced",
+   "snapshot": "scratch/snaps/cpu_6thtop.json, cpu_11thtop.json",
+   "result": "GAME OVER scoreboard; contract from $9CA2 bank 8: game ends when half-inning>=16 and score order decides, $23 cap, 10-run rule",
+   "status": "visited (artificial state)",
+   "evidence": "RAM contract from bank 8 $9CA2-$9D46 disassembly; trace aggregates 20292 -> 28279 unique (re-observation of CPU-game code + game over)"
+  },
+  {
+   "id": "S12",
+   "milestone": "END PLAY / REMOVE TEAM",
+   "route": "mainmenu_madeteam: right up right a (END PLAY); up a a",
+   "snapshot": null,
+   "result": "battery-save WARNING screen only",
+   "status": "visited",
+   "evidence": "small gain (+44 unique)"
+  },
+  {
+   "id": "S13",
+   "milestone": "1 PLAYER VS 2 PLAYER, ERROR ON toggle, other stadiums, VETERAN/STAR acquisition, '?' speciality, league with >2 teams",
+   "route": null,
+   "snapshot": null,
+   "result": "r1 redirect: other stadiums (S15), REMOVE TEAM (S16), TRADE PLAYER (S17) done; 2P, ERROR ON, VETERAN/STAR, ? speciality, >2-team league still deferred (shared engine, low expected gain); r1 continuation: ACQUIRE PLAYER ROOKIE completed and STAR attempted (S19); time-out sub-step probe (S20). 2P, ERROR ON, VETERAN, ? speciality, >2-team league still deferred (shared engine; residual islands have no entry reachable from these menus by static evidence) | pass-002: '?' speciality (S21) and 2P + ERROR ON (S22) visited; VETERAN and >2-team league still deferred (shared code, low prospect). | r2 redirect: VETERAN (S24), >2-team league set-up/standings/game (S25), TRADE completion (S23) visited.",
+   "status": "visited (6-team league completion deferred)",
+   "evidence": "Deferred: menu-level variants with expected small gains; game engine already shared with S02/S10"
+  },
+  {
+   "id": "S14",
+   "milestone": "Pre-game flow traced: GameMode 17-19 (line-ups, GAME START) and stadium picker (bank 14 $9BC4 / bank 15 $A11D)",
+   "route": "scratch/snaps/mainmenu.json -> right a (VS) -> down down a, right a, right right a, down a, _120, a, a (COMPUTER PLAY, trace on); snapshot at picker = scratch/snaps/stadpick_cpu.json",
+   "snapshot": "scratch/snaps/stadpick_cpu.json",
+   "result": "GameMode=19 at STARTING LINE UP; picker auto-selects in COMPUTER PLAY after $80 frames",
+   "status": "visited",
+   "evidence": "analysis/redirect/r1-redirect-a/r1-observed.json, analysis/redirect/r1-redirect-a/frames/mode19_lineup.png, frames/stadium_picker.png"
+  },
+  {
+   "id": "S15",
+   "milestone": "CITY / COUNTRY / DOME stadium fielding (stadium pairs 11/13/14)",
+   "route": "ARTIFICIAL: import scratch/snaps/stadpick_cpu.json, write $0756 (picker cursor)=1/2/3, run with A every 100 frames until mode 5 (fielding); analysis/redirect/r1-redirect-a/stad.py N 600",
+   "snapshot": null,
+   "result": "Picker code copied $0756 to StadiumPalette $0755; field scroller executed in banks 23/27/29 (595 instruction starts each)",
+   "status": "visited (artificial selection)",
+   "evidence": "analysis/redirect/r1-redirect-a/r1-observed.json, frames/city_stadium_fielding.png"
+  },
+  {
+   "id": "S16",
+   "milestone": "REMOVE TEAM (GameMode 30/31) incl. ARE YOU SURE YES/NO",
+   "route": "ARTIFICIAL cursor: scratch/snaps/mainmenu_madeteam.json, write $0552=8, A; then A, YES (A) or NO (right A); analysis/redirect/r1-redirect-a/menus.py 8 180 _",
+   "snapshot": null,
+   "result": "Team removed (YES) / back to main menu (NO)",
+   "status": "visited",
+   "evidence": "analysis/redirect/r1-redirect-a/frames/remove_team.png"
+  },
+  {
+   "id": "S17",
+   "milestone": "TRADE PLAYER (GameMode 36/37; hidden main-menu entry, MainMenuModes[6])",
+   "route": "ARTIFICIAL: scratch/snaps/mainmenu_madeteam.json, write $0484=36 in main menu",
+   "snapshot": null,
+   "result": "TRADE PLAYER / SELECT TEAM screen with two side cursors; needs >=2 edited teams to proceed (not attempted)",
+   "status": "visited (artificial entry)",
+   "evidence": "analysis/redirect/r1-redirect-a/frames/trade_player_artificial.png"
+  },
+  {
+   "id": "S18",
+   "milestone": "RELEASE PLAYER / VIEW TEAM / ACQUIRE PLAYER traced (short)",
+   "route": "analysis/redirect/r1-redirect-a/menus.py 6 / 2 / 3 (cursor write $0552 + A)",
+   "snapshot": null,
+   "result": "traced menus, coverage merged into analysis/redirect/r1-redirect-a/r1-observed.json",
+   "status": "visited",
+   "evidence": "analysis/redirect/r1-redirect-a/r1-observed.json"
+  },
+  {
+   "id": "S19",
+   "milestone": "RELEASE PLAYER then ACQUIRE PLAYER (GameMode 32/33 then 34/35): ROOKIE through bonus allocation, contract and welcome; STAR (cost 62,000 > 34,000 funds, contract refused)",
+   "route": "ARTIFICIAL cursor: scratch/snaps/mainmenu_madeteam.json, $0552=6 (RELEASE) keys a_a_a___________ untraced (YES is default) -> /tmp snapshot; then $0552=3 (ACQUIRE) traced: ROOKIE a_a_a_a___ then r a (SIGN CONTRACT), d r (bonus point), a; STAR a_dda_a_a___ r a. analysis/redirect/r1-redirect-a/acq.py release|acquire|cont",
+   "snapshot": null,
+   "result": "Acquire phases 0-9 executed, returned to main menu (mode 7); STAR contract refused for funds. 1,105 newly observed starts all in already classified Code or L015 proposals (bank 24 $8EE9-$8F06); none in residual unknown bytes.",
+   "status": "visited (artificial menu selection)",
+   "evidence": "analysis/redirect/r1-redirect-a/r1-observed.json, analysis/redirect/r1-redirect-a/frames/acquire_bonus_alloc.png, analysis/redirect/r1-redirect-a/frames/acquire_star_insufficient.png"
+  },
+  {
+   "id": "S20",
+   "milestone": "Time-out menu (GameMode 14/15) sub-steps during an at-bat",
+   "route": "scratch/snaps/p1_fielding.json, A until GameMode 3, then traced Start + keys adbdadbb every 60 frames (analysis/redirect/r1-redirect-a/timeout.py adbdadbb 480)",
+   "snapshot": null,
+   "result": "Mode 15 time-out text/menu reached and left back to pitch loop (mode 3) and fielding (5); no observed starts in residual unknown bytes (bank 2 $8C2A island not fetched)",
+   "status": "visited",
+   "evidence": "analysis/redirect/r1-redirect-a/r1-observed.json (merged 2026-11-15 14:49), analysis/redirect/r1-redirect-a/timeout.log"
+  },
+  {
+   "id": "S21",
+   "milestone": "MAKE TEAM with '?' speciality",
+   "route": "scratch/snaps/mainmenu_after_league.json: down down A (wait 150), down down down right A (200), A (250), A (250) -> main menu (scratch/p2/pl.py seq)",
+   "snapshot": null,
+   "result": "Team made (Milwaukee Rockets, ? speciality); traced; 0 starts in residual unknown bytes",
+   "status": "visited",
+   "evidence": "pass-002 trace aggregates (scratch/p2/pl.py unk_hits)"
+  },
+  {
+   "id": "S22",
+   "milestone": "VS 1 PLAYER VS 2 PLAYER, ERROR ON, 2P team select via port 2, stadium picker, opening pitches and fielding",
+   "route": "from S21 state: right A, down A, right A (ERROR ON), A (P1 team), port-2 A (P2 team), A x8 line-ups, port-2 A x2, A (Romstar stadium), then 10x (P1 A, P2 A)",
+   "snapshot": "scratch/snaps/vs2p_errors_on_fielding.json",
+   "result": "Reached GameMode 3/5 (pitch/fielding) in 2P mode with errors on; 0 starts in residual unknown bytes",
+   "status": "visited",
+   "evidence": "pass-002 trace aggregates; frames scratch/p2/frames/v1-v7.png"
+  },
+  {
+   "id": "S23",
+   "milestone": "TRADE PLAYER completed between two edited teams (Rockets HOLCOM <-> Bluesox KELLER)",
+   "route": "scratch/snaps/mainmenu_madeteam.json: ARTIFICIAL $0552=4 + A (MAKE TEAM), A x3 -> 2 edited teams (snapshot scratch/snaps/mainmenu_two_teams.json); then natural: right down down A (TRADE), port1 A (team), port2 A (team), port1 A (player), port2 A (player), port1 A (YES). analysis/redirect/r2-redirect-a/make2.py, trade.py, step.py",
+   "snapshot": "scratch/snaps/mainmenu_two_teams.json",
+   "result": "TRADE PLAYER modes 36/37 phases 0-5, ARE YOU SURE YES, back to main menu (mode 7); 0 observed starts in unknown runs",
+   "status": "visited",
+   "evidence": "analysis/redirect/r2-redirect-a/frames/t5.png, t6.png; r2-observed.json"
+  },
+  {
+   "id": "S24",
+   "milestone": "RELEASE PLAYER (Keller) then ACQUIRE PLAYER VETERAN: contract $8,000 of $34,000, SIGN CONTRACT, bonus points, return to menu",
+   "route": "continuing S23: down x3 A A A A A (release), A; right down A (ACQUIRE), A (team), down A (VETERAN), A A A, right A (sign), right x3 down right right A, A",
+   "snapshot": null,
+   "result": "modes 33 and 35 phases 0-9 completed; 0 observed starts in unknown runs",
+   "status": "visited",
+   "evidence": "analysis/redirect/r2-redirect-a/frames/v1.png, v5.png, v6.png"
+  },
+  {
+   "id": "S25",
+   "milestone": "League with 6 teams / 24 games: set-up, 6x6 standings grid, first simulated game",
+   "route": "continuing S24: A (LEAGUE PLAY), down A (NEW LEAGUE), right A (YES), right x4 (6 teams) down left left, A, A/right x5 (select 6 teams), A (KEEP); LEAGUE PLAY CONTINUE PLAY, A (game), A (do not watch), A, A",
+   "snapshot": "scratch/snaps/league6_after_game1.json",
+   "result": "MAKE A LEAGUE 6 TEAMS 24 GAMES, standings grid 6x6, 1ST GAME TM vs LS simulated, back to main menu; 0 observed starts in unknown runs. League completion with 6 teams not pursued (champion ending already visited in S06; 23 more simulated games for no structural target). | r3: league completion with 6 teams done via S26/S27 (1 game per pairing).",
+   "status": "visited",
+   "evidence": "analysis/redirect/r2-redirect-a/frames/g3.png, g5.png, g8.png, g13.png"
+  },
+  {
+   "id": "S26",
+   "milestone": "NEW LEAGUE 6 teams x 1 game per pairing (natural menu input), 6x6 match grid",
+   "route": "scratch/snaps/league6_after_game1.json (S25), natural keys per analysis/redirect/r3-redirect-a/frames/nl*.json (LEAGUE PLAY, NEW LEAGUE, YES, team/games count, SELECT TEAM x6, KEEP); no RAM writes",
+   "snapshot": "scratch/snaps/league6x1_made.json",
+   "result": "'6 TEAMS 1 GAMES' KEEP screen (Matadors, Superstars, Knights, Eagles, Apaches, Jets) and empty W/L match grid",
+   "status": "visited",
+   "evidence": "analysis/redirect/r3-redirect-a/frames/nl8_10.png, nl_02.png, nl7_05.png"
+  },
+  {
+   "id": "S27",
+   "milestone": "6-team league played to completion (15 simulated pairings) -> GameMode 41 league end -> LEAGUE CHAMPION ending (LA SUPERSTARS) -> main menu -> finished-league menu",
+   "route": "natural: analysis/redirect/r3-redirect-a/l6loop.py (grid cursor $BB column/$BC row by D-pad, A, then A every 150 frames until grid or mode 40/41), pairs in lp1/lp2/lp3.json; ending via live3.py tokens (frames end_*, end2_*)",
+   "snapshot": "scratch/snaps/league6x1_final_game_end.json (mode 41 phase 0, after last game)",
+   "result": "final standings LS 4-1 .800 ... OK 1-4; mode 41 trophy 'LEAGUE CHAMPION' + celebration; A -> main menu (mode 7); LEAGUE PLAY now offers only SEE STANDINGS / NEW LEAGUE. No separate staff-credits sequence observed after the champion screen. 6,961 observed starts in session; 21 Static Code regions gained observed starts (league result/standings/champion routines), 0 starts in unknown bytes, Data or L025 inline words.",
+   "status": "visited",
+   "evidence": "analysis/redirect/r3-redirect-a/frames/lp3_5-4.png, end_00..05.png, end2_00..02.png, analysis/redirect/r3-redirect-a/r3-observed.json, analysis/redirect/r3-redirect-a/r3-static-observed.json"
+  }
+ ]
+}
