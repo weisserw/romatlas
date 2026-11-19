@@ -1,0 +1,217 @@
+{
+ "common": {
+  "driver": "analysis/tools/seg.py <name> <start_snapshot|none> \"<python body using p>\" (analysis/tools/play.py: p.tap(button,hold,after) holds the button(s) for `hold` frames then releases for `after` frames; p.frames(n,buttons) holds buttons for n frames). Trace: trace.configure enabled=true capacity=0 (aggregates only). Budgets: emulator.step unit=frame count<=600 max_operations=100000000 timeout_ms=300000 per call."
+ },
+ "scenarios": [
+  {
+   "id": "SC-boot",
+   "milestone": "power-on, title screen, 1PLAY/2PLAY, league select",
+   "status": "visited",
+   "start": "power-on",
+   "inputs": "frames(360); tap('start',4,90); tap('start',4,90); tap('a',4,90); tap('select',4,60); tap('down',4,60); tap('b',4,60)",
+   "traced": true,
+   "evidence": "analysis/evidence/round1/cov_boot.json; shots/s0360.png, shots/a3.png",
+   "result": "Title (START/CONTINUE), SELECT 1PLAY OR 2PLAY, SELECT YOUR LEAGUE. Snapshot league.snap was exported from an equivalent untraced run (frames 360, start, start, a).",
+   "snapshot": "analysis/evidence/round1/snapshots/league.snap"
+  },
+  {
+   "id": "SC-teams",
+   "milestone": "Eastern league team select -> starting lineup menu",
+   "status": "visited",
+   "start": "analysis/evidence/round1/snapshots/league.snap",
+   "inputs": "tap('a',4,60) x3",
+   "traced": true,
+   "evidence": "analysis/evidence/round1/cov_teams.json; shots/b3.png",
+   "snapshot": "analysis/evidence/round1/snapshots/teams.snap",
+   "result": "N.Y. STARTING LINEUP menu (PLAYBALL / PLAYER CHANGE / LINE UP)"
+  },
+  {
+   "id": "SC-menus",
+   "milestone": "Lineup menus: PLAYER CHANGE, LINE UP, back with B",
+   "status": "visited",
+   "start": "analysis/evidence/round1/snapshots/teams.snap",
+   "inputs": "down,a; down,a; down,a; b; b; down,a; down,a; b; b (tap hold 4, waits 30-90)",
+   "traced": true,
+   "evidence": "analysis/evidence/round1/cov_menus.json; shots/M1.png, shots/M4.png",
+   "snapshot": "analysis/evidence/round1/snapshots/menus.snap",
+   "result": "Cursor moves among lineup entries, STARTING PITCHERS list with ERA reached"
+  },
+  {
+   "id": "SC-playball",
+   "milestone": "PLAYBALL -> starting pitchers list",
+   "status": "visited",
+   "start": "analysis/evidence/round1/snapshots/teams.snap",
+   "inputs": "tap('a',4,120); frames(200)",
+   "traced": true,
+   "evidence": "analysis/evidence/round1/cov_playball.json; shots/c2.png",
+   "snapshot": "analysis/evidence/round1/snapshots/playball.snap"
+  },
+  {
+   "id": "SC-game1",
+   "milestone": "Pick pitcher, game intro card, scoreboard",
+   "status": "visited",
+   "start": "analysis/evidence/round1/snapshots/playball.snap",
+   "inputs": "tap('a',4,100); frames(300)",
+   "traced": true,
+   "evidence": "analysis/evidence/round1/cov_game1.json; shots/d3.png",
+   "snapshot": "analysis/evidence/round1/snapshots/game1.snap",
+   "result": "EASTERN LEAGUE GAME 1 N.Y. VS PHILLY card, lineup scoreboard"
+  },
+  {
+   "id": "SC-game2",
+   "milestone": "First pitch screen (player pitching)",
+   "status": "visited",
+   "start": "analysis/evidence/round1/snapshots/game1.snap",
+   "inputs": "frames(240); tap('a',4,60); frames(120)",
+   "traced": true,
+   "evidence": "analysis/evidence/round1/cov_game2.json; shots/e2.png",
+   "snapshot": "analysis/evidence/round1/snapshots/game2.snap"
+  },
+  {
+   "id": "SC-game3/4",
+   "milestone": "Pitching, batted balls, field view, home run",
+   "status": "visited",
+   "start": "analysis/evidence/round1/snapshots/game2.snap",
+   "inputs": "14 x tap('a',4,150) (6 in game3, 8 in game4)",
+   "traced": true,
+   "evidence": "analysis/evidence/round1/cov_game3.json, cov_game4.json; shots/f0.png",
+   "snapshot": "analysis/evidence/round1/snapshots/game4.snap",
+   "result": "Field view with ball in play; Philly scored (home run)"
+  },
+  {
+   "id": "SC-fielding",
+   "milestone": "Manual fielding with d-pad and throw",
+   "status": "visited (untraced)",
+   "start": "game4 + 1200 untraced frames + 48 A-presses (long1 run, not retained)",
+   "inputs": "frames(20,['left']) x2, up 20, down 20, right 20, a+right 5, frames 100",
+   "traced": false,
+   "evidence": "shots/F5.png",
+   "snapshot": "analysis/evidence/round1/snapshots/fld1r.snap",
+   "result": "d-pad moves the controlled fielder; play resolved, next batter; score P-4 N-0. Coverage of this specific segment NOT recorded (untraced)."
+  },
+  {
+   "id": "SC-pitch2",
+   "milestone": "More pitching incl. walk/strike counts, fielding inputs",
+   "status": "visited",
+   "start": "analysis/evidence/round1/snapshots/S5.snap",
+   "inputs": "3 x [tap('a',4,100); frames(60,['down','left']); tap(['a','right'],4,40)]",
+   "traced": true,
+   "evidence": "analysis/evidence/round1/cov_pitch2.json",
+   "note": "S5.snap came from fld1r with artificial edit $0354=2 (emulator.memory.write, cpu RAM) then untraced play; artificial-state scenario.",
+   "snapshot": "analysis/evidence/round1/snapshots/S5.snap"
+  },
+  {
+   "id": "SC-west",
+   "milestone": "Western league team select (Kansas lineup)",
+   "status": "visited",
+   "start": "analysis/evidence/round1/snapshots/league.snap",
+   "inputs": "right,a; down,right,a; a",
+   "traced": true,
+   "evidence": "analysis/evidence/round1/cov_west.json; shots/W1.png, shots/W2.png",
+   "snapshot": "analysis/evidence/round1/snapshots/west.snap"
+  },
+  {
+   "id": "SC-cont",
+   "milestone": "Title cursor down + START, 1P team-letter select",
+   "status": "visited",
+   "start": "power-on",
+   "inputs": "frames(360); down; start; a; right; a; start; a",
+   "traced": true,
+   "evidence": "analysis/evidence/round1/cov_cont.json; shots/C0.png",
+   "snapshot": "analysis/evidence/round1/snapshots/cont.snap",
+   "result": "Reached SELECT 1PLAY OR 2PLAY and SELECT YOUR TEAM (1L K O T H U). Password/continue entry not identified."
+  },
+  {
+   "id": "SC-twoplay",
+   "milestone": "2PLAY mode: INPUT PLAY DAY date screen, 2P team select",
+   "status": "visited",
+   "start": "power-on",
+   "inputs": "frames(360); start; right; a; a; a; start",
+   "traced": true,
+   "evidence": "analysis/evidence/round1/cov_twoplay.json; shots/U0.png",
+   "snapshot": "analysis/evidence/round1/snapshots/twoplay.snap"
+  },
+  {
+   "id": "SC-outs-patch",
+   "milestone": "Shortcut to batting half-inning via RAM",
+   "status": "visited",
+   "recipe": "emulator.memory.write cpu $0354 = 2 or 3 at pitching state (fld1r)",
+   "result": "B/S/O display row changed but no side change occurred; $0354 cycles 0..2 within at-bats. Outs/half-inning RAM contract unknown -> deferred to redirect (lead L-003).",
+   "traced": false,
+   "redirect_update": "r1-redirect-a: contract identified statically (OutCount $0356, HalfInning $0066) and confirmed: from S5.snap (2 outs, 3-2 count) 25 x tap(a) gave a strikeout and natural side change (HalfInning 0->1, PlayState $65->$20). Snapshot scratch-only (re-creatable by the recipe). analysis/redirect/r1-redirect-a/runtime.json"
+  },
+  {
+   "id": "MS-batting",
+   "milestone": "Player batting (bottom half)",
+   "status": "visited",
+   "reason": "needs outs/half-inning contract (L-003)",
+   "route": "S5.snap + 25 x tap(a) (side change), then 26 x tap(a)",
+   "result": "Human batting in bottom 1st: PlayState $21-$25,$31,$32 cycle; strikes/balls counted (Strike 2, Ball 2 reached).",
+   "evidence": "analysis/redirect/r1-redirect-a/runtime.json"
+  },
+  {
+   "id": "MS-late-innings-game-end",
+   "milestone": "9th inning, game end, result screen",
+   "status": "visited",
+   "reason": "needs inning/score contract ($0066 half-inning counter, $05E6/$05E7/$06C6 score candidates) (L-003)",
+   "route": "S5.snap; write $0066=$10, $05F3=$0A; tap(a) x57",
+   "result": "Third out of top 9th -> PlayState $62 -> $70, HalfInning $11, SeasonWins $0616 +1, FrontEndScreen $41,$20,$22,$24,$25,$27 (result, NEXT PASSWORD screen), SeasonDay +1, biorhythm screens (GAME002), next game. Mercy rule (\"CALLED GAME\") observed with HalfInning>=9 and 10-run lead.",
+   "evidence": "analysis/redirect/r1-redirect-a/runtime.json",
+   "note": "Untraced unless noted; inputs tap(a,4,56) = hold A 4 frames then 56 released; budgets per emulator.step as in common; RAM patches via emulator.memory.write (artificial state, not natural reachability).",
+   "snapshot": "analysis/redirect/r1-redirect-a/snapshots/e4_gameend.snap"
+  },
+  {
+   "id": "MS-season-ending",
+   "milestone": "Season progression (GAME n), pennant/ending/credits",
+   "status": "visited",
+   "reason": "not reached; requires game-end shortcut first (L-003)",
+   "route": "game-end state + write $0610=$81, $0616=$4B; tap(a) x21 -> post-season game vs L.A. (SeasonDay $82); per game: write $0066=$10, $0356=2 and the human side total (=$0A; side from $0614 bit0: 1 -> $05F3, 0 -> $05E6)",
+   "result": "Post-season series vs L.A. (SeasonDay $82-$85, series wins in $0616); 4th win -> FrontEndScreen $41 -> $44 ending: credits pictures with staff initials (artificial route). Mercy rule CALLED GAME observed in post-season.",
+   "evidence": "analysis/redirect/r1-redirect-a/runtime.json",
+   "note": "Untraced unless noted; inputs tap(a,4,56) = hold A 4 frames then 56 released; budgets per emulator.step as in common; RAM patches via emulator.memory.write (artificial state, not natural reachability).",
+   "snapshot": "analysis/redirect/r1-redirect-a/snapshots/e8_game4.snap"
+  },
+  {
+   "id": "MS-password",
+   "milestone": "CONTINUE/password entry",
+   "status": "visited",
+   "reason": "title CONTINUE route not distinguished from START in round 1 (cursor down + START reached the 1P/2P select); retry with explicit cursor verification",
+   "result": "NEXT PASSWORD screen (7 letters) shown after each game (FrontEndScreen $27); password entry (CONTINUE) not exercised in this pass.",
+   "evidence": "analysis/redirect/r1-redirect-a/runtime.json; analysis/redirect/r3-redirect-a/x4b_password.json",
+   "redirect_update_r3": "r3-redirect-a: CONTINUE entry exercised with real inputs: power-on, frames(360), tap SELECT, tap START -> password entry (FrontEndScreen $38, PasswordCursor $80); closed-loop Up/Down/Right taps (hold 2/release 16) entered the password produced at the NEXT PASSWORD screen of the e4_gameend route ([5,5,24,1,6,2,18]); START -> accepted (check timer $30), SeasonDay 1, SeasonWins 1, team 0 restored, play resumed (PlayState $41). First open-loop attempt entered wrong letters (negative record x4_password_attempt1.json).",
+   "snapshot": "analysis/redirect/r3-redirect-a/x4b_after_continue.snap"
+  },
+  {
+   "id": "MS-cpu-relief",
+   "milestone": "CPU pitcher relief (stamina) and substitution screens",
+   "status": "visited (artificial)",
+   "route": "S5.snap; tap(a,4,56) x25 (natural side change, CPU pitching); emulator.memory.write $06C4=$40; tap A x12",
+   "result": "CpuInputState $70-$78, FrontEndScreen $11/$12 substitution screens, stamina reset to $FF, play resumed. Natural route needs ~40-120 pitches by one CPU pitcher (not run).",
+   "evidence": "analysis/redirect/r3-redirect-a/x3_relief.json",
+   "snapshot": "analysis/redirect/r3-redirect-a/x3_cpu_pitching.snap",
+   "note": "Artificial state (RAM write); proves mechanics, not natural occurrence."
+  },
+  {
+   "id": "MS-stamina-natural",
+   "milestone": "Natural per-pitch stamina decrement on both sides",
+   "status": "visited",
+   "route": "S5.snap; tap(a,4,56) x60, no edits",
+   "result": "$06C5 235->232 (human pitching), $06C4 255->249 (CPU pitching), no reset at side change",
+   "evidence": "analysis/redirect/r3-redirect-a/x2_game_mark.json"
+  },
+  {
+   "id": "MS-password-letter25",
+   "milestone": "Password screen: letter value 25 in key, field and check positions",
+   "status": "visited",
+   "route": "fresh boot; r3 X4b closed-loop entry recipe (no RAM edits); 4 variants",
+   "result": "alias (25 for 0 in a field) and key-25 passwords accepted with team 5/day $40/wins $20; check letter 25 rejected (PasswordFlags bit6)",
+   "evidence": "analysis/redirect/r4-redirect-a/y1_letter25.json"
+  }
+ ],
+ "checklist_review": [
+  {
+   "pass": "round3-redirect",
+   "summary": "All later-game/ending milestones are visited: batting, 9th inning/game end, mercy rule, season end, post-season, ending credits (artificial route, r1), NEXT PASSWORD and now CONTINUE password entry (real inputs). Not visited naturally: a full season without RAM shortcuts (long manual play; not required), natural CPU stamina relief (needs a long game). Attract demo game was not re-run this pass (x1 attempt timed out on budget; not needed after the static/runtime L-020 answer)."
+  }
+ ]
+}
