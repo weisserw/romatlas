@@ -1,0 +1,196 @@
+{
+ "version": 1,
+ "notes": "Input API: emulator.input {buttons:[...], port:N} sets the full held set (see analysis/toolkit-issues.md TK-001). Route tokens: 'btn[+btn]:hold:after' = hold buttons for `hold` frames then release and run `after` frames; 'wait:N' = run N frames. Frames counted by emulator.step unit=frame from emulator.start (power-on). Tracing: trace.configure enabled, capacity 0 (aggregates only); tracing slows emulation ~10x, so some long stretches ran untraced (stated per milestone). Snapshots were disposable same-build files and were removed at handoff; routes are the durable record. | r1-a redirect: snapshot files for S09 were scratch and are removed; routes + patches above reproduce them (~1-3 min each untraced; tracing slows ~20x).",
+ "milestones": [
+  {
+   "id": "S01-title",
+   "milestone": "Power-on, title screen",
+   "route": "emulator.start; wait:120 (traced)",
+   "result": "Title screen PLAY/OPTIONS; reset->MainInit $C001 path, NMI $C131, joypad read $CAC3 observed.",
+   "status": "visited"
+  },
+  {
+   "id": "S02-menus",
+   "milestone": "PLAY -> REGULAR SEASON/EXHIBITION -> EXHIBITION -> 1P/2P/WATCH",
+   "route": "from S01: start:3:60 right:3:30 a:3:60",
+   "result": "Menu screens rendered and navigated (traced).",
+   "status": "visited"
+  },
+  {
+   "id": "S03-watch-game",
+   "milestone": "Exhibition WATCH (CPU vs CPU) full game, team select, batting order screens, pitching/batting/fielding/base-running engine, scoreboard between halves",
+   "route": "from S02: right:3:20 right:3:20 a:3:60 a:3:40 right:3:20 a:3:90 start:3:120 wait:600 a:3:200 a:3:300 (game start ~frame 1776, NY vs LA); then traced to frame ~5736 (bgrun 1000-frame chunks), untraced to frame ~43956 (top of 6th..bottom 6th).",
+   "result": "~14.4k distinct instruction starts observed by frame 5736; gains flattened after ~3000 traced game frames (12.9k -> 13.6k per 1000 frames).",
+   "status": "visited"
+  },
+  {
+   "id": "S04-game-end-shortcut",
+   "milestone": "End of game / final scoreboard",
+   "route": "at frame 43956 (bottom 6th, $037B=$0B) emulator.memory.write $037B <- $0F (half-inning counter, 0-based: 2*(inning-1)+bottom); run untraced; counter -> $10 (top 9) -> $12 (game over, home team led so bottom 9 skipped); mode $2E/$2F = $03/$0B final scoreboard with X in bottom 9th; traced start:3:200 returns to title.",
+   "patch": {
+    "address": "$037B (CPU RAM)",
+    "value": "$0F",
+    "bank_context": "[8,9,30,31] at patch time not relevant (RAM)",
+    "artificial": true
+   },
+   "result": "Final scoreboard and return-to-title observed (artificial state after patch; natural reachability of the end path is the normal 9-inning completion).",
+   "status": "visited"
+  },
+  {
+   "id": "S05-password",
+   "milestone": "REGULAR SEASON -> CONTINUE -> ENTER PASSWORD, invalid password handling",
+   "route": "from title: start:3:40 a:3:90 a:3:90 right:3:20 a:3:90 up:3:10 up:3:10 right:3:10 down:3:10 a:3:30 start:3:90 a:3:120 right:3:8 x7 a:3:120 down:3:10 a:3:120",
+   "result": "Password entry, INVALID PASSWORD screen with TRY AGAIN/GO BACK TO START observed (traced); GO BACK returns to title.",
+   "status": "visited"
+  },
+  {
+   "id": "S06-season-game1",
+   "milestone": "REGULAR SEASON START -> team select (PLAYER vs COMPUTER) -> GAME 1 NY vs BOSTON intro -> batting order edit (pitcher swap Lewis/Bonds) -> human pitching/fielding",
+   "route": "from season menu: a:3:120 a:3:150 wait:200 a:3:100 a:3:150 up:3:15 a:3:30 right:3:20 a:3:40 left:3:15 down:3:15 a:3:250 wait:200; then a:3:120 left+a:3:120 right+a:3:120 down+a:3:120 up+a:3:120 b:3:60 select:3:60 start:3:60 start:3:60 a:3:150 x3; then a cyclic pattern a:3:40 left:20:5 a:3:40 up+a:3:40 right:20:5 b:3:30 down+a:3:40 a:3:60 a:3:40",
+   "result": "Human-controlled pitching, hit ball/fielding views observed (traced).",
+   "status": "visited"
+  },
+  {
+   "id": "S07-options",
+   "milestone": "OPTIONS menu (MUSIC on/off, DH on/off, EXIT)",
+   "route": "from title (cursor PLAY): right:3:20 a:3:90 right:3:20 a:3:20 down:3:20 right:3:20 a:3:20 down:3:20 a:3:90",
+   "result": "Options screen and toggles observed (traced); EXIT returns to title.",
+   "status": "visited"
+  },
+  {
+   "id": "S08-1p-batting",
+   "milestone": "Exhibition 1P, player bats first (NY away vs computer), human batting (swing/bunt/directional inputs)",
+   "route": "from title: start:3:60 right:3:30 a:3:60 a:3:80 a:3:40 right:3:20 right:3:20 a:3:90 start:3:120 wait:300 a:3:150 a:3:400; then scratch-pattern x6: a:3:50 none:1:30 a:3:80 b:3:60 up+a:3:80 down+a:3:80 a:3:120 right:10:30 a:3:90",
+   "result": "Batting views observed; distinct-instruction growth fell to ~15 per 650-frame cycle by cycle 4 (exhaustion of easy gains).",
+   "status": "visited"
+  },
+  {
+   "id": "S09-season-end-ending",
+   "milestone": "Late season, season end, US one-screen ending",
+   "route": "not attempted beyond game 1; RAM contract for game number/wins unknown",
+   "result": "Split into S09a-S09e (round-1 redirect r1-a). The US terminal screen after winning the Super Series is the SUPER SERIES CHAMPION cut-scene (CutsceneId 0, GameMode 3 sub-mode 12) followed by Start -> title; the separate GameMode 3 sub-mode 19 scene shows Japanese text and has no setter in this ROM (see S09e).",
+   "status": "visited (artificial)",
+   "reason": "Needs season-state RAM identification (lead L005); manual completion of 70+ games impractical.",
+   "history": [
+    "round-1 disassembly: deferred (RAM contract unknown)"
+   ]
+  },
+  {
+   "id": "S10-2p",
+   "milestone": "Exhibition 2P mode",
+   "route": "emulator.start; wait:120; start:3:60 right:3:30 a:3:60 right:3:20 a:3:90; then repeat (A port 1 hold 3 + 60 frames, A port 2 hold 3 + 60 frames) until $2E&$7F in {1,2} (6 rounds); then 4 more A rounds on both ports",
+   "result": "EXHIBITION 2P selected (cursor on 2P), team select/lineup screens advanced with port-1 and port-2 A presses, game started in GameMode 2 (pitcher/batter view, P.COOK vs 1.HENRIE) with PlayerTeam $0381=$FF (no single human team). Untraced; screenshots analysis/redirect/r1-a/scratch/e5_*.png (scratch). Natural route, no RAM edits.",
+   "status": "visited",
+   "reason": "Low expected gain: 2P shares the 1P engine with port-2 input (zero page $33); left for a later round if coverage gaps point there.",
+   "evidence": [
+    "analysis/redirect/r1-a/handoff.md"
+   ]
+  },
+  {
+   "id": "S09a-game-over",
+   "milestone": "Regular season GAME OVER screen (SeasonGame - SeasonWins >= 61)",
+   "route": "Base snapshot route (natural): emulator.start; wait:120; start:3:40 a:3:90 a:3:90 a:3:120 a:3:150 wait:200; then a:3:100 repeated until $2E&$7F in {1,2} (5 presses; GAME 1 NEW YORK(home, PlayerTeam 0) vs BOSTON(away 2), SeasonGame $66=1). Script analysis/redirect/r1-a/scratch/e1b.py (snapshot files are disposable scratch). Patch at game start: $0391 HomeRuns=5, $0386 AwayRuns=1, $042D SeasonWins=$45, $037B=$11, then $2E=$83, $2F=$0B (final scoreboard init, same as the unreferenced stub $8EA6); wait 200; start:3:200.",
+   "patch": {
+    "addresses": {
+     "$0391": 5,
+     "$0386": 1,
+     "$042D": 69,
+     "$037B": 17,
+     "$2E": 131,
+     "$2F": 11
+    },
+    "artificial": true
+   },
+   "result": "Final scoreboard, then GAME OVER cut-in (pitcher face). Cause: SeasonGame 1 - 70 wins wraps to >= 61 non-wins in U20_SeasonProgress (byte arithmetic). Artificial state.",
+   "status": "visited (artificial)",
+   "evidence": [
+    "analysis/redirect/r1-a/handoff.md"
+   ]
+  },
+  {
+   "id": "S09b-pennant",
+   "milestone": "Pennant clinched: LEAGUE CHAMPION cut-scene (CutsceneId 1, sub-mode 12)",
+   "route": "Base snapshot route (natural): emulator.start; wait:120; start:3:40 a:3:90 a:3:90 a:3:120 a:3:150 wait:200; then a:3:100 repeated until $2E&$7F in {1,2} (5 presses; GAME 1 NEW YORK(home, PlayerTeam 0) vs BOSTON(away 2), SeasonGame $66=1). Script analysis/redirect/r1-a/scratch/e1b.py (snapshot files are disposable scratch). Patch: $66 SeasonGame=$64, $0391=5, $0386=1, $042D=$45, $042E=0, $037B=$11, $2E=$83, $2F=$0B; wait 150; start:3:150.",
+   "patch": {
+    "addresses": {
+     "$66": 100,
+     "$0391": 5,
+     "$0386": 1,
+     "$042D": 69,
+     "$042E": 0,
+     "$037B": 17,
+     "$2E": 131,
+     "$2F": 11
+    },
+    "artificial": true
+   },
+   "result": "SeasonWins -> 70; \"LEAGUE CHAMPION / NEW YORK\" cut-scene with players (unit 18 cut-scene step). Artificial state.",
+   "status": "visited (artificial)",
+   "evidence": [
+    "analysis/redirect/r1-a/handoff.md"
+   ]
+  },
+  {
+   "id": "S09c-series-password",
+   "milestone": "Super Series entry: password screen and series game setup",
+   "route": "from S09b: wait 700; start:3:200",
+   "result": "U18_PennantWaitStart: SeasonGame=$C8, wins/losses cleared, U14_SetUpNextGame; GameMode 3 sub-mode $0A shows PASSWORD screen \"NEW YORK SUPER SERIES\" with password 000R6CB640 (game-generated for this artificial state; a natural CONTINUE entry of this password is an untested candidate route into the series).",
+   "status": "visited (artificial)",
+   "evidence": [
+    "analysis/redirect/r1-a/handoff.md"
+   ]
+  },
+  {
+   "id": "S09d-series-champion",
+   "milestone": "Super Series won: SUPER SERIES CHAMPION cut-scene and return to title (US terminal screen)",
+   "route": "from the S09c state (series game 1: PlayerTeam $0381=0 is the AWAY team $0382=0, HomeTeam $0383=6): $042D=3, $042E=0, $0386 AwayRuns=5, $0391 HomeRuns=1, $037B=$11, $2E=$83, $2F=$0B; wait 120; start:3:120; wait 750; start:3:120",
+   "patch": {
+    "addresses": {
+     "$042D": 3,
+     "$042E": 0,
+     "$0386": 5,
+     "$0391": 1,
+     "$037B": 17,
+     "$2E": 131,
+     "$2F": 11
+    },
+    "artificial": true
+   },
+   "result": "SeriesWins -> 4, CutsceneId 0: \"SUPER SERIES CHAMPION / NEW YORK\" (team celebration); Start returns to the title (GameMode $83 sub-mode 0). No credits. Matches the external \"one-screen US ending\" description.",
+   "status": "visited (artificial)",
+   "evidence": [
+    "analysis/redirect/r1-a/handoff.md"
+   ]
+  },
+  {
+   "id": "S09e-submode19",
+   "milestone": "GameMode 3 sub-mode 19 (U20_InitEnding) scene",
+   "route": "from the S09c state: $2E=$83, $2F=$13; wait 120 (traced); wait 300; start:3:60 a:3:60",
+   "patch": {
+    "addresses": {
+     "$2E": 131,
+     "$2F": 19
+    },
+    "artificial": true
+   },
+   "result": "Shows the pennant-style scene with Japanese text \"\u795d \u30da\u30ca\u30f3\u30c8\u30ec\u30fc\u30b9 \u512a\u52dd\" (congratulations, pennant race victory); stays on screen (U20_EndingFrame does nothing; Start/A have no effect). No setter of sub-mode $13 exists (byte search for lda/ldx #$13 feeding $2F or SetGameMode found none); the unit-18 code bypassed by jmp $B727 at $B70C (L012) is the likely original link. Artificial only; natural reachability not shown.",
+   "status": "visited (artificial)",
+   "evidence": [
+    "analysis/redirect/r1-a/handoff.md"
+   ]
+  },
+  {
+   "id": "S11-natural-password",
+   "milestone": "Season CONTINUE with a valid password entered by normal input (natural route into the Super Series)",
+   "route": "emulator.start; wait:120 start:3:40 a:3:90 a:3:90 right:3:20 a:3:90 (ENTER PASSWORD, GameMode 3 sub-mode 15); for each of 10 characters press up:2:6 v times then right:2:8 (no right after the last); chars [0,0,0,11,6,12,11,6,4,0]; a:3:60; wait:200; start:3:200; a:3:300. Script analysis/redirect/r2-a/tools/pw_route.py 0xC8 23 0 0 0 3 go (traced from the A press).",
+   "result": "Password 000D6BD640 accepted (sound $13, SeasonGame=$C8, ScheduleDay=23): NEW YORK SUPER SERIES confirmation, GAME 1 NEW YORK vs HAWAII intro, NEW YORK BATTING ORDER. Natural input only, no RAM edits. 3,009 distinct ROM opcode fetches, all inside Code; first observed fetches in 10 Static code regions (analysis/redirect/r2-a/s11-coverage.txt).",
+   "status": "visited",
+   "evidence": [
+    "analysis/redirect/r2-a/evidence/s11_password_accepted_000D6BD640.png",
+    "analysis/redirect/r2-a/evidence/s11_series_game1_intro.png",
+    "analysis/redirect/r2-a/evidence/s11_batting_order.png",
+    "analysis/redirect/r2-a/s11-coverage.txt"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "platform": "nes",
+  "name": "bases-loaded-4",
+  "rom_sha256": "cc259f071dbf57db0305938a57c32d5c09bc83cbb46b286e3f53a720a08ef621",
+  "rom_filename": "game.nes",
+  "image_size": 393232,
+  "editorial_complete": true,
+  "review_status": {
+    "complete": true,
+    "reviewed_regions": 4154,
+    "total_regions": 4154,
+    "reviewed_units": 1803,
+    "total_units": 1803,
+    "editorial_audit": true,
+    "reasons": []
+  },
+  "omitted_documents": [
+    "analysis/round-1/commentary/AGENTS.md",
+    "analysis/round-1/commentary/prompt.md",
+    "analysis/round-1/commentary/workflow.md"
+  ],
+  "artifacts": {
+    "README.md": "468db2be2f0e4ff891af9bf0090e5652f08c720a01d6ec793c70f0f33007955b",
+    "analysis/commentary-handoff-round1.md": "adc27417d2a8a9461d81f479bd1311473cfd228038460cf926a55b96523fb7cc",
+    "analysis/commentary-handoff-round2.md": "2c91224e29e7cf9dc03e377dbce0d4da361a3ddaf858e89d7328201bdcf18234",
+    "analysis/final-acceptance.md": "2bddc1b5919f4049b6aa1b2b7d90912359ea91cefed665970c1548850f89ae3b",
+    "analysis/gameplay.md": "1e44d63647547982ac3892327313d941ea53e738708e4b89173fd101aafbeab4",
+    "analysis/investigation.md": "310413de2c00cdf71ed594e1b8f4c515ffad426a09b410bec543fc54fa1154b5",
+    "analysis/progress.md": "be6b1de0c70167cb96210bc69757d2de80b0472bc0902aa6485d01f467a18d65",
+    "analysis/redirect/r1-a/handoff.md": "dc4e817206a7eb5232a7cb56a10e5d4e05b8a3f106fecbd6bf986e4174546154",
+    "analysis/redirect/r2-a/handoff.md": "8724872f018a561c1e3e0744c03051958b55df918271340515d55ac1839f21a7",
+    "analysis/round-1/README.md": "e06b1c22dafb8ae1d6252db4a3e73b0e6527f3cc257b0ac0867d015f13e9bded",
+    "analysis/round-1/commentary/progress.md": "7d80408ac90883c62d93167644024e930c0510970dcb30f04e44653077e0902a",
+    "analysis/round-1/commentary/uncertainties.md": "7ed762bfa55b9f64b542865a37e1afc50149b98ed9fafe971857f028d3dc1a79",
+    "analysis/scenarios.json": "50a7cda81fd6fb500ca47c1c959b3e2724b5e33c23ad421a77d830c73dfad33e",
+    "analysis/state.json": "ad58fcd0504430d554a7182ae8fe5d4c6de88dd47ff0550e8541941f1efc24a9",
+    "commentary/audit.json": "801c8ffdc99f549aab37020eb3ac9d36a5551bc40dae96dfb2733d30abee53fd",
+    "commentary/baseline.json": "ad58fcd0504430d554a7182ae8fe5d4c6de88dd47ff0550e8541941f1efc24a9",
+    "commentary/manifest.json": "210ab874c712e3b9e58c03e4eab79b6c720131690aa79f3daca1a9e75e185828",
+    "commentary/phase1-state.json": "ad58fcd0504430d554a7182ae8fe5d4c6de88dd47ff0550e8541941f1efc24a9",
+    "commentary/progress.md": "c04168bb562d12f6a875abf61ea20843c201d2eef78b907f4c37f93ac98d61de",
+    "commentary/review.json": "e33f9f874bca220604712ae28ad8db0525fa20b22a9af517c6e238f1538b7731",
+    "commentary/uncertainties.md": "1f9828e9b1c7929ec7cd9040bcd89d5e3221e899c7fe6379f5ea4cb8fb83c332",
+    "commentary/verification.json": "1ffeb6a8cfc0f22c989f2569798d5f7194c17821030f540841e1d291a7e3cd64",
+    "editorial.json": "a12a306ab072f4f96566e37debda1abf3211abaa966e19053983f7c864b3d38d",
+    "maps/current.json": "ad58fcd0504430d554a7182ae8fe5d4c6de88dd47ff0550e8541941f1efc24a9"
+  }
+}

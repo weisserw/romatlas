@@ -1,0 +1,166 @@
+[
+ {
+  "id": "S01-boot-attract",
+  "milestone": "Power-on, SNK/title attract sequence",
+  "route": "emulator.start; run 1500 frames with no input (trace enabled, capacity 0)",
+  "budget": "frames stepped in 120-frame emulator.step calls, max_operations 1e8",
+  "observed": "Blank -> Baseball Stars title screen (c) 1989 SNK. MMC1 context [0,1,14,15] at reset.",
+  "evidence": "server-1 trace aggregates -> scratch/ctx.json (analysis.contexts dump)",
+  "status": "visited"
+ },
+ {
+  "id": "S02-main-menu",
+  "milestone": "Main menu (LEAGUE PLAY / VS / VIEW TEAM / MAKE TEAM / END PLAY)",
+  "route": "S01 then ~600 frames, press start (3 frames held, 90 frames after)",
+  "observed": "Menu with blank slots (bank-3 strings show TRADE/HIRE/FIRE PLAYER, REMOVE TEAM appear conditionally)",
+  "status": "visited"
+ },
+ {
+  "id": "S03-computer-play",
+  "milestone": "VS -> COMPUTER PLAY (CPU vs CPU full game, American Dreams vs Brave Warriors)",
+  "route": "S02: right, A, down, down, A (COMPUTER PLAY), A (team 1), right, A (team 2). Then no input; sampled trace: 30x(900 frames trace off + 60 on), then 40x(1500 off + 40 on)",
+  "observed": "Batting/pitching/fielding views, innings progress (top 5th at ~45k frames); later cycles toward game end; game end reached at ~91k frames: final box score AD 12 - BW 1, HOMERUN list (scratch/cq37.png, cq38.png), then return to main menu",
+  "evidence": "scratch/cp*.png, scratch/cq*.png, scratch/ctx.json; snapshot export scratch/cpuplay_start.snap (same-build only); snapshot exports are same-build only",
+  "status": "visited"
+ },
+ {
+  "id": "S04-view-team",
+  "milestone": "VIEW TEAM: team select, player list, pitcher and batter stat pages",
+  "route": "S02: down, A, A (team AD), down, down, A (pitcher DENNY), down x2 A, B, right, A (batter JAY), B, B, B",
+  "observed": "Player stat screens with money/point allocation display",
+  "evidence": "server-2 trace -> scratch/ctx2.json",
+  "status": "visited"
+ },
+ {
+  "id": "S05-make-team",
+  "milestone": "MAKE TEAM: strength selection, team-name entry, confirm",
+  "route": "S02: right, down, A, A (CONSISTENT HITTERS), A, name edit (right, A), select x2 to END, A, A (YES)",
+  "observed": "Name-entry keyboard, 'ARE YOU SURE?' dialog, then flows into MAKE A LEAGUE",
+  "status": "visited"
+ },
+ {
+  "id": "S06-league",
+  "milestone": "MAKE A LEAGUE (teams/games), league menu (CONTINUE PLAY / SEE STANDINGS / NEW LEAGUE), standings grid, league game simulated without watching, result and attendance screens",
+  "route": "S02: A (LEAGUE PLAY) -> right (3 TEAMS), down, right, A, A, right, A, A (team picks) -> back at main menu; A (LEAGUE PLAY) -> down, A (standings), B, A (continue), A (match cell), wait 600 frames, right, A (NO = do not watch)",
+  "observed": "Simulated result box score AD 11 - BW 1, attendance 34,000 money screen, return to main menu",
+  "evidence": "server-2 trace -> scratch/ctx2b.json",
+  "status": "visited"
+ },
+ {
+  "id": "S07-one-player-game",
+  "milestone": "VS 1PLAYER game with periodic A presses (batting/pitching/fielding)",
+  "route": "S02: right, A, A (1PLAYER), A (team), right, A; then 2x(600 frames pressing A every 60 frames + 60 traced frames)",
+  "observed": "Fielding play view reached; human-controlled pitching/batting",
+  "status": "visited"
+ },
+ {
+  "id": "S08-end-play",
+  "milestone": "END PLAY warning screen",
+  "route": "From main menu: down, down, A",
+  "observed": "WARNING!! hold reset before power off screen",
+  "status": "visited"
+ },
+ {
+  "id": "S09-pregame-options",
+  "milestone": "Pre-game lineup menu (START GAME / CHANGE BATTING ORDER / CHANGE FIELDER / PLAYER CHANGE / CHANGE PITCHER)",
+  "route": "1P game after team select (~270 frames): right cycles options, A enters; swap via A, down, A; B exits",
+  "observed": "Batting-order swap cursor exercised",
+  "status": "visited"
+ },
+ {
+  "id": "S10-league-stats",
+  "milestone": "League standings pages (G/W/L/PCT/GB), league leader pages (HOMERUNS etc.), NEW LEAGUE prompt",
+  "route": "From league menu (snapshot scratch/league_menu.snap): down, A (standings), right x3 (pages), A, B, B; reload, down, down, A (NEW LEAGUE), A",
+  "observed": "Standings G W L PCT GB table; HOMERUNS leader page; NEW LEAGUE selection",
+  "status": "visited"
+ },
+ {
+  "id": "S11-in-game-substitution",
+  "milestone": "In-game TIME (START) and substitution menu (PINCH HITTER), bench list, pinch hitter enters",
+  "route": "1P game (snapshot scratch/game1p.snap at scoreboard): START (TIME), wait 60, A -> PINCH HITTER menu (scratch/sub_menu.snap), A, A (bench list), down, A, A",
+  "observed": "Bench list (LOU/JOHNNY/EDDY/BILLY/PAUL), JOHNNY shown as '1 PH'",
+  "status": "visited"
+ },
+ {
+  "id": "S12-conditional-menus",
+  "milestone": "TRADE PLAYER / HIRE PLAYER / FIRE PLAYER / REMOVE TEAM, player POWER UP / BUY",
+  "route": "menu1team.snap: REMOVE = Down,Down,A,A,A,Left,A. FIRE = Right,Down,Down,Down,A,A,A,A,A,(wait)A. HIRE after FIRE = Right,Down,A,A,A,A,A, Down,Right,Right,Down,Right,A,Up,A,Right,Right,A, Right,Right,Down,Right,Right,Right,A, A. menu2team.snap (2nd team via Right,Down,Down,A,A,A,A,Right,A,SELECT,SELECT,A,A,B,A,A,A,A from menu1team): TRADE = Down,A, A, p2:A, A, p2:A, A, p2:A. Inputs 3 frames held, 30-60 frames between.",
+  "observed": "Reached naturally in r1-redirect-01. MAKE TEAM route fills slot 0 ($6790=00) -> HIRE/REMOVE/FIRE appear (menu1team.snap); second MAKE TEAM fills slot 1 -> TRADE PLAYER appears (menu2team.snap). REMOVE TEAM (MS 31): select team, ARE YOU SURE? YES -> slot freed ($6790=ff). FIRE PLAYER (MS 33): team, player, FIRE/KEEP, 'WAS FIRED.' scene. HIRE PLAYER (MS 35): refused with TOO MANY PLAYERS until a player is fired; after FIRE: WHAT STYLE OF PLAYER?, rookie point/price page ($33,000, NEXT / SIGN CONTRACT), BONUS POINT allocation, PRESS MEETING. TRADE PLAYER (MS 37): P1/P2 team and player picks (port 2 for P2), ARE YOU SURE? YES -> trade.",
+  "status": "visited",
+  "evidence": [
+   "analysis/redirect/r1-redirect-01/runtime-coverage.json",
+   "analysis/redirect/r1-redirect-01/exp-menus.json",
+   "scratch/r1r_hi_8.png",
+   "scratch/r1r_tr_4.png",
+   "scratch/r1r_fire.png",
+   "scratch/r1r_rm_3.png"
+  ]
+ },
+ {
+  "id": "S13-season-end",
+  "milestone": "League season end / championship",
+  "route": "menu2team.snap: A (LEAGUE PLAY) -> MAKE A LEAGUE 2TEAMS/3GAMES: A,A,Right,A,A (KEEP) -> league of 2 CPU teams; then repeatedly A (CONTINUE PLAY), at 'DO YOU WANT TO WATCH THE GAME?' Right,A (simulate). After the 3rd simulated game CheckLeagueFinished sets MainState 40 -> 41 (snapshot analysis/redirect/r1-redirect-01/league-final.snap at MS $29 step 0). ~500 frames later CHAMPION screen; START returns to main menu.",
+  "observed": "CHAMPION trophy screen 'AMERICAN DREAMS W 3 L 0 PCT 1.00' (scratch/r1r_ch_4.png). States 40/41 executed with ordinary inputs (no RAM patch). This is the league-mode terminal milestone; no separate credits/ending found.",
+  "status": "visited",
+  "evidence": [
+   "analysis/redirect/r1-redirect-01/runtime-coverage.json",
+   "scratch/r1r_ch_4.png",
+   "analysis/redirect/r1-redirect-01/league-final.snap"
+  ]
+ },
+ {
+  "id": "S14-fielding-side-substitution",
+  "milestone": "In-game substitution for the fielding side (RELIEF PITCHER page)",
+  "route": "scratch/game1p.snap: B,B, START (TIME); hold A port 1, run_until $0530==1, write $0532=1 (MenuSide), $0534=$02; then A,A,Down,A,A",
+  "observed": "RELIEF PITCHER page, relief pitcher applied, back to MainState 3. ARTIFICIAL (RAM patch; port-2 A is ignored in 1P mode).",
+  "evidence": [
+   "analysis/redirect/r1-redirect-01/cov-fieldside.json",
+   "scratch/r1r_fs2_2.png"
+  ],
+  "status": "visited (artificial)"
+ },
+ {
+  "id": "S15-pregame-all-options",
+  "milestone": "VS pre-game menu (MS 19) all five options",
+  "route": "menu2team.snap: Right (VS), A, A, p2:A, A, wait 120 -> MS 19 (snapshot in-session only); Right xN (40 frames apart) then A, A, Down, A, A, B, B",
+  "observed": "CHANGE BATTING ORDER, CHANGE FIELDER, PLAYER CHANGE and STARTING PITCHER pages entered; 481 instruction starts inside L-R2-03 proposal observed, 0 misaligned",
+  "evidence": [
+   "analysis/redirect/r1-redirect-01/runtime-coverage.json",
+   "scratch/r1r_pg_grid.png"
+  ],
+  "status": "visited"
+ },
+ {
+  "id": "S16-artificial-state-patches",
+  "milestone": "Direct MainState patches (consumer mechanics only)",
+  "route": "menu2team.snap: write $0485=0,$0484=$28 -> MS 40/41 with empty league (tied ranks -> MS 6). game1p.snap: $0485=0,$0484=$18 -> MS 24/25 -> A -> main menu (no proposal bytes hit).",
+  "observed": "Artificial; superseded by natural S13 for states 40/41. WRAM cannot be patched (TK-002).",
+  "evidence": [
+   "analysis/redirect/r1-redirect-01/runtime-coverage.json"
+  ],
+  "status": "visited (artificial)"
+ },
+ {
+  "id": "S17-two-player-game",
+  "milestone": "VS 2PLAYER: both-port team select and a 2-player game",
+  "route": "analysis/redirect/r1-redirect-01/mainmenu.snap: Right, A (VS), Down, A (2PLAYER), p1:A (team), p2:A (team; MainState 7 -> 8 -> $13 pre-game) [snapshot export scratch/r2/p2pregame.snap, same-build]; then 50x(hold A on ports 1+2 for 4 frames, 56 frames idle) = 3000 frames with aggregate tracing (capacity 0).",
+  "observed": "2-player team select loop bank 3 $B2C2-$B3C8 incl. far-call continuation $B39E-$B3AE (7/7 starts, confirms pass-004 correction); 2P game reached top 1st / innings 1-3 (MainState 3/5 cycling, scratch/r2/p2g*.png). 9687 instruction starts fetched; 0 in Unknown, 0 in Data, 0 misaligned vs pass-004 map. No L-R2-08 fragment fetched.",
+  "evidence": [
+   "scratch/r2/cov-s17-2p.json",
+   "scratch/r2/p2g9.png",
+   "scratch/r2/vs9.png"
+  ],
+  "status": "visited"
+ },
+ {
+  "id": "S18-r2-progression-review",
+  "milestone": "Review of unvisited later-game/ending milestones (Round 2 redirect)",
+  "route": "none executed",
+  "observed": "Terminal/later milestones already visited: full CPU game to final box score (S03), 1P/2P games (S07/S17), substitution both sides (S11/S14), league season end + CHAMPION screen (S13, natural inputs), END PLAY warning (S08), all main-menu feature states incl. TRADE/HIRE/FIRE/REMOVE (S12). The game has no credits/ending sequence beyond the league CHAMPION screen (MainStates 40/41). Remaining candidates (extra innings, called/mercy games) are sub-cases of the already-observed play states 2-11 and no residual Unknown byte is connected to them (all 240 L-R4-01 bytes are menu/helper/runner fragments without callers).",
+  "status": "deferred",
+  "reason": "no unvisited distinct milestone; further play would repeat visited states with no connection to residuals",
+  "evidence": [
+   "analysis/handoffs/round2-redirect.md"
+  ]
+ }
+]

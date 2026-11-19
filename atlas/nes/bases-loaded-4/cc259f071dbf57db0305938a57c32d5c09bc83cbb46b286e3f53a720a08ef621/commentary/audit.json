@@ -1,0 +1,31 @@
+{
+  "byte_identical": true,
+  "ok": true,
+  "rom_sha256": "cc259f071dbf57db0305938a57c32d5c09bc83cbb46b286e3f53a720a08ef621",
+  "source_sha256": {
+    "chr.asm": "74d238cd9595dfca1e746a567bef4b149c10f9e9c3a722e4328448bbd74e3277",
+    "fixed_30_31.asm": "e1f59017e0973abb9dce2a16ddbaf51864343b9dd2b1fdbec1d4d4dd8c08951f",
+    "game.asm": "43c1910e4e81e96f1d0d12b1f3e92a966c674aa238071e65b59fafddc25619f2",
+    "hardware.inc": "fc70205141e931d406ee5031f673bd5588d475f35514bcd1ed71be65ceeb9891",
+    "header.asm": "4baf736df28867453f604f4f4bee843b580e2fa958eb6463ee17e4387d437433",
+    "ram.inc": "417bb83a00c3f0242a9af6e6ee7cb76b23581e6e24fbd4b45d65fa985eacc0b2",
+    "unit00.asm": "71caa9c7d09b9f8476bfdf8c9769813222590a1ab109a7f897555aa0558539ed",
+    "unit02.asm": "024e117336c91c92d54be347483550791136eaa71a2f87f8a67178911d06e4aa",
+    "unit04.asm": "85cce6d1162dbf9aa26b660905a3cec28310ec717a421f434bace885fb9a52ab",
+    "unit06.asm": "36950d7308bbdaea7beb8fbe261ac31ed98505c657088875c2b3b554290ee769",
+    "unit08.asm": "7445930da14195a4678bedb2993fe6992004cf4d566494c1cdf1e5fc1b088e98",
+    "unit10.asm": "f30f96fb1aab6ebbc38e202b8e674067364ed3d8a3ba3413db41bd0b04a44b25",
+    "unit12.asm": "1adfc74697d4b291573fdaf1715bd7bc430616d9e814f9d06deedde40daa4034",
+    "unit14.asm": "a1fd1dcea3c52cebbdcc6c88d994851c1c6b25a3ecf060503bff17f9f56a61a8",
+    "unit16.asm": "81cfff948baf388107a0a84b4cba0c85ca68543f0fda430b99941e5bdc58c4b6",
+    "unit18.asm": "e589fbde17318bf023d1580fb70ec0f77e9bc8089621914cec7143cb2d514abe",
+    "unit20.asm": "81d51ec600fe9497ce792530097daad0eff19ced4a3f3bbf8de6f62e9c7f8ac1",
+    "unit22.asm": "02b6c3c78820c7ae94f379fad89da67212977dfe6437b05a2e927dd92bbfc80e",
+    "unit24.asm": "7d17c12842cd4b212c35901698bfc3fe2b7143bea1742ba0d3c15e3df59cdd4e",
+    "unit26.asm": "23b69a3a011625258f871cf57d46256d98fb19af33738394fbb5311c5fb9a281",
+    "unit28.asm": "2d7562c55ceabe0c4ec1fd6acea9f8644bef445a8226b06f502d73ce88a85d87"
+  },
+  "reviewed_regions": 4154,
+  "reviewed_units": 1803,
+  "editorial_audit": true
+}

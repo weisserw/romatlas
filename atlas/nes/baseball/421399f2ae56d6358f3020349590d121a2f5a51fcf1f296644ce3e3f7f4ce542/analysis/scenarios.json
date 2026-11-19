@@ -1,0 +1,98 @@
+{
+ "version": 1,
+ "notes": "Round 1 disassembly scenarios. Inputs use emulator.input {buttons:[...]} (port 1 unless stated); press(b,h,w) = hold b for h frames, release, run w frames. Tracing (capacity 0) only where stated; coverage union saved in traces/r1-coverage-offsets.json (physical file offsets of observed opcode fetches, 4264). Scripts: analysis/tools-r1/. Snapshots (same-build) in traces/snapshots/. Round 2 disassembly (2026-11-18): no new gameplay; only remaining unknown byte ($E5F4) cannot gain evidence from play. Existing checklist unchanged.",
+ "scenarios": [
+  {
+   "id": "r1-startup-title",
+   "milestone": "power-on to title screen",
+   "route": "emulator.start; 120 frames traced",
+   "result": "title 'BASEBALL' with 1P/2P menu",
+   "status": "visited",
+   "artificial": false
+  },
+  {
+   "id": "r1-1p-teamselect",
+   "milestone": "1P game, team select, play ball",
+   "route": "from title: START 10f, release, 60f; RIGHT 4f/10f; A 4f/120f; A 4f/180f (traced)",
+   "result": "SELECT YOUR TEAM -> PLAYBALL -> top of 1st, player batting",
+   "status": "visited",
+   "artificial": false
+  },
+  {
+   "id": "r1-batting-random",
+   "milestone": "batting (top 1st)",
+   "route": "analysis/tools-r1/play.py seed 1, 100 random presses from {a,b,dirs,a+up,a+down,b+left,b+right,none}, hold {2,6,15}, wait {10,20,40} (traced); ends frame 3845",
+   "result": "swings, hits, base running; inning advanced to bottom 1st after later untraced run; coverage 3796 instr",
+   "evidence": "traces/snapshots/r1-play1-end.json",
+   "status": "visited",
+   "artificial": false
+  },
+  {
+   "id": "r1-fielding-random",
+   "milestone": "pitching/fielding (bottom 1st)",
+   "route": "untraced 1600 frames from r1-play1-end (no input) -> traces/snapshots/r1-fielding-start.json; then play2.py seed 2, 25 presses from {a,a+dirs,dirs,b,b+up}, hold {3,8}, wait {15,30,60} (traced)",
+   "result": "pitches, CPU batting, throws (A+direction moves ball, RAM 36/38); coverage 4217",
+   "evidence": "traces/snapshots/r1-fielding-end.json",
+   "status": "visited",
+   "artificial": false
+  },
+  {
+   "id": "r1-gameset-shortcut",
+   "milestone": "end of game (GAME SET) and return to title",
+   "route": "from r1-fielding-end: write RAM $33=17 (half-inning counter; C6CF inc, C6D3 cmp #$12 -> C708 game end), untraced 60x press(A,4,96); then RAM $62=2,$63=2 (strike/out counters, inferred), toend2.py seed 8 press(random {a,a+dirs,b,none},4,60) per chunk until $33=18 at chunk 54; reload chunk snapshot (traces/snapshots/r1-bottom9-last-chunk.json), replay chunk 54 input traced + 900 frames traced",
+   "result": "'GAME SET' scoreboard screen observed, then title screen; +39 new instructions. ARTIFICIAL (RAM patched), not a natural route",
+   "evidence": "traces/snapshots/r1-gameend.json",
+   "status": "visited",
+   "artificial": true
+  },
+  {
+   "id": "r1-2p-start",
+   "milestone": "2 player game start",
+   "route": "from r1-gameend (title): SELECT 4f/20f, START 4f/90f, RIGHT, A (port 1); port 2 LEFT then A; A (port1) 4f/150f (traced)",
+   "result": "2P game A vs C, top 1st; +8 instructions",
+   "evidence": "traces/snapshots/r1-2p-start.json",
+   "status": "visited",
+   "artificial": "follows artificial r1-gameend state (title re-entered after patched game)"
+  },
+  {
+   "id": "r1-extra-innings",
+   "milestone": "tie after 9 innings / home team lead skip (C6F7 path)",
+   "route": "not attempted; candidate patch: $33=16 with home team leading / tied scores",
+   "status": "unavailable",
+   "reason": "Redirect r1-a static evidence: NextPitch_sideRetired ($C6CC) increments HalfInning and branches to GameSet when it reaches $12 (CMP #$12/BEQ) with no score comparison, so a tie after 9 innings ends the game; there is no extra-inning path. Home-team-lead skip (GameEndEarly $C6F7) was already observed. No runtime attempt needed."
+  },
+  {
+   "id": "r1-substitution-menus",
+   "milestone": "pinch hitter / relief pitcher menus, other teams",
+   "status": "deferred",
+   "reason": "controls not researched; no manual consulted this pass | Redirect r1-a: deferred again - no ROM-encoded reference to any unknown range exists, so menus cannot expose callers of the unknown fragments; remains a broad-progression item (L-006) needing control research."
+  },
+  {
+   "id": "r2-camera-views",
+   "milestone": "pitching vs fielding camera views (SQ-R2-3)",
+   "route": "emulator.snapshot.import r1-fielding-start / r1-play1-end / r1-2p-start, no input, 300-900 frames, RAM reads only (analysis/redirect/r2-a/sq3_camera.py, sq3_shots.py)",
+   "result": "pitching = second CameraTables record ($CB=6, nametable $2800, infield close-up); first record ($CB=0, nametable $2000) = full-field view with scoreboard when the ball leaves the infield",
+   "evidence": "analysis/redirect/r2-a/pitch_f200.png, cb0_f120.png, cb6_f10.png, cb6_f260.png",
+   "status": "visited",
+   "artificial": false
+  },
+  {
+   "id": "r3-runner-forcecheck",
+   "milestone": "base running with a hit and runner on first (ForceCheck / progress encoding, SQ-R3-1/2)",
+   "route": "emulator.snapshot.import traces/snapshots/r1-fielding-start.json; 1800 frames, A held 4 frames every 150 frames (pitch), no RAM writes; RAM reads each frame, Instruction trace of ROM 0x2256-0x226E (analysis/redirect/r3-a/sq_runner.py)",
+   "result": "CPU batter singles, later reaches second/third on further hits; 719 ForceCheck calls logged; progress encoding 0/1/2k/2k+1 confirmed against positions",
+   "evidence": "analysis/redirect/r3-a/sq_runner_fielding2.out",
+   "status": "visited",
+   "artificial": false
+  },
+  {
+   "id": "r3b-runner-direction",
+   "milestone": "base running direction vs routine (Runner_retreat/Runner_backToBase/Runner_advance, PointPrevBase/PointNextBase)",
+   "route": "emulator.snapshot.import traces/snapshots/r1-fielding-start.json; 1800 frames, buttons:[\"a\"] for 4 frames every 150 frames, no RAM writes; run twice: Instruction trace of ROM 0x1895-0x1A70 (runner labels), then 0x2491-0x24C8 (Point* + Y at PointSet_store) (analysis/redirect/r3-b/dir_trace.py)",
+   "result": "Runner_retreat/Runner_backToBase move runners one base forward (PointPrevBase = base ahead); Runner_advance holds at the PointNextBase point just past the reached base",
+   "evidence": "analysis/redirect/r3-b/dir_runner.out, dir_point.runners.out",
+   "status": "visited",
+   "artificial": false
+  }
+ ]
+}

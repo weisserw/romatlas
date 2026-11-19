@@ -1,0 +1,154 @@
+[
+ {
+  "id": "S-001",
+  "milestone": "Boot to title screen",
+  "route": "emulator.start; trace enabled (capacity 0, aggregates); step 120 frames (timeout_ms 120000, max_operations 1e8)",
+  "result": "Title 'Bases Loaded 3' with 1P/2P/WATCH/EDIT; reset at $FF15, NMI $E921; banks [0,1,30,31]",
+  "status": "visited",
+  "evidence": "traced aggregates in ctx_a (scratch, not retained)",
+  "snapshots": []
+ },
+ {
+  "id": "S-002",
+  "milestone": "WATCH mode full CPU-vs-CPU game to GAME OVER",
+  "route": "From title: buttons [right] x2 (4 frames held, 20 released), [start] (Music ON), [start], TEAM SELECT [a], GROUND SELECT [a], starting order 1P [a] READY, 2P [a] READY; then no input. Traced 300 frames out of every 3000 for cycles 0-3 (frames 1667-14267), then untraced 3000-frame chunks to frame 67667.",
+  "result": "Full 9 innings (half-inning index $037C 0..18), final D 1 - B 0, GAME OVER screen; Start/A returns to title. Coverage saturated ~11.1k unique instructions by frame 14267; +~150 after.",
+  "status": "visited",
+  "evidence": "ctx_a + ctx_b context dumps; screenshots in scratch",
+  "snapshots": [
+   "traces/round-001/snapshots/game0.snap.gz (WATCH game start, frame 1667)"
+  ]
+ },
+ {
+  "id": "S-003",
+  "milestone": "1P intro text, team select, starting-order swap",
+  "route": "title3 snapshot: [left]x2, [start], [start] (music), wait 300+400 frames, [start], [a], [a]; TEAM SELECT [a], GROUND [a], ORDER: [up],[a],[right],[a] (swaps batters 1 and 9), [b],[b],[down],[a] READY,[a]",
+  "result": "Intro 'PLAY THE PERFECT GAME!! ... RATED IN 13 CATEGORIES' text (bank 14 code), swap observed",
+  "status": "visited",
+  "evidence": "ctx_c/ctx_d dumps (+783 new instructions mostly banks 20/14/21)",
+  "snapshots": [
+   "traces/round-001/snapshots/title3.snap.gz (title, after WATCH game)"
+  ]
+ },
+ {
+  "id": "S-004",
+  "milestone": "1P batting/pitching with inputs",
+  "route": "From p1game snapshot: 100 iterations of [a]+random direction (seed 1 then 2) held 4 frames then released 20/40/60 frames (scripts p1_run.py), traced",
+  "result": "Hits, fielding and base running exercised; +1162 new instructions vs WATCH (banks 20,21,14,28,22)",
+  "status": "visited",
+  "evidence": "ctx_d dump",
+  "snapshots": [
+   "traces/round-001/snapshots/p1game.snap.gz (1P game start)",
+   "traces/round-001/snapshots/p1mid.snap.gz (1P top 1st, frame ~74316)"
+  ]
+ },
+ {
+  "id": "S-005",
+  "milestone": "Extra innings via RAM shortcut",
+  "route": "p1mid snapshot (frame ~74316, top 1st); emulator.memory.write $037C=[17]; untraced random A presses (seed 3)",
+  "result": "Game proceeds to '10 INNING' (tied 0-0 -> extra innings): $037C is the half-inning counter and game-end needs a lead",
+  "status": "visited",
+  "evidence": "screenshot pf_01 (scratch)",
+  "snapshots": []
+ },
+ {
+  "id": "S-006",
+  "milestone": "1P game end / rating screen via RAM shortcut",
+  "route": "p1x10 snapshot (10th inning); write $0398=[1] (hypothesis: visitor total runs) and $037C=[19] (bottom 10th); random A presses seed 4",
+  "result": "Game ended within ~900 frames in an untraced run (screens then showed title/music and TEAM SELECT because random A presses advanced). Traced replays diverged (inputs not frame-aligned to the original run); a further 13,000-frame bottom-10th run with seed 5 never ended. Rating screen NOT captured. $0398 is not the visitor run total (scoreboard stayed 0-0). Fielding/pitching coverage from these runs is included (ctx_f).",
+  "status": "attempted",
+  "evidence": "pg log/screens (scratch)",
+  "snapshots": []
+ },
+ {
+  "id": "S-007",
+  "milestone": "EDIT mode",
+  "route": "title3 snapshot (traces/round-001/snapshots/title3.snap.gz): [right]x3, [start], [start], then a,down,a,right,a,up,a,b,down,a,b,b (4 held/30 released), traced",
+  "result": "EDIT screen (team E roster: fielders/pitchers with AV/HR/RUN, ARM/ERA/ST/SPD, 'PUSH START TO QUIT'); +373 unique contextual instructions",
+  "status": "visited",
+  "evidence": "ctx_f",
+  "snapshots": []
+ },
+ {
+  "id": "S-008",
+  "milestone": "2P mode / level 2-5 opponents / final perfect-game ending",
+  "route": "not yet attempted; requires level RAM contract",
+  "result": "Not attempted this pass: needs run-total and level RAM contracts (lead L-005/L-006).",
+  "status": "deferred",
+  "evidence": "",
+  "snapshots": []
+ },
+ {
+  "id": "S-009",
+  "milestone": "1P win -> GAME SET, level/score screen, RATING SCREEN, NEXT GAME (game 2)",
+  "route": "Import p1mid snapshot (traces/round-001/snapshots/p1mid.snap.gz, frame 74316, banks [28,29,30,31]); emulator.memory.write $037C=[17] (bottom 9th), $0383=[1] VisitorRuns, $0384=[1] visitor inning-1 runs, $0394=[0] HomeRuns, $037F=[2] outs; loop: buttons [a]+random direction (python random.seed(11)) held 4 frames, release 40 frames, until $037C changes (10 iterations). Then no input, frames 100 x14 with A at 5/8/11 (gwin2.py); from rating screen: A (leave), up, A -> NEXT GAME (gnext3.py). Tools in analysis/redirect/r001-a/tools.",
+  "result": "Artificial RAM-patched state. GAME SET -> score/level screen (rating total 95, LEVEL 5, NEXT GAME / SEE RATING SCREEN; GameSubmode 9) -> RATING SCREEN with 13 categories (submode 10) -> NEXT GAME: menus submodes 1..5 then pitch view, HomeTeam $0392 6->5, $037A/$03A2 reset. 546 instruction starts observed in L-008 candidate code (banks 19/20/21/23).",
+  "status": "visited",
+  "evidence": "analysis/redirect/r001-a/evidence/cov_gwin.json.gz, analysis/redirect/r001-a/evidence/level_screen.png, analysis/redirect/r001-a/evidence/rating_screen.png",
+  "snapshots": [
+   "analysis/redirect/r001-a/snapshots/gwin_after_out.snap.gz (game just ended, before GAME SET)",
+   "analysis/redirect/r001-a/snapshots/gwin_post.snap.gz (rating screen)",
+   "analysis/redirect/r001-a/snapshots/gnext.snap.gz (game 2 pitch view)"
+  ]
+ },
+ {
+  "id": "S-010",
+  "milestone": "1P loss -> GAME SET, GAME OVER, title",
+  "route": "p1mid snapshot; write $037C=[16], $0383=[0], $0394=[1], $0395=[1], $037F=[2]; random A presses seed 11 until $037C changes (25 iterations); untouched 800 frames, then start/a presses.",
+  "result": "Artificial. GAME SET, scoreboard with GAME OVER box (GameSubmode 11 -> 16), then title screen; 1P intro text on next start.",
+  "status": "visited",
+  "evidence": "analysis/redirect/r001-a/evidence/cov_gend.json.gz, analysis/redirect/r001-a/evidence/game_over_loss.png",
+  "snapshots": [
+   "analysis/redirect/r001-a/snapshots/gend_after_out.snap.gz"
+  ]
+ },
+ {
+  "id": "S-011",
+  "milestone": "2P mode",
+  "route": "traces/round-001/snapshots/title3.snap.gz; port 1: [left] (4 frames, 30 idle) selects 2P, [start] (60), [start] (200), A x4 (150 each) -> TEAM SELECT with '2P' marker; then A alternating port 2 / port 1 (4-frame press, 150 idle) x7: 2P team, ground, 1P and 2P STARTING ORDER READY -> game starts (P1 bats, P2 pitches). Traced 12 random A/direction presses on random ports.",
+  "result": "Visited with ordinary inputs (not artificial). 2P team select, both starting-order screens and in-game pitching/batting with two controllers. Traced coverage 2,668 instruction starts, all already classified Code instruction starts; no new code.",
+  "status": "visited",
+  "evidence": "analysis/tools/round-002/evidence/cov_2p.json.gz, analysis/tools/round-002/evidence/2p_game.png",
+  "snapshots": []
+ },
+ {
+  "id": "S-012",
+  "milestone": "1P later opponents / ending",
+  "route": "analysis/redirect/r001-a/snapshots/gwin_after_out.snap.gz; emulator.memory.write $0066=[4]; step 410 frames with A held frames 400-403 (rating written at frame 409); write $03FB=[100]; A at frames 700 and later every 300 (4-frame hold) -> $66=5 at frame ~808; snapshot analysis/tools/round-002/snapshots/perf_lvl.snap.gz (level screen 100 / LEVEL 5); then Up (4 frames, 30 idle), A (4, 20) = NEXT GAME; A every ~600 frames during credits.",
+  "result": "Artificial (RAM-patched level/rating). Ending reached: 'CONGRATULATIONS!! 100 YOU'RE NUMBER 1. YOU BEAT THE BEST.', ending artwork, staff credits (DESIGNER ... SHIMAMURA). Level contract: zp $66 (0..5), rating $03FB, decision bank 23 $B386. Next-opponent selection after NEXT GAME is a team-select menu (cursor editor bank 21 $A818).",
+  "status": "visited",
+  "evidence": "analysis/tools/round-002/evidence/ending_congrats.png, ending_credits.png, cov_ending.json.gz",
+  "snapshots": [
+   "analysis/tools/round-002/snapshots/perf_lvl.snap.gz"
+  ]
+ },
+ {
+  "id": "S-013",
+  "milestone": "Pitch-view scoreboard figures and pitch speed readout",
+  "route": "traces/round-001/snapshots/p1mid.snap.gz; no input; read $0356/$0357/$0363 after 2 frames; step 2-frame chunks until $03DA goes 0 -> nonzero, +6 frames, screenshot (r003-a tools s1.py/s2.py). Object 2 test: write $022C=$40, $022E=$60 (object 2 X/Y high) and step 3 frames (s4.py).",
+  "result": "Ordinary state (plus one artificial position patch). Scoreboard reads 'AV.296 HR04' for $0357=29/$0356=4 and 'ERA 1.43' for $0363=14; pitch readout '73MPH' for $03DA=73. Moving object 2 moves the red catcher figure; the dark umpire figure behind it does not move (pitch-view umpire is not object 2).",
+  "status": "visited",
+  "evidence": "analysis/redirect/r003-a/evidence/scoreboard_pitchview.png, analysis/redirect/r003-a/evidence/pitch_speed_mph.png, analysis/redirect/r003-a/evidence/obj2_catcher_moved.png",
+  "snapshots": []
+ },
+ {
+  "id": "S-014",
+  "milestone": "Hit-by-pitch (batter group 2) and the late close-game brawl scene",
+  "route": "p1mid snapshot; write $037C=10 (late) or 2 (control), $0356=10; step until LoopCounter ($2B)&$70 wraps to 0; write $0200=$20, $0211=[0,0]; step 900 frames in 10-frame chunks (r003-a tools s7.py late|early).",
+  "result": "Artificial. Both: scoreboard message 'HIT BATSMAN'. Late close (score 0-0, inning 6): batter state $22->$23, GameSubmode 2 shows a bench-clearing brawl picture (~frames 300-500), then field play (GameMode 1 submode 3) and the next batter. Control (inning 2): state $21 Hold, then field play and the next batter with a runner on first.",
+  "status": "visited",
+  "evidence": "analysis/redirect/r003-a/evidence/l016_hit_batsman_msg.png, analysis/redirect/r003-a/evidence/l016_outcome2_brawl.png, analysis/redirect/r003-a/evidence/l016_outcome1_runner_first.png",
+  "snapshots": []
+ },
+ {
+  "id": "S-015",
+  "milestone": "Home-run result scene",
+  "route": "analysis/redirect/r003-a/snapshots/field1.snap.gz (field play after a hit, from p1mid with BatterPowerStat patched to 60 and random swings, seed 31); write PlayResult $0377 = 1..4; step 400 frames (s8.py).",
+  "result": "Artificial. Each value goes to GameMode 2 submode 1 (InitResultScoreboard): stands picture scrolling to a 'HOMERUN' scoreboard; values 1-4 select different stands pictures. A natural home run was not produced in ~4,600 frames of random swings (power 60).",
+  "status": "visited",
+  "evidence": "analysis/redirect/r003-a/evidence/playresult1_stands.png, analysis/redirect/r003-a/evidence/playresult3_stands.png, analysis/redirect/r003-a/evidence/playresult2_homerun.png",
+  "snapshots": [
+   "analysis/redirect/r003-a/snapshots/field1.snap.gz"
+  ]
+ }
+]
