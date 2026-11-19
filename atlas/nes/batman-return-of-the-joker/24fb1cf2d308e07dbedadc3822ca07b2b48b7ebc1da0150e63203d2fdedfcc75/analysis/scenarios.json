@@ -1,0 +1,116 @@
+{
+  "version": 1,
+  "round": 1,
+  "capability_attempt": {
+    "method": "emulator.start",
+    "params": {},
+    "result": "unsupported debugger mapper 69; baseline: 0,1,2,3,4,7",
+    "evidence": "analysis/round-01/initial.json"
+  },
+  "scenarios": [
+    {
+      "milestone": "startup/menu",
+      "status": "unavailable",
+      "reason": "emulator.start rejects mapper69 (TK-001); no emulator state exists for input/snapshot/RAM/register APIs.",
+      "route": null,
+      "patches": [],
+      "inputs": [],
+      "budget": 0,
+      "observed_result": "not executed",
+      "evidence": [
+        "analysis/round-01/initial.json"
+      ]
+    },
+    {
+      "milestone": "representative early gameplay mechanics",
+      "status": "unavailable",
+      "reason": "emulator.start rejects mapper69 (TK-001); no emulator state exists for input/snapshot/RAM/register APIs.",
+      "route": null,
+      "patches": [],
+      "inputs": [],
+      "budget": 0,
+      "observed_result": "not executed",
+      "evidence": [
+        "analysis/round-01/initial.json"
+      ]
+    },
+    {
+      "milestone": "later levels/areas",
+      "status": "unavailable",
+      "reason": "emulator.start rejects mapper69 (TK-001); no emulator state exists for input/snapshot/RAM/register APIs.",
+      "route": null,
+      "patches": [],
+      "inputs": [],
+      "budget": 0,
+      "observed_result": "not executed",
+      "evidence": [
+        "analysis/round-01/initial.json"
+      ]
+    },
+    {
+      "milestone": "boss/major transition",
+      "status": "unavailable",
+      "reason": "emulator.start rejects mapper69 (TK-001); no emulator state exists for input/snapshot/RAM/register APIs.",
+      "route": null,
+      "patches": [],
+      "inputs": [],
+      "budget": 0,
+      "observed_result": "not executed",
+      "evidence": [
+        "analysis/round-01/initial.json"
+      ]
+    },
+    {
+      "milestone": "ending/credits",
+      "status": "unavailable",
+      "reason": "emulator.start rejects mapper69 (TK-001); no emulator state exists for input/snapshot/RAM/register APIs.",
+      "route": null,
+      "patches": [],
+      "inputs": [],
+      "budget": 0,
+      "observed_result": "not executed",
+      "evidence": [
+        "analysis/round-01/initial.json"
+      ]
+    },
+    {
+      "milestone": "RAM shortcut progression",
+      "status": "unavailable",
+      "reason": "emulator.start rejects mapper69 (TK-001); no emulator state exists for input/snapshot/RAM/register APIs.",
+      "route": null,
+      "patches": [],
+      "inputs": [],
+      "budget": 0,
+      "observed_result": "not executed",
+      "evidence": [
+        "analysis/round-01/initial.json"
+      ]
+    }
+  ],
+  "reviews": [
+    {
+      "round": 2,
+      "phase": "disassembly",
+      "milestones": "startup, early mechanics, later areas, boss/major transition, ending, RAM shortcuts",
+      "status": "unavailable",
+      "reason": "Unchanged mapper69 debugger admission TK-001; no emulator state can exist to patch or snapshot.",
+      "evidence": "analysis/round-01/initial.json"
+    },
+    {
+      "round": 3,
+      "phase": "disassembly",
+      "status": "unavailable",
+      "milestones": "startup, later areas, mechanics, bosses, transitions, ending and RAM shortcuts",
+      "reason": "Unchanged TK-001 mapper69 admission; no state exists for RAM patches.",
+      "evidence": "analysis/round-01/initial.json"
+    },
+    {
+      "round": 3,
+      "phase": "redirect",
+      "status": "unavailable",
+      "milestones": "startup, representative mechanics, later areas, boss/major transition, ending, RAM shortcuts",
+      "reason": "Reviewed unchanged TK-001 primary admission evidence; no emulator state exists for bounded RAM/register shortcut. No failed retry.",
+      "evidence": "analysis/round-01/initial.json"
+    }
+  ]
+}

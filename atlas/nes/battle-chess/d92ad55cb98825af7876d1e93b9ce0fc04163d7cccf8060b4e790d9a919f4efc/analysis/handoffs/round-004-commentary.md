@@ -1,0 +1,9 @@
+# Round004 commentary handoff
+
+All current classified source is readable at pass-004-reviewed, map/state SHA256 `8a795941fc84238feed1847b172e3cdfdaa272a53230c9950e98dd3401c2d55b`. Classification remains 262135/262160 (99.99%); 25 unknown bytes in nine intervals. No classified readability backlog or deferred ranges.
+
+Entire prior commentary preserved at `analysis/round-004/commentary-pass-003/`. Retained 2293 prior units and valid full-source prose/credit by physical identity; fresh 11385-entry scaffold fully reviewed, 2295 units, 9656 instructions. Exact new 19-byte/13-instruction scope: bank26 $8D21 stack/decimal/EB initialization falling through to known position setup, without inherited JSR-frame or whole-body-return claims; $8F24 complements a bounded eight-mask selection under index<8 /ordinary RTS-frame contract. Adjacent rank/table/prefix notes reconciled. The LSR/LSR/PLA prefix and other 25 unknown bytes retain honest competing interpretations.
+
+Fresh final byte-identical verification passed and reading-after.asm refreshed. Full scope, source references, unit coverage, unchanged baseline identities and nine unknown boundaries checked in `analysis/round-004-commentary-review.json`; verification in `analysis/round-004-commentary-verification.json`. Prior round003 endpoint and alias fixes retained. No new gameplay evidence, natural ending/cinematic claim, map/state/ROM/toolkit edit, agents, cleanup/deletion or publication/archive. Terminal editorial audit pending and not invoked.
+
+Next independent redirect review can reuse `analysis/redirect/round-003-a/structural-review.md` and pass004 evidence for the residual nine intervals; commentary discovered no additional concrete structural question. Whole-ROM classification remains incomplete; no terminal exhaustion claimed.

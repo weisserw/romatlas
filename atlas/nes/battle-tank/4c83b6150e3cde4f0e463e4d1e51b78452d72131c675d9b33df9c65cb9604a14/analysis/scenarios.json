@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "passes": [
+    {
+      "id": "disassembly-001",
+      "status": "complete"
+    },
+    {
+      "id": "redirect-001",
+      "status": "complete"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "startup-001",
+      "milestone": "opening/title",
+      "status": "visited",
+      "natural": true,
+      "recipe": "Reset, no inputs 300 frames. Start 2 frames, release 120; release another 600 frames. Repress Start 2 frames, release30. Earlier trace: reset60frames capacity0.",
+      "observed": "Opening animation then NAVSTAR mission download screen.",
+      "evidence": [
+        "analysis/disassembly-001/start.py",
+        "analysis/disassembly-001/explore.py",
+        "analysis/disassembly-001/play.py",
+        "analysis/disassembly-001/advance.py",
+        "analysis/disassembly-001/dispatch.py"
+      ]
+    },
+    {
+      "id": "mission1-001",
+      "milestone": "mission1 cockpit",
+      "status": "visited",
+      "natural": true,
+      "recipe": "From after-start2 snapshot release180 frames, Start2, release90. Then A+Up15, Left+B15, Select2, release2, B+Right15, Start2, release2.",
+      "observed": "Cockpit M1 E3; steering/fire and weapon selection sampled; Start entered map transition (capture at2frames still black).",
+      "evidence": [
+        "analysis/disassembly-001/brief_play.py",
+        "analysis/disassembly-001/gameplay_samples.py",
+        "analysis/disassembly-001/gameplay.png",
+        "analysis/disassembly-001/gameplay-trace-summary.json"
+      ]
+    },
+    {
+      "id": "mission-later-001",
+      "milestone": "missions4/7/10",
+      "status": "visited",
+      "natural": false,
+      "recipe": "Restore clean gameplay-snapshot each. RAM $4F=3/6/9, $4E=$52, $3B/$3C=$ACD8, $18=1, $0660=0; release45frames. A+Up+B+Left12frames, Select2, release2. Fixed PRG slots[0,1,2,3].",
+      "observed": "Initialized cockpit shows M4/E10, M7/E18, M10/E25; varied terrain palettes. Accepted fetch evidence after debug patches artificial.",
+      "evidence": [
+        "analysis/disassembly-001/later_missions.py",
+        "analysis/disassembly-001/later-mission-log.json",
+        "analysis/disassembly-001/mission-10.png"
+      ]
+    },
+    {
+      "id": "ending-001",
+      "milestone": "final mission result and ending",
+      "status": "visited",
+      "natural": false,
+      "recipe": "Restore mission-10 snapshot. RAM $05B4=0,$0661=$83,$069B=0,$03D5=0; release30frames. Then $0695=$80,$35=0, Start2 release30. Fixed PRG[0,1,2,3].",
+      "observed": "Result soldier/jeep scene; Start invokes $FBB7, increments mission9 to10, selects $FE8C ending initializer. Ending sunset silhouette rendered, RAM $4F=10,$06D6=$80.",
+      "evidence": [
+        "analysis/disassembly-001/ending.py",
+        "analysis/disassembly-001/ending-log.json",
+        "analysis/disassembly-001/ending.png",
+        "analysis/disassembly-001/mission-result.png",
+        "analysis/disassembly-001/ending-settled.png"
+      ]
+    },
+    {
+      "id": "map-settle-001",
+      "milestone": "map display stable",
+      "status": "visited",
+      "natural": true,
+      "recipe": "Mission1 Start2 release2 recorded in gameplay_samples.py.",
+      "observed": "Additional release30 frames from map-snapshot rendered stable NAVSTAR map with colored contacts.",
+      "evidence": [
+        "analysis/disassembly-001/map-settled.png",
+        "analysis/disassembly-001/settle-log.json"
+      ]
+    },
+    {
+      "id": "other-mechanics-001",
+      "milestone": "resupply/collision/rescue",
+      "status": "deferred",
+      "reason": "Representative missions and ending visited. Live $A0A0 contact branch and $8CFD rescue gate understood structurally but object/position contract still needed for reproducible local encounters; redirect may investigate if useful."
+    },
+    {
+      "id": "controls-r001",
+      "milestone": "fire/speed/pause discrimination",
+      "status": "visited",
+      "natural": true,
+      "recipe": "Restore gameplay-snapshot per trial; release2 then [], A, B, A+Up, B+Up or A+B32 frames.",
+      "observed": "A consumes first ammo; B+Up raises speed; A+B pauses. No RAM/register patch.",
+      "evidence": [
+        "analysis/redirect/r001-20261119/control-summary.json",
+        "analysis/redirect/r001-20261119/control-trials.json",
+        "analysis/redirect/r001-20261119/probe.py"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+# ROUND003 COMMENTARY — current-source readability complete
+
+The current-source readability gate is complete. All2373ROM scaffold records and3000meaningful units are reviewed. The reviewed-unit union covers all56616classified Code bytes, with no uncovered interval, pending scaffold, partial scaffold or pending dependency. All139carried dependency candidates have individual findings. See [the final scope assessment](round-003/commentary-scope-assessment-final.json).
+
+Writer D completed the remaining60Code scaffolds/3408bytes across physical banks6/7/13 and92dependency checks, preserving prior valid review, source, evidence and history. Large option/briefing and two-player selection graphs have separate meaningful routine/control units; timed layer/row transfers and player animation/collision tails are named and explained. Sixteen small entry/tail heads omitted from the earlier unit inventory now have purpose notes and exact records in batch029. Batches019–029 record this work; batch028 records additional concrete caller/prose checks.
+
+Concrete corrections include mode bit7 clearing, bank6CHRregister0/1then2..5 sequencing, C018multiplication and0216high/0217low preservation, explicit C235life/C238screen/C245timer-position entry distinctions, AB49commands versus AB58palette record, stage sound table D2E5, HUD/award data atD959, exact-zero actor-health store, and the bank6terminal caller incorrectly matched to bank7Data by a context-blind scan. IRQ hardware frames, synthetic RTS targets and ordinary caller frames remain distinct. Source aliases retain physical storage identity and effective execution context.
+
+Fresh supported verification rebuilt byte-identically against the unchanged inputROM, and the reading copy was refreshed after the final source edit. Map JSON equals the frozen commentary baseline; analysis state equals the frozen phase1state. Source-relative anchors, ROM unit bounds and the full physical partition pass without errors. Verification hashes are recorded in the final assessment and commentary/verification.json.
+
+Gameplay meanings of input patterns, text/glyph wording, enemy/scene identities, numeric terrain/actions and some indirect lower-bank origins remain unresolved, with mechanical explanations in source and commentary/uncertainties.md. Busy waits require the documented interrupt/timer consumers. Genuine Unknown boundaries, including the movement-record write continuation and life-screen wrapper boundaries, remain preserved. Natural reachability is not inferred from classification or local routines.
+
+Classification remains99.54%:260956/262160bytes classified and1204Unknown. This handoff does not establish whole-ROM classification, full hardware/game compatibility or final editorial acceptance. Editorial audit remains pending and was not run. All source/assets/state/traces remain local; no ROM, map, analysis state or toolkit changes, publication, cleanup, deletion or archive operation occurred.
+
+This writer has stopped editing. The next phase may use this completed readability handoff; later structural changes must carry/invalidate review by physical ranges and actual dependencies.

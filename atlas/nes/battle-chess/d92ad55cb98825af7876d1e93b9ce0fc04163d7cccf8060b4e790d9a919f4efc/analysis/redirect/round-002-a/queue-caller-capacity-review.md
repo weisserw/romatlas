@@ -1,0 +1,7 @@
+# Actual board-column queue capacity
+
+Source92D4/96F7 waits queueReady0 before eachcolumn. PairedFlushPpuQueue clears cursor0, then writer emits exactlytwo ordinary count24records before publishingready. Size2*(4+24)+1=57bytes, CPU0100..0138; secondrecord overwritesfirstsentinel, cursorends56. Queuecost2*(24/8+1)=8. These are source/consumerbounds, notrawdecoderinference.
+
+Specific artificial supportedcaller tests from preserved setup snapshot875, context0/1/30/31, releasedinputs; onlyPCchanged, allRAMincludingactualSP/cursor unpatched. Case92D4→9390: 2248instructions, matchedTrue, minimumSPF3, cursor56, qReady0,cost8. Correct2Dbranchcase96F7→9788: 2177instructions, matchedTrue, minimumSPF3, cursor56, qReady0,cost8. Bothpendingrecordsfitbelow0139 while lowestobservedliveSP is01F3, gap187bytes. Actualinstructionsteps/traces show executionofordinarysourcepath afterbothC567calls; noCPUstackcollisionin these tests. No claim naturalentry,globalcapacityoralldynamiccallerpaths. Sourcepostcallrole remainsindependently supported by coherentcolumnpublish/decrementloop.
+
+Artifacts: queue-caller-capacity.py/json(firstcaseonlyvalid); queue-caller-capacity-fixed.py/json(secondcorrectcase); queue-caller-initial-state.json. Original96F3entry was branchoperand andinvalid experimentsetup; explicitly excluded, preservedinplan. Restoredcleanstate betweenalternatives, nonmutatingPCboundarystepbeforeedit, ROMuntouched. Both runsuse≤20000operations/10seconds percase; acceptedtracecapacity0aggregate_dropped inspectedinJSON.

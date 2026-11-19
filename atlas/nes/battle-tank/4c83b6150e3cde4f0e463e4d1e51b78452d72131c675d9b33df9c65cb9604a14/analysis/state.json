@@ -1,0 +1,3201 @@
+{
+  "format": "romatlas-nes-map",
+  "version": 1,
+  "image_sha256": "4c83b6150e3cde4f0e463e4d1e51b78452d72131c675d9b33df9c65cb9604a14",
+  "image_size": 65552,
+  "regions": [
+    {
+      "id": 1,
+      "offset": 16,
+      "length": 3,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 32768,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "offset": 2933,
+      "length": 335,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35685,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "offset": 3369,
+      "length": 11,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36121,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "offset": 4250,
+      "length": 27,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37002,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "offset": 4289,
+      "length": 25,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37041,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "offset": 4523,
+      "length": 68,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37275,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "offset": 5444,
+      "length": 77,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38196,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "offset": 6092,
+      "length": 15,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38844,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "offset": 6171,
+      "length": 113,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38923,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "offset": 8522,
+      "length": 284,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41274,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "offset": 8825,
+      "length": 13,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41577,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "offset": 8870,
+      "length": 42,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41622,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "offset": 8976,
+      "length": 237,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41728,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "offset": 9430,
+      "length": 183,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42182,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "offset": 9799,
+      "length": 643,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42551,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "offset": 10450,
+      "length": 99,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43202,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "offset": 10677,
+      "length": 36,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43429,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "offset": 12037,
+      "length": 267,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44789,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "offset": 13861,
+      "length": 612,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46613,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "offset": 14481,
+      "length": 106,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47233,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "offset": 14607,
+      "length": 183,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47359,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "offset": 14795,
+      "length": 79,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47547,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "offset": 14876,
+      "length": 62,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47628,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "offset": 14942,
+      "length": 122,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47694,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "offset": 15078,
+      "length": 11,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47830,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "offset": 15381,
+      "length": 119,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48133,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "offset": 15686,
+      "length": 32,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48438,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "offset": 15726,
+      "length": 56,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48478,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "offset": 15973,
+      "length": 25,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48725,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "offset": 16009,
+      "length": 21,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48761,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "offset": 16058,
+      "length": 116,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48810,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "offset": 24603,
+      "length": 4063,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 57355,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "offset": 28797,
+      "length": 497,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 61549,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "offset": 30046,
+      "length": 266,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 62798,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "offset": 31051,
+      "length": 17,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated reset/NMI/IRQ vector-led direct control-flow closure; fixed CNROM PRG slots [0,1,2,3]. See analysis/disassembly-001/static-candidates.json and static-full-summary.json. Indirect jumps stop traversal; no claim of natural reachability for unobserved paths.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 63803,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "offset": 0,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "INES_Header",
+      "comment": "",
+      "evidence": "Validated iNES header defines 32 KiB PRG, 32 KiB CHR, mapper 3 and horizontal mirroring.",
+      "views": []
+    },
+    {
+      "id": 37,
+      "offset": 32778,
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "InterruptVectors",
+      "comment": "",
+      "evidence": "6502 NMI/reset/IRQ vector words $E00B/$8000/$F567; inspected entry paths.",
+      "views": []
+    },
+    {
+      "id": 38,
+      "offset": 32784,
+      "length": 32768,
+      "kind": "Image",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "CHR_PatternBanks",
+      "comment": "",
+      "evidence": "iNES declared 4 x 8 KiB CNROM CHR ROM. Immutable pattern storage, PPU graphics space separate from CPU PRG. Full physical extent fixed by header and cartridge layout.",
+      "views": []
+    },
+    {
+      "id": 39,
+      "offset": 2929,
+      "length": 4,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35681,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "offset": 3268,
+      "length": 101,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36020,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "offset": 3380,
+      "length": 842,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36132,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "offset": 4277,
+      "length": 12,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37029,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "offset": 4317,
+      "length": 172,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37069,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "offset": 5617,
+      "length": 111,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38369,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "offset": 5742,
+      "length": 324,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38494,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "offset": 6074,
+      "length": 18,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38826,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "offset": 6284,
+      "length": 66,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39036,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "offset": 6481,
+      "length": 408,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39233,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "offset": 6953,
+      "length": 131,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39705,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "offset": 7800,
+      "length": 630,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40552,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "offset": 8474,
+      "length": 33,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41226,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "offset": 8806,
+      "length": 19,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41558,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "offset": 8838,
+      "length": 32,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41590,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "offset": 9221,
+      "length": 209,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41973,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "offset": 9672,
+      "length": 55,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42424,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 56,
+      "offset": 9751,
+      "length": 3,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42503,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "offset": 12572,
+      "length": 1142,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45324,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 58,
+      "offset": 15377,
+      "length": 4,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48129,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 59,
+      "offset": 15500,
+      "length": 77,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48252,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "offset": 16030,
+      "length": 28,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48782,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "offset": 16174,
+      "length": 71,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48926,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 62,
+      "offset": 22342,
+      "length": 11,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 55094,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 63,
+      "offset": 22390,
+      "length": 367,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 55142,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "offset": 22855,
+      "length": 127,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 55607,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "offset": 22996,
+      "length": 430,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 55748,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "offset": 23830,
+      "length": 550,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 56582,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "offset": 24410,
+      "length": 193,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 57162,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 68,
+      "offset": 29294,
+      "length": 15,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 62046,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 69,
+      "offset": 30312,
+      "length": 87,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 63064,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 70,
+      "offset": 30411,
+      "length": 576,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 63163,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 71,
+      "offset": 31158,
+      "length": 198,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated direct-control paths from vectors and task initializer $DD5F installed by reset at $F5BD; observed task/frame dispatch supplements roots. Physical fetch membership and Static/Observed distinction in dispatch-candidates.json; fixed CNROM [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 63910,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 72,
+      "offset": 5012,
+      "length": 12,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Task/frame entry contracts: $ACD8 installed by $B470; $B10C installed by $DF4A; $D766 installed by $DD5F. Main loop $F62F/$F632 indirect calls these pointers. Validated direct closure, CNROM [0,1,2,3], Static reachability unresolved. See closure-candidates.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37764,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 73,
+      "offset": 8430,
+      "length": 44,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Task/frame entry contracts: $ACD8 installed by $B470; $B10C installed by $DF4A; $D766 installed by $DD5F. Main loop $F62F/$F632 indirect calls these pointers. Validated direct closure, CNROM [0,1,2,3], Static reachability unresolved. See closure-candidates.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41182,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 74,
+      "offset": 11496,
+      "length": 541,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Task/frame entry contracts: $ACD8 installed by $B470; $B10C installed by $DF4A; $D766 installed by $DD5F. Main loop $F62F/$F632 indirect calls these pointers. Validated direct closure, CNROM [0,1,2,3], Static reachability unresolved. See closure-candidates.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44248,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 75,
+      "offset": 15998,
+      "length": 11,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Task/frame entry contracts: $ACD8 installed by $B470; $B10C installed by $DF4A; $D766 installed by $DD5F. Main loop $F62F/$F632 indirect calls these pointers. Validated direct closure, CNROM [0,1,2,3], Static reachability unresolved. See closure-candidates.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48750,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 76,
+      "offset": 1540,
+      "length": 1389,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Natural mission-1 cockpit control sample: A+Up, steering/fire, Select, Start map. Fetched starts Observed; validated direct continuations Static; see gameplay_samples.py and gameplay-trace-summary.json. Fixed CNROM PRG context [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34292,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 77,
+      "offset": 4222,
+      "length": 28,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Natural mission-1 cockpit control sample: A+Up, steering/fire, Select, Start map. Fetched starts Observed; validated direct continuations Static; see gameplay_samples.py and gameplay-trace-summary.json. Fixed CNROM PRG context [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36974,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 78,
+      "offset": 4489,
+      "length": 34,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Natural mission-1 cockpit control sample: A+Up, steering/fire, Select, Start map. Fetched starts Observed; validated direct continuations Static; see gameplay_samples.py and gameplay-trace-summary.json. Fixed CNROM PRG context [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37241,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 79,
+      "offset": 4902,
+      "length": 110,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Natural mission-1 cockpit control sample: A+Up, steering/fire, Select, Start map. Fetched starts Observed; validated direct continuations Static; see gameplay_samples.py and gameplay-trace-summary.json. Fixed CNROM PRG context [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37654,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 80,
+      "offset": 5297,
+      "length": 53,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Natural mission-1 cockpit control sample: A+Up, steering/fire, Select, Start map. Fetched starts Observed; validated direct continuations Static; see gameplay_samples.py and gameplay-trace-summary.json. Fixed CNROM PRG context [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38049,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 81,
+      "offset": 5521,
+      "length": 96,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Natural mission-1 cockpit control sample: A+Up, steering/fire, Select, Start map. Fetched starts Observed; validated direct continuations Static; see gameplay_samples.py and gameplay-trace-summary.json. Fixed CNROM PRG context [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38273,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 82,
+      "offset": 5728,
+      "length": 14,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Natural mission-1 cockpit control sample: A+Up, steering/fire, Select, Start map. Fetched starts Observed; validated direct continuations Static; see gameplay_samples.py and gameplay-trace-summary.json. Fixed CNROM PRG context [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38480,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 83,
+      "offset": 6400,
+      "length": 81,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Natural mission-1 cockpit control sample: A+Up, steering/fire, Select, Start map. Fetched starts Observed; validated direct continuations Static; see gameplay_samples.py and gameplay-trace-summary.json. Fixed CNROM PRG context [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39152,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 84,
+      "offset": 12304,
+      "length": 23,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Natural mission-1 cockpit control sample: A+Up, steering/fire, Select, Start map. Fetched starts Observed; validated direct continuations Static; see gameplay_samples.py and gameplay-trace-summary.json. Fixed CNROM PRG context [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45056,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 85,
+      "offset": 12346,
+      "length": 32,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Natural mission-1 cockpit control sample: A+Up, steering/fire, Select, Start map. Fetched starts Observed; validated direct continuations Static; see gameplay_samples.py and gameplay-trace-summary.json. Fixed CNROM PRG context [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45098,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 86,
+      "offset": 13714,
+      "length": 147,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Natural mission-1 cockpit control sample: A+Up, steering/fire, Select, Start map. Fetched starts Observed; validated direct continuations Static; see gameplay_samples.py and gameplay-trace-summary.json. Fixed CNROM PRG context [0,1,2,3].",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46466,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 87,
+      "offset": 22,
+      "length": 1518,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "DisplayAndMissionData",
+      "comment": "",
+      "evidence": "Palette-sized values; pointer groups and repeated width/height/tile records, recognizable mission briefing strings; code resumes at $85F4. Consumers include $AD17/$DF8F tile/display pointers and $B311 mission arrays. Checked full hex and neighboring control-flow, no conflicting fetched starts. Composite generic data; precise record schemas remain unresolved. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 88,
+      "offset": 4591,
+      "length": 311,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "HudAndMissionLookupData",
+      "comment": "",
+      "evidence": "Repeated bounded numeric runs, mission flags at $91E9 indexed by mission at $87D4, and interleaved HUD phrase character data. Noninstruction patterns inspected through next code boundary; exact text interleave remains unresolved. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 90,
+      "offset": 6107,
+      "length": 64,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "PackedBcdLookup",
+      "comment": "",
+      "evidence": "64-byte ascending 00..63 packed-BCD sequence; full extent inspected between code regions. Static lookup data, natural access unresolved. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 91,
+      "offset": 7084,
+      "length": 716,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "GeometryAndSpriteLookupData",
+      "comment": "",
+      "evidence": "First 256-byte smooth monotonic quantized values indexed at $9B9C by $9F02; subsequent repeated coordinate/tile runs indexed at $9CAE/$9CBA/$9CC2 by $8DD7/$9720/$9749. Checked entire range and code boundaries; generic composite data, no claim of exact generator. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 92,
+      "offset": 8507,
+      "length": 15,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ResupplyLookupData",
+      "comment": "",
+      "evidence": "Three repeated five-byte numeric records, preceding code consumes indexed $A12B,Y; static bounded numeric data. No claim of natural trigger. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 93,
+      "offset": 8912,
+      "length": 64,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "LookupData_A2C0",
+      "comment": "",
+      "evidence": "Repeated little-endian values and byte runs between supported routines; indexed references near $A2C0 checked. Generic data; precise roles unresolved. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 94,
+      "offset": 9213,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "CoordinateSigns",
+      "comment": "",
+      "evidence": "Eight-byte repeated signed-coordinate pattern between routines. Generic numeric data; no schema claim. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 95,
+      "offset": 9727,
+      "length": 24,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "SoundModulationValues",
+      "comment": "",
+      "evidence": "Repeated signed small-value modulation sequences adjacent to sound update code. Full gap checked against code boundaries and indexed operand bases; data role supported, exact channel interpretation unresolved. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 96,
+      "offset": 10549,
+      "length": 128,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "AudioPeriodData",
+      "comment": "",
+      "evidence": "Monotonically descending little-endian numeric values followed by zero/one runs between audio routines; checked full 128-byte gap, no conflicting code. Composite generic data, exact musical interpretation unresolved. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 97,
+      "offset": 10713,
+      "length": 783,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "AudioSequenceData",
+      "comment": "",
+      "evidence": "Repeated little-endian in-range pointers, zero delimiters, FF/FE command runs, repeated note-like records through code boundary $ACD8. Neighboring audio consumers and full pattern inspected; structured non-code without asserting command schema or natural selection. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 98,
+      "offset": 14473,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "UiOffsetValues",
+      "comment": "",
+      "evidence": "Repeated 00/08 values bounded by accepted code. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 99,
+      "offset": 14587,
+      "length": 20,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "UiStepValues",
+      "comment": "",
+      "evidence": "Four runs of five repeated signed/small constants FD/06/03/06, bounded by code. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 100,
+      "offset": 14790,
+      "length": 5,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "UiFlags",
+      "comment": "",
+      "evidence": "Five numeric constants between accepted routines; boundary follows return and next supported entry. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 101,
+      "offset": 14874,
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "UiPair",
+      "comment": "",
+      "evidence": "Two numeric constants between independently bounded code regions. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 102,
+      "offset": 14938,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "UiSequence",
+      "comment": "",
+      "evidence": "Ascending 02,03,04,05 between accepted code regions. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 103,
+      "offset": 15064,
+      "length": 14,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "UiLookup",
+      "comment": "",
+      "evidence": "Repeated six 02 and four 00 bytes followed by ascending 06..09; code resumes at $BA D6. Generic data; checked full gap. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 104,
+      "offset": 15089,
+      "length": 288,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "DisplayRecordData",
+      "comment": "",
+      "evidence": "Repeated little-endian pointers with count/zero fields and compact ascending tile sequences. Nearby display consumers and full interval inspected; generic display records without asserting every record length. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 105,
+      "offset": 15577,
+      "length": 109,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "PpuTransferConstants",
+      "comment": "",
+      "evidence": "Tile/attribute runs and PPU address-like word groups between display code and CHR mapper routine. Full range checked; generic display data, precise subformats unresolved. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 106,
+      "offset": 15718,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ChrBankValues",
+      "comment": "",
+      "evidence": "Ascending eight values 0..7 between mapper/input routines; fixed extent inspected. Numeric data; CNROM bank handling consumer nearby. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 107,
+      "offset": 15782,
+      "length": 191,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "DisplayLookupData",
+      "comment": "",
+      "evidence": "Bit masks, ascending offsets, word-pointer groups and repeated small constants between accepted routines. Full boundary inspection; exact composite schemas unresolved. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 108,
+      "offset": 16245,
+      "length": 155,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "DisplayPointersAndConstants",
+      "comment": "",
+      "evidence": "Little-endian pointers, repeated palette-like small constants and uniform FF suffix end exactly at duplicate executable trampolines. Full interval checked against roots; generic composite data, not a claim of fill purpose. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 109,
+      "offset": 16406,
+      "length": 5936,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ScreenMapsAndMathLookupData",
+      "comment": "",
+      "evidence": "Full 5936-byte interval inspected: repeated 32-column tile-map rows and attribute-like runs, uniform areas, smooth monotonic tables at $C116/$CA76 compared by $99B9/$99C2, and $D476/$D48B/$D4E6 indexed arithmetic consumers. Duplicate jump stubs excluded. Non-code composite data; no precise original table-generator or whole-screen schema claimed. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 110,
+      "offset": 22757,
+      "length": 98,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "TitleAnimationCommands",
+      "comment": "",
+      "evidence": "Repeated address/parameter records and pointer sequences between title animation routines; consumer/nearby code checked; generic data, opcode schema unresolved. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 111,
+      "offset": 22982,
+      "length": 14,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "TitleScanlineSteps",
+      "comment": "",
+      "evidence": "Descending numeric row/delay sequences, consumed by title code near $D9B6; exact 14-byte code-delimited extent inspected. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 112,
+      "offset": 23426,
+      "length": 404,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "TitleTextCommands",
+      "comment": "",
+      "evidence": "Recognizable copyright/licensing/designer text mixed with control bytes; entire range checked and bounded by code. Generic encoded-text data, precise bytecode format unresolved. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 113,
+      "offset": 24380,
+      "length": 30,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "TitleSpriteRecords",
+      "comment": "",
+      "evidence": "Repeated position/tile/attribute-like groups copied $DF2C..$DF43 to $078C by $DED9; trailing four words selected at $DE01/$DE06. Composite data through next initializer. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 114,
+      "offset": 30399,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "TextRenderOffsets",
+      "comment": "",
+      "evidence": "Small repeated signed offsets 03,00,02,01,08,F8 between supported text rendering routines; numeric table boundaries checked. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 115,
+      "offset": 31068,
+      "length": 90,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ScreenDescriptorData",
+      "comment": "",
+      "evidence": "Screen descriptor data: six low/high palette, tile-map and attribute pointer arrays, six row-run start indices and two-byte row countdown/fill records. LoadScreen and LoadScreenRowRun consume these fields; negative fill selects source tiles. Internal screen ownership and complete record segmentation remain uncertain. Physical [31068,31158), CPU $F94C..$F9A5 in fixed PRG [0,1,2,3]. See analysis/redirect/r001-20261119/source-evidence.txt and findings.md; supersedes the inherited audio hypothesis without changing Data extent or Static provenance.",
+      "views": []
+    },
+    {
+      "id": 116,
+      "offset": 19,
+      "length": 3,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact JMP trampoline to validated NMI/reset routine; duplicate PRG-half entry convention with independent vector and routine contracts. Static structural role; no claim of natural entry at this alias.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 32771,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 117,
+      "offset": 16400,
+      "length": 3,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact JMP trampoline to validated NMI/reset routine; duplicate PRG-half entry convention with independent vector and routine contracts. Static structural role; no claim of natural entry at this alias.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49152,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 118,
+      "offset": 16403,
+      "length": 3,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact JMP trampoline to validated NMI/reset routine; duplicate PRG-half entry convention with independent vector and routine contracts. Static structural role; no claim of natural entry at this alias.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49155,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 119,
+      "offset": 5031,
+      "length": 266,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "MissionPlacementData",
+      "comment": "",
+      "evidence": "Repeated structured object-position pairs terminated by zero, followed by little-endian mission pointers $9479 indexed by $ADC4 and finite mission placement counts $948D consumed by $ADF7. Leading $9390-$9396 delay routine excluded; composite generic data without claiming every subrecord schema. See data_batch.py, static-listing.txt and saved discovery records.",
+      "views": []
+    },
+    {
+      "id": 120,
+      "offset": 22353,
+      "length": 37,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Final mission completion gate artificial state followed by normal result/ending task transitions: supported $FE8C initializer and $FA6C frame handler, actual fetch roots Observed/direct continuation Static. Ending RAM $4F=10 and $06D6=$80 plus rendered terminal scene verified. See ending.py, ending-log.json, ending-trace-summary.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 55105,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 121,
+      "offset": 31356,
+      "length": 297,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Final mission completion gate artificial state followed by normal result/ending task transitions: supported $FE8C initializer and $FA6C frame handler, actual fetch roots Observed/direct continuation Static. Ending RAM $4F=10 and $06D6=$80 plus rendered terminal scene verified. See ending.py, ending-log.json, ending-trace-summary.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 64108,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 122,
+      "offset": 31687,
+      "length": 68,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Final mission completion gate artificial state followed by normal result/ending task transitions: supported $FE8C initializer and $FA6C frame handler, actual fetch roots Observed/direct continuation Static. Ending RAM $4F=10 and $06D6=$80 plus rendered terminal scene verified. See ending.py, ending-log.json, ending-trace-summary.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 64439,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 123,
+      "offset": 32320,
+      "length": 438,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Final mission completion gate artificial state followed by normal result/ending task transitions: supported $FE8C initializer and $FA6C frame handler, actual fetch roots Observed/direct continuation Static. Ending RAM $4F=10 and $06D6=$80 plus rendered terminal scene verified. See ending.py, ending-log.json, ending-trace-summary.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 65072,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 124,
+      "offset": 5024,
+      "length": 7,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static supported callback/routine contracts: AI A2C0/A2C8 lists -> EFE7 with explicit RTS continuation EFEA; sound B0AC records -> AF30 (Y=4*channel,X=slot,A=countdown); A58B/A60A modulation contracts; 9390 tick wait; A8BA indexed16bit add; F8FB sprite builder; FBFB/FC12/FC3A/FE23 result commands consistent with DE/DF/E0 text interpreter and adjacent continuation. Exact contexts [0,1,2,3], natural entry unresolved. See final_closure.py and final-closure-candidates.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37776,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 125,
+      "offset": 9627,
+      "length": 37,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static supported callback/routine contracts: AI A2C0/A2C8 lists -> EFE7 with explicit RTS continuation EFEA; sound B0AC records -> AF30 (Y=4*channel,X=slot,A=countdown); A58B/A60A modulation contracts; 9390 tick wait; A8BA indexed16bit add; F8FB sprite builder; FBFB/FC12/FC3A/FE23 result commands consistent with DE/DF/E0 text interpreter and adjacent continuation. Exact contexts [0,1,2,3], natural entry unresolved. See final_closure.py and final-closure-candidates.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42379,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 126,
+      "offset": 9754,
+      "length": 37,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static supported callback/routine contracts: AI A2C0/A2C8 lists -> EFE7 with explicit RTS continuation EFEA; sound B0AC records -> AF30 (Y=4*channel,X=slot,A=countdown); A58B/A60A modulation contracts; 9390 tick wait; A8BA indexed16bit add; F8FB sprite builder; FBFB/FC12/FC3A/FE23 result commands consistent with DE/DF/E0 text interpreter and adjacent continuation. Exact contexts [0,1,2,3], natural entry unresolved. See final_closure.py and final-closure-candidates.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42506,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 127,
+      "offset": 10442,
+      "length": 8,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static supported callback/routine contracts: AI A2C0/A2C8 lists -> EFE7 with explicit RTS continuation EFEA; sound B0AC records -> AF30 (Y=4*channel,X=slot,A=countdown); A58B/A60A modulation contracts; 9390 tick wait; A8BA indexed16bit add; F8FB sprite builder; FBFB/FC12/FC3A/FE23 result commands consistent with DE/DF/E0 text interpreter and adjacent continuation. Exact contexts [0,1,2,3], natural entry unresolved. See final_closure.py and final-closure-candidates.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43194,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 128,
+      "offset": 12327,
+      "length": 19,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static supported callback/routine contracts: AI A2C0/A2C8 lists -> EFE7 with explicit RTS continuation EFEA; sound B0AC records -> AF30 (Y=4*channel,X=slot,A=countdown); A58B/A60A modulation contracts; 9390 tick wait; A8BA indexed16bit add; F8FB sprite builder; FBFB/FC12/FC3A/FE23 result commands consistent with DE/DF/E0 text interpreter and adjacent continuation. Exact contexts [0,1,2,3], natural entry unresolved. See final_closure.py and final-closure-candidates.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45079,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 129,
+      "offset": 12378,
+      "length": 98,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static supported callback/routine contracts: AI A2C0/A2C8 lists -> EFE7 with explicit RTS continuation EFEA; sound B0AC records -> AF30 (Y=4*channel,X=slot,A=countdown); A58B/A60A modulation contracts; 9390 tick wait; A8BA indexed16bit add; F8FB sprite builder; FBFB/FC12/FC3A/FE23 result commands consistent with DE/DF/E0 text interpreter and adjacent continuation. Exact contexts [0,1,2,3], natural entry unresolved. See final_closure.py and final-closure-candidates.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45130,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 130,
+      "offset": 28666,
+      "length": 131,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static supported callback/routine contracts: AI A2C0/A2C8 lists -> EFE7 with explicit RTS continuation EFEA; sound B0AC records -> AF30 (Y=4*channel,X=slot,A=countdown); A58B/A60A modulation contracts; 9390 tick wait; A8BA indexed16bit add; F8FB sprite builder; FBFB/FC12/FC3A/FE23 result commands consistent with DE/DF/E0 text interpreter and adjacent continuation. Exact contexts [0,1,2,3], natural entry unresolved. See final_closure.py and final-closure-candidates.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 61418,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 131,
+      "offset": 29309,
+      "length": 692,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static supported callback/routine contracts: AI A2C0/A2C8 lists -> EFE7 with explicit RTS continuation EFEA; sound B0AC records -> AF30 (Y=4*channel,X=slot,A=countdown); A58B/A60A modulation contracts; 9390 tick wait; A8BA indexed16bit add; F8FB sprite builder; FBFB/FC12/FC3A/FE23 result commands consistent with DE/DF/E0 text interpreter and adjacent continuation. Exact contexts [0,1,2,3], natural entry unresolved. See final_closure.py and final-closure-candidates.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 62061,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 132,
+      "offset": 30987,
+      "length": 64,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static supported callback/routine contracts: AI A2C0/A2C8 lists -> EFE7 with explicit RTS continuation EFEA; sound B0AC records -> AF30 (Y=4*channel,X=slot,A=countdown); A58B/A60A modulation contracts; 9390 tick wait; A8BA indexed16bit add; F8FB sprite builder; FBFB/FC12/FC3A/FE23 result commands consistent with DE/DF/E0 text interpreter and adjacent continuation. Exact contexts [0,1,2,3], natural entry unresolved. See final_closure.py and final-closure-candidates.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 63739,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 133,
+      "offset": 31677,
+      "length": 10,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static supported callback/routine contracts: AI A2C0/A2C8 lists -> EFE7 with explicit RTS continuation EFEA; sound B0AC records -> AF30 (Y=4*channel,X=slot,A=countdown); A58B/A60A modulation contracts; 9390 tick wait; A8BA indexed16bit add; F8FB sprite builder; FBFB/FC12/FC3A/FE23 result commands consistent with DE/DF/E0 text interpreter and adjacent continuation. Exact contexts [0,1,2,3], natural entry unresolved. See final_closure.py and final-closure-candidates.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 64429,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 134,
+      "offset": 31755,
+      "length": 87,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static supported callback/routine contracts: AI A2C0/A2C8 lists -> EFE7 with explicit RTS continuation EFEA; sound B0AC records -> AF30 (Y=4*channel,X=slot,A=countdown); A58B/A60A modulation contracts; 9390 tick wait; A8BA indexed16bit add; F8FB sprite builder; FBFB/FC12/FC3A/FE23 result commands consistent with DE/DF/E0 text interpreter and adjacent continuation. Exact contexts [0,1,2,3], natural entry unresolved. See final_closure.py and final-closure-candidates.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 64507,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 135,
+      "offset": 32307,
+      "length": 13,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static supported callback/routine contracts: AI A2C0/A2C8 lists -> EFE7 with explicit RTS continuation EFEA; sound B0AC records -> AF30 (Y=4*channel,X=slot,A=countdown); A58B/A60A modulation contracts; 9390 tick wait; A8BA indexed16bit add; F8FB sprite builder; FBFB/FC12/FC3A/FE23 result commands consistent with DE/DF/E0 text interpreter and adjacent continuation. Exact contexts [0,1,2,3], natural entry unresolved. See final_closure.py and final-closure-candidates.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 65059,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 136,
+      "offset": 4314,
+      "length": 3,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "HudOffsets",
+      "comment": "",
+      "evidence": "Three small numeric constants 08,08,16, bounded by returns and next routine. Indexed display context inspected; generic data without asserting exact meaning. See final_data.py, unknown-listing.txt and static-listing.txt.",
+      "views": []
+    },
+    {
+      "id": 137,
+      "offset": 5350,
+      "length": 94,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "HudAlertTextAndConstants",
+      "comment": "",
+      "evidence": "Human-readable attack/mission/fuel/damage/mine messages followed by repeated small constants. At $9526..$952B values explicitly initialize state at $AE6A; full noninstruction text and adjacent numeric patterns inspected. See final_data.py, unknown-listing.txt and static-listing.txt.",
+      "views": []
+    },
+    {
+      "id": 138,
+      "offset": 6066,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ObjectLookupConstants",
+      "comment": "",
+      "evidence": "Repeated zero/one flags and coordinate/tile-like constants between accepted routines. Full byte pattern inspected with neighboring indexed consumers; generic data, exact subfields unresolved. See final_data.py, unknown-listing.txt and static-listing.txt.",
+      "views": []
+    },
+    {
+      "id": 139,
+      "offset": 6350,
+      "length": 50,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ObjectParameterTables",
+      "comment": "",
+      "evidence": "Repeated flags and smooth coordinate constants. $98C6 consumed at $8E01, mission-indexed $98D2/$98DC/$98E6 consumed at $F376/$F30E/$F304. Full boundaries and non-code patterns inspected. See final_data.py, unknown-listing.txt and static-listing.txt.",
+      "views": []
+    },
+    {
+      "id": 140,
+      "offset": 6889,
+      "length": 64,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "PaletteData",
+      "comment": "",
+      "evidence": "Palette-format values in 0..$3F with repeated universal-background $0F entries and four-byte grouping. Full interval lies between graphics routines; supported generic graphics data, precise palette selection unresolved. See final_data.py, unknown-listing.txt and static-listing.txt.",
+      "views": []
+    },
+    {
+      "id": 141,
+      "offset": 9613,
+      "length": 14,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "SoundModulationHandlers",
+      "comment": "",
+      "evidence": "Seven little-endian handler pointers at $A57D: $A544,$A58E,$A5C1,$A5BD,$A58B,$A5B8,$A607, consumed through sound dispatch $A57A. Static pointer data, not pointer values alone proving target code. A58B/A58E overlapping entry interpretation documented separately. See final_data.py, unknown-listing.txt and static-listing.txt.",
+      "views": []
+    },
+    {
+      "id": 142,
+      "offset": 9664,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "SoundDutyMasks",
+      "comment": "",
+      "evidence": "Eight explicit duty-mask constants $80,$C0,$40,$00,$40,$80,$C0,$00 indexed from $A5A3 after AND7. Exact selected domain and code-delimited extent coincide. See final_data.py, unknown-listing.txt and static-listing.txt.",
+      "views": []
+    },
+    {
+      "id": 143,
+      "offset": 9791,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "SoundVolumeDeltas",
+      "comment": "",
+      "evidence": "Eight 01/00 delta values addressed by $A61D after AND7. Independently bounded eight-byte domain and next code entry. See final_data.py, unknown-listing.txt and static-listing.txt.",
+      "views": []
+    },
+    {
+      "id": 144,
+      "offset": 12476,
+      "length": 96,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "SoundEffectDescriptors",
+      "comment": "",
+      "evidence": "Twelve complete eight-byte records bounded by $B0AC and next accepted handler $B10C. AF7E applies first four APU register bytes; AF16 reads final callback word at record+6; middle fields used by AF41/AF69. All record callback contracts checked. Specific structural record domain, natural use of every record unresolved. See final_data.py, unknown-listing.txt and static-listing.txt.",
+      "views": []
+    },
+    {
+      "id": 145,
+      "offset": 30001,
+      "length": 45,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "GameplayLookupConstants",
+      "comment": "",
+      "evidence": "Repeated bounded numeric constants following RTS $F520 and before interrupt tail $F54E. Indexed bases $F52B/$F52E/$F531/$F535 read by accepted gameplay handlers; full numeric/noninstruction extent checked. See final_data.py, unknown-listing.txt and static-listing.txt.",
+      "views": []
+    },
+    {
+      "id": 146,
+      "offset": 31653,
+      "length": 24,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ResultAnimationCommands",
+      "comment": "",
+      "evidence": "Encoded text/animation control records containing $14 followed by callback words $FE30,$FC12,$FBFB,$FE23,$FC3A,$FBFB, with delay/position bytes; text interpreter has separate control/data flow. Commands terminate before supported command $FBAD. Generic command data, no original source schema claim. See final_data.py, unknown-listing.txt and static-listing.txt.",
+      "views": []
+    },
+    {
+      "id": 147,
+      "offset": 31842,
+      "length": 465,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ResultAndEndingText",
+      "comment": "",
+      "evidence": "Full noninstruction message/formatting stream with summary, failure, congratulations and input prompts; pointers selected by $FC12/$FC3A. Initial small repeated flags at $FC52..$FC60 kept composite generic data. Explicit FF delimiters and next command callback at $FE23 establish boundary. See final_data.py, unknown-listing.txt and static-listing.txt.",
+      "views": []
+    },
+    {
+      "id": 148,
+      "offset": 32758,
+      "length": 20,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "PrgTailData",
+      "comment": "",
+      "evidence": "Twenty uniform FF bytes immediately after last accepted return and before physical vector words. Full suffix inspected; no conflicting fetch or branch evidence. Generic data without claiming fill purpose. See final_data.py, unknown-listing.txt and static-listing.txt.",
+      "views": []
+    }
+  ],
+  "next_id": 149
+}

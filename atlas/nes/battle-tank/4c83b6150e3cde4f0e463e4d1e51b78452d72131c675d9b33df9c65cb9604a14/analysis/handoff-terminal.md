@@ -1,0 +1,17 @@
+# Terminal coordinator handoff
+
+Round 1 sequential disassembly → full current-source commentary → redirect → targeted final editorial acceptance is complete. This is the documented whole-ROM terminal handoff, supported by classification and editorial evidence independently of orchestration status.
+
+ROM classification: 100.00% (65552 / 65552 bytes classified; 0 bytes unknown).
+
+Code 20,578; Data 12,206; CHR Image 32,768. All 147 current regions have structural evidence, exact contiguous physical extents and conservative Static provenance. Fixed PRG context [0,1,2,3]; CNROM switches CHR only. Per-bank counts remain in [disassembly handoff](handoff-disassembly-001.md). Zero residual unknown intervals; no ready leads remain.
+
+Current checkpoint: `final-acceptance-001`, map/state SHA256 `fb1d32dfe6307b11c9b92dae3d0e77395a830a64a0e78c0f21901b76eb04e81d`. [Current audit](current-audit.json) records map validation, protected hashes and fresh generated/maintained-source byte identity. [Final editorial handoff](handoff-final-acceptance.md) and [editorial audit](../commentary/editorial-audit.md) record 147 reviewed regions, 365 reviewed units and zero editorial gaps. [Source](../commentary/source/game.asm), [symbols](../commentary/source/symbols.inc) and [reading copy](../commentary/reading-after.asm) remain local. The coordinator independently checked current hashes, full region/unit partitions, fresh reading content and the archive script's read-only editorial status; see [orchestration audit](orchestration-audit.json).
+
+[Redirect handoff](handoff-redirect-001.md) and its [rejection review](redirect/r001-20261119/rejection-review.md) were inspected against primary source excerpts and measured geometry data. No original generator or natural caller was imposed as a structural prerequisite. The concrete screen descriptor contradiction was repaired in current metadata/source/review and verified; historical frozen records remain unchanged. No further structural cycle is warranted on unchanged evidence.
+
+[Gameplay scenarios](scenarios.json) retain natural mission 1/map and artificial mission 4/7/10, result and ending visits, exact patches/inputs/budgets and provenance limits. The controls follow-up confirms A fire, B+Up speed and A+B pause. Exact object identities, composite subformats, original geometry generators/sound names and some natural callers remain unresolved; these are semantic/reachability limits, not residual classification. No exhaustive gameplay or full hardware/game compatibility claim is made.
+
+[Toolkit issues](toolkit-issues.md): one confirmed nonblocking metadata reporting bug NES-001; explicit fetched-address evidence is the workaround. No toolkit changes were made. Input SHA256 remains `4c83b6150e3cde4f0e463e4d1e51b78452d72131c675d9b33df9c65cb9604a14`.
+
+Archive preparation only: [archive-options.json](../archive-options.json) explicitly preserves additional handoffs and redirect plan/findings/rejection review. No disposable Markdown scratch was found, so omitted_documents is empty. [Document-selection review](archive-document-selection.md) accounts for the entire analysis/commentary Markdown inventory. No archive, cleanup, publication or workspace deletion was executed or authorized. Internal state, restored source, assets, snapshots and ROM remain local; only the supported ROM-free portable mapping may be shared in any separately authorized future operation.

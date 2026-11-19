@@ -1,0 +1,28 @@
+# ROUND002 commentary — worker D capacity continuation, SAME phase
+
+Interrupted, not a successful handoff. Current-source readability remains incomplete; no redirect/final editorial audit. A/B/C continuations and commentary-before/original-live are preserved. Never regenerate, reprepare or rerun historical commentary-tools recipes: source is independently maintained and those recipes are not idempotent. ROM/toolkit/classification unchanged;92.26% classified/20302Unknown.
+
+D completed batches009..011:13 Code records1402bytes,27 meaningful units. Bank9 only. Source game.asm/symbols.inc maintained; metadata source-tree-relative game.asm:line. All earlier valid review remains intact.
+
+Batch009 completed physical75732..76165 / CPU87C4..8975 as SIX routines: three scene-scroll response handshakes, boundary phase, terminal motion and one-shot readiness delay. Named every internal branch, response fields, scoped scene flags/selector/latch/Y boundary. Explained each distinct clear-record/timer exit (ordinary early returns do not clear the timer latch). Completed15-byte CPU8045 five-response veneer record because all targets now have reviewed contracts. The boundary helper calls fixed CPUC09F with A=2; that target remains inside Unknown fixed-bank bytes, so no movement interpretation/ABI was invented. Local Y comparisons and type30 special completion explained explicitly after the unresolved call.
+
+Batch010 completed six records452bytes / CPU8977..8B7C, respecting intervening Unknown gaps and prior reviewed dispatchers. Nine units: shared contact-motion installer, four state-parameter family entries, full contact-motion/contact-movement/contact-path handlers and state154 dispatcher. High/low scratch pointer format, scoped selectors versus actor types, decoder0/$FF/other branches, range/action predicates, horizontal step8, viewport failure, motion wrapping and path cursor2/7 behavior explained. Reused fixed helper contracts; sound/normal actor APIs retain their own domains. Did not globally reinterpret RAM aliases.
+
+Batch011 completed five records502bytes / CPU8B7D..8D77 with intervening Unknown gaps preserved. Eleven units: repeat-family installer/entries/lifecycle dispatcher, class01 helper, six-repeat callback, range callback, movement, response-path lifecycle and entry helper. The334-byte connected block was reviewed in full as six meaningful routines, not merely labeled. Shared repeat counter96/latch97, actor lifecycle033A and return counter92 have scoped aliases. Source explains sixth-repeat reset, handler bit7, synchronous path call followed by lifecycleFF overwrite, type7 state/timer distinction, signed decoder handling and direction bits1/2 chosen by camera-X comparison. Fixed CPUC0E4 remains Unknown; neighboring C0EA first-shape-disable contract is not evidence for C0E4. Explicitly documented this limit.
+
+One scoped dependency candidate physical75306 adjudicated: its outside-margin branch still lands in Unknown CPU866D. Retained boundary uncertainty but corrected stale 'motion mode0' prose to zero-step horizontal viewport test using actual fixed helper contract.25 scoped dependency candidates remain (candidate list authoritative); no other candidate statuses changed.
+
+Exact remaining57 Code records16583bytes in commentary-pending.json / commentary-pending-by-bank.json:
+- physical bank9:33 records2603bytes. Main frontier CPU8D78 (shared installer/state entries), then CPU8E01 onward through99C2. Three veneer records at CPU8000/802D/803C remain pending until later targets are reviewed. CPU8045 veneer now complete. Remaining later carried actor dependency notes need concrete correction as their continuations are reviewed.
+- physical bank10:5 records6841bytes. Large connected blocks require FULL routine/branch/state/field review; few inventory records do not mean few routines.
+- physical bank11:19 records7139bytes. Same full graph review required.
+All Data/Unknown-note work, banks0/5/6/7/fixed14/15 and preceding bank9 work are already complete. Do not reread or rewrite sound whole old source.
+
+Use corrected actors-safe-store-final-graph.json, actor-type-entry-contracts, actor-literal-pointer contracts and adjudication as needed under analysis/redirect/round-001-r1 and analysis/round-002-disassembly. NEVER use invalid original actors-safe-store-graph.json. Structural/conditional ABI evidence does not establish natural game-state coverage. Structural questions remain leads/uncertainty; no map changes. No new gameplay repetition needed.
+
+Final fresh verify byte_identical=true; reading-after refreshed after the final dependency wording change. Final source SHA256:
+- game.asm 5bcfbd3da8cd7156dde7ddb3cc6dc7a86776e6187a6064138f1fb406a5181c9a
+- symbols.inc 7070b9d810bab9edbb3084f1ac4d1650a4a1eaaa3e3d2242eb8d04e125ccf197
+commentary-metadata-d.json reports zero missing/invalid reviewed locations, reviewed Code missing units or out-of-ROM unit bounds. Existing scaffold intact; editorial_audit remains pending. Progress in commentary/progress.md and analysis/progress.md is current. Historical D recipes preserved in commentary-tools and must not be rerun (initial repeat-recipe syntax issue caused no mutation and was fixed before successful run).
+
+Continue same phase with coherent edit batches, fresh verification/read and exact pending/metadata checkpoints. Successful handoff requires ALL current classified-source readability complete plus full scope/uncertainty assessment and compact analysis/round-002-commentary-handoff.md. Final editorial audit reserved for later. No toolkit/archive/cleanup/deletion/publication or other-phase work.

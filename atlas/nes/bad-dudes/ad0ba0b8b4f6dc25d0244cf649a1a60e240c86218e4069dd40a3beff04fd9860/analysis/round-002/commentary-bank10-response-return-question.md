@@ -1,0 +1,3 @@
+# Rejected draft: bank10 return-base arithmetic check
+
+The initial draft suspected overlap because it incorrectly mapped CPU9B5B to physical88923. Correct bank10 mapping is physical81936 + (CPU minus8000), so CPU9B5B is physical88939: exactly the classified23-word return table. The independent emitted-instruction count ends code at CPU9B59/physical88937, followed by two Unknown bytes then this table. Both dispatchers use the same9B5B/9B5C base. The prior overlap and low-index-target claims are invalid; they supply no structural lead. No map/ROM edit or runtime check was made. Historical H CPU-end9B69 was also a typo; current coverage and final unit end9B59.

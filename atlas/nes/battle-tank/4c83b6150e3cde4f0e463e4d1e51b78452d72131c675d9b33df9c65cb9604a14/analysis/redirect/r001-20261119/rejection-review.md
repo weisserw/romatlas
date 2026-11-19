@@ -1,0 +1,10 @@
+# Compact terminal structural review
+
+Unknown complement is empty, independently computed from current internal/export intervals; see unknown-complement.json. This is not a claim that investigation is unnecessary or final editorial acceptance passed.
+
+1. Angle table generator: exact candidate128*tan(pi/4+i*pi/1024),256 split-byte samples. Primary geometry-check.json/source-evidence.txt records measured residuals and search consumer. Max0.639 and41 nearest-round mismatches reject an exact nearest-round recipe; do not reject quantized geometry or data. Independent consumer ratio/search/sign folding and physical boundaries support existing structure. Competing original quantization/scale construction remains unknown. No classification revision or necessary next generator experiment follows.
+2. Overlapping callback entriesA58B/A58E: source-evidence.txt plus physical pointer domain explains LDY4/BIT-versus-LDY2 convergence. Missing natural selector is not a prerequisite; existing static code accepted. Competing accidental decode does not explain two encoded pointer targets and shared sound contract. No revised structural test required.
+3. Dormant OAM helpers includingF8FB: source-evidence.txt shows bounded slot/record operations and RTS contract. Unobserved entry does not mean data/dead code; no rejection inherited. Existing static structural claim retained; gameplay reachability unknown.
+4. Screen descriptor dataF94C..F9A5: primary LoadScreen and row-run consumer contradict inherited audio name, not Data extent. Competing audio interpretation fails direct PPU/palette/copy consumers. Supported editorial repair returned separately. No remaining unknown prefix or whole-table rejection hidden by this conclusion.
+
+Recommendation: structural redirect has no ready classification lead; advance to final editorial audit with explicit screen descriptor repair. Workflow remains incomplete pending that gate. No demand for live callers or original generators is used to reject annotation.

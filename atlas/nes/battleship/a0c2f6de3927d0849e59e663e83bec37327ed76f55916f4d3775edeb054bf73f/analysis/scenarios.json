@@ -1,0 +1,470 @@
+{
+  "version": 1,
+  "pass": "disassembly-round-001",
+  "execution_budget": {
+    "unit": "frame",
+    "max_operations": 100000000,
+    "timeout_ms": 30000,
+    "trace_capacity": 0
+  },
+  "context": {
+    "prg_banks": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "startup",
+      "milestone": "Copyright and initial credits",
+      "status": "visited",
+      "artificial": false,
+      "route": [
+        {
+          "buttons": [],
+          "frames": 180
+        }
+      ],
+      "evidence": [
+        "analysis/evidence/title.ppm",
+        "analysis/evidence/title.snapshot.json",
+        "analysis/evidence/startup-coverage.json"
+      ],
+      "result": "489 distinct observed starts in clean startup session; splash and music initialized."
+    },
+    {
+      "id": "title",
+      "milestone": "Title START/CODE menu",
+      "status": "visited",
+      "artificial": false,
+      "route": [
+        {
+          "restore": "title.snapshot.json"
+        },
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 1
+        },
+        {
+          "buttons": [],
+          "frames": 1
+        },
+        {
+          "buttons": [],
+          "frames": 180
+        }
+      ],
+      "evidence": [
+        "analysis/evidence/menu.ppm",
+        "analysis/evidence/menu.snapshot.json"
+      ],
+      "result": "Title menu at frame362. Buttons reasserted after restores."
+    },
+    {
+      "id": "first-deployment",
+      "milestone": "Battle1-1 fleet placement, rotation and acceptance",
+      "status": "visited",
+      "artificial": false,
+      "route": [
+        {
+          "restore": "menu.snapshot.json"
+        },
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 1
+        },
+        {
+          "buttons": [],
+          "frames": 8
+        },
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 10
+        },
+        {
+          "buttons": [],
+          "frames": 90
+        },
+        {
+          "buttons": [],
+          "frames": 180
+        },
+        {
+          "buttons": [
+            "a"
+          ],
+          "frames": 2
+        },
+        {
+          "buttons": [],
+          "frames": 6
+        },
+        {
+          "buttons": [
+            "down"
+          ],
+          "frames": 8
+        },
+        {
+          "buttons": [],
+          "frames": 2
+        },
+        {
+          "buttons": [
+            "a"
+          ],
+          "frames": 2
+        },
+        {
+          "buttons": [],
+          "frames": 10
+        },
+        {
+          "buttons": [
+            "down"
+          ],
+          "frames": 8
+        },
+        {
+          "buttons": [],
+          "frames": 2
+        },
+        {
+          "buttons": [
+            "a"
+          ],
+          "frames": 2
+        },
+        {
+          "buttons": [],
+          "frames": 8
+        },
+        {
+          "buttons": [
+            "a"
+          ],
+          "frames": 8
+        },
+        {
+          "buttons": [],
+          "frames": 8
+        },
+        {
+          "buttons": [
+            "b"
+          ],
+          "frames": 8
+        },
+        {
+          "buttons": [],
+          "frames": 8
+        },
+        {
+          "buttons": [
+            "down"
+          ],
+          "frames": 8
+        },
+        {
+          "buttons": [],
+          "frames": 8
+        },
+        {
+          "buttons": [
+            "a"
+          ],
+          "frames": 8
+        },
+        {
+          "buttons": [],
+          "frames": 8
+        },
+        {
+          "buttons": [
+            "down"
+          ],
+          "frames": 16
+        },
+        {
+          "buttons": [],
+          "frames": 8
+        },
+        {
+          "buttons": [
+            "a"
+          ],
+          "frames": 8
+        },
+        {
+          "buttons": [],
+          "frames": 8
+        }
+      ],
+      "evidence": [
+        "analysis/evidence/deploy.ppm",
+        "analysis/evidence/deploy-a.ppm",
+        "analysis/evidence/deploy-next.ppm",
+        "analysis/evidence/deploy4.ppm",
+        "analysis/evidence/deploy-patch.ppm"
+      ],
+      "result": "Fleet placement and B rotation observed; accept setup screen reached at805. Exploratory later patch84=6,85=0 occurred after deployment and has no demonstrated progression benefit."
+    },
+    {
+      "id": "first-attack",
+      "milestone": "Combat grid and attack animation",
+      "status": "visited",
+      "artificial": true,
+      "route": [
+        {
+          "after": "first-deployment"
+        },
+        {
+          "patch_ram": {
+            "0x84": 6,
+            "0x85": 0
+          }
+        },
+        {
+          "buttons": [
+            "a"
+          ],
+          "frames": 8
+        },
+        {
+          "buttons": [],
+          "frames": 8
+        },
+        {
+          "buttons": [
+            "a"
+          ],
+          "frames": 8
+        },
+        {
+          "buttons": [],
+          "frames": 8
+        },
+        {
+          "buttons": [],
+          "frames": 30
+        },
+        {
+          "buttons": [
+            "select"
+          ],
+          "frames": 8
+        },
+        {
+          "buttons": [],
+          "frames": 8
+        },
+        {
+          "buttons": [
+            "a"
+          ],
+          "frames": 8
+        },
+        {
+          "buttons": [],
+          "frames": 8
+        },
+        {
+          "buttons": [],
+          "frames": 120
+        }
+      ],
+      "evidence": [
+        "analysis/evidence/deploy-current.snapshot.json",
+        "analysis/evidence/fire.ppm",
+        "analysis/evidence/fire-result.ppm",
+        "analysis/evidence/fire.snapshot.json"
+      ],
+      "result": "Missile/ship attack animation rendered. Exact weapon selector not separately confirmed, so no special-weapon coverage claim."
+    },
+    {
+      "id": "code-editor",
+      "milestone": "Password editor",
+      "status": "visited",
+      "artificial": false,
+      "route": [
+        {
+          "restore": "menu.snapshot.json"
+        },
+        {
+          "buttons": [
+            "select"
+          ],
+          "frames": 8
+        },
+        {
+          "buttons": [],
+          "frames": 8
+        },
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 8
+        },
+        {
+          "buttons": [],
+          "frames": 8
+        }
+      ],
+      "evidence": [
+        "analysis/evidence/code.ppm",
+        "analysis/evidence/code.snapshot.json"
+      ],
+      "result": "Four-digit editor active; static $B4D3 consumer confirms RAM $0661..$0664."
+    },
+    {
+      "id": "late-rank",
+      "milestone": "Rank8 battle8-1 and later fleet mechanics",
+      "status": "visited",
+      "artificial": true,
+      "route": [
+        {
+          "restore": "code.snapshot.json"
+        },
+        {
+          "buttons": [],
+          "frames": 0
+        },
+        {
+          "patch_ram": {
+            "0x661": 9,
+            "0x662": 6,
+            "0x663": 1,
+            "0x664": 7
+          }
+        },
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 8
+        },
+        {
+          "buttons": [],
+          "frames": 8
+        },
+        {
+          "buttons": [],
+          "frames": 240
+        },
+        {
+          "buttons": [],
+          "frames": 120
+        },
+        {
+          "buttons": [
+            "a"
+          ],
+          "frames": 8
+        },
+        {
+          "buttons": [],
+          "frames": 8
+        },
+        {
+          "buttons": [
+            "b"
+          ],
+          "frames": 8
+        },
+        {
+          "buttons": [
+            "down"
+          ],
+          "frames": 8
+        },
+        {
+          "buttons": [],
+          "frames": 8
+        }
+      ],
+      "evidence": [
+        "analysis/evidence/late-accepted-ram.json",
+        "analysis/evidence/late-deploy.ppm",
+        "analysis/evidence/late-mechanics.ppm",
+        "analysis/evidence/late-mechanics.snapshot.json"
+      ],
+      "result": "9617 accepted: rank$97=7,battle$98=0,absolute$99=35. Actual later deployment rendered; placement, rotation and movement exercised."
+    },
+    {
+      "id": "ending",
+      "milestone": "Ending and terminal animation",
+      "status": "visited",
+      "artificial": true,
+      "route": [
+        {
+          "restore": "code.snapshot.json"
+        },
+        {
+          "buttons": [],
+          "frames": 0
+        },
+        {
+          "patch_ram": {
+            "0x661": 1,
+            "0x662": 9,
+            "0x663": 9,
+            "0x664": 2
+          }
+        },
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 8
+        },
+        {
+          "buttons": [],
+          "frames": 8
+        },
+        {
+          "buttons": [],
+          "frames": 240
+        },
+        {
+          "buttons": [
+            "a"
+          ],
+          "frames": 8
+        },
+        {
+          "buttons": [],
+          "frames": 8
+        }
+      ],
+      "evidence": [
+        "analysis/evidence/ending-accepted-ram.json",
+        "analysis/evidence/ending.ppm",
+        "analysis/evidence/ending-next.ppm",
+        "analysis/evidence/ending.snapshot.json"
+      ],
+      "result": "1992 accepted, ending warship/fireworks rendered and advanced. This is artificial password-digit injection followed by supported ordinary submission, not natural campaign completion."
+    },
+    {
+      "id": "middle-ranks",
+      "milestone": "Ranks2 through7 and every special weapon",
+      "status": "deferred",
+      "reason": "Representative first/last ranks and terminal route visited; exhaustive weapon/rank permutations unnecessary for structural completion. Full static handlers classified without natural reachability claim."
+    },
+    {
+      "id": "boss",
+      "milestone": "Boss mechanics",
+      "status": "unavailable",
+      "reason": "Strategy campaign has naval battles; no independent boss milestone identified in inspected manual/local progression."
+    }
+  ],
+  "replay_script": "analysis/evidence/replay-round001.py"
+}

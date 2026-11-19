@@ -1,0 +1,15 @@
+# Round 4 commentary handoff
+
+**ROM classification: 99.97% (131051 / 131088 bytes classified; 37 unknown in 13 ranges).** Current-source readability is complete; whole-ROM classification remains incomplete.
+
+Input: pass-004-reviewed. Map/state SHA: a054cad533065eba0fb67f797975f39b4f6ada358f60518161f9d5fa16f94baa. The entire previous commentary phase is preserved at analysis/round-4/commentary-prior; its source SHA 5215e633bf60f026a995bf7c10e39f8c341e16f12ee20115dd8a476be40333c4 is unchanged. All 1823 old classified records remain exact. Current baseline/state, before, source mapping and reading-before correspond to pass 4.
+
+All 2280 scaffold ranges are reviewed: 1368 Code, 899 Data and 13 Unknown. Reused 1823 unchanged classified reviews; explained all 444 new spans (46 Code / 398 Data, 1107 Code / 17818 Data bytes). There are 2035 reviewed units; 1439 Code units cover every one of the 42183 Code bytes. Relative game.asm:line locators, exact scaffold and full scope passed checks. pending.json is []; no naming/comment/readability gaps are deferred. Proof: analysis/commentary-round4/scope.json.
+
+Source explains finite uploader PC arithmetic, SP data buffers and saved-SP continuations; property offsets and 162-record bounds versus generic map/reference storage; five-field room objects and thirteen-byte motion records; exact room-list selectors, sources, counts and ends; forward INC-driven timer streams and distinct PPU/sprite/inventory grammars; biased sprite storage versus natural-selection domains; executable null ROM JMP slots versus unresolved RAM zero; NMI/BRK barriers, reset context stop and bank-wrapper return preconditions. Whole helpers and inner upload/pose paths are named.
+
+Inherited copy errors are corrected in source and affected reviews: $82FC with X=$0C..1 copies twelve bytes; $FEEA with Y=$14..1 copies twenty. Adjacent $FEEA is a separate generic-storage unit. The three graphics-tail bytes are generic container storage outside consumed payload, supported by local positive endpoints; no global end-field rule is inferred.
+
+Fresh final byte-identical verification passed: commentary/verification.json. Final source SHA: **5a1c69fc6659bf7bceb2bd6956108bab3cfde15efb4ce232bb717fe05e1e8c5f**. reading-after was refreshed and checked. Current semantic limits and the 37-byte structural ambiguity are recorded in commentary/uncertainties.md, analysis/round4-counts.json and preserved residual-assessment.json. Exact actor/item/scene identities, global geometry, original serialization, wider natural domains and natural completion remain unresolved without being a readability backlog. Existing room29-to-room7 and ending/title evidence was reused; no replay was performed.
+
+Final editorial/archive acceptance remains pending; audit was not run. Existing NES-001 is the sole toolkit issue. No toolkit/ROM/map/state edits, cleanup, deletion, archive, publication or active server/writer. All source/assets remain local. No natural-completion, separate-credits or full hardware/game compatibility claim.

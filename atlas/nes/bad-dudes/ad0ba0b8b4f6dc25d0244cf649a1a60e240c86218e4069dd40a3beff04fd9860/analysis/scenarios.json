@@ -1,0 +1,347 @@
+[
+  {
+    "id": "S001",
+    "milestone": "Startup/title",
+    "status": "visited",
+    "route": "Reset, 180 then240 then240 then600 frames with no buttons",
+    "evidence": [
+      "title.png",
+      "title4.png"
+    ],
+    "result": "Bad Dudes US title confirmed; banks [2,6,14,15]"
+  },
+  {
+    "id": "S002",
+    "milestone": "Character select/briefing/City",
+    "status": "visited",
+    "route": "title atframe1542; buttons[start]2,[]60,[a]2,[]60,[select]2,[]120,[select]30,[]180,[select]120,[]1200; frame3318 City",
+    "evidence": [
+      "select3.ppm",
+      "game4.png",
+      "game4-snapshot.json"
+    ],
+    "result": "Natural City reached; city-mechanics right+a+b20, release5; valid contextual fetches."
+  },
+  {
+    "id": "STAGE-A-1",
+    "milestone": "Big Rig",
+    "status": "attempted",
+    "artificial": true,
+    "snapshot": "prestage-snapshot.json",
+    "patches": {
+      "0x02c0": 1,
+      "0x0109": 1
+    },
+    "route": "restore frame2898 snapshot; reassert buttons[]; patch;420frames; buttons[right,a,b]6,[]2",
+    "result": "Frozen CPU, no accepted opcode fetches in mechanics probe. Patch $0109 during scripted briefing is unsafe; no successful stage visit. No classification gain.",
+    "evidence": [
+      "stage-1.ppm",
+      "stage-1-mechanics-contexts.json"
+    ]
+  },
+  {
+    "id": "STAGE-A-2",
+    "milestone": "Sewer",
+    "status": "attempted",
+    "artificial": true,
+    "snapshot": "prestage-snapshot.json",
+    "patches": {
+      "0x02c0": 2,
+      "0x0109": 2
+    },
+    "route": "restore frame2898 snapshot; reassert buttons[]; patch;420frames; buttons[right,a,b]6,[]2",
+    "result": "Frozen CPU, no accepted opcode fetches in mechanics probe. Patch $0109 during scripted briefing is unsafe; no successful stage visit. No classification gain.",
+    "evidence": [
+      "stage-2.ppm",
+      "stage-2-mechanics-contexts.json"
+    ]
+  },
+  {
+    "id": "STAGE-A-3",
+    "milestone": "Forest",
+    "status": "attempted",
+    "artificial": true,
+    "snapshot": "prestage-snapshot.json",
+    "patches": {
+      "0x02c0": 3,
+      "0x0109": 3
+    },
+    "route": "restore frame2898 snapshot; reassert buttons[]; patch;420frames; buttons[right,a,b]6,[]2",
+    "result": "Frozen CPU, no accepted opcode fetches in mechanics probe. Patch $0109 during scripted briefing is unsafe; no successful stage visit. No classification gain.",
+    "evidence": [
+      "stage-3.ppm",
+      "stage-3-mechanics-contexts.json"
+    ]
+  },
+  {
+    "id": "STAGE-A-4",
+    "milestone": "Train",
+    "status": "attempted",
+    "artificial": true,
+    "snapshot": "prestage-snapshot.json",
+    "patches": {
+      "0x02c0": 4,
+      "0x0109": 4
+    },
+    "route": "restore frame2898 snapshot; reassert buttons[]; patch;420frames; buttons[right,a,b]6,[]2",
+    "result": "Frozen CPU, no accepted opcode fetches in mechanics probe. Patch $0109 during scripted briefing is unsafe; no successful stage visit. No classification gain.",
+    "evidence": [
+      "stage-4.ppm",
+      "stage-4-mechanics-contexts.json"
+    ]
+  },
+  {
+    "id": "STAGE-A-5",
+    "milestone": "Cave",
+    "status": "attempted",
+    "artificial": true,
+    "snapshot": "prestage-snapshot.json",
+    "patches": {
+      "0x02c0": 5,
+      "0x0109": 5
+    },
+    "route": "restore frame2898 snapshot; reassert buttons[]; patch;420frames; buttons[right,a,b]6,[]2",
+    "result": "Frozen CPU, no accepted opcode fetches in mechanics probe. Patch $0109 during scripted briefing is unsafe; no successful stage visit. No classification gain.",
+    "evidence": [
+      "stage-5.ppm",
+      "stage-5-mechanics-contexts.json"
+    ]
+  },
+  {
+    "id": "STAGE-A-6",
+    "milestone": "Factory",
+    "status": "attempted",
+    "artificial": true,
+    "snapshot": "prestage-snapshot.json",
+    "patches": {
+      "0x02c0": 6,
+      "0x0109": 6
+    },
+    "route": "restore frame2898 snapshot; reassert buttons[]; patch;420frames; buttons[right,a,b]6,[]2",
+    "result": "Frozen CPU, no accepted opcode fetches in mechanics probe. Patch $0109 during scripted briefing is unsafe; no successful stage visit. No classification gain.",
+    "evidence": [
+      "stage-6.ppm",
+      "stage-6-mechanics-contexts.json"
+    ]
+  },
+  {
+    "id": "S-END",
+    "milestone": "Ending/credits",
+    "status": "deferred",
+    "reason": "Need safe level initialization/transition contract first; strongest stage experiment in progress."
+  },
+  {
+    "id": "STAGE-D-1",
+    "milestone": "Big Rig",
+    "status": "visited",
+    "artificial": true,
+    "snapshot": "stage-init-hook-snapshot.json",
+    "recipe": "From transition-2-snapshot.json (frame2998), buttons[]; run_until RAM$09==$20 (55604 operations, limit1000000/30000ms); save hook. Restore hook, reassert buttons[], write RAM$02C0=level, step180frames; right+a+b6,release2.",
+    "patches": {
+      "0x02c0": 1
+    },
+    "evidence": [
+      "stage5-1.ppm",
+      "stage5-1-mechanics-contexts.json"
+    ],
+    "result": "Distinct initialized area visually confirmed (later-montage.png for levels2..5); accepted live right/attack/jump fetches. Artificial progression, no natural later-stage reachability claim."
+  },
+  {
+    "id": "STAGE-D-2",
+    "milestone": "Sewer",
+    "status": "visited",
+    "artificial": true,
+    "snapshot": "stage-init-hook-snapshot.json",
+    "recipe": "From transition-2-snapshot.json (frame2998), buttons[]; run_until RAM$09==$20 (55604 operations, limit1000000/30000ms); save hook. Restore hook, reassert buttons[], write RAM$02C0=level, step180frames; right+a+b6,release2.",
+    "patches": {
+      "0x02c0": 2
+    },
+    "evidence": [
+      "stage5-2.ppm",
+      "stage5-2-mechanics-contexts.json"
+    ],
+    "result": "Distinct initialized area visually confirmed (later-montage.png for levels2..5); accepted live right/attack/jump fetches. Artificial progression, no natural later-stage reachability claim."
+  },
+  {
+    "id": "STAGE-D-3",
+    "milestone": "Forest",
+    "status": "visited",
+    "artificial": true,
+    "snapshot": "stage-init-hook-snapshot.json",
+    "recipe": "From transition-2-snapshot.json (frame2998), buttons[]; run_until RAM$09==$20 (55604 operations, limit1000000/30000ms); save hook. Restore hook, reassert buttons[], write RAM$02C0=level, step180frames; right+a+b6,release2.",
+    "patches": {
+      "0x02c0": 3
+    },
+    "evidence": [
+      "stage5-3.ppm",
+      "stage5-3-mechanics-contexts.json"
+    ],
+    "result": "Distinct initialized area visually confirmed (later-montage.png for levels2..5); accepted live right/attack/jump fetches. Artificial progression, no natural later-stage reachability claim."
+  },
+  {
+    "id": "STAGE-D-4",
+    "milestone": "Freight Train",
+    "status": "visited",
+    "artificial": true,
+    "snapshot": "stage-init-hook-snapshot.json",
+    "recipe": "From transition-2-snapshot.json (frame2998), buttons[]; run_until RAM$09==$20 (55604 operations, limit1000000/30000ms); save hook. Restore hook, reassert buttons[], write RAM$02C0=level, step180frames; right+a+b6,release2.",
+    "patches": {
+      "0x02c0": 4
+    },
+    "evidence": [
+      "stage5-4.ppm",
+      "stage5-4-mechanics-contexts.json"
+    ],
+    "result": "Distinct initialized area visually confirmed (later-montage.png for levels2..5); accepted live right/attack/jump fetches. Artificial progression, no natural later-stage reachability claim."
+  },
+  {
+    "id": "STAGE-D-5",
+    "milestone": "Cave",
+    "status": "visited",
+    "artificial": true,
+    "snapshot": "stage-init-hook-snapshot.json",
+    "recipe": "From transition-2-snapshot.json (frame2998), buttons[]; run_until RAM$09==$20 (55604 operations, limit1000000/30000ms); save hook. Restore hook, reassert buttons[], write RAM$02C0=level, step180frames; right+a+b6,release2.",
+    "patches": {
+      "0x02c0": 5
+    },
+    "evidence": [
+      "stage5-5.ppm",
+      "stage5-5-mechanics-contexts.json"
+    ],
+    "result": "Distinct initialized area visually confirmed (later-montage.png for levels2..5); accepted live right/attack/jump fetches. Artificial progression, no natural later-stage reachability claim."
+  },
+  {
+    "id": "STAGE-D-6",
+    "milestone": "Factory",
+    "status": "visited",
+    "artificial": true,
+    "snapshot": "stage-init-hook-snapshot.json",
+    "recipe": "From transition-2-snapshot.json (frame2998), buttons[]; run_until RAM$09==$20 (55604 operations, limit1000000/30000ms); save hook. Restore hook, reassert buttons[], write RAM$02C0=level, step180frames; right+a+b6,release2.",
+    "patches": {
+      "0x02c0": 6
+    },
+    "evidence": [
+      "stage5-6.ppm",
+      "stage5-6-mechanics-contexts.json"
+    ],
+    "result": "Distinct initialized area visually confirmed (later-montage.png for levels2..5); accepted live right/attack/jump fetches. Artificial progression, no natural later-stage reachability claim."
+  },
+  {
+    "id": "END-D-7",
+    "milestone": "Ending",
+    "status": "attempted",
+    "artificial": true,
+    "recipe": "Same safe initialization hook, RAM$02C0=7,step180 then8-frame mechanics probe",
+    "result": "Black screen, frozen CPU and zero probe opcode fetches. Stage7 out of supported level range is not a valid ending transition.",
+    "evidence": [
+      "stage4-7.png",
+      "stage4-7-mechanics-contexts.json"
+    ]
+  },
+  {
+    "id": "FACTORY-PROGRESS",
+    "milestone": "Factory later enemies/boss/ending attempt",
+    "status": "attempted",
+    "artificial": true,
+    "snapshot": "stage5-6-snapshot.json",
+    "route": "20 blocks: write health$02AB=18,time$0204=99,boss-health hypotheses$032F/$0344=0; alternate buttons[right,a]60 and[right,b]60. Release[]; trace8 frames.",
+    "result": "1200 frames progressed through Factory and enemy encounters, but no boss/elevator/ending transition confirmed. No indefinite retry; safe boss/elevator progression contract remains redirect work.",
+    "evidence": [
+      "factory-5.png",
+      "factory-20.png",
+      "factory-progress-snapshot.json",
+      "factory-progress-contexts.json"
+    ]
+  },
+  {
+    "id": "LOADERS",
+    "milestone": "Stage loader transitions",
+    "status": "visited",
+    "route": "Restore stage-init-hook; reassert[]; level patch as above; step56 untraced then32 traced frames (3060..3092). Level6 artificial and level0 unmodified natural comparator.",
+    "result": "Captured stage initialization/control flow; earlier windows 3004..3012 and3028..3052 mostly briefing waits, no further same-window repeats.",
+    "evidence": [
+      "loader-final-6-contexts.json",
+      "loader-final-0-contexts.json"
+    ]
+  },
+  {
+    "id": "END-R1-TRANSITION",
+    "milestone": "Factory clear/terminal transition shortcut",
+    "status": "attempted",
+    "artificial": true,
+    "snapshot": "redirect/round-001-r1/ending-before-snapshot.json",
+    "recipe": "Restore factory-progress; buttons[]; save before edits; RAM02C1=8E,PC=C38D; step30/90/120frames,max10000000operations,30000ms each.",
+    "result": "STAGE7 CLEAR visible at cumulative120frames; bank6A006 clear path fetched. No A00C fetch; cumulative240frames PC0071 RAM. Ending remains unresolved; next test at explicit C399 terminal predicate after clear helper.",
+    "evidence": [
+      "redirect/round-001-r1/ending-90.png",
+      "redirect/round-001-r1/ending-contexts.json",
+      "redirect/round-001-r1/ending-test-results.json"
+    ]
+  },
+  {
+    "id": "END-R1-PREDICATE",
+    "milestone": "Terminal desk/message scene",
+    "status": "visited",
+    "artificial": true,
+    "snapshot": "redirect/round-001-r1/ending-before-snapshot.json",
+    "recipe": "Restore preserved factory snapshot; buttons[]; RAM02C1=8E,PC=C399 at explicit terminal predicate; step30/90frames,max10000000operations,30000ms each.",
+    "result": "Distinct seated official/flag/desk scene with typing text. Accepted bank6A00C andAFAE fetches. Natural boss completion and later credits unresolved; continuation snapshot retained.",
+    "evidence": [
+      "redirect/round-001-r1/terminal-30.png",
+      "redirect/round-001-r1/terminal-90.png",
+      "redirect/round-001-r1/terminal-contexts.json",
+      "redirect/round-001-r1/terminal-test-results.json"
+    ]
+  },
+  {
+    "id": "FACTORY-R1-8D",
+    "milestone": "Late Factory helicopter scene",
+    "status": "visited",
+    "artificial": true,
+    "snapshot": "redirect/round-001-r1/variant8d-before-snapshot.json",
+    "recipe": "Restore stage-init-hook; save clean snapshot; RAM02C0/02C1=[6,8D]; buttons[]60,right+a+b60,[]60; eachmax5000000operations/30000ms.",
+    "result": "Actual initialized evolution stage6/variantCD/subvariant3/phase0/BD0B, liveCPU and distincthelicopter/player scene. Representative controls60frames. Naturalbosscompletion/credits notclaimed.",
+    "evidence": [
+      "redirect/round-001-r1/variant8d-2.png",
+      "redirect/round-001-r1/variant8d-results.json",
+      "redirect/round-001-r1/variant8d-contexts.json"
+    ]
+  },
+  {
+    "id": "FACTORY-R1-FINAL-SCRIPT",
+    "milestone": "Late Factory final script writer",
+    "status": "attempted",
+    "artificial": true,
+    "snapshot": "redirect/round-001-r1/variant8d-after-snapshot.json",
+    "recipe": "Restore initialized lateFactory; buttons[]; RAM0041=0F,00BD=0F,04D3/04D4=[1,0]; step60twice,max5000000operations,30000ms each.",
+    "result": "ActualFB65writerfetched; live finalvariantCE/phase0F/BD0F and helicopter scene. No terminalA00C/C399fetch. Skippedearlierphaseentry/forced-player flags remainmissingtransitionprerequisites; stoparbitraryflagforcing. Artificialdeskterminalscene separatelyvisited.",
+    "evidence": [
+      "redirect/round-001-r1/factory-script-results.json",
+      "redirect/round-001-r1/factory-script-contexts.json",
+      "redirect/round-001-r1/factory-script-1.png"
+    ]
+  },
+  {
+    "id": "ROUND002-TERMINAL-CREDITS",
+    "milestone": "Terminal message to White House credits",
+    "status": "visited",
+    "artificial": true,
+    "route": "Import round-001-r1/terminal-a60-snapshot.json; buttons[]; no new RAM/PC edits;10x60frames max5000000operations/30000ms each; cumulative600frames",
+    "result": "Live White House scene with both protagonists and GRAPHICS/T.WATANABE credit; actual accepted bank6/fixedbank code fetches; not natural boss completion or fullcredits claim",
+    "evidence": [
+      "analysis/round-002-disassembly/terminal-followthrough-9.png",
+      "analysis/round-002-disassembly/terminal-contexts.json",
+      "analysis/round-002-disassembly/terminal-results.json",
+      "analysis/round-002-disassembly/credits-adjudication.md"
+    ],
+    "snapshot": "analysis/round-002-disassembly/terminal-after-snapshot.json",
+    "gain": {
+      "Code": 569,
+      "Observed_artificial": 520,
+      "Static_code": 49,
+      "Data": 1008,
+      "total": 1577
+    },
+    "prior_attempt": "Initial300frame call timedout; no durable poststate, so no exact completion claim; restart original immutable snapshot with60framechunks. No toolkit defect inferred from bounded timeout."
+  }
+]

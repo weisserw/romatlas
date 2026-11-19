@@ -1,0 +1,155 @@
+{
+ "version": 1,
+ "notes": "Inputs use emulator.input {port:1, buttons:[...]} (full held set; see toolkit TK-001). Token syntax of scratch/play.py: '<btn>[*hold]' presses for hold frames (default 3) then releases and waits 3 frames; 'wN' steps N frames; 'save:/load:' named snapshots. Full input history: scratch/inputs.log. Durable snapshots (same-build only): scratch/snapshots/*.snap. Tracing: aggregate coverage (capacity 0); traced windows interleaved with untraced play because tracing is ~10x slower (TK-003).",
+ "milestones": [
+  {
+   "id": "S01",
+   "milestone": "Power-on, title screen (PENNANT / VS MODE)",
+   "route": "emulator.start; step 120 frames",
+   "result": "Reset stub $FFB0 (bank 31) -> 32K mode, bank 0 init at $8000, title loop observed",
+   "evidence": "scratch/shots/title.png, scratch/snapshots/title.snap",
+   "status": "visited",
+   "natural": true
+  },
+  {
+   "id": "S02",
+   "milestone": "Pennant password screen",
+   "route": "from title: start*4 w60",
+   "result": "Password screen 'AAAAAAA'",
+   "evidence": "scratch/shots/password.png, scratch/snapshots/pw.snap",
+   "status": "visited",
+   "natural": true
+  },
+  {
+   "id": "S03",
+   "milestone": "Password entry editing",
+   "route": "load pw; up w10 up w10 right w10 down w10 b w10 left w10 start w60 (traced)",
+   "result": "Password letters edited (CZAAAAA); start keeps password screen",
+   "evidence": "scratch/shots/password-entry.png",
+   "status": "visited",
+   "natural": true
+  },
+  {
+   "id": "S04",
+   "milestone": "Team select (player and opponent)",
+   "route": "load pw; a w60; a w60 (pick P=Philly); right a w90; start w120 (opponent D.C.)",
+   "result": "Both rosters displayed",
+   "evidence": "scratch/shots/team-select.png",
+   "status": "visited",
+   "natural": true
+  },
+  {
+   "id": "S05",
+   "milestone": "Starting pitcher selection (both teams)",
+   "route": "start w180; a w120; a w240",
+   "result": "Pitcher menus with ERA, then AT BAT NO1 screen",
+   "evidence": "scratch/shots/pitcher-select.png",
+   "status": "visited",
+   "natural": true
+  },
+  {
+   "id": "S06",
+   "milestone": "In-game pitching (player defends, top 1st)",
+   "route": "a w180 from AT BAT screen; then repeated 'a w150' pitches",
+   "result": "Pitching view, CPU batting, ball/strike/out display",
+   "evidence": "scratch/shots/pitching.png, scratch/snapshots/game1.snap",
+   "status": "visited",
+   "natural": true
+  },
+  {
+   "id": "S07",
+   "milestone": "Fielding (outfield and infield views)",
+   "route": "continued pitching / autoplay (scratch/auto.py seeds 2 and 7)",
+   "result": "Outfield and infield fielding cameras with player-controlled fielders",
+   "evidence": "scratch/shots/fielding-outfield.png, scratch/shots/fielding-infield.png",
+   "status": "visited",
+   "natural": true
+  },
+  {
+   "id": "S08",
+   "milestone": "Batting / half-inning changes / pinch-hitter menu",
+   "route": "auto.py 8 cycles (200 traced + 1500 untraced frames, seed 2) and 10 cycles (150 + 3000, seed 7) of random A/B/dir/start presses",
+   "result": "Score D.C. 3 - Philly 0 reached, PINCH HITTER menu opened by Start; play continued to frame ~53869 (still mid-game)",
+   "evidence": "scratch/shots/pinch-hitter.png, scratch/snapshots/g53869.snap",
+   "status": "visited",
+   "natural": true
+  },
+  {
+   "id": "S09",
+   "milestone": "VS mode team select",
+   "route": "load title; down start*4 w60 a w60 a w60 start w60 a w60 a w90 (traced)",
+   "result": "VS team select with both rosters",
+   "evidence": "scratch/shots/vs-team-select.png",
+   "status": "visited",
+   "natural": true
+  },
+  {
+   "id": "S10",
+   "milestone": "End of a game / box score / password issued",
+   "route": "Artificial (redirect r1-a1 E3, analysis/redirect/r1-a1/experiments/e3.py): import scratch/snapshots/game1.snap (pennant mode, top 1st, player=Philly home), step 1 frame, write $0069=$10 (HalfInning top 9th), $0771=2 (OutCount), $0418=5 (home total), $0426=0; before each pitch while AtBatState in {$12,$13} write $0772=2; press A (3 frames) + 40 frames per cycle; out after 85 cycles -> AtBatState $62 (snapshot scratch/snapshots/r1a1-e3-62.snap), then ~960 frames.",
+   "result": "State $62 change-sides handler ($C000) ran; HalfInning test ended the game (home leading entering bottom 9th); game-end scene 15 Pennant Race screen: D.C. 2 - PHILLY 5, PHILLY 1 GAMES 1 WIN, PASSWORD EDCBAAK. E1 (home trailing: $0426=5/$0418=0) instead continued into the bottom 9th.",
+   "evidence": "analysis/redirect/r1-a1/shots/e3-game-end-pennant-race.png, analysis/redirect/r1-a1/notes.md F7, analysis/redirect/r1-a1/obs-r1a1.json",
+   "status": "visited",
+   "reason": "RAM contract from AtBatState $62 handler $C000-$C0BB and bank-3 debug routine $9DEE; artificial state, not natural reachability",
+   "natural": false
+  },
+  {
+   "id": "S11",
+   "milestone": "Pennant progression (later games, pennant win) and ending/credits",
+   "route": "Artificial (E4, analysis/redirect/r1-a1/experiments/e4.py): import r1a1-e3-62.snap, write $0766=$84 (PennantCounterA = games, 132) and $0767=$55 (PennantCounterB = wins), run 3600 frames untraced with short traced windows. Then E7 (analysis/redirect/r1-a1/experiments/e7.py): import scratch/snapshots/r1a1-e4-end.snap, write $077B=$FF, run 1440 frames.",
+   "result": "Scene 16 -> scene 17 season-end screen \"PENNANT RACE 132 GAMES 86 WIN PHILLY\" -> SceneFrame17 requested scene 12 after its timer, but the main loop never restarted the mode: SceneInit17 calls SaveGameState ($9F12) whose RAM clear ($9FAF) leaves DpcmRequest $077B=0, so the main loop keeps FarCalling bank 0 $BD00 (not a DPCM player) and waits for DpcmRequest>=$F0 forever (ModeFlags=$C0). After the artificial unblock $077B=$FF (E7) the scene-12 ending ran: celebration animation of players on a green field (figures animate).",
+   "evidence": "analysis/redirect/r1-a1/shots/e4-season-end-132-games.png, analysis/redirect/r1-a1/shots/e7-ending-scene12-a.png, analysis/redirect/r1-a1/shots/e7-ending-scene12-b.png, analysis/redirect/r1-a1/notes.md F7",
+   "status": "visited",
+   "reason": "Ending visited only with two artificial RAM edits; whether the natural game also stalls at scene 12 (DpcmRequest cleared by SaveGameState) is unresolved (could be game behaviour or emulator/state difference); see lead L-026",
+   "natural": false
+  },
+  {
+   "id": "S12",
+   "milestone": "DPCM voice samples playing (umpire calls)",
+   "route": "",
+   "result": "Player routine $BD00 observed executing in shared engine; sample extents derived statically",
+   "evidence": "analysis/investigation.md",
+   "status": "attempted",
+   "reason": "No per-sample DMA capture taken (TK-003 trace volume)"
+  },
+  {
+   "id": "S13",
+   "milestone": "Change-sides / game-end at-bat state $62 and walk-off checks",
+   "route": "same as S10",
+   "result": "AtBatState $62 handler $C000 executed (instruction fetches, artificial state); 352 observed starts in L-015 proposed code over E1-E7",
+   "evidence": "analysis/redirect/r1-a1/obs-eval.json",
+   "status": "visited",
+   "natural": false
+  },
+  {
+   "id": "S14",
+   "milestone": "Season end, losing exit (wins < 80) -> title",
+   "route": "Artificial (r2-a1 X2, analysis/redirect/r2-a1/experiments/x2_l026.py lose 6 a): import scratch/snapshots/r1a1-e3-62.snap, step 1, write $0766=$84 $0767=$10, step until scene 17 (frame ~8111), +120 frames, press A 6 frames; control variant lose_ff writes $077B=$FF after the press.",
+   "result": "Scene 9 requested (ModeFlags $C0) but never initialised while DpcmRequest=0 (600 frames); with $077B=$FF the title and attract demo (scene 20) ran. Start had no effect (exit button is A).",
+   "evidence": "analysis/redirect/r2-a1/experiments/x2_lose.json, x2_lose_ff.json, analysis/redirect/r2-a1/x2_lose_final.png, x2_lose_ff_final.png",
+   "status": "visited",
+   "natural": false
+  },
+  {
+   "id": "S15",
+   "milestone": "Password decode of a natural password",
+   "route": "Artificial (r2-a1 X4, analysis/redirect/r2-a1/experiments/x4_l012.py 6DA 73E 763): pw.snap, write letters to $072E-$0734, step 3 frames",
+   "result": "EDCBAAK -> team 3, opponent 4, games 2, wins 1, valid; matches r1a1-e3-end RAM",
+   "evidence": "analysis/redirect/r2-a1/experiments/x4_l012.json",
+   "status": "visited",
+   "natural": false
+  },
+  {
+   "id": "S16",
+   "milestone": "Computer batting while the home side leads (LaunchSpeed handicap)",
+   "route": "Artificial (r2-a1 X1, analysis/redirect/r2-a1/experiments/x1_l030.py g10 / g0 2): game1.snap, $0418=3 $0426=0 (optionally $0766=10 $0767=5), press A + ~40 frames per pitch, run_until PC=$85BE",
+   "result": "ScaleLaunchByHomeLead entered in banks [4,5,6,7]; LaunchSpeed forced to $0400 on every entry",
+   "evidence": "analysis/redirect/r2-a1/experiments/x1_g10.json, x1_g0.json",
+   "status": "visited",
+   "natural": false
+  }
+ ],
+ "notes_r1a1": "Redirect r1-a1: snapshots g53869.snap, pw.snap and title.snap in scratch/snapshots are byte-identical (all the password screen) - g53869 was overwritten in round 1; game1.snap is the pennant top-1st pitching state. New durable snapshots: r1a1-e3-62.snap (state $62 top 9th), r1a1-e4-end.snap (stalled scene 12 request), r1a1-e7.snap (ending scene 12).",
+ "notes_round2_disassembly": "Round 2 disassembly (checkpoint pass-002): no new gameplay run. Review of the progression checklist: S01-S11 and S13 visited (S10/S11/S13 via the r1-a1 RAM patches, artificial), S12 (DPCM voice playback) attempted only; DPCM sample bytes are already classified. Gameplay was not continued because static/lead work left 1 unknown byte (bank 3 $9CAC lone RTS) and the r1-a1 coverage over E1-E7 (game end, season end, ending) hit 0 bytes of the routines accepted under L-024, which are unreferenced (no entry known). Snapshots reusable: scratch/snapshots/game1.snap, r1a1-e3-62.snap, r1a1-e3-end.snap, r1a1-e4-end.snap, r1a1-e7.snap. Remaining unvisited/low-value: natural (non-patched) season end and ending; L-026 DpcmRequest stall naturalness; controller-2 debug shortcuts are unreferenced so no input route is expected to reach them.",
+ "notes_r2a1": "Redirect r2-a1: S14-S16 added (all artificial RAM edits, ROM unchanged). Natural season end (132 games) not played: the stall at both scene-17 exits follows from the deterministic code path (notes.md F4). S12 (DPCM capture) still attempted only; DPCM samples are classified, no structural value. No new snapshots exported; reuse scratch/snapshots/*.snap."
+}

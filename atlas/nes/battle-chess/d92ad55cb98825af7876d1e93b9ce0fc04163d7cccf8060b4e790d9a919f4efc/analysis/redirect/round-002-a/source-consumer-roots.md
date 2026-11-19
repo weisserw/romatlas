@@ -1,0 +1,9 @@
+# Independent source-consumer routines
+
+Bank0 8D7C..8D99: menu selector84 doubled toindex fouralreadyacceptedmenu originwords8DD8, pointer89/8A, indirectread count, storecount-1 to8E, advance89/8A pastcountbyte,RTS. Supportedprecondition selector0..3 yields exact accepted six-byte-record arrays/counts. Caller8B6CencodesJSR8D7C; body/reference/extent independently explainmeaning, notlegaldecodealone. Localcontractsummary proves balancednormalreturn andbankpreservation. No naturalmenu-selectorcoverageassertion.
+
+Bank0 833A..8350: compareA80, positivecode indexesDE22,negativecodeAND7F indexesDE28,store0447,Xobjectframe,RTS. Supportedpiececodes1..6/81..86 andobjectslotX0..3, knownsignedpiece representation plus independentDE1D..DE57lookupblock. Calls in82A8/82F8projection paths and sameobjectframe/positionmechanics. Two complete mutually exclusive paths andexactRTSendpoints independently bound22bytes. No all8bitinputsclaim.
+
+Fixed wrappers E8DD/E8F6/E8FF: priorprimarylistings show UI-squareconversion+EA02→26/27,844D or8731 (nowindependentlyprovedcomponentcontracts), commonE892 PHP/EA32→0/LDX/LDY/PLP/RTS. E8FF callsE8F6 thenreturns carryorcenter2C/2C. Thus finite normalreturn resets pair0 under validinitializedengineposition/UIinputs. E941 UndoHistory usesnegativeindexreturn(retainsincoming0) or matchedpush/popboardrepair,EA02/8402/EA32 andEACDinverseconversion; validhistoryprecondition andincomingpair0. Do notapplyE941bank0result toarbitraryincomingpair.
+
+Original accepted instructioninteriors: mapCode region24 coversC19C..C1CF with51bytes, but oldrootsets hadonlyC19C, notC1CC. Primarypass001 observed-instructions.json separatelyestablishesactualC1CCfetchwith0/1/30/31. Reusingalltheseprimaryperinstructionviews corrects frontiercoverage withoutinventing contexts inside mergedregions orreplayingstartup.

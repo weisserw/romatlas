@@ -1,0 +1,368 @@
+{
+  "version": 1,
+  "round": 1,
+  "scenarios": [
+    {
+      "id": "R01-startup25",
+      "route": [
+        {
+          "action": "emulator.start"
+        },
+        {
+          "action": "trace.configure",
+          "enabled": true,
+          "capacity": 0
+        },
+        {
+          "action": "emulator.step",
+          "unit": "frame",
+          "count": 25,
+          "max_operations": 100000000,
+          "timeout_ms": 30000
+        }
+      ],
+      "inputs": [],
+      "artificial": false,
+      "result": "Title rendering; 927 physical opcode starts; no aggregate drops.",
+      "evidence": [
+        "evidence/startup25-contexts.json",
+        "evidence/startup25-observed-review.json",
+        "evidence/startup25-summary.json"
+      ],
+      "snapshot": "evidence/startup25.snapshot"
+    },
+    {
+      "id": "R01-title349",
+      "route": "Original startup run to frame349 with recorded partial timeouts; snapshot preserves authoritative exact state; Start at frames77-82 and332-334, releases then waits to349.",
+      "artificial": false,
+      "result": "Scrolling title only.",
+      "snapshot": "evidence/title349.snapshot",
+      "corrected_interpretation": "Historic single-button/pressed calls were empty buttons arrays on NES; effective input was released throughout. Original written route retained as attempted API calls, not actual presses."
+    },
+    {
+      "id": "R01-title-delay-wrong-field",
+      "route": "Import title349; memory.write used offset instead of address (defaults address0); requested FB/02 edits did not occur at intended addresses.",
+      "artificial": true,
+      "result": "Failed experimental recipe. Preserve record; superseded by corrected address-field test.",
+      "evidence": [
+        "evidence/title-skip-evidence.json"
+      ]
+    },
+    {
+      "id": "R01-title-delay-corrected",
+      "route": [
+        {
+          "action": "snapshot.import",
+          "path": "evidence/title349.snapshot"
+        },
+        {
+          "action": "memory.write",
+          "space": "ram",
+          "address": 251,
+          "bytes": [
+            239
+          ]
+        },
+        {
+          "action": "memory.write",
+          "space": "ram",
+          "address": 2,
+          "bytes": [
+            1
+          ]
+        },
+        {
+          "action": "step",
+          "unit": "frame",
+          "count": 8
+        },
+        {
+          "action": "memory.write",
+          "space": "ram",
+          "address": 2,
+          "bytes": [
+            1
+          ]
+        },
+        {
+          "action": "step",
+          "unit": "frame",
+          "count": 8
+        }
+      ],
+      "artificial": true,
+      "result": "Title completed upward scroll and started column/background animation; no menu visit yet.",
+      "snapshot": "evidence/title-skip-corrected.snapshot",
+      "evidence": [
+        "evidence/title-skip-corrected-evidence.json",
+        "evidence/title-skip-corrected-result.png"
+      ]
+    },
+    {
+      "id": "R01-column-animation",
+      "route": "Import title-skip-corrected snapshot; 20 frames; export menu-ready.snapshot (name denotes intended state, image proves still animation). Then patch RAM95=255 and 15 frames.",
+      "artificial": true,
+      "result": "Further title background drawing, not menu. Source shows additional bank6 scripted animation.",
+      "snapshot": "evidence/title-options.snapshot",
+      "evidence": [
+        "evidence/menu-ready-state.json",
+        "evidence/title-options.png",
+        "evidence/decode-b767.json"
+      ]
+    },
+    {
+      "id": "R01-area-shortcut-unblanked",
+      "artificial": true,
+      "recipe": "scratch/visit_area.py",
+      "result": "DF1+entry1 direct C144 reinitialization produced corrupt graphics after 40 frames, despite code executing. Source continue route calls D300 before C144; corrected method adds explicit blanking call/return contract. Do not count area01 as a valid visit yet.",
+      "evidence": [
+        "evidence/area01-recipe.json",
+        "evidence/area01-action.png"
+      ]
+    },
+    {
+      "id": "R01-area-blanked-shortcut",
+      "artificial": true,
+      "recipe": "scratch/visit_area_blanked.py AREA ENTRY_TAG NAME then scratch/area_actions.py NAME",
+      "state_contract": "Clean arcadia-visible snapshot; input buttons empty; stage DF and entrance DE from validated metadata; mode2E..31 zero; health16. Registers PC D300 SP FB; stack1FC=43 C1 55 C0 gives D300->C144 then normal C053-call return C056. Render blanking was missing in old recipe.",
+      "observed_result": "Area01b now valid; same later-region test materially changed missing display precondition.",
+      "evidence": [
+        "evidence/area01b-recipe.json",
+        "evidence/area01b-action.png"
+      ]
+    },
+    {
+      "id": "R01-ending-terminal",
+      "artificial": true,
+      "recipe": [
+        "scratch/ending_entry.py",
+        "scratch/ending_continue.py",
+        "scratch/ending_skip_fade.py",
+        "scratch/credits_entry.py",
+        "scratch/credits_continue.py"
+      ],
+      "presses_and_releases": {
+        "port": 1,
+        "buttons": []
+      },
+      "budget_per_batch": "15 or20 frames,100000000 core operations,30000ms timeout",
+      "snapshots": [
+        "ending-loading.snapshot",
+        "ending-scene.snapshot",
+        "ending-rescue.snapshot",
+        "credits-loading.snapshot",
+        "credits-visible.snapshot"
+      ],
+      "result": "Rendered rescue and final couple scenes; independent self-initializing terminal suffix reached. Music/fade timing shortened explicitly; no natural reachability claim."
+    },
+    {
+      "id": "R01-inventory",
+      "artificial": true,
+      "recipe": "scratch/arcadia_actions.py then scratch/inventory_finish.py",
+      "inputs": "right+a+b12 frames; release2; Start2; release3; import saved inventory and20 released frames",
+      "result": "Inventory panel visibly shows club and empty unowned item rows; no ownership patch.",
+      "evidence": [
+        "evidence/inventory-visible.png",
+        "evidence/inventory-visible-review.json"
+      ],
+      "snapshot": "evidence/inventory-visible.snapshot"
+    },
+    {
+      "id": "R01-NPC-house-attempts",
+      "artificial": true,
+      "recipe": [
+        "scratch/house_probe.py",
+        "scratch/house_probe2.py"
+      ],
+      "patches": "From clean arcadia-visible, RAM63..65=[80,0,176] or[96,0,176]; x/y contract from D533 spawn fields.",
+      "inputs": "Up4; release4; B2; release10 frames, max_operations100000000/timeout30000 per step",
+      "result": "Still outdoor scene; no room/dialogue change, zero new code both. Do not retry same coordinates/input unchanged; source entrance/NPC contract needed.",
+      "evidence": [
+        "evidence/house-attempt-state.json",
+        "evidence/house-attempt2-state.json",
+        "evidence/house-attempt.png"
+      ],
+      "snapshots": [
+        "evidence/house-attempt.snapshot",
+        "evidence/house-attempt2.snapshot"
+      ]
+    },
+    {
+      "id": "R01-redirect-door-gated",
+      "milestone": "derived Arcadia doorway",
+      "status": "attempted",
+      "artificial": true,
+      "route": "door_probe.py: restore arcadia-visible, set player168/0/176 and grounded flags, Up20/release40",
+      "result": "Saved entrance animation44=12 remained active; drifted out of tile, noD686 fetch. Corrected by stable snapshot and clearing movement.",
+      "evidence": [
+        "redirect/round01-a01/door-recipe.json",
+        "redirect/round01-a01/door-contexts.json"
+      ]
+    },
+    {
+      "id": "R01-redirect-door-success",
+      "milestone": "enter special room/NPC interior",
+      "status": "visited",
+      "artificial": true,
+      "route": "door_probe2.py: restore door-visible.snapshot, clear44 and53, set player168/0/176, grounded flags, Up20/release40",
+      "result": "Actual D686 fetch, room_mode0->2, rendered interior and NPC. Placement is artificial; input and execution are observed.",
+      "snapshot": "redirect/round01-a01/door2-visible.snapshot",
+      "evidence": [
+        "redirect/round01-a01/door2-recipe.json",
+        "redirect/round01-a01/door2-state-2.json",
+        "redirect/round01-a01/door2-visible.png"
+      ]
+    },
+    {
+      "id": "R01-redirect-npc-down",
+      "milestone": "NPC interaction contract",
+      "status": "attempted",
+      "artificial": true,
+      "route": "npc_probe.py: position144/0/176 then Down20/release40",
+      "result": "No dialogue: type1 actor uses89BB, whereas Down/contact gate8C3A belongs to type4. Wrong premise localized; not a rejection of NPC reachability.",
+      "evidence": [
+        "redirect/round01-a01/npc-recipe.json",
+        "redirect/round01-a01/npc-state-0.json"
+      ]
+    },
+    {
+      "id": "R01-redirect-npc-dialogue",
+      "milestone": "NPC dialogue and return to gameplay",
+      "status": "visited",
+      "artificial": true,
+      "route": "npc_probe2.py: restore npc-visible, clear54/55/5B, place144/0/176, B20/release40. npc_finish.py: release80,B4,release20.",
+      "result": "Dialogue displayed \"first you must go to the Temple of Arcadia to meet Zeus\"; final game_mode0. Actual B gate and dialogue execution confirmed; no quest completion claim.",
+      "snapshot": "redirect/round01-a01/npc-returned.snapshot",
+      "evidence": [
+        "redirect/round01-a01/npc2-recipe.json",
+        "redirect/round01-a01/npc-full-text.png",
+        "redirect/round01-a01/npc-finish.json"
+      ]
+    }
+  ],
+  "progression_checklist": [
+    {
+      "milestone": "Startup/title",
+      "status": "visited",
+      "evidence": "evidence/title.png"
+    },
+    {
+      "milestone": "New-game naming and Greece map",
+      "status": "visited",
+      "route": "buttons-array Start; six A press/release pairs per name; source-informed transition suffix; Start confirms region map",
+      "observed_result": "000000/000000 names accepted; Greece map displays ARCADIA",
+      "evidence": [
+        "evidence/name-grid-correct-input.png",
+        "evidence/heroine-name.png",
+        "evidence/region-map-loading.png"
+      ]
+    },
+    {
+      "milestone": "Arcadia movement/combat/conversation/inventory",
+      "status": "visited",
+      "route": "Import arcadia-visible; right+a+b 12 frames, release2, Start2/release3",
+      "observed_result": "Valid Arcadia gameplay rendered, jump/weapon/movement exercised; inventory requested but capture in loading interval; conversation still deferred",
+      "evidence": [
+        "evidence/arcadia-visible.png",
+        "evidence/arcadia-jump-attack.png",
+        "evidence/arcadia-actions-review.json"
+      ]
+    },
+    {
+      "milestone": "Later regions and distinct enemies",
+      "status": "visited",
+      "route": "D300 blanking then C144 region reinitialization with area1/entrance1; scene/action screenshots confirm rocky outdoor region. Further areas ongoing.",
+      "observed_result": "Valid rendered areas1 (rocky slope),4 (ruined masonry),5 (cave/ledge and bat),8 (green interior),11 (dark room and large flying foe); right+A+B8 frames per area. Exact game region names unconfirmed.",
+      "evidence": [
+        "evidence/area01b-action.png",
+        "evidence/area04b-action.png",
+        "evidence/area05b-action.png",
+        "evidence/area08b-action.png",
+        "evidence/area11b-action.png"
+      ]
+    },
+    {
+      "milestone": "Boss/late Tartarus",
+      "status": "visited",
+      "route": "Area11 entrance10 through supported reinit; representative large flying foe rendered and active during jump/attack.",
+      "observed_result": "Late dark encounter visited; foe identity, boss classification and defeat unconfirmed. Artificial scene visit only.",
+      "evidence": [
+        "evidence/area11b-recipe.json",
+        "evidence/area11b-action.png",
+        "evidence/area11b-action-review.json"
+      ]
+    },
+    {
+      "milestone": "Ending/credits",
+      "status": "visited",
+      "route": "Direct supported terminal routine EEE4, skip scripted fade to EF16 after confirming EF15 stack return, then self-initializing EF33 terminal scene suffix.",
+      "observed_result": "Gold-column rescue scene with flying figure and final couple scene rendered. Source EF54 loops back to EF33; full credit/text fade not cycled, natural boss defeat not claimed. Last20 frames produced zero new instruction starts, so repetitive animation stopped.",
+      "evidence": [
+        "evidence/ending-entry-contract.json",
+        "evidence/ending-loading.png",
+        "evidence/ending-fade-stack.json",
+        "evidence/ending-rescue.png",
+        "evidence/credits-visible.png"
+      ]
+    },
+    {
+      "milestone": "Inventory item selection screen",
+      "status": "visited",
+      "observed_result": "Club and empty unowned rows; screenshot after20-frame renderer continuation.",
+      "evidence": [
+        "evidence/inventory-visible.png"
+      ]
+    },
+    {
+      "milestone": "NPC/temple conversation and passwords",
+      "status": "attempted",
+      "reason": "Two source-position house/Up/B tests remained outdoors, no new code. Need source NPC/entrance contract; password route researched but not entered.",
+      "evidence": [
+        "evidence/house-attempt-state.json",
+        "evidence/house-attempt2-state.json"
+      ]
+    },
+    {
+      "milestone": "Named boss identity/defeat",
+      "status": "deferred",
+      "reason": "Area11 large flying encounter active, identity unconfirmed; ending direct-entry separately tested. Need object type/HP/quest-flag contract, not arbitrary HP brute force."
+    },
+    {
+      "milestone": "Remaining areas2/3/6/7/9/10 and special travel/water/ceiling mechanics",
+      "status": "deferred",
+      "reason": "Representative six area states and terminal scenes visited; untested inventory/actor contracts require focused research. No claim of exhaustive progression or compatibility."
+    }
+  ],
+  "progression_reviews": [
+    {
+      "attempt": "round02-a01",
+      "reviewed_at": "2026-11-19T16:24:44.974032+00:00",
+      "new_runtime": false,
+      "supersession": "Historical checklist NPC/temple attempted entry is superseded for NPC conversation by R01-redirect-door-success and R01-redirect-npc-dialogue; password entry remains untested. Historical entries preserved.",
+      "npc_current_status": "visited (supported artificial placement; B gate and return game_mode0 observed)",
+      "npc_evidence": [
+        "redirect/round01-a01/npc2-recipe.json",
+        "redirect/round01-a01/npc-full-text.png",
+        "redirect/round01-a01/npc-finish.json"
+      ],
+      "ending_status": "Artificial rescue/final couple scenes visited; source EF54 loops EF33. Natural named boss defeat/full fade-text progression unresolved; no unchanged replay.",
+      "remaining_disposition": "Representative later areas/mechanics retained. No new supported route relevant to remaining two orphan returns; arbitrary HP/selector sweep has diminishing prospects. No full-game compatibility claim.",
+      "source_review": "redirect/round02-a01/review.md"
+    },
+    {
+      "attempt": "round03-a01",
+      "reviewed_at": "2026-11-19T16:40:05.752726+00:00",
+      "new_runtime": false,
+      "source_review": "redirect/round03-a01/review.md",
+      "status": "Representative later-area/NPC/rescue/final screens retained; natural named-boss defeat/full ending route unresolved.",
+      "triage": "Reviewed current rescue trigger bit26/distance/countdown/music gate and EEE4..EF54 source against saved terminal entry contract. Repatching that route would repeat already-supported artificial ending behavior; no new structural or natural-reachability discriminator. No arbitrary HP/state sweep.",
+      "evidence": [
+        "evidence/ending-entry-contract.json",
+        "evidence/ending-rescue.png",
+        "evidence/credits-visible.png",
+        "redirect/round01-a01/npc-full-text.png"
+      ],
+      "remaining_milestones": "Historical deferred areas/password/defeat retained; no claim of exhaustive game or hardware compatibility."
+    }
+  ]
+}

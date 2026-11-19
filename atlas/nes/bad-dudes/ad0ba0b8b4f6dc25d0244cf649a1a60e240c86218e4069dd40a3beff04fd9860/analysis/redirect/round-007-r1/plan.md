@@ -1,0 +1,4 @@
+# ROUND007 REDIRECT plan
+Input round-007-disassembly-final; 262141 classified, 19 Unknown / six ranges. Research only.
+Review six residual structural claims against decisive round-003-r1 primary bytes/contracts and current source. Compare recently accepted narrow stored-Code head/layout/fragment standards; distinguish native safety from role. Recheck coherent boundary formats for two JMPs/two RTSs and positive non-code evidence for sound zero/island. Reuse 23-scenario seven-stage terminal/credits exploration absent a new discriminating shortcut. Persist exact ledger and either proposals, same-phase frontier, or primary-linked rejection review. No preset outcome. Stop speculative/unchanged replay, preserve protected files.
+Initial frontier: retrieved residual-primary, residual-review, tail-jmp-rts-contracts, round-006 avenue assessment; need current source and exact map boundary comparison. Free disk 3.9 GiB.

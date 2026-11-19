@@ -1,0 +1,103 @@
+{
+  "status": "complete",
+  "rom_sha256": "a0c2f6de3927d0849e59e663e83bec37327ed76f55916f4d3775edeb054bf73f",
+  "map_sha256": "afe63dc6edc4bb336f186acec0de21bda32568c3c3ea32ec87f7c59fb479bad4",
+  "image_size": 65552,
+  "classified_bytes": 65552,
+  "unknown_bytes": 0,
+  "unmapped_gaps": [],
+  "unknown_regions": [],
+  "kind_bytes": {
+    "Data": 17650,
+    "Code": 13748,
+    "Text": 1386,
+    "Image": 32768
+  },
+  "region_count": 116,
+  "regions_with_evidence": 116,
+  "code_regions_with_exact_fixed_bank_views": 64,
+  "reviewed_regions": 116,
+  "reviewed_units": 300,
+  "source_locations_valid": true,
+  "unit_ranges_contained": true,
+  "current_store_map_frozen_checkpoint_match": true,
+  "validation": {
+    "store_validate": {
+      "ok": true
+    },
+    "portable_map_validate": {
+      "ok": true
+    }
+  },
+  "commentary_audit": {
+    "byte_identical": true,
+    "ok": true,
+    "rom_sha256": "a0c2f6de3927d0849e59e663e83bec37327ed76f55916f4d3775edeb054bf73f",
+    "source_sha256": {
+      "game.asm": "9c92b2767a0ea4ad64420a2d6d5a1047c81de1d7dbd01da03ce1d07d6dfde5c8",
+      "symbols.inc": "e18377e7928c130a0f360d427a0192c64644f3bbdd2b85b55aec2033f7d52921"
+    },
+    "reviewed_regions": 116,
+    "reviewed_units": 300,
+    "editorial_audit": true
+  },
+  "archive_selection": {
+    "ok": true,
+    "contract": "/root/romatlas/scripts/archive.py: FINAL and archive() Markdown selection",
+    "archive_executed": false,
+    "markdown_files": 25,
+    "scanner_files": 25,
+    "additional_final_documents": [
+      "analysis/coordinator-audit.md",
+      "analysis/final-handoff.md",
+      "analysis/handoff-commentary-round-001.md",
+      "analysis/handoff-commentary-round-002.md",
+      "analysis/handoff-disassembly-round-001.md",
+      "analysis/handoff-disassembly-round-002.md",
+      "analysis/handoff-redirect-round-001.md",
+      "analysis/handoff-redirect-round-002.md",
+      "analysis/redirect/round-001-static-20261119/findings.md",
+      "analysis/redirect/round-002-dependency-20261119/findings.md",
+      "analysis/round-001/commentary/progress.md",
+      "analysis/round-001/commentary/uncertainties.md"
+    ],
+    "omitted_documents": {
+      "analysis/round-001/commentary/AGENTS.md": "Duplicate historical generated commentary instruction copy; no results or conclusions.",
+      "analysis/round-001/commentary/prompt.md": "Duplicate historical generated commentary instruction copy; no results or conclusions.",
+      "analysis/round-001/commentary/workflow.md": "Duplicate historical generated commentary instruction copy; no results or conclusions."
+    },
+    "built_in_markdown_present": [
+      "analysis/gameplay.md",
+      "analysis/investigation.md",
+      "analysis/progress.md",
+      "commentary/editorial-audit.md",
+      "commentary/progress.md",
+      "commentary/uncertainties.md"
+    ],
+    "exempt_markdown_present": [
+      "analysis/toolkit-issues.md",
+      "commentary/AGENTS.md",
+      "commentary/prompt.md",
+      "commentary/workflow.md"
+    ],
+    "unrecognized_documents": [],
+    "archive_options_sha256": "53b4a68c2b1fe0862e158632a0138d98727dc7979f1886916736060ea332a9d3"
+  },
+  "archive_readiness": {
+    "ok": true,
+    "archive_executed": false,
+    "mode": "read-only editorial status and in-memory recipe reconstruction; no archive or restored files written",
+    "editorial_status": {
+      "complete": true,
+      "reviewed_regions": 116,
+      "total_regions": 116,
+      "reviewed_units": 300,
+      "total_units": 300,
+      "editorial_audit": true,
+      "reasons": []
+    },
+    "source_file_count": 6,
+    "recipe_version": 1,
+    "exact_source_reconstructed_in_memory": true
+  }
+}

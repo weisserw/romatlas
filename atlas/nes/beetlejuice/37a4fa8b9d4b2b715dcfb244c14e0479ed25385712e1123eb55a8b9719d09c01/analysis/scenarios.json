@@ -1,0 +1,270 @@
+{
+  "version": 1,
+  "phase": "round4-redirect-r4-20261119-a",
+  "milestones": [
+    {
+      "milestone": "startup/title/map",
+      "status": "visited",
+      "route": "Natural reset; trace startup through frame136; trace disabled through frame633; buttons:[start] at frame680 two frames then release; 60 frames showtime; buttons:[a] two frames then release; world map. All budgets and intermediate timeout states in round1-rpc.jsonl.",
+      "evidence": [
+        "title.png",
+        "menu.png",
+        "realstart.png",
+        "play1.png"
+      ]
+    },
+    {
+      "milestone": "level1 side-view movement/inventory",
+      "status": "visited",
+      "route": "Map dismissed; Start opened inventory (room3). Start two frames closes inventory, then right+a+b30 frames through frame1232. Natural observed execution.",
+      "snapshot": "analysis/active1.snapshot",
+      "context": {
+        "prg_banks": [
+          12,
+          13,
+          14,
+          15
+        ]
+      },
+      "evidence": [
+        "action2.png"
+      ]
+    },
+    {
+      "milestone": "overhead house room9",
+      "status": "attempted",
+      "recipe": "Restore active1; buttons:[]; operation1 boundary; RAM$55=9; PC$8D23, stack$26;20frames, right+b+select8frames. Alternative restore active1, RAM$55=9, PC$8D1E,stack$26;40frames. Third variant restore active1, RAM$55=9 and RAM$0670=9, PC$8D23/stack$26, 15frames then A3frames; still house. All artificial.",
+      "result": "RAM room value changes but rendered side-view house persists; actual overhead visit NOT established. Both states artificial.",
+      "evidence": [
+        "room9.png",
+        "room9b.png",
+        "round1-rpc.jsonl"
+      ]
+    },
+    {
+      "milestone": "sewer/graveyard/bosses/Afterlife/ending",
+      "status": "deferred",
+      "reason": "Three concrete initializer attempts failed. Redirect must resolve NMI/coroutine scheduling and transition state; unchanged arbitrary edits would be unproductive."
+    },
+    {
+      "milestone": "overhead room9 corrected NMI/task entry",
+      "status": "visited",
+      "provenance": "artificial",
+      "attempt": "r1-20261119-a",
+      "recipe": "Restore active1; buttons:[]; operation1; RAM02/03=B6,FE task0 RTI (was15,8E task4 jump); RAM55=9;0670=9; PC8D23,stack26. Advance60frames interstitial; A3 release;45frames graphics loading;23frames fade;78frames settle. Budgets and partial progress in room*.json.",
+      "result": "Distinct playable overhead red-plank room at frame1441, actual code execution banks12..15. Right+A+B3 then requested20frames (timeout after16 furtherframes): player worldX0108->0109, animation00->04, phaseFF->0B, visible action/enemy updates. Up+B followup pending. Earlier failed variants preserved; initial black frames were loading/fade.",
+      "snapshot": "analysis/redirect/r1-20261119-a/room9-finish.snapshot",
+      "evidence": [
+        "analysis/redirect/r1-20261119-a/room9-finish.png",
+        "analysis/redirect/r1-20261119-a/room9-move.png",
+        "analysis/redirect/r1-20261119-a/room9-movement.json",
+        "analysis/redirect/r1-20261119-a/room-rpc.json",
+        "analysis/redirect/r1-20261119-a/room-after-a-rpc.json",
+        "analysis/redirect/r1-20261119-a/room-finish-rpc.json"
+      ]
+    },
+    {
+      "milestone": "overhead room9 upward movement followup",
+      "status": "visited",
+      "provenance": "artificial",
+      "recipe": "room9-finish route and snapshots; right+A+B accepted19frames, up+B accepted19frames",
+      "result": "WorldY0260->024D=19pixels after upward input; actual1460->1479frames; source animation/actors change, bounded operation budget partial progress preserved.",
+      "evidence": [
+        "analysis/redirect/r1-20261119-a/room9-up.png",
+        "analysis/redirect/r1-20261119-a/movement-results.json"
+      ]
+    },
+    {
+      "milestone": "overhead room18 hall/actions",
+      "status": "visited",
+      "provenance": "artificial",
+      "recipe": "Restoreactive1;finish1operation;02/03=B6/FE;55=18;0670=18;PC8D23/SP26;7x25frames with alternatingA, accepting partial timeouts; stable1388frame snapshot; up+B23acceptedframes",
+      "result": "Distinct green-checkered hall, doorway player/actors/HUD; WorldY0220->020A=22pixels; actual1388->1411frames,banks12..15. Boss identity unproven.",
+      "snapshot": "analysis/redirect/r1-20261119-a/room18-action.snapshot",
+      "evidence": [
+        "analysis/redirect/r1-20261119-a/room18.png",
+        "analysis/redirect/r1-20261119-a/room18-action.png",
+        "analysis/redirect/r1-20261119-a/room18-rpc.json",
+        "analysis/redirect/r1-20261119-a/room18-action-rpc.json",
+        "analysis/redirect/r1-20261119-a/movement-results.json"
+      ]
+    },
+    {
+      "milestone": "special transition scene31/search gate",
+      "status": "visited",
+      "provenance": "artificial",
+      "recipe": "Cleanactive1 correctedtask0;55/0670=26;PCBB00/SP26 follows actualA1F transition arm;60acceptedframes",
+      "result": "Actual portrait dialogue requires rooms searched; NOT ending/credits.",
+      "snapshot": "analysis/redirect/r1-20261119-a/scene31.snapshot",
+      "evidence": [
+        "analysis/redirect/r1-20261119-a/scene31.png",
+        "analysis/redirect/r1-20261119-a/scene31-rpc.json"
+      ]
+    },
+    {
+      "milestone": "victory/farewell dialogue rendering and script completion",
+      "status": "visited",
+      "provenance": "artificial",
+      "recipe": "Restore live scene31 snapshot;buttons[];7D/E=E3/86 encodedvictoryscript24;7F=0;062C=0;render8frames then13bounded8-frame steps with7F=1 toshorten waits",
+      "result": "Farewell text108..120 rendered; firstframe overlays priorline leftovers, laterfarewell clear;062C=1 andscriptpointer871F atframe1404, then priorroom26resource loading. Not natural ending/terminalcredits.",
+      "snapshot": "analysis/redirect/r1-20261119-a/victory-finish.snapshot",
+      "evidence": [
+        "analysis/redirect/r1-20261119-a/victory-last.png",
+        "analysis/redirect/r1-20261119-a/victory-closing.png",
+        "analysis/redirect/r1-20261119-a/victory-finish-rpc.json"
+      ]
+    },
+    {
+      "milestone": "sewer identity/progression",
+      "status": "deferred",
+      "reason": "Corrected scheduler visited lowroom1outdoor,lowroom2compactplatforms andoverhead9/18; none independently identifiessewer. Need source-linked region/transition identity before claimingsewer milestone; old blanket scheduler failure is superseded."
+    },
+    {
+      "milestone": "graveyard identity/progression",
+      "status": "deferred",
+      "reason": "Corrected initializer reaches overhead9/18, but no source-linked graveyard scene/room selector or terminal progression gate identified; current map/source partition batch should be independently classified/read before assigning game meanings."
+    },
+    {
+      "milestone": "boss encounter/progression",
+      "status": "attempted",
+      "reason": "Corrected-entry representative lowroom1/2 probes both succeeded with actual sideview/action scenes; neither screenshot alone identifies boss. Warning scripts21/22 identifycreaturebehinddoor/drain but their trigger/room association remains unproven; no arbitrary index sweep."
+    },
+    {
+      "milestone": "Afterlife playable area",
+      "status": "deferred",
+      "reason": "Afterlife sign only observed on exterior interstitial; actual playable Afterlife transition selector/gate not yet identified. Current text saysticketparts needed forJuno; no unsupported room number chosen."
+    },
+    {
+      "milestone": "natural ending/terminal credits",
+      "status": "attempted",
+      "reason": "Actualroom7mask/positiongate ->curtain/autowalk/dance ->source-backedcyclecounter7shortcut ->actualselector24 ->dialoguecompletion ->FDC3/titleobserved. Fullnaturalplayandseparatecreditsunclaimed.",
+      "history": [
+        {
+          "milestone": "natural ending/terminal credits",
+          "status": "attempted",
+          "reason": "Concrete text-derived victoryscript24 was rendered and completed artificially; completion returns throughordinary scene cleanup into priorroom26loading, so terminalgame-state trigger and natural progression flags remain unproven. No credits claim."
+        }
+      ],
+      "provenance": "artificial",
+      "evidence": [
+        "analysis/redirect/r2-20261119-b/report.md",
+        "analysis/redirect/r2-20261119-b/room7-trigger-rpc.json",
+        "analysis/redirect/r2-20261119-b/room7-cycle7-rpc.json",
+        "analysis/redirect/r2-20261119-b/room7-cycle7-final.png"
+      ]
+    },
+    {
+      "milestone": "low-room1 outdoor sideview movement/action",
+      "status": "visited",
+      "provenance": "artificial",
+      "recipe": "Cleanactive1 correctedtask0RTI;55/0670=1;PC8D23/SP26;125frames alternatingA, then3+4x25frames tofinish graphics/fade;last25up+A+B",
+      "result": "Actualframe1460,banks12..15,RoomIndex1; distinct outdoor dark-sky/gray-stone/green-platform scene, player airborne afteraction. No bossidentity/naturalroute asserted.",
+      "snapshot": "analysis/redirect/r1-20261119-a/room1-finish.snapshot",
+      "evidence": [
+        "analysis/redirect/r1-20261119-a/room1-rpc.json",
+        "analysis/redirect/r1-20261119-a/room1-finish-rpc.json",
+        "analysis/redirect/r1-20261119-a/room1-finish.png"
+      ]
+    },
+    {
+      "milestone": "low-room2 compact platforming/action",
+      "status": "visited",
+      "provenance": "artificial",
+      "recipe": "Cleanactive1;finish1operation;task0RTI02/03=B6/FE;55/0670=2;PC8D23/SP26;8bounded25-frame calls withalternatingA,last25right+A+B",
+      "result": "All200frames accepted,finalframe1432,banks12..15,RoomIndex2; distinct purple-brick platforms/torches/doorway and airborne player afteraction. No boss/sewer identity asserted.",
+      "snapshot": "analysis/redirect/r1-20261119-a/room2.snapshot",
+      "evidence": [
+        "analysis/redirect/r1-20261119-a/room2-rpc.json",
+        "analysis/redirect/r1-20261119-a/room2.png"
+      ]
+    },
+    {
+      "milestone": "room7 curtain ending gate and title return",
+      "status": "visited",
+      "provenance": "artificial",
+      "recipe": "Restoreactive1;task0B6FE;55/0670=7,initializerPC8D23/SP26;loadto1356;position3BD..3C9=[0,98,05,0,E0,0,0,0,0,0,0,0,0],85/86=3F/00;ordinary64framesgate;249framescutscene;restore1669then03CE/CF=0C/7F,0608=6;ordinary64framesfade/actual24selector;18x8frames7F=1onlyafterselector.",
+      "result": "Actualgate/cutscene/fade/selector24/FDC3fetches;finalframe1877,titleimage,7D/E871F,062C1. No scriptpointer/gatePCedit; naturalcompletion/creditsunclaimed.",
+      "snapshot": "analysis/redirect/r2-20261119-b/room7-cycle7.snapshot",
+      "evidence": [
+        "analysis/redirect/r2-20261119-b/room7-initial.png",
+        "analysis/redirect/r2-20261119-b/room7-gate-7.png",
+        "analysis/redirect/r2-20261119-b/room7-cutscene-15.png",
+        "analysis/redirect/r2-20261119-b/room7-cycle7-final.png",
+        "analysis/redirect/r2-20261119-b/room7-cycle7-rpc.json"
+      ]
+    },
+    {
+      "milestone": "late room29 event bridge into room7 banquet area",
+      "status": "visited",
+      "artificial": true,
+      "route": "Reuseactive1snapshotframe1232; settask02/03=B6/FE,Room55/0670=1D,PC8D23/SP26, eightbounded25frameloadcallsalternatingA/releasewithpartialtimeoutsretained. Initialroom29frame1376; set066F=2FonlyfornewF65Dcountercontract,64ordinaryframes to1440; then128A/releaseframes to1568. Exactmutations/input/budgetsinscripts/RPC.",
+      "observed_result": "Distinctthreewhitefixture/plankedroom/player/doorinitialimage; counter2F->30, actual1F682bridgeand18D33loaderfetches, RoomIndex29->7by1392. Final1568imageconfirmsyellow-stripedchair/banquetroom7. Eventtransitionisexercised; nofullnaturalcompletion/bossidentity/creditsclaim.",
+      "evidence": [
+        "/root/romatlas-batch/37a4fa8b9d4b2b715dcfb244c14e0479ed25385712e1123eb55a8b9719d09c01/workspace/analysis/redirect/r3-20261119-c/room29.py",
+        "/root/romatlas-batch/37a4fa8b9d4b2b715dcfb244c14e0479ed25385712e1123eb55a8b9719d09c01/workspace/analysis/redirect/r3-20261119-c/room29-rpc.json",
+        "/root/romatlas-batch/37a4fa8b9d4b2b715dcfb244c14e0479ed25385712e1123eb55a8b9719d09c01/workspace/analysis/redirect/r3-20261119-c/room29-initial.png",
+        "/root/romatlas-batch/37a4fa8b9d4b2b715dcfb244c14e0479ed25385712e1123eb55a8b9719d09c01/workspace/analysis/redirect/r3-20261119-c/room29-initial.snapshot",
+        "/root/romatlas-batch/37a4fa8b9d4b2b715dcfb244c14e0479ed25385712e1123eb55a8b9719d09c01/workspace/analysis/redirect/r3-20261119-c/room29-event.snapshot",
+        "/root/romatlas-batch/37a4fa8b9d4b2b715dcfb244c14e0479ed25385712e1123eb55a8b9719d09c01/workspace/analysis/redirect/r3-20261119-c/room29-settle.py",
+        "/root/romatlas-batch/37a4fa8b9d4b2b715dcfb244c14e0479ed25385712e1123eb55a8b9719d09c01/workspace/analysis/redirect/r3-20261119-c/room29-settle-rpc.json",
+        "/root/romatlas-batch/37a4fa8b9d4b2b715dcfb244c14e0479ed25385712e1123eb55a8b9719d09c01/workspace/analysis/redirect/r3-20261119-c/room29-to7-settled.png",
+        "/root/romatlas-batch/37a4fa8b9d4b2b715dcfb244c14e0479ed25385712e1123eb55a8b9719d09c01/workspace/analysis/redirect/r3-20261119-c/room29-to7-settled.snapshot",
+        "/root/romatlas-batch/37a4fa8b9d4b2b715dcfb244c14e0479ed25385712e1123eb55a8b9719d09c01/workspace/analysis/redirect/r3-20261119-c/room29-execution.json"
+      ],
+      "trace_limit": "Initial/even tactualinstructionhitsareartificialcontext; settleimporthadnotraceenabled, sofinalsettleclaimusesstate/frame/imageonly."
+    },
+    {
+      "milestone": "room4 active leader and five followers",
+      "status": "visited",
+      "provenance": "artificial",
+      "route": "Clean active1 task0RTI02/03B6FE,55/0670=4,PC8D23/SP26;10 bounded25-frame load calls withpartialtimeouts;initial1448. Ordinary48actionframes reaches1496. Separate clean room4initial restore: exactA741 six-position initializer seed,0608=1,playerX0230/Y0200,mode01AD0;8x8framecalls alternatingrelease/right+a+b.",
+      "observed_result": "Base room1448->1496 playerX0040->004B/Y01B9->01F8. Active shortcut1448->1512 actually fetchedA443/A449/A4EA/A55D126times andA7A6activationstoretwice; six initialized X0220/Y0200 positions evolve (leaderX02DD/Y027E; followers distinct). Captured follower objects in scene. Final83=0, so do not claim persistent tracking-latch state. No namedboss/naturalroute claim.",
+      "evidence": [
+        "/root/romatlas-batch/37a4fa8b9d4b2b715dcfb244c14e0479ed25385712e1123eb55a8b9719d09c01/workspace/analysis/redirect/r4-20261119-a/progression.py",
+        "/root/romatlas-batch/37a4fa8b9d4b2b715dcfb244c14e0479ed25385712e1123eb55a8b9719d09c01/workspace/analysis/redirect/r4-20261119-a/progression-rpc.json",
+        "/root/romatlas-batch/37a4fa8b9d4b2b715dcfb244c14e0479ed25385712e1123eb55a8b9719d09c01/workspace/analysis/redirect/r4-20261119-a/follower.py",
+        "/root/romatlas-batch/37a4fa8b9d4b2b715dcfb244c14e0479ed25385712e1123eb55a8b9719d09c01/workspace/analysis/redirect/r4-20261119-a/follower-rpc.json",
+        "/root/romatlas-batch/37a4fa8b9d4b2b715dcfb244c14e0479ed25385712e1123eb55a8b9719d09c01/workspace/analysis/redirect/r4-20261119-a/progression-results.json",
+        "/root/romatlas-batch/37a4fa8b9d4b2b715dcfb244c14e0479ed25385712e1123eb55a8b9719d09c01/workspace/analysis/redirect/r4-20261119-a/room4-initial.png",
+        "/root/romatlas-batch/37a4fa8b9d4b2b715dcfb244c14e0479ed25385712e1123eb55a8b9719d09c01/workspace/analysis/redirect/r4-20261119-a/room4-action.png",
+        "/root/romatlas-batch/37a4fa8b9d4b2b715dcfb244c14e0479ed25385712e1123eb55a8b9719d09c01/workspace/analysis/redirect/r4-20261119-a/room4-followers.png",
+        "/root/romatlas-batch/37a4fa8b9d4b2b715dcfb244c14e0479ed25385712e1123eb55a8b9719d09c01/workspace/analysis/redirect/r4-20261119-a/room4-followers.snapshot"
+      ]
+    },
+    {
+      "milestone": "room5 active vertical object and ballistic burst",
+      "status": "visited",
+      "provenance": "artificial",
+      "route": "Separate clean active1 restore;task0RTI02/03B6FE,55/0670=5,PC8D23/SP26;10 bounded25-frame loading calls alternatingA/release; thenright+a+b16,left+b16,up+a16 withactualpartialtimeouts retained.",
+      "observed_result": "Distinct indoorbrick/platformarea. Initial1429->1476actionframes;05EB=FF and actualA23E/A249320fetches confirmactiveobjectpath. Secondary burst fields05F9..05FD change A0/F2/00/C0/04 ->60/BC/00/F0/FE. Images showplayeraction andobject. Parentobjectremainsatclampedtarget; no bossidentity/naturalroute claim.",
+      "evidence": [
+        "/root/romatlas-batch/37a4fa8b9d4b2b715dcfb244c14e0479ed25385712e1123eb55a8b9719d09c01/workspace/analysis/redirect/r4-20261119-a/progression.py",
+        "/root/romatlas-batch/37a4fa8b9d4b2b715dcfb244c14e0479ed25385712e1123eb55a8b9719d09c01/workspace/analysis/redirect/r4-20261119-a/progression-rpc.json",
+        "/root/romatlas-batch/37a4fa8b9d4b2b715dcfb244c14e0479ed25385712e1123eb55a8b9719d09c01/workspace/analysis/redirect/r4-20261119-a/progression-results.json",
+        "/root/romatlas-batch/37a4fa8b9d4b2b715dcfb244c14e0479ed25385712e1123eb55a8b9719d09c01/workspace/analysis/redirect/r4-20261119-a/room5-initial.png",
+        "/root/romatlas-batch/37a4fa8b9d4b2b715dcfb244c14e0479ed25385712e1123eb55a8b9719d09c01/workspace/analysis/redirect/r4-20261119-a/room5-action.png",
+        "/root/romatlas-batch/37a4fa8b9d4b2b715dcfb244c14e0479ed25385712e1123eb55a8b9719d09c01/workspace/analysis/redirect/r4-20261119-a/room5-action.snapshot"
+      ]
+    }
+  ],
+  "phase_reviews": [
+    {
+      "phase": "round3-disassembly",
+      "result": "Reviewed representative room1/2/9/18 action and source-backed room7 gate/cutscene/actual dialogue selection/title return. Existing exact patches and captures remain reusable. No changed route experiment would resolve named boss/sewer/graveyard/Afterlife identities without an actual transition/identity contract; do not repeat resolved routes or arbitrary room sweeps. Natural full completion/separate credits remain unclaimed.",
+      "evidence": "analysis/disassembly/r3-20261119-a/review.md",
+      "new_runtime": false
+    },
+    {
+      "phase": "round4-redirect",
+      "result": "Reused proven1/2/9/18/29/7andactualending/title evidence. Added source-backed room4 active followers androom5verticalobject/burst,actualframes/screens/fetches. Namedsewer/graveyard/Afterlifeandfullnaturalboss/ending/creditsidentitiesstillunproven; no typedidentityselector ornewterminaltransitioncontract foundincurrentreadable-source/gate audit. No unchangedreplayor arbitraryroom/indexsweep. No unknownopcodefetchinnewscenarios.",
+      "evidence": "/root/romatlas-batch/37a4fa8b9d4b2b715dcfb244c14e0479ed25385712e1123eb55a8b9719d09c01/workspace/analysis/redirect/r4-20261119-a/report.md",
+      "new_runtime": true
+    },
+    {
+      "phase": "round5-redirect",
+      "new_runtime": false,
+      "result": "Reused actual artificial room1/2/9/18/29-to7/7ending-title and room4followers/room5platform-burst evidence. Current source delta changes only accepted PPU source role; no new source-backed progression or identity shortcut. No unchanged replay or arbitrary sweep; natural complete bosses/credits and named areas remain unclaimed.",
+      "evidence": "analysis/redirect/r5-20261119-a/report.md"
+    }
+  ]
+}

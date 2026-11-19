@@ -1,0 +1,7 @@
+# Counted menu callback contract
+
+Acceptedproducer8D7C loads fourwordmenuorigins8DD8 withvalidselector0..3, countandfirstrecordpointer; consumer8C9A indexes6-byte records. Actualacceptedarrays8DE0/8E05/8E30/8E5B containcounts6/7/7/4, entry0header, selectedentries1..count-1. Nonzero callbackhighbyte requiredbefore8AF9 JMP($000D). Parsed20records/19uniquecallbacktargets are all914E..925F, exactcodefunctionscorrespondingactions/settings/level/restart/setup/undo. Noheadercallback,noarbitrary8bitmenu or16-bitpointerdomain. Staticnormalreturnproof onlyconditionalonvalidselectedrecord/UIhistory/boardpreconditions alreadydocumented.
+
+C04C ResetDisplayState alwaysWaitVblank,disablePPU,explicitLDA0/JSRC156 selectpair0,ClearDisplayCounters(resetqueueflags/cursor),ClearPpuAndSpriteBuffer(PPUonlyandRAM0700OAM),InitializeObjectRenderer(CDE1four-slotsreset),enableDisplay,WaitFrame,RTS. NoinlineparametersorCPUstackeditsbeyondordinaryJSR, allnestedPRG-independentfixedhelpers. Thereforetypednormalreturnpair0 underestablishedMMC1mode, independentofglobalcaller'sA. ThisisnotgeneralC156preservation.
+
+Menuaggregatecomponent usesearliertransparentUI/enginewrapper andvalidPPUqueuecontracts; callbackreachability remainsunclaimed. Allnewcode staysStatic.

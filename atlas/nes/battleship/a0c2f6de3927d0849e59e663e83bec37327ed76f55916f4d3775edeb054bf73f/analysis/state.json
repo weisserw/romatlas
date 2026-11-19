@@ -1,0 +1,2297 @@
+{
+  "format": "romatlas-nes-map",
+  "version": 1,
+  "image_sha256": "a0c2f6de3927d0849e59e663e83bec37327ed76f55916f4d3775edeb054bf73f",
+  "image_size": 65552,
+  "regions": [
+    {
+      "id": 1,
+      "offset": 0,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "INESHeader",
+      "comment": "",
+      "evidence": "iNES signature and parsed mapper 3 section sizes; run.py inspect and workspace.json.",
+      "views": []
+    },
+    {
+      "id": 2,
+      "offset": 16,
+      "length": 250,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "VectorJumpStubs",
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 32768,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "offset": 275,
+      "length": 7,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33027,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "offset": 294,
+      "length": 29,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33046,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "offset": 375,
+      "length": 36,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33127,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "offset": 620,
+      "length": 14,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33372,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "offset": 648,
+      "length": 35,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33400,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "offset": 747,
+      "length": 56,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33499,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "offset": 819,
+      "length": 26,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33571,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "offset": 874,
+      "length": 623,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33626,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "offset": 1567,
+      "length": 11,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34319,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "offset": 1589,
+      "length": 248,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34341,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "offset": 1843,
+      "length": 728,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34595,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "offset": 2905,
+      "length": 530,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35657,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "offset": 3477,
+      "length": 521,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36229,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "offset": 4002,
+      "length": 967,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36754,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "offset": 4993,
+      "length": 149,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37745,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "offset": 5857,
+      "length": 38,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38609,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "offset": 5915,
+      "length": 163,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38667,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "offset": 6082,
+      "length": 17,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38834,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "offset": 6309,
+      "length": 23,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39061,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "offset": 6356,
+      "length": 15,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39108,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "offset": 6396,
+      "length": 571,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39148,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "offset": 6978,
+      "length": 66,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39730,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "offset": 7108,
+      "length": 1273,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39860,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "offset": 8403,
+      "length": 38,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41155,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "offset": 9198,
+      "length": 932,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41950,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "offset": 10152,
+      "length": 3,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42904,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "offset": 10860,
+      "length": 996,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43612,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "offset": 11922,
+      "length": 503,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44674,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "offset": 12429,
+      "length": 182,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45181,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "offset": 12677,
+      "length": 285,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45429,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "offset": 12988,
+      "length": 1067,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45740,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "offset": 14119,
+      "length": 213,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46871,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "offset": 14396,
+      "length": 292,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47148,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "offset": 14770,
+      "length": 110,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted static control-flow graph; coherent official instructions, no instruction overlap. analysis/evidence/static-discovery.json and static-listing.json. Static structure, natural execution not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47522,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "offset": 32778,
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "InterruptVectors",
+      "comment": "",
+      "evidence": "Six-byte little-endian NMI/RESET/IRQ vectors target CPU $8000/$8003/$8006; inspected jump stubs and code.",
+      "views": []
+    },
+    {
+      "id": 38,
+      "offset": 32784,
+      "length": 32768,
+      "kind": "Image",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ChrPatternBanks",
+      "comment": "",
+      "evidence": "iNES CHR size 32 KiB and mapper 3 CHR selection: immutable PPU pattern storage, separate from CPU PRG space. Local pattern bytes inspected; title render confirms glyph/art use.",
+      "views": []
+    },
+    {
+      "id": 39,
+      "offset": 14880,
+      "length": 1361,
+      "kind": "Text",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "InterfaceAndCreditText",
+      "comment": "",
+      "evidence": "Consecutive NUL-terminated padded ASCII interface, ship, weapon, battle report and credits strings. Boundaries checked directly; pointers constructed in title renderer $B631 onward and text consumer $B5B6 scan to NUL.",
+      "views": []
+    },
+    {
+      "id": 41,
+      "offset": 29991,
+      "length": 2787,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": " First byte at physical29991 / CPU $F517 is additionally read as ignored terminal next-delay by MusicPattern5; suffix storage classification remains Data.",
+      "evidence": "Uniform $FF bytes bounded by resource stream terminator and independently fixed interrupt vector table. Inspected boundaries and static graph for conflicting code; none. Generic data; fill purpose not asserted. Consumer-boundary review: analysis/disassembly-round002/consumer-review.json.",
+      "views": []
+    },
+    {
+      "id": 42,
+      "offset": 3435,
+      "length": 42,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Consumer-proven indirect dispatcher targets from $97B2, $A049 and $A727; inspected connected graph with coherent RAM/stack contracts and returns, no overlaps/unofficial instructions. analysis/evidence/dispatcher-discovery.json and dispatcher-new-listing.json; static role, natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36187,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "offset": 5154,
+      "length": 193,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Consumer-proven indirect dispatcher targets from $97B2, $A049 and $A727; inspected connected graph with coherent RAM/stack contracts and returns, no overlaps/unofficial instructions. analysis/evidence/dispatcher-discovery.json and dispatcher-new-listing.json; static role, natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37906,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "offset": 5359,
+      "length": 284,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Consumer-proven indirect dispatcher targets from $97B2, $A049 and $A727; inspected connected graph with coherent RAM/stack contracts and returns, no overlaps/unofficial instructions. analysis/evidence/dispatcher-discovery.json and dispatcher-new-listing.json; static role, natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38111,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "offset": 5655,
+      "length": 121,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Consumer-proven indirect dispatcher targets from $97B2, $A049 and $A727; inspected connected graph with coherent RAM/stack contracts and returns, no overlaps/unofficial instructions. analysis/evidence/dispatcher-discovery.json and dispatcher-new-listing.json; static role, natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38407,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "offset": 5791,
+      "length": 58,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Consumer-proven indirect dispatcher targets from $97B2, $A049 and $A727; inspected connected graph with coherent RAM/stack contracts and returns, no overlaps/unofficial instructions. analysis/evidence/dispatcher-discovery.json and dispatcher-new-listing.json; static role, natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38543,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "offset": 6105,
+      "length": 77,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Consumer-proven indirect dispatcher targets from $97B2, $A049 and $A727; inspected connected graph with coherent RAM/stack contracts and returns, no overlaps/unofficial instructions. analysis/evidence/dispatcher-discovery.json and dispatcher-new-listing.json; static role, natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38857,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "offset": 6246,
+      "length": 51,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Consumer-proven indirect dispatcher targets from $97B2, $A049 and $A727; inspected connected graph with coherent RAM/stack contracts and returns, no overlaps/unofficial instructions. analysis/evidence/dispatcher-discovery.json and dispatcher-new-listing.json; static role, natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38998,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "offset": 8441,
+      "length": 202,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Consumer-proven indirect dispatcher targets from $97B2, $A049 and $A727; inspected connected graph with coherent RAM/stack contracts and returns, no overlaps/unofficial instructions. analysis/evidence/dispatcher-discovery.json and dispatcher-new-listing.json; static role, natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41193,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "offset": 8652,
+      "length": 97,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Consumer-proven indirect dispatcher targets from $97B2, $A049 and $A727; inspected connected graph with coherent RAM/stack contracts and returns, no overlaps/unofficial instructions. analysis/evidence/dispatcher-discovery.json and dispatcher-new-listing.json; static role, natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41404,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "offset": 8753,
+      "length": 139,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Consumer-proven indirect dispatcher targets from $97B2, $A049 and $A727; inspected connected graph with coherent RAM/stack contracts and returns, no overlaps/unofficial instructions. analysis/evidence/dispatcher-discovery.json and dispatcher-new-listing.json; static role, natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41505,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "offset": 8908,
+      "length": 139,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Consumer-proven indirect dispatcher targets from $97B2, $A049 and $A727; inspected connected graph with coherent RAM/stack contracts and returns, no overlaps/unofficial instructions. analysis/evidence/dispatcher-discovery.json and dispatcher-new-listing.json; static role, natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41660,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "offset": 9063,
+      "length": 111,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Consumer-proven indirect dispatcher targets from $97B2, $A049 and $A727; inspected connected graph with coherent RAM/stack contracts and returns, no overlaps/unofficial instructions. analysis/evidence/dispatcher-discovery.json and dispatcher-new-listing.json; static role, natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41815,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "offset": 10155,
+      "length": 227,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Consumer-proven indirect dispatcher targets from $97B2, $A049 and $A727; inspected connected graph with coherent RAM/stack contracts and returns, no overlaps/unofficial instructions. analysis/evidence/dispatcher-discovery.json and dispatcher-new-listing.json; static role, natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42907,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "offset": 10391,
+      "length": 118,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Consumer-proven indirect dispatcher targets from $97B2, $A049 and $A727; inspected connected graph with coherent RAM/stack contracts and returns, no overlaps/unofficial instructions. analysis/evidence/dispatcher-discovery.json and dispatcher-new-listing.json; static role, natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43143,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 56,
+      "offset": 10513,
+      "length": 347,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Consumer-proven indirect dispatcher targets from $97B2, $A049 and $A727; inspected connected graph with coherent RAM/stack contracts and returns, no overlaps/unofficial instructions. analysis/evidence/dispatcher-discovery.json and dispatcher-new-listing.json; static role, natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43265,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "offset": 12962,
+      "length": 26,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Consumer-proven indirect dispatcher targets from $97B2, $A049 and $A727; inspected connected graph with coherent RAM/stack contracts and returns, no overlaps/unofficial instructions. analysis/evidence/dispatcher-discovery.json and dispatcher-new-listing.json; static role, natural selection not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45714,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 58,
+      "offset": 6099,
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Little-endian handler address array consumed by indexed load pair into indirect JMP pointer. Bounded by adjacent validated instructions; $97B2 uses phase $F9 0..2, $A049/$A727 use weapon selector $F1 (11 kinds). Handler role and connected routines inspected, execution not inferred from pointer alone.",
+      "views": []
+    },
+    {
+      "id": 59,
+      "offset": 8381,
+      "length": 22,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Little-endian handler address array consumed by indexed load pair into indirect JMP pointer. Bounded by adjacent validated instructions; $97B2 uses phase $F9 0..2, $A049/$A727 use weapon selector $F1 (11 kinds). Handler role and connected routines inspected, execution not inferred from pointer alone.",
+      "views": []
+    },
+    {
+      "id": 60,
+      "offset": 10130,
+      "length": 22,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Little-endian handler address array consumed by indexed load pair into indirect JMP pointer. Bounded by adjacent validated instructions; $97B2 uses phase $F9 0..2, $A049/$A727 use weapon selector $F1 (11 kinds). Handler role and connected routines inspected, execution not inferred from pointer alone.",
+      "views": []
+    },
+    {
+      "id": 61,
+      "offset": 1497,
+      "length": 70,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Indexed/direct consumers recorded in data-slices-inspection.json. Clearly non-instruction repeated values, address/parameter records or patterned lookup values; no conflicting code in vector/dispatcher graphs. Generic Data only; detailed semantics/table layout not asserted. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 62,
+      "offset": 1578,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Indexed/direct consumers recorded in data-slices-inspection.json. Four literal bank values $30..$33 read AND written by CNROM selector $860F: bus-conflict-safe CHR bank latch constants. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 64,
+      "offset": 3998,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Indexed/direct consumers recorded in data-slices-inspection.json. Clearly non-instruction repeated values, address/parameter records or patterned lookup values; no conflicting code in vector/dispatcher graphs. Generic Data only; detailed semantics/table layout not asserted. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 65,
+      "offset": 4969,
+      "length": 24,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Indexed/direct consumers recorded in data-slices-inspection.json. Clearly non-instruction repeated values, address/parameter records or patterned lookup values; no conflicting code in vector/dispatcher graphs. Generic Data only; detailed semantics/table layout not asserted. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 66,
+      "offset": 5142,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Indexed/direct consumers recorded in data-slices-inspection.json. Clearly non-instruction repeated values, address/parameter records or patterned lookup values; no conflicting code in vector/dispatcher graphs. Generic Data only; detailed semantics/table layout not asserted. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 67,
+      "offset": 5347,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Indexed/direct consumers recorded in data-slices-inspection.json. Clearly non-instruction repeated values, address/parameter records or patterned lookup values; no conflicting code in vector/dispatcher graphs. Generic Data only; detailed semantics/table layout not asserted. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 68,
+      "offset": 5643,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Indexed/direct consumers recorded in data-slices-inspection.json. Clearly non-instruction repeated values, address/parameter records or patterned lookup values; no conflicting code in vector/dispatcher graphs. Generic Data only; detailed semantics/table layout not asserted. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 69,
+      "offset": 5776,
+      "length": 15,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Indexed/direct consumers recorded in data-slices-inspection.json. Clearly non-instruction repeated values, address/parameter records or patterned lookup values; no conflicting code in vector/dispatcher graphs. Generic Data only; detailed semantics/table layout not asserted. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 70,
+      "offset": 5849,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Indexed/direct consumers recorded in data-slices-inspection.json. Clearly non-instruction repeated values, address/parameter records or patterned lookup values; no conflicting code in vector/dispatcher graphs. Generic Data only; detailed semantics/table layout not asserted. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 71,
+      "offset": 5895,
+      "length": 20,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Indexed/direct consumers recorded in data-slices-inspection.json. Clearly non-instruction repeated values, address/parameter records or patterned lookup values; no conflicting code in vector/dispatcher graphs. Generic Data only; detailed semantics/table layout not asserted. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 72,
+      "offset": 6078,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Indexed/direct consumers recorded in data-slices-inspection.json. Clearly non-instruction repeated values, address/parameter records or patterned lookup values; no conflicting code in vector/dispatcher graphs. Generic Data only; detailed semantics/table layout not asserted. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 73,
+      "offset": 6182,
+      "length": 64,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Indexed/direct consumers recorded in data-slices-inspection.json. Palette animation arrays consumed by dispatcher handlers $97CA/$9856: 4-entry palette groups led by universal color $0F, all values valid NES palette indices. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 74,
+      "offset": 6297,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Indexed/direct consumers recorded in data-slices-inspection.json. Palette animation arrays consumed by dispatcher handlers $97CA/$9856: 4-entry palette groups led by universal color $0F, all values valid NES palette indices. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 75,
+      "offset": 6332,
+      "length": 24,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Indexed/direct consumers recorded in data-slices-inspection.json. Clearly non-instruction repeated values, address/parameter records or patterned lookup values; no conflicting code in vector/dispatcher graphs. Generic Data only; detailed semantics/table layout not asserted. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 76,
+      "offset": 6371,
+      "length": 25,
+      "kind": "Text",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Checked available graph references and surrounding code; no resolved consumer, so semantic role remains unresolved. 24 ASCII spaces followed by NUL, bounded blank text string. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 77,
+      "offset": 7044,
+      "length": 64,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Indexed/direct consumers recorded in data-slices-inspection.json. Clearly non-instruction repeated values, address/parameter records or patterned lookup values; no conflicting code in vector/dispatcher graphs. Generic Data only; detailed semantics/table layout not asserted. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 78,
+      "offset": 8643,
+      "length": 9,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Indexed/direct consumers recorded in data-slices-inspection.json. Clearly non-instruction repeated values, address/parameter records or patterned lookup values; no conflicting code in vector/dispatcher graphs. Generic Data only; detailed semantics/table layout not asserted. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 79,
+      "offset": 8749,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Indexed/direct consumers recorded in data-slices-inspection.json. Clearly non-instruction repeated values, address/parameter records or patterned lookup values; no conflicting code in vector/dispatcher graphs. Generic Data only; detailed semantics/table layout not asserted. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 80,
+      "offset": 8892,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Indexed/direct consumers recorded in data-slices-inspection.json. Clearly non-instruction repeated values, address/parameter records or patterned lookup values; no conflicting code in vector/dispatcher graphs. Generic Data only; detailed semantics/table layout not asserted. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 81,
+      "offset": 9047,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Indexed/direct consumers recorded in data-slices-inspection.json. Clearly non-instruction repeated values, address/parameter records or patterned lookup values; no conflicting code in vector/dispatcher graphs. Generic Data only; detailed semantics/table layout not asserted. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 82,
+      "offset": 9174,
+      "length": 24,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Indexed/direct consumers recorded in data-slices-inspection.json. Clearly non-instruction repeated values, address/parameter records or patterned lookup values; no conflicting code in vector/dispatcher graphs. Generic Data only; detailed semantics/table layout not asserted. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 83,
+      "offset": 10382,
+      "length": 9,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Indexed/direct consumers recorded in data-slices-inspection.json. Clearly non-instruction repeated values, address/parameter records or patterned lookup values; no conflicting code in vector/dispatcher graphs. Generic Data only; detailed semantics/table layout not asserted. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 84,
+      "offset": 10509,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Indexed/direct consumers recorded in data-slices-inspection.json. Clearly non-instruction repeated values, address/parameter records or patterned lookup values; no conflicting code in vector/dispatcher graphs. Generic Data only; detailed semantics/table layout not asserted. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 85,
+      "offset": 12611,
+      "length": 66,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Indexed/direct consumers recorded in data-slices-inspection.json. Clearly non-instruction repeated values, address/parameter records or patterned lookup values; no conflicting code in vector/dispatcher graphs. Generic Data only; detailed semantics/table layout not asserted. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 86,
+      "offset": 14055,
+      "length": 64,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Checked available graph references and surrounding code; no resolved consumer, so semantic role remains unresolved. Clearly non-instruction repeated values, address/parameter records or patterned lookup values; no conflicting code in vector/dispatcher graphs. Generic Data only; detailed semantics/table layout not asserted. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 87,
+      "offset": 14332,
+      "length": 64,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Checked available graph references and surrounding code; no resolved consumer, so semantic role remains unresolved. Clearly non-instruction repeated values, address/parameter records or patterned lookup values; no conflicting code in vector/dispatcher graphs. Generic Data only; detailed semantics/table layout not asserted. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 88,
+      "offset": 14688,
+      "length": 82,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Indexed/direct consumers recorded in data-slices-inspection.json. Clearly non-instruction repeated values, address/parameter records or patterned lookup values; no conflicting code in vector/dispatcher graphs. Generic Data only; detailed semantics/table layout not asserted. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 89,
+      "offset": 266,
+      "length": 9,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "DelayNestedLoops",
+      "comment": "",
+      "evidence": "Entry X is delay count; nested Y decrement and X countdown loops terminate in RTS. Called by coherent fade helper $818B/$820C; accumulator unaffected. See analysis/evidence/residual-listing.json. Structural classification only; no observed/natural execution claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33018,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 90,
+      "offset": 282,
+      "length": 12,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "DisableNmiPreserveA",
+      "comment": "",
+      "evidence": "Balanced PHA/PLA wrapper clears bit7 of PPUCTRL shadow $00 and $2000. Called by $818B, paired with existing enable helper. See analysis/evidence/residual-listing.json. Structural classification only; no observed/natural execution claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33034,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 91,
+      "offset": 323,
+      "length": 52,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "SetRenderingMaskHelpers",
+      "comment": "",
+      "evidence": "Four independent JSR $8122 wait wrappers clear/set background or sprite mask bits in PPUMASK shadow $01 and RTS. Called by connected helpers $818B/$819A, balanced call contracts and exact RTS boundaries. See analysis/evidence/residual-listing.json. Structural classification only; no observed/natural execution claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33075,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 92,
+      "offset": 411,
+      "length": 209,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "PaletteFadeHelpers",
+      "comment": "",
+      "evidence": "Coherent enable/disable wrappers and two 16-color fade loops: stage palette at $0580, upload through established $84B4 command contract to PPU $3F00, increment/decrement luminance by $10 with 8 counted iterations and balanced stack. Exact routine ends at RTS and next established routine $825C. Calling precondition palette pointer $7A/$7B for fade-in; natural caller unresolved. See analysis/evidence/residual-listing.json. Structural classification only; no observed/natural execution claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33163,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 93,
+      "offset": 634,
+      "length": 14,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "SetPpuIncrement32",
+      "comment": "",
+      "evidence": "PPUCTRL bit2 setter and shadow update, matching existing opposite increment helper, sets $0B=2 then RTS; independent PPU register contract. See analysis/evidence/residual-listing.json. Structural classification only; no observed/natural execution claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33386,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 94,
+      "offset": 683,
+      "length": 64,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "SetPpuAddressFromCoordinates",
+      "comment": "",
+      "evidence": "A low-nibble nametable parameter, X column, Y row. Preserves Y in $74, uses established nametable address lookup $85C9/$85CA, writes $2006 high/low and calls $8278 latch reset. Bounds test row31 distinguishes nametable base handling; exact RTS boundary and register/data flow support static code. See analysis/evidence/residual-listing.json. Structural classification only; no observed/natural execution claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33435,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 95,
+      "offset": 803,
+      "length": 16,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "SelectFirstNametable",
+      "comment": "",
+      "evidence": "Balanced PHA/PLA wrapper writes PPU address $2000 and invokes existing $8278 latch routine; terminates RTS before known adjacent routine. See analysis/evidence/residual-listing.json. Structural classification only; no observed/natural execution claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33555,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 96,
+      "offset": 845,
+      "length": 29,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "CopyFourPagesToPpu",
+      "comment": "",
+      "evidence": "A provides PPU high address; write low zero then copy four 256-byte pages via ($7A),Y to $2007, incrementing pointer high. X/Y counted loops and RTS independently establish code and bounds; natural entry unresolved. See analysis/evidence/residual-listing.json. Structural classification only; no observed/natural execution claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33597,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 97,
+      "offset": 1582,
+      "length": 7,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "TestMusicActive",
+      "comment": "",
+      "evidence": "SEC; LDA0; SBC $05C0; RTS returns condition based on existing music-active state. Independent sound-driver contract, exact boundary before known $8625 function. See analysis/evidence/residual-listing.json. Structural classification only; no observed/natural execution claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34334,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 98,
+      "offset": 1837,
+      "length": 6,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ResumeMusic",
+      "comment": "",
+      "evidence": "Set existing music-active flag $05C0 to1 and RTS, adjacent matching stop routine and sound driver state. See analysis/evidence/residual-listing.json. Structural classification only; no observed/natural execution claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34589,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 99,
+      "offset": 6967,
+      "length": 11,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "RenderTextWithWideMode",
+      "comment": "",
+      "evidence": "Alternate entry PHA and saves X/Y to same $0656/$0657 coordinates used by adjacent text renderer; sets $72=2 then falls into existing common renderer. Matching stacked-A consumer/return contract establishes prefix. See analysis/evidence/residual-listing.json. Structural classification only; no observed/natural execution claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39719,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 100,
+      "offset": 11856,
+      "length": 66,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "CheckOrthogonalGridNeighbors",
+      "comment": "",
+      "evidence": "Input grid center $CC/$CD, test four orthogonal cells through existing $B06A predicate. Explicit 12x8 bounds, carry propagation, shared RTS independently prove routine structure and exact interval; natural caller unresolved. See analysis/evidence/residual-listing.json. Structural classification only; no observed/natural execution claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44608,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 101,
+      "offset": 12425,
+      "length": 4,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "CheckCurrentGridCell",
+      "comment": "",
+      "evidence": "Alternate entry loads X/Y from existing $CC/$CD center then falls into established grid predicate. Its argument contract and shared implementation establish four-byte prefix. See analysis/evidence/residual-listing.json. Structural classification only; no observed/natural execution claim.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45177,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 102,
+      "offset": 2571,
+      "length": 170,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Indexed/direct consumers recorded in data-slices-inspection.json. Clearly non-instruction repeated values, address/parameter records or patterned lookup values; no conflicting code in vector/dispatcher graphs. Generic Data only; detailed semantics/table layout not asserted. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 103,
+      "offset": 2741,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "MusicPointers",
+      "comment": "Six absolute little-endian song pointers. Title music selector initializes zero and wraps at six; immediate callers also select 0..5. First target $8AB1 immediately follows six words, independently bounding the array.",
+      "evidence": "Independent review analysis/disassembly-round002/consumer-review.json and review.py; primary StartMusic/LoadMusicPattern/DecodeMusicEvents and selector writers in preserved commentary/source/game.asm. Fixed CPU PRG banks [0,1,2,3]. Static structural claim only; natural use of every song is not claimed.",
+      "views": []
+    },
+    {
+      "id": 104,
+      "offset": 2753,
+      "length": 7,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "MusicSequence0",
+      "comment": "Four instrument selectors, one pattern-index/transposition pair, then $FF sequence terminator. Adjacent song pointers independently delimit this seven-byte record.",
+      "evidence": "Independent review analysis/disassembly-round002/consumer-review.json and review.py; primary StartMusic/LoadMusicPattern/DecodeMusicEvents and selector writers in preserved commentary/source/game.asm. Fixed CPU PRG banks [0,1,2,3]. Static structural claim only; natural use of every song is not claimed.",
+      "views": []
+    },
+    {
+      "id": 105,
+      "offset": 2760,
+      "length": 7,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "MusicSequence1",
+      "comment": "Four instrument selectors, one pattern-index/transposition pair, then $FF sequence terminator. Adjacent song pointers independently delimit this seven-byte record.",
+      "evidence": "Independent review analysis/disassembly-round002/consumer-review.json and review.py; primary StartMusic/LoadMusicPattern/DecodeMusicEvents and selector writers in preserved commentary/source/game.asm. Fixed CPU PRG banks [0,1,2,3]. Static structural claim only; natural use of every song is not claimed.",
+      "views": []
+    },
+    {
+      "id": 106,
+      "offset": 2767,
+      "length": 7,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "MusicSequence2",
+      "comment": "Four instrument selectors, one pattern-index/transposition pair, then $FF sequence terminator. Adjacent song pointers independently delimit this seven-byte record.",
+      "evidence": "Independent review analysis/disassembly-round002/consumer-review.json and review.py; primary StartMusic/LoadMusicPattern/DecodeMusicEvents and selector writers in preserved commentary/source/game.asm. Fixed CPU PRG banks [0,1,2,3]. Static structural claim only; natural use of every song is not claimed.",
+      "views": []
+    },
+    {
+      "id": 107,
+      "offset": 2774,
+      "length": 7,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "MusicSequence3",
+      "comment": "Four instrument selectors, one pattern-index/transposition pair, then $FF sequence terminator. Adjacent song pointers independently delimit this seven-byte record.",
+      "evidence": "Independent review analysis/disassembly-round002/consumer-review.json and review.py; primary StartMusic/LoadMusicPattern/DecodeMusicEvents and selector writers in preserved commentary/source/game.asm. Fixed CPU PRG banks [0,1,2,3]. Static structural claim only; natural use of every song is not claimed.",
+      "views": []
+    },
+    {
+      "id": 108,
+      "offset": 2781,
+      "length": 7,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "MusicSequence4",
+      "comment": "Four instrument selectors, one pattern-index/transposition pair, then $FF sequence terminator. Adjacent song pointers independently delimit this seven-byte record.",
+      "evidence": "Independent review analysis/disassembly-round002/consumer-review.json and review.py; primary StartMusic/LoadMusicPattern/DecodeMusicEvents and selector writers in preserved commentary/source/game.asm. Fixed CPU PRG banks [0,1,2,3]. Static structural claim only; natural use of every song is not claimed.",
+      "views": []
+    },
+    {
+      "id": 109,
+      "offset": 2788,
+      "length": 7,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "MusicSequence5",
+      "comment": "Four instrument selectors, one pattern-index/transposition pair, then $FF sequence terminator. Adjacent song pointers independently delimit this seven-byte record.",
+      "evidence": "Independent review analysis/disassembly-round002/consumer-review.json and review.py; primary StartMusic/LoadMusicPattern/DecodeMusicEvents and selector writers in preserved commentary/source/game.asm. Fixed CPU PRG banks [0,1,2,3]. Static structural claim only; natural use of every song is not claimed.",
+      "views": []
+    },
+    {
+      "id": 110,
+      "offset": 2795,
+      "length": 110,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Inspected exact gap and adjoining validated instructions. Indexed/direct consumers recorded in data-slices-inspection.json. Clearly non-instruction repeated values, address/parameter records or patterned lookup values; no conflicting code in vector/dispatcher graphs. Generic Data only; detailed semantics/table layout not asserted. See analysis/evidence/data-slices-inspection.json.",
+      "views": []
+    },
+    {
+      "id": 111,
+      "offset": 16241,
+      "length": 4615,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code resource area after terminated credit strings and before uniform $FF suffix. Inspected every 1KiB slice, repeated pointer/record and audio-stream tokens; ROM consumers include $8CD8 (stage setup), $B4EF (packed passwords) and $8684 (music offset stream). No static graph instruction enters region. Specific internal layouts remain for redirect; generic data does not claim those schemas.",
+      "views": []
+    },
+    {
+      "id": 112,
+      "offset": 20856,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "MusicPatternOffsets",
+      "comment": "Six little-endian offsets relative to CPU $D168. Supported six song sequences select patterns 0..5; first stream $D174 independently equals end of six words. No claim about arbitrary invalid selector calls.",
+      "evidence": "Independent review analysis/disassembly-round002/consumer-review.json and review.py; primary StartMusic/LoadMusicPattern/DecodeMusicEvents and selector writers in preserved commentary/source/game.asm. Fixed CPU PRG banks [0,1,2,3]. Static structural claim only; natural use of every song is not claimed.",
+      "views": []
+    },
+    {
+      "id": 113,
+      "offset": 20868,
+      "length": 2682,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "MusicPattern0",
+      "comment": "Initial delay, note/channel-duration-next-delay triples, ending with zero-duration note/duration pair. 894 triples read including terminator. Body [20868,23550); decoder consumed span [20868,23551). Byte 23550 is read as ignored terminal next-delay before duration is tested; it is also the next stream initial delay. Body boundaries partition storage; full consumer spans overlap by one byte.",
+      "evidence": "Independent review analysis/disassembly-round002/consumer-review.json and review.py; primary StartMusic/LoadMusicPattern/DecodeMusicEvents and selector writers in preserved commentary/source/game.asm. Fixed CPU PRG banks [0,1,2,3]. Static structural claim only; natural use of every song is not claimed.",
+      "views": []
+    },
+    {
+      "id": 114,
+      "offset": 23550,
+      "length": 1911,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "MusicPattern1",
+      "comment": "Initial delay, note/channel-duration-next-delay triples, ending with zero-duration note/duration pair. 637 triples read including terminator. Body [23550,25461); decoder consumed span [23550,25462). Byte 25461 is read as ignored terminal next-delay before duration is tested; it is also the next stream initial delay. Body boundaries partition storage; full consumer spans overlap by one byte.",
+      "evidence": "Independent review analysis/disassembly-round002/consumer-review.json and review.py; primary StartMusic/LoadMusicPattern/DecodeMusicEvents and selector writers in preserved commentary/source/game.asm. Fixed CPU PRG banks [0,1,2,3]. Static structural claim only; natural use of every song is not claimed.",
+      "views": []
+    },
+    {
+      "id": 115,
+      "offset": 25461,
+      "length": 1878,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "MusicPattern2",
+      "comment": "Initial delay, note/channel-duration-next-delay triples, ending with zero-duration note/duration pair. 626 triples read including terminator. Body [25461,27339); decoder consumed span [25461,27340). Byte 27339 is read as ignored terminal next-delay before duration is tested; it is also the next stream initial delay. Body boundaries partition storage; full consumer spans overlap by one byte.",
+      "evidence": "Independent review analysis/disassembly-round002/consumer-review.json and review.py; primary StartMusic/LoadMusicPattern/DecodeMusicEvents and selector writers in preserved commentary/source/game.asm. Fixed CPU PRG banks [0,1,2,3]. Static structural claim only; natural use of every song is not claimed.",
+      "views": []
+    },
+    {
+      "id": 116,
+      "offset": 27339,
+      "length": 414,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "MusicPattern3",
+      "comment": "Initial delay, note/channel-duration-next-delay triples, ending with zero-duration note/duration pair. 138 triples read including terminator. Body [27339,27753); decoder consumed span [27339,27754). Byte 27753 is read as ignored terminal next-delay before duration is tested; it is also the next stream initial delay. Body boundaries partition storage; full consumer spans overlap by one byte.",
+      "evidence": "Independent review analysis/disassembly-round002/consumer-review.json and review.py; primary StartMusic/LoadMusicPattern/DecodeMusicEvents and selector writers in preserved commentary/source/game.asm. Fixed CPU PRG banks [0,1,2,3]. Static structural claim only; natural use of every song is not claimed.",
+      "views": []
+    },
+    {
+      "id": 117,
+      "offset": 27753,
+      "length": 267,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "MusicPattern4",
+      "comment": "Initial delay, note/channel-duration-next-delay triples, ending with zero-duration note/duration pair. 89 triples read including terminator. Body [27753,28020); decoder consumed span [27753,28021). Byte 28020 is read as ignored terminal next-delay before duration is tested; it is also the next stream initial delay. Body boundaries partition storage; full consumer spans overlap by one byte.",
+      "evidence": "Independent review analysis/disassembly-round002/consumer-review.json and review.py; primary StartMusic/LoadMusicPattern/DecodeMusicEvents and selector writers in preserved commentary/source/game.asm. Fixed CPU PRG banks [0,1,2,3]. Static structural claim only; natural use of every song is not claimed.",
+      "views": []
+    },
+    {
+      "id": 118,
+      "offset": 28020,
+      "length": 1971,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "MusicPattern5",
+      "comment": "Initial delay, note/channel-duration-next-delay triples, ending with zero-duration note/duration pair. 657 triples read including terminator. Body [28020,29991); decoder consumed span [28020,29992). Byte 29991 is read as ignored terminal next-delay before duration is tested; it is the first $FF suffix byte, outside this body. Body boundaries partition storage; full consumer spans overlap by one byte.",
+      "evidence": "Independent review analysis/disassembly-round002/consumer-review.json and review.py; primary StartMusic/LoadMusicPattern/DecodeMusicEvents and selector writers in preserved commentary/source/game.asm. Fixed CPU PRG banks [0,1,2,3]. Static structural claim only; natural use of every song is not claimed.",
+      "views": []
+    }
+  ],
+  "next_id": 119
+}

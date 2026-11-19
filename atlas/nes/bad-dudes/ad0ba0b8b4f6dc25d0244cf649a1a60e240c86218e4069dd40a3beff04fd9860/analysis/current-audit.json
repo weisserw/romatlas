@@ -1,0 +1,63 @@
+{
+  "classification_complete": false,
+  "workflow_investigation_terminal": "justified incomplete",
+  "image_bytes": 262160,
+  "classified": 262144,
+  "unknown": [
+    {
+      "offset": 1222,
+      "length": 1
+    },
+    {
+      "offset": 13978,
+      "length": 10
+    },
+    {
+      "offset": 66280,
+      "length": 3
+    },
+    {
+      "offset": 91735,
+      "length": 1
+    },
+    {
+      "offset": 117378,
+      "length": 1
+    }
+  ],
+  "counts": {
+    "Data": 73338,
+    "Code": 57734,
+    "Image": 131072
+  },
+  "provenance": {
+    "Static": 247704,
+    "Observed": 14440
+  },
+  "nonempty_evidence_all_classified": true,
+  "identities": {
+    "input/game.nes": "ad0ba0b8b4f6dc25d0244cf649a1a60e240c86218e4069dd40a3beff04fd9860",
+    "analysis/state.json": "f8ffa36af6bf8a03285d7c52e8eac89a23f7db1099bddde94667325e559df8dc",
+    "maps/current.json": "f8ffa36af6bf8a03285d7c52e8eac89a23f7db1099bddde94667325e559df8dc",
+    "maps/round-008-disassembly-final.json": "f8ffa36af6bf8a03285d7c52e8eac89a23f7db1099bddde94667325e559df8dc",
+    "/root/romatlas/target/release/romatlas": "8ff56b0b1cf8d2a3aca5430c70d34280ae3db36fc6774919062db4ea63843f82"
+  },
+  "checkpoint": "round-008-disassembly-final",
+  "rejection_review": "analysis/round-008-coordinator-terminal-review.json",
+  "map_validation": {
+    "ok": true
+  },
+  "editorial_audit": {
+    "byte_identical": true,
+    "ok": true,
+    "rom_sha256": "ad0ba0b8b4f6dc25d0244cf649a1a60e240c86218e4069dd40a3beff04fd9860",
+    "source_sha256": {
+      "game.asm": "716fd5416f8d1c04ba69b5ff34e5b4b3fb4a9735641ea1e0992eb94186eac9c8",
+      "symbols.inc": "5742d0e3704d761dc24874bd3e175cf00ff21222aa8cfa2762f596d39a931fe1"
+    },
+    "reviewed_regions": 2387,
+    "reviewed_units": 3071,
+    "editorial_audit": true
+  },
+  "coordinator_completion": "analysis/coordinator-completion-audit.json"
+}

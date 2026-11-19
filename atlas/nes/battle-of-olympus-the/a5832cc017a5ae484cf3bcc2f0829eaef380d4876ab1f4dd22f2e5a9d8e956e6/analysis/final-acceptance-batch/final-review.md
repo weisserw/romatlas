@@ -1,0 +1,9 @@
+# Final review — pass-004-batch-fallback
+
+Final editorial acceptance complete. Reused valid full-source semantic review from analysis/round-04/commentary-round03 and checked current delta, uncertainties, inventory and all source anchors. No source/naming backlog remains. Two overlapping existing routine links repaired local prefix coverage in region-3076/3078;35 bytes, no new semantic units, source or classification changes. Evidence: editorial-review-evidence.json and unit-link-repairs.json.
+
+Current10920 regions,5044 unit attachments,2090 distinct logical units,15964 valid anchors; all26737 Code bytes covered per-slice. Classification131088/131088 includes two user-authorized Manual generic-Data bytes at117916/118245; evidence-backed131086/131088. Redundant RTS versus padding/data ambiguity persists. Natural routes, unsupported callers/narrative meanings and hardware/game compatibility remain limited as documented.
+
+Official `python3 -B /root/romatlas/scripts/commentary.py audit .` ran once to completion on retained live session76362: exit0, ok=true, byte_identical=true, editorial_audit=true,10920 regions/5044 units. Fresh commentary/verification.json also passes. Independently regenerated reading expansion equals refreshed reading-after.asm. Exact results retained in strict-audit-result.json; official output in strict-audit.log. Source SHA256 ac1629aeb6d5256ab5f598c5e2e21e04193e74311ae235a187d6ad0318e1a3ab; symbols e3292f23d7fe2c2daffaaef762bd049b8d6c62a8cf9bc26649bbef08ba3505b0; reading1db5ddfe54362a9db66e3ee27b871e541f5a5104d5a1ef0fa7600591f42b5e76. ROM SHA256 remains a5832cc017a5ae484cf3bcc2f0829eaef380d4876ab1f4dd22f2e5a9d8e956e6.
+
+No ROM/toolkit edits, research, archive/delete/publish or commit. Prior history preserved. Coordinator owns terminal checker/current-audit.json, terminal-handoff.md and final Markdown inventory refresh; those files were not changed here. No audit blocker remains.

@@ -1,0 +1,9 @@
+{
+  "byte_identical": true,
+  "ok": true,
+  "rom_sha256": "d92ad55cb98825af7876d1e93b9ce0fc04163d7cccf8060b4e790d9a919f4efc",
+  "source_sha256": {
+    "game.asm": "cda6428e1b0affb8ef9bb651b663277ebcf115cf40fdbb4b7e46480e0d942d76",
+    "symbols.inc": "b952a59c5696de17981a57b1231cd68fc34f1f3d903799aa6c21c282d76a55b4"
+  }
+}

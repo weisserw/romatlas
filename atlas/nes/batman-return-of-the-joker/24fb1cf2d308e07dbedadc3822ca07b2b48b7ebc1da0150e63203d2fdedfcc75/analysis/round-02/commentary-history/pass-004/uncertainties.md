@@ -1,0 +1,8 @@
+# Commentary uncertainties
+
+- ClearPagesPrefix at physical $01C127 (CPU C117, banks 12/13/14/15) sets pointer $30/$31 and computes X-Y-1. The first store is supported; inspect continuation at $01C136 to establish loop/return contract. Reset supplies A=0, X=2, Y=7. This is a mechanical page-clear prefix, not proof of the entire cleared range.
+- StartupSelectBankPrefix at $01D3A4 calls C229 with A=$1A, X=9. Inspect bank14 C229 and its mapper writes before extending context. Startup fields $0401/$0402/$0180/$0181 and $F9/$FA have unresolved game meaning; low/high names describe adjacent initialization bytes without asserting a pointer consumer.
+- NMI physical $01E1E0: C084 and C1DB remain external banked services. The requested mapper array can change C000 before C1DB; no universal reset context applies. Service $8009 follows selector9 value $0A. The routine restores 8000/A000 saved values but does not explicitly restore C000. Determine consumers/call contracts without assuming the other slots.
+- IRQ physical $01E2B9: $D3 is doubled modulo 256 and reads interleaved words at E2CA. Determine selector domain, exact table extent and target bank context. Table operand symbols describe observed reads only; the surrounding 28 unknown bytes have not been classified as a full table.
+- Uniform $FF PRG intervals have unknown specific purpose and consumers; source retains generic-data explanations. CHR is header-bounded NES tile storage; game-specific tile grouping and banks remain unresolved.
+- All unknown intervals have local physical boundary notes. Code/data ambiguity is intentionally retained; byte identity is not structural evidence. Runtime/late-game verification remains unavailable because of TK-001.

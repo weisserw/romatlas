@@ -1,0 +1,21 @@
+# ROUND002 commentary — worker J capacity continuation, SAME phase
+
+Interrupted, not a successful handoff. Current-source readability remains incomplete; continue COMMENTARY. No redirect/final audit/archive/publication/toolkit changes. ROM/classification unchanged:92.26% classified,20302 Unknown. Preserve prior reviewed work/history. Never regenerate/reprepare source or rerun historical transformation recipes.
+
+J completed batches036..038:26meaningful Code units1733bytes, all bank11:
+-036 physical90128..90782 /CPU8000..828E:9units654bytes, nine entry veneers, shared delayed sound/count latch, state dispatcher, contact gate and state64 near/far packed-phase response selection.
+-037 physical90782..91735 /CPU828E..8647:14units953bytes, state6E contact/live phase/completion, state6C, states68/69/6A/63 timed motion, global-control dispatcher and five timed control-motion handlers. This completes scaffold90128..91735.
+-038 physical91736..91862 /CPU8648..86C6:3units126bytes, response setter pair-of-state-byte ABI, shared97 sign rearm handshake, seven-word bounded RTS dispatcher. Completes scaffold91736..91862. Physical91735..91736 remains Unknown;91862..91890 remains existing Data.
+
+All local internal branches and understood RAM fields are symbolic; meaningful unit prose is in source. State6E phase3 starts a4-frame timer at83F4, not a movement decoder (corrected during J review). Preserve this distinction. Shared$A0 combines bit7 sound latch/low7 count; shared$97 is sign-tested rearm signal. The state64 fields and state6E phase selectors have established mechanics but unresolved gameplay identities.
+
+21mandatory scoped dependency candidates all checked:85total,85checked,0pending. Per-candidate physical evidence in commentary-dependency-review-j.json and updated candidate inventory. Six stale source claims corrected at66448,67186,67755,98362,111562,111680; added reader prose at66458. Pending-reader setup66458..66465 is classified but following60bytes Unknown; actor search found target67214 is final RTS; threshold allocator67797..67800 classified but postcall30bytes Unknown; bank12 primary/alternate metasprite bases lie in classified301record Data98841..100045; type4/6 local collision and vertical-crossing exits are classified. Fifteen sound uncertainty claims retained. Stage22..25 continuation tails remain Unknown. No map change or redirect lead follows.
+
+Exact remaining pending inventory:17Code scaffold records5406bytes, all bank11, no partially reviewed record. NEXT physical91890 CPU86E2; bank11 physical base90128. End-exclusive ranges:
+91890..92888, 92889..93189, 93189..93194, 93195..93540, 93540..93545, 93545..93798, 93798..93803, 93803..95594, 95594..95621, 95621..95835, 95835..95851, 95851..95860, 95860..95929, 95929..95938, 95938..95947, 95947..95956, 95956..97298.
+
+Downstream local helper names in the reviewed initial bank11 graph remain numeric CPU identities where their roles are not yet reviewed (95ED,9637,95CC,953F,96xx,97xx,98xx,99xx,9Axx,9Bxx). As those bodies acquire sound names, carry them back into the already reviewed bank11 callers/veneer operands and revise explicit local uncertainty text when supported; no broad reread of unrelated reviewed work is needed. Fixed C0E4/C1EF effects remain explicitly unresolved. This is additional source-relative dependency upkeep, not a remaining unchecked candidate in the historical85inventory.
+
+Fresh final verify byte_identical=true; reading-after refreshed; metadata-j errors0. Source SHA256 game.asm c3965fe0ad8f866f2e7b8287f655247e2de25342f2d1884248827d29c1e3f000; symbols.inc 004d07fb6c7a0eb897d8ca9f4743d5a199fee1600f2972d383f95fadd1f65cd9. Metadata_j.py is source-relative reanchor/check only, safe to reuse. /tmp J source transforms are non-idempotent historical recipes and must not be rerun. Scaffold intact/editorial_audit pending. All source/assets remain local; no cleanup/deletion.
+
+Current pending inventories,coverage-j and all3progress paths updated. Final successful handoff only after ALL remaining current-source readability assessed, dependencies integrated, fresh byte-identical verify/read and analysis/round-002-commentary-handoff.md. This checkpoint is incomplete. J stopped writing; one sequential next worker only.

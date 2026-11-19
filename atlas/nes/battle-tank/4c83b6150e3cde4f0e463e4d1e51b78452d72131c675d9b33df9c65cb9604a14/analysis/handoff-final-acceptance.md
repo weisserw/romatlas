@@ -1,0 +1,11 @@
+# Final acceptance handoff 001
+
+ROM classification: **100.00% (65552 / 65552 bytes classified; 0 bytes unknown)**. Exact totals: Code 20,578; Data 12,206; Image 32,768. All 147 evidence-backed regions retain Static provenance. Structural completion, semantic knowledge and reachability are separate claims.
+
+Current-source readability and final editorial acceptance complete: 147/147 scaffold entries and 365/365 units reviewed; zero editorial gaps. R001-SCREEN-EDITORIAL implemented and verified in current label/evidence/source/review; audit source locations normalized to their required source-root base. Prior review credit remains valid because only contradicted metadata meaning and location syntax changed; physical scaffold, bytes and frozen references unchanged. See commentary/editorial-audit.md.
+
+Fresh supported map validation/save/export passed. Unique checkpoint maps/final-acceptance-001.json + generated/final-acceptance-001, report analysis/final-acceptance-001-verification.json: byte-identical true. Fresh commentary.py audit: ok true, byte_identical true, editorial_audit true, 147 regions/365 units. Maintained source verification commentary/verification.json; refreshed commentary/reading-after.asm. Current hashes and evidence-backed structural totals: analysis/current-audit.json. Metadata operation evidence: analysis/final-acceptance-001/metadata-update.json; protected historical hashes unchanged.
+
+Current map/state/checkpoint SHA256: fb1d32dfe6307b11c9b92dae3d0e77395a830a64a0e78c0f21901b76eb04e81d. Source game.asm SHA256: 1e4a20087c465f3b4113b8a3907853c86e329c7ae5a3b09bd0c72522396c1d9d; symbols.inc: 79a50ae28fc45df8d5ce6bed247ffa947fda35d1984f4fa50c612d24608c055c. ROM SHA256 remains 4c83b6150e3cde4f0e463e4d1e51b78452d72131c675d9b33df9c65cb9604a14.
+
+Remaining uncertainties are semantic: exact game identities, table generators/units, original sound names, complete composite-screen segmentation and natural callers. No claim of exhaustive gameplay, universal execution or full hardware/game compatibility. Existing nonblocking NES-001 remains. No ready structural leads; coordinator already reviewed redirect rejection evidence. No toolkit/ROM edits, archive execution/publication/deletion. Coordinator still owns archive-options.json and final orchestration audit; this worker's final acceptance scope is complete.

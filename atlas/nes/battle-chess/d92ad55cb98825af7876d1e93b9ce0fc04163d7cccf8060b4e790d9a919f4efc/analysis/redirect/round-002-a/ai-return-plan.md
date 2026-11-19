@@ -1,0 +1,7 @@
+# Bounded AI entry/cancel hypothesis
+
+Claim: determinewhether supportedthinkingentry9B08 reachesordinarypost-E8B5return9B1E under initializedboard, exposing enginecode or exactreturn/stackfacts. Priorbarrier: static8EAFgeneralcommand8DC1 andnonlocal9024 stackdiscard cannotbesummarizedwithsimplebalancedcallee rule. Changedmethod: actualvalidGameDoneengineboardstate andsourceexplicitthinkinginitializer9B08; notanunchangedgameplayroute.
+
+Importanalysis/redirect/round-001-a/done-settled.snapshot.json,releasebuttons,finishoneinstructionbeforePCedit; preserveactualSP/RAM/banks. PC=9B08only(exactJSRentry), traceacceptedcontexts capacity0, breakpoint-like run_untilPC9B1E≤200000ops/10s. Inspect03EAindicator,PC/effectivebanks/status/board. Ifunfinished, saveexactthinkingcheckpoint andholdSelect because900C examinescontroller0663&30; second≤200000ops/10s withsamecontinuedstate, noarbitraryRAMpatch. Reassertinputsafterrestores. Restorecleanexistingfilebefore anyalternative.
+
+Stop onordinarypostcallmatch, nofurtherusefulfetchprogress, unsupportedentrycontract, orboundedcancelresult. ActualfetchesafterPCedit areArtificial observedexecution; setPC/arrivaltargetaloneisnocodeevidence. NaturalAIselectionandallinputdomainsunclaimed. PreserveROM/map/state/source,binary. Successfulconsumermechanicsalonewon'tprovegeneralcommandtableextent.

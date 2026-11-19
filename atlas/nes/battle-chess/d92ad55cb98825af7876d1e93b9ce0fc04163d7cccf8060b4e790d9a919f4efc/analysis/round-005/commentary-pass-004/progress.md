@@ -1,0 +1,13 @@
+# Commentary progress
+
+Round004 commentary is complete for all currently classified source at `pass-004-reviewed`. No current-source readability ranges remain deferred. Classification is 262135/262160 bytes (99.99%); 25 unknown bytes remain in nine intervals. Full current-source readability is separate from whole-ROM classification and terminal editorial acceptance.
+
+The entire prior commentary was preserved before fresh preparation at `analysis/round-004/commentary-pass-003/`. All 2293 prior units and valid physical-range review/prose were retained, including the round003 endpoint, alias and stale-prose repairs. Fresh scaffold has 11385 reviewed entries and 2295 reviewed units; source has 9656 instructions. Only 19 new Static Code bytes /13 instructions were added. The exact map/state match the frozen baseline, SHA256 `8a795941fc84238feed1847b172e3cdfdaa272a53230c9950e98dd3401c2d55b`.
+
+New source explanations cover bank26 $8D21 stack/decimal/command initialization and fallthrough to $8D2B, explicitly discarding an inherited return frame without claiming whole-body normal return. Bank26 $8F24 returns a complemented direction mask with low-nibble index below eight and ordinary RTS frame; its CPU-view symbol refers to the independently bounded eight-mask data. The preceding LSR/LSR/PLA remains unknown. Adjacent rank-data and lookup-extension notes were reconciled; all nine residual unknown boundaries remain explicit. Existing useful prose and established symbols were reused throughout the full classified source.
+
+Full-scope assessment reused prior valid review credit and checked all current entries/units, retained physical identities, source locations, zero uncovered classified code bytes, frozen map/state identity and all nine unknown intervals. No classified backlog was skipped. Details: `analysis/round-004-commentary-review.json`. Semantic limitations remain in uncertainties.md and do not represent deferred readability.
+
+Fresh final byte-identical verification passed; `analysis/round-004-commentary-verification.json` mirrors commentary/verification.json. The reading copy was refreshed after the final source edit. Source hashes: game.asm `e6e79a1362437f2ee14ef1a08869455639ff7a0803e2d4d84ce3dbc7365be876`; symbols.inc `6b553e60cf6ebe664325df5f756ffce9fa74ab0308f15a8e2f55694e5c109bc7`. Terminal editorial_audit remains pending; no final audit invoked.
+
+No ROM/map/state/toolkit edits, agents, publication/archive, cleanup or deletion occurred. All generated source/assets remain local. Next is independent redirect review of the remaining 25 unknown bytes, without a terminal exhaustion claim.

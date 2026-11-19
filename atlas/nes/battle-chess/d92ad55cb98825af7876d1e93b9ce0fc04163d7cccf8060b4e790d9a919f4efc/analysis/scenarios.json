@@ -1,0 +1,364 @@
+[
+  {
+    "id": "R001-startup",
+    "milestone": "title/copyright",
+    "status": "visited",
+    "route": [
+      {
+        "buttons": [],
+        "frames_requested": 180,
+        "max_operations": 10000000,
+        "timeout_ms": 30000,
+        "trace": {
+          "enabled": true,
+          "capacity": 0
+        },
+        "result": "timeout after72frames; accepted fetches retained, no aggregate loss"
+      }
+    ],
+    "evidence": [
+      "evidence/pass-001/startup-state.json",
+      "evidence/pass-001/startup-summary.json",
+      "evidence/pass-001/startup.snapshot.json",
+      "evidence/pass-001/title.png"
+    ]
+  },
+  {
+    "id": "R001-board",
+    "milestone": "initial3Dboard",
+    "status": "visited",
+    "from": "startup.snapshot.json(frame72)",
+    "route": [
+      {
+        "buttons": [
+          "start"
+        ],
+        "frames": 1,
+        "max_operations": 100000,
+        "timeout_ms": 5000
+      },
+      {
+        "buttons": [],
+        "frames": 180,
+        "max_operations": 10000000,
+        "timeout_ms": 30000,
+        "trace": false
+      },
+      {
+        "buttons": [
+          "start"
+        ],
+        "frames": 10,
+        "max_operations": 1000000,
+        "timeout_ms": 10000
+      },
+      {
+        "buttons": [],
+        "frames": 180,
+        "max_operations": 10000000,
+        "timeout_ms": 30000
+      }
+    ],
+    "observed_result": "board displayed frame443; no traced reachability claim for untraced interval",
+    "evidence": [
+      "evidence/pass-001/board.png"
+    ]
+  },
+  {
+    "id": "R001-options",
+    "milestone": "main options / Move submenu",
+    "status": "visited",
+    "from": "board frame443",
+    "route": [
+      {
+        "buttons": [
+          "a"
+        ],
+        "frames": 2,
+        "max_operations": 200000,
+        "timeout_ms": 5000,
+        "trace": true
+      },
+      {
+        "buttons": [],
+        "frames": 60,
+        "max_operations": 3000000,
+        "timeout_ms": 30000
+      },
+      {
+        "buttons": [
+          "select"
+        ],
+        "frames": 2,
+        "max_operations": 200000,
+        "timeout_ms": 5000
+      },
+      {
+        "buttons": [],
+        "frames": 20,
+        "max_operations": 1000000,
+        "timeout_ms": 15000
+      },
+      {
+        "buttons": [],
+        "frames": 120,
+        "max_operations": 10000000,
+        "timeout_ms": 30000,
+        "trace": false
+      }
+    ],
+    "observed_result": "frame647 Main Move/Settings/Level menu. One unused Select8/release120 alternative closed menu, then restored options.snapshot.json. Reasserted A8 then release30 to frame685 opened Move submenu.",
+    "evidence": [
+      "evidence/pass-001/options.snapshot.json",
+      "evidence/pass-001/options-ready.png",
+      "evidence/pass-001/move-menu.png"
+    ]
+  },
+  {
+    "id": "R001-setup",
+    "milestone": "2D setup board / piece palettes",
+    "status": "visited",
+    "from": "Move submenu frame685",
+    "route": [
+      {
+        "snapshot": "session named menu before edit"
+      },
+      {
+        "patch": {
+          "space": "ram",
+          "address": 48,
+          "bytes": [
+            0
+          ]
+        },
+        "rationale": "understood countdown$30 via$C3B7-$C3CC",
+        "artificial": true
+      },
+      {
+        "buttons": [],
+        "frames": 30,
+        "max_operations": 2000000,
+        "timeout_ms": 10000
+      },
+      {
+        "buttons": [
+          "down"
+        ],
+        "frames": 6,
+        "max_operations": 1000000,
+        "timeout_ms": 10000
+      },
+      {
+        "buttons": [],
+        "frames": 6,
+        "max_operations": 1000000,
+        "timeout_ms": 10000
+      },
+      {
+        "buttons": [
+          "a"
+        ],
+        "frames": 6,
+        "max_operations": 1000000,
+        "timeout_ms": 10000
+      },
+      {
+        "buttons": [],
+        "frames_requested": 90,
+        "max_operations": 1000000,
+        "timeout_ms": 10000,
+        "result": "timeout atframe755"
+      },
+      {
+        "buttons": [],
+        "frames": 120,
+        "max_operations": 10000000,
+        "timeout_ms": 30000,
+        "trace": false
+      }
+    ],
+    "observed_result": "frame875 distinct2Dboard with palettes. Subsequent down6/release20 to901, A6/release90 (budget stopped atframe940), Select6/release20 to966 traced then untraced60 to1026 entered Setup Clear/Restore/Done menu.",
+    "evidence": [
+      "evidence/pass-001/setup-ready.png",
+      "evidence/pass-001/setup.snapshot.json",
+      "evidence/pass-001/setup-exit.snapshot.json",
+      "evidence/pass-001/setup-exit-ready.png"
+    ]
+  },
+  {
+    "id": "R001-endgame-shortcut",
+    "milestone": "near-checkmate setup/Done",
+    "status": "attempted",
+    "from": "setup-exit.snapshot.json frame1026",
+    "patch": {
+      "space": "ram",
+      "ranges": [
+        {
+          "address": 1214,
+          "length": 64
+        },
+        {
+          "address": 1278,
+          "length": 64
+        }
+      ],
+      "bytes_recipe": "64zeros; index0=134(blueking a8),index17=5(redqueen b6),index18=6(redking c6)",
+      "basis": "two64byte arrays match standard initial board and many absolute references in bank0; use supported Setup\u2192Done to initialize dependent state",
+      "artificial": true
+    },
+    "route": "First A6/release6 traced plus untraced180 shows submenu, not game. Restored setup-exit snapshot and reasserted empty; rewrote arrays then Down6/release12 twice, A6/release12, release120. Result pending final capture.",
+    "evidence": [
+      "evidence/pass-001/near-mate.png",
+      "evidence/pass-001/near-mate-done-ram.json",
+      "evidence/pass-001/near-mate-done.snapshot.json",
+      "evidence/pass-001/near-mate-done.png",
+      "evidence/pass-001/done-highlight.png",
+      "evidence/pass-001/near-mate-game.png",
+      "evidence/pass-001/near-mate-game.snapshot.json",
+      "evidence/pass-001/final-state.json"
+    ],
+    "observed_result": "Patched near-mate pieces visibly confirmed on setup editor atframe1200 (near-mate-done.png), arrays remain patched. This did not exit editor. Final attempt fromframe1200: Select6/release60 (max_operations1000000, execution budget exhausted; end beforeframe1239), Down6/release12 thrice toframes1257,1275,1293; A6/release6 traced to1305; release180 untraced to1485. Result remains Setup submenu (near-mate-game.png), no accepted Done transition, game/capture/checkmate not visited."
+  },
+  {
+    "id": "R001-capture",
+    "milestone": "capture Battle Zone and return",
+    "status": "deferred",
+    "reason": "needs confirmed Setup\u2192Done route and legal board selection; redirect lead R001-L02"
+  },
+  {
+    "id": "R001-terminal",
+    "milestone": "checkmate/result/ending",
+    "status": "deferred",
+    "reason": "near-endgame board shortcut attempted; exact menu cursor/Done and board-to-engine initialization unresolved; redirect R001-L02"
+  },
+  {
+    "id": "R001-special",
+    "milestone": "promotion/castling/en-passant/AI thinking",
+    "status": "deferred",
+    "reason": "first pass visited distinct startup/menu/setup systems; use supported board setup contract in redirect, no arbitrary RAM brute force"
+  },
+  {
+    "id": "R001-levels",
+    "milestone": "later levels/bosses",
+    "status": "unavailable",
+    "reason": "chess game has skill settings and match phases rather than stage/boss progression"
+  },
+  {
+    "id": "R001-redirect-done",
+    "milestone": "accepted Setup Done and3Dboard",
+    "status": "visited",
+    "provenance": "artificial",
+    "route": "Import near-mate-game.snapshot;emptybuttons;20frames;patch8D=3;A2/release;90requestedframes(timeout61);save;four20framecalls. Callback9156 action8\u2192C2F3\u2192E87F/EAB9; 3Dboardframe1626.",
+    "evidence": [
+      "analysis/redirect/round-001-a/runtime-done.json",
+      "analysis/redirect/round-001-a/runtime-settle.json",
+      "analysis/redirect/round-001-a/done-settled.snapshot.json",
+      "analysis/redirect/round-001-a/done-settled.png"
+    ]
+  },
+  {
+    "id": "R001-redirect-terminal",
+    "milestone": "legal manual move and negative terminal/status marker",
+    "status": "visited",
+    "provenance": "artificial",
+    "route": "Fromdone-settled;BC=1 (NewGamecontract),B2=FF (manualsuggestiongate),1F=FF;cursor7C..7E=[17,1,2];A6/release18;cursor[9,1,1];A6/release80;80furthertraced then360untraced. Qb6-b7accepted,queenindex9,0551=80/0552=1/0553=0,redX/markerbyblueking.",
+    "evidence": [
+      "analysis/redirect/round-001-a/runtime-mate-enabled.json",
+      "analysis/redirect/round-001-a/runtime-mate-animation.json",
+      "analysis/redirect/round-001-a/runtime-animation-state.json",
+      "analysis/redirect/round-001-a/mate-animation.png"
+    ],
+    "limits": "Supported near-mate terminalstatus,not fullending/creditsinventory. B2-only andwrongside0attempts negative preserved."
+  },
+  {
+    "id": "R001-redirect-capture",
+    "milestone": "capture confrontation and distinct capture/result presentation",
+    "status": "visited",
+    "provenance": "artificial",
+    "route": "Importoriginalnear-mate-game;04C7=129bluepawn;8D=3;A2/release180untraced;BC1/B2FF/1FFF;Q17\u21929 A6/release18/A6;60traced;three120untraced+12traced;900untraced finalframe3053.",
+    "evidence": [
+      "analysis/redirect/round-001-a/runtime-capture.json",
+      "analysis/redirect/round-001-a/runtime-capture-stages.json",
+      "analysis/redirect/round-001-a/runtime-capture-finish.json",
+      "analysis/redirect/round-001-a/capture-finish.snapshot.json",
+      "analysis/redirect/round-001-a/capture-finish.png"
+    ],
+    "limits": "Sampleddistinct3Dconfrontation/darkbannerresultfield;not everycapturepair or fullcinematicreturn."
+  },
+  {
+    "id": "R001-redirect-unvisited-mechanics",
+    "milestone": "promotion/castling and alternate terminal outcomes",
+    "status": "deferred",
+    "reason": "Representative board/editor/manualmove/capture/terminalmechanicsvisited. Specializedpawnpromotion/castling rights and engineprerequisitesnotreviewed; arbitraryRAMflagchangeswouldnotestablishintendedtransitions. No exhaustivechesspermutation or completegameplayexhaustionclaim."
+  },
+  {
+    "id": "round-002-disassembly-review",
+    "status": "visited evidence reused",
+    "runtime_replayed": false,
+    "evidence": "analysis/redirect/round-001-a/review.md",
+    "result": "Prior Done/manual move/negative terminal marker/capture-result milestones and artificial fetch evidence reused. All fetched instructions freshly decoded in exact bank views. No new natural reachability or cinematic-return claim.",
+    "reason": "No changed runtime condition or concrete missing gameplay route needed for this structural batch; remaining bank/return questions are R002-L11."
+  },
+  {
+    "id": "R002-AI-thinking-cancel",
+    "milestone": "representative AI thinking and Select cancel to UI caller",
+    "status": "visited",
+    "provenance": "artificial",
+    "route": "Importround001Done-settledsnapshot,releasebuttons,oneinstructionboundary,PC-only9B08thinkinginitializer(actualSP/RAMpreserved). Firstcall118070ops/10stimeout atframe1638PC81A7; saveAIthinkingcheckpoint;holdSelect;13700ops to9B1Eframe1639bank0/1/30/31SPF0(equalentry),stepactualLDA0. Recoveryresumesonlysavedcancelcheckpointtocorrectfailedcontextarchivekey; same13,700ops.",
+    "evidence": [
+      "analysis/redirect/round-002-a/ai-return-runtime.json",
+      "analysis/redirect/round-002-a/ai-thinking.snapshot.json",
+      "analysis/redirect/round-002-a/ai-thinking.ppm",
+      "analysis/redirect/round-002-a/ai-cancel-archive-runtime.json",
+      "analysis/redirect/round-002-a/ai-cancel-observed-audit.json",
+      "analysis/redirect/round-002-a/ai-cancel-observed-instructions.json"
+    ],
+    "limits": "No naturalAIselection/fullmatch/endingorallenginecommandsclaim. Firstthinkingaddressarchivefailed; only599cancelcontinuationfetchviews retainedandused. Validcallerqueue/positionpreconditions remainexplicit."
+  },
+  {
+    "id": "R002-later-milestone-review",
+    "milestone": "later-game and terminal checklist review",
+    "status": "reviewed",
+    "result": "Reused acceptedDone/manualmove/terminalstatus/capture-result milestones; AIthinkingnewlyvisited. Chesshasnomappedstage/bosssystem. Fullending/credits andnaturalcapturecinematicreturn remainunclaimed; noindependentcreditsroutefoundincurrentmenus/statussource. Promotion/castling alternateoutcomesrequirevalidboard/history/rights andsource-supportedpositiontransition; noarbitrarystatepermutation. Thisisreadystructuralproposalhandoff,notterminalgameplayexhaustion.",
+    "evidence": [
+      "analysis/scenarios.json",
+      "analysis/redirect/round-001-a/review.md",
+      "analysis/redirect/round-002-a/ai-return-plan.md"
+    ]
+  },
+  {
+    "id": "R003-later-milestone-review",
+    "milestone": "representative progression and later-game checklist review",
+    "status": "reviewed",
+    "runtime_replayed": false,
+    "result": "Reused proven Setup Done/manual move/negative terminal marker/capture-result/AI thinking cancel evidence. No stage/boss system. No new independent credits route in current menu/status source. Promotion/castling require supported board/rights/history transition; no arbitrary state permutation. Full ending/credits and cinematic return remain unclaimed. Local19-byte initialization/mask proposals need no new gameplay trace.",
+    "evidence": [
+      "analysis/redirect/round-003-a/structural-review.md",
+      "analysis/scenarios.json",
+      "analysis/gameplay.md"
+    ]
+  },
+  {
+    "id": "R004-later-milestone-review",
+    "milestone": "representative progression and terminal checklist review",
+    "status": "reviewed",
+    "runtime_replayed": false,
+    "result": "Retain Setup Done/manual move/negative terminal marker/capture-result/AI thinking cancel evidence and exact recipes. Near-terminal shortcut attempted and supported status achieved; full ending/credits and cinematic return remain unclaimed. No stage/boss system or independent credits route found. No changed coherent board/rights/history recipe supplies useful residual discrimination; no arbitrary state sweep. Best effort limits retained.",
+    "evidence": [
+      "analysis/redirect/round-004-a/rejection-review.md",
+      "analysis/redirect/round-001-a/review.md",
+      "analysis/redirect/round-002-a/ai-return-plan.md"
+    ]
+  },
+  {
+    "id": "R005-later-milestone-review",
+    "milestone": "representative progression and terminal checklist review",
+    "status": "reviewed",
+    "runtime_replayed": false,
+    "result": "Saved Setup Done/manual move/negative terminal marker/capture-result/AI thinking and Select cancel routes retained. Full ending/credits and complete cinematic return unclaimed. No stage/boss system. No changed coherent board/rights/history shortcut or residual link emerged; unchanged replay and arbitrary flags would not discriminate the remaining code/data claims.",
+    "evidence": [
+      "analysis/redirect/round-005-a/rejection-review.md",
+      "analysis/redirect/round-004-a/rejection-review.md"
+    ]
+  }
+]

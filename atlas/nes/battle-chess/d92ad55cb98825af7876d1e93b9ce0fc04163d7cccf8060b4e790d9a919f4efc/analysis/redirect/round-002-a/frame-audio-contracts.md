@@ -1,0 +1,13 @@
+# Frame and audio component contracts
+
+D127 DecodeObjectFrameTileOffsets: initializedkind0..18/framewithininferredpointercount; accepted1510rows/FFstreamsmax15records independentlyproved. Doubledframepointerindexhandlescarry, onePHA/PLApair, bounded3bytestride andRAMoffsetwrites, LDA0/JSRC156oncommonparsedendpoint; emptyrecordreturnalsocomesafterrestore0. Normalreturnpair0.
+
+D266 BeginImmediateFrameTileBlock: currenttileindex comparedwithvalidatedcount≤15; out-of-rangeD265RTSretainsincoming0. Validindexresolvesbankedsource, optionalC0wrap,32explicitPPUDATAwrites,advanceindex,commonD369LDA0/JSRC156/RTSD36E. Source-pointerrejectalsojoinsindexadvance/restore. NoCPUstackeditsotherthanordinaryJSR. Conditionalnormalreturn0 fromincoming0.
+
+E124 CopyFrameTilesToRam: destinationinitialized0200; ≤15validtiles copied32bytes thenoffsetarraysreplacedbyRAMaddress, eachiterationexplicitrestore0. Indirectdestinationstores proven0200..03DF, disjointCPUstack, noarbitrarypointerprecondition. Sourcebase/registerset0afterlastcopy. Callerrequiresnonemptydecodedframe andvalidsourcebase/offsets.
+
+DE57/DE61 extra-pass pipelines callE124beforeIndexTilePointers, thenapplyclears/edge/accumulatedmaskhelpers. Gridindicesbounded12, absentpointerhighFFskipped; validplanes derivealigned32byteRAMtiles0200..03C0, secondplane+8, allY0..23→≤03DF. FollowinghelperstoresoperateCPU RAMonly; noPRGwritesaftercopyrestore0. AllCPUstackpush/popsordinaryJSR; noCPUstackpagealias. Thesearevalidframe/pointerpipelinecontracts, notanyRAMvalueorallartworkbehaviorclaim.
+
+QueueFrameTileBlocks batchesatmostfournegativecount2records→4*(4+32)+1=145bytes0100..0190, withwaitforflushbetweenbatches. Retainexplicitlive-stacknonalias/capacityprecondition; sourcecalculatespayload/cursorbounds, noassertionallpatchedstackvalues safe. Marker immediatecopiesuseD266component, terminateconditionallyafterPPU spritehit; do notclaimtotalhardwaretimingcompatibility.
+
+CCC8 RunBankedAudio: literalPRGreg0E→effective28/29, JSR8000provenconditionalnormalreturn/bankpreservation at28/29/30/31 by restrictive graph(audio-return-proof.json), literal0tailJMP C156→0/1. MatchedordinaryCPUcallstack; validinitializedaudiohistory/requests referaccepted44lists/37patterns, noaudio-drivercodeorROMedits. No assumedstack16loop. Allfinite normalreturnsresetpair0.

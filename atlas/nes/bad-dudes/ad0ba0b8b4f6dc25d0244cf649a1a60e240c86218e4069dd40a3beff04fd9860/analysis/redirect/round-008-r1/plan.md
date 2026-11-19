@@ -1,0 +1,6 @@
+# ROUND008 redirect plan / initial frontier
+Input round-008-disassembly-final; 262144/262160 classified, 16 Unknown in five ranges. Full current commentary gate accepted. Research only; no map/state/source/toolkit edits.
+
+Retrieve primary evidence before inheriting decisions. Freshen exact complement and source/ROM neighbors. Reassess B8 wait/active detached transfer, B11/F14 extra returns, sound zero and ten-byte island under the newly accepted B7 paired-tail standard, distinguishing entry from role. Inspect accepted analogues and actual finite table/frame contracts; test a revised inference only if independent discrimination survives. Review current semantic uncertainties and prior broad progression, preserving negative scope. Persist combined ready proposal, exact same-phase frontier, or compact terminal rejection review for coordinator inspection. No arbitrary-PC replay or unchanged gameplay repetition.
+
+Initial frontier: primary round007 residual source/bytes, accepted-boundary analogues, return-analogue-scope, round003 residual-review retrieved; B7 prior valid-JMP-only premise corrected and accepted, so do not propagate it to B8 without comparison. Sound island generic data remains a candidate independent of sample role; assess own contents rather than requiring consumer semantics.

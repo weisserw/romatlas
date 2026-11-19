@@ -1,0 +1,19 @@
+# Batch-fallback-009 — current completed commentary
+
+All current-source readability and actual final editorial review are complete. Preserved the entire earlier commentary tree at analysis/batch-fallback/commentary-history/pass-008 before supported fresh preparation. Reused sound review for unchanged source:1996 scaffold entries,1103 meaningful units,62799 code bytes/28380 instructions. Only new classification is user-directed Manual Data physical[68546,68549); evidence-backed count remains393229. Source boundary and dependent actor-path notes preserve unknown meaning and JMP-versus-opaque ambiguity. No invented label or structural proof. No readability gaps or deferred ranges remain.
+
+Supported commentary.py audit passed with byte_identical=true,1996 reviewed regions,1103 reviewed units and editorial_audit=true, freshly rebuilding source and refreshing reading-after.asm. Source locations remain valid because prose replacements preserve line count. Strict read-only archive.editorial_status is recorded separately in analysis/batch-fallback/editorial-status.json. Prior final conclusions, IRQ/RTI incompatibility and TK-001/runtime limitations remain unchanged. No redirect, archive, deletion, publication, toolkit or input edit. See analysis/handoffs/batch-fallback-commentary.md for current hashes and strict gate.
+
+The following progress is preserved historical pass008 context; its terminal-incomplete classification predates the explicit Manual fallback.
+
+# Final editorial acceptance — terminal incomplete ROM
+
+Pass008 remains terminal incomplete:393229/393232bytes classified, exactly3Unknown at physical[68546,68549), physical8 CPU8BB2. The coordinator accepted the stopping rejection review. Current-source readability and final targeted editorial assessment are complete:1996 intervals,1103 meaningful units,62799 code bytes/28380 instructions and330430 other classified bytes. No readability/editorial backlog remains; coordinator final preparation and independent acceptance remain pending.
+
+Preserved143 exact prior classified interval reviews and307 earlier meaningful units. Full round3 work adds548 routine/state notes and ten inline-resume units across145 new code spans, with named actor fields, symbolic direct targets and511 lookup aliases. Entire earlier commentary remains under analysis/round-03/commentary-history/pass-006. The original round3 readability handoff/verification record is historical; the current final identity is analysis/final-editorial-verification.json.
+
+Final targeted assessment incorporated E020 IRQ reenable/register-restore/RTI incompatibility with the ordinary actor RTS stack. No fourth table word or dead helper was inferred. Exact game/art/music identities, natural callers, RAM0000 writer and runtime/IRQ timing remain explicit uncertainties. Fixed audit-relative source paths and refreshed source/unit locations. Existing ten inline-resume records already cover all Code slices; no additional fragment records were needed.
+
+Supported commentary audit passed:byte_identical=true,editorial_audit=true,reviewed_regions=1996,reviewed_units=1103. It freshly rebuilt source and refreshed reading-after.asm. Source SHA256 f68c867fe59146ff32d7282a703f32b74a22e1d9124552d902fde9edf687a958. ROM SHA256 24fb1cf2d308e07dbedadc3822ca07b2b48b7ebc1da0150e63203d2fdedfcc75. Map/state SHA256 b18f67ed4a03000ed2ed9e79239b7fb166fd1ce8ba04a84eba4d365c86ff421a match frozen pass008 baselines. See commentary/audit.json, editorial-audit.md, uncertainties.md and analysis/handoffs/final-editorial.md.
+
+TK-001 mapper69 runtime admission remains unchanged; no gameplay/ending claim, runtime retry, toolkit/input/map change, archive execution, cleanup, publication or deletion. All restored source/assets/evidence remain local. Commentary writer stops after this handoff; coordinator orchestration owns remaining final preparation.

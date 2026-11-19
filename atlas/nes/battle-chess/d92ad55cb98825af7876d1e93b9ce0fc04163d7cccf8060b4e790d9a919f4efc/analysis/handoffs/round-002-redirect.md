@@ -1,0 +1,21 @@
+# Round 002 redirect handoff — ready combined batch
+
+Accepted checkpoint `pass-002-reviewed`, map/state SHA256 `6a65061ba6fb27617437a138ba294582f7f69728fcbb657e5eacf49de6c4c56e`. Accepted **256451/262160 (97.82%)**, **5709 unknown**. Current-source readability remains complete at that map; source and ROM unchanged. Redirect accepted **0** classification bytes.
+
+Review **5665 proposed bytes** together: **4997 Code** (2375 instructions; **562 artificial Observed**, **4435 Static**) and **668 Static Data** in 40 ranges. Leads **R002-L11/R002-L12 ready**. Exact manifests:
+
+- `analysis/redirect/round-002-a/combined-code-proposals.json`
+- `analysis/redirect/round-002-a/combined-data-proposals.json`
+- `analysis/redirect/round-002-a/combined-return-contracts.json`
+- `analysis/redirect/round-002-a/review.md` — concise evidence, contract index, method/outcome history and limits.
+- `analysis/redirect/round-002-a/final-audit.json` — **2381 fresh instruction-view decodes**, exact-current-Unknown membership, no boundary/data conflicts; ROM/map/state/source hashes match input.
+
+Do not replay unchanged experiments. Independent review should inspect the exact admitted preconditions and primary evidence, then classify only supported pieces. Conditional finite return preservation does not prove termination or natural selectors. Fixed mapper continuations use **null lower banks**, never invented bank 0. Queue/source/frame/slot bounds are explicit. The initialized `$8432/$844D` selector proof is only the internally closed **2..9** domain; no global `$807D/$8DC1` domain was assumed. Script/menu sets come from existing counted records/accepted arguments. Local `$E919→$E91C` normal-return and `$987A→$987D` normal-cancel cases are **not** global `$8EAF/$9B05` theorems; review them separately rather than rejecting the whole batch.
+
+New AI thinking/cancel route: source-supported PC-only `$9B08` entry from the retained Done board, actual SP/RAM unchanged. First bounded run stopped after 118070 operations at frame1638. Select cancellation reached `$9B1E`, UI banks 0/1/30/31 and original SP `$F0` after13700 operations. Actual next instruction was stepped. Initial context collection used an incorrect response key **after** primary result/summary/snapshot saves; initial thinking instruction addresses are lost and **not used**. Recovery resumed only `ai-thinking.snapshot.json` and retained 599 actual cancel-path instruction views, independently decoded as 283 unknown starts/562 bytes with no conflicts. Evidence: `ai-return-runtime.json`, `ai-cancel-archive-runtime.json`, `ai-cancel-observed-instructions.json`, `ai-cancel-observed-audit.json` in the attempt directory. These are artificial observations, no natural AI route claim. The separate wrong `$96F3` queue entry was preserved/excluded and corrected to `$96F7`; capacity review is explicit.
+
+`residual-ledger.json` partitions **all current 5709 unknown bytes**, physical bank/CPU alias/context and accepted neighbors, into proposal and unproposed dispositions. If all proposals are accepted, **44 bytes in 10 intervals** remain. `unproposed-ranges.json` gives exact physical bounds and evidence-linked reasons: `$8D21` resets SP without a supported NES entry/return-storage contract; `$8F21` is a PLA tail without a matching prefix; `$8FF4` has competing lookup-extension/status-stack interpretations; remaining NOP/RTS/constant-return fragments are too short to distinguish code from data. They are not blocked merely by unknown game meaning or lack of observed execution. No concrete revised method survives present evidence for those pieces; this is **not a terminal incomplete assessment**.
+
+Existing editor/manual move/terminal marker/capture-result milestones preserved; AI thinking/cancel added to `analysis/scenarios.json`. Natural ending/credits, complete cinematic return and specialized outcomes remain unclaimed; no exhaustive game completion or compatibility claim.
+
+No toolkit issues found. No map/state/source classification, ROM or toolkit changes; no agents, cleanup/deletion, publication or archive action. Selected local artifacts retained, 4.5 GiB free/shared scratch196 KiB at last check. No live process/writer. Proceed to independent disassembly, full current-source commentary, then redirect.

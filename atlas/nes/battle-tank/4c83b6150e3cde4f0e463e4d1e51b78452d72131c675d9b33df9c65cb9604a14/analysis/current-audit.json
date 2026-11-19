@@ -1,0 +1,79 @@
+{
+  "phase": "final-acceptance-001",
+  "classification": {
+    "image_size": 65552,
+    "classified": 65552,
+    "unknown": 0,
+    "percentage": 100.0,
+    "bytes_by_kind": {
+      "Data": 12206,
+      "Code": 20578,
+      "Image": 32768
+    },
+    "regions": 147,
+    "evidence_regions": 147,
+    "provenance": {
+      "Static": 147
+    }
+  },
+  "claims": "Structural classification only; not complete semantics, natural reachability, exhaustive gameplay or hardware compatibility.",
+  "metadata_changes": [
+    {
+      "offset": 31068,
+      "fields": [
+        "evidence",
+        "label"
+      ]
+    }
+  ],
+  "frozen_protected_unchanged": true,
+  "reviewed_regions": 147,
+  "reviewed_units": 365,
+  "remaining_editorial_gaps": 0,
+  "map_validation": {
+    "ok": true
+  },
+  "checkpoint_verification": {
+    "byte_identical": true,
+    "ok": true,
+    "rom_sha256": "4c83b6150e3cde4f0e463e4d1e51b78452d72131c675d9b33df9c65cb9604a14",
+    "map_sha256": "fb1d32dfe6307b11c9b92dae3d0e77395a830a64a0e78c0f21901b76eb04e81d",
+    "map": "maps/final-acceptance-001.json",
+    "generated": "generated/final-acceptance-001"
+  },
+  "commentary_audit": {
+    "byte_identical": true,
+    "ok": true,
+    "rom_sha256": "4c83b6150e3cde4f0e463e4d1e51b78452d72131c675d9b33df9c65cb9604a14",
+    "source_sha256": {
+      "game.asm": "1e4a20087c465f3b4113b8a3907853c86e329c7ae5a3b09bd0c72522396c1d9d",
+      "symbols.inc": "79a50ae28fc45df8d5ce6bed247ffa947fda35d1984f4fa50c612d24608c055c"
+    },
+    "reviewed_regions": 147,
+    "reviewed_units": 365,
+    "editorial_audit": true
+  },
+  "hashes": {
+    "input/game.nes": "4c83b6150e3cde4f0e463e4d1e51b78452d72131c675d9b33df9c65cb9604a14",
+    "analysis/state.json": "fb1d32dfe6307b11c9b92dae3d0e77395a830a64a0e78c0f21901b76eb04e81d",
+    "maps/current.json": "fb1d32dfe6307b11c9b92dae3d0e77395a830a64a0e78c0f21901b76eb04e81d",
+    "maps/final-acceptance-001.json": "fb1d32dfe6307b11c9b92dae3d0e77395a830a64a0e78c0f21901b76eb04e81d",
+    "maps/disassembly-001.json": "da70ff81f39549f73a0390f057d4a57025500eeb2dc8575af315acbd7847bc0c",
+    "commentary/source/game.asm": "1e4a20087c465f3b4113b8a3907853c86e329c7ae5a3b09bd0c72522396c1d9d",
+    "commentary/source/symbols.inc": "79a50ae28fc45df8d5ce6bed247ffa947fda35d1984f4fa50c612d24608c055c",
+    "commentary/reading-after.asm": "3bbd5c20434b55d542c44ef5d9bfd9450d8bfe09ebd5a944b44232bbd6de2a39",
+    "commentary/review.json": "3034f810b22bed73521c098b8de90cc7f565421d301892d3d549d8d2e3525065",
+    "commentary/audit.json": "167018f363333746218d3f4b137d4027fe92475494cc70336695c3f322455a03",
+    "commentary/verification.json": "a29d29fc2f88e92fdf55158c04860347fb56eb34a24bfd3835fa38ba68f52c49",
+    "commentary/baseline.json": "da70ff81f39549f73a0390f057d4a57025500eeb2dc8575af315acbd7847bc0c",
+    "commentary/phase1-state.json": "da70ff81f39549f73a0390f057d4a57025500eeb2dc8575af315acbd7847bc0c"
+  },
+  "evidence": [
+    "analysis/disassembly-001/final-counts.json",
+    "analysis/investigation.md",
+    "analysis/redirect/r001-20261119/source-evidence.txt",
+    "analysis/redirect/r001-20261119/rejection-review.md",
+    "analysis/final-acceptance-001/metadata-update.json",
+    "commentary/editorial-audit.md"
+  ]
+}

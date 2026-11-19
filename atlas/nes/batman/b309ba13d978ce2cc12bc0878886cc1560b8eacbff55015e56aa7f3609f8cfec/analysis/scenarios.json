@@ -1,0 +1,76 @@
+{
+ "version": 1,
+ "notes": "Round-1 scenarios. Snapshot file analysis/snapshots/stage1-start.json (same-build export) = state after boot route below. Coverage aggregate: analysis/observed/contexts.json (bounded traces, capacity 0 aggregates). Artificial RAM edits mark state artificial; observed fetches after edits prove execution in that artificial scenario only.",
+ "scenarios": [
+  {
+   "id": "S1-boot-title-intro",
+   "milestone": "boot, license screen, title, intro cutscene, stage 1 start",
+   "route": "emulator.start; trace on (capacity 0); frames 120; frames 180; press start (hold 4f, release, 20f); frames 60; snapshot 'title'; press start (4f/20f); frames 120; frames 300; then 6x300 frames (no input) -> stage 1 gameplay; snapshot exported to analysis/snapshots/stage1-start.json",
+   "budget": "~2700 frames traced",
+   "result": "License screen, title 'BATMAN PUSH START', Batmobile intro, stage 1 HUD gameplay reached. ~5565 unique opcode addresses at first dump.",
+   "status": "visited",
+   "artificial": false
+  },
+  {
+   "id": "S2-area-death-reload",
+   "milestone": "areas idx 0..20 via death reload",
+   "route": "from stage1-start: write $88=2*idx, $B7=0, $BE=3; 240 frames untraced; then traced scripted inputs (right 60, right+A 12, right 30, B 6, none 10, right+B 20, left 25, [select 4, none 6 only for idx 0-1], B 6, right+A 15, right 60, down+B 10, none 20). Recipe analysis/tools/areas.py",
+   "result": "Each area loads with its PRG bank ($E0CC table) but CHR banks are not re-initialised across stages (garbled later-stage graphics). idx>=18 states are broken (title/garbage). A short crash trail executed BRK/unofficial bytes in bank 8 $A020-$A03B and misaligned $8001; excluded from code evidence (analysis/observed/exclude.json).",
+   "status": "visited (artificial; partially broken for idx>=18)",
+   "artificial": true
+  },
+  {
+   "id": "S3-stage-transitions",
+   "milestone": "stage 2/3/4/5 starts and finale area through the game's own clear path",
+   "route": "from stage1-start: write $88=2*(k-1), $CF=$40 (area-cleared flag); traced 900 frames without input, then scripted inputs (right 60, right+A 12, right 30, B 6, none 10, right+B 20, left 25, right 60, none 20). k=3,7,11,15,17 (recipe analysis/tools/trans.py). k=19 overshoots to $88=$26 and returns to the title.",
+   "result": "Batmobile/story cutscenes with Joker portraits and text, then proper stage 2 (chemical plant), stage 3, stage 4, stage 5 and area 17 graphics; gameplay inputs exercised.",
+   "status": "visited (artificial entry, natural transition code)",
+   "artificial": true
+  },
+  {
+   "id": "S4-ending",
+   "milestone": "ending cutscene and staff credits",
+   "route": "from stage1-start: write $88=$22, $CF=$40 -> clear path sets $88=$24 -> ending branch $DE9D (PRG banks 2/5); 2700 frames traced (analysis/tools/ending.py); untraced preview of 4800 frames showed Joker confrontation text, Gotham skyline, falling sequence and STAFF/PROGRAM/DESIGN/MUSIC credit pages.",
+   "status": "visited (artificial entry)",
+   "artificial": true
+  },
+  {
+   "id": "S5-bosses",
+   "milestone": "stage bosses",
+   "route": "not reached: boss encounters lie at the end of scrolling areas; no stage/position shortcut established in round 1.",
+   "result": "Boss handlers are reachable statically via the bank-12 object-type jump table ($80BA, 46 entries) and classified as code, but no boss fight was observed.",
+   "status": "visited (artificial entry; forced defeats; artificial exit-position patches)",
+   "artificial": null,
+   "route_r1_redirect": "Untraced: s1 snapshot; $88=2*(S-1),$CF=$40 (stage start S=3/7/11/15), 900 frames; then $88=2*(T-1),$CF=$40 -> boss area T, 400 frames (tools/bossgo.py). Traced: write ObjState|=$40, ObjVarE=0, ObjTimer=0 for boss slots (tools/bosskill.py / exp2.py D), 480-960 frames.",
+   "result_r1_redirect": "idx2 kind 20 (Killer Moth): defeat -> kind 29 explosion, BossDefeatFlag, area clear -> stage-2 cutscene. idx6 kinds 22-25: kind 23 kill did not clear (Batman died). idx10 kinds 26/27/28: kill 26/27 -> clear -> stage 4 ($88=$16). idx14 kinds 32/38/40: kill -> clear -> stage 5 ($88=$1E). idx16 kinds 33/35 (HP 96): behaviour traced; forced defeat sets BossDefeatFlag but area not cleared within 900 frames. idx17 (kind 42?) not reached. Logs: analysis/redirect/r1-a1/kill23.log, kill26_32.log, exp2_A.log, exp2_D.log; coverage tags in analysis/redirect/r1-a1/observed/contexts.json.",
+   "route_r1a2": "Kind 42 (area idx 17 boss): stage1-start snapshot; $88=$22,$B7=0,$BE=3; 240 frames no input then 360 frames holding Right (death reload into idx 17; CHR garbled as in S2). Kind 42 live in slot 0 (HP 160) with kind 44. Defeat: ObjState|=$40, ObjVarE=0, ObjTimer=0 (tools/k42kill.py, traced 720 frames, tag k42kill). Clear branch: patch Batman X ($D3:$D4) = boss X+16 (tools/k42pos.py, traced 240 frames, tag k42pos). Walking left was blocked at X=423 (k42near.log).",
+   "result_r1a2": "ObjKind42 defeat path executed JMP $BCB4: 67 instruction starts in bank 13 $BCB4-$BD54 ([12,13,14,15]) fetched (R-06/L-007 confirmed in artificial scenario). With |dx|<$20 the routine set BossDefeatFlag $CE=$80 and removed kind 42 ($BCC9-$BCD9 path); area clear ($CF) not seen within 240 frames (same as idx 16). Logs analysis/redirect/r1-a2/k42kill.log, k42pos.log; coverage analysis/redirect/r1-a2/observed/contexts.json.",
+   "route_r2a1": "tools in analysis/redirect/r2-a1/tools: clr17.py (death reload, walk, forced defeat, Batman patched to the AreaExitCheck spot) and clr16b.py (rewrite exit position each frame for the $051F countdown). Details analysis/redirect/r2-a1/clear-results.txt.",
+   "result_r2a1": "Area clears observed: idx 6 -> area 7 ($88 $0C->$0E), idx 16 -> area 17 ($20->$22, kinds 42/44/43 spawn), idx 17 -> ending ($22->$24, skyline). Frames analysis/redirect/r2-a1/frames/. Natural return to the exit ledge not demonstrated."
+  },
+  {
+   "id": "S6-continue-gameover",
+   "milestone": "game over / continue screen",
+   "route": "s1 snapshot; $BE=0, $B7=0; 900 frames traced; press Start (4f/20f); 240 frames (tools/exp2.py B).",
+   "status": "visited (artificial)",
+   "artificial": null,
+   "result": "GAME OVER / CONTINUE / END screen shown (analysis/redirect/r1-a1/frames/gameover_2.png); Start = continue -> lives 2, GameStartFlags $80, stage restarts. New observed code bank 14 0x1DE13-0x1DE43. Log analysis/redirect/r1-a1/exp2_B.log. | r3-a1: game over in area 17 ($88=$22, $BE=0, $B7=0) + Start -> restart at area 15 ($88=$1E), $76 preserved; clearing area 15 with $76=$80 -> area 17 (Joker cutscene, kind 42 arena), with $76=0 -> area 16 boss intro (analysis/redirect/r3-a1/results.txt A, tools/cont15.py)."
+  },
+  {
+   "id": "S7-weapons",
+   "milestone": "batarang/gun/third weapon firing",
+   "route": "s1 snapshot; $A6 in ($50,$C0,$60), $B8=30; press B 3x (6 on/14 off) traced (tools/exp2.py C)",
+   "result": "Weapon objects (kinds 1-3, bank 12 $9BA9-$A004) and FireWeapon paths executed: 607 new observed opcode offsets. Log analysis/redirect/r1-a1/exp2_C.log.",
+   "status": "visited (artificial)",
+   "artificial": true
+  },
+  {
+   "id": "S8-continue-skip-area16",
+   "milestone": "continue after game over in area 17; area-15 clear skipping beaten boss area 16",
+   "route": "stage1-start snapshot; write $88=$22 $B7=0 $BE=0 $76=$80; 360 f; Start 4 f on/20 f off; ~240 f -> area 15; hold Batman YHi=0 YLo=$50 X=$06F0 ($D0/$D1/$D3/$D4) each frame until $88 changes; free-run 720 f (analysis/redirect/r3-a1/tools/cont15.py, clr15f80b.py)",
+   "result": "$88 $1E->$22 with $76=$80 (cutscene then area-17 arena, kinds 42/44/43); control $76=0 -> $20 (area-16 boss intro). 72 Static opcode starts fetched (observed-merge.json).",
+   "status": "visited (artificial)",
+   "artificial": true
+  }
+ ]
+}

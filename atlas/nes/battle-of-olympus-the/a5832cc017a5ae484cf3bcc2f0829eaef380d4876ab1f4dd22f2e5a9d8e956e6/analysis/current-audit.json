@@ -1,0 +1,386 @@
+{
+  "workflow_terminal": true,
+  "outcome": "complete_with_user_authorized_manual_fallback",
+  "classification_complete": true,
+  "evidence_backed_classification_complete": false,
+  "manual_fallback_bytes": 2,
+  "evidence_backed_classified": 131086,
+  "classified": 131088,
+  "total": 131088,
+  "unknown": 0,
+  "display_percentage": "100.00%",
+  "checkpoint": "pass-004-batch-fallback",
+  "checks": [
+    {
+      "requirement": "Input ROM unchanged",
+      "ok": true,
+      "evidence": "a5832cc017a5ae484cf3bcc2f0829eaef380d4876ab1f4dd22f2e5a9d8e956e6"
+    },
+    {
+      "requirement": "Current, checkpoint and frozen maps agree",
+      "ok": true,
+      "evidence": [
+        "analysis/state.json",
+        "maps/current.json",
+        "maps/pass-004-batch-fallback.json",
+        "commentary/baseline.json",
+        "commentary/phase1-state.json",
+        "commentary/source/mapping.json",
+        "commentary/before/mapping.json"
+      ]
+    },
+    {
+      "requirement": "Configured toolkit binary retained",
+      "ok": true,
+      "evidence": "/root/romatlas/target/release/romatlas"
+    },
+    {
+      "requirement": "Unique physical byte accounting with exactly authorized Manual fallback",
+      "ok": true,
+      "evidence": {
+        "Code": 26737,
+        "Data": 104351,
+        "total": 131088,
+        "provenance": {
+          "Static": 120740,
+          "Observed": 10346,
+          "Manual": 2
+        }
+      }
+    },
+    {
+      "requirement": "Effective CPU/bank identity retained for Code",
+      "ok": true,
+      "evidence": "Every Code execution-view start maps to its recorded physical PRG storage."
+    },
+    {
+      "requirement": "Zero unclassified bytes and exactly two authorized Manual bytes",
+      "ok": true,
+      "evidence": {
+        "unknown": [],
+        "manual_bytes": 2
+      }
+    },
+    {
+      "requirement": "Authorized fallback threshold verified before annotations",
+      "ok": true,
+      "evidence": [
+        117916,
+        118245
+      ]
+    },
+    {
+      "requirement": "Prior classifications and evidence preserved",
+      "ok": true,
+      "evidence": "Every prior stored region is unchanged; exactly two new Manual regions added."
+    },
+    {
+      "requirement": "Manual fallback documents role uncertainty and user authorization",
+      "ok": true,
+      "evidence": [
+        {
+          "id": 10920,
+          "offset": 117916,
+          "length": 1,
+          "kind": "Data",
+          "provenance": "Manual",
+          "confidence": 1.0,
+          "label": null,
+          "comment": "Manual batch fallback; structural role and meaning unresolved; no reachability claim.",
+          "evidence": "Explicit user-authorized batch-only fallback after independently verifying exact remaining complement <=10 bytes. Generic Data of unknown meaning by manual authorization, not evidence-backed code-versus-data inference. Prior redundant RTS versus padding/data ambiguity persists; see analysis/coordinator-rejection-review.md and analysis/disassembly/batch-fallback-001/review.md.",
+          "views": []
+        },
+        {
+          "id": 10921,
+          "offset": 118245,
+          "length": 1,
+          "kind": "Data",
+          "provenance": "Manual",
+          "confidence": 1.0,
+          "label": null,
+          "comment": "Manual batch fallback; structural role and meaning unresolved; no reachability claim.",
+          "evidence": "Explicit user-authorized batch-only fallback after independently verifying exact remaining complement <=10 bytes. Generic Data of unknown meaning by manual authorization, not evidence-backed code-versus-data inference. Prior redundant RTS versus padding/data ambiguity persists; see analysis/coordinator-rejection-review.md and analysis/disassembly/batch-fallback-001/review.md.",
+          "views": []
+        }
+      ]
+    },
+    {
+      "requirement": "Fresh checkpoint byte-identical verification",
+      "ok": true,
+      "evidence": {
+        "byte_identical": true,
+        "ok": true,
+        "rom_sha256": "a5832cc017a5ae484cf3bcc2f0829eaef380d4876ab1f4dd22f2e5a9d8e956e6",
+        "map_sha256": "01fbd61b4859c18d45fcf1fe542919df14e8be76ab42f69a03869e8bd0eb3742",
+        "map": "maps/pass-004-batch-fallback.json",
+        "generated": "generated/pass-004-batch-fallback"
+      }
+    },
+    {
+      "requirement": "Full-ROM review scaffold immutable",
+      "ok": true,
+      "evidence": 10920
+    },
+    {
+      "requirement": "All entries/units reviewed with valid current source anchors",
+      "ok": true,
+      "evidence": {
+        "regions": 10920,
+        "unit_attachments": 5044,
+        "logical_units": 2090,
+        "anchors": 15964
+      }
+    },
+    {
+      "requirement": "All classified Code covered by reviewed Code explanations",
+      "ok": true,
+      "evidence": 26737
+    },
+    {
+      "requirement": "Every Code scaffold slice has its complete reviewed explanation attached",
+      "ok": true,
+      "evidence": []
+    },
+    {
+      "requirement": "Final editorial judgment completed",
+      "ok": true,
+      "evidence": "commentary/editorial-audit.md; coordinator-rejection-review.md; unit-link-repairs.json"
+    },
+    {
+      "requirement": "Fresh official editorial audit and byte-identical verification",
+      "ok": true,
+      "evidence": "commentary/audit.json"
+    },
+    {
+      "requirement": "Verification hashes match current source",
+      "ok": true,
+      "evidence": {
+        "game.asm": "ac1629aeb6d5256ab5f598c5e2e21e04193e74311ae235a187d6ad0318e1a3ab",
+        "symbols.inc": "e3292f23d7fe2c2daffaaef762bd049b8d6c62a8cf9bc26649bbef08ba3505b0"
+      }
+    },
+    {
+      "requirement": "Reading copy matches exact current source",
+      "ok": true,
+      "evidence": "1db5ddfe54362a9db66e3ee27b871e541f5a5104d5a1ef0fa7600591f42b5e76"
+    },
+    {
+      "requirement": "All nine sequential phase handoffs retained",
+      "ok": true,
+      "evidence": {
+        "handoffs": [
+          "analysis/handoff-disassembly-round01.md",
+          "analysis/handoff-commentary-round01.md",
+          "analysis/handoff-redirect-round01.md",
+          "analysis/handoff-disassembly-round02.md",
+          "analysis/handoff-commentary-round02.md",
+          "analysis/handoff-redirect-round02.md",
+          "analysis/handoff-disassembly-round03.md",
+          "analysis/handoff-commentary-round03.md",
+          "analysis/handoff-redirect-round03.md"
+        ],
+        "separate_worker_evidence": "Coordinator collaboration-tool history: fresh round01/02/03 disassembly, commentary and redirect workers; no competing phase writers."
+      }
+    },
+    {
+      "requirement": "Historical commentary preserved: analysis/round-02/commentary-round01",
+      "ok": true,
+      "evidence": "analysis/round-02/commentary-round01"
+    },
+    {
+      "requirement": "Historical commentary preserved: analysis/round-03/commentary-round02",
+      "ok": true,
+      "evidence": "analysis/round-03/commentary-round02"
+    },
+    {
+      "requirement": "Historical commentary preserved: analysis/round-04/commentary-round03",
+      "ok": true,
+      "evidence": "analysis/round-04/commentary-round03"
+    },
+    {
+      "requirement": "No ready lead remains",
+      "ok": true,
+      "evidence": {
+        "phase": "redirect",
+        "round": 3,
+        "attempt_id": "round03-a01",
+        "status": "incomplete_pending_coordinator_review",
+        "input_checkpoint": "pass-003-final",
+        "input_map_sha256": "d60123b8f0dcffb8ab9cd1c972680b1e87509085ece9ae40282f705fd6196bdc",
+        "added_ids": [],
+        "updated_ids": [
+          "R01-L07"
+        ],
+        "classified": 131086,
+        "unknown": 2,
+        "proposed_code": 0,
+        "proposed_data": 0,
+        "accepted_new": 0,
+        "completed_at": "2026-11-19T16:40:05.752726+00:00",
+        "review": "analysis/redirect/round03-a01/review.md",
+        "ledger": "analysis/redirect/round03-a01/unknown-ledger.json",
+        "handoff": "analysis/handoff-redirect-round03.md"
+      }
+    },
+    {
+      "requirement": "Terminal rejection and editorial handoffs retained",
+      "ok": true,
+      "evidence": "Coordinator primary reasoning, exact residual ledger and broad best-effort gameplay limits are documented; no interrupted productive frontier."
+    },
+    {
+      "requirement": "Archive document contract satisfied without archive execution",
+      "ok": true,
+      "evidence": {
+        "contract_sha256": "9dd430235e3f3f48dd345c90bc0d21a42456bed757307f090c588d5c28810bd3",
+        "documents": [
+          "analysis/archive-selection-contract.md",
+          "analysis/coordinator-rejection-review.md",
+          "analysis/disassembly/batch-fallback-001/before-coordinator-rejection-review.md",
+          "analysis/disassembly/batch-fallback-001/before-terminal-handoff.md",
+          "analysis/disassembly/batch-fallback-001/review.md",
+          "analysis/disassembly/round02/frontier.md",
+          "analysis/disassembly/round02/review.md",
+          "analysis/disassembly/round03/review.md",
+          "analysis/final-acceptance-batch/final-review.md",
+          "analysis/handoff-commentary-batch-fallback-001.md",
+          "analysis/handoff-commentary-round01.md",
+          "analysis/handoff-commentary-round02.md",
+          "analysis/handoff-commentary-round03.md",
+          "analysis/handoff-disassembly-batch-fallback-001.md",
+          "analysis/handoff-disassembly-round01.md",
+          "analysis/handoff-disassembly-round02.md",
+          "analysis/handoff-disassembly-round03.md",
+          "analysis/handoff-redirect-round01.md",
+          "analysis/handoff-redirect-round02.md",
+          "analysis/handoff-redirect-round03.md",
+          "analysis/redirect/round01-a01/contracts.md",
+          "analysis/redirect/round01-a01/handoff-frontier-history.md",
+          "analysis/redirect/round01-a01/plan.md",
+          "analysis/redirect/round01-a01/reset-review.md",
+          "analysis/redirect/round01-a01/residual-review.md",
+          "analysis/redirect/round02-a01/frontier.md",
+          "analysis/redirect/round02-a01/review.md",
+          "analysis/redirect/round03-a01/frontier.md",
+          "analysis/redirect/round03-a01/review.md",
+          "analysis/round-02/commentary-round01/AGENTS.md",
+          "analysis/round-02/commentary-round01/progress.md",
+          "analysis/round-02/commentary-round01/prompt.md",
+          "analysis/round-02/commentary-round01/uncertainties.md",
+          "analysis/round-02/commentary-round01/workflow.md",
+          "analysis/round-03/commentary-round02/AGENTS.md",
+          "analysis/round-03/commentary-round02/progress.md",
+          "analysis/round-03/commentary-round02/prompt.md",
+          "analysis/round-03/commentary-round02/uncertainties.md",
+          "analysis/round-03/commentary-round02/workflow.md",
+          "analysis/round-04/commentary-round03/AGENTS.md",
+          "analysis/round-04/commentary-round03/editorial-audit.md",
+          "analysis/round-04/commentary-round03/progress.md",
+          "analysis/round-04/commentary-round03/prompt.md",
+          "analysis/round-04/commentary-round03/uncertainties.md",
+          "analysis/round-04/commentary-round03/workflow.md",
+          "analysis/terminal-handoff.md"
+        ],
+        "omitted_documents": [],
+        "unrecognized_markdown": [],
+        "inventory": [
+          "analysis/archive-selection-contract.md",
+          "analysis/coordinator-rejection-review.md",
+          "analysis/disassembly/batch-fallback-001/before-coordinator-rejection-review.md",
+          "analysis/disassembly/batch-fallback-001/before-terminal-handoff.md",
+          "analysis/disassembly/batch-fallback-001/review.md",
+          "analysis/disassembly/round02/frontier.md",
+          "analysis/disassembly/round02/review.md",
+          "analysis/disassembly/round03/review.md",
+          "analysis/final-acceptance-batch/final-review.md",
+          "analysis/gameplay.md",
+          "analysis/handoff-commentary-batch-fallback-001.md",
+          "analysis/handoff-commentary-round01.md",
+          "analysis/handoff-commentary-round02.md",
+          "analysis/handoff-commentary-round03.md",
+          "analysis/handoff-disassembly-batch-fallback-001.md",
+          "analysis/handoff-disassembly-round01.md",
+          "analysis/handoff-disassembly-round02.md",
+          "analysis/handoff-disassembly-round03.md",
+          "analysis/handoff-redirect-round01.md",
+          "analysis/handoff-redirect-round02.md",
+          "analysis/handoff-redirect-round03.md",
+          "analysis/investigation.md",
+          "analysis/progress.md",
+          "analysis/redirect/round01-a01/contracts.md",
+          "analysis/redirect/round01-a01/handoff-frontier-history.md",
+          "analysis/redirect/round01-a01/plan.md",
+          "analysis/redirect/round01-a01/reset-review.md",
+          "analysis/redirect/round01-a01/residual-review.md",
+          "analysis/redirect/round02-a01/frontier.md",
+          "analysis/redirect/round02-a01/review.md",
+          "analysis/redirect/round03-a01/frontier.md",
+          "analysis/redirect/round03-a01/review.md",
+          "analysis/round-02/commentary-round01/AGENTS.md",
+          "analysis/round-02/commentary-round01/progress.md",
+          "analysis/round-02/commentary-round01/prompt.md",
+          "analysis/round-02/commentary-round01/uncertainties.md",
+          "analysis/round-02/commentary-round01/workflow.md",
+          "analysis/round-03/commentary-round02/AGENTS.md",
+          "analysis/round-03/commentary-round02/progress.md",
+          "analysis/round-03/commentary-round02/prompt.md",
+          "analysis/round-03/commentary-round02/uncertainties.md",
+          "analysis/round-03/commentary-round02/workflow.md",
+          "analysis/round-04/commentary-round03/AGENTS.md",
+          "analysis/round-04/commentary-round03/editorial-audit.md",
+          "analysis/round-04/commentary-round03/progress.md",
+          "analysis/round-04/commentary-round03/prompt.md",
+          "analysis/round-04/commentary-round03/uncertainties.md",
+          "analysis/round-04/commentary-round03/workflow.md",
+          "analysis/terminal-handoff.md",
+          "analysis/toolkit-issues.md",
+          "commentary/AGENTS.md",
+          "commentary/editorial-audit.md",
+          "commentary/progress.md",
+          "commentary/prompt.md",
+          "commentary/uncertainties.md",
+          "commentary/workflow.md"
+        ],
+        "rationale": "Additional conclusions, rejection reviews, phase handoffs, frontiers and historical commentary instructions are deliberately retained. No disposable Markdown scratch exists in this inventory; no final result is omitted."
+      }
+    },
+    {
+      "requirement": "Fresh internal and portable map validations",
+      "ok": true,
+      "evidence": "analysis/final-acceptance-batch/validation.json"
+    },
+    {
+      "requirement": "Sequential fallback phase handoffs and final review retained",
+      "ok": true,
+      "evidence": "Separate sequential disassembly, commentary and final-audit worker contexts."
+    },
+    {
+      "requirement": "Archive options retain explicit final fallback record",
+      "ok": true,
+      "evidence": {
+        "authorization": "Explicit user batch-only exception for at most10 residual physical ROM bytes; no evidence-backed role inference.",
+        "prior_unknown_count": 2,
+        "ranges": [
+          {
+            "offset": 117916,
+            "length": 1
+          },
+          {
+            "offset": 118245,
+            "length": 1
+          }
+        ],
+        "kind": "Data",
+        "provenance": "Manual",
+        "meaning": "Unknown; redundant RTS versus padding/data remains unresolved.",
+        "evidence_backed_classified": 131086,
+        "classified_with_fallback": 131088,
+        "record": "analysis/disassembly/batch-fallback-001/review.md",
+        "annotation_record": "analysis/disassembly/batch-fallback-001/accepted-regions.json"
+      }
+    }
+  ],
+  "archive_executed": false,
+  "cleanup_performed": false,
+  "publication_performed": false,
+  "toolkit_modified": false
+}

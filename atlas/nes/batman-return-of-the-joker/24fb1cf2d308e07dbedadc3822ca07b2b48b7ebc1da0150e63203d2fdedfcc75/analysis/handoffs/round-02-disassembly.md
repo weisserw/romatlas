@@ -1,0 +1,13 @@
+# Round 2 disassembly handoff
+
+Exactly one disassembly pass complete; accepted checkpoint **pass-006**. ROM classification: 76.93% (302530 / 393232 bytes classified; 90702 bytes unknown).
+
+Accepted23715 new code +2100 new data bytes from independently reviewed round-01-static proposal. Total code24132, observed0. All117 added regions Static; old26 regions preserved. Fresh11036-instruction/86-span exact decode audit, mapper contracts, carry-inline data barriers, constant branches, finite handler tables, descriptors and arithmetic/palette patterns independently checked. Primary reasoning analysis/round-02/review.md; exact audit decode-audit.json; applied regions annotation-plan.json; per-bank counts counts.json; exact90702-byte unknown complement unknown-ledger.json. Retain physical8KiB indices and context contracts; no bank0 proposals, no universal interrupted reset context.
+
+map.validate passed; analysis/pass-006-verification.json byte_identical=true. State analysis/state.json; portable maps/current.json; generated/pass-006/game.asm. ROM hash unchanged24fb1cf2d308e07dbedadc3822ca07b2b48b7ebc1da0150e63203d2fdedfcc75. Map hash a991defbff43935b2bf0cce66e2d066199cb5cf5e04d4682f2f4d222fb241d66. pass-005 is preserved duplicate input checkpoint following rejected unsaved data-view parameter error; pass-006 is final.
+
+Next: full current-source commentary for pass-006. Prior commentary/source contains accepted417-code-byte pass-004 scope only; preserve it historically. New generic R02 labels deliberately await meaningful routine/branch/variable commentary. Fresh generated source is byte-identical but editorial gate is not complete for this expanded classification.
+
+After commentary, redirect remaining indirect actor factories CE7F/CED5 type-to-bank tables, bank4 9A75/9EB5/9EC1 and bank5 8493/92D0/978D dispatch domains, sound secondary command handlers/stream grammar, RAM calls0000/6000/6135 upload provenance. Existing proposal ordinary direct continuation batch is fully followed; fresh direct-flow audit has no unexplained same-slot gap. Do not demand natural selection to accept independently constrained structures; do not treat pointers/legal decoding as sufficient. New boundaries may support bounded generic non-code slices; inspect consumers/patterns before whole-gap inference. This handoff is not terminal exhaustion.
+
+R01-CLEAR/BANKHELPER/IRQ/LOOKUPS structurally verified; exact outcome/history in leads.json. Scenario checklist reviewed including ending and proactive RAM shortcuts: all unavailable under unchanged mapper69 TK-001, analysis/toolkit-issues.md. No emulator experiment repeated without changed capability, no toolkit/input edits, no publication/archive/deletion. All internal evidence remains local.

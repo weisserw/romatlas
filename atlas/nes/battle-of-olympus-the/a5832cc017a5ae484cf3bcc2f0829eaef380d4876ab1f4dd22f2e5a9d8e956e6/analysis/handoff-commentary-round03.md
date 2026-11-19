@@ -1,0 +1,15 @@
+# Commentary round03 handoff
+
+**Full current-source readability complete.** ROM classification remains **incomplete**, despite rounded100.00%:131086/131088 classified,26737 Code/104349 Data/2 Unknown. Checkpoint pass-003-final; map/state and frozen baseline SHA256 `d60123b8f0dcffb8ab9cd1c972680b1e87509085ece9ae40282f705fd6196bdc`.
+
+Entire prior commentary preserved at [round02 snapshot](round-03/commentary-round02). Fresh baseline prepared;10916 exact physical/kind regions carried with valid review. All10920 immutable scaffold entries/2090 compact units reviewed;972 code units cover26737 Code bytes. All13010 anchors relative to commentary/source and within current bounds. [Scope checks](../commentary/readability-round03.json), [scope/readability assessment](commentary/round03/readability-assessment.json), [empty frontier](commentary/round03/frontier.json).
+
+Repaired61 stale structural-gap statements across the entire source and371 dependent review summaries, including all seven redirect defects; [exact repairs](commentary/round03/dependency-repairs.json). Examples include placement reflection/damage, hurt-flash continuation, room-progress activation, equipped actions/inventory, signed gravity, division, keyboard repeats and audio pointer page carry. Sound names/comments retained without cosmetic rewrite. Newly accepted BE28..BE2E/FE28..FE2E have bounded generic copied-literal Data notes: independent graphics consumer/count proves third occurrence13E28..13E2E, without a local bank2/3 consumer or full graphics-record claim. Two remaining orphan60 bytes1CC9C/1CDE5 remain honestly Unknown.
+
+Exact BIT/LDA entry triples and both entry explanations retained. Copied sound static contracts retain unknown actual callers. Reset stored suffixes retain mapping-switch explanation. [Source](../commentary/source/game.asm), [symbols](../commentary/source/symbols.inc), [uncertainties](../commentary/uncertainties.md).
+
+Fresh [verification](../commentary/verification.json): ok=true/byte_identical=true. Source SHA256 `45f15cb32e18ef6fb26a2c67dba0426589cdd81fbdb8983864367b404cd9cb67`; symbols `e3292f23d7fe2c2daffaaef762bd049b8d6c62a8cf9bc26649bbef08ba3505b0`. [Reading copy](../commentary/reading-after.asm) refreshed, SHA256 `f90cab71a7963c2488e6eee3d29369229c53739461c0b61d69542c4d6bd426a7`. ROM unchanged a5832cc017a5ae484cf3bcc2f0829eaef380d4876ab1f4dd22f2e5a9d8e956e6.
+
+Next required redirect checks residual evidence/reasoning and independent possibilities; investigation can start without a ready classification proposal. Primary orphan-return comparison remains reusable; do not replay unchanged experiments. No terminal-incomplete acceptance or whole-ROM completion claim. Final editorial audit remains PENDING until final complete or terminal-incomplete acceptance after redirect/rejection review. Semantic identities, arbitrary state producers and natural ending route remain unresolved, separately from source readability.
+
+No new toolkit issue; NES-DOC-001 remains sole finding. No audit/archive execution, cleanup/deletion, publishing, commit, toolkit or input edit. All artifacts local; no live server required.

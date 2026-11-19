@@ -1,0 +1,100 @@
+[
+ {
+  "milestone": "Boot: Konami logo, BATMAN logo, title",
+  "route": "emulator.start; ~800 frames, no input",
+  "result": "visited (natural)",
+  "evidence": "traces/round1/observed-contexts.json",
+  "status": "visited"
+ },
+ {
+  "milestone": "Title menu START/PASSWORD",
+  "route": "title snapshot + input {port:1,buttons:[start]} 8 frames, release",
+  "result": "menu shown",
+  "status": "visited"
+ },
+ {
+  "milestone": "Intro cutscene (Shreck's, Penguin gang, Batmobile)",
+  "route": "menu: Start (6 frames) then ~5000 frames",
+  "result": "visited; not skippable with Start/A/B",
+  "status": "visited"
+ },
+ {
+  "milestone": "Stage 1-1 Gotham Plaza play",
+  "route": "natural from intro (frame ~6230); right/B/A pattern",
+  "result": "visited (natural), traced ~300 frames",
+  "status": "visited"
+ },
+ {
+  "milestone": "Password entry screen",
+  "route": "menu Down + Start",
+  "result": "not tried",
+  "status": "attempted (r03-a; arrival not confirmed)",
+  "r03a_attempt": {
+   "route": "power-on, 880 idle frames, [down] 8f, 20f idle, [start] 8f, then cycles of right/a/down/a (1748 frames total, no RAM writes; analysis/redirect/r03-a/tools/readwatch.py 1FD5A 1700 ... boot password 0)",
+   "result": "GameMode $22 stayed 4 for the whole run (4 also covers title and intro, see readwatch-14CCA-intro.json), so arrival on the password screen is not confirmed; no frame captured. Run was primarily a fixed-bank access watch.",
+   "obstacle": "menu-cursor/password sub-mode RAM contract not identified; not classification-relevant (screen code already classified). Next: watch the title menu cursor byte and capture a frame after Down+Start.",
+   "evidence": "analysis/redirect/r03-a/evidence/readwatch-1FD5A-password.json"
+  }
+ },
+ {
+  "milestone": "Stage tour $3E=0x00..0x15 (1-1 .. 6-2 part 2)",
+  "route": "snapshot pre_stage (traces/round1/pre_stage.snap; recipe: reset, ~880 frames to title, buttons [start] 8f, 90f, [start] 6f, 30f -> intro_start, +4600 frames) ; emulator.memory.write ram $003E=N; 420 frames untraced; then 2x pattern [right]20,[right,b]4,[right]8,[a]8,[b]4,[left]10,[right,a]10,[b]4,[]6,[select]4,[]6 traced",
+  "result": "all 22 stage values loaded distinct stages with gameplay (artificial state). Coverage grew 8510 -> 13041 unique instructions; later stages added few.",
+  "evidence": "traces/round1/observed-contexts.json; scratch screenshots not retained",
+  "status": "visited (artificial)"
+ },
+ {
+  "milestone": "$3E=0x16/0x17",
+  "route": "same as tour",
+  "result": "garbled screen; out of range",
+  "status": "attempted (invalid)"
+ },
+ {
+  "milestone": "Bosses / stage clear transitions",
+  "route": "needs deeper play or RAM shortcut",
+  "result": "not reached; r01-a: boss fights for stages 1-2/2-3/4-3/5-2/6-2b entered by stage write (commentary bossprobe), stage 3-3 boss part 1 visited (wave $1F, BossClass 4). Boss defeat/stage clear not played: boss HP/defeat RAM not identified.",
+  "status": "partially visited (artificial); natural defeat deferred"
+ },
+ {
+  "milestone": "Ending/credits",
+  "route": "r01-a: stage-$0D play state (pre_stage.snap, $3E=$0D, 540 frames), then emulator.memory.write $0022=7 (GameMode), $0023=0; idle frames, Start every 600 frames",
+  "result": "Ending scenes (Penguin, Bat-signal/Catwoman) and staff credits (\"SPECIAL THANKS\") rendered; ending step $05AF 4->16 then cycles 15/16 within ~3600 frames. Natural trigger located statically: bank-5 stage-event code lda #7/sta GameMode at $B7B9 (lead L009). Bank-15 $F3C3 ending code fetched (133 unknown offsets, all predicted statically). | Round 2: ending also reached from the final-boss defeat path (forced defeat flags, not GameMode write), see final-stage entry.",
+  "status": "visited (artificial)",
+  "evidence": "analysis/redirect/r01-a/evidence/probe-ending-gamemode7.json, analysis/redirect/r01-a/evidence/probe-ending-long-log.txt, analysis/redirect/r01-a/evidence/frames/"
+ },
+ {
+  "milestone": "Stage 3-3 boss (part 1, wave $1F)",
+  "route": "pre_stage.snap; $003E=$0D; 540 idle frames (stage loads, StageState 3); hold Right 150 frames -> wave record 0 (column 1) triggers naturally; 450 traced frames of fight pattern",
+  "result": "BossClass=4, ObjType $1F in slot 0; 416 instruction fetches in bank-11 unknown 0x16F05-0x17546 (all predicted by static descent)",
+  "evidence": "analysis/redirect/r01-a/evidence/probe-stage33-boss.json",
+  "status": "visited (artificial stage entry)"
+ },
+ {
+  "milestone": "Stage 3-3 boss part 2 (wave $0B, BossClass 3)",
+  "route": "same snapshot, StageScriptPos($0149)=9",
+  "result": "not triggered (BossClass 0); record/position assumption wrong",
+  "evidence": "analysis/redirect/r01-a/evidence/probe-stage33-boss.json",
+  "status": "attempted; next: defeat part 1 or decode record 1 trigger"
+ },
+ {
+  "milestone": "Final stage 6-2 part 2 boss ($3E=$15, ObjType $34) and defeat -> ending (Round 2)",
+  "route": "traces/round1/pre_stage.snap; emulator.memory.write $003E=$15; 540 idle frames; hold [right] 8x30 frames -> traces/round2/final_boss.snap (boss active, EnemyHitPoints[0] $0145=$A0). Probe 2/3: fight patterns ([dir]6,[dir,b]4,[]4,[b]4,[]6) with $0150/$0145 forced to 1 and PlayerHealth $0140 refilled. Probe 4: $0145=0 and $0300|=$64 (mimic EnemyTakeHit_Defeated for slot 0), idle frames. Buttons via {port:1,buttons:[...]} (TK-001); 20-frame step chunks, max_operations 1e6, timeout 30 s; trace capacity 0.",
+  "result": "Boss fight visited (artificial stage entry); natural hits did not connect within ~60 bounded cycles. Forced defeat flags: StageState $36 -> 4 at once, GameMode $22 -> 7 after ~390 frames, bank-5 ending trigger $B7B9 fetched. 5285 unique ROM instruction starts fetched across probes, 0 outside Code instruction starts of the Round-2 map, 428 inside Round-2 Static regions.",
+  "evidence": "analysis/evidence-round2/probe-final-boss.json, analysis/evidence-round2/probe-coverage-check.json, scripts analysis/tools-round2/probe_final*.py",
+  "status": "visited (artificial: stage write + forced defeat flags); natural defeat attempted, not achieved"
+ },
+ {
+  "milestone": "Final boss (stage $15, ObjType $34) defeated by player attacks -> StageEvt_FinalBossCleared -> ending (Round 2 redirect r02-a)",
+  "route": "traces/round2/final_boss.snap; closed-loop pad-1 bot (analysis/redirect/r02-a/tools/fb_fight.py): walk to |boss X - player X|<=28 on the same ground line, face the boss, B pulses (2 frames face, 3 frames B, 5 idle). Artificial assist: EnemyHitPoints[0] $0145=8 once at load (natural 160), PlayerHealth $0140=$20 rewritten before every control step. Budgets: 20-frame chunks, max_operations 1e6, timeout 30 s.",
+  "result": "Unassisted: punches connect (-2 HP each, 160->156) but the player dies (GameMode 6) within ~550 frames. Assisted: 4 real hits -> HP 0 via EnemyTakeHit, StageState 4 at frame 586, GameMode 7 at frame 1464, ending steps 4/5/8 by frame 2024; $B7B9 fetched; 0 fetches outside Code instruction starts; none of the 9 L017 bytes fetched. Defeated-state snapshot traces/round2/final_boss_defeated.snap.",
+  "evidence": "analysis/redirect/r02-a/evidence/fight-hp8-keephealth.json, fight-hp8-keephealth-cov.json, fight-hp8-keephealth-partial.log",
+  "status": "visited (player-attack defeat with artificial HP/health assist); fully unassisted defeat not achieved (requires dodge play, not a RAM contract)"
+ },
+ {
+  "milestone": "Stage $11 (tileset 4) ObjType $33 spawner wave (record $973C) - Round 2 redirect r02-a",
+  "route": "traces/round1/pre_stage.snap; $003E=$11; idle; at the first StageState 3 after frame 1100 write StageScriptPos $0149=$99 (record 17) and ScrollColumn $0089=0 (column-0 immediate-trigger rule); idle to frame 1900 (10-frame steps, max_operations 1e6).",
+  "result": "WaveId $33 loaded, stage event (StageState 5) then ObjType $33 in slots 0/2 with BossClass 0, enemy batches of ObjType $1B released; ObjT33 fixed-bank code fetched (62 starts) and its calls landed in bank 6 $8754 / bank 7 $BE86 (pair 6/7); no fetch at the 4/5 or 10/11 aliases. Artificial trigger.",
+  "evidence": "analysis/redirect/r02-a/evidence/probe-objt33.json (run 1 without the column write did not trigger: probe-objt33-run1-notriggered.json)",
+  "status": "visited (artificial wave trigger)"
+ }
+]

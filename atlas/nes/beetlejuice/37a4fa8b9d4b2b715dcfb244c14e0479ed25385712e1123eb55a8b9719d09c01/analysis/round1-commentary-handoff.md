@@ -1,0 +1,13 @@
+# Round 1 commentary handoff
+
+Current-source readability complete. No remaining naming/comment ranges or unreviewed backlog. Whole-ROM classification remains incomplete: 19.15% (25,107/131,088 bytes; 105,981 unknown). Current map/state/checkpoint pass-001-final unchanged; map SHA256 b4cbd4690d6850d5155f0bc94dafcf48607ac1fab283289ff2d6c080043e9189.
+
+Reviewed all 1,437 scaffold entries (944 Code/124 Data/369 Unknown), with 950 bank-context code-fragment units across 232 mechanism groups. All 22,647 classified code bytes and 2,460 classified data bytes covered. Source: commentary/source/game.asm. Refreshed reading copy: commentary/reading-after.asm. Review records and valid source-relative locators: commentary/review.json. Compact scope: analysis/commentary-round1/scope.json.
+
+Fresh final byte-identical verification: commentary/verification.json; source SHA256 82974701ab5a7bef74fffdc36b920ea20caaba5a41b9274d9802a53b7342ee12. ROM remains original SHA256. Frozen before/, baseline and phase1-state preserved. No final editorial/archive audit run; that separate acceptance remains pending.
+
+Source explanations/names cover bank dispatch and interrupt variants; four-channel music/effect stream engine; PPU bit-tree/run/nested-command decoders; map row/metatile/property lookup; sprite command renderers and OAM clipping; fixed-point player/actor movement; contact/support/inventory paths; room initialization/frame scheduling, alternate-stack uploads, palette fades, inventory mirroring transfer, and reset/title tasks. Unknown semantic identities are stated locally instead of invented. Generic Data retains bounded evidence; opaque gaps explicitly remain unknown.
+
+Redirect should preserve prior outcomes and continue L-R1-ROOM, L-R1-STATIC and L-R1-GFX. Strongest new context: transition scanner ($01BA90 classified prefix) matches 16-pixel player cells but its matched-index continuation and task/SP prerequisites remain opaque; combine with loader $8110, scheduler setup $018D33, task initialization $01DAF1 and NMI trampoline $01FEBF before further room shortcuts. Other concrete connected consumer opportunities: map row/metatile/property structures (C-R1-MAP) and sprite command descriptors (C-R1-SPRITE). Exact questions/constraints are in commentary/uncertainties.md. These are research uncertainties, not unread source.
+
+No runtime experiments or competing writer were started. No active server/process remains. Toolkit summary unchanged: one confirmed documentation/API mismatch NES-001, zero new suspected bugs/missing features, no blockers; analysis/toolkit-issues.md. Local artifacts only; no publishing, cleanup or toolkit changes.
