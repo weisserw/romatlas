@@ -1,0 +1,41 @@
+# Round 02 disassembly handoff
+
+Exactly one disassembly pass completed, ROM incomplete. **ROM classification: 74.44% (292707 / 393232 bytes classified; 100525 bytes unknown).** Gain20875 unique physical bytes; exact297-range complement and per-bank counts: [summary](round-02/summary.json), [unknown ledger](round-02/unknown.json). All original classifications preserved. No toolkit, ROM, commentary, archive or publication changes.
+
+Fresh internal map validation, save/export and unique **pass-002** checkpoint succeeded. [Verification](pass-002-verification.json) reports byte_identical=true; [frozen map](../maps/pass-002.json), [generated source](../generated/pass-002/game.asm). State/current/frozen-map SHA256 `e5112691a35118605d5fe42ebe56cfeb23a268056883e512e3712dbb87dfd7af`. ROM unchanged `09a213971a9999a340b61eeb1e98b02b4e84eedd3311ca7c456ccded11e659c3`. Existing commentary source entirely preserved, SHA256 `19795550bd396556c250ddcfd6a4df1be11ec5b89f6f1de0f802fd20a303084e`; next commentary phase owns changed-baseline carryover and full current-source readability. Prior readability approval does not cover newly classified bytes.
+
+## Independent subclaim outcomes
+
+All nine ready R01R IDs consumed and set verified with appended attempt history in [leads](leads.json). Counts below attribute unique new bytes in annotation order; overlapping observed/static support is not double counted.
+
+| Lead | New bytes | Decisive structural support |
+|---|---:|---|
+| R01R-FIXED-CORE |3510| Reset, interrupt, mapper, PPU/text/attribute/BCD/math helpers independently decoded; exact code/data boundaries.21-byte reset copy,12-byte attribute tables,100BCD,512 arithmetic lookup,240pitch and411 numeric tail separately inspected. Callback getters accepted as Static callable X/Y contracts matching setter fields and terminal RTS, without natural-caller assertion. |
+| R01R-SOURCE-CONTINUATIONS |2222| Intro direct chain/callback installs; practice PHA/PLA/text/track selector4 exclusion; setup branch/field/sprite interpreter roots, five six-by-eight-byte actor lists and407byte command continuation. Local intro87BD..87BF retained unknown. |
+| R01R-AUDIO-GAPS |335| Exact predecessor/branch continuations and two-stage16bit modulation mechanics through instrument thresholds; short shared-return/jump gaps. |
+| R01R-TEXT-HELPERS |488|338noncode mask/pointer/name/label corpus plus150code string preparation; consumers and zero terminators. Exploratory linear FBA0 text decode explicitly rejected as code evidence. |
+| R01R-MENU-BATCH |5506|126original handler/dispatcher gaps, plus3212connected code and2168bounded assets/data. Supported RTS dispatcher and nonlocal stack exits; complete directly connected password/editor/results/field/callback graph. |
+| R01R-ENDING-BATCH |1664|417code and1247data, negative season gate, exact1024-output RLE, three strings, pointer/palette/sprite adjacency and ten-frame relative container ending at independent9A7Dcode. |
+| R01R-PIT-COPY |623|29byte copier plus594byte Data from exact256+256+82 chunks. Mechanical backing role only, no invented table subject. |
+| R01R-PRERACE-BATCH |1630| Scene81, software DAC, readback install/NMI contracts; width/selector/count/glyph corpus and RLE/sprite/palette extents. Stop at data/code boundaries, already classified BAA8 shared tail preserved. |
+| R01R-SCENE-RACE-ROOTS |4897| Saved accepted fetches decoded under each original physical bank context; natural racing separated from artificial pit/results/ending. Static overlap retains static classification and separate runtime evidence. |
+
+Initial83subclaims:62code intervals fresh decoded to exact endpoints,21data intervals supported independently. [Code audit](round-02/code-audit.json), [exact readable audit](round-02/code-audit.txt), [independent extent verification](round-02/extent-verification.json), [initial annotations](round-02/accepted-initial.json). Valid decoding alone was not the root claim: accepted predecessor/control/stack and explicit callable/consumer contracts supply structure. Static support does not assert natural reachability.
+
+## Connected batch beyond original menu ranges
+
+[Menu graph](round-02/menu-connected-graph.json) follows1803instructions from8148/845A/9AC5/984E/930B/AD8A/8CBE and explicitly installed B0C6/9B3B/94C2/957E/95B7/86B3 callbacks under [2,3,14,15]. No budget exhaustion, conflicting instruction starts, data barrier or unresolved call/context stop. The E626 and FDC1 contracts were independently admitted as fixed attribute/decimal helpers; other admitted fixed calls are CHR/display/math/text helpers. No banked PRG mapper store encountered. Terminal E0E2 scene jumps end propagation. Password codec uses inverse character lookup, checksum, packed driver scores and season/track fields. Editor AF3D/B002 aborts intentionally pop their JSR return before jumping AE08; ordinary returns separately remain coherent. Installed callbacks have finite counter/input/raster roles.
+
+[Menu data](round-02/menu-data.json) preserves18exact claims: RLE883A210bytes,95EB424,9C01467,B179438; each emits1024 and independently ends at directly supplied32byte palette. Sprite backing892C41bytes, positioned9DF4183, B35169; count+4N source contracts.9B338bytes derives from AND3;9BCD4masks from AND3;9BD114bytes from selector0..5/double and override12;9BDF5tile bytes;9BE420bytes from five four-byte descriptors;95D423bytes of scalar/pointer/numeric backing;B0F3134bytes password alphabet/exclusion/inverse-codec backing. Unresolved internal schema uses generic Data, with actual consumers, repeated non-instruction patterns, precedingRTS and independent nextobject boundaries. No semantics gate blocks structural completion. [Extension annotations](round-02/accepted-extension.json).
+
+## Gameplay and useful remaining questions
+
+Reuse round01 redirect's natural race/accelerated and cleanup-aware artificial pit/results/ending snapshots. Broad representative distinct systems already visited, including service interaction, pit return, trophy animation and standings. No unchanged timed prerace wait, failed direct-switch scenario, speculative RAM brute force or new gameplay run was repeated. This pass emphasizes independent review of saved useful evidence and static continuation closure.
+
+Produced investigation questions for the next redirect (no new ready lead claimed):
+
+- **R02D-RACE-CONTINUATIONS:** Newly accepted observed bank12/13/14 racing fragments and bank8/9pit fragments supply static roots across remaining alternate branches. A useful next bounded batch should establish transitive bank/return contracts of local race helpers, especially any scene wrappers, before extending beyond sampled fetches. Source race8112/BF7B and pit815A/8297 already mechanically supported; no claim that unsupported neighboring bytes are data or code. This pass completed the independently supported original batch and coherent menu expansion; exhaustive recursive race closure is not claimed.
+- **R02D-SETUP-STREAM-BOUNDS:** Accepted five setup48byte actor lists and A9B0..AB47 command consumer provide concrete downstream stream grammar. Independent shared-target/variable-token endpoints remain unproved. Inspect local streams using accepted command thresholds and explicit zero/return behavior; use generic Data where noncode is independently clear, without demanding actor names or exact original schema.
+- **R02D-RESIDUAL-OBJECTS:** New menu/ending/prerace data consumers constrain adjacent remaining ranges. Use [unknown ledger](round-02/unknown.json) with predecessor annotations and [menu graph](round-02/menu-connected-graph.txt), not a repeated whole-ROM scan. Intro87BD..87BF remains specifically ambiguous; extend neither neighboring descriptor without new discriminating evidence.
+
+This is an ordinary productive incomplete handoff, **not terminal exhaustion**; no terminal rejection review asserted. Next phase commentary, then redirect against changed baseline. Preserve historical evidence and current commentary. Toolkit report [toolkit-issues.md](toolkit-issues.md): one preexisting suspected input-schema/documentation issue, zero confirmed/blocking issues; no new issue. Buttons-array workaround remains applicable. Disk about3.9GB free; round02 artifacts are bounded, no cited evidence deleted.

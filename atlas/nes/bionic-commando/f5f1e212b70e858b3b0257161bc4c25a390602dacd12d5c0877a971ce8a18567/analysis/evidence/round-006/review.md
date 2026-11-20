@@ -1,0 +1,13 @@
+# Round006 independent structural review
+
+Fresh configured binary decode: fresh-decode.json; input hashes before.json. Fixed physical8KiB banks30/31; lower slots unspecified. Exact complete instruction ranges3E9C2+21 and3E9D9+22 independently checked. Accepted predecessor3E9B1+17 bytes A202062926282627261C261B261ACAD0F1 establishes six-byte least-to-most-significant order29,28,27,1C,1B,1A, shifted twice. Its exit3E9C2 supplies a concrete alignment and high-half R order.
+
+Trial:20=1F|1; SEC explicitly initializes no-borrow, then SBC20 / TAX, SBC1E / TAY, SBC1D preserve borrow through loads and transfers. Thus with R=1A:1B:1C and Q=1D:1E:20, (A:Y:X)=(R-Q) mod2^24 and C=(R>=Q). N/Z reflect final high byte, V final high subtraction; whole-word zero is not claimed.21byte endpoint is complete high subtraction/flags result before the defective branch.
+
+Commit: STA1A/STY1B/STX1C exactly invert this register result, preserving C. LDA20/ADC0/STA1F; LDA1E/ADC0/STA1E; LDA1D/ADC0 propagate incoming carry over the same Q byte order. Low/mid results are stored and high is in A; carry is24bit overflow. This is a complete register-output calculation Q+C, requiring only stated entry registers/RAM/carry. It neither requires nor proves a valid enclosing RTS or caller. For trial-success fallthrough C=1; actual entry/reachability remains unresolved.
+
+Competing numeric data lacks any consumer/schema and does not explain predecessor alignment, exact shared byte order, preserved borrow/carry, register permutation and inverse stores together. Stronger alternative: stale arithmetic remnant damaged by vector overwrite. That explains the failed whole routine while affirming the intact operations' structural Code role; Static provenance is appropriate. No intended square-root or repaired runnable algorithm is claimed.
+
+Boundary exclusions verified directly: BCC3E9D7+2 targets3E9D7+2+1A=3E9F3, accepted vector operand. Dangling85 at3E9EF would use accepted vector4C as STA operand. Neither receives annotation, nor does leading3E9B0. Connected review therefore accepts exactly43bytes, rather than extending through contradicted control/store boundaries. Earlier renderer/counter/wrapper/trap/isolated remainder review in redirect/round-005-a/research.md remains sound and supplies no further independently supported slice. Generic-data fallback remains ambiguous for these code-shaped residuals.
+
+Existing broad progression, bosses, rescue/explosion and artificial terminal milestone evidence reused unchanged from scenarios.json and round005 redirect; no new RAM contract justifies replay. Natural cockpit/credits unresolved. Pass stops incomplete for commentary/redirect, without claiming terminal exhaustive gameplay or classification.

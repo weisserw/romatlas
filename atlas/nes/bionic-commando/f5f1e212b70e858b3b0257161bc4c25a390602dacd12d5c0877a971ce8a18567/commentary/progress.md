@@ -1,0 +1,16 @@
+# Commentary progress
+
+Round011 current-source readability is complete. Entire prior commentary preserved intact at analysis/round-11/commentary-round-010 before fresh preparation. All 2016 prior units retained by physical identity and unchanged execution views. 2105 exact spans carry; the former Unknown2 span is replaced by reviewed Code1/Data1. Current inventory: 2107 reviewed spans and 2018 reviewed units. Full current-source boundary/explanation, symbolic control operand and review-inventory checks have no gaps or deferred ranges. Reused sound prior review; final editorial audit remains pending after redirect.
+
+Named SkipBrkPaddingViaImmediateRti_P03E010 and ImmediateInterruptReturn_P03C0C2; explained discarded padding. Actual FFFE vector C0B2 points to immediate RTI. Explicit fixed banks30/31, intact stack, no NMI hijack/intervening interrupt contract preserves comparison flags/SP/AXY at E002. Three stack writes, stacked B marker and timing effects remain. Updated predecessor, filter and scan comments: entry at ClearSpecialObjectGroup initializes X=18, visits through6, skips six types and restores CurrentObject after clearing auxiliary active bytes. No natural entry is established. Corrected preserved E000 callee comments: cleanup can balance its JSR and return to CPU D674 inside inline words; that does not implement the original selector dispatcher. Other renderer, counter, arithmetic, generic-data and gameplay uncertainties remain as previously documented.
+
+Fresh configured verification passed byte-identically; reading-after.asm refreshed. Exact hashes and checks: analysis/round-11/commentary-completion.json. Classification separately remains incomplete at 262132/262160 (99.99%), with 28 Unknown bytes/15 intervals (analysis/evidence/round-011/unknown-ranges.json). No classification/map/state/ROM/toolkit edits, archive, cleanup/deletion, publication or subagents. No new toolkit issues; three prior confirmed issues in analysis/toolkit-issues.md remain unblocked. No runtime replay was needed. Disk3.8GiB free; scratch180KiB.
+
+
+## Final editorial acceptance
+
+Final editorial acceptance passed for round-011-classified:2107 reviewed spans/2018 units; no pending source/review gaps. Targeted review reused valid full-source credit and sampled major groups/dependencies. Corrected four understood PPU command-ring aliases, normalized4125 inherited review source paths for the audit contract, and appended current scenario/uncertainty supersessions preserving observations. See commentary/editorial-audit.md and analysis/final-acceptance/editorial-checks.json.
+
+Fresh configured commentary audit passed with byte-identical rebuild and reading refresh. Read-only configured internal-store and portable-map validations both returned ok:true. Exact evidence/hashes in analysis/final-acceptance.json and analysis/final-acceptance/. ROM, map, state and configured binary unchanged. No archive execution, cleanup, publication or toolkit edits.
+
+ROM classification remains INCOMPLETE:262132/262160 classified,28 Unknown bytes/15 intervals. Natural final victory and full timed credits remain unproved. Three prior confirmed toolkit issues remain unblocked; no new toolkit issue found. Coordinator handles archive options/progress separately.

@@ -1,0 +1,139 @@
+{
+  "version": 1,
+  "round": 3,
+  "phase": "final acceptance",
+  "interruption": "First non-PTY server exited 143; runtime aggregates lost except initial-discovery query and captures. Durable snapshot at frame913 resumed. New PTY server used; subsequent contexts and snapshots exported per bounded route.",
+  "milestones": [
+    {
+      "milestone": "copyright/startup",
+      "status": "visited",
+      "route": "Cold boot, no input 88 traced frames (180 requested, timeout20s), then120+100 frames with Start held; release then600 frames untraced, then5 traced frames with A+Start.",
+      "result": "copyright at frame913; ordinary startup remains interrupt driven; no gameplay natural reachability claim",
+      "evidence": [
+        "analysis/round1/title.png",
+        "analysis/round1/copyright.snapshot.json"
+      ]
+    },
+    {
+      "milestone": "intro narrative and outdoor phonebooth",
+      "status": "visited",
+      "route": "Import copyright.snapshot.json; reassert []; write RAM884=[0,0];5 frames; write RAM19=[1];8 frames. Continue after-cutscene-route.json.",
+      "result": "Narrative then outdoor booth/character; artificial timer skips. Actual resumed fetches retained in contexts-initial.json.",
+      "evidence": [
+        "analysis/round1/intro-route.json",
+        "analysis/round1/after-cutscene-route.json",
+        "analysis/round1/after-cutscene.snapshot.json"
+      ]
+    },
+    {
+      "milestone": "phonebook and dial-pad",
+      "status": "visited",
+      "route": "dialogue-start route -> phonebook; Select3 frames,release then30+4 -> phone-pad-ready.snapshot.json",
+      "result": "Phonebook and keypad rendered; D-pad/A entry confirmed.",
+      "evidence": [
+        "analysis/round1/dialogue-start.png",
+        "analysis/round1/phone-pad-ready.png"
+      ]
+    },
+    {
+      "milestone": "later level6 via built-in password",
+      "status": "visited",
+      "route": "phone-pad-ready.snapshot.json; 2-frame releases/presses keypad sequence in dial-level6-route.json; dial5555864",
+      "result": "RAM$1C 0->5; outdoor arrival and movement observed. Levels2-5 not individually visited; built-in password route verified for6.",
+      "evidence": [
+        "analysis/round1/dial-level6-ram.json",
+        "analysis/round1/level6-transition.png",
+        "analysis/round1/later-play.png"
+      ],
+      "historical_milestone": "later levels2-6",
+      "unvisited_scope": "Individual levels2-5 are deferred separately; this visited status covers level6 only."
+    },
+    {
+      "milestone": "distinct worlds/mechanics",
+      "status": "visited",
+      "route": "late outdoor right+A120+4; earlier reset-stage trial -> ending-followup.snapshot.json -> A12,down12",
+      "result": "Outdoor movement/jump, inventory/phonebook and Circuits of Time launch/movement observed. Later supported course-completion shortcut initialized another outdoor world; distinct scene3 and form5/7 animations also exercised. See subsequent milestone records; full horse/canoe mechanics remain unverified.",
+      "evidence": [
+        "analysis/round1/later-play-route.json",
+        "analysis/round1/later-start-route.json",
+        "analysis/round1/ending-followup.png",
+        "analysis/round1/circuit-play.png"
+      ],
+      "historical_result": "Outdoor movement/jump inputs, inventory/phonebook transition and Circuits of Time booth launch/movement observed. Specific historical worlds/sidecourses remain deferred; need course-completion contract."
+    },
+    {
+      "milestone": "ending/credits",
+      "status": "visited",
+      "route": "pre-ending.snapshot.json; inputs[]; RAM28=[5],RAM9=[193,128,80,129];10 frames,max_operations800000,timeout8000; effective PRG[0,1,2,3]",
+      "result": "Artificial congratulations/Game Over screen. Earlier RAM9=[193,128,73,129] trial rejected because$CC38 resetsstage toFF; corrected entry$8150 skips initializer.",
+      "evidence": [
+        "analysis/round1/progression-transition.json",
+        "analysis/round1/level-init-cli.json",
+        "analysis/round1/ending-corrected.png",
+        "analysis/round1/ending-corrected.snapshot.json"
+      ]
+    },
+    {
+      "milestone": "course completion and subsequent outdoor world arrival",
+      "status": "visited",
+      "route": "analysis/round1/circuit-play.snapshot.json; buttons[];RAM$5F=$80;10frames,max_operations1200000,timeout20000; then120frames/max8000000/timeout20000 (timeout after62frames); arrival snapshot; right+A20frames/max2000000/timeout15000.",
+      "observed_result": "Outdoor world with actors/water rendered; initialized normal scene/NMI continuations; subsequent movement/jump exercised. Artificial scenario, not natural course success.",
+      "evidence": [
+        "analysis/redirect/r1-20261120-a/course-completion-route.json",
+        "analysis/redirect/r1-20261120-a/course-arrival.png",
+        "analysis/redirect/r1-20261120-a/arrival-movement-route.json",
+        "analysis/redirect/r1-20261120-a/arrival-movement.png",
+        "analysis/redirect/r1-20261120-a/course-contexts.json"
+      ]
+    },
+    {
+      "milestone": "selectedform5and7transitionanimations",
+      "status": "visited",
+      "route": "Reusecourse-arrival.snapshot.json/reassert[];069A/06A1=F7/89 or6F/8A;4[],8right+A,4[]frames,budget1600000/5000mspercall.",
+      "observed_result": "Actualselectors5/7,descriptorsC74C/C763,callbacks8A30/8A95,animation5->6and12->13;renderedtransitions.No naturalrouteorhorse/canoegameplayclaim.",
+      "evidence": [
+        "analysis/redirect/r2-20261120-a/form-routes.json",
+        "analysis/redirect/r2-20261120-a/form23-v2.png",
+        "analysis/redirect/r2-20261120-a/form45-v2.png",
+        "analysis/redirect/r2-20261120-a/gameplay-findings.md"
+      ]
+    },
+    {
+      "milestone": "distinctscene3initializedworldandinput",
+      "status": "visited",
+      "route": "Cleanarrival/reassert[];RAM26=3,06DC=0,09..0C=[C1,80,6C,A8];40framesrequested2400000ops/10000ms(timeoutafter22),then12right+Aand4releaseframes.",
+      "observed_result": "Normalmap/actorinitializationandA9CD/A9FFcontinuations,distinctpath/fence/treeoutdoors,actorheight0->2->3. FirstA86CasfirstNMIattemptblack/disabledNMI;80C1first/A86Csecondcorrectsunderstoodentryprecondition. Artificialvisit.",
+      "evidence": [
+        "analysis/redirect/r2-20261120-a/world3-route.json",
+        "analysis/redirect/r2-20261120-a/world3-second-route.json",
+        "analysis/redirect/r2-20261120-a/world3-second.png",
+        "analysis/redirect/r2-20261120-a/world3-second-contexts.json",
+        "analysis/redirect/r2-20261120-a/gameplay-findings.md"
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "milestone": "individual levels2-5 and additional historical worlds",
+      "status": "deferred",
+      "reason": "Level6, course arrival and a distinct initialized scene3 were visited with input; ending sampled artificially. Course-completion contract is now resolved. Remaining individual historical-stage identities/routes and full vehicle mechanics have no concrete unresolved Code/Data gain after complete scene/form closure; representative coverage retained, no exhaustive progression claim.",
+      "historical_reason": "Password6 and terminal sampled; further destination/course completion contract is a concrete redirect lead. Avoid repeated intro."
+    },
+    {
+      "milestone": "horse/canoe sidecourses and rare encounters",
+      "status": "deferred",
+      "reason": "Representative circuits and outdoor systems sampled; sidecourse entry/position contracts unestablished."
+    }
+  ],
+  "coordinator_corrections": [
+    {
+      "phase": "final acceptance",
+      "reason": "Separate sampled level6 from unvisited2-5; retire superseded course-entry prerequisite while preserving original milestone/result text.",
+      "evidence": [
+        "analysis/redirect/r1-20261120-a/handoff.md",
+        "analysis/redirect/r2-20261120-a/gameplay-findings.md",
+        "analysis/redirect/r3-20261120-a/findings.md"
+      ]
+    }
+  ]
+}

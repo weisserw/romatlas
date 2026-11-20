@@ -1,0 +1,477 @@
+{
+  "version": 1,
+  "round": 1,
+  "status": "round_001_closed_incomplete",
+  "milestones": [
+    {
+      "milestone": "title",
+      "status": "visited",
+      "route": "reset;step frame requested180 budget10000000 timeout30000 resulted120 frames; press Start30 release;wait90 to240 title",
+      "evidence": "analysis/evidence/round-001/title240.png"
+    },
+    {
+      "milestone": "opening communications",
+      "status": "visited",
+      "route": "at240 Start60 release;wait120 requested stopped at398;Start+A60 release;hold A600 trace disabled to1058",
+      "evidence": "analysis/evidence/round-001/after-intro.png"
+    },
+    {
+      "milestone": "area1/platforming",
+      "status": "visited",
+      "route": "pre-shortcut-snapshot frame3002; RAM004D=01,00CC..CF=03,00,00,00; room004C=00 retained; traced loader and right+A+B",
+      "result": "Player, water and platform rendered; gun pose; artificial state",
+      "evidence": [
+        "analysis/evidence/round-001/area1-action.png",
+        "analysis/evidence/round-001/area1-loading-snapshot.json"
+      ]
+    },
+    {
+      "milestone": "later areas/neutral/boss",
+      "status": "visited",
+      "reason": "need stage selection RAM/transition contract; will investigate in same pass",
+      "route": "See separate milestone recipes below",
+      "result": "Area12 exterior, neutral13 NPC, special96 interior, room101 mechanical helicopter visited artificially",
+      "current_correction": {
+        "checkpoint": "round-011-classified",
+        "note": "Original final-helicopter/cockpit attribution is superseded: room101 is the pre-final Albatross encounter interpretation, with kind70 health39 and defeat transition to room96. The shot attempt does not establish a final-cockpit prerequisite or natural victory.",
+        "evidence": [
+          "analysis/redirect/round-001-a/boss-graph.json",
+          "analysis/redirect/round-001-a/advance3-result.json"
+        ]
+      }
+    },
+    {
+      "milestone": "area12/final/credits",
+      "status": "attempted",
+      "reason": "Area12 and final mechanical helicopter visited artificially; ending explosion/rescue cinematic visited via CB4; credits/terminal unverified, needs late-cinematic entry/wait contract.",
+      "current_correction": {
+        "checkpoint": "round-011-classified",
+        "note": "Original terminal-unverified observation superseded by artificial terminal signature visit recorded below. Natural victory and complete timed credits remain unproved.",
+        "evidence": [
+          "analysis/redirect/round-001-a/boss-graph.json",
+          "analysis/redirect/round-001-a/advance3-result.json"
+        ]
+      }
+    },
+    {
+      "milestone": "overworld map",
+      "status": "visited",
+      "route": "frame1058;repeat12 times A120frames release2frames, trace disabled for text waits;enable trace",
+      "evidence": [
+        "analysis/evidence/round-001/dialogue-route.json",
+        "analysis/evidence/round-001/after-dialogue.png"
+      ]
+    },
+    {
+      "milestone": "area12",
+      "status": "visited",
+      "base_snapshot": "analysis/evidence/round-001/pre-shortcut-snapshot.json",
+      "patches": {
+        "004D": [
+          12
+        ],
+        "004C": [
+          11
+        ],
+        "003F": [
+          0
+        ],
+        "00CC..CF": [
+          3,
+          0,
+          0,
+          0
+        ]
+      },
+      "inputs": [
+        {
+          "buttons": [],
+          "frames": 100,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "right",
+            "b"
+          ],
+          "frames": 8,
+          "trace": true
+        },
+        {
+          "buttons": [
+            "right",
+            "a"
+          ],
+          "frames": 8,
+          "trace": true
+        },
+        {
+          "buttons": [],
+          "frames": 0
+        }
+      ],
+      "budgets": {
+        "max_operations": 5000000,
+        "timeout_ms": 15000
+      },
+      "result": "Exterior and gun shots; artificial, not natural reachability",
+      "evidence": [
+        "analysis/evidence/round-001/area12-result.json",
+        "analysis/evidence/round-001/area12-contexts.json",
+        "analysis/evidence/round-001/area12-snapshot.json"
+      ]
+    },
+    {
+      "milestone": "neutral13",
+      "status": "visited",
+      "base_snapshot": "analysis/evidence/round-001/pre-shortcut-snapshot.json",
+      "patches": {
+        "004D": [
+          13
+        ],
+        "004C": [
+          12
+        ],
+        "003F": [
+          0
+        ],
+        "00CC..CF": [
+          3,
+          0,
+          0,
+          0
+        ]
+      },
+      "inputs": [
+        {
+          "buttons": [],
+          "frames": 100,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "right",
+            "b"
+          ],
+          "frames": 8,
+          "trace": true
+        },
+        {
+          "buttons": [
+            "right",
+            "a"
+          ],
+          "frames": 8,
+          "trace": true
+        },
+        {
+          "buttons": [],
+          "frames": 0
+        }
+      ],
+      "budgets": {
+        "max_operations": 5000000,
+        "timeout_ms": 15000
+      },
+      "result": "Neutral settlement and NPC; artificial, not natural reachability",
+      "evidence": [
+        "analysis/evidence/round-001/neutral13-result.json",
+        "analysis/evidence/round-001/neutral13-contexts.json",
+        "analysis/evidence/round-001/neutral13-snapshot.json"
+      ]
+    },
+    {
+      "milestone": "final-room96",
+      "status": "visited",
+      "base_snapshot": "analysis/evidence/round-001/pre-shortcut-snapshot.json",
+      "patches": {
+        "004D": [
+          12
+        ],
+        "004C": [
+          96
+        ],
+        "003F": [
+          0
+        ],
+        "00CC..CF": [
+          3,
+          0,
+          0,
+          0
+        ]
+      },
+      "inputs": [
+        {
+          "buttons": [],
+          "frames": 100,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "right",
+            "b"
+          ],
+          "frames": 8,
+          "trace": true
+        },
+        {
+          "buttons": [
+            "right",
+            "a"
+          ],
+          "frames": 8,
+          "trace": true
+        },
+        {
+          "buttons": [],
+          "frames": 0
+        }
+      ],
+      "budgets": {
+        "max_operations": 5000000,
+        "timeout_ms": 15000
+      },
+      "result": "Special interior with player and projectile; artificial, not natural reachability",
+      "evidence": [
+        "analysis/evidence/round-001/final-room96-result.json",
+        "analysis/evidence/round-001/final-room96-contexts.json",
+        "analysis/evidence/round-001/final-room96-snapshot.json"
+      ]
+    },
+    {
+      "milestone": "special-room98",
+      "status": "visited",
+      "base_snapshot": "analysis/evidence/round-001/pre-shortcut-snapshot.json",
+      "patches": {
+        "004D": [
+          12
+        ],
+        "004C": [
+          98
+        ],
+        "003F": [
+          0
+        ],
+        "00CC..CF": [
+          3,
+          0,
+          0,
+          0
+        ]
+      },
+      "inputs": [
+        {
+          "buttons": [],
+          "frames": 100,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "right",
+            "b"
+          ],
+          "frames": 8,
+          "trace": true
+        },
+        {
+          "buttons": [
+            "right",
+            "a"
+          ],
+          "frames": 8,
+          "trace": true
+        },
+        {
+          "buttons": [],
+          "frames": 0
+        }
+      ],
+      "budgets": {
+        "max_operations": 5000000,
+        "timeout_ms": 15000
+      },
+      "result": "Dark exterior after supported special-room transition; artificial, not natural reachability",
+      "evidence": [
+        "analysis/evidence/round-001/special-room98-result.json",
+        "analysis/evidence/round-001/special-room98-contexts.json",
+        "analysis/evidence/round-001/special-room98-snapshot.json"
+      ]
+    },
+    {
+      "milestone": "special-room101",
+      "status": "visited",
+      "base_snapshot": "analysis/evidence/round-001/pre-shortcut-snapshot.json",
+      "patches": {
+        "004D": [
+          12
+        ],
+        "004C": [
+          101
+        ],
+        "003F": [
+          0
+        ],
+        "00CC..CF": [
+          3,
+          0,
+          0,
+          0
+        ]
+      },
+      "inputs": [
+        {
+          "buttons": [],
+          "frames": 100,
+          "trace": false
+        },
+        {
+          "buttons": [
+            "right",
+            "b"
+          ],
+          "frames": 8,
+          "trace": true
+        },
+        {
+          "buttons": [
+            "right",
+            "a"
+          ],
+          "frames": 8,
+          "trace": true
+        },
+        {
+          "buttons": [],
+          "frames": 0
+        }
+      ],
+      "budgets": {
+        "max_operations": 5000000,
+        "timeout_ms": 15000
+      },
+      "result": "Final mechanical helicopter arena; player at bottom, boss intact; artificial, not natural reachability",
+      "evidence": [
+        "analysis/evidence/round-001/special-room101-result.json",
+        "analysis/evidence/round-001/special-room101-contexts.json",
+        "analysis/evidence/round-001/special-room101-snapshot.json"
+      ],
+      "current_correction": {
+        "checkpoint": "round-011-classified",
+        "note": "Original final-helicopter/cockpit attribution is superseded: room101 is the pre-final Albatross encounter interpretation, with kind70 health39 and defeat transition to room96. The shot attempt does not establish a final-cockpit prerequisite or natural victory.",
+        "evidence": [
+          "analysis/redirect/round-001-a/boss-graph.json",
+          "analysis/redirect/round-001-a/advance3-result.json"
+        ]
+      }
+    },
+    {
+      "milestone": "Final cockpit shot",
+      "status": "attempted",
+      "base_snapshot": "special-room101-snapshot.json",
+      "patches": {
+        "056F": [
+          128
+        ],
+        "05A9": [
+          64
+        ],
+        "0779": [
+          32
+        ]
+      },
+      "inputs": "right+A16 traced; release; wait120 untraced",
+      "result": "Normal gun did not defeat boss. Revised selected weapon04CA=05 produced black output, selectors remain[1,3,2,0,0]; defeat unproven. Do not repeat without contract research.",
+      "evidence": [
+        "analysis/evidence/round-001/final-shot-result.json",
+        "analysis/evidence/round-001/final-bazooka-shot-result.json"
+      ],
+      "current_correction": {
+        "checkpoint": "round-011-classified",
+        "note": "Original final-helicopter/cockpit attribution is superseded: room101 is the pre-final Albatross encounter interpretation, with kind70 health39 and defeat transition to room96. The shot attempt does not establish a final-cockpit prerequisite or natural victory.",
+        "evidence": [
+          "analysis/redirect/round-001-a/boss-graph.json",
+          "analysis/redirect/round-001-a/advance3-result.json"
+        ]
+      }
+    },
+    {
+      "milestone": "Ending cinematic shortcut",
+      "status": "visited",
+      "base_snapshot": "pre-shortcut-snapshot.json",
+      "patches": {
+        "004D": [
+          12
+        ],
+        "004C": [
+          96
+        ],
+        "003F": [
+          0
+        ],
+        "00CB..CF": [
+          4,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "route": "100 untraced load frames, right+B8/right+A8 traced, then five A180/release2 pulses untraced, four traced frames; bounded timed wait batches, partial timeout states saved.",
+      "result": "Base explosion and helicopter rescue visited. Later black transition through frame6957; selectors[4,0,1,4,3], wait74=0. Credits/terminal unverified; redirect contract research needed.",
+      "evidence": [
+        "analysis/evidence/round-001/ending-cb4-result.json",
+        "analysis/evidence/round-001/ending-cb4-continued-result.json",
+        "analysis/evidence/round-001/cb4-wait-result.json",
+        "analysis/evidence/round-001/cb4-wait2-result.json"
+      ],
+      "current_correction": {
+        "checkpoint": "round-011-classified",
+        "note": "Original terminal-unverified observation superseded by artificial terminal signature visit recorded below. Natural victory and complete timed credits remain unproved.",
+        "evidence": [
+          "analysis/redirect/round-001-a/boss-graph.json",
+          "analysis/redirect/round-001-a/advance3-result.json"
+        ]
+      }
+    },
+    {
+      "milestone": "terminal signature screen via understood cinematic gates",
+      "status": "visited",
+      "artificial": true,
+      "route": "Restore cinematic-late snapshot, release all buttons; runtime.py partial tracing; advance.py -> advance2.py -> advance3.py, exact per-step RAM patches88/89 countdown,8A fade,74 dialogue busy gate;4frames200000operations3000ms per step. Final CB..CF=[4,0,1,5,7].",
+      "observed_result": "Terminal static signature screen2010.8.2 / Joe, not natural final victory or complete timed credits.",
+      "evidence": [
+        "analysis/redirect/round-001-a/advance-result.json",
+        "analysis/redirect/round-001-a/advance2-result.json",
+        "analysis/redirect/round-001-a/advance3-result.json",
+        "analysis/redirect/round-001-a/advanced3.png",
+        "analysis/redirect/round-001-a/advanced3-snapshot.json"
+      ]
+    },
+    {
+      "milestone": "room101 versus final cockpit prerequisite review",
+      "status": "attempted",
+      "artificial": true,
+      "route": "Immutable read of saved room101/96/98 snapshots and static table/consumer tracing; no new combat patch.",
+      "observed_result": "Room101 slot11 kind70 health39 routes bank10 BB60; defeat transitionsroom96. Previous single shot does not discriminate boss prerequisite; exact cockpit route not established.",
+      "evidence": [
+        "analysis/redirect/round-001-a/final-room-fields.json",
+        "analysis/redirect/round-001-a/final96-fields.json",
+        "analysis/redirect/round-001-a/final98-fields.json",
+        "analysis/redirect/round-001-a/boss-graph.json"
+      ]
+    }
+  ],
+  "current_summary": {
+    "checkpoint": "round-011-classified",
+    "status": "terminal_incomplete",
+    "historical_round_and_status": "Top-level round/status and original milestone result/reason fields describe round001 observations; retain as history. Corrections below supersede their current interpretation.",
+    "terminal_signature": "Artificial terminal 2010.8.2 / Joe visited; natural final victory and complete timed credits unproved.",
+    "room101": "Pre-final Albatross encounter interpretation; kind70 health39/negative-result defeat transitions to room96. Not established as final cockpit arena.",
+    "evidence": [
+      "analysis/redirect/round-001-a/advance3-result.json",
+      "analysis/redirect/round-001-a/boss-graph.json",
+      "analysis/coordinator-rejection-review.md"
+    ]
+  }
+}

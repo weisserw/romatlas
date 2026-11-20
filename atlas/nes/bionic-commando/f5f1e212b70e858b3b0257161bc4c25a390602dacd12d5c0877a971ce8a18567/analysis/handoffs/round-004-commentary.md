@@ -1,0 +1,14 @@
+# Round004 commentary handoff
+
+Current-source readability is complete for **round-004-classified**. Map, state and frozen baseline SHA256: `ef40b6c7a98f2ad5f37da8693564ee177472e03a8869dde0d795f711d54331c7`.
+
+Reviewed **2,092 spans / 2,001 units** across the entire physical ROM: Code 44,737; Data 117,882; Image 99,328; Unknown 213 bytes in 17 intervals. Classification remains **261,947 / 262,160 = 99.92%**. Nine new Static Code intervals total 70 bytes; 2,081 unchanged region reviews and all 1,992 prior units retained with boundary/dependency checks. Previous commentary preserved whole at `analysis/round-4/commentary-round-003` before fresh preparation. Carry/full-inventory records: `analysis/round-4/carry-report.json` and `commentary-completion.json`.
+
+Source now explains all seven upper-alias reset contracts, the isolated 34-byte horizontal queue publisher, and the type-filter suffix. Shared queue RAM aliases cover every current producer/consumer; changed scan branch uses its actual role. Corrected old reset-footer/deactivation-continuation/OAM-field prose and affected review summaries/locations. Inventory has no pending readability, no unexplained code spans or numeric control targets. No remaining readability ranges. Existing valid routine/data explanations, uncertain game meanings and bank contexts remain intact.
+
+Mechanical limits: reset entry requires explicit MMC1 mode2 slots [0,1,pair,pair+1], then reset writes fix upper slots30/31 and fetch FFE4 from physical3FFF4. Copied vectors do not prove natural startup. Publisher consumes scratch1B cursor,18/17 destination and publishes high last; its renderer prefix remains59 opaque bytes. Filter's initial BEQ consumes an unresolved incoming equality flag across opaque E000/E001; accepted comparisons/helper/join do not establish the encompassing loop's function. Remaining counter/arithmetic/BC00/isolated ambiguities and natural final-shot/full timed-credits gaps stay explicit. Unknown game identities/resource subdivisions remain ordinary semantic uncertainty, not omitted readability.
+
+Fresh handoff verification **byte-identical=true**; reading copy refreshed. ROM SHA256 `f5f1e212b70e858b3b0257161bc4c25a390602dacd12d5c0877a971ce8a18567`; source game.asm SHA256 `3950c440b34d20ec2ab5016ed25c29fe96fe6cfa90ad903bd053780173c9453f`; symbols.inc `d40ce36f8009bddc58fdcf67b1cf73fdedffb94908b3311df010fea6f4d15ea0`.
+Reading-after SHA256 `8471db4f26917d3bd01b56daba507b621a10da415954b161bcf525898cd71d61`. Full verification/preservation details in completion record.
+
+Next: redirect. Final editorial/archive acceptance and audit remain pending; no audit invoked. Whole-ROM classification remains incomplete. No map, state, input ROM or toolkit edits; no cleanup/deletion, publication, archive acceptance or new runtime work.

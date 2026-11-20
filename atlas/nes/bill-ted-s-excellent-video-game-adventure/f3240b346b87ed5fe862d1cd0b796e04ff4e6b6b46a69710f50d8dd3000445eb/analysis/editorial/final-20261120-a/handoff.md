@@ -1,0 +1,13 @@
+# Final editorial worker handoff
+
+Worker final editorial acceptance passed. Coordinator independent acceptance and archive-options remain; this worker does not mark the goal complete or execute archive/publication/deletion.
+
+Classification 100.00%: 262160/262160 physical bytes, Unknown 0; 913 exact source/scaffold regions with 26013 Code + 105075 Data + 131072 Image. All 368 unique meaningful units/892 records preserved, every Code fragment covered, all 1805 anchors unchanged in line and text. No pending readability range or structural contradiction.
+
+Repaired three required redirect comments and matching inventory summaries. Added bounded explicit $0372 mask01/02 -> scanner16/17 precision, retaining complete-writer-domain uncertainty. Five stale adjacent-unknown boundary notes now describe independently classified neighbors. Exactly nine assembly comment lines changed; no instruction, operand, directive, symbol, line-count, physical classification or effective-context change.
+
+Supported final audit passed, fresh rebuild byte-identical, reading-after freshly generated and independently compared to the final expanded source. Final source SHA 4682856804fc946661b8169aa1e5b7d2b44f7c7b543e699c809b7ba5feaa89b7; symbols fa6cd5ba1872417e87d4fe659e690e3fb73a2490e17e060091ee2f8adda90fe7. Map/state retain a06ecdcf40250a4e2edb00b18d9da89712b2d38f9935ab1ba46a59dda7ebff4f; ROM f3240b346b87ed5fe862d1cd0b796e04ff4e6b6b46a69710f50d8dd3000445eb. All frozen baseline/before-related identities unchanged. Exact results/identities: completion.json, audit.json, verification.json; checks: targeted-checks.json; prose/dependency reasoning: editorial-audit.md; exact edits: changes.json. Current canonical audit/verification remain in commentary/.
+
+Limits remain honest: full text/music/resource grammars/subobject extents, original generator, complete audio request/selector domains, some game meanings and natural-use questions. Reused later level6/course/arrival/initialized scene3/forms5,7/ending evidence; individual stages2..5 and complete horse/canoe mechanics are not exhaustively visited. No gameplay exhaustion or hardware compatibility claim. These are semantic/gameplay limits, not missing byte classification or readability.
+
+No toolkit issues/edits, ROM/map/state mutations, runtime replay, cleanup/deletion or publication. Prior history and final before-edit review/source retained locally. Disk ~3.9GiB free; scratch unchanged92KiB; final review artifacts ~9MiB. Exact remaining frontier is coordinator independent acceptance plus archive-options; no further classification/commentary/redirect cycle is justified by this review.

@@ -1,0 +1,224 @@
+{
+  "version": 1,
+  "phase": "round-04-redirect-terminal-review",
+  "sampling": "Each corrected route.py button: buttons=[name] for 2 traced frames, buttons=[] then 40 untraced frames plus 1 traced frame. Frame/operation budgets and resulting effective banks recorded *-step-N.json. Startup original menu.py button/pressed calls ignored by NES; treat those nominal presses as no-input.",
+  "milestones": [
+    {
+      "milestone": "startup/legal/logo/title",
+      "status": "visited",
+      "route": "reset30 frames -> startup.snapshot; +150 frames -> title.snapshot; nominal ignored menu inputs +123 frames -> menu.snapshot; trace off +600 -> advance.snapshot",
+      "evidence": [
+        "round-01/startup.json",
+        "round-01/title-step.json",
+        "round-01/advance.json",
+        "round-01/title-30.png",
+        "round-01/advance.png"
+      ]
+    },
+    {
+      "milestone": "main selection",
+      "status": "visited",
+      "route": "advance -> select(start ignored) -> main2 actual Start; trace sampling route.py",
+      "evidence": [
+        "round-01/main2.snapshot",
+        "round-01/main2-0.png"
+      ]
+    },
+    {
+      "milestone": "Daytona short distance selection",
+      "status": "visited",
+      "route": "main2 A -> track; A -> distance; Down -> 10 miles/4 laps; Start returns main. Configured later Select keys only toggled music; A reopened track.",
+      "evidence": [
+        "round-01/track-0.png",
+        "round-01/configured-0.ppm",
+        "round-01/configured-1.png",
+        "round-01/configured-6.png"
+      ]
+    },
+    {
+      "milestone": "Daytona race entry and car setup",
+      "status": "visited",
+      "route": "configured -> Start (returned.snapshot); Down Right Right A -> race-entry snapshot (track overview); A Start Start -> drive.snapshot (cockpit). Every key pressed 2 traced frames, released40 untraced+1traced.",
+      "evidence": [
+        "round-01/race-entry-3.png",
+        "round-01/drive-2.png",
+        "round-01/drive-contexts.json"
+      ],
+      "result": "Actual cockpit/race initialization visited naturally; car control/race results pending."
+    },
+    {
+      "milestone": "Talladega / road courses",
+      "status": "deferred",
+      "reason": "Road-track branch main2 A Right A Down Start currently executing; then race setup route.",
+      "current_resolution": {
+        "phase": "round-04-redirect",
+        "note": "Historical in-progress reason superseded: Sears Point natural initialization and Watkins Glen artificial initialization subsequently visited (see named entries). Talladega remains deferred as a comparable oval to Daytona; no concrete new structural prospect after complete source classification."
+      }
+    },
+    {
+      "milestone": "pit mechanics / race results / championship ending",
+      "status": "deferred",
+      "reason": "Need race entry and RAM progression contract; not exhausted or rejected",
+      "current_resolution": {
+        "phase": "round-04-redirect",
+        "note": "Historical prerequisite superseded by later natural live-racing and artificial cleanup-aware pit/service/results/season-ending/trophy/standings routes. See the four later visited milestone entries; no natural-win claim."
+      }
+    },
+    {
+      "milestone": "Sears Point road course selection/initialization",
+      "status": "visited",
+      "route": "main2 A Right A Down Start -> road-menu; Down Right Right A A Start Start -> road-drive",
+      "result": "Sears Point menu confirmed road-menu-4.png; cockpit initialization observed naturally. Same sampled code as Daytona, zero classification gain.",
+      "evidence": [
+        "round-01/road-menu-4.png",
+        "round-01/road-drive-contexts.json",
+        "round-01/road-drive.snapshot"
+      ]
+    },
+    {
+      "milestone": "race controls/prerace progression",
+      "status": "attempted",
+      "route": "drive -> hold A 600 frames sampled; +600 frame execution recorded but subsequent traced sample interrupted before durable snapshot. active route adds Start then A presses/release, now release-wait no-button600 frame experiment pending.",
+      "result": "No-button600 then1200 additional frames completed but remained prerace. Release-wait hypothesis insufficient; BF5/B8=14/NMI pointerBFA4 stable. Laps/results unvisited.",
+      "evidence": [
+        "round-01/racing-0.png",
+        "round-01/racing-step-0.json",
+        "round-01/racing-step-1.json",
+        "round-01/stall-decode.json",
+        "round-01/release-wait.snapshot",
+        "round-01/prerace-later.snapshot",
+        "round-01/prerace-later.png"
+      ],
+      "current_resolution": {
+        "phase": "round-04-redirect",
+        "note": "Historical failed wait-only recipes retained; later Start3/release60 route naturally left prerace and A540 accelerated live racing. Laps/results later reached by artificial cleanup-aware route, not natural finish."
+      }
+    },
+    {
+      "milestone": "Watkins Glen shortcut",
+      "status": "visited",
+      "route": "Restore main2.snapshot; explicitly buttons=[]; patch ram0557=3 and ram0519=3; save patched-track3.snapshot; ordinary Down Right Right A initialization pending.",
+      "result": "RAM selector edits followed by supported ordinary UI transition rendered Watkins Glen overview, then car setup/cockpit initialization. Artificial observed execution only; no new code.",
+      "evidence": [
+        "round-01/patch-track-clean.json",
+        "round-01/patch-track-after.json",
+        "round-01/patched-track3.snapshot",
+        "round-01/configured-inspection-22859.json",
+        "round-01/race-entry-inspection-18992.json",
+        "round-01/patched-watkins-3.png",
+        "round-01/watkins-drive.snapshot"
+      ]
+    },
+    {
+      "milestone": "practice/car configuration",
+      "status": "visited",
+      "route": "main2 Down Right Right Right A A Start -> practice.snapshot",
+      "result": "Practice selection and car setup rendered; additional280 static code bytes from sampled roots.",
+      "evidence": [
+        "round-01/practice-6.png",
+        "round-01/practice-contexts.json"
+      ]
+    },
+    {
+      "milestone": "Talladega alternate oval",
+      "status": "deferred",
+      "reason": "Daytona oval plus Sears and artificial Watkins initialize same current code. Another oval route has reduced immediate prospect until active race progression contract is resolved.",
+      "current_resolution": {
+        "phase": "round-04-redirect",
+        "note": "Current deferral: Daytona represents oval gameplay; Sears/Watkins represent road initialization. Live racing and later systems now visited. Comparable oval adds no concrete structural prospect; no exhaustive track obligation."
+      }
+    },
+    {
+      "milestone": "race results/championship/ending shortcut",
+      "status": "deferred",
+      "reason": "Manual supports short distance/AutoQualify and post-race password but no ready terminal shortcut. Short-race route exercised; cannot yet leave prerace. Concrete missing scene/timer contract handed to redirect, avoiding arbitrary RAM brute force.",
+      "current_resolution": {
+        "phase": "round-04-redirect",
+        "note": "Historical missing contract superseded by later cleanup-aware results and championship season/ending shortcut entries. Artificial execution explicitly distinguished from natural reachability."
+      }
+    },
+    {
+      "milestone": "Live racing and acceleration",
+      "status": "visited",
+      "route": "Natural prerace-later: Start3frames release60 -> PREPARE TO RACE;180untraced+1traced -> live race; A540frames ->144mph/fourlapsremaining. banks12,13,14,15.",
+      "evidence": [
+        "redirect/r01-20261120-a/press-exit.py",
+        "redirect/r01-20261120-a/race-advance.py",
+        "redirect/r01-20261120-a/race-live.png",
+        "redirect/r01-20261120-a/race-live.snapshot",
+        "redirect/r01-20261120-a/progress-race.py",
+        "redirect/r01-20261120-a/accelerated.png"
+      ]
+    },
+    {
+      "milestone": "Race results and return to menus",
+      "status": "visited",
+      "route": "Artificial supported8112 return: accelerated.snapshot, finish partial instruction, PCBF7E A0 SPFF; actual shutdownE485 and scene3selector2 executes;180frames+1sample shows legibleRACE RESULTS. Start3/release180 returns menu. This is artificial finish, not natural race completion.",
+      "evidence": [
+        "redirect/r01-20261120-a/result-revised.py",
+        "redirect/r01-20261120-a/normal-exit.png",
+        "redirect/r01-20261120-a/normal-exit.snapshot",
+        "redirect/r01-20261120-a/result-input.py",
+        "redirect/r01-20261120-a/result-follow.png"
+      ]
+    },
+    {
+      "milestone": "Championship season/ending shortcut",
+      "status": "visited",
+      "route": "Artificial cleanup-aware route: accelerated.snapshot PCBF7E/A0/SPFF then run_until E0E2 after actualE485; patch0557/0519=88,03A1=2,7E/7F/82=0,A0;180frames results, Start3/release300 -> trophyseasonchampion; +180 -> trophy animation; Start3/release120 -> championship standings. Effective0,1,14,15 at ending. Initial direct-swap failure preserved separately.",
+      "evidence": [
+        "redirect/r01-20261120-a/clean-transition.py",
+        "redirect/r01-20261120-a/shutdown-clean.snapshot",
+        "redirect/r01-20261120-a/clean-scenes.py",
+        "redirect/r01-20261120-a/season-clean-next.py",
+        "redirect/r01-20261120-a/season-final.png",
+        "redirect/r01-20261120-a/ending-progress.py",
+        "redirect/r01-20261120-a/ending-message.png",
+        "redirect/r01-20261120-a/ending-exit.py",
+        "redirect/r01-20261120-a/ending-exit.png"
+      ]
+    },
+    {
+      "milestone": "Pit contract shortcut",
+      "status": "visited",
+      "route": "Artificial shutdown-clean.snapshot:03A1=1,A4 atE0E2;180frames pit;A90/release30 activates service crew/timer; Start3/release180 returns live racing133mph. Source815A/8297/84C8 and85A0 explain service/start return. Effective8,9,14,15 inpit; race12,13afterexit.",
+      "evidence": [
+        "redirect/r01-20261120-a/pit-clean.png",
+        "redirect/r01-20261120-a/pit-service.png",
+        "redirect/r01-20261120-a/pit-exit.png",
+        "redirect/r01-20261120-a/clean-scenes.py",
+        "redirect/r01-20261120-a/pit-service.py",
+        "redirect/r01-20261120-a/pit-exit.py",
+        "redirect/r01-20261120-a/pit-service-exit-contract.json"
+      ]
+    }
+  ],
+  "round02_reuse": "Representative natural race and artificial pit/results/trophy/standings routes reused as evidence; no new execution or natural-win claim. See round-02-disassembly-handoff.md.",
+  "round03_reuse": "Independent Static structural batch; prior natural race and artificial cleanup-aware pit/service/results/trophy/standings routes reused without new replay or natural-win claim. See round-03-disassembly-handoff.md.",
+  "current_milestone_summary": {
+    "phase": "round-04-redirect",
+    "representative_coverage": "sufficient",
+    "natural": [
+      "startup/title/menu",
+      "Daytona race entry and setup",
+      "Sears Point initialization",
+      "live racing and acceleration"
+    ],
+    "artificial": [
+      "Watkins Glen initialization",
+      "pit/service and race return",
+      "race results and menus",
+      "championship trophy/animation and standings"
+    ],
+    "unvisited": [
+      {
+        "milestone": "Talladega alternate oval",
+        "status": "deferred",
+        "reason": "Current deferral: Daytona represents oval gameplay; Sears/Watkins represent road initialization. Live racing and later systems now visited. Comparable oval adds no concrete structural prospect; no exhaustive track obligation."
+      }
+    ],
+    "historical_attempts": "Preserved unchanged with current_resolution notes; no unchanged gameplay replay.",
+    "evidence_check": "analysis/redirect/r04-20261120-a/scenario-evidence-check.json",
+    "limitations": "No natural completed race/championship win or full hardware/game compatibility claim."
+  }
+}

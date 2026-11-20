@@ -1,0 +1,166 @@
+{
+ "version": 1,
+ "input_convention": "press X = emulator.input {buttons:[X]} held H frames, then {buttons:[]} and W idle frames (frame-unit emulator.step, max_operations 1e8)",
+ "notes": "NES adapter requires emulator.input {buttons:[...], port} full-state form; {button,pressed} is silently ignored (TI-001). Tracing enabled (capacity 0, aggregates) for most segments; waiting segments untraced. Snapshots were session-local and discarded.",
+ "scenarios": [
+  {
+   "id": "S-001",
+   "milestone": "Power-on to title screen",
+   "route": "emulator.start; 480 frames idle",
+   "budget": "480 frames",
+   "observed": "Title 'THE BLACK BASS USA' with leaping fish; $8000 bank 6 (prg_banks [12,13,14,15])",
+   "status": "visited",
+   "evidence": "trace aggregates (coverage/contexts) in session; analysis/progress.md round 1",
+   "snapshot": "title (session-local)"
+  },
+  {
+   "id": "S-002",
+   "milestone": "Name entry -> player-type menu",
+   "route": "from S-001: press start(4,60); press a(4,30)",
+   "observed": "'WHAT'S YOUR NAME ?' then menu RANKING PLAYER / BEGINNER / LOOK AT MY RECORD",
+   "status": "visited"
+  },
+  {
+   "id": "S-003",
+   "milestone": "Beginner start: tournament intro, lake info, lake map (Lake Amada)",
+   "route": "S-002 then press down(4,20); press a(4,60); press a(4,60); press a(4,60)",
+   "observed": "'PLEASE ENJOY YOURSELF' (Lake Amada 6/5), lake info sheet, lake map with boat; RAM $0303=hour 6, $0304=minute, $030D=lake index 3",
+   "status": "visited",
+   "snapshot": "lakemap"
+  },
+  {
+   "id": "S-004",
+   "milestone": "Boat move on lake map",
+   "route": "S-003 menu option MOVE (down x3, a) then press right(30) up(30) a",
+   "observed": "boat icon moves; A enters casting view",
+   "status": "visited"
+  },
+  {
+   "id": "S-005",
+   "milestone": "Casting / lure retrieve view",
+   "route": "S-003: press a(4,60) -> casting view; press up(20,5); press a(30,90) casts (power meter); repeated press a(3..8) reels",
+   "observed": "cast lure, depth display 0.0ft, lure moves slowly when A tapped; no strike within ~1500 frames (untraced segments used for waiting)",
+   "status": "attempted",
+   "notes": "fish strike/fight/catch not reached; see L-004"
+  },
+  {
+   "id": "S-006",
+   "milestone": "Point menu: SELECT LURE / DATA FOR THIS POINT / YOUR RESULTS / MOVE / CASTING / END",
+   "route": "reached after reeling lure fully back (~90 a-taps untraced) from S-005; snapshot 'menu'",
+   "observed": "lure list (Pencil bait, Frog, Shallow runner, Spinner, Spoon, Plastic worm; colour), point data (time 6:09, weather, temperature, end time 16:00), today's/total record screens",
+   "status": "visited"
+  },
+  {
+   "id": "S-007",
+   "milestone": "End day -> results menu, record, password (standing code) screen, return to title",
+   "route": "S-006: down x5, a (END), a (YES) -> menu CEREMONY/GO BACK HOME/LOOK TODAY'S/LOOK TOTAL; a -> record sheet -> code '2BCPIMZBPM5J4DNJ' -> title; other options visited via snapshot 'endmenu'",
+   "observed": "all four end menu options exercised",
+   "status": "visited"
+  },
+  {
+   "id": "S-008",
+   "milestone": "Other lake via RAM patch (San Lake)",
+   "route": "from title: start, a, down, a (intro screen); emulator.memory.write $030D=[0]; press a(4,60) -> San Lake info; press a -> San Lake map; press a -> casting view",
+   "observed": "San Lake info (depth 16ft) and map render; data reads observed in PRG bank 1 ($8000-$803D header, $9800-$9E19) and bank 5 tile data; artificial-state observation",
+   "status": "visited",
+   "patch": {
+    "address": "0x030D",
+    "value": 0,
+    "when": "on 'PLEASE ENJOY YOURSELF' screen before first A"
+   },
+   "snapshot": "sanmap"
+  },
+  {
+   "id": "S-009",
+   "milestone": "Ranking player password entry (invalid code)",
+   "route": "title: start, a, a (RANKING PLAYER); up/right edits code chars; right x15; a, a",
+   "observed": "'WARNING... THIS CODE IS INCORRECT!' path exercised",
+   "status": "visited"
+  },
+  {
+   "id": "S-010",
+   "milestone": "Valid password resume / multi-day tournament / ceremony winner screens / ending",
+   "route": "needs char-entry order for code entry or RAM recipe for day/ranking",
+   "observed": "see S-012..S-015 (redirect r001-a7k2): valid code resume, day 12, catch, ceremony, ending message",
+   "status": "visited",
+   "reason": "superseded: resolved by generated standing code (L-007) and RAM aids"
+  },
+  {
+   "id": "S-011",
+   "milestone": "Lake More / Japan Lake",
+   "route": "as S-008 with $030D=1 or 2",
+   "status": "visited",
+   "reason": "same code path as S-008 (bank = $030D+1); low expected code gain this pass",
+   "notes": "superseded by S-016 (r002-q5m8): reached through class-selected lakes via generated standing codes"
+  },
+  {
+   "id": "S-012",
+   "milestone": "Valid standing code -> last day (12) -> end of tournament message -> title",
+   "route": "S-002 menu (RANKING PLAYER) press a(4,60); write $0434..$0443 = ASCII 'LIUBBEPZECTRON4A' (generated by analysis/redirect/r001-a7k2/tools/standing_code.py: Day 11, RankPoints 10); press a(4,90) -> accepted, Day=12, San Lake 9/25 intro; a x3 -> casting view; ... END (point menu down x5, a, a) -> end menu; a (CEREMONY) -> record sheet (50TH, class A->B) -> 'THE FISHING TOURNAMENT OF THIS YEAR IS ALL OVER' -> title",
+   "patch": {
+    "address": "0x0434",
+    "bytes": "LIUBBEPZECTRON4A (ASCII)",
+    "when": "code entry screen, before A"
+   },
+   "observed": "CodeInvalid=0; Day..BassCount = 12,10,$01F4,80,1,1,10; ending text shown (traced segment for end menu -> title: cov_allover aggregate)",
+   "status": "visited",
+   "artificial": "password text injected (decoder/validator ran naturally)",
+   "evidence": "analysis/redirect/r001-a7k2/observed-static.txt"
+  },
+  {
+   "id": "S-013",
+   "milestone": "Fish approach and strike (hook)",
+   "route": "S-012 day-12 casting view: press up(20,5), a(30,120); loop: write $03C7=$64,$03C5=$FF; every 6th iteration press a(2,2) else 3 frames",
+   "observed": "FishingPhase 2 after ~49 iterations, FishState 1 at ~169, FishState 2 at ~175: 'OH! THE FISH HITS! FIGHT!'",
+   "status": "visited",
+   "artificial": "ActionScore/LureAttraction rewritten each step"
+  },
+  {
+   "id": "S-014",
+   "milestone": "Fight, landing and catch sheet",
+   "route": "from S-013 hook: hold A; every 2 frames write $0411=0 (LineTension), $040B=0 (FishStamina) until FightLanding $0412=2 (~923 iterations); release; a(4,120) x3-4",
+   "observed": "'YOU GOT IT!' landing net; catch sheet PIKE 1.4/2.1 Lb 6:11, FIGHT TIME 0:08, PENCIL BAIT RED, CONGRATULATIONS; back to point menu",
+   "status": "visited",
+   "artificial": "tension/stamina zeroed"
+  },
+  {
+   "id": "S-015",
+   "milestone": "Winner ceremony screen",
+   "route": "S-012 end menu: write $0445 (RankPoints)=1; a(4,150) x6",
+   "observed": "ceremony scene (award stage, presenter, audience; CeremonyAnimation) traced; prize text passed by fast presses (not captured) | r002-q5m8: prize text captured: RankPoints 1 -> 'YOU ARE WINNER IN A / CLASS A'; 3 -> 'YOU GOT A 3RD PRIZE'; 55 with PlayerClass 1 -> 'YOU GOT A 5TH PRIZE' (in-class place; PrintPlace overwrites the template's '2ND').",
+   "status": "visited",
+   "artificial": "RankPoints patched",
+   "route_r002": "day12_endmenu snapshot; write $0445 (and $044C); alternate A held/released per run_until slice until PC=$A736 (ShowPrizeText, bank 6), release, run_until PC=$C7FD (WaitForAButton), +10 frames; tools: analysis/redirect/r002-q5m8/tools/prize.py",
+   "evidence": [
+    "analysis/redirect/r002-q5m8/frames/prize_rankpoints1.png",
+    "analysis/redirect/r002-q5m8/frames/prize_rankpoints3.png",
+    "analysis/redirect/r002-q5m8/frames/prize_rankpoints55.png"
+   ]
+  },
+  {
+   "id": "S-016",
+   "milestone": "Lake More / Japan Lake days, 'LOOK AT MY RECORD', HBMAX debug HUD, 2nd prize text",
+   "status": "visited",
+   "route": "day12_endmenu -> a(4,180) x3 (ALL OVER -> title copyright) -> 300 frames, start(4,120) x2 -> name entry. Lake More: a(4,30), a(4,60), write $0434='LITRVEPZECTRON4J' (Day 10, RankPoints 20), a(4,90), a(4,90) x3. Japan Lake: same with 'LIUEFEPZECTRON5S' (Day 11, RankPoints 60 -> class B). LOOK AT MY RECORD: a(4,30), down x2, a(4,60), code, a. HBMAX: write $0415='HBMAX ' at name entry, then A and a code route; during the swing press Start.",
+   "observed": "Lake More info (20TH, 9/15, 6:00-17:00, 16ft) / map / casting view; Japan Lake info (60TH, 9/25, 6:00-16:30, 12ft) / map / casting view; record sheet 'Mr. A , THIS IS YOUR RECORD. PARTICIPANT RANKING 60TH CLASS B ...'; DebugHud=1 and Start ends the power meter at MeterValue $40; prize texts in S-015.",
+   "artificial": "standing codes generated offline and injected as text ($0434); name injected ($0415); decoding/validation/SelectLake/CheckDebugName ran naturally",
+   "evidence": [
+    "analysis/redirect/r002-q5m8/frames/lake_more_info.png",
+    "analysis/redirect/r002-q5m8/frames/lake_more_map.png",
+    "analysis/redirect/r002-q5m8/frames/japan_lake_info.png",
+    "analysis/redirect/r002-q5m8/frames/japan_lake_map.png",
+    "analysis/redirect/r002-q5m8/frames/look_at_my_record_classB.png",
+    "analysis/redirect/r002-q5m8/frames/hbmax_cast_view.png",
+    "analysis/redirect/r002-q5m8/frames/hbmax_after_start.png"
+   ],
+   "tools": "analysis/redirect/r002-q5m8/tools/{to_title,lake_by_code,myrecord,hbmax}.py"
+  },
+  {
+   "id": "S-017",
+   "milestone": "Natural (unaided) bass catch and natural winner ceremony",
+   "status": "deferred",
+   "reason": "needs a full manual day out-fishing random rival totals (RivalTotalRange/RivalBestRange); every routine on the path is already observed with aids (S-013..S-016); no classification or commentary question depends on it",
+   "shortcut": "S-013/S-014 aids for the catch; generated code with a good RankPoints for the class; ComputeDayResults then runs naturally"
+  }
+ ]
+}

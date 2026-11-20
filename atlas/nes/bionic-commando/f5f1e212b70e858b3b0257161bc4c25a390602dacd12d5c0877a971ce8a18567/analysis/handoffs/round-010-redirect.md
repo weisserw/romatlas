@@ -1,0 +1,16 @@
+# Round010 redirect handoff
+
+Recommend **TERMINAL INCOMPLETE**, pending coordinator inspection. No ready new leads; proposed0/accepted0. Input round-010-classified, map/state SHA2568587a03323dec7a53bd828f783f452d69e83d16170550b999fa55a88dffc3480; classified262130/262160 (99.99%),30Unknown bytes in16intervals. Commentary gate complete2106spans/2016units; final editorial acceptance remains pending.
+
+Exact fresh complement, ROM bytes, map neighbors, effective banks and source excerpts: analysis/redirect/round-010-a/primary.json and primary-readable.txt. Exact ledger all16intervals: residual-ledger.json. Candidate-specific rejection review: rejection-review.md. Methods, corrected copy-boundary inference, limitations and gameplay milestone review: research.md. Leads history preserved, empty pass appended; no unchanged experiment replay or empty disassembly/commentary cycle requested.
+
+Accepted renderer CLC/ADC does not extend backward into orphan1D: originalB1 absent and current prior byte is acceptedC0 resource. Long copy establishes historical operand identity, not present complete instruction/data role. CounterB5 and arithmetic85 would consume independently anchored vector4C;17 would consume acceptedA2. Actual target-grid and template proofs retrieved, whole-routine rejection localized. Eight isolatedRTS, JMP820D, split JMP9C32/TAX, tripleJMPFFFF and0035 prefix retain concrete competing code/data interpretations; generic Data considered without demanding schema or consumer, but current pattern/context does not discriminate them. No universal live-caller or observed-execution prerequisite. No dead/unused claim.
+
+Broad artificial later-area/mechanics/boss/explosion-rescue/terminal signature visits remain recorded. Read primary room101 fields, boss graph and advance3 execution result. Natural cockpit defeat and full timed credits remain unproved; no changed RAM/entry prerequisite supports a useful shortcut or unchanged replay. This is honest best-effort progression, not natural victory or full compatibility.
+
+ROM/map/state/source/symbols/reading/review/configured release binary unchanged, verified in preservation-check.json. No toolkit edits, publication, archive, cleanup/deletion or subagents. Disk3.8GiB free; small research artifacts only. Coordinator must inspect actual candidate evidence and reasoning before accepting terminal recommendation; future concrete consumer/copy/boundary evidence can reopen a localized claim.
+
+
+## Coordinator-review correction — ready batch
+
+The terminal recommendation above is superseded. Actual IRQ/BRK vector B2C0 points directly to accepted40 RTI at physical3C0C2, fixed30/31. BRK at E000 consumes35 as padding, balances its three-byte stack frame through RTI and resumes acceptedE002 with architectural comparison flags preserved. No35 service ABI is required. Propose2Static bytes: Code1 physical3E010 and Data1 BRK padding3E011, matching decoder instruction length1. No natural reachability claim. See analysis/redirect/round-010-a/brk-correction.md, brk-primary.json and proposal.json for exact contract, B-bit/stack-write and asynchronousNMI/pendingIRQ caveats. Conditional residual28Unknown/15intervals. Leads appended ready R010-BRK-RTI-SKIP; previous rejection/history preserved. Next independent disassembly, current-source commentary, redirect.

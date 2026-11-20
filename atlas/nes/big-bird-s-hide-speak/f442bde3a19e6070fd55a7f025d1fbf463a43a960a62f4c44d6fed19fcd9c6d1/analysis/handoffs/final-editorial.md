@@ -1,0 +1,9 @@
+# Final editorial handoff — accepted, structurally incomplete
+
+Final editorial gate passed: all 627 scaffold regions and 775 meaningful unit records reviewed, source locations valid, every Code region has reviewed units. Preserved all 550 prior units and added 225 split records for 64 existing named routine contracts. No pending editorial frontier.
+
+Minimal source fixes named the three category payload operands and corrected stale window carry/title continuation descriptions, including the actual three title panels. Known category/shuffle/B914/speech-prefix/mapper-footer/F52E contracts were checked with no structural contradiction. Inventory source paths normalized to the audit's source-relative convention. Full findings commentary/editorial-audit.md; protected hashes and actual evidence analysis/final-editorial-integrity.json.
+
+Documented commentary.py audit succeeded with fresh byte-identical verification and refreshed reading-after.asm. ROM SHA256 f442bde3a19e6070fd55a7f025d1fbf463a43a960a62f4c44d6fed19fcd9c6d1; map/current = checkpoint/state/frozen baseline SHA256 3bc668f7d498e3147c088338a56a8e268ee63f1e0a6768a8ad6aa2a3c8486f9c. game.asm SHA256 11036f8896ce0a9aa7a4ff6437852e0cce39f474b8669e226798dabdc2e9a03b. Audit report commentary/audit.json SHA256 ee134aa088549d8f3052de5d7d79ebf2267140866a735db0ec039a53f1b8df48. Review SHA256 b0d0918a585c7c53c0a8c94a124a25a7eca0922d7909c3a4c9b9e2b45b14c25c.
+
+Classification remains 393231/393232: 20091 Code, 373140 Data/Text, one Unknown physical3F53E CPUF52E bank31 [4,5,30,31]. This is terminal incomplete, separate from passed readability/editorial/fidelity gates. Coordinator retains its accepted residual stopping review and handles archive-options inventory separately. No toolkit issues found. No archive, cleanup, deletion, publication, ROM/map/state/toolkit change or replay performed.

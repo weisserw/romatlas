@@ -1,0 +1,194 @@
+{
+ "version": 1,
+ "notes": "Round-1 scenarios. Input API: emulator.input {buttons:[...]} sets the full held set (release = []). Route steps are executable in analysis/tools/routes.py (ROUTE) and analysis/tools/cover_replay.py; snapshots exported to scratch/snap_<name>.bin (same-build, local, disposable). Tracing: capacity 0, kinds Instruction/ControlFlow/BankSwitch, short traced windows ('t' steps) because tracing runs ~4 fps. Frame counts are emulator frames (emulator.step unit=frame). Redirect r01-a: probe helpers analysis/redirect/r01-a/probe.py (import/poke/trace/dump to scratch/observed-r01a.json); new same-build snapshots scratch/snap_{gothim,dayend_menu,dayend_menu2,results_win,roundinfo_all,roundinfo_r1,hawaii_sea}.bin. Tracing ran ~2.5 fps. | Redirect r02-a review: all milestones S01-S16 visited; natural bite (L-008) deferred, return-to-port menu not reached (no classification value). | Redirect r04-a: read-watch runs from scratch/snap_*.bin via analysis/redirect/r04-a/readwatch.py (scenario step lists inside); no new milestone.",
+ "routes": {
+  "power_on_to_fight": "analysis/tools/routes.py ROUTE: reset; 4960f -> title; START(6f)+90f; A(6f)+60f name entry; START(6f)+60f confirm; A(6f)+180f weather; START(6f)+60f cockpit [boat_menu]; A(6f)+260f; A(6f)+260f [harbor]; DOWN 30f; A 60f; DOWN+A 200f [sea]; POKE ram $0496=1; 380f [bite]; A(4f)+380f [fight]",
+  "sound_test": "reset with SELECT+START held for 60f -> SOUND TEST (debug path $E315 -> $FA27). UP increments $EA, A plays, B/SELECT exits.",
+  "land_fish": "snap fight; input [a]; 2x(write ram $075D=[0,0,0]; step 1f); release; 120f [gothim]; 6x(A 4f + 90f) -> weigh-in, keep (A=YES), back to sea",
+  "day_end": "snap sea; write ram $0755=[59,59,15]; 330f [dayend_menu: TIME IS UP]; A 4f + 90f [dayend_menu2: WEIGHING/GO FISHING AGAIN/RESULTS]; DOWN 6f+20f x2; A -> results; A every 120f -> password -> Round_InfoScreen",
+  "hawaii": "snap dayend_menu2; write ram $079E=[1,1,1,1]; results route; at Round_InfoScreen [roundinfo_all] SELECT 4f + 90f -> HAWAII 1 [roundinfo_r1]; START 4f + 120f cockpit (KAWAIHAE); A 6f+150f x2; DOWN 30f; A 60f; DOWN+A 100f [hawaii_sea], AreaIndex=4",
+  "ending": "snap dayend_menu2; write ram $079F=[255,255,255], $0777=[0xB0,0x01]; DOWN x2; A [results_win]; then 60f steps with A every 120f: CONGRATULATIONS -> YOU HAVE WON ALL TOURNAMENTS -> password -> FIN screen",
+  "fight_event": "snap fight; write ram $05C4=[4]; 200f; 4x(A 4f + 60f) -> Fight_EventScript2 $E521 runs script $E5DC (event 4), flag cleared, fight resumes"
+ },
+ "milestones": [
+  {
+   "id": "S01",
+   "milestone": "Boot logo + attract intro",
+   "route": "power_on 0-4960f",
+   "result": "HOT-B logo, HOT-B PRESENTS, ENDLESS SUMMER...HAWAII, marlin intro, title screen",
+   "status": "visited",
+   "natural": true,
+   "notes_r04_redirect": "r04-a: traced read-watch on 0x02DC6/0x032FA/0x03353 (analysis/redirect/r04-a/readwatch.txt): 0 hits (title 300f)"
+  },
+  {
+   "id": "S02",
+   "milestone": "Title -> START GAME/RESUME GAME menu",
+   "route": "title + START",
+   "status": "visited",
+   "natural": true
+  },
+  {
+   "id": "S03",
+   "milestone": "Name entry + confirm",
+   "route": "START GAME, A, START, A",
+   "status": "visited",
+   "natural": true
+  },
+  {
+   "id": "S04",
+   "milestone": "Weather screen + boat cockpit destination menu",
+   "route": "see power_on_to_fight",
+   "status": "visited",
+   "natural": true,
+   "notes_r04_redirect": "r04-a: traced read-watch on 0x02DC6/0x032FA/0x03353 (analysis/redirect/r04-a/readwatch.txt): 0 hits (harbor 250f)"
+  },
+  {
+   "id": "S05",
+   "milestone": "Harbor / top-down sea navigation (Florida area)",
+   "route": "cockpit A, A",
+   "result": "boat steering with A throttle + dpad; START pause shows line length/lure depth",
+   "status": "visited",
+   "natural": true,
+   "notes_r02_redirect": "r02-a: snapshot scratch/snap_sea.bin re-run 30 frames (no patches, no buttons) with a Read+Instruction trace on 0x2200-0x2A00 for the branch dummy-read check (analysis/redirect/r02-a/dummytest-results.txt); fish movement code executing, no new milestone.",
+   "notes_r04_redirect": "r04-a: traced read-watch on 0x02DC6/0x032FA/0x03353 (analysis/redirect/r04-a/readwatch.txt): 0 hits (harbor 250f, sea 412f)"
+  },
+  {
+   "id": "S06",
+   "milestone": "COMMAND menu (SELECT at sea): information pages, line/length/lure/depth submenus",
+   "route": "sea + SELECT; items via DOWN/A",
+   "status": "visited",
+   "natural": true,
+   "notes_r04_redirect": "r04-a: traced read-watch on 0x02DC6/0x032FA/0x03353 (analysis/redirect/r04-a/readwatch.txt): 0 hits (sea+SELECT)"
+  },
+  {
+   "id": "S07",
+   "milestone": "Password entry (RESUME GAME) wrong password",
+   "route": "title START, DOWN, A, letters, START",
+   "result": "WRONG PASSWORD! ENTER PASSWORD AGAIN.",
+   "status": "visited",
+   "natural": true
+  },
+  {
+   "id": "S08",
+   "milestone": "Fish bite",
+   "route": "sea + POKE $0496=1",
+   "result": "HEY, NONAME! I FEEL A BITE ON YOUR ROD. -> fight screen",
+   "status": "visited",
+   "natural": false,
+   "artificial_patch": "cpu RAM $0496=1 during navigation loop ($E37E..$E3E3, bank 15); banks [0,1,14,15]",
+   "notes_r04_redirect": "r04-a: traced read-watch on 0x02DC6/0x032FA/0x03353 (analysis/redirect/r04-a/readwatch.txt): 0 hits (bite 584f)"
+  },
+  {
+   "id": "S09",
+   "milestone": "Fight screen: reel/drag/brake inputs and SELECT 'WHAT WILL YOU DO?' options",
+   "route": "fight snapshot; A/B/dpad; SELECT + option k",
+   "result": "several options lead to messages, some back to sea; long A hold -> 'TOO BAD! THE LINE HAS BEEN CUT.'; pulsed reeling -> 'WELL, NEXT TIME YOU'LL DO BETTER.' sunset scene",
+   "status": "visited",
+   "natural": false,
+   "notes_r04_redirect": "r04-a: traced read-watch on 0x02DC6/0x032FA/0x03353 (analysis/redirect/r04-a/readwatch.txt): 0 hits (fight idle/pulse/hold/select 600/780/768/464f; hawaii_fight 1324f; fight_away (ARTIFICIAL $0468=$40 every 4f) 180f x2)"
+  },
+  {
+   "id": "S10",
+   "milestone": "Sound test (hidden debug)",
+   "route": "sound_test, entries 0..47",
+   "status": "visited",
+   "natural": true
+  },
+  {
+   "id": "S11",
+   "milestone": "Land a marlin / weigh-in / skill level up / storeroom",
+   "status": "visited",
+   "reason": "fight not won with simple reel patterns in round 1; fish stamina/state RAM contract unknown -> redirect",
+   "natural": false,
+   "route": "land_fish",
+   "result": "GOT HIM !! -> THIS FISH IS A DORADO ... WEIGHS ABOUT .. POUNDS -> WILL YOU KEEP THE FISH? YES/NO -> sea",
+   "artificial_patch": "cpu RAM $075D-$075F=0 (LineOut) during the fight, banks [0,1,14,15]",
+   "evidence": [
+    "analysis/redirect/r01-a/frames/r01a_land_1.png",
+    "analysis/redirect/r01-a/frames/r01a_g_02.png",
+    "analysis/redirect/r01-a/frames/r01a_g_03.png",
+    "analysis/redirect/r01-a/observed-r01a.json.gz"
+   ],
+   "notes_r04_redirect": "r04-a: traced read-watch on 0x02DC6/0x032FA/0x03353 (analysis/redirect/r04-a/readwatch.txt): 0 hits (land 686f, gothim 564f)"
+  },
+  {
+   "id": "S12",
+   "milestone": "End of day (TIME IS UP), results, password display",
+   "status": "visited",
+   "reason": "clock RAM not identified; candidate: patch time variable once identified",
+   "natural": false,
+   "route": "day_end",
+   "result": "OH SHOOT! TIME IS UP. -> WEIGHING/GO FISHING AGAIN/RESULTS FOR TODAY; results screen, BETTER LUCK NEXT TIME, WRITE DOWN PASSWORD (30 chars), next day Round_InfoScreen",
+   "artificial_patch": "cpu RAM $0755-$0757=59,59,15 at sea",
+   "evidence": [
+    "analysis/redirect/r01-a/frames/r01a_dm.png",
+    "analysis/redirect/r01-a/frames/r01a_d_06.png",
+    "analysis/redirect/r01-a/frames/r01a_results_7.png",
+    "analysis/redirect/r01-a/frames/r01a_results_9.png"
+   ],
+   "notes_r04_redirect": "r04-a: traced read-watch on 0x02DC6/0x032FA/0x03353 (analysis/redirect/r04-a/readwatch.txt): 0 hits (dayend 154f, results 672f)"
+  },
+  {
+   "id": "S13",
+   "milestone": "Hawaii areas (HAWAII 1-3) via area index",
+   "status": "visited",
+   "reason": "area variable $A2 (used at $E974/$E50B) candidate; not patched in round 1",
+   "natural": false,
+   "route": "hawaii",
+   "result": "Round_InfoScreen HAWAII 1, cockpit FISHING POINT KAWAIHAE, Hawaii sea map (AreaIndex 4); map bank 9 mapped with no fetches from it",
+   "artificial_patch": "cpu RAM $079E-$07A1 nonzero (RoundCleared) then in-game SELECT round switch",
+   "evidence": [
+    "analysis/redirect/r01-a/frames/r01a_h1.png",
+    "analysis/redirect/r01-a/frames/r01a_h2.png",
+    "analysis/redirect/r01-a/frames/r01a_hawaii_sea.png"
+   ],
+   "notes_r02_redirect": "r02-a: snapshot scratch/snap_hawaii_sea.bin re-run 30 frames (no patches, no buttons) with a Read+Instruction trace on 0x2200-0x2A00 for the branch dummy-read check (analysis/redirect/r02-a/dummytest-results.txt); fish movement code executing, no new milestone.",
+   "notes_r04_redirect": "r04-a: traced read-watch on 0x02DC6/0x032FA/0x03353 (analysis/redirect/r04-a/readwatch.txt): 0 hits (hawaii_info 436f, hawaii_sea 340f, hawaii_fight 1324f)"
+  },
+  {
+   "id": "S14",
+   "milestone": "Tournament win / ending (YOU HAVE WON ALL TOURNAMENTS)",
+   "status": "visited",
+   "reason": "requires tournament progression contract",
+   "natural": false,
+   "route": "ending",
+   "result": "YOU HAVE WON ALL TOURNAMENTS. -> password -> FIN ending screen (static, no credits seen in ~20 s)",
+   "artificial_patch": "cpu RAM $079F-$07A1=$FF, $0777/$0778=$01B0 at the day-end menu",
+   "evidence": [
+    "analysis/redirect/r01-a/frames/r01a_w_06.png",
+    "analysis/redirect/r01-a/frames/r01a_w_08.png",
+    "analysis/redirect/r01-a/frames/r01a_fin.png"
+   ],
+   "notes_r04_redirect": "r04-a: traced read-watch on 0x02DC6/0x032FA/0x03353 (analysis/redirect/r04-a/readwatch.txt): 0 hits (ending 944f x2; FIN screen re-confirmed analysis/redirect/r04-a/ending_fin.png)"
+  },
+  {
+   "id": "S15",
+   "milestone": "Boat damage / engine trouble / return to port menu (RESUME FISHING/SELECT POINT/RETURN TO PORT)",
+   "status": "visited",
+   "reason": "trigger ($049E port-area flag, $E40C) not reached; try steering back to harbor; r01-a: not attempted (lower priority than S11-S14); RAM contract FishOnLine bit7 return-to-port and $049E known from source",
+   "natural": false,
+   "route": "scratch/snap_sea.bin (round-1 sea snapshot) -> analysis/tools/r02/probe_s15.py N",
+   "artificial_patch": "cpu RAM SeaEventFlag $05C4 = 1, 2 or 3 at sea; then 60 frames + 12 x (A 4f + 40f), traced (capacity 0); banks [0,1,14,15]",
+   "result": "Nav_RunEvent table $E3E9 dispatched Nav_Event0/1/2 -> bank-0 event wrappers $8BF5/$8C33/$8C71 executed (L-010 static prediction confirmed); event 3 reloads the area (Day_LoadArea); returned to sea each time. 5,208 observed opcode addresses, 0 outside pass-002 Code instruction starts. Event message screens not captured (end-of-run frames only). Return-to-port menu itself (FishOnLine bit7 / $049E) not reached.",
+   "evidence": [
+    "analysis/evidence/round-02/observed-r02.json.gz",
+    "analysis/evidence/round-02/frames/r02_s15_ev1.png",
+    "analysis/evidence/round-02/frames/r02_s15_ev2.png",
+    "analysis/evidence/round-02/frames/r02_s15_ev3.png"
+   ]
+  },
+  {
+   "id": "S16",
+   "milestone": "Fight sea event (SeaEventFlag) script",
+   "route": "fight_event",
+   "status": "visited",
+   "natural": false,
+   "artificial_patch": "cpu RAM $05C4=4 in the fight",
+   "result": "event script via $E5DC switch ran (Fight_EventScript2 observed); fight resumed",
+   "evidence": [
+    "analysis/redirect/r01-a/frames/r01a_ev4.png"
+   ],
+   "notes_r04_redirect": "r04-a: traced read-watch on 0x02DC6/0x032FA/0x03353 (analysis/redirect/r04-a/readwatch.txt): 0 hits (fight_event 456f)"
+  }
+ ]
+}

@@ -1,0 +1,29 @@
+# Round04 commentary and final editorial handoff
+
+ROM classification: **100.00% (393232/393232 classified;0Unknown)**. Commentary current-source readability and final editorial acceptance are complete against pass004. Coordinator redirect/terminal/document closure remains separate; no goal/workflow completion or archive execution is claimed.
+
+The entire prior commentary was preserved before fresh preparation at `analysis/round-04/commentary-before-pass004` (prior source SHA256 `0b2d691cbeb7429775600e63b35c8b11282cf8a17ce53854f3f4052b5c15f46c`). Generated-baseline comparison isolated the sole change: generic Static Data at physical1997..1999, B8,9F. All prior physical bounds, instructions/data bytes and unchanged source assets matched; current generated mapping/diagnostics were retained. Physical/dependency carry preserved all3108review records,1014canonical units and547older credits. Source links remain `game.asm:line` relative to commentary/source; all line numbers retained.
+
+The two-byte note now states noncode while keeping exact prefix schema, ownership and natural read unresolved. Its second-composite neighbor no longer calls it unknown. The full current inventory reused prior sound review, while targeted final prose/name/alias consistency checks corrected known defects and newly exposed concrete contradictions:
+
+- Setup input-chain and direction-selection prose now describes connected handlers, response waits, five-field wrap/edit and apply/exit paths. Draft apply/exit continuations became ApplySetupChangesAndResumeInput and CommitSetupAndEnterRaceScene (source18382/18385).
+- Five repeated race-audio comments no longer claim unknown neighboring bodies. Their distinct current explanations cover edge mask, one-shot contact request, countdown, APU mask combination and contact-before-edge priority (source27483/27503/27531/27552/27611). Audio mask/tail entries now have functional names, including WriteAlternateNoiseLength.
+- Centered-text wrapper entries have functional names. Three stale AI overtaking/lateral/speed descriptions and modulation reset's outdated outside-span claim now describe connected mechanics (source33438/33476/33499/38260).
+- Three established shared audio mask fields now use triangle_audio_enable_mask/contact_audio_enable_mask/edge_audio_enable_mask in all22direct operands across race/pit/alternate code. HUD bit$04 and contact/edge bit$08 producer/consumer mechanics were checked. Exact values/source line count remain unchanged.
+- uncertainties.md now begins with pass004/U0 and reconciles obsolete pass002/race/setup next-check status, retaining useful historical conclusions and semantic limits. Current review summaries match the corrected source; historical prose remains in the preserved prior tree.
+
+[Final editorial report](../commentary/editorial-audit.md) records substantive scope and findings. [Final inventory/consumer/hash checks](round-04/commentary-final-checks.json) cover all75contiguous Code groups,3108scaffold regions,2924nested units,1014canonical units and7046source-entry links, with0pending regions/units and no raw numeric direct control references. All canonical ranges/source links were checked separately because archive.editorial_status ignores top-level units. Parent-qualified local continuation anchors retain explained context; no blind whole-source rewrite was needed.
+
+The actual unmodified `commentary.audit` and read-only `archive.editorial_status` functions completed after the last source edit. Immutable current-source text/line-split caching made repeated source reads efficient; source hashes were checked unchanged before/after. No toolkit code or gate logic changed. Actual consumer is **complete=true**, editorial_audit=true, reasons=[]: [consumer result](round-04/commentary-archive-editorial-status.json). Required [audit](../commentary/audit.json) reports byte_identical=true,3108reviewed regions,2924nested reviewed units and editorial_audit=true; [fresh verification](../commentary/verification.json) agrees. reading-after.asm was refreshed. The earlier pre-mask audit/results remain as distinctly named historical artifacts under round-04.
+
+Final identities:
+
+- source/game.asm SHA256 `3f5de2c81f8232cafa153d0d497779ba7d9728f001bba6ef1971d1eacd1afd2f`
+- reading-after.asm SHA256 `3025e522f5d5c94f91e43102d07791b29add18fed6bb7094b487e4ed91ee66de`
+- review.json SHA256 `3988e614e3a553f15de27b4b44180ca7defad49a34e47734f4ca46cedd89548f`
+- state/current/frozen pass004 SHA256 `b9ffea72f87f4d885472246166924f63872cf27b4a50adfa60756a57823d5ceb`
+- ROM SHA256 `09a213971a9999a340b61eeb1e98b02b4e84eedd3311ca7c456ccded11e659c3`
+
+No current-source readability gaps remain. Exact prefix ownership/schema/natural read, actor/artwork subjects, vehicle units, original music/instrument names and generators, CHR scene ownership and natural selector completeness remain honestly unresolved meanings. They do not imply unknown structural bytes or skipped readability. No unsupported full NES/game compatibility claim.
+
+Current progress/frontier: commentary/progress.md and analysis/round-04/commentary-frontier.md. No structural/classification mutation, toolkit/ROM edit, runtime replay, archive call, publication, cleanup/deletion or whole-workspace commit. Current map/state and checkpoint remain unchanged. Approximately3.8GB disk free. Existing suspected nonblocking NES input-schema/documentation issue remains in analysis/toolkit-issues.md; no new issue or blocker.

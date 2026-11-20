@@ -1,0 +1,13 @@
+# Round005 redirect: ready arithmetic fragments
+
+Input checkpoint round-005-classified, map/state92909a271b71405418235187a087b923aa6930b0c5ffd9260d7d70f9f7d2df85. Current-source commentary gate complete2096spans/2003units. Classified262012/262160=99.94%;148Unknown/19intervals unchanged in redirect.
+
+Proposed43 Static Code bytes, accepted0: physical3E9C2+21 (CPU E9B2) complete24bit trial subtraction and3E9D9+22 (CPU E9C9) inverse register commit plus24bit carry addition, fixed physical8KiB slots30/31. Combined newly accepted shift producer, exact arithmetic byte order, carry dependencies and inverse result stores justify narrower operations despite broken enclosing routine. Keep actual BCC3E9D7+2→physical3E9F3 vector operand and truncatedSTA3E9EF+1 unresolved. Original algorithm, complete routine and natural reachability unproved. Conditional residual105Unknown/20intervals if both accepted.
+
+Decisive reasoning and competing interpretation: analysis/redirect/round-005-a/research.md. Primary exact bytes and bank-aware decode: arithmetic-primary.json; independent review batch: proposal.json; exact current complement and localized dispositions: residual-ledger.json. Persistent leads R005-TRIAL-SUB24/R005-COMMIT-ADD24 ready with bounded independent verification recipes. Prior entries/outcomes preserved.
+
+Other concrete opportunities assessed with primary round004 source/decode and earlier BC00 dictionary, reusing sound narrow review: renderer11 retains competing prefix alignment/unmatched-stack outer branch; counter50 retains helper branch/vector overlap and lacks additional independently anchored bounded operation; BC00wrapper/vector14 actual serializer22/23 reaches independently consumed collision dictionary; trap2 lacks supported ABI or repeated data; isolated24 lack discriminating role beyond individual opcode forms. No new supported continuation beyond proposed arithmetic blocks. This is a ready disassembly handoff, not terminal exhaustion or a universal caller/RTS requirement.
+
+Gameplay checklist reviewed: broad later areas, bosses, rescue/explosion and artificial terminal signature already visited; natural final cockpit/credits unresolved. No changed progression contract arose; unchanged terminal/final-shot replay would duplicate earlier evidence. Existing recipes/status preserved.
+
+ROM/map/state/source/review/reading unchanged: preservation-before.json and preservation-check.json. No toolkit changes, archive, cleanup/deletion, publication or classification edits. Disk3.9GiB available before batch; only compact research records created. Return supported combined batch to independent disassembly, then complete full current-source commentary and redirect. Final editorial/fidelity gates remain pending.

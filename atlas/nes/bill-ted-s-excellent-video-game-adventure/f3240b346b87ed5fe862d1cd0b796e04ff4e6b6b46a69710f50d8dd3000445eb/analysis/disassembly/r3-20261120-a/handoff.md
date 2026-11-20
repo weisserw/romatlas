@@ -1,0 +1,11 @@
+# Round3 disassembly handoff
+
+ROM classification: 100.00% (262160 / 262160 bytes classified; 0 bytes unknown).
+
+Checkpoint **round3-structural-verified**, internal/portable map SHA **a06ecdcf40250a4e2edb00b18d9da89712b2d38f9935ab1ba46a59dda7ebff4f**; generated fresh source byte-identical. Input round2-connected-verified preserved. Accepted **5406=3230Code+2176Data**,87intervals; allStatic. Overall **26013Code+105075Data+131072Image**,16headerData included. [Summary](summary.json), [per-bank counts](per-bank-counts.json), [empty complement](unknown-complement.json), [verification](../../round3-structural-verified-verification.json).
+
+[Independent role/entry/bank/boundary review](review.md), [1479fresh instruction decodes](independent-decodes.json), [schema checks](independent-data-checks.json). Accepted short genericC220/E253 only under localized non-code pattern/neighbor constraints; no semantic schema invented. CPU8087 restore andPPUA11E subtraction have complete mechanical ABIs. **A305 tightened contract**: serial latch ready,bit7clear,A bits2..3=10 keeps lowerPRG0/1 through fifthwrite/RTS. Arbitrary-A bank continuity unclaimed. C8BB exactlythree words, A50AfourLSRCode, D62B literal Data behind provably takenbranch. Every connected exit meets known accepted code/data boundary; no further Code/Data continuation unresolved.
+
+[Saved runtime review](observed-review.json):98contextual/76uniquephysical candidate starts decoded under actual banks;zeroData conflicts, all artificial. Reused forms5/7 and initialized scene3, earlier course/ending; no repetitive replay. Natural use, fullvehiclemechanics and everyworld remain unclaimed. All previous region content/IDs and commentary source preserved, input ROM unchanged. Lead histories/progress/investigation updated; prior rejections remain available.
+
+**Next:** separate full current-source commentary, then redirect and final editorial+verification gates. Classification count alone does not complete goal/full-ROM acceptance. Commentary must include A305 bank precondition, genericData uncertainty and standaloneABI scopes. No new exploratory emulator run is required to relabel static structure. No toolkit issues found; analysis/toolkit-issues.md. No toolkit edits/archive/deletion/publication. Disk about4GiBfree;scratch92KiB.

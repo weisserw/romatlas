@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "platform": "nes",
+  "name": "black-bass-usa-the",
+  "rom_sha256": "b770bdc15ea4c719a11c36ab5378abcd66d6f768cffed10a7d4198411ae13985",
+  "rom_filename": "game.nes",
+  "image_size": 131088,
+  "editorial_complete": true,
+  "review_status": {
+    "complete": true,
+    "reviewed_regions": 767,
+    "total_regions": 767,
+    "reviewed_units": 1048,
+    "total_units": 1048,
+    "editorial_audit": true,
+    "reasons": []
+  },
+  "omitted_documents": [
+    "analysis/round-1/commentary/AGENTS.md",
+    "analysis/round-1/commentary/prompt.md",
+    "analysis/round-1/commentary/workflow.md",
+    "analysis/round-1/commentary/progress.md",
+    "analysis/round-1/commentary/uncertainties.md"
+  ],
+  "artifacts": {
+    "README.md": "468db2be2f0e4ff891af9bf0090e5652f08c720a01d6ec793c70f0f33007955b",
+    "analysis/gameplay.md": "3eebe8336abe8321a5c37bab8e8763344d0c8245d3d0be52a0fde27d06766d11",
+    "analysis/handoffs/final-acceptance.md": "b274b76acf55235254673603481dd919354c0e169c809d458665a18f0d3d9ddc",
+    "analysis/handoffs/round-001-commentary.md": "95fac39beccc8742e5a17ae28732bd299eaa7e6427fecd5abfe3faa54dd79484",
+    "analysis/handoffs/round-001-disassembly.md": "ac4c961bc027c2d620e8da94287031009cd1d03bbd08dc20b9cb8d0782a06ff3",
+    "analysis/handoffs/round-001-redirect.md": "f52f971f7f9e7ad241242b45ee4e3a2ab3715fe6f3ce4b07f11ebcabe021a2dc",
+    "analysis/handoffs/round-002-commentary.md": "7afe2232040438cb4ce105782dbb444db82bf47c1eb5f75f8939f62ea94983e2",
+    "analysis/handoffs/round-002-disassembly.md": "2802b06af683abea41a5d441d9b016d9950027c19c3ef5fba86b8dbe99be7c60",
+    "analysis/handoffs/round-002-redirect.md": "ffb061a484321d1e445042f524bf702215e0fa8197aa99937939c7b2d389f739",
+    "analysis/investigation.md": "280addde8f8007bce82e006a627f4b6172165bab2eaa8c820ab29d1f0f771a7a",
+    "analysis/progress.md": "e9d086e503b01149ef0e397171200c5e050e5e37d4567453476fc495c977bd47",
+    "analysis/redirect/r001-a7k2/bank7-unknown-ledger.md": "b49687ee8e5866cd44cce22e23bb61f5238375dc53f0bf59cf94ecc0ff9da44f",
+    "analysis/scenarios.json": "1d8fb818253176e09ccd8cc4dfd28571032404c5ea843dea9d55bb107ec96a39",
+    "analysis/state.json": "1ea41d786c8ce22da17d3892acd1959f9a688c35c54087aed143120fedfd435d",
+    "commentary/archive-repair.md": "8ff3d4c6e81f8afd796ec2cd3554e06bd60cdac9e886515b5cdea6443409ede4",
+    "commentary/audit.json": "64af41cff06fde6240fd00ce5cba9d5192ce6eeeaf7afe852ea9d99596d31946",
+    "commentary/baseline.json": "69249d40199b08d3e257e32aaaef43d9e023ae030b8e8f23efe41d4d7e0550b4",
+    "commentary/editorial-audit.md": "9e32da0019f7f11dcc19c0580359bd6455164903c594442152dac7a60f750060",
+    "commentary/manifest.json": "1a4c798492fb4fe9f792ebe5eb5dd6e6401e1f4101fc56db433635bcd3f9995f",
+    "commentary/phase1-state.json": "69249d40199b08d3e257e32aaaef43d9e023ae030b8e8f23efe41d4d7e0550b4",
+    "commentary/progress.md": "95df2cebc9b10710398d669712707a3911420fca181fcf508eb66354e7e1306c",
+    "commentary/review.json": "d5824fd59581c42491221cee283ca1a98a1c8c9ae51e5036e5e308399261eaa5",
+    "commentary/uncertainties.md": "0e61ca61ef3afa4d61961cf817a3ed206709ad635a0633ab1f41dc5565c8b9ae",
+    "commentary/verification.json": "19ad79ad74ee89e7b3381b817439d0d5dcec89bbd8f8918a4586fec5dd397918",
+    "editorial.json": "8e1aa06256988dae459d9d9b7c958dece85fe1b2a419e125fb27532364a6355d",
+    "maps/current.json": "1ea41d786c8ce22da17d3892acd1959f9a688c35c54087aed143120fedfd435d"
+  }
+}

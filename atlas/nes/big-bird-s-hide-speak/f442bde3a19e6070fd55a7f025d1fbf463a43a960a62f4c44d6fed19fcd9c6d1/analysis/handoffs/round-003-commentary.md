@@ -1,0 +1,11 @@
+# Round 3 commentary — current-source readability complete
+
+Input maps/round-003-disassembly-final.json equals maps/current.json; phase1-state.json is frozen from analysis/state.json. Entire prior commentary was preserved at analysis/round-003/commentary-before before fresh preparation. No prior evidence/source was discarded.
+
+Full inventory consistency assessment covers 627 current physical regions and 550 reviewed meaningful units across all PRG/CHR/header storage. Carried 624 unchanged scaffold reviews and all sound source names/prose by exact physical identity and dependencies; reviewed three split entries and refreshed source locations. Current classified readability covers 20,091 Code and 373,140 Data/Text bytes. One Unknown byte at $3F53E retains its honest boundary/timing note; no classified readability gaps remain. Scope assessment: analysis/round-003/commentary-work/review-assessment.json. Prior consumer/format inspection and valid review credit were reused; no cosmetic whole-source rewrite was needed.
+
+Corrected affected map-derived headers to Code $7191..$720A, Data $720A..$721B, canonical B20B code $721B..$725B. Explained inclusive count..0 searches and extra $03/$02/$A2 reads beyond 9/3/2 letters, excluded by uppercase candidate bounds. Independent preceding RTS and calls bound the 17 data bytes. Shuffle saves/restores its own four values with balanced PHA/PLA; known callers supply nonnegative 0..4 values required by its used-slot test. Preserved B914 alternate equate within B911 BIT operands, separate mapper/footer contexts, speech-tail 31/32 exception at $13FEF and all valid earlier uncertainty/role comments.
+
+Fresh commentary.py verify passed byte-identical against unchanged original SHA256 f442bde3a19e6070fd55a7f025d1fbf463a43a960a62f4c44d6fed19fcd9c6d1; reading-after.asm refreshed after source edits. Classification remains 393231/393232: one unresolved byte prevents a whole-ROM completion claim. Final editorial audit remains pending and was not invoked. No map/classification/toolkit/ROM edits, archive, publication, cleanup or replay performed.
+
+Compact continuation: current-source readability is complete. Coordinator may proceed to its next authorized phase; terminal residual assessment must retain R2-L001 ambiguity. Final editorial/archive acceptance remains separately pending.

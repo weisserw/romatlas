@@ -1,0 +1,196 @@
+{
+ "version": 1,
+ "round": 1,
+ "input_contract": "NES emulator.input uses full buttons array; releases []; button/pressed attempts were no-ops",
+ "authoritative_replay": "analysis/round-01/rpc.jsonl records all requests, actual states, budgets and timeouts",
+ "milestones": [
+  {
+   "milestone": "Title",
+   "status": "visited",
+   "route": "emulator.start; traced 176 frames, then untraced waits through frame1293; Start buttons array 3 frames then []",
+   "observed_result": "Best of the Best Championship Karate title scroll; Start changes execution to menu transition",
+   "evidence": [
+    "analysis/round-01/startup.png",
+    "analysis/round-01/menu.snapshot.json"
+   ]
+  },
+  {
+   "milestone": "Main menu",
+   "status": "visited",
+   "route": "import menu.snapshot.json; reassert []; trace disabled; step400 frames max_operations15000000 timeout_ms20000",
+   "observed_result": "Menu with match, training, grading, hits, load/save, fighter previews and next fighter",
+   "snapshot": "analysis/round-01/menu-ready.snapshot.json",
+   "evidence": [
+    "analysis/round-01/menu-loaded.png",
+    "analysis/round-01/menu-records.json"
+   ]
+  },
+  {
+   "milestone": "First opponent Tsong Po",
+   "status": "visited",
+   "route": "From initial natural menu: Down2 frames, []4 frames, A3 frames, []40 frames, untraced240 frames; A+Right30, B+Down30, [] then untraced600; A+Right30, B+Up30, []",
+   "observed_result": "Natural first ring encounter, movement and attacks, round timer and health displays; opponent AI active",
+   "snapshot": "analysis/round-01/bout.snapshot.json",
+   "evidence": [
+    "analysis/round-01/fight.png",
+    "analysis/round-01/actions.png",
+    "analysis/round-01/contexts-final.json"
+   ]
+  },
+  {
+   "milestone": "Late opponent Cogneur",
+   "status": "visited",
+   "artificial": true,
+   "route": "Import menu-ready snapshot; reassert []. Patch RAM1062 with 35 bytes from ROM148032..148066. A5/[]30, untraced360 gives Cogneur menu but challenge refusal. Down2/[]4/A3/[]20/untraced320 likewise. Patch RAM1028=[99,99,99,255,255], A3/[]20/untraced360 still refuses. Patch RAM1045=[255,255,255,0], A3/[]20 (timeout partial)/untraced360; untraced160 then A+Right20/B+Down20 (both timeout partial), []/untraced120; A+Right5/[]",
+   "observed_result": "COGNEUR menu, then initialized named Cogneur ring and active fighters after money patch; representative input accepted with actual fetches in banks[6,7,30,31]. Flag/stat requirements not isolated; natural route not established",
+   "snapshot": "analysis/round-01/cogneur-fight.snapshot.json",
+   "evidence": [
+    "analysis/round-01/cogneur-patch.json",
+    "analysis/round-01/cogneur-fight.png",
+    "analysis/round-01/contexts-artificial.json"
+   ]
+  },
+  {
+   "milestone": "Training and custom hits",
+   "status": "deferred",
+   "reason": "Distinct menu mechanics available; menu navigation/dispatch contract needs bounded consumer tracing rather than repeating failed short directional assumptions",
+   "next_lead": "R01-L03"
+  },
+  {
+   "milestone": "Later rounds, championship victory and terminal ending",
+   "status": "deferred",
+   "reason": "Cogneur ring reached with practical supported descriptor initialization, but victory/health/round progression contract unknown. Specific NES secret-name low-health route discovered late; verify comparison consumer and initialization before applying. No arbitrary RAM brute force",
+   "next_lead": "R01-L02"
+  },
+  {
+   "milestone": "Conversion secret credits",
+   "status": "deferred",
+   "reason": "External OLRAC name recipe found; ROM comparison and route remain unverified",
+   "next_lead": "R01-L02"
+  },
+  {
+   "milestone": "Grading display",
+   "status": "visited",
+   "artificial": true,
+   "route": "Clean menu snapshot; release[]; RAM030A=1; A3,[]420,A+Right25,[]100 frames, bounded budgets in scenarios-follow.py.",
+   "observed_result": "mode-1-action",
+   "evidence": [
+    "analysis/redirect/round-01-a/mode-1-action.png",
+    "analysis/redirect/round-01-a/mode-1-action-state.json",
+    "analysis/redirect/round-01-a/rpc.jsonl"
+   ],
+   "round": 1,
+   "phase": "redirect"
+  },
+  {
+   "milestone": "Custom-hit editor",
+   "status": "visited",
+   "artificial": true,
+   "route": "Clean menu snapshot; RAM030A=2; A3,[]180,A+Right15,[]30; scenarios.py.",
+   "observed_result": "menu-choice-2-action",
+   "evidence": [
+    "analysis/redirect/round-01-a/menu-choice-2-action.png",
+    "analysis/redirect/round-01-a/menu-choice-2-action-state.json",
+    "analysis/redirect/round-01-a/rpc.jsonl"
+   ],
+   "round": 1,
+   "phase": "redirect"
+  },
+  {
+   "milestone": "Stat editor",
+   "status": "visited",
+   "artificial": true,
+   "route": "Clean menu snapshot; RAM030A=12; A3,[]420,A+Right25,[]100; scenarios-follow.py.",
+   "observed_result": "mode-12-action",
+   "evidence": [
+    "analysis/redirect/round-01-a/mode-12-action.png",
+    "analysis/redirect/round-01-a/mode-12-action-state.json",
+    "analysis/redirect/round-01-a/rpc.jsonl"
+   ],
+   "round": 1,
+   "phase": "redirect"
+  },
+  {
+   "milestone": "Negative-mode training/demo bout",
+   "status": "attempted",
+   "artificial": true,
+   "route": "RAM030A=10; A3,[]500,A+Right30,[]; source91B3 sets0451=80. Ring transition shown with blank timer; no visibly initialized fighters before bounded stop. No full training visit claimed.",
+   "observed_result": "training-mode",
+   "evidence": [
+    "analysis/redirect/round-01-a/training-mode.png",
+    "analysis/redirect/round-01-a/training-mode-state.json",
+    "analysis/redirect/round-01-a/rpc.jsonl"
+   ],
+   "round": 1,
+   "phase": "redirect"
+  },
+  {
+   "milestone": "Second round",
+   "status": "visited",
+   "artificial": true,
+   "route": "Initialized secret ring snapshot; RAM045C=[255,0],RAM048A=3;[]500,A3,[]400; ordinary round transition. Artificial result, source threshold verified.",
+   "observed_result": "forced-round-continuation",
+   "evidence": [
+    "analysis/redirect/round-01-a/forced-round-continuation.png",
+    "analysis/redirect/round-01-a/forced-round-continuation-state.json",
+    "analysis/redirect/round-01-a/rpc.jsonl"
+   ],
+   "round": 1,
+   "phase": "redirect"
+  },
+  {
+   "milestone": "Conversion secret credits",
+   "status": "visited",
+   "artificial": true,
+   "route": "Clean menu-ready snapshot; RAM0409 ten bytes two spaces OLRAC three spaces; RAM030A=11;A3,[]350; conversion credits;A3,[]150 resumes first-bout interstitial.",
+   "observed_result": "olrac-credits",
+   "evidence": [
+    "analysis/redirect/round-01-a/olrac-credits.png",
+    "analysis/redirect/round-01-a/olrac-credits-state.json",
+    "analysis/redirect/round-01-a/rpc.jsonl"
+   ],
+   "round": 1,
+   "phase": "redirect"
+  },
+  {
+   "milestone": "Championship winner and terminal title credits",
+   "status": "visited",
+   "artificial": true,
+   "route": "Cogneur ring snapshot; RAM0452=4,RAM045C=[255,0],RAM048A=3;[]450 gives fifth-round result;A3,[]350 gives winner;A3,[]250 gives title/credits. Source8224 winner/result04DC16 thenE17C\u219284B5/86D7. Artificial only.",
+   "observed_result": "cogneur-ending-after-input",
+   "evidence": [
+    "analysis/redirect/round-01-a/cogneur-ending-after-input.png",
+    "analysis/redirect/round-01-a/cogneur-ending-after-input-state.json",
+    "analysis/redirect/round-01-a/rpc.jsonl"
+   ],
+   "round": 1,
+   "phase": "redirect"
+  },
+  {
+   "milestone": "Resource-zero KO hypothesis",
+   "status": "attempted",
+   "artificial": true,
+   "route": "scenarios-follow.py: restore secret-initialized.snapshot.json;045D=0;A+Right30,[]500",
+   "observed_result": "Resource recovers to10 and ring continues; zero alone not KO. Earlier initialization patch overwritten.",
+   "evidence": [
+    "analysis/redirect/round-01-a/initialized-zero.png",
+    "analysis/redirect/round-01-a/initialized-zero-ram.json"
+   ]
+  }
+ ],
+ "trace_limits": {
+  "capacity": 0,
+  "aggregate_dropped": 0,
+  "detail_dropped": 60804332,
+  "note": "Intentional no-detail aggregate tracing; bounded untraced waits not execution coverage. Timeouts preserve partial execution; replay exact RPC states rather than assuming requested frame count completed."
+ },
+ "passes": [
+  {
+   "round": 1,
+   "phase": "redirect",
+   "attempt": "analysis/redirect/round-01-a",
+   "artificial": true,
+   "record": "analysis/redirect/round-01-a/findings.md"
+  }
+ ]
+}

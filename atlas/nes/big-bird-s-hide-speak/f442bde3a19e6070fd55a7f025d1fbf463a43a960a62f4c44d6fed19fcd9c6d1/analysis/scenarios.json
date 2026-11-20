@@ -1,0 +1,179 @@
+{
+  "version": 1,
+  "round": 1,
+  "phase": "redirect complete",
+  "replay_contract": "Configured binary only; emulator.start then snapshot.import. Reassert buttons after import. Snapshots contain local ROM state and remain local. Recorded per-request max_operations, timeouts and partial outcomes are authoritative.",
+  "milestones": [
+    {
+      "milestone": "Startup, title, credits and six-game choice menu",
+      "status": "visited",
+      "route": "Initial reset context [0,1,30,31]; exact bounded steps and start press/release in queue.jsonl requests 1..470; later trace-off 600-frame skips. Menu saved naturally at frame 2196.",
+      "evidence": [
+        "analysis/round-001/title.png",
+        "analysis/round-001/menu.png",
+        "analysis/round-001/menu5.png",
+        "analysis/round-001/menu.snapshot"
+      ]
+    },
+    {
+      "milestone": "Mode 1 common building introduction",
+      "status": "visited",
+      "route": "From clean menu snapshot A press 2 frames, release; introductory progression and representative A/right/B attempts. Inputs during narration may be ignored.",
+      "evidence": [
+        "analysis/round-001/mode-1-entry.png",
+        "analysis/round-001/mode-1-response.png",
+        "analysis/round-001/mode-1.snapshot"
+      ]
+    },
+    {
+      "milestone": "Natural menu selection of modes 2\u20136",
+      "status": "attempted",
+      "route": "2-frame direction/release pulses then A; retried with 90-frame waits.",
+      "observed_result": "Little Bird moved, but A arrived during animation/narration gate. Historical console messages claiming visited are superseded by frame review. Captures remain at game-choice screen.",
+      "evidence": [
+        "analysis/round-001/play_modes.py",
+        "analysis/round-001/play_modes_verified.py",
+        "analysis/round-001/verified-mode-2-menu.png"
+      ]
+    },
+    {
+      "milestone": "Artificial mode indices 1\u20135 / common introductions",
+      "status": "attempted",
+      "route": "Import clean menu.snapshot, release all buttons, write RAM $01FA = mode minus one, A4/release8, bounded trace-off 600-frame step, A4/release4 and 120-frame step. Modes 5/6 also set each of ten 24-bit job counters ($03B4/$03BE/$03C8 arrays) to $FFFFFF before a further 600-frame step.",
+      "observed_result": "Building scene and character walking confirmed for all selected indices. Selector-dependent distinct minigame mechanics not yet demonstrated; do not count a selector write as a completed mode visit. Execution after writes is artificial.",
+      "evidence": [
+        "analysis/round-001/direct-mode-3-rpc.jsonl",
+        "analysis/round-001/direct-mode-4-rpc.jsonl",
+        "analysis/round-001/direct-mode-5-rpc.jsonl",
+        "analysis/round-001/direct-mode-6-rpc.jsonl",
+        "analysis/round-001/direct-mode-3.snapshot",
+        "analysis/round-001/direct-mode-4.snapshot",
+        "analysis/round-001/direct-mode-5.snapshot",
+        "analysis/round-001/direct-mode-6.snapshot"
+      ]
+    },
+    {
+      "milestone": "Open character windows after supported job-delay shortcut",
+      "status": "visited",
+      "route": "Import direct-mode-6.snapshot; reassert no buttons; eight repetitions of ten-byte FF writes at RAM $03B4,$03BE,$03C8 followed by at most 120 frames / 5,000,000 operations / 6000ms.",
+      "observed_result": "Frame 3880: four character windows open, Big Bird visible, index $01FA still 5. Actual artificial scene progression confirmed; letter/timed gameplay and ending not yet established.",
+      "evidence": [
+        "analysis/round-001/progress-mode6-rpc.jsonl",
+        "analysis/round-001/progress-mode6-7.png",
+        "analysis/round-001/progress-mode6.snapshot"
+      ]
+    },
+    {
+      "milestone": "Timed final mode round ending / terminal state",
+      "status": "deferred",
+      "reason": "Common intro reached, but round-state/timed-mode entry contract remains unresolved. Global job-delay counter shortcut advanced introduction without proving final mode or round expiry. Redirect should trace $DFD4/$E00B dispatch and subsequent intro continuation rather than brute-force RAM or repeat menu pulses.",
+      "lead": "R1-L004"
+    },
+    {
+      "milestone": "Open-window input/feedback response",
+      "status": "visited",
+      "route": "Import progress-mode6.snapshot; reassert buttons; trace Instruction; A4, release4, right4, release4, A4, release4; trace off and 180 frames (bounded).",
+      "observed_result": "At frame4084 one previously open window closed, scene/response changed and 1056 contextual roots captured, 438 new classified bytes. Artificial scenario; distinct spelling/timed-mode semantics remain unconfirmed.",
+      "evidence": [
+        "analysis/round-001/probe-open-windows-rpc.jsonl",
+        "analysis/round-001/probe-open-windows.png",
+        "analysis/round-001/probe-open-windows.snapshot",
+        "analysis/round-001/probe-open-windows-roots.json"
+      ]
+    },
+    {
+      "milestone": "Artificial mode6 actual input loop and timed-round summary/cleanup",
+      "status": "visited",
+      "route": "Import probe-open-windows snapshot, release buttons and finish current speech to actualE618 (mode6-input-boundary.snapshot). Patch onlyRAM0253=85 and job4 expiry flag03D6=80; consumer increments to86 and reachesE70D in566operations. Resume saved partial summary with10-frame bursts,22 calls to actualE768 cleanup fetch.",
+      "observed_result": "Valid mode6 response/input contract and timed-round closure/restart confirmed by actual instruction fetches and frame review. Final capture has closed windows and cleaned scene. Artificial progression, no global ending or natural reachability claim.",
+      "evidence": [
+        "analysis/redirect/r001-consumer-contracts/mode6-boundary-results.json",
+        "analysis/redirect/r001-consumer-contracts/mode6-summary-results-v2.json",
+        "analysis/redirect/r001-consumer-contracts/gameplay-short-results.json",
+        "analysis/redirect/r001-consumer-contracts/short-mode-6-roots.json",
+        "analysis/redirect/r001-consumer-contracts/short-mode-6-batch-21.png"
+      ]
+    },
+    {
+      "milestone": "Failed introduction actor-index4 shortcut",
+      "status": "attempted",
+      "route": "From clean initialized handler-entry states, attemptedRAM0201=4 under activeA96F stack return.",
+      "observed_result": "INVALID artificial setup. A96F increments then compares4; index4 overshot to5 and ran out of domain, eventually frozen PCs inRAM0188/0160. No distinct minigame visit credited. All such frozen states invalidate the shortcut, not original game or static handler structure.",
+      "evidence": [
+        "analysis/redirect/r001-consumer-contracts/intro-code.json",
+        "analysis/redirect/r001-consumer-contracts/gameplay-short-results.json",
+        "analysis/redirect/r001-consumer-contracts/notes.md"
+      ]
+    },
+    {
+      "milestone": "Corrected introduction-only shortcut and modes1..5 interactions",
+      "status": "visited",
+      "route": "Fresh pre-bad-edit continuation-mode-N-batch2 snapshots. Only under an inspected activeA96F call return and index<4 setRAM0201=3 once; currentactor completes andINC reaches4 exit. Run1 traced+9 untraced frame bursts to source-backed stable input loops.",
+      "observed_result": "Qualified artificial initialized-handler observations: actualstableloop fetches E062/E174/E27E/E387/E4A1; direction selection1..4 andmode5 A/B acceptance/type/lettercomparison. Mode1postloopRAMPC002A andright-edge partialrendering in1/2/5 prevent full rendering/fidelity claims. Answercorrectness remains unconfirmed; actualmode5feedback was entered. The wrongindex4 experiment remains explicitly invalidated.",
+      "evidence": [
+        "analysis/redirect/r001-consumer-contracts/gameplay_short_bursts_corrected.py",
+        "analysis/redirect/r001-consumer-contracts/gameplay-short-corrected-rpc.jsonl",
+        "analysis/redirect/r001-consumer-contracts/intro-code.txt",
+        "analysis/redirect/r001-consumer-contracts/gameplay-corrected-results.json",
+        "analysis/redirect/r001-consumer-contracts/mode5-final-results.json",
+        "analysis/redirect/r001-consumer-contracts/mode5-final-interaction-roots.json",
+        "analysis/redirect/r001-consumer-contracts/corrected-mode-3-batch-63.png",
+        "analysis/redirect/r001-consumer-contracts/mode5-final-58.png",
+        "analysis/redirect/r001-consumer-contracts/mode5-final-interaction.png"
+      ]
+    },
+    {
+      "milestone": "Separate global ending/credits after gameplay",
+      "status": "unavailable",
+      "route": "Inspected all six source-backed handler exits and timed-round summary. Each ordinary game path loops to its own setup; shared Start/Select exit restores savedstack and returns menu. Startup title/credits already visited.",
+      "observed_result": "No separate global ending route identified in these supported handlers. Timed mode6 summary/cleanup exercised via dedicatedcounter shortcut. No claim of exhaustive hidden-ending absence.",
+      "evidence": [
+        "analysis/redirect/r001-consumer-contracts/mode-targets.json",
+        "analysis/redirect/r001-consumer-contracts/mode-1.txt",
+        "analysis/redirect/r001-consumer-contracts/mode-2.txt",
+        "analysis/redirect/r001-consumer-contracts/mode-3.txt",
+        "analysis/redirect/r001-consumer-contracts/mode-4.txt",
+        "analysis/redirect/r001-consumer-contracts/mode-5.txt",
+        "analysis/redirect/r001-consumer-contracts/mode-6.txt",
+        "analysis/redirect/r001-consumer-contracts/game-dispatch.txt"
+      ]
+    },
+    {
+      "milestone": "Ordinary Start escape from artificial mode5 to menu introduction",
+      "status": "visited",
+      "route": "Importmode5-final-interaction.snapshot, releasebuttons, Start4/release8, then180untracedframes; noRAM/PC edits.",
+      "observed_result": "ActualsharedexitDFE2 fetched andInteractionEnabled cleared. Selectedcapture shows black-background SesameStreetlamp/BigBirdmenu introduction. Menu-callerDFAB not in short trace (laterframesuntraced); fullchoicescreen notclaimed.",
+      "evidence": [
+        "analysis/redirect/r001-consumer-contracts/menu-return-results.json",
+        "analysis/redirect/r001-consumer-contracts/menu-return-roots.json",
+        "analysis/redirect/r001-consumer-contracts/menu-return.png",
+        "analysis/redirect/r001-consumer-contracts/menu-return.snapshot"
+      ]
+    }
+  ],
+  "active_attempt": null,
+  "phase_reviews": [
+    {
+      "round": 2,
+      "phase": "disassembly",
+      "status": "reused bounded decisive evidence; no new replay",
+      "review": "analysis/round-002/review.md",
+      "outcome": "All six artificial handler loops, mode5 A/B comparison, mode6 timed expiry+summary cleanup and ordinary Start/menu transition retained. Mode1 later RAMPC/partial rightedge rendering1/2/5 remain explicit; natural selection/full answer outcomes/hidden ending unresolved. Repeated permutations have no substantial structural prospect for this batch."
+    },
+    {
+      "round": 2,
+      "phase": "redirect",
+      "attempt_id": "r002-inline-boundaries",
+      "status": "reused completed broad best-effort primary evidence; no unchanged replay",
+      "review": "analysis/redirect/r002-inline-boundaries/findings.md",
+      "outcome": "Reviewed six initialized loops, mode5 actual comparison, mode6 timed-summary cleanup, ordinary Start/menu and unavailable separate global-ending route. No new source-supported discriminatory transition identified; existing natural-route/full-fidelity limitations preserved."
+    },
+    {
+      "round": 3,
+      "phase": "disassembly",
+      "status": "reused completed broad gameplay; no unchanged replay",
+      "evidence": "analysis/handoffs/round-002-redirect.md",
+      "result": "Localized static category correction has independent bounds; no changed useful progression question. Preserve six-mode artificial/natural reachability and terminal-screen qualifications."
+    }
+  ]
+}

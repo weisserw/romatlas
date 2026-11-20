@@ -1,0 +1,13 @@
+# Round009 redirect handoff
+
+Ready independent structural review:3 proposed Static Code bytes at physical3D62B+3, CPU D61B, effective physical slots[unknown,unknown,30,31]. Lead R009-RELOCATED-RENDERER-TILE-BASE. Exact proposal/evidence: analysis/redirect/round-009-a/proposal.json, renderer-copy.json, primary.json, research.md.
+
+Corrected former four-byte prefix rejection: physical3D62A+4 is1D1865B3, but accepted original3D00B begins B11D1865B3. Eighty-eight consecutive bytes match from3D00C/3D62A, under +61E displacement independently established by accepted relocated dispatcher/table/helper calls. Thus1D is the orphan operand;18/65B3 is complete preserved CLC/ADC $B3. It prepares A's tile-base value for independently accepted following STA034C,X and A+2 paired-tile producer. Exact source instruction alignment, long copy and downstream dataflow combine to support Code3; no natural entry, missing B1 repair or intact outer renderer claim. Retain initial1D Unknown.
+
+All connected continuations and other identified avenues inspected in this redirect. The surviving counterB5 copy is truncated by accepted vector4C; existing footer/publisher/dispatch/counter continuations are already classified. Singleton, isolated JMP/TAX, BRK and arithmetic residuals have localized competing code/data interpretations after adjacency/consumer/template checks. Primary.json records fresh all16-range map complement, neighbors and source; template-tests.json checks both JMP820D occurrences and other actual copies. Exact residual ledger: analysis/redirect/round-009-a/residual-ledger.json. This is a ready batch, not terminal exhaustion.
+
+Input checkpoint round-009-classified; map SHA25616e473e723b5f85e8a8243e6dfbf27befa49aca77819a1f3f6107c0df1c1a18d. Current262127/262160 (99.99%),33 Unknown bytes/16 intervals. Proposed3, accepted0; conditional30 Unknown/16 intervals. Commentary gate complete2105 spans/2015 units with fresh configured byte-identical verification; final editorial and whole-ROM acceptance remain outstanding.
+
+Gameplay review preserves broad artificial later-area, distinct mechanics, boss arena, rescue/explosion and terminal signature visits. Natural cockpit defeat/full timed credits remain unproved; no new progression contract supports replay. History/scenarios preserved.
+
+analysis/redirect/round-009-a/preservation-check.json verifies ROM/map/state/source/symbols/reading/review/configured-release-binary unchanged. No map/state/source/ROM/toolkit changes, archive, cleanup/deletion, publication or subagents. Disk3.9GiB free; no exploratory scratch dump. Leads history appended with ready3 and exact input pass. Next independent disassembly review, full current-source commentary, then redirect.

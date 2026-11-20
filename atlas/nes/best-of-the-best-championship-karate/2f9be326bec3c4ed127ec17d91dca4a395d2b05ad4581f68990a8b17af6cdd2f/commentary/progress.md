@@ -1,0 +1,7 @@
+# User fallback commentary
+
+Current-source readability complete: all 599 intervals and 1,228 units reconciled by exact physical bounds with the new baseline. All prior Code/Data boundaries and source review credit are unchanged. Reviewed the complete inventory for pending work, source anchors, code units and concrete contradictions; reused valid prior routine/data/RAM editorial reviews. Only three Unknown-to-Manual-Data intervals changed. Their source boundary notes, labels, region/unit summaries and uncertainty record now explicitly distinguish the user exception from structural proof. No invented semantics or reopened research. Full previous commentary retained in analysis/user-fallback-01/commentary-before; newly prepared source also retained separately.
+
+Coverage: Code 25622; Data 236538, including Manual 7; total 262160/262160 annotated. Prior evidence-backed total262153; meaning limits remain. No current-source scope deferred. Final verify/read and then targeted editorial acceptance are the sequential next gates.
+
+Final editorial acceptance complete: strict audit passed,599 intervals/1228 units,byte_identical=true and editorial_audit=true. Reading-after refreshed. Baseline/current map/state SHA256 e870ff399453b69cc107cf3e5ac76dad6048e16e75910b144cc0a7b1dc0e7525; source SHA256 5e07ad9c960fc4272e652bc7a48e6babd3bee09038821deebb83f69b660606d2. No deferred ranges. See analysis/handoffs/user-fallback-01-commentary.md.

@@ -1,0 +1,13 @@
+{
+  "byte_identical": true,
+  "ok": true,
+  "rom_sha256": "3845e173d2fa31fa2f621c37c78ecd649137d4f4781761dc4fa463e27132ed14",
+  "source_sha256": {
+    "game.asm": "1ef0526057431ce3e108737e8bc4bf0ea763005097f745385f6cc1ef7e400cd2",
+    "hardware.inc": "5a088100e20283562f96fc99a169e7b5e8df64d3febb9ebfad920bc35e3fda93",
+    "ram.inc": "fdf0b3c29667e4726ccb5cd6af26452306573de1a7f64ae4461798f7ea011bce"
+  },
+  "reviewed_regions": 1400,
+  "reviewed_units": 1330,
+  "editorial_audit": true
+}

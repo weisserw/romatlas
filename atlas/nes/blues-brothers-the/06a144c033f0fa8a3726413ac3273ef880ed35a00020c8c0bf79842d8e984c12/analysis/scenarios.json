@@ -1,0 +1,136 @@
+{
+  "version": 1,
+  "round": 1,
+  "phase": "disassembly",
+  "live_session": {
+    "transport": "Python interactive PTY via exec write_stdin",
+    "session_id": 36167,
+    "rpc": "rpc(method, **params)",
+    "log": "analysis/round01/rpc-live.jsonl",
+    "snapshot_scope": "exported JSON durable; in-memory emulator only in live session"
+  },
+  "milestones": [
+    {
+      "milestone": "copyright/title",
+      "status": "visited",
+      "route": "reset; initial frame180 budget10s timed out at24; trace disabled frame120 ->144; Start2 release; frame120 budget30s timed out at202",
+      "evidence": [
+        "analysis/round01/startup.png",
+        "analysis/round01/startgame.png"
+      ]
+    },
+    {
+      "milestone": "chapter1 intro",
+      "status": "visited",
+      "route": "title Start8 release20 to230",
+      "evidence": [
+        "analysis/round01/selection.png"
+      ]
+    },
+    {
+      "milestone": "chapter1 active jump/run",
+      "status": "visited",
+      "route": "Start4 release60 to294; right+A+B30 to324; release",
+      "observed_result": "Outdoor active gameplay, player jumping, moving backdrop and life HUD",
+      "snapshot": "analysis/round01/chapter1-ready.json",
+      "evidence": [
+        "analysis/round01/chapter1-action.png"
+      ]
+    },
+    {
+      "milestone": "built-in level skip",
+      "status": "attempted",
+      "route": "P1 up+right+A+B+select+start and P2 down+right+A+B+select+start for3 frames; release both10; P1 A+B+select+start3 release20",
+      "observed_result": "$0750 remains0; no chapter change. Recipe not verified."
+    },
+    {
+      "milestone": "chapter2 via RAM",
+      "status": "visited",
+      "patch": "pre-patch.json; RAM $0750=1,$37=1; operation1 to instruction boundary; PC=$F587,SP=$FD; no buttons frame30",
+      "observed_result": "Final second-start loader test from $F5A2 reached active warehouse; right+A+B15 moves character. Artificial execution only.",
+      "evidence": [
+        "analysis/round01/chapter2-final.png"
+      ],
+      "recipe": "restore pre-patch.json; release both; RAM $0750=1; operation1; PC=$F5A2/SP=$FF; wait20; Start3/release75; right+A+B15/release",
+      "snapshot": "analysis/round01/chapter2-visited.json"
+    },
+    {
+      "milestone": "chapter3 prison",
+      "status": "visited",
+      "reason": "pending verification of stage initialization contract",
+      "observed_result": "Distinct prison roof and ladder, right+A+B15 action, artificial state only.",
+      "patch": "Shared visit(stage=2) in progression.py: restore pre-patch, $0750=2, instruction boundary, PC F5A2/SP FF; wait20, Start3/release75, action15.",
+      "evidence": [
+        "analysis/round01/stage2-action.png"
+      ],
+      "snapshot": "analysis/round01/stage2-visited.json"
+    },
+    {
+      "milestone": "chapter4 sewer",
+      "status": "visited",
+      "reason": "pending verification of stage initialization contract",
+      "observed_result": "Distinct sewer chamber, water and swimming/jump action under artificial loader state.",
+      "patch": "visit(stage=3) in analysis/round01/progression.py",
+      "evidence": [
+        "analysis/round01/stage3-action.png"
+      ],
+      "snapshot": "analysis/round01/stage3-visited.json"
+    },
+    {
+      "milestone": "chapter5 construction",
+      "status": "attempted",
+      "reason": "pending verification of stage initialization contract",
+      "observed_result": "Additional40 right+B frames plus RAM $042A=3,$03C2=2 changed scrolling and HUD but retained severe scene artifacts; active update/accepted fetches confirmed, clean construction visit not established.",
+      "patch": "visit(stage=4) in analysis/round01/progression.py",
+      "evidence": [
+        "analysis/round01/stage4-action.png",
+        "analysis/round01/stage4-settle.png"
+      ],
+      "snapshot": "analysis/round01/stage4-settle.json"
+    },
+    {
+      "milestone": "ending/concert",
+      "status": "visited",
+      "reason": "pending later chapter transition contract",
+      "observed_result": "Ending interstitial WELCOME TO THE BAND followed by staff names and terminal prose after Start. Scroll/right-edge artifacts remain, so no clean rendering/fidelity claim; concert action pending. Additional Start3/release50 produced player sprite and color animation behind artifacted credits; no clean concert fidelity claim.",
+      "patch": "restore pre-patch; release both; RAM $37=$0750=5; operation1; PC=$F50A/SP=$FD; wait50; Start3/release50",
+      "evidence": [
+        "analysis/round01/ending.png",
+        "analysis/round01/concert.png",
+        "analysis/round01/concert-final.png"
+      ],
+      "snapshot": "analysis/round01/ending.json"
+    },
+    {
+      "milestone": "scene reset construction and ending corrected",
+      "status": "visited",
+      "route": "analysis/redirect/round01-contracts/screen.py and ending.py: pre-patch snapshot, release ports1/2, RAM37=4 or5, operation1, PC F4A9 SP FF,35frames, twice Start3/release60, right+A+B15/release",
+      "observed_result": "Coherent construction catwalk/ladder scene and readable ending credits after full scene RAM reset. Artificial state only; action frame budgets executed, no natural late-game route or complete fidelity claim.",
+      "evidence": [
+        "analysis/redirect/round01-contracts/screen-rpc.json",
+        "analysis/redirect/round01-contracts/ending-rpc.json",
+        "analysis/redirect/round01-contracts/construction-reset.png",
+        "analysis/redirect/round01-contracts/ending-reset.png"
+      ]
+    }
+  ],
+  "phase_status": "round03-disassembly-completed-incomplete",
+  "authoritative_checkpoint": "round03-disassembly-final",
+  "classification": "ROM classification: 100.00% (131084 / 131088 bytes classified; 4 bytes unknown).",
+  "phase_reviews": [
+    {
+      "round": 2,
+      "phase": "disassembly",
+      "result": "Reused prior broad natural/artificial visits and corrected construction/credits scene-reset evidence;no runtime repeated.",
+      "evidence": "analysis/redirect/round01-contracts/ending-rpc.json",
+      "classification": "Static additions separate from existing observed execution"
+    },
+    {
+      "round": 3,
+      "phase": "disassembly",
+      "result": "Reused successful representative gameplay and corrected full scene-reset construction/ending evidence; no unchanged replay or emulator mutation.",
+      "evidence": "analysis/redirect/round01-contracts/ending-rpc.json",
+      "classification": "All new annotations Static; no new natural/observed claim"
+    }
+  ]
+}

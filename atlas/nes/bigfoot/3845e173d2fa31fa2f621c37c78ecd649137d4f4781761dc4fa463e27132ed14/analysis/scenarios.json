@@ -1,0 +1,151 @@
+[
+ {
+  "milestone": "Boot/title/attract",
+  "route": "emulator.start; 300 frames",
+  "status": "visited",
+  "result": "title screen; no attract demo seen within ~820 frames",
+  "evidence": "traced; traces/snapshots/snap-title.json (from earlier session, same route)"
+ },
+ {
+  "milestone": "Player-select menu",
+  "route": "title + START (buttons:[start] 3 frames) until screen changes; down/up exercised",
+  "status": "visited",
+  "result": "1P/2P menu",
+  "evidence": "traced round 1"
+ },
+ {
+  "milestone": "Rally intro + USA map",
+  "route": "menu START -> rally screen; START -> map; wait 150; A",
+  "status": "visited",
+  "result": "map shows MESA",
+  "evidence": "traced"
+ },
+ {
+  "milestone": "Cross-country race (stop 0)",
+  "route": "from map A; tap A (2 on/2 off) with left/right; START pause; B",
+  "status": "visited",
+  "result": "race to finish untraced (~3200 frames mashing)",
+  "evidence": "traces/snapshots/snap-race1.json; traced ~250 frames"
+ },
+ {
+  "milestone": "Parts shop",
+  "route": "after race",
+  "status": "visited",
+  "result": "buy parts with down/A; CPU shop",
+  "evidence": "traces/snapshots/snap-shop1.json; traced"
+ },
+ {
+  "milestone": "Car crush (Mesa) heats 1-2",
+  "route": "shop START...; alternate left/right",
+  "status": "visited",
+  "result": "heat one and two played",
+  "evidence": "traces/snapshots/snap-crush1.json; traced 200+ frames"
+ },
+ {
+  "milestone": "Mud race / hill climb / tractor pull / drag race",
+  "route": "ARTIFICIAL: load shop1, write $041D in {1,2,3,8}, START x13 (60-frame gaps), then 60 frames + 35-40 left/right alternations",
+  "status": "visited (artificial)",
+  "result": "each event screen reached and exercised; drag race added no new instructions",
+  "evidence": "traces/snapshots/snap-event-stage{1,2,3,8}.json"
+ },
+ {
+  "milestone": "Championship ending",
+  "route": "ARTIFICIAL: car-crush heat two, write $041D=8 and $0423=1, alternate left/right ~1600 frames -> results -> championship text -> ending picture -> GAME OVER",
+  "status": "visited (artificial)",
+  "result": "ending path executed (~950 traced frames)",
+  "evidence": "traces/snapshots/snap-ending-results.json"
+ },
+ {
+  "milestone": "Two-player mode",
+  "route": "menu down + START",
+  "status": "deferred",
+  "result": "not exercised beyond cursor move",
+  "evidence": "lead L-007"
+ },
+ {
+  "milestone": "Later cross-country races (stops 1-8), Not-enough-cash game over, CPU forfeits",
+  "route": "RAM patch $041D before map/race",
+  "status": "deferred",
+  "result": "not attempted",
+  "evidence": "lead L-007"
+ },
+ {
+  "milestone": "Round 2 gameplay review (two-player, later cross-country races, natural ending)",
+  "route": "none run",
+  "status": "deferred",
+  "result": "Round 2 was static lead verification; all ROM bytes classified at pass-002, so further play would only add reachability evidence for Static islands (L-001) and HillSpecial values 1-12",
+  "evidence": "analysis/handoffs/round-02-disassembly.md"
+ },
+ {
+  "milestone": "Two-player mode (menu, map, 2P cross-country race)",
+  "round": "redirect r02",
+  "route": "snap-title + 250 frames, START, wait 60, DOWN, START, START, wait 150, A x6 (60-frame gaps); then both pads A-tap (port 1 and 2)",
+  "status": "visited",
+  "result": "2P map and race with blue P1 / red P2 trucks, both controllable; traced 600 frames (cov-2prace). 2P race not finished (both trucks stalled without steering)",
+  "evidence": "traces/snapshots/snap-2p-race.json; analysis/redirect/r02-redirect-a1/frames/2p-race.png; analysis/redirect/r02-redirect-a1/runs.json"
+ },
+ {
+  "milestone": "Hill climb special terrain sequence (HillSpecial 1-12)",
+  "round": "redirect r02",
+  "route": "snap-event-stage2 (round-1 shop patch $041D=2) + START x13 (60-frame gaps) + 60 frames, then 900 frames with no joypad input",
+  "status": "visited (stop selection artificial)",
+  "result": "HillSpecial cycled 12..0 repeatedly; HillNmiJump handlers $8DA6-$9028 executed (bank 6)",
+  "evidence": "traces/snapshots/snap-hill-start.json; analysis/redirect/r02-redirect-a1/findings.json#G4"
+ },
+ {
+  "milestone": "Later cross-country race (stop 4) and out-of-cash GAME OVER",
+  "round": "redirect r02",
+  "route": "ARTIFICIAL: snap-crush1, write $041D=3 (event switches to tractor pull heat two), alternate LEFT/RIGHT with periodic START/A until the race; autopilot A-tap, steer only when RaceDist stalls (~5300 frames)",
+  "status": "visited (artificial stop patch)",
+  "result": "stop-4 race completed; results showed P1 '$BROKE!' and GAME OVER, then title",
+  "evidence": "traces/snapshots/snap-race-stop4.json; analysis/redirect/r02-redirect-a1/frames/stop4-broke-gameover.png"
+ },
+ {
+  "milestone": "Secret stop-select (input only)",
+  "round": "redirect r02",
+  "route": "snap-title + 250 frames; at PRESS START press (6 on/10 off) SELECT DOWN LEFT UP RIGHT B A B, then SELECT SELECT START",
+  "status": "visited",
+  "result": "TourStop=7 with no RAM edit (sequence 2 -> stop 5, each SELECT adds 1, max 2). Sequences 0/1 give stops 0/3.",
+  "evidence": "traces/snapshots/snap-secret-stop7.json; analysis/redirect/r02-redirect-a1/findings.json#G12"
+ },
+ {
+  "milestone": "Natural route to the championship ending (stops 7-8)",
+  "round": "redirect r02",
+  "route": "snap-secret-stop7 -> tools/autoplay.py (race: A-tap + stall steering; events: LEFT/RIGHT; menus: START) 30000 frames -> stuck in the stop-7 shop (a broken part blocks exit) -> A, START x3 (snap-nat-stop7-shop) -> autoplay (menus START,START,A)",
+  "status": "visited (natural input; no RAM patch)",
+  "result": "race to stop 7, mud race heats, race to stop 8, drag race heats, standings, championship picture (CPU P2 won), back to title. Transition logs: part1 race 480-5680, event 6820-10070; part2 race to stop 8 4090-9590, drag race 10910-18710, stop 9 / ending 19430-20390",
+  "evidence": "analysis/redirect/r02-redirect-a1/natural-route-log-part1.txt, natural-route-log-part2.txt, frames/natural-ending-champion.png; traces/snapshots/snap-nat-stop7-shop.json"
+ },
+ {
+  "milestone": "Round 2 patched ending attempt (superseded)",
+  "round": "redirect r02",
+  "route": "snap-crush1 + $041D=7 + P1 money field $0455='050000'; mixed LEFT/RIGHT/START/A autoplay",
+  "status": "attempted",
+  "result": "reached stop 8 race and the drag-race shop, then stuck: a broken part (level $FF) blocks shop exit and partial shop secret sequences block START. Superseded by the natural route",
+  "evidence": "analysis/handoffs/round-02-redirect.md"
+ },
+ {
+  "milestone": "Round 3 disassembly (no new play)",
+  "round": "disassembly r03",
+  "route": "none; reused round-2 redirect traces (static-hits.json) for L-021",
+  "status": "deferred",
+  "result": "Gameplay already broad (1P/2P, all event types, natural championship ending); no unknown bytes left and no lead needing new runtime evidence, so no further play this pass",
+  "evidence": "analysis/handoffs/round-03-disassembly.md"
+ },
+ {
+  "milestone": "Tour intro story screen (read watch of story tile records)",
+  "round": "redirect r05",
+  "route": "snap-title + 250 frames, START, 60 frames, START, then 640 frames idle (tools/storywatch.py)",
+  "status": "visited (natural input)",
+  "result": "ShowIntroStory ran; 0:$90B2-$9180 story tile records read (25 of 27 records within 640 frames)",
+  "evidence": "analysis/redirect/r05-redirect-a1/storywatch.json, runs.json"
+ },
+ {
+  "milestone": "Round 5 checklist review",
+  "round": "redirect r05",
+  "route": "none",
+  "status": "reviewed",
+  "result": "Current: boot/title, 1P/2P menus, intro story, map, cross-country races (stops 0,4,7,8), shop, all five event types, out-of-cash GAME OVER, secret stop select, natural championship ending all visited. Not visited: attract demo (none within ~820 idle title frames; semantic only), a natural truck-1 crash/repair (SparkStartY tail; static extent suffices), 2P race to finish (not needed for any residual). No unvisited later-game milestone remains.",
+  "evidence": "analysis/handoffs/round-05-redirect.md"
+ }
+]

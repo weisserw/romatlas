@@ -1,0 +1,11 @@
+# Round006 commentary handoff
+
+Complete current-source readability for round-006-classified. Classification remains 262055/262160 bytes (99.96%), with 105 Unknown bytes in 20 intervals; final editorial audit remains pending until redirect/final acceptance.
+
+Preserved entire prior commentary at analysis/round-6/commentary-round-005 before fresh preparation. Carried 2,095 unchanged physical spans and 2,003 units with unchanged view dependencies. Current 2,099 spans and 2,005 units are reviewed; full inventory scan found no unexplained spans, numeric control operands or deferred readability ranges. Source locations refreshed from physical markers/unit labels. Prior prose retained.
+
+New physical $3E9C2+21 trial subtraction and $3E9D9+22 inverse-store/carry-add have mechanical RAM aliases, exact entry/output/scratch and register/flags contracts. Existing $3E9B1+17 double shift now states preserved registers and final flag behavior. Unknown prefix, two-byte branch and dangling store retain precise boundaries. Old whole-tail uncertainty and stale unknown totals were corrected. Natural caller, enclosing arithmetic intent and prior gameplay/credits/resource limits remain unresolved.
+
+Concrete redirect question: primary bytes 90 1A at physical $3E9D7 / CPU $E9C7 target CPU $E9E3 / physical $3E9F3 under fixed physical banks30/31. That target begins 4C0391 (JMP $9103), an existing named jump entry, contradicting prior evidence's “vector operand” rejection. Keep BCC Unknown pending redirect. See analysis/round-6/commentary-redirect-questions.md; no classification edit made.
+
+Fresh configured-binary verification passed byte-identically and reading-after.asm refreshed. ROM SHA256 f5f1e212b70e858b3b0257161bc4c25a390602dacd12d5c0877a971ce8a18567; map/state SHA256 d85801c366f073fc9b23ff7c701138408e723560eb47795c6525eb68718b5312. Exact source/review/reading hashes and verification: analysis/round-6/commentary-completion.json. Carry and full inventory evidence: carry-report.json, readability-checks.json. No map/state/ROM/toolkit edits, archive, cleanup/deletion, publication or final audit. Proceed to redirect; readability completion does not establish whole-ROM classification or final editorial acceptance.

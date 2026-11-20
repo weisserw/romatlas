@@ -1,0 +1,13 @@
+# Round008 redirect handoff
+
+Ready independent structural review:12 proposed bytes, Static Code physical3D67E+6 CPU D66E fixed physical slots[unknown,unknown,30,31], Static Data3D684+6. Lead R008-RELOCATED-SCROLL-DISPATCH. Proposal and exact evidence: analysis/redirect/round-008-a/proposal.json, primary.json, research.md.
+
+Fresh accepted-template comparison establishes preserved relocated RTS/LDAAF/JSR plus three-word inline table. Original accepted physical3D060+12 contains words D050,D05C,D0A6; candidate words D66E,D67A,D6C4 ALL differ61E, equal physical relocation. Following already accepted four-lane wrapper/helper independently shares that displacement and field/mask operations. AF's accepted zero/one/two selector contract and stack-consuming inline dispatcher corroborate the format. Actual E000 starts0035, and third relocated target is overwritten by accepted animation vector: no functioning dispatch, repaired callee, intended animation or natural use is claimed. Rejection of functioning E000 ABI does not reject these narrower preserved structures.
+
+All other residual avenues and supported continuations assessed in this same redirect. Counter destination/default/wrapper/vector continuations are proposed or already classified; actual invalid branch target and truncated final load prevent extension. Singleton/JMP/TAX remnants, renderer prefix, trap and truncated arithmetic bytes retain localized structural ambiguity after adjacency/consumer inspection. Exact reasons and fresh all17-interval ledger are in research.md and residual-ledger.json. No additional supported proposal emerged; no terminal exhaustion is asserted.
+
+Input checkpoint round-008-classified; map SHA256 e4bde7adb3fbc8ffc808ca84fa771aa2a1c073f2164d1e2ba68fca20268313ed. Commentary scope complete2104 spans/2013 units with fresh configured byte-identical verification. Current262115/262160 (99.98%),45 Unknown bytes/17 intervals. Proposed12, accepted0; conditional33/16. Final editorial acceptance and whole-ROM completion remain outstanding.
+
+Gameplay review retains broad artificial later systems and terminal-signature visits; natural cockpit victory/timed credits unproved. No changed RAM contract warrants unchanged replay. All scenarios/history preserved.
+
+Preservation hashes: analysis/redirect/round-008-a/preservation-check.json confirms ROM/map/state/source/symbols/reading/review/configured-release-binary unchanged. Source a102830fa7bf250e258ee9c013c55fa80d43c328fc4c9627cceb33be82d2fd62; ROM f5f1e212b70e858b3b0257161bc4c25a390602dacd12d5c0877a971ce8a18567. No archive, cleanup/deletion, publishing, toolkit/source/map edits or subagents. Disk3.9GiB free. Next independent disassembly review, full current-source commentary, then redirect.

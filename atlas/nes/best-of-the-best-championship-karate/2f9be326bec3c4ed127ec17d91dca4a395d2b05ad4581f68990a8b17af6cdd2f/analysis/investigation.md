@@ -1,0 +1,25 @@
+# Investigation ledger
+
+No regions reviewed yet. Follow workflow.md's completion and investigation contract.
+
+## Round 01 — disassembly complete, workflow incomplete
+Baseline and two fresh checkpoints verify byte-identically. Current checkpoint is round-01-coalesced, map hash 9ac3052c5cf0acc7b514c33408d98ae69df9efe3cbb4080761e7c763465ef87e. Counts: 71779 classified /262160, 190381 unknown; 11992 code and 59787 data including header. [Per-bank counts](round-01/bank-counts.md), [exact unknown complement](round-01/unknown-final.json). Header16, vectors6, 18 fighter records630 and 59135 maximal uniform zero bytes have Static data evidence. Generic zero runs use boundaries/neighbors and no conflicting connected code, not lack of execution alone; fill semantics unresolved. Candidate fighter slice is not a complete-table claim. Code comes from natural opcode fetches and direct control-flow/call entry contracts; artificial Cogneur-only additions explicitly marked. Natural reachability of static branches remains unresolved.
+
+R01-L01 verified: Tsong/Cogneur descriptors and supported initialization. First Cogneur challenge attempts failed despite descriptor and stats/flags; money patch enabled match. The rejection rules out sufficiency of descriptor/stat patches, not Cogneur reachability. R01-L02 concrete secret-name/ending consumer investigation; R01-L03 menu/indirect control closure; R01-L04 patterned unknown data consumers. No previous failed leads existed. These are productive research avenues, so this is a bounded easy-gain handoff, not terminal exhaustion. Do not replay startup or no-op button/pressed inputs. Reuse exported snapshots and read evidence-policy before narrowing/accepting candidates.
+
+Natural gameplay covered first match movement/attack/AI and ring transition; artificial late-opponent Cogneur ring and representative controls verified. Training, later rounds and ending are deferred with explicit missing contracts in scenarios.json. A documented NES low-health secret and conversion-credits name provide a concrete next method; source confirmation is still needed. No arbitrary RAM brute-force conducted.
+
+Raw 4985-region checkpoint preserved. Current map coalesces only contiguous code with same provenance, effective bank context and contiguous CPU view; retains evidence union and physical classifications exactly, reducing to397 regions for editorial review. Validation and rebuilt whole ROM passed after coalescing. Full-source readability is not yet audited; commentary remains required. TK-001/TK-002 are confirmed documentation/API contract bugs with working NES-specific parameters; neither blocks progress. [Toolkit issues](toolkit-issues.md).
+
+## Round 02 disassembly — supported combined batch accepted
+ROM classification: 100.00% (262153 / 262160 bytes classified; 7 bytes unknown).
+
+Independent [primary contract/rejection review](round-02/review.md) supports199 exact proposals,190374 unique new bytes;25622 totalCode/236531 totalData. [Per-bank counts](round-02/bank-counts.md), [exact unknowns](round-02/unknown.json). Fresh decode is a boundary/context check; code acceptance also uses classified entry/control, finite menu, actor/stack/mapper preservation and complete narrow hardware/loop contracts. Data acceptance distinguishes bounded388 graphics objects/127 action streams and generic non-code fallback after consumer/pattern inspection. FFE5 veneer does not classify DMC sampleC000 as code. FC5E two-word ABI rejected locally (no07 reads), retaining supported arithmetic/flag routine; exact comparison convention deferred to commentary.
+
+R01-L02..04 verified with this limitation; original evidence/history preserved and no unchanged runtime replay. Artificial ending/credits observations remain separately documented in scenarios.json. Seven isolated opcodes remain Unknown absent entry/layout evidence; this is a ready commentary/redirect handoff, not terminal exhaustion. Source readability must be renewed for new25622Code/236531Data map; prior commentary tree saved at round-02/commentary-before. Fresh unique checkpoint round-02-disassembly byte-identically verified. Persistent TK-001/TK-002 remain nonblocking; no new toolkit issues.
+
+## User-directed fallback-01 — exact residual exception
+
+ROM classification: 100.00% (262160 / 262160 bytes classified; 0 bytes unknown).
+
+Seven bytes now generic Data/Manual by explicit new user authorization, separately from 262153 prior evidence-backed structural bytes. Verified exact complement before changing: 199683 length3,249693 length3,260427 length1 (<=10-byte limit); no expansion. Original JMP/JMP/RTS code-versus-residue ambiguity remains unresolved; meaning unknown. No structural/reachability/deadness proof claimed. [Retained detailed handoff](handoffs/user-fallback-01-disassembly.md), [prior primary rejection reasoning](redirect/round-02-a/rejection-review.md), [counts](user-fallback-01/counts.json), [fresh byte-identical checkpoint](user-fallback-01-verification.json). Every prior region retained unchanged; no new runtime/research. Commentary pending. Existing two confirmed nonblocking toolkit issues unchanged.

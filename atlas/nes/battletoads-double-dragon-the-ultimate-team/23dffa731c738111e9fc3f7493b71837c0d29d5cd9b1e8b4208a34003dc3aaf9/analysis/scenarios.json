@@ -1,0 +1,168 @@
+[
+ {
+  "milestone": "power-on / Tradewest / Licensed by Nintendo / title",
+  "route": "emulator.reset; ~700 frames; traced",
+  "result": "visited; coverage in traces/round01/coverage-contexts.json",
+  "status": "visited",
+  "artificial": false
+ },
+ {
+  "milestone": "mode menu (1P / 2P A / 2P B)",
+  "route": "title + Start held 5 frames, wait 100; Start again",
+  "result": "visited",
+  "status": "visited",
+  "artificial": false
+ },
+ {
+  "milestone": "character select",
+  "route": "menu Start (1 PLAYER) -> select screen; snapshot traces/round01/snap_charsel.json",
+  "result": "visited; inputs need ~60 frame wait before A",
+  "status": "visited",
+  "artificial": false
+ },
+ {
+  "milestone": "intro cutscene",
+  "route": "charsel: wait 60, A 5 frames, wait 60, Start 5 frames",
+  "result": "visited (spaceship scene)",
+  "status": "visited",
+  "artificial": false
+ },
+ {
+  "milestone": "stage 1 ($10=$03) Ratship hull",
+  "route": "intro: run_until $10 != 0 (frame ~1874, bank 6 $9739) -> snapshot traces/round01/snap_lvset.json; play right/B/A",
+  "result": "visited with combat, pause/unpause",
+  "status": "visited",
+  "artificial": false
+ },
+ {
+  "milestone": "stages $04 $08 $02 $06 $05 $09",
+  "route": "load snap_lvset.json, emulator.memory.write $0010 = id, trace 400 frames + 3x input pattern (right/B/A/left/up/down)",
+  "result": "each stage loaded and played (screens traces/round01/L*.png, montage.png)",
+  "status": "visited",
+  "artificial": true
+ },
+ {
+  "milestone": "stage ids $01 / $07",
+  "route": "same patch",
+  "result": "$01 crashed into zero-page execution (bank 1); $07 black screen after ~1500 frames; coverage from these runs excluded (traces/round01/coverage-excluded-L1-L7.json)",
+  "status": "attempted",
+  "artificial": true
+ },
+ {
+  "milestone": "ids $0A-$0D",
+  "route": "same patch, untraced",
+  "result": "garbage screens (invalid ids)",
+  "status": "attempted",
+  "artificial": true
+ },
+ {
+  "milestone": "final boss / ending / credits",
+  "route": "traces/round01/snap_lvset.json, +300 frames, then repeatedly write RAM $00DA=$FF (native stage-end flag checked by GameFrame $83FC/$8401) and run until the next stage loads (~1500 frames each); script analysis/redirect/r01-a1/route_ending.py",
+  "result": "Native stage-end path ran each time (sound 9, LoadStage3 $D217, loader script 3/4). Order observed: $03 -> $05 -> $02 -> $04 -> $08 -> $09 -> $06 -> $0B; $0B shows \"BATTLETOADS AND DOUBLE DRAGON ARE - THE ULTIMATE TEAM - / TOTAL TIME\" (loader $0681=4). Levels themselves (bosses) were skipped, not played. Screens analysis/redirect/r01-a1/screens/; ending snapshot traces/r01a1_snap_ending.json (same-build). Start + 2400 frames left the ending screen unchanged ($0681=4, $0682=$FF); credits not reached.",
+  "status": "visited",
+  "reason": "needs stage-progression contract (lead L-007)",
+  "artificial": true,
+  "evidence": [
+   "analysis/redirect/r01-a1/route_ending.py",
+   "analysis/investigation.md#round-1--redirect-r01-a1"
+  ]
+ },
+ {
+  "milestone": "game over / continue, 2-player modes",
+  "route": "traces/round01/snap_lvset.json + 300 frames; write $0011 (PlayerLives P1)=0 and $051B (player health)=0; run 8x120 frames traced (tracing ~4 fps), Start 5 frames +240, Start 5 frames +600. Script analysis/tools/round02/gameover.py",
+  "result": "Round 2: player died, PlayerLives went $00->$FF (game over path, $0681=5 for ~700 frames), then $0010=0 and Tradewest/attract -> title menu (scratch/r02_gameover_a.png, _c.png). Continue prompt not observed (lives forced to 0 before death). 5,965 unique fetches (traces/round02_gameover_contexts.json): all on classified code, none in Data/unknown; 59 are pass-002 static code (bank 6 BG handler $E8FA..).",
+  "status": "visited",
+  "reason": "time; lead L-007/L-009",
+  "artificial": true
+ },
+ {
+  "milestone": "stage-end transitions (levels 1-7 in native order)",
+  "route": "$DA=$FF per stage (see above)",
+  "result": "visited: $03,$05,$02,$04,$08,$09,$06 each loaded through loader script 3 with stage-intro; $08 is level 5, not title/attract",
+  "status": "visited",
+  "artificial": true
+ },
+ {
+  "milestone": "game over / continue",
+  "route": "traces/round01/snap_lvset.json + 300 frames; write $0011 (PlayerLives P1)=0 and $051B (player health)=0; run 8x120 frames traced (tracing ~4 fps), Start 5 frames +240, Start 5 frames +600. Script analysis/tools/round02/gameover.py",
+  "result": "Round 2: player died, PlayerLives went $00->$FF (game over path, $0681=5 for ~700 frames), then $0010=0 and Tradewest/attract -> title menu (scratch/r02_gameover_a.png, _c.png). Continue prompt not observed (lives forced to 0 before death). 5,965 unique fetches (traces/round02_gameover_contexts.json): all on classified code, none in Data/unknown; 59 are pass-002 static code (bank 6 BG handler $E8FA..).",
+  "status": "visited",
+  "reason": "not attempted this redirect (time); RAM contract now known: LoadStage5 reached when PlayerLives,x goes negative ($9964 / $B0A4 paths)",
+  "artificial": true
+ },
+ {
+  "milestone": "2-player modes / credits after ending",
+  "route": "not attempted in pass 2",
+  "result": "",
+  "status": "visited",
+  "reason": "classification at 99.35%; remaining unknown bytes are small residuals not tied to these modes; redirect may try 2P (menu 2 PLAYER) and bank 6 loader cmd 4 exit for credits",
+  "update_r02a1": "Both parts now visited: see milestones \"post-ending exit (credits)\" and \"2-player Game A (both pads)\" (round 2 redirect r02-a1).",
+  "note_r03": "2P Game B visited artificially in r03-a1 (see separate entry); credits: none on the post-ending path (r02-a1).",
+  "status_history": [
+   "deferred"
+  ]
+ },
+ {
+  "milestone": "post-ending exit (credits)",
+  "round": "02-redirect r02-a1",
+  "route": "load traces/r01a1_snap_ending.json (StageId $0B), no RAM edits, no input; step 300-frame chunks until music flag $0301 = 0 (~900 frames), then Start 4 frames, run 600+600 frames. Script analysis/redirect/r02-a1/ending2.py",
+  "result": "No separate credits roll exists on this path: CheckSkipPressed (bank 6; requires $0301 = 0 and a press, called from Loader4_Frame for StageId >= $0B) -> ResetFadeState -> fade; StageId became $00 within 60 frames, then 'LICENSED BY NINTENDO' and the title screen (scratch/r02a1_post_ending_a.png, _b.png). Consistent with the stage table $9746-$974F (entry Y=$0B = $00). An earlier artificial attempt (ending.py: $0683=$FF while music played) did nothing because $06A4 stayed 0.",
+  "status": "visited",
+  "artificial": true,
+  "evidence": [
+   "analysis/redirect/r02-a1/ending2.py",
+   "analysis/redirect/r02-a1/ending.py",
+   "analysis/redirect/r02-a1/notes.md"
+  ]
+ },
+ {
+  "milestone": "2-player Game A (both pads)",
+  "round": "02-redirect r02-a1",
+  "route": "continuing from the post-ending title: Start, Down x2 (cursor $16 = 1 = 2 PLAYER GAME A), Start; select screen with 1UP/2UP cursors; P1 Start/A, P2 Right/Start/A; ~600 frames -> StageId $03 with objects type 1 and 2 (both players), lives 3/3. Snapshot traces/r02a1_snap_2p_gameA.json. Traced 240 frames of two-pad play (twoplayer_trace.py): 3,277 ROM opcode addresses, none in pass-002 unknown runs.",
+  "result": "visited (scratch/r02a1_2p_menu2.png, r02a1_2p_game2.png, r02a1_2p_c3.png). Game B (cursor $16 = 2) not separately visited.",
+  "status": "visited",
+  "artificial": true,
+  "evidence": [
+   "analysis/redirect/r02-a1/twoplayer.py",
+   "analysis/redirect/r02-a1/twoplayer2.py",
+   "analysis/redirect/r02-a1/twoplayer_trace.py"
+  ]
+ },
+ {
+  "milestone": "2P Game A replay: frame-map reader check",
+  "round": "03-disassembly pass 3",
+  "route": "traces/r02a1_snap_2p_gameA.json; 60 x 20-frame two-pad input cycles (right+A/left+B, B/A, up+right/down+left, A+B/right, down+B/up+A, left/right+B); trace kinds Read+Instruction, range phys [0x064FB,0x06557). analysis/tools/round03/framemap.py",
+  "result": "0 events retained: MirrorPlayerAppearance / PlayerFrameMapA-B not exercised (needs an enemy latching onto a player). Inconclusive for b0 $E536-$E537.",
+  "status": "attempted",
+  "artificial": false,
+  "evidence": [
+   "analysis/tools/round03/framemap.py"
+  ],
+  "followup": "Superseded by the r03-a1 artificial latch scenario (consumer exercised)."
+ },
+ {
+  "milestone": "2P Game B (players can hit each other)",
+  "round": "03-redirect r03-a1",
+  "route": "traces/r02a1_snap_2p_gameA.json; emulator.memory.write $0016 = 2 (Game A snapshot has 1); P2 X/Y copied from P1; 30 x 20-frame attack inputs on both pads; trace aggregation only. analysis/redirect/r03-a1/gameb.py",
+  "result": "171 bank-0 opcode addresses executed only with $16=2 (player-vs-player target/hit paths, e.g. $848F-$84A3, $A423-$A46E, $A6C7-$A719); no unknown byte executed. analysis/redirect/r03-a1/gameb_out.txt",
+  "status": "visited",
+  "artificial": true,
+  "evidence": [
+   "analysis/redirect/r03-a1/gameb.py",
+   "analysis/redirect/r03-a1/gameb_out.txt"
+  ]
+ },
+ {
+  "milestone": "Clinging enemy latched on a player (ObjType $3A, TryLatchOntoPlayer/MirrorPlayerAppearance)",
+  "round": "03-redirect r03-a1",
+  "route": "traces/r02a1_snap_2p_gameA.json; slot 6 := ObjType $3A with Obj_0575/052A/0539/0476/04A3/04FD/0548 = 0, ObjFrame $9A, position of the target player (PL=0 or 1); 60 x 10-frame inputs on that pad. analysis/redirect/r03-a1/latch.py",
+  "result": "Linked 600/600 frames for each player; player frames $39/$3A/$3B/$5B; PlayerFrameMapB path exercised for P2 ($05F3=1). Natural spawn not found (only immediate $3A store is ObjType55_Rider with Obj_0575=$A1, which skips latching).",
+  "status": "visited",
+  "artificial": true,
+  "evidence": [
+   "analysis/redirect/r03-a1/latch_p1_60.txt",
+   "analysis/redirect/r03-a1/latch_p2_60.txt",
+   "analysis/redirect/r03-a1/notes.md"
+  ]
+ }
+]

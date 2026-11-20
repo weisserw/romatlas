@@ -1,0 +1,15 @@
+# Manual fallback disassembly handoff
+
+Batch-only user exception applied after recomputing the authoritative internal-state complement: exactly physical119404 length1 and120325 length3,4bytes total, below the10-byte maximum. No research reopened. Exactly these two ranges were annotated generic Data through supported map.annotate, provenance Manual, meaning unknown. Zero annotations would have been made for zero unknown; a complement above10 or a mismatching interval would have stopped this batch.
+
+ROM classification: 100.00% (131088 / 131088 bytes classified; 0 bytes unknown).
+
+This is map coverage after user-directed fallback. Evidence-backed structural classification remains131084bytes;4Manual fallback bytes retain isolated RTS-code versus return-valued-data ambiguity. This does not establish evidence-backed whole-ROM completion. All four are fixed8KiB PRG bank14, CPU D25C andD5F5..D5F7. Historical reference/consumer/boundary investigation and actual competing claims remain in [rejection review](redirect/round03-residual-review/rejection-review.md). Manual annotations explicitly preserve that uncertainty; confidence records the requested annotation, not proof of role.
+
+Counts:19070Code,112018Data,0Unknown; bank14 now6655Code/1537Data, all other banks unchanged and fully covered. Header16Data included. Exact unique per-bank counts: [final-counts](manual-fallback/final-counts.json). Input counts: [before-counts](manual-fallback/before-counts.json). No ready research leads consumed or produced; this is the explicit fallback authorization, not new structural evidence.
+
+Input checkpoint round03-disassembly-final/map/state SHA256 f122f1e8046caf14315839029f0238d0770ed8036142d8e5e65f329e60ce45b4. Output internal state analysis/state.json, supported ROM-free portable maps/current.json and maps/manual-fallback-disassembly.json all SHA256793855e9c153cd3b4cdc745d426e250bac51066c28cd5025ebe0cc117da33ee0. Supported internal map.validate and CLI stock-map validation pass. Fresh generated/manual-fallback-disassembly rebuild is byte-identical: [verification](manual-fallback-disassembly-verification.json). [RPC log](manual-fallback/rpc.jsonl), [reproducible script](manual-fallback/apply.py) and [identity check](manual-fallback/output-identities.json) preserve actions and validation.
+
+ROM SHA256 remains06a144c033f0fa8a3726413ac3273ef880ed35a00020c8c0bf79842d8e984c12. Maintained commentary source is untouched, SHA256a4b8f49e41b69c0973b468f96641f5bc27212d0a0c5db6817d9b79c9a35a4a72. Historical analysis/terminal-handoff.md unchanged. No toolkit edits, research/runtime replay, archive/delete/publish or commentary generation/edit. Disk free about3.6GiB; existing scratch preserved. No toolkit issues found; [issue record](toolkit-issues.md) retained.
+
+Next phase: commentary must carry all prior readable source and update these two newly Manual Data ranges, honest uncertainty, current readability/audit and fresh byte-identical verification/reading copy. Prior full-source review credit remains usable. Coordinator owns subsequent redirect/final acceptance and retention reconciliation; this worker launches neither.

@@ -1,0 +1,169 @@
+{
+  "version": 1,
+  "round": 4,
+  "current_phase": "disassembly-complete",
+  "replay_log": "analysis/round01/rpc.jsonl",
+  "milestones": [
+    {
+      "milestone": "Title and attract hockey",
+      "status": "visited",
+      "route": "Reset, unpressed waits; title scene RAM18=1 appears at frame240, later attract scene2",
+      "observed": "Local title and match screenshots; initial match/played snapshots are demo, not confirmed player control",
+      "evidence": [
+        "analysis/round01/title.png",
+        "analysis/round01/hockey.png",
+        "analysis/round01/match.snapshot"
+      ]
+    },
+    {
+      "milestone": "Actual game setup",
+      "status": "visited",
+      "route": "Reset; bounded 10-frame waits until RAM18=1 atframe240; Start2, release, wait60; A eventually opens Select Game scene4",
+      "observed": "Exhibition/Tournament select dialog captured",
+      "evidence": [
+        "analysis/round01/title-ready.snapshot",
+        "analysis/round01/config.png"
+      ]
+    },
+    {
+      "milestone": "Competitive hockey",
+      "status": "visited",
+      "route": "From title-ready: Start2, wait60, A menu confirms with releases; Exhibition and College League selected; NewYork/Chicago teams; final A starts arena intro.",
+      "evidence": [
+        "analysis/round01/competitive.png",
+        "analysis/round01/realperiod2start.png",
+        "analysis/round01/live-exhibition.snapshot"
+      ],
+      "observed": "Scene5 and live competitive match with visible clock; skating/pass/shoot buttons exercised"
+    },
+    {
+      "milestone": "Later periods/intermissions",
+      "status": "visited",
+      "route": "expiry-frontier->clock_probe120frames->progression1440frames; second-expiry then finite arcade timeout. Counter34 independently0->1->2.",
+      "observed": "Second and third periods visually visited, live19:48/19:31. Second intermission displays arcade and A/right advances to NICE SHOT.",
+      "evidence": [
+        "analysis/redirect/r01-structural-contracts/progress-11.png",
+        "analysis/redirect/r01-structural-contracts/third-live.png",
+        "analysis/redirect/r01-structural-contracts/arcade-exercised.png",
+        "analysis/redirect/r01-structural-contracts/progression.txt",
+        "analysis/redirect/r01-structural-contracts/terminal-probe.txt"
+      ],
+      "attempt_history": [
+        {
+          "status": "attempted",
+          "route": "Timer contract: RAM C0..C3 decimal digits; patch [0,0,0,1], prescaler63=0 while in actual competitive match",
+          "observed": "In actual competitive play, C0..C3=[0,0,0,1],63=0. Goal scoreboard then faceoff with clock00:01; B4 and waits did not establish period advance.",
+          "reason": "Countdown/faceoff/goal gating contract remains unknown; do not repeat unchanged wait/input recipe.",
+          "evidence": [
+            "analysis/round01/exhibition-period1done.png",
+            "analysis/round01/after-real-expiry.png",
+            "analysis/round01/expiry-frontier.snapshot"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": "Initialized fight and tied-game shootout",
+      "status": "visited",
+      "evidence": [
+        "analysis/redirect/r01-structural-contracts/fight-exercised.png",
+        "analysis/redirect/r01-structural-contracts/shootout-exercised.png",
+        "analysis/redirect/r01-structural-contracts/exercise.txt",
+        "analysis/redirect/r01-structural-contracts/contexts-exercised.json"
+      ],
+      "attempt_history": [
+        {
+          "status": "deferred",
+          "reason": "Fights/penalties need collision-state contract; overtime needs confirmed period transition. Broad practical alternatives attempted; defer specific RAM contract to redirect.",
+          "evidence": []
+        }
+      ],
+      "route": "Fight from period2-before-expiry:30=16,31=0,80=0,6D=0; service initializes. Actual thirdperiod34=2 expiry plus07E5/07E9=0 tie leads34=3,state17 shootout.",
+      "observed": "Fight power display changed after A/B/right; shootout rink and five attempt indicators seen and A/right/B exercised. Completedfight/shot or natural fight trigger not proved. Artificial scenario only.",
+      "previous_milestone_label": "Fight/penalty/overtime"
+    },
+    {
+      "milestone": "Artificial terminal congratulations scene",
+      "status": "visited",
+      "route": "From title-ready snapshot reassert no buttons; RAM18=7,19=0,1F=0,2E=40,2F=02; trace8 frames then wait180; A6 then wait180.",
+      "evidence": [
+        "analysis/round01/ending-attempt.png",
+        "analysis/round01/ending.snapshot"
+      ],
+      "observed": "Artificial scene7 terminal congratulations: ready for College League. Ending visited/exercised; tournament rounds unvisited.",
+      "previous_milestone_label": "Tournament rounds/cup ending"
+    },
+    {
+      "milestone": "Natural tournament rounds and cup win",
+      "status": "deferred",
+      "reason": "Tournament rounds and a naturally earned cup remain unvisited. Representative match, later-period, intermission and terminal-screen routes were exercised. No new supported shortcut or structural discriminator connects natural tournament wins to the nine residual bytes; reviewed during terminal redirect.",
+      "evidence": [
+        "analysis/handoffs/round05-redirect.md",
+        "analysis/redirect/r05-terminal-constraints/rejection-review.md"
+      ]
+    }
+  ],
+  "redirect_evidence": "analysis/redirect/r01-structural-contracts/rpc.jsonl",
+  "redirect_notes": [
+    "All previous attempts preserved in milestone history; filenames period2/period3 are not proof without counter34.",
+    "later_game.py batch labelled3 wrote timer while stateB, so this was minigame waiting, not third expiry. Process143 occurred before final snapshot; use third-live.snapshot/terminal_probe.py completed later.",
+    "Timer patches and initialized fight were RAM-only; all subsequent fetch evidence labelled artificial. No game/hardware compatibility claim."
+  ],
+  "phase_reviews": [
+    {
+      "round": 2,
+      "phase": "disassembly",
+      "status": "saved-evidence-reused",
+      "evidence": "analysis/handoffs/round01-redirect.md",
+      "result": "Existing representative live second/third periods, arcadecontrols,fightpower,shootoutinputs and artificial ending retained. No new unchanged replay or stronger naturalreachability/completefight/shot claim. Natural tournament wins remain unvisited; reduced prospect absent new structural discrimination."
+    },
+    {
+      "round": 2,
+      "phase": "redirect",
+      "status": "saved-evidence-reused",
+      "evidence": "analysis/redirect/r02-structural-frontier/validation.json",
+      "result": "Reviewed existingsecond/thirdperiods,arcadecontrols,fightpower,shootoutinputs,artificialending. No new distinct milestone/shortcut prerequisite arose; natural tournament wins andcompletedfight/shot remain unclaimed. StructuralDMC/queue work required no unchangedgameplayreplay."
+    },
+    {
+      "round": 3,
+      "phase": "redirect",
+      "status": "saved-evidence-reused",
+      "evidence": "analysis/redirect/r03-residual-contracts/findings.md",
+      "result": "Savedlaterperiods/arcade/fight/shootout/artificialending reviewed;localstaticcontractsintroducenonewcrediblemilestoneshortcut.Remaining11projectedtinyfragmentsneedstructuraldiscriminator,unchangedgameplayreplaynotuseful.Naturalwins/completedfight/shotunclaimed.",
+      "new_execution": false
+    },
+    {
+      "round": 4,
+      "phase": "disassembly",
+      "status": "saved-evidence-reused",
+      "evidence": "analysis/round04/review-notes.md",
+      "result": "Laterperiod/arcade/fight/shootout/artificialending routes and progression obstacles reviewed. No new practical changed shortcut from static local contracts; no unchanged replay. Natural tournament wins/completedfight/shot unclaimed.",
+      "new_execution": false
+    },
+    {
+      "round": 5,
+      "phase": "disassembly",
+      "status": "saved-evidence-reused",
+      "evidence": "analysis/round05/review-notes.md",
+      "result": "Cadence-mask role introduces no changed shortcut or structural gameplay discriminator; saved later-period/arcade/fight/shootout/artificial-ending evidence retained. Natural wins/completed fight/shot unclaimed.",
+      "new_execution": false
+    },
+    {
+      "round": 5,
+      "phase": "redirect",
+      "status": "saved-evidence-reused",
+      "evidence": "analysis/redirect/r05-terminal-constraints/rejection-review.md",
+      "result": "Representative later periods/arcade/fight/shootout/artificial ending retained. No changed supported shortcut or discriminator linking unvisited natural wins/completed fight/shot to residual intervals. No unchanged replay.",
+      "new_execution": false
+    }
+  ],
+  "round3_reuse": {
+    "evidence": "analysis/round03/review-notes.md",
+    "result": "Reuse saved successful later-period/arcade/fight/shootout/artificial-ending scenarios and documented obstacles; structural static batch introduces no new milestone shortcut. No unchanged replay.",
+    "new_execution": false
+  },
+  "coordinator_completion_review": {
+    "status": "broad-best-effort complete; natural wins not claimed",
+    "note": "Split the former combined visited labels to distinguish reached artificial scenes from unvisited natural progression. Previous labels retained. No new execution."
+  }
+}
