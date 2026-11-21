@@ -1,0 +1,156 @@
+[
+ {
+  "id": "SC-001",
+  "milestone": "Power-on / title screen",
+  "route": "emulator.start; step 285 frames, no input",
+  "observed": "BREAK TIME title, (c)1992 FCI credits; MMC1 starts [0,1,14,15], reset stub at $8000 bank 0 (INC $FFF9; JMP $C000); 32 KiB mode [0,1,2,3] used during title (NMI $FAB0 in bank 3)",
+  "status": "visited",
+  "traced": true,
+  "evidence": "scratch coverage merged into analysis/state.json Observed code regions (round 1)"
+ },
+ {
+  "id": "SC-002",
+  "milestone": "Main menu",
+  "route": "power-on, no input 285 frames; start 3f; none 90f; start 10f; none 10f; a 10f; none 120f (frame 528 = MAIN MENU, snapshot 'mm')",
+  "observed": "MAIN MENU: Nine Ball, Rotation, Eight Ball, 14-1, National Pool Tour, Practice. First d-pad press shows cursor, DOWN moves, A selects.",
+  "status": "visited",
+  "traced": true
+ },
+ {
+  "id": "SC-003",
+  "milestone": "Nine Ball, 1 player vs ED, 1 game",
+  "route": "power-on, no input 285 frames; start 3f; none 90f; start 10f; none 10f; a 10f; none 120f (frame 528 = MAIN MENU, snapshot 'mm'); a 5f; none 90f; start 5f; none 120f; start 5f; none 150f; start 5f; none 200f; a 5f; none 200f; a 5f; none 300f; a 4f; none 10f; right 4f; none 10f; a 4f; none 10f; down 4f; none 10f; a 4f; none 10f; a 4f; none 10f; start 4f (name 'ABII'); none 400f (frame 2106 table)",
+  "observed": "players menu, opponent select (ED/JIM/JANE/MIKE), games 1/3, name entry, table, SHOOT OFF lag, power meter, shots, CPU turns, break, new rack",
+  "status": "visited",
+  "traced": true,
+  "notes": "autoplay pattern 'a 4f; none 60f; a 4f; none 300f' repeated (~10000 traced frames total); also up/left/b/select variants"
+ },
+ {
+  "id": "SC-004",
+  "milestone": "Rotation",
+  "route": "snapshot mm; down 3f, none 10f, down 3f, none 10f; a 5f; then SC-003 menu/name route; autoplay 3x('a:4 -:60 a:4 -:300 left:20 a:4 -:60 a:4 -:300')",
+  "observed": "ROTATION banner, score panel, play",
+  "status": "visited",
+  "traced": true,
+  "script": "scratch/mode.sh 1 rot (round-1 scratch, not retained)"
+ },
+ {
+  "id": "SC-005",
+  "milestone": "Eight Ball",
+  "route": "as SC-004 with 2 extra downs (mode.sh 2)",
+  "observed": "15-ball rack displayed; autoplay did not get past setup in 2268 frames (small coverage gain +45 roots)",
+  "status": "attempted",
+  "traced": true
+ },
+ {
+  "id": "SC-006",
+  "milestone": "14-1 Rack Game",
+  "route": "as SC-004 with 3 extra downs (mode.sh 3)",
+  "observed": "14-1 RACK GAME banner; coverage gain small",
+  "status": "visited",
+  "traced": true
+ },
+ {
+  "id": "SC-007",
+  "milestone": "National Pool Tour start (New York)",
+  "route": "snapshot mm; 5x(down 3f, none 10f); a 5f; none 120f -> CONTINUE? YES/NO; down 3f; none 10f; a 5f; none 200f; a 4f; none 10f; right 4f; none 10f; a 4f; none 10f; down 4f; none 10f; a 4f; none 10f; a 4f; none 10f; start 4f (name 'ABII'); none 300f -> tour map; none 200f; a 5f; none 200f; start 5f; none 200f; none 400f (untraced); none 150f; a 5f; none 150f; a 5f; none 200f; start 5f; none 200f; a 5f; none 200f; none 200f -> 'IN NEW YORK' table; autoplay 4x('a:4 -:60 a:4 -:300')",
+  "observed": "US map with Las Vegas, Los Angeles, Atlanta, Milwaukee, New York; opponent profile SUZY CUE (female, Dallas TX); match table 'IN NEW YORK'. +540 roots",
+  "status": "visited",
+  "traced": true
+ },
+ {
+  "id": "SC-008",
+  "milestone": "Later tour cities / tour ending",
+  "route": "power-on; SC-002 route to MAIN MENU ('-:285 start:3 -:90 start:10 -:10 a:10 -:120'); 'a:5 -:90' (Nine Ball -> players menu); emulator.memory.write $00AB=[6]; then 'start:5 -:120 start:5 -:150 start:5 -:200 a:5 -:200 a:5 -:300' and 300-frame waits. Context [0,1,14,15] (bank 0 TourSpecialScreens $853F reads TourStage after the games menu). Script: analysis/redirect/r1-a1/tools/ending.py (N=6, traced) / tools/special.py (untraced).",
+  "observed": "ARTIFICIAL STATE (RAM edit TourStage=$06): EndingSequence ran - victory picture with confetti and typewriter text 'YOU HAVE FINALLY BECOME AMERICA'S NO.1 HUSTLER! A NEW HERO IS BORN. BUT THE WORLD...' by frame ~2700. Not natural reachability. Later tour cities (stage 1-3) still not visited; natural path to the ending = win tour match with TourStage==4 (MainLoop $C2xx -> Far_EndingSequence).",
+  "status": "visited (artificial)",
+  "reason": "tour progression RAM (city index, wins) not yet identified; needs redirect RAM investigation for a shortcut; manual wins with autoplay impractical",
+  "evidence": "analysis/redirect/r1-a1/evidence/sc008-ending-tourstage6.png",
+  "notes": "Traced run (Instruction aggregates) was killed by the 1500 s job limit before coverage export; screenshots kept. Rerun untraced or with shorter traced window if coverage is needed (EndingSequence is Static code already)."
+ },
+ {
+  "id": "SC-009",
+  "milestone": "Practice mode menu and Practice Nine Ball",
+  "route": "snapshot mm; 6x(down 3f, none 10f); a 5f; none 200f -> PRACTICE MODE menu (Practice, Trick Shot, Nine Ball, Rotation, Eight Ball, 14-1); down 3f; none 10f; down 3f; none 10f; a 5f; none 300f; none 100f; a 4f; none 60f -> 'PRACTICE NINE BALL'",
+  "observed": "Practice menu and practice nine ball table reached. Coverage of these segments was LOST (server process hit its 2 h limit before dumpcov); trick-shot mode not reached",
+  "status": "attempted",
+  "traced": true,
+  "reason": "coverage lost; redo in next pass",
+  "notes2": "Round 2: practice menu reached again (snapshot pm); Trick Shot covered in SC-014."
+ },
+ {
+  "id": "SC-010",
+  "milestone": "WATCH mode (CPU vs CPU), 2 PLAYERS",
+  "route": "not attempted",
+  "status": "deferred",
+  "reason": "Round 2: still deferred - shared table engine; classification already 99.99%; no unknown bytes depend on it."
+ },
+ {
+  "id": "SC-011",
+  "milestone": "ROM data-read capture (banks 1-5, 12-13) along SC-003 route",
+  "route": "traces/round-1/route_ninebal.txt: SC-003 route + 'none 350f; a 4f; none 60f; a 30f; none 30f; none 120f; a 4f; none 220f'; trace kinds Read, space rom, range limited, JSONL rotated every 20 frames, aggregated offline",
+  "observed": "see analysis/investigation.md (data-read runs)",
+  "status": "visited",
+  "traced": true
+ },
+ {
+  "id": "SC-012",
+  "milestone": "Sound test screen (TourStage 5)",
+  "route": "power-on; SC-002 route to MAIN MENU ('-:285 start:3 -:90 start:10 -:10 a:10 -:120'); 'a:5 -:90' (Nine Ball -> players menu); emulator.memory.write $00AB=[5]; then 'start:5 -:120 start:5 -:150 start:5 -:200 a:5 -:200 a:5 -:300' and 300-frame waits. Context [0,1,14,15] (bank 0 TourSpecialScreens $853F reads TourStage after the games menu). Script: analysis/redirect/r1-a1/tools/ending.py (N=6, traced) / tools/special.py (untraced).",
+  "observed": "ARTIFICIAL (TourStage=$05): sound test menu listing TITLE, THEME, CIRCUIT, TRAINING, BEAT, BAKARUI, BOOGIE SWING, RESULT, WON, LOST, END (menu text over previous panel).",
+  "status": "visited (artificial)",
+  "evidence": "analysis/redirect/r1-a1/evidence/sc012-soundtest-tourstage5.png",
+  "traced": false
+ },
+ {
+  "id": "SC-013",
+  "milestone": "Voice test screen (TourStage 7)",
+  "route": "power-on; SC-002 route to MAIN MENU ('-:285 start:3 -:90 start:10 -:10 a:10 -:120'); 'a:5 -:90' (Nine Ball -> players menu); emulator.memory.write $00AB=[7]; then 'start:5 -:120 start:5 -:150 start:5 -:200 a:5 -:200 a:5 -:300' and 300-frame waits. Context [0,1,14,15] (bank 0 TourSpecialScreens $853F reads TourStage after the games menu). Script: analysis/redirect/r1-a1/tools/ending.py (N=6, traced) / tools/special.py (untraced).",
+  "observed": "ARTIFICIAL (TourStage=$07): voice menu BREAK TIME, SHOOT OFF, BREAK SHOT, GAME SET, CONGRATS, NINE BALL, ROTATION, EIGHT BALL, 14-1 RACK GAME, PRACTICE, TRICK SHOT, END (11 voices = numbers 0-10, consistent with L-010).",
+  "status": "visited (artificial)",
+  "evidence": "analysis/redirect/r1-a1/evidence/sc013-voicetest-tourstage7.png",
+  "traced": false
+ },
+ {
+  "id": "SC-014",
+  "milestone": "Practice -> Trick Shot (shot 1 \"4 TO 4 BY JOHN EDWARDS\")",
+  "route": "power-on '-:285 start:3 -:90 start:10 -:10 a:10 -:120' (MAIN MENU, frame 528); 6x'down:3 -:10' a:5 -:200 (PRACTICE MODE); down:3 -:10; [trace on] a:5 -:250 (TRICK SHOT list); a:5 -:300; -:200 a:4 -:60 a:4 -:300",
+  "observed": "Trick shot list of 7 shots, table with preset balls, shot executed. 3,741 contextual roots, all in Code.",
+  "status": "visited",
+  "traced": true,
+  "evidence": [
+   "traces/round-2/sc014-trickshot-menu.png",
+   "traces/round-2/sc014-trickshot-play.png",
+   "traces/round-2/cov.json"
+  ]
+ },
+ {
+  "id": "SC-015",
+  "milestone": "National Pool Tour cities 1-4 and natural ending",
+  "route": "MAIN MENU (frame 528); 5x'down:3 -:10' a:5 -:120 down:3 -:10 a:5 -:200 a:4 -:10 right:4 -:10 a:4 -:10 down:4 -:10 a:4 -:10 a:4 -:10 start:4 -:300 (tour map, frame 1324); a+b+select:300; -:5 a+b+select:200; a+b+select:900; 4x'-:3 a+b+select:150'; a+b+select:200 (frame 3541); then repeat '-:3 a+b+select:100'. TourStage $AB: 1 at ~3850, 2 ~6837, 3 ~9721, 4 ~13020; EndingSequence between 14874 and 15183. Traced windows 1324..3850 and 14565..15493.",
+  "observed": "NATURAL inputs (in-game A+B+SELECT match-result shortcut in MainLoop_TourCheck; no RAM edits): stage-won screens, maps for Milwaukee/Atlanta/Los Angeles/Las Vegas, ending victory text. Coverage all in Code incl. round-2 closure $8E39.",
+  "status": "visited",
+  "traced": true,
+  "evidence": [
+   "traces/round-2/sc015-tour-stage1-map.png",
+   "traces/round-2/sc015-natural-ending.png",
+   "traces/round-2/cov.json"
+  ]
+ },
+ {
+  "id": "SC-016",
+  "milestone": "Tour password round-trip and three special passwords (natural input)",
+  "route": "Driver analysis/redirect/r2-a1/tools/pw.py (fresh emulator.start per run, scratch store copy). MAIN MENU '-:285 start:3 -:90 start:10 -:10 a:10 -:120'; 5x'down:3 -:10' a:5 -:120 (CONTINUE? YES/NO) a:5 -:200 (PASSWORD grid) -:60; then per letter: taps 'dir:3 -:10' from the previous cell (grid code = row*7+col, cursor starts at 0,0) and 'a:4 -:20'; END = row 3 col 6. Password source: SC-015 route to frame 3188 (password screen after the New York win, name ABII).",
+  "observed": "Stage-1 password screen shown (7 consonants, ASCII left at $05EA). Entering it restores Player1Name ABII and sets TourStage=1 immediately; tour map resumes with the NY->Milwaukee route. Special passwords (4 letters + END) give TourStage 5 sound test, 6 ending picture, 7 voice test. Entry buffer holds letter numbers (A=1).",
+  "status": "visited",
+  "traced": false,
+  "evidence": [
+   "analysis/redirect/r2-a1/evidence/stage1-password-screen.png",
+   "analysis/redirect/r2-a1/evidence/password-entry-grid.png",
+   "analysis/redirect/r2-a1/evidence/password-resume-tour-map.png",
+   "analysis/redirect/r2-a1/evidence/special-pw1-sound-test.png",
+   "analysis/redirect/r2-a1/evidence/special-pw2-ending.png",
+   "analysis/redirect/r2-a1/evidence/special-pw3-voice-test.png"
+  ]
+ }
+]

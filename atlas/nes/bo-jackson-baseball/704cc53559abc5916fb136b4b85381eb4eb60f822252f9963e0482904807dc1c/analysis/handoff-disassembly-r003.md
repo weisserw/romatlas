@@ -1,0 +1,11 @@
+# Disassembly r003 — completed single pass, ROM incomplete
+
+ROM classification: 100.00% (393225 / 393232 bytes classified; 7 bytes unknown).
+
+Authoritative checkpoint `maps/disassembly-r003-final.json`; internal `analysis/state.json` and `maps/current.json` agree. `analysis/disassembly-r003-final-verification.json` verifies fresh byte-identical whole-ROM source `generated/disassembly-r003-final`. Earlier `disassembly-r003` is a superseded unchanged-r002 verification, retained historically.
+
+Accepted4185 new Static bytes (3888Code+297Data), plus2Data→Code at1BC04 and3Code→Data at1AFBB. Review `analysis/r003/review-notes.md`, `independent-audit.json` (1748 instructions/2494 fresh views), `primary-witness-decodes.json`, `annotation-rpc.jsonl`, `metrics-final.json`. Bank14 new native views all8000; final recipe only, provisional flow1–13 excluded. Exact per-bank/provenance accounting is in progress/investigation and metrics. Both primary corrections checked before dependent acceptance; all other prior regions unchanged. Three R002 leads verified with histories preserved. No new execution/natural reachability claims; existing gameplay evidence reused.
+
+Next: full current-source commentary. Current commentary and complete historical copies remain untouched. Carry reusable r002 review, but invalidate only final2bytes of Data8528 and Code5737's3bytes, plus their localized dependent DBF4/template/JSR2020/CPU RAM2020 explanations. Exact dependencies are in review-notes and redirect boundary-correction.json/roster-template-correction.json. Review all4185 additions and corrected5bytes with routine/branch/variable names and behavior; full current-source readability is not automatically granted by structural acceptance.
+
+Then redirect on exact `analysis/r003/unknown-final.json`:56D4/6bytes native-versus-inline/mixed;1DF7F/1byte orphan RTS after JMP9F57 memory-test failure loop. Primary competing models: redirect/r002-20261120/six-byte-review.json and orphan-return-review.json. No dead/unreachable assertion or terminal exhaustion acceptance. Saved-mode906D cleanup is structurally supported under its explicit stack contract, not proof948B returns. Reuse broad scenarios; no unchanged replay. No toolkit issues found (`analysis/toolkit-issues.md`). ROM unchanged; no toolkit edits, commentary/redirect, archive, publication, cleanup or deletion.

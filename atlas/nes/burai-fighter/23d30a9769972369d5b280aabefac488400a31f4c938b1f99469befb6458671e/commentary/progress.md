@@ -1,0 +1,35 @@
+# Commentary progress — round003 complete
+
+Current-source readability is complete across all65552 physical ROM bytes:8616 scaffold entries and390 meaningful units reviewed, with no pending ranges. Sound prior full-source credit was carried by physical range and unchanged dependencies;8587 Code records retain their owning reviewed units. No meaningful source defect was found. The entire previous commentary is preserved at analysis/round-003/commentary-before/ before baseline reconciliation. The frozen baseline/state and source mapping metadata now match pass-003-user-fallback exactly.
+
+Only physical [$5725,$5726), CPU $D715, PRG bank2/view[0,1,2,3], changed classification: unknown becomes generic Data under explicit user authorization, Manual/confidence0. Source stage-commands.asm explains that its original code/data role and meaning remain unresolved; prior return/empty-routine/data alternatives and bounded investigation remain valid. The neutral symbol and exact binary emission are preserved. Nearby allocator/reset and separately targeted return comments are reconciled. All executable/directive lines and shared symbols are unchanged; other source modules are identical to the prior maintained tree. Existing uploaded-code, actor meaning and residual-schema uncertainties remain explained, with no unread source backlog.
+
+Inventory was compared exactly against the refreshed state scaffold:8615 unchanged records retain credit; the one-byte fallback record and corresponding meaningful unit were reviewed. Source line references after the inserted prose line were adjusted. Classification is now65552/65552 by mapping, including1 authorization-based fallback; evidence-backed coverage remains65551/65552. This is not evidence establishing the fallback byte's structural role.
+
+Fresh verification passed byte_identical=true with ROM SHA25623d30a9769972369d5b280aabefac488400a31f4c938b1f99469befb6458671e; the refreshed generated before baseline also passed. Reading-after was refreshed and independently reproduced, SHA256718a992e6a6d66b5c388934ac1094954a6e8d6c1c2863f102ba566971c5abc75. Current map/state and frozen baseline/state SHA2565b7ff560c30bb130cbf4dac99e0648dd6cde223468a7a13614ea6da9b5b2df28. Checks and reports: analysis/round-003-commentary/check-consistency.py, completion.json, final-unit-inventory.json, final-verification.json.
+
+Final editorial audit is pending for the next sequential reviewer. The earlier accepted audit, reports and historical conclusions remain preserved; commentary/audit.json and editorial-audit.md describe the prior baseline, not fresh acceptance. No final audit, research, toolkit edit, ROM change, archive, deletion or publication occurred in this phase. No interrupted frontier remains.
+
+---
+
+Previous progress (historical round002; superseded above):
+
+# Commentary progress — round002 complete
+
+Current-source readability is complete with no remaining ranges. All 8616 current scaffold records and 390 meaningful units are reviewed; all 8587 code records carry their owning meaningful unit. This reuses the sound full-source round001 review across unchanged physical ranges and dependencies. The entire previous commentary, including source, frozen baseline, review and history, is preserved in analysis/round-002/commentary-before/. Fresh before/ and baseline now match pass-002.
+
+Only structural source change: physical [$6A4F,$6A53), CPU $EA3F..EA42, PRG bank3/view [0,1,2,3], now emits the accepted four-byte two-sprite Y/X offset table. The old BRK and three-byte-tail units were consolidated into one table unit (391 to 390); other instruction text and shared symbols are identical to the previous maintained source. Original command bit7 chains commands; low7 $00..$6F selects spawn types, $70..$7F control handlers. Corrected both contradictory low-bit explanations. Exact CHR loader origins are documented in chr.asm; resource9 crosses PPU $2000 after296 CHR bytes, leaving728 nametable bytes without immutable CHR origins. Constructor/progression notes preserve the artificial versus natural evidence distinction.
+
+Compared every scaffold identity/physical extent and phase1 metadata against the new baseline: 8615 unchanged intervals retain valid credit, one new four-byte table was reviewed. Corrected a prior inventory defect: source locations are now relative to source/ as required by the audit reader, and every Code row has an owning reviewed unit. No final editorial audit was run; editorial_audit remains pending for coordinator acceptance after redirect.
+
+Fresh verify passed byte_identical=true. Exact report: analysis/round-002-commentary/final-verification.json and commentary/verification.json. Input/linked SHA256 23d30a9769972369d5b280aabefac488400a31f4c938b1f99469befb6458671e. Reading-after refreshed and independently reproduced, SHA256 ba0118986f9f47eab15cdede3b1a1e39550536518495843c79fdfea34d63ab9d. Current map, state and frozen commentary baseline/state SHA256 4e9a95522c5d7038a7a062d0fa8386e1acc7b938c0b07aa7ee95b83d3cde02b9. Full consistency checks and final unique inventory: analysis/round-002-commentary/check-consistency.py, completion.json, final-unit-inventory.json.
+
+Classification remains separate and incomplete:65551/65552 bytes classified, sole unknown physical [$5725,$5726), CPU $D715, PRG bank2/view [0,1,2,3]. Existing primary rejection remains valid without imposing natural reachability. Original actor identities, handler-specific parameter meanings, uploaded routine extents/encodings and residual stream schemas remain explained uncertainties, not unread source. No new structural redirect question was found beyond the already accepted C001/C002 corrections. No ROM/toolkit/map edits, execution experiments, archive/deletion/publication. Disk3.1GiB available; no active subprocess or interrupted frontier remains.
+
+## Final coordinator editorial acceptance
+
+Final targeted editorial review reused valid full-source credit and inspected affected dependencies, uncertainty boundary and representative contracts. review.json editorial_audit is reviewed; commentary.py audit passed with8616 reviewed regions/8587 nested code unit records, fresh byte-identical verification and refreshed reading copy. Unique meaningful units390. This is editorial completion only; sole unknown physical5725 remains. See editorial-audit.md and analysis/final-handoff.md.
+
+## Round003 final editorial acceptance
+
+Sequential final reviewer reused valid full-source credit and inspected complete maintained-source delta plus allocator/reset/separate-success-return contract. Supported commentary audit passed freshly byte_identical=true; strict archive.editorial_status complete=true with no reasons. All8616 regions and390 meaningful units reviewed,8587 code records with reviewed owning units; no remaining naming/comment gap. Classification65552/65552 includes1 Manual/confidence0 user fallback, evidence-backed65551/65552. Original role remains unresolved. See analysis/handoffs/user-fallback-final-audit.md and fresh retained evidence analysis/user-fallback-final-audit/. Historical prior audits remain preserved in round003 commentary-before.

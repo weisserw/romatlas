@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "scenarios": [
+    {
+      "id": "S001",
+      "milestone": "Unattended startup and title",
+      "status": "visited",
+      "route": "emulator.start; step 180 frames untraced; subsequent 240-frame batches through frame 2112; max_operations 100000000 and timeout_ms 30000 per batch",
+      "observed_result": "Copyright, Sony Imagesoft logo, Dracula title and PRESS START captured. Every singular button/pressed input before correct.py was ignored (NES-001), so these provide only unattended reachability.",
+      "evidence": [
+        "round-001/rpc.jsonl",
+        "round-001/title.png",
+        "round-001/advance1.png",
+        "round-001/after-start.png",
+        "round-001/after-start.snapshot"
+      ]
+    },
+    {
+      "id": "S002",
+      "milestone": "Reset initialization",
+      "status": "visited",
+      "route": "emulator.start; trace enabled capacity0 kinds Instruction; step6 frames max_operations1000000 timeout_ms15000",
+      "observed_result": "326 accepted contextual instruction roots; static continuation merged while preserving conservative mapper/call stops.",
+      "evidence": [
+        "round-001/startup-contexts.json",
+        "round-001/startup-static.json"
+      ]
+    },
+    {
+      "id": "S003",
+      "milestone": "Main menu and first level",
+      "status": "visited",
+      "route": "Import main-menu.snapshot (actually title); buttons:[start] 2 frames; buttons:[] 2 frames; 60 untraced frames; second Start then180 frames; short trace",
+      "observed_result": "Options confirmed intro-next2.png; twelve-frame Start press/release reaches Scene1 card and natural forest gameplay. Early two-frame menu taps unreliable because0563 five-frame timer; attempted difficulty change invalidated. Natural gameplay used default Medium.",
+      "evidence": [
+        "round-001/menulong.py",
+        "round-001/levelplay.py",
+        "round-001/playend.png",
+        "round-001/levelplay-contexts.json"
+      ]
+    },
+    {
+      "id": "S004",
+      "milestone": "Later scenes, bosses and ending",
+      "status": "visited",
+      "route_or_patch": "From clean intro-next2 options snapshot, patch RAM027B=6 or13,06C4=2; Start12frames then release;7x60frame loading and right+A60,B12,A+Down12,release12,trace8. Exact stages.py.",
+      "reason": "Gameplay transition still underway; stage RAM address and valid initialization route not yet established.",
+      "observed_result": "Later/final castles rendered and executed; artificial only.",
+      "evidence": [
+        "round-001/stages.py",
+        "round-001/stage6-end.png",
+        "round-001/stage13-end.png"
+      ]
+    },
+    {
+      "id": "S005",
+      "milestone": "Ending cutscene",
+      "status": "visited",
+      "route_or_patch": "From stage13-end snapshot, release inputs, one operation to boundary; registers.pc=E335; trace4,5x60 untraced,trace4,then3x60frames. ending.py and ending-finish.py.",
+      "observed_result": "Animated Dracula coffin cutscene; artificial-state reachability only. Credits/final terminal not observed.",
+      "evidence": [
+        "round-001/ending4.png",
+        "round-001/terminal2.png",
+        "round-001/ending-contexts.json"
+      ]
+    },
+    {
+      "id": "S006",
+      "milestone": "Boss encounter/completion and final credits",
+      "status": "attempted",
+      "reason": "Round002 redirect position/camera shortcut restored visible castle but did not establish active boss, defeat or credits; stage/region initialization contract remains missing.",
+      "route_or_patch": "Import stage13-end; run_until genuineE4E6 playerstoreX0; patch0501..0504=[50,04,90,01],058D=0;4x30frames. Teleport stuckABA5; import savedposition, readA4..A7=[0,0,69,0], patch07..0A equal computedtarget;4x30frames; all artificial. Hexvalues.",
+      "observed_result": "PlayerX0450 persisted,Y01C0; firstblack frame/camera wait, then visiblecastle passage restored and mode03. No activeboss40, defeat orcredits. No unchangedintro/coffin replay.",
+      "evidence": [
+        "redirect/round-002-contracts/boss-results.md",
+        "redirect/round-002-contracts/boss-runtime.jsonl",
+        "redirect/round-002-contracts/runtime-03.py",
+        "redirect/round-002-contracts/runtime-05.py",
+        "redirect/round-002-contracts/boss-camera.png",
+        "redirect/round-002-contracts/boss-camera.snapshot"
+      ]
+    },
+    {
+      "id": "R001-STREAM-VERIFY",
+      "milestone": "Stage6/13 map decompression completion",
+      "status": "visited",
+      "route": "Import existing stage6-begin.snapshot or stage13-begin.snapshot; buttons[]; step unit operation count50000 max_operations1000000 timeout_ms3000; compare CPU6000 map bytes3072 or6144 with consumer-derived static decoding. No new RAM edits.",
+      "observed_result": "Original begin snapshots were mid-decompressor, explaining initial partial equality thenFF. After bounded continuation both maps match expected bytes completely, zero differences. Original stage-start mutations remain artificial provenance.",
+      "evidence": [
+        "redirect/round-001-connected/stage-runtime-finish.json",
+        "redirect/round-001-connected/stage-streams.json",
+        "redirect/round-001-connected/results.md"
+      ]
+    }
+  ],
+  "round002_reuse": "No new runtime route or artificial patch. Reused natural forest, artificial stage6/13/ending and completed decoder RAM equality; Static classification kept separate from Observed execution."
+}

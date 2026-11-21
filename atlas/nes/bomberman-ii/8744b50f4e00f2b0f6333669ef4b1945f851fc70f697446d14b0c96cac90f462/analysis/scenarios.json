@@ -1,0 +1,379 @@
+{
+ "version": 1,
+ "notes": "power-on; trace capacity 0 (aggregates). Input via emulator.input {buttons:[...],port:1}. tokens: wN=N frames, btn:N=hold N frames then release (tools/play.py)",
+ "snapshots_dir": "scratch/snaps (same-build exports)",
+ "inputs_log": "analysis/evidence/inputs-r1.log",
+ "milestones": [
+  {
+   "milestone": "Intro story / attract",
+   "route": "power-on, w~1780 frames (first ~705 traced)",
+   "observed_result": "town street intro, Bomberman + rival, police car; title follows",
+   "status": "visited",
+   "artificial": false,
+   "evidence": [
+    "analysis/evidence/frames"
+   ],
+   "round": 1
+  },
+  {
+   "milestone": "Title screen",
+   "route": "snapshot `title` (frame ~1786); scratch/snaps/title.json",
+   "observed_result": "BOMBER MAN II title, PUSH START!",
+   "status": "visited",
+   "artificial": false,
+   "evidence": [
+    "scratch/snaps/title.json"
+   ],
+   "round": 1
+  },
+  {
+   "milestone": "Mode menu",
+   "route": "title + start:4 w60; snapshot `menu`; traced cursor down x3/up x3",
+   "observed_result": "NORMAL/VS/BATTLE/CONTINUE menu",
+   "status": "visited",
+   "artificial": false,
+   "evidence": [
+    "analysis/evidence/frames/s4.png",
+    "scratch/snaps/menu.json"
+   ],
+   "round": 1
+  },
+  {
+   "milestone": "Normal mode truck cutscene",
+   "route": "menu + start:4 w60 -> snapshot `truck`",
+   "observed_result": "truck in forest cutscene, then AREA card",
+   "status": "visited",
+   "artificial": false,
+   "evidence": [
+    "scratch/snaps/truck.json"
+   ],
+   "round": 1
+  },
+  {
+   "milestone": "Area 1-1 gameplay",
+   "route": "truck + w~800 -> snapshot `area11`; traced a:2 right:34 down:18 w150 and play11 route",
+   "observed_result": "stage play, bomb placement, enemy movement, player death and AREA re-entry (LEFT decrements)",
+   "status": "visited",
+   "artificial": false,
+   "evidence": [
+    "analysis/evidence/frames/s8.png",
+    "scratch/snaps/area11.json"
+   ],
+   "round": 1
+  },
+  {
+   "milestone": "Area 1-8",
+   "route": "load truck; poke $4B=00,$4C=07; w650; T1 a:2 right:16 down:16 w40 left:16 up:16 b:2 a:2 down:24 right:24 w50 a:2 up:24 left:24 w40 T0",
+   "observed_result": "AREA card + stage start for the selected world/stage (stage 8 = wide scrolling arena, T:300); world 5 tileset seen at 5-6",
+   "status": "visited",
+   "artificial": true,
+   "evidence": [
+    "analysis/evidence/frames/v_st07.png"
+   ],
+   "round": 1
+  },
+  {
+   "milestone": "Area 2-8",
+   "route": "load truck; poke $4B=01,$4C=07; w650; T1 a:2 right:16 down:16 w40 left:16 up:16 b:2 a:2 down:24 right:24 w50 a:2 up:24 left:24 w40 T0",
+   "observed_result": "AREA card + stage start for the selected world/stage (stage 8 = wide scrolling arena, T:300); world 5 tileset seen at 5-6",
+   "status": "visited",
+   "artificial": true,
+   "evidence": [],
+   "round": 1
+  },
+  {
+   "milestone": "Area 3-4",
+   "route": "load truck; poke $4B=02,$4C=03; w650; T1 a:2 right:16 down:16 w40 left:16 up:16 b:2 a:2 down:24 right:24 w50 a:2 up:24 left:24 w40 T0",
+   "observed_result": "AREA card + stage start for the selected world/stage (stage 8 = wide scrolling arena, T:300); world 5 tileset seen at 5-6",
+   "status": "visited",
+   "artificial": true,
+   "evidence": [],
+   "round": 1
+  },
+  {
+   "milestone": "Area 3-8",
+   "route": "load truck; poke $4B=02,$4C=07; w650; T1 a:2 right:16 down:16 w40 left:16 up:16 b:2 a:2 down:24 right:24 w50 a:2 up:24 left:24 w40 T0",
+   "observed_result": "AREA card + stage start for the selected world/stage (stage 8 = wide scrolling arena, T:300); world 5 tileset seen at 5-6",
+   "status": "visited",
+   "artificial": true,
+   "evidence": [],
+   "round": 1
+  },
+  {
+   "milestone": "Area 4-8",
+   "route": "load truck; poke $4B=03,$4C=07; w650; T1 a:2 right:16 down:16 w40 left:16 up:16 b:2 a:2 down:24 right:24 w50 a:2 up:24 left:24 w40 T0",
+   "observed_result": "AREA card + stage start for the selected world/stage (stage 8 = wide scrolling arena, T:300); world 5 tileset seen at 5-6",
+   "status": "visited",
+   "artificial": true,
+   "evidence": [],
+   "round": 1
+  },
+  {
+   "milestone": "Area 5-6",
+   "route": "load truck; poke $4B=04,$4C=05; w650; T1 a:2 right:16 down:16 w40 left:16 up:16 b:2 a:2 down:24 right:24 w50 a:2 up:24 left:24 w40 T0",
+   "observed_result": "AREA card + stage start for the selected world/stage (stage 8 = wide scrolling arena, T:300); world 5 tileset seen at 5-6",
+   "status": "visited",
+   "artificial": true,
+   "evidence": [
+    "analysis/evidence/frames/v_st45.png"
+   ],
+   "round": 1
+  },
+  {
+   "milestone": "Area 5-8",
+   "route": "load truck; poke $4B=04,$4C=07; w650; T1 a:2 right:16 down:16 w40 left:16 up:16 b:2 a:2 down:24 right:24 w50 a:2 up:24 left:24 w40 T0",
+   "observed_result": "AREA card + stage start for the selected world/stage (stage 8 = wide scrolling arena, T:300); world 5 tileset seen at 5-6",
+   "status": "visited",
+   "artificial": true,
+   "evidence": [],
+   "round": 1
+  },
+  {
+   "milestone": "Area 6-8",
+   "route": "load truck; poke $4B=05,$4C=07; w650; T1 a:2 right:16 down:16 w40 left:16 up:16 b:2 a:2 down:24 right:24 w50 a:2 up:24 left:24 w40 T0",
+   "observed_result": "AREA card + stage start for the selected world/stage (stage 8 = wide scrolling arena, T:300); world 5 tileset seen at 5-6",
+   "status": "visited",
+   "artificial": true,
+   "evidence": [],
+   "round": 1
+  },
+  {
+   "milestone": "VS mode",
+   "route": "menu down:4 start:4 w200 T1 start:4 w60 PAT T0",
+   "observed_result": "2-player arena P1/P2 T:298",
+   "status": "visited",
+   "artificial": false,
+   "evidence": [
+    "analysis/evidence/frames/v_vs.png"
+   ],
+   "round": 1
+  },
+  {
+   "milestone": "Battle mode",
+   "route": "python3 analysis/redirect/r1-a1/battle.py 49 (menu: VS selected, run_until PC=$A93F banks[10,11,14,15], write GameMode $49=2, w250, start:4 w200; snapshot scratch/snaps/battle.json) then w150",
+   "observed_result": "PLEASE SELECT MATCH -> 1 WIN MATCH READY (P1/P2/P3) -> 3-player battle arena (P1:0 P2:0 P3:0 T:298); bombs placed, P1 caught by explosion. Natural selection impossible here: menu requires FourScorePresent ($48, recomputed each NMI) and the emulator has 2 ports",
+   "status": "visited",
+   "artificial": true,
+   "evidence": [
+    "analysis/redirect/r1-a1/battle-cov.txt",
+    "scratch/r1a1/battle.png"
+   ],
+   "round": "1-redirect",
+   "previous": [
+    {
+     "route": "menu down:4 x2 start:4 w200 T1 start:4 w60 PAT T0",
+     "observed_result": "screen black at end of window (setup/transition); battle arena not confirmed",
+     "status": "attempted",
+     "evidence": []
+    }
+   ]
+  },
+  {
+   "milestone": "Continue / password entry",
+   "route": "menu down:4 x3 T1 start:4 w60 right/a/down inputs start:4 T0",
+   "observed_result": "INPUT PASSWORD! grid",
+   "status": "visited",
+   "artificial": false,
+   "evidence": [
+    "analysis/evidence/frames/v_cont.png"
+   ],
+   "round": 1
+  },
+  {
+   "milestone": "Ending",
+   "route": "load area11; run_until PC=$C27D; registers.set pc=$CA5B (jsr $D1A2 ending far-call; jmp $C003); snapshot `ending0`; T1 w400 T0",
+   "observed_result": "ending cutscene: Bomberman and rival walking down the street; black screen after ~1300 frames (credits not inspected)",
+   "status": "visited",
+   "artificial": true,
+   "evidence": [
+    "analysis/evidence/frames/e1.png",
+    "scratch/snaps/ending0.json"
+   ],
+   "round": 1
+  },
+  {
+   "milestone": "Game over",
+   "route": "scratch/snaps/area11.json; w200 poke $04E5=00; a:6 w20; w500 (player dies in own bomb) -> snapshot scratch/snaps/gameover0.json; w250",
+   "observed_result": "Lives -> $FF, GAME OVER screen with CONTINUE/END and password [888K8B8H]",
+   "status": "visited",
+   "artificial": true,
+   "evidence": [
+    "analysis/redirect/r1-a1/gameover-cov.txt",
+    "scratch/r1a1/gameover.png"
+   ],
+   "round": "1-redirect",
+   "previous": [
+    {
+     "route": "load area11; poke $04E5=00; T1 a:2 w320 T0",
+     "observed_result": "bomb did not kill player in window; game over not reached",
+     "status": "attempted",
+     "evidence": []
+    }
+   ]
+  },
+  {
+   "milestone": "Bonus stage",
+   "route": "natural: menu -> CONTINUE -> enter password KJH5C13D (SpecialPasswords #3 'PONEJACK') -> Start: python3 analysis/redirect/r1-a1/pwenter.py 3 r1a1/pw3; snapshot scratch/snaps/bonus.json",
+   "observed_result": "bonus stage: T:030, 'LEFT 1', 12 balloon enemies, hard blocks only; bombs placed (traced 300 frames)",
+   "status": "visited",
+   "artificial": false,
+   "evidence": [
+    "analysis/redirect/r1-a1/bonus-cov.txt",
+    "scratch/snaps/bonus.json"
+   ],
+   "round": "1-redirect",
+   "previous": [
+    {
+     "route": "load truck; poke $054F=01; T1 w400 PAT T0",
+     "observed_result": "poke overwritten by stage init; normal AREA 1-1 shown",
+     "status": "attempted",
+     "evidence": []
+    }
+   ]
+  },
+  {
+   "milestone": "Boss fights / later-world mechanics",
+   "route": "static: StageEnemyListPtrs $AD5A (bank 0) per world/stage; power-on opening run_until K23/K24/blink",
+   "observed_result": "No boss kinds in normal-mode stage lists (worlds 1-6 use kinds 0-15; stage 8 = wide arena with ordinary enemies, e.g. 1-8 kinds 3,8,4,7 seen). Script actors (RunBossScript kinds 18-21,25,26 + spawned 23,24) drive the power-on opening/intro cutscenes and were executed naturally. Kind 22 has no known spawner (L-011).",
+   "status": "unavailable (no boss content found in stage data); cutscene actors visited",
+   "artificial": false,
+   "evidence": [
+    "analysis/redirect/r1-a1/findings.json#F10",
+    "analysis/redirect/r1-a1/k23-natural.txt",
+    "analysis/redirect/r1-a1/k24-natural.txt",
+    "analysis/redirect/r1-a1/blink-natural.txt",
+    "analysis/redirect/r1-a1/k22-natural.txt"
+   ],
+   "round": "1-redirect",
+   "previous": [
+    {
+     "route": "stage-8 visits above",
+     "observed_result": "only stage intros/early frames traced; boss behaviour not exercised",
+     "status": "deferred: need longer traced windows or invincibility RAM contract",
+     "evidence": []
+    }
+   ]
+  },
+  {
+   "milestone": "Sound room (special password)",
+   "route": "natural: menu -> CONTINUE -> K3456712 ('PCDEFGAB') -> Start (pwenter.py 0); snapshot scratch/snaps/soundroom.json; PCM row sweep dmc-soundroom.seq",
+   "observed_result": "BOMBERMAN2 SOUND ROOM (MUSIC/EFFECT/PCM); all 12 PCM samples played (DMC DMA reads)",
+   "status": "visited",
+   "artificial": false,
+   "evidence": [
+    "analysis/redirect/r1-a1/dmc-soundroom.txt",
+    "analysis/redirect/r1-a1/read-a0b1.txt"
+   ],
+   "round": "1-redirect"
+  },
+  {
+   "milestone": "VS match point banner",
+   "route": "python3 analysis/redirect/r1-a1/vsmatch.py 4 4 | 9 9 (WinCount $055E/$055F written at VsRoundIntro $B6F5)",
+   "observed_result": "DrawVsMatchPoint reads $B8EF list (4-4) / $B8E9 list (9-9)",
+   "status": "visited",
+   "artificial": true,
+   "evidence": [
+    "analysis/redirect/r1-a1/read-b8e9-44.txt",
+    "analysis/redirect/r1-a1/read-b8e9-99.txt"
+   ],
+   "round": "1-redirect"
+  },
+  {
+   "milestone": "Credits / END screen",
+   "route": "scratch/snaps/ending0.json (artificial PC=$CA5B) w700 -> snapshot scratch/snaps/ending700.json; +w300 x6 (STAFF, MAIN PROGRAM / GRAPHIC DESIGN credits), +w400 x6 -> 'END'",
+   "observed_result": "ending walk -> STAFF credits roll -> END screen (frame ~8000)",
+   "status": "visited",
+   "artificial": true,
+   "evidence": [
+    "analysis/redirect/r1-a1/ending1-cov.txt",
+    "analysis/redirect/r1-a1/credits-cov.txt",
+    "scratch/r1a1/end4.png",
+    "scratch/r1a1/end11.png"
+   ],
+   "round": "1-redirect"
+  },
+  {
+   "milestone": "Other special passwords",
+   "route": "pwenter.py 1/2 (remote: K138BHDJ, K1HB3G1H), 4/5/6 (fuse: K2JG2135, K2JG2G1H, K2JG2JF4)",
+   "observed_result": "not run (static effects: CarryRemote 1/2 or BombFuseTime $2D/$4B/$69 + ReturnToTitleFlag)",
+   "status": "deferred: static effect is clear; no unknown structure depends on it",
+   "artificial": false,
+   "evidence": [
+    "analysis/gameplay.md"
+   ],
+   "round": "1-redirect"
+  },
+  {
+   "milestone": "HiddenP2WorldSelect ($A94A)",
+   "route": "none (no caller)",
+   "observed_result": "unreferenced; executing it artificially would not establish reachability",
+   "status": "unavailable (no caller found)",
+   "artificial": false,
+   "evidence": [
+    "analysis/redirect/r1-a1/findings.json#F10"
+   ],
+   "round": "1-redirect"
+  },
+  {
+   "milestone": "Attract demo",
+   "route": "scratch/snaps/title.json, no input, w1400 (title times out) -> demo stage (World 1 = forest, Stage 0) played by DemoInputPlayback",
+   "observed_result": "demo gameplay in forest world (T:146 at frame ~3386); traced 200 frames",
+   "status": "visited",
+   "artificial": false,
+   "evidence": [
+    "analysis/redirect/r1-a1/demo-cov.txt",
+    "scratch/r1a1/demo3.png"
+   ],
+   "round": "1-redirect"
+  },
+  {
+   "milestone": "Round 2 disassembly gameplay review",
+   "route": "none run; reused round-1/r1-a1 routes and saved coverage (natural: power-on, attract demo, bonus via KJH5C13D, sound room via K3456712; artificial: battle, game over, ending/credits)",
+   "observed_result": "No new gameplay needed: classification reached 100% from static evidence + saved traces; unvisited content (K22 spawner, boss kinds in normal mode) has no known route (L-011 blocked).",
+   "status": "deferred",
+   "artificial": false,
+   "evidence": [
+    "analysis/pass-002/l009-coverage.json",
+    "analysis/redirect/r1-a1/static-executed.json"
+   ],
+   "round": 2
+  },
+  {
+   "milestone": "Ending via stage-clear transition (Area 6-8 cleared)",
+   "route": "python3 -u analysis/redirect/r2-a1/ending_clear.py end68 400 (truck snapshot; poke $4B=05,$4C=07; re-poke StageClearTimer $B7=01 in 50-frame chunks until the clear sequence runs; then 400 frames)",
+   "observed_result": "stage-clear sequence -> Stage 8 -> World 6 -> RunEndingAndReset $CA5B -> ending street walk (no PC edit). Executed previously Static StageCleared $CA31 and UpdatePlayers clear branch.",
+   "status": "visited",
+   "artificial": true,
+   "evidence": [
+    "analysis/redirect/r2-a1/end68.log",
+    "analysis/redirect/r2-a1/end68-end.png",
+    "analysis/redirect/r2-a1/end68-cov.txt"
+   ],
+   "round": "2-redirect",
+   "supersedes_note": "improves the round-1 artificial ending entry (registers.set pc=$CA5B); credits/END previously visited from ending0"
+  },
+  {
+   "milestone": "Later worlds stage play sweep (2-1, 3-1, 4-1, 5-1, 6-3)",
+   "route": "python3 -u analysis/redirect/r2-a1/stagesweep.py W S 200 tag for (1,0),(2,0),(3,0),(4,0),(5,2)",
+   "observed_result": "stage play with world tilesets and enemy kinds 1,3-6,9-15 (e.g. 5-1 frame st40.png); 17 Static regions newly executed; 0 opcodes in data",
+   "status": "visited",
+   "artificial": true,
+   "evidence": [
+    "analysis/redirect/r2-a1/sweep-new-static.txt",
+    "analysis/redirect/r2-a1/st40-cov.txt"
+   ],
+   "round": "2-redirect"
+  },
+  {
+   "milestone": "Round 2 redirect gameplay review",
+   "route": "review of unvisited milestones",
+   "observed_result": "Ending now reached via supported stage-clear transition; battle mode still needs Four Score (artificial GameMode visit exists); kind 22 has no producer (L-011); boss kinds absent from normal stage lists; other special passwords static-only (effects clear).",
+   "status": "deferred",
+   "artificial": false,
+   "evidence": [
+    "analysis/redirect/r2-a1/findings.json"
+   ],
+   "round": "2-redirect"
+  }
+ ]
+}

@@ -1,0 +1,152 @@
+{
+ "version": 1,
+ "notes": "Input API: NES emulator.input takes {buttons:[...], port} (full held set); see toolkit-issues TK-001. Frames counted with emulator.step unit=frame. Snapshots exported under traces/snapshots/ (same-build only). Tracing (capacity 0 aggregates) was on for traced segments; coverage export traces/coverage-pass001.json.gz.",
+ "milestones": [
+  {
+   "id": "S01",
+   "milestone": "Boot, title, attract/credits",
+   "route": "emulator.start; ~240 frames title (traced); Start press shows credits; repeated Start on credits/title (~2800 frames total) enters game",
+   "result": "Title (David Crane's A Boy and His Blob), credits screen, game start on Earth street",
+   "evidence": "traces/coverage-pass001.json.gz",
+   "status": "visited",
+   "artificial": false
+  },
+  {
+   "id": "S02",
+   "milestone": "In-game start (Earth street by house)",
+   "route": "snapshot traces/snapshots/ingame0.snap (frame 2811)",
+   "result": "HUD score 0, TR=22, lives 5, 72 licorice",
+   "status": "visited",
+   "artificial": false
+  },
+  {
+   "id": "S03",
+   "milestone": "Bean selection and throwing / blob transformations",
+   "route": "from ingame0: right 20f; Select x N (3 held/6 release); A 4f then wait 100-150f; repeated for 7+ flavours (strawberry..root beer, honey)",
+   "result": "bean counts decrement; blob form vars $82/$83/$86 change",
+   "status": "visited",
+   "artificial": false
+  },
+  {
+   "id": "S04",
+   "milestone": "Walk Earth surface to subway entrance; pause",
+   "route": "Start (pause) + Start; right 300f",
+   "result": "SUBWAY sign screen reached; pause text",
+   "status": "visited",
+   "artificial": false
+  },
+  {
+   "id": "S05",
+   "milestone": "Blobolonia jungle (warp entry 0)",
+   "route": "ingame0 -> run_until PC=$808A (snapshot mainloop_top.snap); write $01FF=$80,$01FE=$89; registers.set pc=$926F a=0 stack=$FD; 120 frames",
+   "result": "world $16=1, jungle/corn screen, enemies; walking right 400f traced",
+   "evidence": "traces/snapshots/blob1.snap",
+   "status": "visited",
+   "artificial": true
+  },
+  {
+   "id": "S06",
+   "milestone": "Caverns (warp entries 1-3: rooms $43,$42,$1B)",
+   "route": "same as S05 with a=1,2,3; then right 80f/left 80f",
+   "result": "cavern ledge rooms displayed and played briefly",
+   "status": "visited",
+   "artificial": true
+  },
+  {
+   "id": "S07",
+   "milestone": "Room sweep Earth (world 0) rooms $00-$F8 step 8; Blobolonia (world 1) rooms $80-$F8 step 8, $81-$99 step 1",
+   "route": "mainloop_top; write $5A,$5B,$5C=(x,y,room); $16=world; $A4=1; 30-50 frames + short walk",
+   "result": "underwater caverns ($50), Blobolonia factory ($88) etc.; diminishing new coverage after ~$98",
+   "status": "visited",
+   "artificial": true
+  },
+  {
+   "id": "S08",
+   "milestone": "Death and GAME OVER",
+   "route": "blob1.snap; write $A2=0; hold right 480f into jungle enemies; 500f",
+   "result": "boy dies, '=== GAME OVER ===' text",
+   "status": "visited",
+   "artificial": true
+  },
+  {
+   "id": "S09",
+   "milestone": "Root beer rocket launch",
+   "route": "ingame0.snap; 2 frames; write SelectedBean $98=9 (root beer; only RAM write); 2 frames; A 4 frames; 150 frames; steer boy toward blob (Left/Right by BoyX-BlobX, 2-frame steps) until RocketActive; then no input 32x60 frames (analysis/redirect/r02-a/exp_rocket.py)",
+   "result": "Walking onto the root-beer blob boards the rocket (RocketActive $7C counts per frame; BoyHolding not needed): climb in room 0, space rooms $67..$60 (FormCounter counts room changes to $10), WorldFlag $16 0->4 at RocketExitRoom, descent through Blobolonia rooms $75..$71, $A1, landing in room $A0 at Y=$A5 (RocketActive 0). 535 new instruction addresses vs pass-1 coverage, all in existing Static code; no data/unknown fetches.",
+   "status": "visited",
+   "artificial": true,
+   "history": [
+    {
+     "round": "pre-r02",
+     "route": "ingame0: right 20f, Select x8 (root beer), A, then left/right/up",
+     "result": "no launch observed at start location",
+     "status": "attempted"
+    }
+   ],
+   "evidence": "analysis/redirect/r02-a/evidence/{rocket.log,rocket-run1-interrupted.log,cov-rocket.json.gz,covdiff-rocket.txt,rocket-0*.png}",
+   "artificial_note": "only SelectedBean was written (instead of 9 Select presses); throw, boarding, flight and landing are game mechanics"
+  },
+  {
+   "id": "S10",
+   "milestone": "Pharmacy / vitamin assortment",
+   "route": "ingame0.snap; 2 frames; write $5A-$5C={$80,$A5,$07}, $AB=1 (score 1000), $A4=1; 60 frames; hold Right (10-frame steps, ~45 f) until $B1!=0; 300 frames; Left 40 f (script analysis/redirect/r01-a/exp_pharmacy.py)",
+   "result": "Room 7 = HEALTH FOODS storefront; PharmacyState $B1 1->$FF, scene $6F; window \"YOUR TREASURES ALLOW YOU TO BUY ASSORTMENT 1: VITAMIN A 20, B 20, C 50\"; offers $02DA-$02E1 = 00 20 00 20 00 50 00 02; Left returns to room 7, PharmacyVisited=7. 178 new instruction addresses (all in Static code, none in data/unknown).",
+   "status": "visited",
+   "artificial": true,
+   "evidence": "analysis/redirect/r01-a/evidence/{pharm.log,cov-pharm.json.gz,pharmacy-assortment1.png}"
+  },
+  {
+   "id": "S11",
+   "milestone": "Emperor celebration / ending sequence",
+   "route": "ingame0.snap; 2 frames; write $B4 (EndingCountdown)=1; 2400 frames no input in 60-frame chunks with trace (exp_ending.py)",
+   "result": "Chime countdown, rooms $FF, EndingTimer $B5 counts; GameOverState $F0 -> $FE: scene $FD (Emperor, boy and blob on stage, \"=== GAME OVER ===\" text), bank 5 PlayPcmSequence executed (PRG banks [10,11]) for ~6 chunks, then GO=$FF waiting for music 2 (still playing at 2400 frames; restart not reached in budget). Natural trigger: JackUpdate in SpecialRoom with jack height >= $76 (not reproduced).",
+   "status": "visited",
+   "artificial": true,
+   "evidence": "analysis/redirect/r01-a/evidence/{ending.log,cov-ending.json.gz,ending-room-fd.png}"
+  },
+  {
+   "id": "S12",
+   "milestone": "Treasure pickup",
+   "route": "ingame0.snap; 2 frames; write $5A-$5C={$10,$5D,$08}, $A4=1; 60 frames; hold Right 10-frame steps (exp_treasure.py)",
+   "result": "Room 8 (brick corridor) record {stream 1, X $2E, Y $5F, type $43}: TreasuresLeft $16->$15 (HUD TR=21), respawn point set to {$22,$5D,$08}; handler bank 6 $85A5 path executed",
+   "evidence": "analysis/redirect/r01-a/evidence/{treasure.log,cov-treasure.json.gz,treasure-room08.png}",
+   "status": "visited",
+   "artificial": true
+  },
+  {
+   "id": "S11b",
+   "milestone": "Post-ending restart (GameOverState $FF -> ColdStart)",
+   "route": "as S11 (ingame0.snap; 2 frames; $B4=1), no further writes or input; 60-frame chunks without trace, per-chunk in-memory snapshot; when GO leaves $FF, reload the chunk start and replay it with trace capacity 0 (analysis/redirect/r02-a/exp_postending2.py)",
+   "result": "Song 2 (all 4 order lists end with $00FF END, songend.log) stops at ~frame 4380 (GO=$FF from frame 1200); UpdateGameOverEnding_WaitMusic -> jmp ColdStart executed (fetches b0 $9098,$909A,$90B8,$90BB,$90BD, previously Static); title screen (scene $68). Earlier run with tracing throughout (exp_postending.py) hit its 900 s wall-clock limit at 2400 frames.",
+   "evidence": "analysis/redirect/r02-a/evidence/{postending.log,postending2.log,cov-postending.json.gz,covdiff-postending.txt,postending-restart.png}",
+   "status": "visited",
+   "artificial": true
+  },
+  {
+   "id": "S13",
+   "milestone": "Natural ending trigger (jack raised to >= $76 in SpecialRoom)",
+   "route": "r03 (analysis/redirect/r03-a/exp_ce.py, exp_cf.py, exp_cfjack.py): ingame0.snap; 2 f; teleport $5A-$5C={$40,$A5,$CE}, $16=1, $A4=1; 120 f; key count $02CB=5, SelectedBean $98=6; A 4 f; 240 f (blob eats lime -> KEY); walk to blob until BoyHolding; walk Right until BoyRoom!=$CE; 180 f (snapshot analysis/redirect/r03-a/evidence/after-ce.snap); B 4 f; 120 f; then ARTIFICIAL form injection BlobForm $86=5, BlobFormStep $83=0, BlobEatState $81=$60; no input",
+   "result": "$CE contract (UpdateEndingTrigger_CE) satisfied by game play after the teleport: KEY form, held, BoyX>=$C7 -> BoyRoom $FE, BlobRoom=SpecialRoom $CF, BlobX $8D; boy scripted through $FE into $CF X=$09 (blob caged next to Emperor). Natural jack delivery still fails: boy stops at X=$33, thrown jack bean sets BlobForm=5 but is never eaten (eat=0; exp_cf V1/V2, cf.log). With the injected eat state, game code applies JACK, JackActivate sets FormFlag74, FormCounter rises to >=$76, JackUpdate_Special starts EndingCountdown (B4 08->F8), jack collapse sets SpecialRoom $60, rooms $FF, EndingTimer $B5 counts, ending scene rooms $FD / GameOverState $F8. 74+200 newly fetched addresses, all in Static Code instruction starts (covdiff.log). Ending trigger mechanics observed in an artificial scenario; how the bean reaches the caged blob naturally remains unknown.",
+   "evidence": "analysis/redirect/r03-a/evidence/{ce.log,cf.log,cfjack-try1.log,cfjack.log,ce-after2.png,cfjack-raised.png,cfjack-ending.png,cov-ce.json.gz,cov-cfjack.json.gz,after-ce.snap}; analysis/redirect/r03-a/covdiff.log",
+   "status": "visited",
+   "artificial": true,
+   "history": [
+    {
+     "round": "r02",
+     "status": "attempted",
+     "result": "Room $CF = Emperor chamber; blob shown at X=$85 inside the cage (scripted), boy stops at X=$33 (try 2) / $20 (try 1); thrown jack bean never reaches the blob (BlobForm=5, BlobFormTimer stays 0), so JackUpdate_Special is not reached. 89 new Static-code fetches (bank 0), no conflicts. The intended prerequisite is the room $CE key-carry transition (UpdateEndingTrigger_CE: blob -> $CF X=$8D, boy -> room $FE) whose following mechanics are not understood; not pursued further (no unknown/data bytes depend on it).",
+     "evidence": "analysis/redirect/r02-a/evidence/{jackending-try1.log,jackending.log,cov-jack.json.gz,covdiff-jack.txt,jack-room-cf.png}"
+    }
+   ]
+  },
+  {
+   "id": "S14",
+   "milestone": "Room $CE key-carry transition to the Emperor chamber ($FE -> $CF)",
+   "route": "first half of S13 r03 route (exp_ce.py); only RAM writes: teleport $5A-$5C/$16/$A4 and key bean count $02CB/$98",
+   "result": "UpdateEndingTrigger_CE executed by game code; BoyRoom $FE, BlobRoom/SpecialRoom $CF; boy auto-walks into $CF",
+   "evidence": "analysis/redirect/r03-a/evidence/ce.log, ce-after2.png, cov-ce.json.gz",
+   "status": "visited",
+   "artificial": true
+  }
+ ]
+}

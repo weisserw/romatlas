@@ -1,0 +1,2 @@
+Verified pass006 complete single disassembly pass. ROM classification: 99.99% (163845 / 163856 bytes classified; 11 bytes unknown). See summary.json and ../round4-disassembly-handoff.md.
+Redundant original read-only review exec41984 interrupted via session Ctrl-C (exit130) after primary/proposal decoder artifacts completed. Corrected independent exact complement check passed; saved review.py hoists union and is reusable. Annotation RPC and checkpoint sessions already exited0; no live owned server/writer remains. Verified checkpoint unaffected.

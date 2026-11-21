@@ -1,0 +1,597 @@
+{
+  "version": 1,
+  "rom_sha256": "704cc53559abc5916fb136b4b85381eb4eb60f822252f9963e0482904807dc1c",
+  "phase": "redirect-r002",
+  "runner": "analysis/r001/gamebatch.py",
+  "replay_contract": {
+    "start": "Configured binary serve, map.load analysis/state.json, emulator.start, emulator.snapshot.import selected snapshot",
+    "input_notation": "buttons comma-list:frames, - means empty; ! prefix disables tracing for wait; ordinary tokens enable bounded aggregate tracing. Every input overwrites complete port1 buttons. Each batch releases buttons before exporting snapshot.",
+    "budgets": {
+      "step_unit": "frame",
+      "max_operations": 20000000,
+      "timeout_ms": 30000,
+      "maximum_frames_per_request": 600,
+      "trace_capacity": 0
+    },
+    "evidence": "rpc.jsonl for early file-queue session; rpc-direct.jsonl for later direct-pipe batches. Durable *-contexts, *-coverage, *-edges, *-summary and *-ram JSON per batch.",
+    "boot": "Initial boot timeouts retained partial state; exact requests/results in rpc.jsonl. For reproducible later work import menu-replay-snapshot.json at frame800 rather than relying on host timeout duration. Snapshot itself is natural/unmodified."
+  },
+  "state_edit_protocol": {
+    "clean_snapshot": "analysis/r001/after-anthem-snapshot.json",
+    "addresses": {
+      "inning": {
+        "address": 27676,
+        "value": 9,
+        "fixed_bank15_store_cpu": 58770
+      },
+      "outs": {
+        "address": 27672,
+        "value": 2,
+        "fixed_bank15_store_cpu": 58860
+      },
+      "strikes": {
+        "address": 27675,
+        "value": 2,
+        "fixed_bank15_store_cpu": 58702
+      },
+      "score_pair": {
+        "address": 1051,
+        "bytes": [
+          1,
+          0
+        ]
+      }
+    },
+    "procedure": "Finish one operation to boundary. Save PC,A,X,Y,P,stack. Read and assert 8E low high at fixed-bank STX gadget. Set PC=gadget,X=value,P=original|4. Execute one operation (20 tick budget,1s). Restore all saved registers. Read target; retry at most3 if pending IRQ consumed operation; require exact readback. Score pair uses supported emulator.memory.write internal RAM. Then reassert intended buttons and run bounded frames.",
+    "context_at_clean_entry": [
+      14,
+      8,
+      13,
+      15
+    ],
+    "provenance": "All resulting scenarios artificial. Edits do not establish natural reachability. Initial old inning attempt omitted P mask and read back1; never counted as successful9."
+  },
+  "scenarios": [
+    {
+      "id": "teams2",
+      "from_snapshot": "analysis/r001/menu-replay-snapshot.json",
+      "commands": [
+        "start:30",
+        "a:2",
+        "-:40"
+      ],
+      "artificial": false,
+      "observed_result": "1P team selection",
+      "snapshot": "analysis/r001/teams2-snapshot.json",
+      "frame": "analysis/r001/teams2.ppm",
+      "status": "visited"
+    },
+    {
+      "id": "teams-picked",
+      "from_snapshot": "analysis/r001/teams2-snapshot.json",
+      "commands": [
+        "a:2",
+        "-:35",
+        "a:2",
+        "-:35"
+      ],
+      "artificial": false,
+      "observed_result": "Computer team selection",
+      "snapshot": "analysis/r001/teams-picked-snapshot.json",
+      "frame": "analysis/r001/teams-picked.ppm",
+      "status": "visited"
+    },
+    {
+      "id": "ready-teams",
+      "from_snapshot": "analysis/r001/teams-picked-snapshot.json",
+      "commands": [
+        "!-:180",
+        "-:10"
+      ],
+      "artificial": false,
+      "observed_result": "Ready team menu",
+      "snapshot": "analysis/r001/ready-teams-snapshot.json",
+      "frame": "analysis/r001/ready-teams.ppm",
+      "status": "visited"
+    },
+    {
+      "id": "lineup",
+      "from_snapshot": "analysis/r001/ready-teams-snapshot.json",
+      "commands": [
+        "a:2",
+        "!-:150",
+        "-:20"
+      ],
+      "artificial": false,
+      "observed_result": "Pitcher/roster screen",
+      "snapshot": "analysis/r001/lineup-snapshot.json",
+      "frame": "analysis/r001/lineup.ppm",
+      "status": "visited"
+    },
+    {
+      "id": "first-field",
+      "from_snapshot": "analysis/r001/lineup-snapshot.json",
+      "commands": [
+        "a:2",
+        "!-:160",
+        "-:20",
+        "a:2",
+        "!-:120",
+        "-:20"
+      ],
+      "artificial": false,
+      "observed_result": "Pitcher swaps; still roster, not field",
+      "snapshot": "analysis/r001/first-field-snapshot.json",
+      "frame": "analysis/r001/first-field.ppm",
+      "status": "visited"
+    },
+    {
+      "id": "pregame-start",
+      "from_snapshot": "analysis/r001/first-field-snapshot.json",
+      "commands": [
+        "start:2",
+        "!-:180",
+        "-:20"
+      ],
+      "artificial": false,
+      "observed_result": "Pregame anthem",
+      "snapshot": "analysis/r001/pregame-start-snapshot.json",
+      "frame": "analysis/r001/pregame-start.ppm",
+      "status": "visited"
+    },
+    {
+      "id": "game-enter",
+      "from_snapshot": "analysis/r001/pregame-start-snapshot.json",
+      "commands": [
+        "start:2",
+        "!-:500",
+        "-:20"
+      ],
+      "artificial": false,
+      "observed_result": "Anthem continuation",
+      "snapshot": "analysis/r001/game-enter-snapshot.json",
+      "frame": "analysis/r001/game-enter.ppm",
+      "status": "visited"
+    },
+    {
+      "id": "after-anthem",
+      "from_snapshot": "analysis/r001/game-enter-snapshot.json",
+      "commands": [
+        "a:2",
+        "!-:600",
+        "-:10"
+      ],
+      "artificial": false,
+      "observed_result": "Initial inning1 pitching matchup",
+      "snapshot": "analysis/r001/after-anthem-snapshot.json",
+      "frame": "analysis/r001/after-anthem.ppm",
+      "status": "visited"
+    },
+    {
+      "id": "pitching",
+      "from_snapshot": "analysis/r001/after-anthem-snapshot.json",
+      "commands": [
+        "a:30",
+        "!-:130",
+        "-:10",
+        "a:2",
+        "!-:100",
+        "-:10"
+      ],
+      "artificial": false,
+      "observed_result": "Pitch selection and live pitch",
+      "snapshot": "analysis/r001/pitching-snapshot.json",
+      "frame": "analysis/r001/pitching.ppm",
+      "status": "visited"
+    },
+    {
+      "id": "pitch-result",
+      "from_snapshot": "analysis/r001/pitching-snapshot.json",
+      "commands": [
+        "!-:180",
+        "-:20"
+      ],
+      "artificial": false,
+      "observed_result": "Ball in play, fielding view",
+      "snapshot": "analysis/r001/pitch-result-snapshot.json",
+      "frame": "analysis/r001/pitch-result.ppm",
+      "status": "visited"
+    },
+    {
+      "id": "late-inning",
+      "from_snapshot": "analysis/r001/after-anthem-snapshot.json",
+      "commands": [
+        "OLD_UNVERIFIED_INNING_GADGET9",
+        "patchouts=2",
+        "patchstrikes=2",
+        "patchscore1",
+        "a:25",
+        "!-:100",
+        "a:2",
+        "!-:180",
+        "-:30"
+      ],
+      "artificial": true,
+      "observed_result": "Failed inning edit stayed1, but third-strike event observed; ledger preserves old request sequence",
+      "snapshot": "analysis/r001/late-inning-snapshot.json",
+      "frame": "analysis/r001/late-inning.ppm",
+      "status": "attempted"
+    },
+    {
+      "id": "batting-enter",
+      "from_snapshot": "analysis/r001/late-inning-snapshot.json",
+      "commands": [
+        "!-:300",
+        "-:30"
+      ],
+      "artificial": true,
+      "observed_result": "Half-inning scoreboard, user now batting",
+      "snapshot": "analysis/r001/batting-enter-snapshot.json",
+      "frame": "analysis/r001/batting-enter.ppm",
+      "status": "visited"
+    },
+    {
+      "id": "batting-play",
+      "from_snapshot": "analysis/r001/batting-enter-snapshot.json",
+      "commands": [
+        "!-:240",
+        "a:30",
+        "!-:100",
+        "a:30",
+        "!-:100",
+        "-:20"
+      ],
+      "artificial": true,
+      "observed_result": "Batting matchup, strike65mph",
+      "snapshot": "analysis/r001/batting-play-snapshot.json",
+      "frame": "analysis/r001/batting-play.ppm",
+      "status": "visited"
+    },
+    {
+      "id": "ninth-inning",
+      "from_snapshot": "analysis/r001/after-anthem-snapshot.json",
+      "commands": [
+        "patchinning=9",
+        "patchouts=2",
+        "patchstrikes=2",
+        "patchscore1",
+        "a:25",
+        "!-:100",
+        "a:2",
+        "!-:300",
+        "-:30"
+      ],
+      "artificial": true,
+      "observed_result": "Verified inning9 and third out, players leaving field",
+      "snapshot": "analysis/r001/ninth-inning-snapshot.json",
+      "frame": "analysis/r001/ninth-inning.ppm",
+      "status": "visited"
+    },
+    {
+      "id": "ninth-play-end",
+      "from_snapshot": "analysis/r001/ninth-inning-snapshot.json",
+      "commands": [
+        "right,a:30",
+        "!-:300",
+        "-:30"
+      ],
+      "artificial": true,
+      "observed_result": "Postgame handshake",
+      "snapshot": "analysis/r001/ninth-play-end-snapshot.json",
+      "frame": "analysis/r001/ninth-play-end.ppm",
+      "status": "visited"
+    },
+    {
+      "id": "final-out-attempt",
+      "from_snapshot": "analysis/r001/ninth-play-end-snapshot.json",
+      "commands": [
+        "patchouts=2",
+        "patchstrikes=2",
+        "a:2",
+        "!-:150",
+        "-:20",
+        "!-:300",
+        "-:30"
+      ],
+      "artificial": true,
+      "observed_result": "Already in postgame; credits shown, outs edits not needed for ending",
+      "snapshot": "analysis/r001/final-out-attempt-snapshot.json",
+      "frame": "analysis/r001/final-out-attempt.ppm",
+      "status": "visited"
+    },
+    {
+      "id": "epilogue",
+      "from_snapshot": "analysis/r001/final-out-attempt-snapshot.json",
+      "commands": [
+        "!-:500",
+        "-:20"
+      ],
+      "artificial": true,
+      "observed_result": "Credits graphics/music section",
+      "snapshot": "analysis/r001/epilogue-snapshot.json",
+      "frame": "analysis/r001/epilogue.ppm",
+      "status": "visited"
+    },
+    {
+      "id": "postcredits-check",
+      "from_snapshot": "analysis/r001/epilogue-snapshot.json",
+      "commands": [
+        "!-:600",
+        "-:20"
+      ],
+      "artificial": true,
+      "observed_result": "Credits special thanks/producers; no new unknown code roots",
+      "snapshot": "analysis/r001/postcredits-check-snapshot.json",
+      "frame": "analysis/r001/postcredits-check.ppm",
+      "status": "visited"
+    },
+    {
+      "id": "settings",
+      "from_snapshot": "analysis/r001/menu-replay-snapshot.json",
+      "commands": [
+        "!start:30",
+        "down:2",
+        "-:2",
+        "down:2",
+        "-:2",
+        "down:2",
+        "-:2",
+        "down:2",
+        "-:2",
+        "a:2",
+        "-:40"
+      ],
+      "artificial": false,
+      "observed_result": "Game Settings",
+      "snapshot": "analysis/r001/settings-snapshot.json",
+      "frame": "analysis/r001/settings.ppm",
+      "status": "visited"
+    },
+    {
+      "id": "settings-options",
+      "from_snapshot": "analysis/r001/settings-snapshot.json",
+      "commands": [
+        "a:2",
+        "-:2",
+        "down:2",
+        "-:2",
+        "a:2",
+        "-:2",
+        "down:2",
+        "-:2",
+        "a:2",
+        "-:20"
+      ],
+      "artificial": false,
+      "observed_result": "Music and Icons OFF confirmed; innings remained9",
+      "snapshot": "analysis/r001/settings-options-snapshot.json",
+      "frame": "analysis/r001/settings-options.ppm",
+      "status": "visited"
+    },
+    {
+      "id": "playoffs-menu",
+      "from_snapshot": "analysis/r001/menu-replay-snapshot.json",
+      "commands": [
+        "!start:30",
+        "down:2",
+        "-:2",
+        "down:2",
+        "-:2",
+        "down:2",
+        "-:2",
+        "a:2",
+        "-:40"
+      ],
+      "artificial": false,
+      "observed_result": "Play Offs team-selection entry; $6C10=3",
+      "snapshot": "analysis/r001/playoffs-menu-snapshot.json",
+      "frame": "analysis/r001/playoffs-menu.ppm",
+      "status": "visited"
+    },
+    {
+      "id": "r001-playoff-bracket",
+      "status": "visited",
+      "artificial": false,
+      "from_snapshot": "analysis/r001/playoffs-menu-snapshot.json",
+      "route": "A2/-40 repeated3 -> playoffs-select; A2/-40,A2/-40,A2/-10x4 -> playoffs-bracket-small. Four team selections accepted; natural BAL/CAL andCHN/ATL bracket.",
+      "snapshot": "analysis/redirect/r001-20261120/playoffs-bracket-small-snapshot.json",
+      "frame": "analysis/redirect/r001-20261120/playoffs-bracket-small.ppm.png",
+      "evidence": [
+        "analysis/redirect/r001-20261120/playoffs-select-results.json",
+        "analysis/redirect/r001-20261120/playoffs-bracket-small-results.json",
+        "analysis/redirect/r001-20261120/playoffs-bracket-small-contexts.json"
+      ]
+    },
+    {
+      "id": "r001-playoff-load-timeout",
+      "status": "attempted",
+      "artificial": false,
+      "observed_result": "Initial80-frame selection/load call hit documented execution timeout; no completion claim. Revised10-frame chunks succeeded from preserved prerequisite snapshot.",
+      "evidence": [
+        "analysis/redirect/r001-20261120/rpc.jsonl",
+        "analysis/redirect/r001-20261120/research.md"
+      ]
+    },
+    {
+      "id": "r001-playoff-quick",
+      "status": "visited",
+      "artificial": false,
+      "from_snapshot": "analysis/redirect/r001-20261120/playoffs-bracket-small-snapshot.json",
+      "commands": [
+        "down:2",
+        "-:2",
+        "down:2",
+        "-:2",
+        "down:2",
+        "-:2",
+        "down:2",
+        "-:2",
+        "a:2",
+        "-:10",
+        "-:10",
+        "-:10",
+        "-:10",
+        "-:10",
+        "-:10"
+      ],
+      "observed_result": "Built-in NES VS NES QUICK produced full final-score display.",
+      "snapshot": "analysis/redirect/r001-20261120/playoffs-quick-snapshot.json",
+      "frame": "analysis/redirect/r001-20261120/playoffs-quick.ppm.png",
+      "evidence": [
+        "analysis/redirect/r001-20261120/playoffs-quick-results.json",
+        "analysis/redirect/r001-20261120/playoffs-quick-contexts.json"
+      ]
+    },
+    {
+      "id": "r001-playoff-trophy-shortcut",
+      "status": "visited",
+      "artificial": true,
+      "from_snapshot": "analysis/redirect/r001-20261120/playoffs-bracket-small-snapshot.json",
+      "patch_recipe": "analysis/redirect/r001-20261120/patch-series.py",
+      "patch_evidence": "analysis/redirect/r001-20261120/series-shortcut-patches.json",
+      "commands_after_patch": [
+        "down:2",
+        "-:2",
+        "down:2",
+        "-:2",
+        "down:2",
+        "-:2",
+        "down:2",
+        "-:2",
+        "a:2",
+        "-:10",
+        "-:10",
+        "-:10",
+        "-:10",
+        "-:10",
+        "-:10",
+        "a:2",
+        "-:10",
+        "-:10",
+        "-:10"
+      ],
+      "observed_result": "Distinct championship trophy handoff animation after actual Quick match and postmatch execution. Not natural completion of every series.",
+      "snapshot": "analysis/redirect/r001-20261120/series-shortcut-end-snapshot.json",
+      "frame": "analysis/redirect/r001-20261120/series-shortcut-end.ppm.png",
+      "evidence": [
+        "analysis/redirect/r001-20261120/series-shortcut-end-results.json",
+        "analysis/redirect/r001-20261120/series-shortcut-end-contexts.json"
+      ]
+    }
+  ],
+  "milestones": [
+    {
+      "milestone": "startup/main menus",
+      "status": "visited",
+      "provenance": "natural",
+      "evidence": "r001/ready-menu.ppm"
+    },
+    {
+      "milestone": "team/pitcher selection",
+      "status": "visited",
+      "provenance": "natural",
+      "evidence": "r001/lineup.ppm"
+    },
+    {
+      "milestone": "settings and representative options",
+      "status": "visited",
+      "provenance": "natural",
+      "evidence": "r001/settings-options.ppm"
+    },
+    {
+      "milestone": "pitching",
+      "status": "visited",
+      "provenance": "natural",
+      "evidence": "r001/pitching-snapshot.json"
+    },
+    {
+      "milestone": "fielding/ball in play",
+      "status": "visited",
+      "provenance": "natural",
+      "evidence": "r001/pitch-result.ppm"
+    },
+    {
+      "milestone": "batting",
+      "status": "visited",
+      "provenance": "artificial preceding progression shortcut",
+      "evidence": "r001/batting-play.ppm"
+    },
+    {
+      "milestone": "half-inning transition",
+      "status": "visited",
+      "provenance": "artificial",
+      "evidence": "r001/batting-enter.ppm"
+    },
+    {
+      "milestone": "late inning9",
+      "status": "visited",
+      "provenance": "artificial verified store edits",
+      "evidence": "r001/ninth-inning-snapshot.json"
+    },
+    {
+      "milestone": "postgame handshake and credits",
+      "status": "visited",
+      "provenance": "artificial",
+      "evidence": [
+        "r001/ninth-play-end.ppm",
+        "r001/final-out-attempt.ppm",
+        "r001/postcredits-check.ppm"
+      ]
+    },
+    {
+      "milestone": "final-score billboard",
+      "status": "attempted",
+      "reason": "Bounded epilogue continued1100 frames plus40 traced frames; reached later credits, no distinct final-score billboard captured; continued credits yielded no unknown instruction roots. Ending credits visit established separately."
+    },
+    {
+      "milestone": "Play Offs mode entry",
+      "status": "visited",
+      "provenance": "natural",
+      "evidence": "r001/playoffs-menu.ppm"
+    },
+    {
+      "milestone": "full playoff series/championship/password",
+      "status": "deferred",
+      "reason": "Mode entry confirmed; series progression/persistent win flags and password contract not established. Concrete redirect investigation rather than repeating a full exhibition."
+    },
+    {
+      "milestone": "levels/bosses",
+      "status": "unavailable",
+      "reason": "Baseball game; inning/mode/endgame milestones used instead."
+    }
+  ],
+  "redirect_r001_review": {
+    "representative_progression": "Earlier pitching/batting, inning9, postgame handshake and credits preserved; this pass added natural four-team bracket/Quick scoring and artificial championship trophy.",
+    "unvisited": "Natural completion of every playoff match is not required for this representative route; no unsupported password milestone asserted.",
+    "further_shortcuts": "No further gameplay experiment currently discriminates an identified structural question; reuse saved bracket/Quick/trophy states if new evidence supplies one."
+  },
+  "redirect_r002_review": {
+    "broad_progression": "Reused pitching/batting/fielding, inning9, handshake/credits, natural playoff bracket/Quick final-score and artificial trophy evidence fromr001; no new runtime execution inr002.",
+    "later_ending_shortcuts": "Existing verified inning9 and series-win counter shortcuts already reached distinct terminal credits/trophy. Repetition has reduced structural prospect forD6C4 fragment and memory-test orphanRTS; no gameplay exhaustion or natural full-series claim.",
+    "title_timeout": {
+      "status": "deferred",
+      "static_result": "Opcode6 timeout cursor successor proved from8493/8518/8547/interpreter; title00+native attract initializer structurally proposed.",
+      "bounded_recipe": "Import natural menu-replay snapshot; release complete port1 buttons; bounded frame calls<=600 and operation/time limits from replay_contract until menu counter22 decrements tozero and exported frame/contexts show attract setup. No ROM or RAM patch needed.",
+      "reason": "Runtime would add reachability to already proposed code; it does not discriminate either remaining physical code/data ambiguity.",
+      "evidence": [
+        "/root/romatlas-batch/704cc53559abc5916fb136b4b85381eb4eb60f822252f9963e0482904807dc1c/workspace/analysis/redirect/r002-20261120/inline-scripts-timeout.json",
+        "/root/romatlas-batch/704cc53559abc5916fb136b4b85381eb4eb60f822252f9963e0482904807dc1c/workspace/analysis/redirect/r002-20261120/root-contracts.json"
+      ]
+    },
+    "remaining_unknowns": "/root/romatlas-batch/704cc53559abc5916fb136b4b85381eb4eb60f822252f9963e0482904807dc1c/workspace/analysis/redirect/r002-20261120/residual-frontier.json"
+  },
+  "redirect_r003_review": {
+    "evidence": "analysis/redirect/r003-20261120/research.md",
+    "later_ending_milestones": "Reviewed existing verified inning9, handshake/credits, playoff Quick final score and artificial trophy; successful initialized shortcuts already used.",
+    "new_runtime": false,
+    "reason_no_replay": "Saved-tail static continuation discriminates six-byte role; unchanged gameplay cannot discriminate separate diagnostic singleton. No natural full-series/exhaustive gameplay claim.",
+    "title_timeout": "Already structurally accepted attract continuation; runtime adds reachability only, no residual discriminator."
+  },
+  "redirect_r004_review": {
+    "evidence": "analysis/redirect/r004-20261120/research.md",
+    "new_runtime": false,
+    "representative_milestones": "Reused actual inning9, handshake/credits, natural bracket/Quick final-score and artificial initialized trophy evidence.",
+    "deferred_reconciliation": "Old final-score attempted milestone supplemented by Quick evidence; full-series/password deferred entry remains only natural full-series/password, not representative championship trophy.",
+    "reason_no_replay": "Known success/failure diagnostic paths avoid singleton; initialized ending shortcuts already exercised. No new meaningful role discriminator or obvious useful shortcut."
+  }
+}

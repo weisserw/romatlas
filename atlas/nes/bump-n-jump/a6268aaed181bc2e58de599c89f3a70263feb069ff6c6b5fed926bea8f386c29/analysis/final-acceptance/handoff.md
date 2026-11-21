@@ -1,0 +1,9 @@
+# Final editorial acceptance handoff
+
+Editorial acceptance passed. Reused valid round-3 current-source review, checked all 167 scaffold entries / 417 units (360 routine, 57 data), locations and targeted naming/comment/uncertainty consistency. Corrected the inventory's redundant source/ path prefixes; initial audit rejection and correction are documented in [editorial audit](../../commentary/editorial-audit.md). No assembly changes. Historical pass-001 vector-location typo corrected by note only: physical $800A..$8010, bytes F98100800080; current map/source already correct. Prior B9 correction preserved.
+
+Fresh supported commentary audit passed: all 167 entries and 417 units reviewed, byte-identical rebuild, reading-after.asm refreshed. [Verification](verification.json), [protected hashes](evidence.json). Source SHA256 079bf436b43182359aed91c3d1f072da34b0f7a7971bc6358c037d01cf525d61; map/state/frozen baseline SHA256 90c4126c01fcd06e3dc687064fda1288f02ec1e022ec37049170ffe359a75c16. Input identity and frozen reading-before unchanged.
+
+ROM classification remains **incomplete**, 65,541/65,552 (99.98%): Code 14,211, non-code 51,330, unknown 11. Exact physical end-exclusive residuals $007C..$0080 (4), $0238..$023C (4), $049E..$049F (1), $1219..$121A (1), $3B8A..$3B8B (1). Per-bank counts remain in ../disassembly/pass-003/counts.json. Terminal rejection review and coordinator primary-evidence inspection reused unchanged; no actionable lead or new research claim. Execution coverage unchanged; no natural playthrough/full compatibility claim.
+
+No toolkit issues found. No input/source/maps/state/toolkit/frozen-reference changes, archive, cleanup, deletion or publication. Disk free 3.3 GiB, no new scratch/capture batch or active server. Coordinator handles archive-options selection and requirements completion audit separately; this final audit did not invoke archive.py.

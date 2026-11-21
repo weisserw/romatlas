@@ -1,0 +1,15 @@
+# Commentary uncertainties
+
+Current-source readability is complete for the frozen disassembly-r001 map. Unknown classification and uncertain game meaning are separate: all 72,166 unknown bytes remain untouched, with exact local boundary notes. No source explanation claims those bytes are code or a bounded table.
+
+- Bank 2, file 0x4EA9–0x500D: tracking derives signed deltas from a clamped word lookup. Horizontal correction eases toward zero; a nonzero vertical correction advances by one. The exact camera target policy and lookup units remain unresolved. Intentional LDY entries inside BIT operands remain encoded exactly, with five supported alternate-entry CPU constants across banks 2 and 14.
+- Banks 10/15: projection and quantized lookup helpers have explicit multi-byte mechanics, but their original geometric formula and scale are not recovered. `CombineQuantizedLookupValues` at 0x1F36C explains the symmetric/parity branches without claiming a particular original generator. Existing structural classifications remain unchanged.
+- Banks 12–14: actor movement, target rectangles, assignment, collision and controller gates are readable. Many individual ActorState/ActorFlags values still lack reliable baseball names. Auxiliary slots probably participate in base-running, but source preserves actor/target terminology where a stronger name would be speculative.
+- Bank 13: settings/team/roster menus have described cursor, duplicate-selection, text and record mechanics. Roster role values, player attribute units and every menu setting are not fully named. Pitch/batting parameter helpers use table bands and bounded randomness; the exact physical units/outcome formulas remain unresolved.
+- Bank 11: sequence/pattern commands, logical channel state, envelope/pitch updates and APU ownership are described. Track/instrument names and the complete command domain outside classified consumers remain unknown. Primary/secondary refer to the two request/channel groups, rather than a proven music/effect distinction.
+- Packed PCM: each record stores count+3 bytes; playback begins at header+2 and leaves one stored tail byte. Spoken phrases and original encoding pipeline are not inferred. This preserves the corrected disassembly evidence.
+- Generic uniform data has a justified non-code role, with unknown consumer/purpose. CHR format is explained as hardware tile storage; individual artwork/scene identities are not claimed. The 26 roster records have local structural notes without inventing all player-field meanings.
+
+Concrete redirect questions remain those in analysis/leads.json. Source reading adds useful bounded targets: follow the bank-14 distance/actor consumers into remaining sprite records; inspect bank-11 command handler/table bounds; relate bank-10 quantized arithmetic consumers to adjacent unknown words; and inspect series/mode transitions using the named GameMode/SideScore/actor state fields. These are nonterminal leads, not reasons to defer any current-source readability work.
+
+Final editorial/archive acceptance remains pending. No classified-source readability ranges are deferred.

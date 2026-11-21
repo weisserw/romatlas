@@ -1,0 +1,22 @@
+# Round003 commentary progress
+
+Active phase at pass-003-final-context. Entire prior round002 commentary preserved under analysis/round-003/commentary-round-002 before fresh prepare. Fresh baseline byte-identical. Carried12871 exact physical instruction records,91 unchanged data intervals, prior operand symbols and441 canonical contracts by physical identity.
+
+New-code edit batch covers2941 bytes in60 mechanical contracts across banks8/11/13/14/15. All newly classified Code ranges now have mechanics, control-flow and relevant context explanations. R008 is named relocated_request_code_template and explicitly excludes working sound/caller/return claims. New code pending=0; current phase remains active until remaining work below completes.
+
+Remaining frontier: reconcile stale earlier gap/interrupt/player/boot/spawn/demo prose and associated canonical units; name/comment540 new Data bytes and consumers; inspect full inventory for coverage and stale aliases; complete fresh edited-source byte-identical verification and refresh reading copy. See analysis/round-003-commentary/frontier.json. Final editorial audit remains pending and has not been invoked.
+
+Dependency/data edit batch complete:540 Data bytes covered in11 bounded structures;15 stale prior prose patterns reconciled, with prior canonical summaries updated. Named69 low-slot calls using the actual per-region physical bank views, including the bank8 screen-init alias8003 in the relocated template. Added readable camera/spawn/metadata/effect/demo aliases and corrected the ROM-read alias atA000 to stage_map_source_banks rather than the MMC3 write register. New canonical units have exact physical boundaries independent of generator record granularity.
+
+Fresh edited-source verification passed byte-identical after code/call edits and again after operand naming. Current13019 inventory entries/32774 Code bytes/14690 instruction starts,512 canonical units,719 operand symbols. All inventory entries reviewed; current code/data naming and affected prior dependencies covered. Remaining frontier is final consistency result, updated uncertainty record, final fresh verification and reading-copy refresh. Full editorial audit remains pending.
+
+## Round003 current-source readability complete
+
+All13019 scaffold entries/262160 bytes and512 canonical units reviewed. Code32774 bytes/14690 instruction starts; Data98314; Image131072; Unknown0. Full current-source scope includes prior valid carry, all3481 newly classified bytes and affected dependencies. Current source has1726 meaningful labels and719 operand symbols; every direct control reference is symbolic. Numeric unresolved RAM fields remain address-based and explained by their local mechanics, with no invented game identity.
+
+Final consistency passed: exact frozen scaffold identity, contiguous full-ROM coverage, all Code bytes covered by reviewed canonical units, valid source locations, unchanged binary/origin directives, unchanged frozen baselines, state/current/checkpoint equality and unchanged input ROM. Fresh final edited-source verification is byte-identical; reading-after.asm refreshed. Results: analysis/round-003-commentary/{coverage,consistency,verification,integrity,frontier}.json. No pending current-source readability ranges.
+
+R008 remains a relocated static template with no working sound/caller/natural-use claim. Natural boss defeat and credits remain unverified; uncertainties.md retains mechanical limits and prior nonzero-frame/nonlocal-stack contracts. No new gameplay replay. Final editorial audit remains pending and was not invoked. Existing nonblocking confirmed NES-001 remains the sole toolkit issue; no new toolkit issues found. No toolkit/ROM/map/state changes, archive/publication/deletion/cleanup.
+
+## Final editorial acceptance
+Targeted review reused complete round003 scope and corrected stale post-return classification prose plus template difference count (ten). Rationale editorial-audit.md; authoritative historical correction ../analysis/final-acceptance/corrections.md. All13019 entries/512 canonical units reviewed, editorial_audit reviewed. Authorized final audit passed: byte-identical rebuild,13019 reviewed regions/12977 scaffold-local unit records, reading copy refreshed. No structural/executable changes; source only comments changed. See audit.json and ../analysis/final-acceptance-handoff.md for results and preserved semantic/gameplay limits.

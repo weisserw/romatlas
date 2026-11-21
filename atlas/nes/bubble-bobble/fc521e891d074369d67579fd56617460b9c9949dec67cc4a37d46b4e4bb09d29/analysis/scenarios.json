@@ -1,0 +1,145 @@
+[
+  {
+    "id": "R1-title-menu",
+    "milestone": "Title and normal menu",
+    "status": "visited",
+    "route": "emulator.start; 300 neutral frames (trace disabled); buttons=[start] 2 frames; buttons=[] 20 frames. NES input replaces full held-button array.",
+    "evidence": [
+      "round1/correct-menu.ppm",
+      "round1/driver.py",
+      "round1/rpc-log.jsonl"
+    ],
+    "reachability": "natural"
+  },
+  {
+    "id": "R1-first-round",
+    "milestone": "Round 01, movement, bubble firing, jump",
+    "status": "visited",
+    "route": "From menu Start2/release; request100 frames (timeout at399 total); right+B35,A+B35,left+B35; snapshot mechanics; restore with buttons=[]; request360 neutral (10M budget stopped335 frames later at839); right+B30,A+B30,left+B30 ->929 total.",
+    "evidence": [
+      "round1/round1-mechanics.ppm",
+      "round1/round1-mechanics.snapshot",
+      "round1/driver.py",
+      "round1/next.py",
+      "round1/rpc-log.jsonl"
+    ],
+    "reachability": "natural",
+    "trace_note": "Trace disabled for long neutral sections; only accepted fetched instruction addresses during enabled sections counted."
+  },
+  {
+    "id": "R1-stage-only",
+    "milestone": "Middle/later stages via RAM-only selector edit",
+    "status": "attempted",
+    "route": "Restore play.snapshot (frame399 pre-level story); release all; write ram $0401=[30],[80],[112] on separate restores;300 neutral untraced+20 neutral traced+right/B20+A/B20; restore stage snapshots +200 neutral untraced+right/B20+A/B20. Separate111-before-init final attempt.",
+    "observed_result": "Selector changes/increments and different enemies; layout/display retains Round01. Mixed initialization, not coherent later-stage visits.",
+    "evidence": [
+      "round1/later.py",
+      "round1/later_finish.py",
+      "round1/stage30-ram.json",
+      "round1/visited30.ppm",
+      "round1/boss112.ppm",
+      "round1/later-output.log",
+      "round1/progression-output.log"
+    ],
+    "reachability": "artificial",
+    "retry": "Do not repeat unchanged. Need full initializer or supported menu route."
+  },
+  {
+    "id": "R1-continue",
+    "milestone": "Late-stage menu selection and final boss route",
+    "status": "visited",
+    "route": "Fresh300 neutral;Start2/release20; write ram $049C=112,$0401=112; Select2/release2;Select2/release2;Start2/release;300+250 neutral untraced;right/B25,A/B25. Later restore continue-menu.snapshot and write both fields114 (B4), Start2 then300+300+200 neutral;right/B30,A/B30.",
+    "observed_result": "Additional Start after B4 selected menu, then600 neutral frames and right/B30+A/B30 reaches distinct giant boss arena. confirmedB4.ppm visibly confirms player, giant boss and projectile mechanics; effective banks[10,11,14,15].",
+    "evidence": [
+      "round1/continue-menu.ppm",
+      "round1/continue112.ppm",
+      "round1/lateB2.ppm",
+      "round1/finalB4.ppm",
+      "round1/continue_route.py",
+      "round1/final_progression.py",
+      "round1/confirmedB4.ppm",
+      "round1/confirmedB4.snapshot",
+      "round1/confirm_continue.py",
+      "round1/confirmed-contexts.json"
+    ],
+    "reachability": "artificial",
+    "final_recipe": "Restore finalB4.snapshot (selected Continue B4 menu);buttons=[]2frames;Start4/release;300+300 neutral untraced;right+B30/release;A+B30/release. See confirm_continue.py and exact RPC log."
+  },
+  {
+    "id": "R1-ending",
+    "milestone": "Ending/credits/terminal screens",
+    "status": "visited",
+    "reason": "Final boss now visited through corrected Continue route. Ending requires source-informed boss HP/defeat/item/player contracts, not established in this bounded pass. Redirect can use confirmedB4.snapshot immediately.",
+    "evidence": [
+      "round1/stage-entry-decode.json",
+      "round1/continue-menu.snapshot",
+      "round1/finalB4.snapshot"
+    ],
+    "observed_result": "Artificial defeat shortcut and source-informed crystal/player gates produce crystal-required BAD END, friend-required BAD END, and HAPPY END.",
+    "resolution_evidence": [
+      "redirect/r1-20261121-a/ending-b/frame2.png",
+      "redirect/r1-20261121-a/ending-c/crystal-single.png",
+      "redirect/r1-20261121-a/ending-d/frame1.png"
+    ]
+  },
+  {
+    "id": "R1-redirect-stage30",
+    "milestone": "Representative middle Round30 gameplay",
+    "status": "visited",
+    "route": "Restore continue-menu;release;RAM0401/049C=30;Start4;300neutral;Start4;300+250neutral;right+B15,A+B15.",
+    "observed_result": "Distinct Round30 geometry/enemies/player bubble/jump activity confirmed.",
+    "evidence": [
+      "redirect/r1-20261121-a/middle/stage30.png"
+    ],
+    "reachability": "artificial",
+    "trace_note": "Actual fetched contexts separately saved; untraced sections do not establish instruction fetch coverage. RAM edits alone are not visits."
+  },
+  {
+    "id": "R1-redirect-stage80",
+    "milestone": "Representative later Round80 gameplay",
+    "status": "visited",
+    "route": "middle80/run.py parts1/2/3: restore Continue menu,release;RAM0401/049C=80;Start4/250neutral;Start4/250neutral;200neutral/right+B12/A+B4. Durable snapshots between parts.",
+    "observed_result": "Distinct pink Round80 geometry/enemies/player bubbles/jump input confirmed.",
+    "evidence": [
+      "redirect/r1-20261121-a/middle80/part3.png"
+    ],
+    "reachability": "artificial",
+    "trace_note": "Actual fetched contexts separately saved; untraced sections do not establish instruction fetch coverage. RAM edits alone are not visits."
+  },
+  {
+    "id": "R1-redirect-badend-crystal",
+    "milestone": "Terminal BAD END crystal requirement",
+    "status": "visited",
+    "route": "Restore confirmedB4;release;RAM006D=3;30frames then120+20+300.",
+    "observed_result": "Boss state3->4 falling animation sets72=1; BAD END requires MAGICAL CRYSTAL BALL and gives PASSWORD EECJJ.",
+    "evidence": [
+      "redirect/r1-20261121-a/ending-b/frame2.png"
+    ],
+    "reachability": "artificial",
+    "trace_note": "Actual fetched contexts separately saved; untraced sections do not establish instruction fetch coverage. RAM edits alone are not visits."
+  },
+  {
+    "id": "R1-redirect-badend-friend",
+    "milestone": "Terminal BAD END friend requirement",
+    "status": "visited",
+    "route": "Restore ending-step0.snapshot (defeat state4);RAM049A=1;15 traced+300neutral+15traced+300neutral.",
+    "observed_result": "BAD END requires TRY AGAIN WITH YOUR FRIEND, PASSWORD EE.",
+    "evidence": [
+      "redirect/r1-20261121-a/ending-c/crystal-single.png"
+    ],
+    "reachability": "artificial",
+    "trace_note": "Actual fetched contexts separately saved; untraced sections do not establish instruction fetch coverage. RAM edits alone are not visits."
+  },
+  {
+    "id": "R1-redirect-happyend",
+    "milestone": "Terminal HAPPY END",
+    "status": "visited",
+    "route": "Restore ending-step0.snapshot;RAM049A=1 and0042=3;15traced+300neutral+15traced+300neutral;from saved crystal-pair.snapshot another300+300neutral.",
+    "observed_result": "Paired rescue animation then HAPPY END! with hearts and paired rescued characters confirmed.",
+    "evidence": [
+      "redirect/r1-20261121-a/ending-d/frame1.png"
+    ],
+    "reachability": "artificial",
+    "trace_note": "Actual fetched contexts separately saved; untraced sections do not establish instruction fetch coverage. RAM edits alone are not visits."
+  }
+]

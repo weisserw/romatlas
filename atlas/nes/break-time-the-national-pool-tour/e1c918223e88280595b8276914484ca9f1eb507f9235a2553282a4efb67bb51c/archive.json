@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "platform": "nes",
+  "name": "break-time-the-national-pool-tour",
+  "rom_sha256": "e1c918223e88280595b8276914484ca9f1eb507f9235a2553282a4efb67bb51c",
+  "rom_filename": "game.nes",
+  "image_size": 163856,
+  "editorial_complete": false,
+  "review_status": {
+    "complete": false,
+    "reviewed_regions": 1315,
+    "total_regions": 1315,
+    "reviewed_units": 1004,
+    "total_units": 1004,
+    "editorial_audit": false,
+    "reasons": [
+      "final editorial audit is pending"
+    ]
+  },
+  "omitted_documents": [
+    "analysis/round-1/commentary/AGENTS.md",
+    "analysis/round-1/commentary/prompt.md",
+    "analysis/round-1/commentary/workflow.md",
+    "analysis/round-2/commentary/AGENTS.md",
+    "analysis/round-2/commentary/prompt.md",
+    "analysis/round-2/commentary/workflow.md"
+  ],
+  "artifacts": {
+    "README.md": "468db2be2f0e4ff891af9bf0090e5652f08c720a01d6ec793c70f0f33007955b",
+    "analysis/gameplay.md": "29da0d69c81e14b8c5507ce184e3293397a300b12da37b6e0a99f4218f7ccba9",
+    "analysis/handoffs/final-terminal.md": "c2e69e1d80830b6d24d59e0504bab6ea284a801e496786ba594233ae2a228d0a",
+    "analysis/handoffs/round-1-commentary.md": "3b675978961a174b5bc0ea48034088576d7b7ce4d8bc6463adda7da69d2c2f14",
+    "analysis/handoffs/round-1-disassembly.md": "d2a82fa4d084d9ba738f9c7ded67bed977f0ed152f9e6af81b45450e043ceb77",
+    "analysis/handoffs/round-1-redirect.md": "8307e36ddcc653c0a9d3ac7458e843c62298d5ce38874bcf733f378e3c2225ca",
+    "analysis/handoffs/round-2-commentary.md": "129cca16d6f935cf598bc592269908ceea12305d5c9ff49ab1a5623297b3432f",
+    "analysis/handoffs/round-2-disassembly.md": "77f4c721c98bd40db7bf9564feb141fd84320442d7b3eedb15e2391bbc2cd729",
+    "analysis/handoffs/round-2-redirect.md": "0df823b3d7415ed7b8bba84760b5d613c12b438ac6af114bf36fa2a47381afcc",
+    "analysis/handoffs/round-3-commentary.md": "f289d8b3aaf0f0ae3fb8475b9c4f2e6bb32f5a768014bf865a6b1ddce190b1ad",
+    "analysis/handoffs/round-3-disassembly.md": "20fb359be8f59da947953c283862aa8009f1104a72b293c550ad0342de957a18",
+    "analysis/handoffs/round-3-redirect.md": "2a5bd8e3d497ed2c5ac8aa3b4423dbf20672e7a010853b7928ac4260fc62d3ba",
+    "analysis/investigation.md": "0468ed13c397a1e5f3e9b0c23084949719ca950b67bf98e0528cb8060e0d304c",
+    "analysis/progress.md": "b4d83e0664c0c01dc1351b7825734b653718731eb69e236e36261f3d0a72969a",
+    "analysis/redirect/r1-a1/notes.md": "77806939f15b4eea7b15867e1ec9462048a83d3f46adfcfd19a9411610b63f92",
+    "analysis/round-1/commentary/progress.md": "61a0b30124027d32e5ca01d19cdd8a50fb0a8b6740b0b12f84be84086df77ca1",
+    "analysis/round-1/commentary/uncertainties.md": "0ea4c12417763cb19854835c77a26f3279fe279feeb028347b9dba80d3c8a550",
+    "analysis/round-2/commentary/progress.md": "cff7a6fff65875e3e6af1a7fce77d4a02bcd418b8cc9f37827c5711dc09dc223",
+    "analysis/round-2/commentary/uncertainties.md": "ea7762e1d23ea69ded9b8766c3483991eba199d0f116b1436f20ca96c4744c98",
+    "analysis/scenarios.json": "2be47580b5c2b5e05db93a45a4e24ba483482661681d032ce736bb88d293be27",
+    "analysis/state.json": "e4d17a5803fbf13fd0a3d931c2cfe936784e571914921c0ebec229276930e0ff",
+    "commentary/baseline.json": "e4d17a5803fbf13fd0a3d931c2cfe936784e571914921c0ebec229276930e0ff",
+    "commentary/manifest.json": "5cdcd57156afe06a43a0e9aec17e4d4986a5e9ae0adbac7317941d4a0b93bbbe",
+    "commentary/phase1-state.json": "e4d17a5803fbf13fd0a3d931c2cfe936784e571914921c0ebec229276930e0ff",
+    "commentary/progress.md": "c316121a8ece88c844167c22beb4e0f6bb7f0cfb240fc1b78740bfe09efabd56",
+    "commentary/review.json": "9d5d3ee508829fe53546e5c510fd46cb768591734f92f9083d56d939b51a70f8",
+    "commentary/uncertainties.md": "b82bead0f8261a75fcc81f74cdda8853e821861670717f2a1d7e7a5440de50e7",
+    "commentary/verification.json": "a7d0fd1dfa7452de20c4dbbcd1ebc55bd0546e7fc5ead429d8ab22551cd78562",
+    "editorial.json": "90c8473c21c8dde44ab60cc2398d3945b3a4a956f65971979985abd60ad2d826",
+    "maps/current.json": "e4d17a5803fbf13fd0a3d931c2cfe936784e571914921c0ebec229276930e0ff"
+  }
+}

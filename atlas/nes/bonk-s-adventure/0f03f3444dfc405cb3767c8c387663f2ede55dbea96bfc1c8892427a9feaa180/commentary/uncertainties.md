@@ -1,0 +1,21 @@
+# Investigated limitations
+
+Current-source readability is complete at pass-003a. Final editorial assessment and fresh acceptance verification are recorded in editorial-audit.md and analysis/final-editorial-handoff.md; these limitations do not imply whole-ROM classification.
+
+The twelve remaining Unknown bytes comprise ten isolated $60 bytes without independent entry/return contracts and one $C9,$F9 pair whose immediate-comparison versus stored-word boundary is unresolved. Their source notes preserve the bytes and uncertainty. The coordinator accepted terminal INCOMPLETE after r003-a assessed the residual rejection evidence; unchanged research is not scheduled.
+
+The accepted player/object dispatch tables, all selected-bank wrapper templates and audio command/effect tables supply finite structural contracts. Natural selection of every player state, actor type, audio entry and stage remains unresolved. Artificial progression observations establish only the actual fetched contextual starts recorded in their evidence, not an unchanged natural route.
+
+Stage layout consumers support five-byte metatiles and fifteen/sixteen-byte layout records; R001-R07 corroborates stage pointer endpoints and index domains within those records. The complete layout index-list extents and exact original asset organization remain unresolved. Generic parameter/script/graphic containers reuse accepted bounded reference/record inspection and retain their narrower source notes.
+
+Player state IDs, overlay effects, material interactions and many sound identities retain mechanical interpretations. CPU RAM aliases marked unresolved preserve storage identity without inventing a game role. Shared scratch and reused arrays may require context-specific names; the alternate strided PPU queue now has its own aliases.
+
+Audio note/gate timing, counted loops, register shadows and envelope/pitch scripts are mechanically established. Song identities and original stream organization remain uncertain. DMC-related shadow fields do not establish complete DMC playback compatibility.
+
+No full-game reachability, whole-ROM completion or hardware compatibility is claimed. Editorial acceptance concerns the reviewed source and inventory.
+
+Round002 resumed player/actor review: the state$2E position snapshot in physical14137..14482 saves player X-high into its fourth scratch byte, while state$2F later restores that byte as Y-high (physical14486..14665). This is the exact byte-backed behavior, not corrected source. A bounded grab/escape trace with nonzero coordinate high bytes could clarify whether normal game coordinates mask it. Material3 contact, special-terrain mode and the alternate-scene selectors have explicit mechanical descriptions; exact terrain/story names remain tentative. Vector table row extents and natural selector reach are not inferred from the integrator alone.
+
+Type-$48 reflected spawn selector overlaps code: physical73989..74130 / CPU$A0F5..$A181 selects Y=0/4 then reads$A186,Y. Nonreflected bytes$00,$FF yield one selector0 child; reflected reads$20,$94 from the dispatcher instruction at physical74138, yielding one selector$20 child before the negative operand stops iteration. The nearby declared selector bytes$10,$FF at$A188 are not selected by this opening index. Exact mechanics are preserved; intended overlap versus latent defect is unresolved. The accepted r002-a artificial reflected/nonreflected capture confirms these mechanics; natural variant selection remains unresolved. No further unchanged replay or reclassification is implied.
+
+Type-$4A contact at physical24680 calls the dual-use signed vector cell at19517 under [2,3,30,31]. Artificial fetched evidence resolves the former call/Data conflict: CMP flags make BNE not taken and BCS self-loop. The exact15x32 vector layout is established; natural contact/selector coverage and original intent remain unresolved. See analysis/round-003/review.md. Shared spawn-history removal also retains its exact same-column-versus-row comparison and branch into append scanning; intended deletion behavior is uncertain. Effect timelines retain first-match duplicate comparisons and only advance noise phase when no earlier pulse2 event branches away.

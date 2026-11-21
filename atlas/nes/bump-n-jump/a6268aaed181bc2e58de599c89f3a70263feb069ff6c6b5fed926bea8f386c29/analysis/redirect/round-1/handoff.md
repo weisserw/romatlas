@@ -1,0 +1,28 @@
+# Redirect round 1 handoff
+
+Ready for one combined independent disassembly review of D1-003 through D1-006. All identified promising actionable structural avenues were investigated as connected graphs, then the independent transition, arithmetic, sprite-container and small-data opportunities were followed. This is a ready-batch handoff, not terminal exhaustion. No classification changes were made.
+
+Authoritative input remains pass-001-complete: 55,096/65,552 classified (84.05%), 10,456 unknown. Map/state SHA256 `7b8f86f78906ab6c9d6daf2181ecc22ef269e44c2b01132059ea06bdd27b031a`; commentary source SHA256 `d93bc210c3d4948fc9a2b64b51f2ed07b94bce26f9107af81aa1c9e04574304e`. Input ROM unchanged. Full current-source commentary gate was complete before this redirect; final editorial audit remains pending.
+
+Combined proposal: **4,057 Code + 6,384 Data = 10,441 new bytes proposed; zero accepted here**. If independently accepted in full, 15 bytes would remain unknown. Do not report that prospective count as the current map count. Every instruction retains exact physical identity, CPU alias and effective PRG [0,1,2,3]; no incompatible instruction overlap or conflict with accepted data was found.
+
+Review these artifacts together:
+
+- [Findings and code contracts](findings.md): all selected handlers, nested dispatches, synthetic return, arithmetic contracts, provisional corrections and exact residual reasoning.
+- [Data roles and bounds](data-evidence.md): every proposed data group, practical consumer inspection and generic fallback limits.
+- [Machine-readable proposal](proposal.json): exact new intervals and supported instruction records. It is research evidence, not a portable mapping or accepted state.
+- [Exact unknown ledger](unknown-ledger.json): all 64 current gaps with bank/CPU context, neighbors and code/data/unresolved dispositions.
+- [Reviewed dispatch tables](dispatch-tables-reviewed.json), [audio grammar](audio-grammar.json), [data audit](data-audit.json), [supported reference bases](unknown-reference-bases.json), and the linked listing/discovery files.
+- [Runtime results](runtime-results.md), updated [scenarios](../../scenarios.json), and [gameplay contracts](../../gameplay.md).
+
+Main findings: 49 audio opcode handlers and 33 command headers support a complete bounded stream grammar (3,382 parsed tokens, no invalid/out-of-bound commands). Player, terrain, auxiliary, traffic and secondary update/sprite tables have exact independently supported bounds; nested type handlers and shared helpers were followed. The two-sample synthetic return to CPU $9663 resolves a missing collision continuation. Five transition states and their text/palette data close another independent graph. Four ending states and 21 contiguous terminated text records are supported. Three unreferenced arithmetic helpers have coherent finite field/control/sibling contracts. Three encoded metasprite origins independently establish 71 tile/attribute/flip records; observed selector count is not an extent prerequisite.
+
+Historical provisional table estimates remain preserved. Use dispatch-tables-reviewed.json: 16 player states, seven auxiliary states, 11 traffic states, **10 secondary update states**, corresponding sprite tables and separate nested behavior tables. Never annotate the provisional manifest wholesale. Audio command ID0 overlaps preceding PLA/RTS bytes at physical $405A..$405C; retain these as code. Opcode $90 is a timed rest, not a stream terminator. Exact consumer reasoning and corrections are recorded in findings.md.
+
+Gameplay observations are artificial and separate from static structure: corrected final-course cursor 62 consumes FF at index 63 and reaches main state 13 with an opponent; movement/contact was observed, but the naive state-1 patch did not produce a tenth hit. The independently tested defeat state advances through auxiliary 4/5/6 to main 21. All ending text and return to course 0 PLAYER START were visited with accelerated position/timer and an understood pause-counter edit, across durable snapshots. A long ordinary-timing-after-restore run was interrupted and is not called complete. Max-speed plus an A edge visited airborne jump states 5→6→7. Landing, natural opponent defeat and directed pit/fuel/truck permutations remain unclaimed; they offer no concrete residual structural opportunity after this proposal.
+
+The 15 unproposed bytes are physical $007C..$0080, $0238..$023C, $049E..$04A3, $1219..$121A and $3B8A..$3B8B. They are tiny unreferenced stub/return/BRK-versus-data ambiguities. Each has local competing interpretations and decisive missing discrimination in findings.md. The supported $1218 RTS is independent of the unresolved adjacent $1219. No arbitrary PC execution or repeated early gameplay would distinguish intended structure for these residuals. Independent disassembly may reconsider them; no claim of permanent exhaustion is made.
+
+Next phase: independently review the combined evidence, apply only supported Static annotations, validate/save/export, create a new byte-identical checkpoint, and refresh the exact complement. Preserve the current readable source for later commentary reconciliation. Do not replay completed experiments just to observe every static handler.
+
+No toolkit issues found. One 12-frame/10-second request timed out; shorter 4-frame/30-second requests and a final single-frame capture completed. Some long sessions returned exit 143; partial RPC observations, snapshots and explanations are preserved, not claimed as successful completion. All owned servers have exited. No toolkit changes, archive, deletion, publication, ROM/assets downloads or source/map/state edits.

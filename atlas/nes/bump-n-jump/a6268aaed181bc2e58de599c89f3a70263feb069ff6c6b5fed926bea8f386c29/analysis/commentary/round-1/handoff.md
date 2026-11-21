@@ -1,0 +1,13 @@
+# Round 1 commentary handoff
+
+Current-source readability complete; ready for coordinator to select redirect. ROM classification remains incomplete: 55,096/65,552 bytes (84.05%), including 10,150 code and 44,946 non-code; 10,456 unknown bytes. No structural edits were made. Authoritative structural checkpoint remains pass-001-complete, frozen map SHA256 7b8f86f78906ab6c9d6daf2181ecc22ef269e44c2b01132059ea06bdd27b031a.
+
+Readable source: ../../../commentary/source/game.asm. Refreshed reading copy: ../../../commentary/reading-after.asm. Verification: ../../../commentary/verification.json, byte_identical=true. Original ROM SHA256 a6268aaed181bc2e58de599c89f3a70263feb069ff6c6b5fed926bea8f386c29; source SHA256 d93bc210c3d4948fc9a2b64b51f2ed07b94bce26f9107af81aa1c9e04574304e. Map/state remain identical to frozen references.
+
+Scope: scope.json records all 158 scaffold entries reviewed, 183 routine units, and zero classified code bytes outside the units. Every classified data/CHR/header/vector span has local explanation; every one of the 64 unknown gaps has an exact end-exclusive physical boundary/uncertainty note. No same-phase remaining ranges. Final editorial audit is pending, deliberately separate from this full current-source task and whole-ROM classification.
+
+Examples: named all 23 main-state handlers; controller current/changed/pressed masks; NMI frame and graphics request gates; PPU stream sentinels/row stride; five-byte/four-byte actor fields; 17-row collision ring; two-bit palette extraction; metasprite/OAM fields; decimal score/time helpers; sound arbitration, parser, envelope, pitch and software-stack contracts. Main-state/vector tables now emit symbolic words. Fixed PRG [0,1,2,3] and CNROM CHR separation are explicit. Useful uncertainty stays local; generic data does not acquire invented object layouts.
+
+Concrete redirect questions, with supporting source entry names and physical identities, are in ../../../commentary/uncertainties.md. Continue the existing sound opcode/stream frontier, actor inner dispatch contracts, ending selector/finish/return behavior and small structural gaps from the disassembly handoff. These are unresolved questions, not rejections or exhaustion findings. No redirect work performed by this worker.
+
+No toolkit issues found; ../../../analysis/toolkit-issues.md. No toolkit modifications, ROM/assets downloads, archive/deletion/publication or live processes. Frozen before source is preserved. Review/edit scripts and naming inventory are local reproducibility evidence in this directory; do not re-run the initial transformation over later commentary edits.

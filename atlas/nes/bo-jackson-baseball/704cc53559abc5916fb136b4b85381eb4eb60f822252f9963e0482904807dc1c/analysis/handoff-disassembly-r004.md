@@ -1,0 +1,11 @@
+# Disassembly r004 — single pass complete, ROM incomplete
+
+ROM classification: 100.00% (393231 / 393232 bytes classified; 1 bytes unknown). Exact 99.999745697197%; one Unknown byte remains.
+
+Authoritative checkpoint `maps/disassembly-r004.json`; current map and persisted state contain accepted six-byte batch. Fresh `analysis/disassembly-r004-verification.json` confirms byte-identical whole-ROM generated source at `generated/disassembly-r004`. Input ROM, all prior regions and full commentary preserved; no runtime replay or new observed/natural reachability claim.
+
+R003-INLINE-SAVED-TAIL verified: physical56D4/5StaticData and56D9/1StaticCode. Independent `analysis/r004/review-notes.md`, fresh primary witness decodes, annotation ledger and metrics supply exact proof/accounting. Opcode0C immediate native redirect saves old-tailD6C3; nativeD791 JMP83CD restores it without discarding another return; interpreter reads01 atD6C4,09/2C01 atD6C5..7,00 atD6C8. Synthetic return enters RTS D6C9, which consumes outer caller return. Context [14,4,2,15], coherent mode40; helper preserves57/58 andC000 bank2. Older rejection remains historical; corrected premise appended.
+
+Next full current-source commentary: preserve current and historical copies, carry reusable r003 full-source review, replace old six-byte Unknown note in commentary/source/game.asm near BeginResultInlineDisplay, integrate new WinningTeamDisplaySavedTail_056D4 and WinningTeamDisplayReturn_D6C9 with correct saved-tail/stack explanation. New readable-source integration is pending; whole-ROM classification still incomplete and final editorial audit is deferred. No commentary/redirect performed by disassembly.
+
+Then redirect on exact `analysis/r004/unknown-final.json`: physical1DF7F/bank14 CPU9F6F stored60. Failure-loop predecessor JMP9F57 excludes immediate fallthrough only; no independent code/data discriminator. Retain Unknown, no opcode-size promotion or deadness assertion. Prior auxiliary-domain review remains scoped. No terminal exhaustion acceptance. Reuse existing broad later/endgame initialized routes/scenarios; no unchanged gameplay replay. No toolkit issues found (`analysis/toolkit-issues.md`); no toolkit edits, archive/publication/cleanup/deletion.

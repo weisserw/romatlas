@@ -1,0 +1,3423 @@
+{
+  "format": "romatlas-nes-map",
+  "version": 1,
+  "image_sha256": "a6268aaed181bc2e58de599c89f3a70263feb069ff6c6b5fed926bea8f386c29",
+  "image_size": 65552,
+  "regions": [
+    {
+      "id": 1,
+      "offset": 0,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "INesHeader",
+      "comment": "",
+      "evidence": "iNES magic, PRG/CHR sizes and mapper fields verified by inspect; 16-byte physical header.",
+      "views": []
+    },
+    {
+      "id": 2,
+      "offset": 32778,
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "InterruptVectors",
+      "comment": "",
+      "evidence": "Three little-endian vector words $81f9/$8000/$8000, matching reset/NMI instruction contracts.",
+      "views": []
+    },
+    {
+      "id": 3,
+      "offset": 32784,
+      "length": 32768,
+      "kind": "Image",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ChrTiles",
+      "comment": "",
+      "evidence": "iNES CHR extent: four 8 KiB CNROM pattern banks, 16-byte 2bpp PPU tiles; CPU code cannot map this storage.",
+      "views": []
+    },
+    {
+      "id": 4,
+      "offset": 572,
+      "length": 46,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "MainStateHandlers",
+      "comment": "",
+      "evidence": "Main dispatcher $8051-$805b reads word pair $822c+2*RAM[$14], indirect JMP. Exact endpoint at reset helper $825a; 23 coherent state handlers return to $8047. Natural selection of every state unproven.",
+      "views": []
+    },
+    {
+      "id": 5,
+      "offset": 16,
+      "length": 108,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Reset",
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 32768,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "offset": 128,
+      "length": 389,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 32880,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "offset": 521,
+      "length": 47,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "Nmi",
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33273,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "offset": 618,
+      "length": 322,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33370,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "offset": 1087,
+      "length": 95,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33839,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "offset": 1187,
+      "length": 40,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33939,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "offset": 1265,
+      "length": 98,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34017,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "offset": 1380,
+      "length": 133,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34132,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "offset": 1529,
+      "length": 345,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34281,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "offset": 1898,
+      "length": 267,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34650,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "offset": 2181,
+      "length": 405,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34933,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "offset": 2618,
+      "length": 117,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35370,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "offset": 2999,
+      "length": 19,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35751,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "offset": 3223,
+      "length": 386,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35975,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "offset": 3670,
+      "length": 159,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36422,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "offset": 3843,
+      "length": 74,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36595,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "offset": 3949,
+      "length": 68,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36701,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "offset": 4544,
+      "length": 54,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37296,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "offset": 4601,
+      "length": 15,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37353,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "offset": 4850,
+      "length": 28,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37602,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "offset": 4886,
+      "length": 686,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37638,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "offset": 6350,
+      "length": 51,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39102,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "offset": 6559,
+      "length": 19,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39311,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "offset": 6931,
+      "length": 247,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39683,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "offset": 7202,
+      "length": 243,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39954,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "offset": 8252,
+      "length": 1,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41004,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "offset": 8296,
+      "length": 60,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41048,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "offset": 9262,
+      "length": 995,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42014,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "offset": 10417,
+      "length": 19,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43169,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "offset": 10814,
+      "length": 54,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43566,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "offset": 11045,
+      "length": 48,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43797,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "offset": 11227,
+      "length": 1,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43979,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "offset": 11266,
+      "length": 38,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44018,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "offset": 11576,
+      "length": 83,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44328,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "offset": 11663,
+      "length": 173,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44415,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "offset": 11857,
+      "length": 282,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44609,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "offset": 12143,
+      "length": 32,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44895,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "offset": 12605,
+      "length": 278,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45357,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "offset": 13095,
+      "length": 637,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45847,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "offset": 13770,
+      "length": 93,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46522,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "offset": 13894,
+      "length": 166,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46646,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "offset": 14096,
+      "length": 9,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46848,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "offset": 14113,
+      "length": 72,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46865,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "offset": 14329,
+      "length": 144,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47081,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "offset": 14481,
+      "length": 761,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47233,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "offset": 15243,
+      "length": 349,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 47995,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "offset": 16254,
+      "length": 37,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static control-flow closure from reset/NMI vectors and bounded main-state handlers. Fixed CNROM PRG [0,1,2,3]; instruction-aligned ranges, no overlapping starts; structural contract separate from natural reachability. Evidence analysis/disassembly/pass-001/handler-discovery.json and reset-decode.json.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49006,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "offset": 12554,
+      "length": 32,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Exact 32-byte uniform run $00; boundaries checked against adjacent bytes, no conflicting vector/state-closure instructions. Nearby data-like repeated records inspected at physical $5000/$6000/$7000. Generic non-code only; consumer/layout/fill purpose unresolved.",
+      "views": []
+    },
+    {
+      "id": 53,
+      "offset": 14060,
+      "length": 36,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Exact 36-byte uniform run $ff; boundaries checked against adjacent bytes, no conflicting vector/state-closure instructions. Nearby data-like repeated records inspected at physical $5000/$6000/$7000. Generic non-code only; consumer/layout/fill purpose unresolved.",
+      "views": []
+    },
+    {
+      "id": 54,
+      "offset": 25069,
+      "length": 27,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Exact 27-byte uniform run $01; boundaries checked against adjacent bytes, no conflicting vector/state-closure instructions. Nearby data-like repeated records inspected at physical $5000/$6000/$7000. Generic non-code only; consumer/layout/fill purpose unresolved.",
+      "views": []
+    },
+    {
+      "id": 55,
+      "offset": 25459,
+      "length": 117,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Exact 117-byte uniform run $01; boundaries checked against adjacent bytes, no conflicting vector/state-closure instructions. Nearby data-like repeated records inspected at physical $5000/$6000/$7000. Generic non-code only; consumer/layout/fill purpose unresolved.",
+      "views": []
+    },
+    {
+      "id": 56,
+      "offset": 28712,
+      "length": 48,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Exact 48-byte uniform run $75; boundaries checked against adjacent bytes, no conflicting vector/state-closure instructions. Nearby data-like repeated records inspected at physical $5000/$6000/$7000. Generic non-code only; consumer/layout/fill purpose unresolved.",
+      "views": []
+    },
+    {
+      "id": 57,
+      "offset": 28776,
+      "length": 33,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Exact 33-byte uniform run $51; boundaries checked against adjacent bytes, no conflicting vector/state-closure instructions. Nearby data-like repeated records inspected at physical $5000/$6000/$7000. Generic non-code only; consumer/layout/fill purpose unresolved.",
+      "views": []
+    },
+    {
+      "id": 58,
+      "offset": 28856,
+      "length": 80,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Exact 80-byte uniform run $02; boundaries checked against adjacent bytes, no conflicting vector/state-closure instructions. Nearby data-like repeated records inspected at physical $5000/$6000/$7000. Generic non-code only; consumer/layout/fill purpose unresolved.",
+      "views": []
+    },
+    {
+      "id": 59,
+      "offset": 29608,
+      "length": 48,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Exact 48-byte uniform run $50; boundaries checked against adjacent bytes, no conflicting vector/state-closure instructions. Nearby data-like repeated records inspected at physical $5000/$6000/$7000. Generic non-code only; consumer/layout/fill purpose unresolved.",
+      "views": []
+    },
+    {
+      "id": 60,
+      "offset": 30668,
+      "length": 24,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Exact 24-byte uniform run $00; boundaries checked against adjacent bytes, no conflicting vector/state-closure instructions. Nearby data-like repeated records inspected at physical $5000/$6000/$7000. Generic non-code only; consumer/layout/fill purpose unresolved.",
+      "views": []
+    },
+    {
+      "id": 61,
+      "offset": 4017,
+      "length": 98,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static closure rooted in accepted opcode fetches from artificial stage 0/7/15 driving and ending-init21 scenarios. Fixed PRG [0,1,2,3]. Actual roots: mechanics-coverage.json; closure: runtime-rooted-discovery.json. Artificial entry does not prove natural reachability.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36769,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 62,
+      "offset": 4318,
+      "length": 5,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static closure rooted in accepted opcode fetches from artificial stage 0/7/15 driving and ending-init21 scenarios. Fixed PRG [0,1,2,3]. Actual roots: mechanics-coverage.json; closure: runtime-rooted-discovery.json. Artificial entry does not prove natural reachability.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37070,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 63,
+      "offset": 4598,
+      "length": 3,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static closure rooted in accepted opcode fetches from artificial stage 0/7/15 driving and ending-init21 scenarios. Fixed PRG [0,1,2,3]. Actual roots: mechanics-coverage.json; closure: runtime-rooted-discovery.json. Artificial entry does not prove natural reachability.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37350,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "offset": 4634,
+      "length": 216,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static closure rooted in accepted opcode fetches from artificial stage 0/7/15 driving and ending-init21 scenarios. Fixed PRG [0,1,2,3]. Actual roots: mechanics-coverage.json; closure: runtime-rooted-discovery.json. Artificial entry does not prove natural reachability.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37386,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "offset": 5572,
+      "length": 3,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static closure rooted in accepted opcode fetches from artificial stage 0/7/15 driving and ending-init21 scenarios. Fixed PRG [0,1,2,3]. Actual roots: mechanics-coverage.json; closure: runtime-rooted-discovery.json. Artificial entry does not prove natural reachability.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38324,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "offset": 5581,
+      "length": 166,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static closure rooted in accepted opcode fetches from artificial stage 0/7/15 driving and ending-init21 scenarios. Fixed PRG [0,1,2,3]. Actual roots: mechanics-coverage.json; closure: runtime-rooted-discovery.json. Artificial entry does not prove natural reachability.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38333,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "offset": 5799,
+      "length": 165,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static closure rooted in accepted opcode fetches from artificial stage 0/7/15 driving and ending-init21 scenarios. Fixed PRG [0,1,2,3]. Actual roots: mechanics-coverage.json; closure: runtime-rooted-discovery.json. Artificial entry does not prove natural reachability.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38551,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 68,
+      "offset": 6210,
+      "length": 60,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static closure rooted in accepted opcode fetches from artificial stage 0/7/15 driving and ending-init21 scenarios. Fixed PRG [0,1,2,3]. Actual roots: mechanics-coverage.json; closure: runtime-rooted-discovery.json. Artificial entry does not prove natural reachability.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38962,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 69,
+      "offset": 6313,
+      "length": 1,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static closure rooted in accepted opcode fetches from artificial stage 0/7/15 driving and ending-init21 scenarios. Fixed PRG [0,1,2,3]. Actual roots: mechanics-coverage.json; closure: runtime-rooted-discovery.json. Artificial entry does not prove natural reachability.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39065,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 70,
+      "offset": 10436,
+      "length": 35,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static closure rooted in accepted opcode fetches from artificial stage 0/7/15 driving and ending-init21 scenarios. Fixed PRG [0,1,2,3]. Actual roots: mechanics-coverage.json; closure: runtime-rooted-discovery.json. Artificial entry does not prove natural reachability.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43188,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 71,
+      "offset": 10515,
+      "length": 136,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static closure rooted in accepted opcode fetches from artificial stage 0/7/15 driving and ending-init21 scenarios. Fixed PRG [0,1,2,3]. Actual roots: mechanics-coverage.json; closure: runtime-rooted-discovery.json. Artificial entry does not prove natural reachability.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43267,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 72,
+      "offset": 10682,
+      "length": 46,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static closure rooted in accepted opcode fetches from artificial stage 0/7/15 driving and ending-init21 scenarios. Fixed PRG [0,1,2,3]. Actual roots: mechanics-coverage.json; closure: runtime-rooted-discovery.json. Artificial entry does not prove natural reachability.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43434,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 73,
+      "offset": 11093,
+      "length": 15,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static closure rooted in accepted opcode fetches from artificial stage 0/7/15 driving and ending-init21 scenarios. Fixed PRG [0,1,2,3]. Actual roots: mechanics-coverage.json; closure: runtime-rooted-discovery.json. Artificial entry does not prove natural reachability.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43845,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 74,
+      "offset": 11130,
+      "length": 18,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static closure rooted in accepted opcode fetches from artificial stage 0/7/15 driving and ending-init21 scenarios. Fixed PRG [0,1,2,3]. Actual roots: mechanics-coverage.json; closure: runtime-rooted-discovery.json. Artificial entry does not prove natural reachability.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43882,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 75,
+      "offset": 11179,
+      "length": 48,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static closure rooted in accepted opcode fetches from artificial stage 0/7/15 driving and ending-init21 scenarios. Fixed PRG [0,1,2,3]. Actual roots: mechanics-coverage.json; closure: runtime-rooted-discovery.json. Artificial entry does not prove natural reachability.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43931,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 76,
+      "offset": 11309,
+      "length": 50,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static closure rooted in accepted opcode fetches from artificial stage 0/7/15 driving and ending-init21 scenarios. Fixed PRG [0,1,2,3]. Actual roots: mechanics-coverage.json; closure: runtime-rooted-discovery.json. Artificial entry does not prove natural reachability.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44061,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 77,
+      "offset": 11395,
+      "length": 113,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static closure rooted in accepted opcode fetches from artificial stage 0/7/15 driving and ending-init21 scenarios. Fixed PRG [0,1,2,3]. Actual roots: mechanics-coverage.json; closure: runtime-rooted-discovery.json. Artificial entry does not prove natural reachability.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44147,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 78,
+      "offset": 15690,
+      "length": 21,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static closure rooted in accepted opcode fetches from artificial stage 0/7/15 driving and ending-init21 scenarios. Fixed PRG [0,1,2,3]. Actual roots: mechanics-coverage.json; closure: runtime-rooted-discovery.json. Artificial entry does not prove natural reachability.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48442,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 79,
+      "offset": 15721,
+      "length": 22,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static closure rooted in accepted opcode fetches from artificial stage 0/7/15 driving and ending-init21 scenarios. Fixed PRG [0,1,2,3]. Actual roots: mechanics-coverage.json; closure: runtime-rooted-discovery.json. Artificial entry does not prove natural reachability.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48473,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 80,
+      "offset": 15754,
+      "length": 7,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static closure rooted in accepted opcode fetches from artificial stage 0/7/15 driving and ending-init21 scenarios. Fixed PRG [0,1,2,3]. Actual roots: mechanics-coverage.json; closure: runtime-rooted-discovery.json. Artificial entry does not prove natural reachability.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48506,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 81,
+      "offset": 15793,
+      "length": 47,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static closure rooted in accepted opcode fetches from artificial stage 0/7/15 driving and ending-init21 scenarios. Fixed PRG [0,1,2,3]. Actual roots: mechanics-coverage.json; closure: runtime-rooted-discovery.json. Artificial entry does not prove natural reachability.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48545,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 82,
+      "offset": 15924,
+      "length": 36,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static closure rooted in accepted opcode fetches from artificial stage 0/7/15 driving and ending-init21 scenarios. Fixed PRG [0,1,2,3]. Actual roots: mechanics-coverage.json; closure: runtime-rooted-discovery.json. Artificial entry does not prove natural reachability.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48676,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 83,
+      "offset": 16026,
+      "length": 28,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static closure rooted in accepted opcode fetches from artificial stage 0/7/15 driving and ending-init21 scenarios. Fixed PRG [0,1,2,3]. Actual roots: mechanics-coverage.json; closure: runtime-rooted-discovery.json. Artificial entry does not prove natural reachability.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48778,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 84,
+      "offset": 16162,
+      "length": 29,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static closure rooted in accepted opcode fetches from artificial stage 0/7/15 driving and ending-init21 scenarios. Fixed PRG [0,1,2,3]. Actual roots: mechanics-coverage.json; closure: runtime-rooted-discovery.json. Artificial entry does not prove natural reachability.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48914,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 85,
+      "offset": 16360,
+      "length": 35,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static closure rooted in accepted opcode fetches from artificial stage 0/7/15 driving and ending-init21 scenarios. Fixed PRG [0,1,2,3]. Actual roots: mechanics-coverage.json; closure: runtime-rooted-discovery.json. Artificial entry does not prove natural reachability.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49112,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 86,
+      "offset": 20736,
+      "length": 4333,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code inspection of physical $5100-$7de8: persistent repeated small-index rows, runs, 2x2-like ordered groups, palette/nametable-like patterns; see data-inspection.txt and immutable ROM. Compared vector/main-dispatch/runtime-rooted code closure: no code conflicts. Existing nearby stage and PPU consumers checked (stage-init.json). Generic data only: exact record layout and original object boundaries intentionally not asserted. $7de8 begins separately consumed stage-pointer pairs.",
+      "views": []
+    },
+    {
+      "id": 87,
+      "offset": 25096,
+      "length": 363,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code inspection of physical $5100-$7de8: persistent repeated small-index rows, runs, 2x2-like ordered groups, palette/nametable-like patterns; see data-inspection.txt and immutable ROM. Compared vector/main-dispatch/runtime-rooted code closure: no code conflicts. Existing nearby stage and PPU consumers checked (stage-init.json). Generic data only: exact record layout and original object boundaries intentionally not asserted. $7de8 begins separately consumed stage-pointer pairs.",
+      "views": []
+    },
+    {
+      "id": 88,
+      "offset": 25576,
+      "length": 3136,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code inspection of physical $5100-$7de8: persistent repeated small-index rows, runs, 2x2-like ordered groups, palette/nametable-like patterns; see data-inspection.txt and immutable ROM. Compared vector/main-dispatch/runtime-rooted code closure: no code conflicts. Existing nearby stage and PPU consumers checked (stage-init.json). Generic data only: exact record layout and original object boundaries intentionally not asserted. $7de8 begins separately consumed stage-pointer pairs.",
+      "views": []
+    },
+    {
+      "id": 89,
+      "offset": 28760,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code inspection of physical $5100-$7de8: persistent repeated small-index rows, runs, 2x2-like ordered groups, palette/nametable-like patterns; see data-inspection.txt and immutable ROM. Compared vector/main-dispatch/runtime-rooted code closure: no code conflicts. Existing nearby stage and PPU consumers checked (stage-init.json). Generic data only: exact record layout and original object boundaries intentionally not asserted. $7de8 begins separately consumed stage-pointer pairs.",
+      "views": []
+    },
+    {
+      "id": 90,
+      "offset": 28809,
+      "length": 47,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code inspection of physical $5100-$7de8: persistent repeated small-index rows, runs, 2x2-like ordered groups, palette/nametable-like patterns; see data-inspection.txt and immutable ROM. Compared vector/main-dispatch/runtime-rooted code closure: no code conflicts. Existing nearby stage and PPU consumers checked (stage-init.json). Generic data only: exact record layout and original object boundaries intentionally not asserted. $7de8 begins separately consumed stage-pointer pairs.",
+      "views": []
+    },
+    {
+      "id": 91,
+      "offset": 28936,
+      "length": 672,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code inspection of physical $5100-$7de8: persistent repeated small-index rows, runs, 2x2-like ordered groups, palette/nametable-like patterns; see data-inspection.txt and immutable ROM. Compared vector/main-dispatch/runtime-rooted code closure: no code conflicts. Existing nearby stage and PPU consumers checked (stage-init.json). Generic data only: exact record layout and original object boundaries intentionally not asserted. $7de8 begins separately consumed stage-pointer pairs.",
+      "views": []
+    },
+    {
+      "id": 92,
+      "offset": 29656,
+      "length": 1012,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code inspection of physical $5100-$7de8: persistent repeated small-index rows, runs, 2x2-like ordered groups, palette/nametable-like patterns; see data-inspection.txt and immutable ROM. Compared vector/main-dispatch/runtime-rooted code closure: no code conflicts. Existing nearby stage and PPU consumers checked (stage-init.json). Generic data only: exact record layout and original object boundaries intentionally not asserted. $7de8 begins separately consumed stage-pointer pairs.",
+      "views": []
+    },
+    {
+      "id": 93,
+      "offset": 30692,
+      "length": 1540,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Bounded non-code inspection of physical $5100-$7de8: persistent repeated small-index rows, runs, 2x2-like ordered groups, palette/nametable-like patterns; see data-inspection.txt and immutable ROM. Compared vector/main-dispatch/runtime-rooted code closure: no code conflicts. Existing nearby stage and PPU consumers checked (stage-init.json). Generic data only: exact record layout and original object boundaries intentionally not asserted. $7de8 begins separately consumed stage-pointer pairs.",
+      "views": []
+    },
+    {
+      "id": 94,
+      "offset": 32232,
+      "length": 546,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Stage initializer $858c reads little-endian pointer pairs at $fdd8/$fdf8 (physical $7de8/$7e08). Following region contains repeated 16-byte NES palette records, small-index bit-pattern tables, then uniform $7f/$ff suffix before independently anchored vectors at $7ffa. Inspected physical $7de0-$800a, stage-init.json and data-inspection.txt; no code conflicts. Generic non-code classification only; individual table extents and meaning remain partially unresolved.",
+      "views": []
+    },
+    {
+      "id": 95,
+      "offset": 2735,
+      "length": 264,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_0aaf",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/extra-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35487,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 96,
+      "offset": 4115,
+      "length": 203,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_1013",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/dispatch-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36867,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 97,
+      "offset": 4632,
+      "length": 1,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_1218",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/dispatch-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37384,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 98,
+      "offset": 5575,
+      "length": 6,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_15c7",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/dispatch-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38327,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 99,
+      "offset": 5747,
+      "length": 52,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_1673",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/extra-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38499,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 100,
+      "offset": 5964,
+      "length": 246,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_174c",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/dispatch-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38716,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 101,
+      "offset": 6270,
+      "length": 43,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_187e",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/dispatch-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39022,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 102,
+      "offset": 6401,
+      "length": 89,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_1901",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/dispatch-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39153,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 103,
+      "offset": 6534,
+      "length": 25,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_1986",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/dispatch-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39286,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 104,
+      "offset": 6578,
+      "length": 339,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_19b2",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/dispatch-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39330,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 105,
+      "offset": 7178,
+      "length": 24,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_1c0a",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/decimal-increment-listing.txt. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39930,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 106,
+      "offset": 7445,
+      "length": 807,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_1d15",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/dispatch-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40197,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 107,
+      "offset": 8356,
+      "length": 830,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_20a4",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/dispatch-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41108,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 108,
+      "offset": 10471,
+      "length": 44,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_28e7",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/dispatch-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43223,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 109,
+      "offset": 10651,
+      "length": 31,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_299b",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/dispatch-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43403,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 110,
+      "offset": 10868,
+      "length": 154,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_2a74",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/dispatch-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43620,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 111,
+      "offset": 11108,
+      "length": 22,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_2b64",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/dispatch-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43860,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 112,
+      "offset": 11148,
+      "length": 31,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_2b8c",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/dispatch-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 43900,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 113,
+      "offset": 11304,
+      "length": 5,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_2c28",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/dispatch-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44056,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 114,
+      "offset": 11359,
+      "length": 36,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_2c5f",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/dispatch-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 44111,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 115,
+      "offset": 12883,
+      "length": 212,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_3253",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/dispatch-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 45635,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 116,
+      "offset": 13732,
+      "length": 38,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_35a4",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/score-helper-listing.txt. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46484,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 117,
+      "offset": 13863,
+      "length": 31,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_3627",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/sprite-copy-listing.txt. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 46615,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 118,
+      "offset": 15711,
+      "length": 10,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_3d5f",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/audio-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48463,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 119,
+      "offset": 15743,
+      "length": 11,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_3d7f",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/audio-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48495,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 120,
+      "offset": 15761,
+      "length": 32,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_3d91",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/audio-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48513,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 121,
+      "offset": 15840,
+      "length": 84,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_3de0",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/audio-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48592,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 122,
+      "offset": 15960,
+      "length": 66,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_3e58",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/audio-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48712,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 123,
+      "offset": 16054,
+      "length": 108,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_3eb6",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/audio-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48806,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 124,
+      "offset": 16191,
+      "length": 63,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_3f3f",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/audio-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 48943,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 125,
+      "offset": 16291,
+      "length": 69,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_3fa3",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/audio-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49043,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 126,
+      "offset": 16395,
+      "length": 81,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_code_400b",
+      "comment": "",
+      "evidence": "Independent pass-002 review of semantic/control/stack and exact boundary contracts; analysis/redirect/round-1/audio-discovery.json. Contract discussion: analysis/redirect/round-1/findings.md and analysis/disassembly/pass-002/review.md; fresh decode audit decode-review.json. Structural Static; natural reachability not asserted.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49147,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 127,
+      "offset": 517,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_ChrBankBusConflictValues",
+      "comment": "",
+      "evidence": "Independent pass-002 review: Four CNROM bus-conflict values30/31/32/33, consumed at01fe/0201 and course graphics0ca3. Low two bits encode each CHR bank. Finite four-bank domain; no code entry crosses them. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 128,
+      "offset": 940,
+      "length": 147,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_TitleScreenRecords",
+      "comment": "",
+      "evidence": "Independent pass-002 review: Screen/attribute and sprite-text records. Initial five-byte address/value records have FF terminators; later PPU streams contain FE row/FF end controls, tile bytes and zero spaces. InitializeTitle's XY setup selects83be/83d5/83dd; upload grammar in named UploadTileStream (current source). Exact internal formats may differ; generic Data across this bounded interval is sufficient. Preceded by terminating title JMP, followed by AdvanceTitleState. No conflicting code closure. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 129,
+      "offset": 1227,
+      "length": 38,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_TitlePalettesAndCycle",
+      "comment": "",
+      "evidence": "Independent pass-002 review: Two16-byte palette blocks selected by InitializeTitle XY84bb/84cb, then six palette-animation values84db..84e1. TitleWaitAndStart switches index0/3 and reads three values; all within NES palette domain. Next code starts84e1. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 130,
+      "offset": 1363,
+      "length": 17,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_PlayerStartStrings",
+      "comment": "",
+      "evidence": "Independent pass-002 review: Two[Y,X,tile...,FF] records for player/start text. Source callers DrawSpriteText, formatB636; positions50/60 and60/64, high tile alphabet, exact two FF ends. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 131,
+      "offset": 1513,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_CourseChrChoices",
+      "comment": "",
+      "evidence": "Independent pass-002 review: Sixteen theme/CHR choices0..3, consumed by stage index at0594. Complete16-course layout and finite four-bank values support data; no code conflicts. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 132,
+      "offset": 1874,
+      "length": 24,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_SceneTextAndDigitTiles",
+      "comment": "",
+      "evidence": "Independent pass-002 review: Scene text[Y=50,X=60,...FF] followed by16 digit tile values used at06d0 from874a. Scope deliberately remains Data when string versus digit sublayout not needed. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 133,
+      "offset": 2165,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_CourseAudioCommands",
+      "comment": "",
+      "evidence": "Independent pass-002 review: Sixteen audio IDs selected by course index at0862; all in accepted command table1..33. Bounded by pre-race return and DrivingFrame. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 134,
+      "offset": 2586,
+      "length": 32,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_TransitionPalettes",
+      "comment": "",
+      "evidence": "Independent pass-002 review: Two16-byte transition palettes, source BeginTransitionFrame XY8a0a/8a1a. Bytes0F/02/12/22/16/28 in NES palette domain, next routine8a2a. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 135,
+      "offset": 3018,
+      "length": 205,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_TransitionTablesTextAndPalette",
+      "comment": "",
+      "evidence": "Independent pass-002 review: Transition handler table5 words8bba..8bc4, eight text pointers8bc4..8bd4, bounded sprite text until8c75, then18 palette-cycle bytes(6triples) to8c87. Transition state init80,0..4 updates, phasebits0..7 and finite counter5b<6 independently establish consumers. `extra-roots.json`, transition-listing.txt and current TransitionDispatch. All pointed text records terminateFF within assigned interval. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 136,
+      "offset": 3609,
+      "length": 61,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_ResultsStrings",
+      "comment": "",
+      "evidence": "Independent pass-002 review: Four[Y,X,tile..FF] results strings consumed by CourseResultsFrame XY8e09/8e1f/8e26/8e36. All four boundaries independently matchFF and next code8e46. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 137,
+      "offset": 3829,
+      "length": 14,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_GameOverStrings",
+      "comment": "",
+      "evidence": "Independent pass-002 review: Two game-over[Y,X,tile..FF] records at8ee5/8eec, selected by GameOverFrame. Next ending initializer at8ef3. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 138,
+      "offset": 3917,
+      "length": 32,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_EndingPalettes",
+      "comment": "",
+      "evidence": "Independent pass-002 review: Two16-byte ending palettes, XY8f3d/8f4d in InitializeRescueEnding; finite palette values, immediately followed by EndingFrameDispatch. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 139,
+      "offset": 4323,
+      "length": 221,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_EndingStatesOffsetsAndText",
+      "comment": "",
+      "evidence": "Independent pass-002 review: Four ending code pointers90d3..90db;21 OAM offsets90db..90f0;21text pointers90f0..911a;21[Y,X,tile...,FF] records911a..91b0. Selector0500=0 init then increments only0→1→2→3; final handler resets main state. Text index0501=0 init, increment until15hex; byte21 is a control transition, not a22nd record. `ending-listing.txt` separately proves indexed consumer mechanics, exact offsets and termination. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 140,
+      "offset": 4616,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_NmiWorkPointers",
+      "comment": "",
+      "evidence": "Independent pass-002 review: Eight NMI work pointers91f8..9208; scan index0..7 from ServiceNmiWork, targets920a or9208(RTS).1218 is separately proposed Code;1219 remains unresolved. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 141,
+      "offset": 4878,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_DemoButtonMasks",
+      "comment": "",
+      "evidence": "Independent pass-002 review: Eight demo button masks92fe..9306, index masked07 atGenerateDemoInput. Full finite domain and next code9306. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 142,
+      "offset": 6314,
+      "length": 36,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_PlayerAndCollisionHandlers",
+      "comment": "",
+      "evidence": "Independent pass-002 review: 16player update pointers989a..98ba selected low nibble0..15; two collision sample handlers98ba..98be selected sample counter0/1. Synthetic return address9662 makes9663(code1673) independently reachable under the two-sample contract. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 143,
+      "offset": 6490,
+      "length": 44,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_TerrainHandlersMasksAndVariants",
+      "comment": "",
+      "evidence": "Independent pass-002 review: 14terrain handler words994a..9966, exact14-bit scan; eight one-hot masks9966..996e; eight variant values996e..9976 consumed with&07. Next helper9976 independently delimits data. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 144,
+      "offset": 6917,
+      "length": 14,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_AuxiliaryUpdateHandlers",
+      "comment": "",
+      "evidence": "Independent pass-002 review: Seven auxiliary states99a2/9a7a/9ac0/9ad4/9ad4/9ad9/9aeb; low state0→1 collision,2defeat,3stop,4/5countdown,6ending transition, shared return9af4. Next UpdateSpeedAndDigits9b03. Domain and handler consistency jointly establish7words. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 145,
+      "offset": 8253,
+      "length": 43,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_TrafficHandlersAndSpawnY",
+      "comment": "",
+      "evidence": "Independent pass-002 review: 11traffic statesA02D..A043;7behavior/type wordsA043..A051;7spawn Y positionsA051..A058. Types selected by course bit masksFFe0 and circular three-bit search; all masks excludebit7, while sprite table still provides8explicit variants. Role of type7 sprite entry does not imply an eighth behavior word. Next secondary dispatcherA058. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 146,
+      "offset": 9186,
+      "length": 76,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_SecondaryHandlersAndCourseParameters",
+      "comment": "",
+      "evidence": "Independent pass-002 review: 10secondary update wordsA3D2..A3E6;4type behavior wordsA3E6..A3EE;8periodsA3EE..A3F6 indexed course>>1;32type bytesA3F6..A416 selected course*2+phase;4spawn coordinatesA416..A41A;4direction valuesA41A..A41E. Type array0..3; states0..9, coherent handlers and table-next-table boundaries discriminate code/data. Earlier manifest's11thupdate word was first behavior entry; corrected. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 147,
+      "offset": 10257,
+      "length": 160,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_CourseRoadBitsets",
+      "comment": "",
+      "evidence": "Independent pass-002 review: 16course bitset pointersA801..A821 followed by128bytes bitmask data toA8A1. Source AdvanceRoadStream indexes course*2 then route>>3 and extracts route&7. Pointer origins allA821..A899, eight-byte origin stride and finite128-byte container; ordered sparse small masks conflict with intended code. No claim that every bit corresponds to a visited road event. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 148,
+      "offset": 10728,
+      "length": 86,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_PlayerSpriteTablesAndTiles",
+      "comment": "",
+      "evidence": "Independent pass-002 review: 16player sprite handlersA9D8..A9F8; three16-byte tile-grid recordsA9F8..AA28; packed flip dataAA28..AA2E. DrawPlayerTileGrid computes baseA9F8+variant*16 and reads16; DrawPlayerMetasprite usesother variants.6flip bytes adjacent structure delimit them. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 149,
+      "offset": 11022,
+      "length": 23,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_AuxiliarySpriteHandlersAndTiles",
+      "comment": "",
+      "evidence": "Independent pass-002 review: Seven auxiliary sprite handlersAAFE..AB0C, then nine sequential tile IDs72..7A consumed by bounded3x3DrawAuxiliaryTiles.7state domain agrees update table. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 150,
+      "offset": 11228,
+      "length": 38,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_TrafficSpriteHandlers",
+      "comment": "",
+      "evidence": "Independent pass-002 review: 8type sprite handlersABCC..ABDC,11state sprite handlersABDC..ABF2; sibling update/state domain and next dispatcherABF2 match. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 151,
+      "offset": 11508,
+      "length": 68,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_SecondarySpriteTablesAndTiles",
+      "comment": "",
+      "evidence": "Independent pass-002 review: 4type sprite wordsACE4..ACEC,10state wordsACEC..AD00;10metasprite IDsAD00..AD0A;20tile bytesAD0A..AD1E;10attribute valuesAD1E..AD28. Source DispatchSecondarySpriteState/DrawSecondarySlot bounds variant0..9 and emits2bottom tiles. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 152,
+      "offset": 11659,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_SpecialMetaspriteChoices",
+      "comment": "",
+      "evidence": "Independent pass-002 review: Four metasprite choicesAD7B..AD7F selected special_state&03, directconsumer2d75. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 153,
+      "offset": 11836,
+      "length": 21,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_ActorSpriteAndThemeChoices",
+      "comment": "",
+      "evidence": "Independent pass-002 review: Five state-sprite IDsAE2C..AE31 (zero state uses separate path),16theme/group variantsAE31..AE41. DrawFourActorPool source masks state07 but writer domain0..4; theme*4 plus group low2 in known4theme domain. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 154,
+      "offset": 12139,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_TransientEffectTilePairs",
+      "comment": "",
+      "evidence": "Independent pass-002 review: Two tile pairsAF5B..AF5F used by DrawTransientEffect. Initialization effectstate80, age and clears without writing low state bits; decoded consumer has broader&07 but exact table role limited by following code and two explicit pairs. Generic data classification does not require full selector reachability. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 155,
+      "offset": 12175,
+      "length": 379,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_MetaspriteTileAttributeFlipContainer",
+      "comment": "",
+      "evidence": "Independent pass-002 review: Four-byte repeated tile-pattern prefix2f8f..2f93 (same D2/D0/D3/D1 pattern recurs within tiles; next encoded origin independently delimits it), then metasprite tile/palette/flip container. DrawMetasprite encodes tile baseAF83,4bytes per selector, attributesB09F, packedflipB0E6. First differenceB09F-AF83=284=71*4; next differenceB0E6-B09F=71. LastB0E6+71=B12D exactly nextroutine. These independent encoded origins plus complete71record consistency establish exact container(tail includes previously classified32zero bytes310a..312a). Palette values all&23-compatible, repeated tile/flip records; classify non-code without original art naming. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 156,
+      "offset": 12586,
+      "length": 19,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_MetaspriteFlipTail",
+      "comment": "",
+      "evidence": "Independent pass-002 review: Four-byte repeated tile-pattern prefix2f8f..2f93 (same D2/D0/D3/D1 pattern recurs within tiles; next encoded origin independently delimits it), then metasprite tile/palette/flip container. DrawMetasprite encodes tile baseAF83,4bytes per selector, attributesB09F, packedflipB0E6. First differenceB09F-AF83=284=71*4; next differenceB0E6-B09F=71. LastB0E6+71=B12D exactly nextroutine. These independent encoded origins plus complete71record consistency establish exact container(tail includes previously classified32zero bytes310a..312a). Palette values all&23-compatible, repeated tile/flip records; classify non-code without original art naming. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 157,
+      "offset": 14105,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_AudioSoftwareStackBases",
+      "comment": "",
+      "evidence": "Independent pass-002 review: Per-channel software-stack base low bytes90/A0/B0/C0 and high bytes04/04/04/04; ReadEffectEvent indexes each with channel0..3. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 158,
+      "offset": 14185,
+      "length": 144,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_PitchPeriodWords",
+      "comment": "",
+      "evidence": "Independent pass-002 review: 72little-endian pitch periods from encoded default pointerB759; decreasing positive16-bit values, high bytes06→00, neighboring initializer/SubmitAudioCommand endpoints. WriteMusicPitch reads note+transpose doubled. Full intended pitch-domain/reconstruction algorithm not asserted. Generic Data is independently clear. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 159,
+      "offset": 14473,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_AudioPriorityMasks",
+      "comment": "",
+      "evidence": "Independent pass-002 review: Eight one-hot masks80/40/20/10/08/04/02/01 consumed priority index&07; upper/lower overlapping four channel masksB87D indexed0..3. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 160,
+      "offset": 15592,
+      "length": 98,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_AudioOpcodeHandlers",
+      "comment": "",
+      "evidence": "Independent pass-002 review: 49paired opcode handlersBCD8..BD3A, full semantic graph in audio-handler-listing.txt, entry/restored X contract and zero conflicting decode boundaries.49values terminate exactly at first handlerBD3A; all code matches command parameter/stack semantics. Supported static domain90..C0, malformed opcodes beyond not claimed safe. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 161,
+      "offset": 16476,
+      "length": 4260,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "P2_AudioCommandsStreamsAndCourseRoutePrefix",
+      "comment": "",
+      "evidence": "Independent pass-002 review: Audio command pointersC04C..C08E for IDs1..33,33headers betweenC08E..C164, priority bitmapsC164..C16C, stream graphC16C..CFFC, fourFFtailCFFC..D000. Header mask dictates3+2*popcount(mask&7F) record size; all masks onlyfourchannels.33pointer count independently bounded by minheaderC08E and record chain. Script audio-streams.py implements49handler operand counts, triangle4/pulse-noise5register events, jump/call edges.3382tokens zero invalid/out-of-bound addresses. Music90 is timedrest, A2stopmusic, B6stopeffect, BFreturn; only four redundantA2,one redundantB6 not traversed. Header priority pointers selectC164/C168; bitmaps fourbytes each consistent33command arbitration(IDs1..33 needs5bitsbytes but last relevant incoming33 accessesbyte4 atnextbitmap; no extra full-domain bitmap claim). Entire residual non-code evident independently of exact per-track semantics; use Data for mixed container if desired. Table baseC04A includes preceding codePLA/RTS as unusable ID0, do not annotate405A..405C as data.; Sixteen course route pointersD000..D020 then small-symbol chunk lists17..1F withFFend markers; known ReadCourseChunk and final/loop marker consumer discriminate grammar. Existing Data5100..800A begins midcontainer; do not claim5100 is original object endpoint. Exact proposed boundary5100 simply meets accepted classification; generic Data is sufficient on5030..5100. Primary: analysis/redirect/round-1/data-evidence.md; pass-002/review.md.",
+      "views": []
+    },
+    {
+      "id": 162,
+      "offset": 1183,
+      "length": 4,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ConditionalStartCourse",
+      "comment": "Controller-mask conditional course initializer; A=mask, X=valid course. Actual caller and natural reachability unresolved.",
+      "evidence": "Independent pass-003 review: analysis/disassembly/pass-003/review.md; primary analysis/redirect/round-2/primary-check.json and commentary/source/game.asm ReadControllers, PollTitleStart, StartSelectedGame, ChooseCourseIntro. BIT-derived Z selects existing X versus default0 at exact established join.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33935,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    }
+  ],
+  "next_id": 163
+}

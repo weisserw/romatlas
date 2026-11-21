@@ -1,0 +1,2 @@
+Complete single disassembly pass; pass-005 saved/exported/validated and byte-identical verified. ROM classification: 99.91% (163714 / 163856 bytes classified; 142 bytes unknown). See summary.json and ../round3-disassembly-handoff.md. No live server.
+Final hashes recorded in final-hashes.json; pass004 commentary SHA256 unchanged. Free disk2.8GiB; round3 evidence2.8MiB; reusable scratch756KiB. No deletion/cleanup.

@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "platform": "nes",
+  "name": "bomberman-ii",
+  "rom_sha256": "8744b50f4e00f2b0f6333669ef4b1945f851fc70f697446d14b0c96cac90f462",
+  "rom_filename": "game.nes",
+  "image_size": 131088,
+  "editorial_complete": true,
+  "review_status": {
+    "complete": true,
+    "reviewed_regions": 1287,
+    "total_regions": 1287,
+    "reviewed_units": 1041,
+    "total_units": 1041,
+    "editorial_audit": true,
+    "reasons": []
+  },
+  "omitted_documents": [
+    "analysis/round-1/commentary/AGENTS.md",
+    "analysis/round-1/commentary/prompt.md",
+    "analysis/round-1/commentary/workflow.md"
+  ],
+  "artifacts": {
+    "README.md": "468db2be2f0e4ff891af9bf0090e5652f08c720a01d6ec793c70f0f33007955b",
+    "analysis/gameplay.md": "9cc02dc1be531fc75b108e673d98c6d8f83e984bc21f7e664d32b399bce37a84",
+    "analysis/handoffs/final-acceptance.md": "55adca08a9b495535ff53d0f857ba3dd2259f584bf2d3935784257c36a906794",
+    "analysis/handoffs/round-1-commentary.md": "8a729d40a7b49da3b867b695892ebbd403a5ddea8b526b2387594ad5763983ae",
+    "analysis/handoffs/round-1-disassembly.md": "8749d91619c52bcfde6d369046a99dbab716740a56cd3c3814cc962007ba9399",
+    "analysis/handoffs/round-1-redirect.md": "030cb1a303c22eb691dd24b57033d163c9b26f43e9d1b7a3143d55415842f497",
+    "analysis/handoffs/round-2-commentary.md": "22e90eaa207e7aee93d1d22191891e3b42d16bfd198e25dd4b1966c5ffc880de",
+    "analysis/handoffs/round-2-disassembly.md": "ea85577659a8d6b3d06184e3d61ca0338dfc1696b58a302d4c2ce35c59cc3643",
+    "analysis/handoffs/round-2-redirect.md": "04c0ef05696190707d3d1e62fe9ddae1e5e1207c352ccd1799ae9cc34fe1fdae",
+    "analysis/investigation.md": "5dac1622ed7f29263429151b23d0642da974c60b4c0f6d15317ba7204a386f74",
+    "analysis/progress.md": "b365c0a8075c89f98e84dd153a4e436cd3fc55776f8b9356261e6e24ee6b5315",
+    "analysis/round-1/commentary/progress.md": "66b49d0afdb81db77904a4f148172449d76135dbc5c986dc02b97b26d2000e8f",
+    "analysis/round-1/commentary/uncertainties.md": "2be96517e4c888a3c5ba0cf4ec9d109a6307873075cdef2cdec9ed6cecac76f4",
+    "analysis/scenarios.json": "a72ec186c3a747646617797f57917cc6711ebcea73557ed9d7f9e22898299c24",
+    "analysis/state.json": "79bafc80194eafdc9f8b03cad3b7ed29e7a5e1dcb47ddf5909392c004098379b",
+    "commentary/audit.json": "efae29fe9b1f8eead1d49aa83eb0610993fb1fd2dc5e51502d03fed39a3895be",
+    "commentary/baseline.json": "79bafc80194eafdc9f8b03cad3b7ed29e7a5e1dcb47ddf5909392c004098379b",
+    "commentary/editorial-audit.md": "29defe0be4ee7251a575217b2d6f91a530492b97fa1228562c5c331bba5bb6dd",
+    "commentary/manifest.json": "8d5926f0f7d8368f9b2730cca473f075ba098929f32f502becbedad60501cab1",
+    "commentary/phase1-state.json": "79bafc80194eafdc9f8b03cad3b7ed29e7a5e1dcb47ddf5909392c004098379b",
+    "commentary/progress.md": "2ee01bbf85a7c23a55a227a1d0f878052b6bac7e5c5dfa5c20dc4a57db6fcb88",
+    "commentary/review.json": "e4404ca7ed5cd52b0b0517ebbf2ade759c473c9e79542e25cbe25ec208f7214f",
+    "commentary/uncertainties.md": "3c430a73105906b43e2387522fad8b49b671c8cb616d422333a19230a7bb4733",
+    "commentary/verification.json": "6677637e355d78bc0f8e8875fc585c5bd0742ed5591c00abae724e76e458970e",
+    "editorial.json": "42c8f44636db4eb1ac9af828c8413b82813de5009b93169a8eaee9710dc6a5cf",
+    "maps/current.json": "79bafc80194eafdc9f8b03cad3b7ed29e7a5e1dcb47ddf5909392c004098379b"
+  }
+}

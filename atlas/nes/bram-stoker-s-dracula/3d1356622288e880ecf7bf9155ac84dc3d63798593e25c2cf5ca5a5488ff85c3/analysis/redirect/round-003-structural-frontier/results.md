@@ -1,0 +1,15 @@
+# Round003 redirect results
+
+Input checkpoint pass-003-final-context. No new or materially improved structural lead; proposed0/accepted0 bytes. R001–R008 remain verified and consumed. Exact internal-map complement is empty (ledger.json);262160 classified:32774 Code,98314 Data,131072 Image.
+
+Reviewed actual source windows for bank8 dispatcher/data, relocated95AD template and95FE boundary; direct generic-data explanations in banks8/9/10/11/13/14/15 and explicit uncertainties. Reused valid full-source512-unit review rather than rereading whole source. Checked primary sound-template.json against both81-byte hex strings, round003 independent review, current context-correction.json and boss-results.md. No missing callee, unexplained generated-label gap or competing code boundary arose from these identified avenues. Generic data semantics/full schemas remain separable from noncode/boundary proof; existing consumer/pattern reviews suffice on unchanged evidence.
+
+R008 retains combined whole-routine control/RAM field/template correspondence, relocated JMP/table operands, adjacent52-byte arrays and independent95FE endpoint. Bank8 JSR8003 screen initialization contradicts working sound behavior, not static copied-code role. No active caller or safe-return/natural-use claim is made. Incidental C0BD operand is not a caller. No justified new runtime test follows.
+
+Bank/stack uncertainties retain localized source contracts: E8D0/B676 nonzero-frame saved-bank precondition, nonlocal exits excluded from ordinary return witnesses, stage0 source0/decoder11/restore13, CAB8 still11 until restore, FBF5 saved incoming bank and screen continuation8/9. Current corrections already incorporated; no reissue of consumed leads.
+
+Boss shortcut primary results: genuine player-store patch plus independently computed camera-target reconciliation restored castle play; no active boss/defeat/credits and X clamped0 under current extents. Missing stage/region initialization remains concrete prerequisite; no new writer/entry contract or materially improved supported route arose. Do not replay unchanged teleport/intro/coffin or sweep arbitrary state. Best-effort natural forest and artificial stages6/13/ending evidence remains distinct from natural reachability.
+
+Two concrete editorial items are recorded in editorial-findings.json: stale Unknown prose at source5229 and10 differing template bytes versus historical11. These affect wording/count, not classification. They pass to final editorial acceptance rather than a new empty disassembly/commentary cycle. No terminal incomplete rejection review needed: no residual structural candidate is rejected, and whole-ROM classification remains intact.
+
+Final editorial audit and fresh final verification remain pending and were not invoked. No new toolkit issues found; existing NES-001 confirmed nonblocking,0 suspected/0 missing features. About3.2GiB free; no scratch directory or bulk output created, no cleanup. ROM/map/state/source/toolkit unchanged.

@@ -1,0 +1,659 @@
+{
+  "version": 1,
+  "pass": "pass-001",
+  "context": {
+    "prg_banks": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "rpc_budgets": {
+    "chunk_frames": 20,
+    "max_operations": 2000000,
+    "timeout_ms": 30000
+  },
+  "artifact_root": "analysis/disassembly/pass-001",
+  "scenarios": [
+    {
+      "id": "S1-title",
+      "milestone": "Title and game identity",
+      "status": "visited",
+      "natural": true,
+      "route": [
+        {
+          "buttons": [],
+          "frames": 120
+        }
+      ],
+      "result": "Bump n Jump licensing title",
+      "evidence": [
+        "title.png",
+        "title.snapshot.json"
+      ]
+    },
+    {
+      "id": "S1-start",
+      "milestone": "Start and initial course intro",
+      "status": "visited",
+      "natural": true,
+      "route": [
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 2
+        },
+        {
+          "buttons": [],
+          "frames": 120
+        },
+        {
+          "buttons": [
+            "right",
+            "a"
+          ],
+          "frames": 180
+        }
+      ],
+      "result": "Player Start then stage0 seaside pre-race (main state11); not yet natural driving",
+      "evidence": [
+        "start.png",
+        "play.png",
+        "play.snapshot.json"
+      ]
+    },
+    {
+      "id": "S1-stage-0",
+      "milestone": "Course 1 driving",
+      "status": "visited",
+      "natural": false,
+      "restore": "play.snapshot.json",
+      "initial_patches": {},
+      "initial_route": [],
+      "intro_skip": {
+        "0x15": [
+          48
+        ],
+        "0xa9": [
+          240
+        ]
+      },
+      "route": [
+        {
+          "buttons": [
+            "up"
+          ],
+          "frames": 12
+        },
+        {
+          "buttons": [
+            "a",
+            "right"
+          ],
+          "frames": 8
+        },
+        {
+          "buttons": [
+            "b",
+            "left"
+          ],
+          "frames": 8
+        }
+      ],
+      "result": "Main state12 driving; scenery and speed/fuel HUD observed. Button application does not prove successful jump.",
+      "evidence": [
+        "early-mechanics.png",
+        "early-mechanics-ram.json",
+        "early-mechanics.snapshot.json",
+        "mechanics-coverage.json"
+      ]
+    },
+    {
+      "id": "S1-stage-7",
+      "milestone": "Course 8 driving",
+      "status": "visited",
+      "natural": false,
+      "restore": "title.snapshot.json",
+      "initial_patches": {
+        "0x14": [
+          6,
+          0,
+          0
+        ],
+        "0x56": [
+          7
+        ],
+        "0x3d": [
+          0
+        ],
+        "0x4d": [
+          3
+        ]
+      },
+      "initial_route": [
+        {
+          "buttons": [],
+          "frames": 8
+        },
+        {
+          "patch": {
+            "0x15": [
+              127
+            ]
+          }
+        },
+        {
+          "buttons": [
+            "up"
+          ],
+          "frames": 24
+        },
+        {
+          "buttons": [
+            "a",
+            "right"
+          ],
+          "frames": 4
+        }
+      ],
+      "intro_skip": {
+        "0x15": [
+          48
+        ],
+        "0xa9": [
+          240
+        ]
+      },
+      "route": [
+        {
+          "buttons": [
+            "up"
+          ],
+          "frames": 12
+        },
+        {
+          "buttons": [
+            "a",
+            "right"
+          ],
+          "frames": 8
+        },
+        {
+          "buttons": [
+            "b",
+            "left"
+          ],
+          "frames": 8
+        }
+      ],
+      "result": "Main state12 driving; scenery and speed/fuel HUD observed. Button application does not prove successful jump.",
+      "evidence": [
+        "middle-mechanics.png",
+        "middle-mechanics-ram.json",
+        "middle-mechanics.snapshot.json",
+        "mechanics-coverage.json"
+      ]
+    },
+    {
+      "id": "S1-stage-15",
+      "milestone": "Course 16 driving",
+      "status": "visited",
+      "natural": false,
+      "restore": "title.snapshot.json",
+      "initial_patches": {
+        "0x14": [
+          6,
+          0,
+          0
+        ],
+        "0x56": [
+          15
+        ],
+        "0x3d": [
+          0
+        ],
+        "0x4d": [
+          3
+        ]
+      },
+      "initial_route": [
+        {
+          "buttons": [],
+          "frames": 8
+        },
+        {
+          "patch": {
+            "0x15": [
+              127
+            ]
+          }
+        },
+        {
+          "buttons": [
+            "up"
+          ],
+          "frames": 24
+        },
+        {
+          "buttons": [
+            "a",
+            "right"
+          ],
+          "frames": 4
+        }
+      ],
+      "intro_skip": {
+        "0x15": [
+          48
+        ],
+        "0xa9": [
+          240
+        ]
+      },
+      "route": [
+        {
+          "buttons": [
+            "up"
+          ],
+          "frames": 12
+        },
+        {
+          "buttons": [
+            "a",
+            "right"
+          ],
+          "frames": 8
+        },
+        {
+          "buttons": [
+            "b",
+            "left"
+          ],
+          "frames": 8
+        }
+      ],
+      "result": "Main state12 driving; scenery and speed/fuel HUD observed. Button application does not prove successful jump.",
+      "evidence": [
+        "late-mechanics.png",
+        "late-mechanics-ram.json",
+        "late-mechanics.snapshot.json",
+        "mechanics-coverage.json"
+      ]
+    },
+    {
+      "id": "S1-environment-1",
+      "milestone": "Course 2 environment",
+      "status": "visited",
+      "natural": false,
+      "restore": "title.snapshot.json",
+      "patches": {
+        "0x14": [
+          6,
+          0,
+          0
+        ],
+        "0x56": [
+          1
+        ],
+        "0x3d": [
+          0
+        ],
+        "0x4d": [
+          3
+        ]
+      },
+      "route": [
+        {
+          "buttons": [],
+          "frames": 8
+        },
+        {
+          "patch": {
+            "0x15": [
+              127
+            ]
+          }
+        },
+        {
+          "buttons": [],
+          "frames": 3
+        },
+        {
+          "patch": {
+            "0x15": [
+              48
+            ],
+            "0xa9": [
+              240
+            ]
+          }
+        },
+        {
+          "buttons": [
+            "up"
+          ],
+          "frames": 12
+        },
+        {
+          "buttons": [
+            "a",
+            "right"
+          ],
+          "frames": 6
+        }
+      ],
+      "result": "Main state11 pre-race image visited; attempted driving shortcut ran before state11 initialized and was reset. No driving claim for these two additional courses. Reuse state11 check before applying $15/$a9 shortcut.",
+      "evidence": [
+        "environment-1.ppm",
+        "environment-1-ram.json"
+      ]
+    },
+    {
+      "id": "S1-environment-3",
+      "milestone": "Course 4 environment",
+      "status": "visited",
+      "natural": false,
+      "restore": "title.snapshot.json",
+      "patches": {
+        "0x14": [
+          6,
+          0,
+          0
+        ],
+        "0x56": [
+          3
+        ],
+        "0x3d": [
+          0
+        ],
+        "0x4d": [
+          3
+        ]
+      },
+      "route": [
+        {
+          "buttons": [],
+          "frames": 8
+        },
+        {
+          "patch": {
+            "0x15": [
+              127
+            ]
+          }
+        },
+        {
+          "buttons": [],
+          "frames": 3
+        },
+        {
+          "patch": {
+            "0x15": [
+              48
+            ],
+            "0xa9": [
+              240
+            ]
+          }
+        },
+        {
+          "buttons": [
+            "up"
+          ],
+          "frames": 12
+        },
+        {
+          "buttons": [
+            "a",
+            "right"
+          ],
+          "frames": 6
+        }
+      ],
+      "result": "Main state11 pre-race image visited; attempted driving shortcut ran before state11 initialized and was reset. No driving claim for these two additional courses. Reuse state11 check before applying $15/$a9 shortcut.",
+      "evidence": [
+        "environment-3.ppm",
+        "environment-3-ram.json"
+      ]
+    },
+    {
+      "id": "S1-ending",
+      "milestone": "Rescue ending initialization",
+      "status": "visited",
+      "natural": false,
+      "restore": "title.snapshot.json",
+      "patches": {
+        "0x14": [
+          21,
+          0,
+          0
+        ]
+      },
+      "route": [
+        {
+          "buttons": [],
+          "frames": 16
+        }
+      ],
+      "result": "Rescue animation with two figures and pier; main state22. Not proof of natural boss defeat or complete ending text/return loop.",
+      "evidence": [
+        "ending-attempt.png",
+        "ending-attempt-ram.json",
+        "ending-attempt.snapshot.json"
+      ]
+    },
+    {
+      "id": "S1-boss",
+      "milestone": "Final boss and course completion",
+      "status": "deferred",
+      "reason": "Stage15 initialization succeeds but its finish/scroll/encounter RAM contract remains unknown; redirect must trace stage progression and boss dispatch rather than brute-force arbitrary RAM.",
+      "superseded_by": [
+        "R1-boss-route",
+        "R1-boss-defeat-flow"
+      ]
+    },
+    {
+      "id": "S1-ending-complete",
+      "milestone": "Full ending and restart",
+      "status": "deferred",
+      "reason": "Ending state22 indirect substate selector RAM[$0500], pointer table $90d3. Initial rescue visited; remaining substate initialization/transition contract needs bounded redirect research.",
+      "superseded_by": [
+        "R1-ending-return"
+      ]
+    },
+    {
+      "id": "S1-hazards",
+      "milestone": "Fuel pickups, pits, truck hazards and successful jumping",
+      "status": "deferred",
+      "reason": "Representative driving inputs applied; directed spawn/position and jump threshold contracts unresolved. Research concrete stage/actor paths before repeating early driving.",
+      "progress_update": "R1-jump visitsairbornemechanic;directedpit/fuel/truckpermutationsuntested.No residualstructuralleadfromthosepermutations."
+    },
+    {
+      "id": "R1-boss-route",
+      "milestone": "Final-course marker and opponent movement/contact",
+      "status": "visited",
+      "natural": false,
+      "restore": "analysis/disassembly/pass-001/late-mechanics.snapshot.json",
+      "patches": {
+        "0x60": [
+          62
+        ],
+        "0x62": [
+          12
+        ],
+        "0x5d": [
+          0
+        ]
+      },
+      "route": [
+        {
+          "buttons": [],
+          "frames": 4,
+          "max_operations": 500000,
+          "timeout_ms": 10000
+        }
+      ],
+      "result": "Actual main13 and initialized opponent; contact/recoil separately observed, no natural defeat. Initialcursor61 attempt consumedchunk08 atindex62; correctedFFindex63.",
+      "evidence": [
+        "analysis/redirect/round-1/boss2-route-timeline.json",
+        "analysis/redirect/round-1/boss2-route-summary.json",
+        "analysis/redirect/round-1/boss2-encounter.png",
+        "analysis/redirect/round-1/boss2-contact-timeline.json",
+        "analysis/redirect/round-1/boss2-contact-summary.json",
+        "analysis/redirect/round-1/boss2-contact.png"
+      ],
+      "reproducible_script": "analysis/redirect/round-1/boss2-runtime.py"
+    },
+    {
+      "id": "R1-boss-defeat-flow",
+      "milestone": "Opponent defeat-state continuation",
+      "status": "visited",
+      "natural": false,
+      "restore": "analysis/redirect/round-1/boss2-encounter.snapshot.json",
+      "patches": {
+        "0xa8": [
+          2
+        ],
+        "0xab": [
+          1
+        ]
+      },
+      "route": [
+        {
+          "buttons": [],
+          "frames": 4,
+          "repeated": "shortenABto1 in establishedstates3..6"
+        }
+      ],
+      "result": "Accepted run observedaux4\u21925\u21926\u2192main21. Sessionexit143beforefinalsave; selectedRAM/RPClinesretained. Attack-produced defeat not claimed.",
+      "evidence": [
+        "analysis/redirect/round-1/interrupted-runtime-observations.json",
+        "analysis/redirect/round-1/runtime-results.md"
+      ],
+      "reproducible_script": "analysis/redirect/round-1/boss-defeat-runtime.py"
+    },
+    {
+      "id": "R1-ending-long",
+      "milestone": "Ordinary timing after artificial rescue initialization",
+      "status": "attempted",
+      "natural": false,
+      "restore": "analysis/disassembly/pass-001/ending-attempt.snapshot.json",
+      "route": [
+        {
+          "buttons": [],
+          "frames": 20,
+          "repeated": "untilsessionexit143after820frameprogressprint",
+          "max_operations": 2000000,
+          "timeout_ms": 30000
+        }
+      ],
+      "result": "Approach/scene/textindex11pauseobserved; interruptedwithoutfullreturn.",
+      "evidence": [
+        "analysis/redirect/round-1/interrupted-runtime-observations.json",
+        "analysis/redirect/round-1/runtime-results.md"
+      ]
+    },
+    {
+      "id": "R1-ending-return",
+      "milestone": "All21endingtextrecords and course-start return",
+      "status": "visited",
+      "natural": false,
+      "restore": "analysis/disassembly/pass-001/ending-attempt.snapshot.json",
+      "route": [
+        {
+          "script": "analysis/redirect/round-1/ending-accelerated.py",
+          "patches": {
+            "0x20": [
+              103
+            ],
+            "0x21": [
+              121
+            ],
+            "0x15": [
+              1
+            ],
+            "0x502": [
+              1
+            ]
+          },
+          "result": "Endingselectors0\u21921\u21922,textindices0..11"
+        },
+        {
+          "restore": "analysis/redirect/round-1/ending-restart.snapshot.json",
+          "script": "analysis/redirect/round-1/ending-return-runtime.py",
+          "register_patch": {
+            "x": 1
+          },
+          "precondition": "PC8070instructionboundary,X91decimal,in128framepauseattextindex0B;WaitForFrame/NMIpreserveX",
+          "result": "Textindices12..20,selector3thenmain5/course0;later12framerequesttimeout10s"
+        },
+        {
+          "restore": "analysis/redirect/round-1/ending-complete-text.snapshot.json",
+          "script": "analysis/redirect/round-1/restart-runtime.py",
+          "patch": {
+            "0x502": [
+              1
+            ]
+          },
+          "result": "9*4framechunksverifiedmain5/course0;sessionexit143"
+        },
+        {
+          "restore": "analysis/redirect/round-1/restart-8.snapshot.json",
+          "script": "analysis/redirect/round-1/restart-capture.py",
+          "buttons": [],
+          "frames": 1,
+          "result": "Actualfetchaggregate/main5/course0,PLAYERSTARTframe"
+        }
+      ],
+      "result": "Full text and return visited with accelerated artificialtimers/positions/knownXcountdown, acrossdurablesnapshots. Notuneditedfinalcourse-to-endingplaythrough.",
+      "evidence": [
+        "analysis/redirect/round-1/ending-accelerated-timeline.json",
+        "analysis/redirect/round-1/ending-return-timeline.json",
+        "analysis/redirect/round-1/ending-complete-text.png",
+        "analysis/redirect/round-1/restart-timeline.json",
+        "analysis/redirect/round-1/restart-final-ram.json",
+        "analysis/redirect/round-1/restart-final-summary.json",
+        "analysis/redirect/round-1/ending-return-verified.png"
+      ]
+    },
+    {
+      "id": "R1-jump",
+      "milestone": "Airborne jump mechanic",
+      "status": "visited",
+      "natural": false,
+      "restore": "analysis/disassembly/pass-001/early-mechanics.snapshot.json",
+      "patches": {
+        "0xd8": [
+          127
+        ]
+      },
+      "route": [
+        {
+          "buttons": [],
+          "frames": 4
+        },
+        {
+          "buttons": [
+            "a"
+          ],
+          "frames": 4
+        },
+        {
+          "buttons": [],
+          "frames": 64,
+          "chunk_frames": 8
+        }
+      ],
+      "result": "Player40eligibilitybit thenlowstate5\u21926\u21927,airbornesprite. Landingnotclaimed.",
+      "evidence": [
+        "analysis/redirect/round-1/jump-timeline.json",
+        "analysis/redirect/round-1/jump-summary.json",
+        "analysis/redirect/round-1/jump-active.png",
+        "analysis/redirect/round-1/jump-after.png"
+      ],
+      "reproducible_script": "analysis/redirect/round-1/jump-runtime.py"
+    }
+  ]
+}

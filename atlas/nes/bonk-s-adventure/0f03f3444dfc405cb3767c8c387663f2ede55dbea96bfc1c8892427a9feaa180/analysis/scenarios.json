@@ -1,0 +1,194 @@
+{
+  "version": 1,
+  "phase": "round003 redirect assessed; prior visited milestones retained; no unchanged replay",
+  "evidence_transport": "analysis/round-001/rpc/*.request and *.response (exact inputs, banks, execution budgets)",
+  "scenarios": [
+    {
+      "id": "S001",
+      "milestone": "intro and title",
+      "status": "visited",
+      "route": "emulator.start; trace enabled capacity=0; frame step count300 max_operations10000000 timeout30000 stopped on timeout at frame72; trace disabled; frame step600 max_operations20000000 timeout30000 reaches frame672 title.",
+      "observed": "Bonk's Adventure title, Hudson/Nintendo copyright; natural execution",
+      "evidence": [
+        "analysis/round-001/startup-summary.json",
+        "analysis/round-001/after-intro.ppm.png"
+      ]
+    },
+    {
+      "id": "S002",
+      "milestone": "stage1-1 movement/jump and enemy",
+      "status": "visited",
+      "route": "At frame672 Start down1 frame/up; idle180; Start down10/up; idle120 enters stage1-1 at frame983. Enable trace capacity0; right+a down40 frames max_operations1500000 timeout20000; disable trace; continue400 frames max_operations13000000 timeout30000; release a/right.",
+      "observed": "Stage1-1 start sign; later scrolling palms, airborne Bonk and flying enemy; natural input. No RAM/register patch.",
+      "effective_banks": [
+        0,
+        1,
+        30,
+        31
+      ],
+      "evidence": [
+        "analysis/round-001/start-held.ppm.png",
+        "analysis/round-001/stage1-play.ppm.png",
+        "analysis/round-001/stage1-play.snapshot",
+        "analysis/round-001/gameplay-summary.json"
+      ]
+    },
+    {
+      "id": "S003",
+      "milestone": "built-in level select attempt from reset",
+      "status": "attempted",
+      "route": "Save stage1-play.snapshot; disable trace; emulator.reset; hold down,left,a,b,select,start; step600 frames max_operations20000000 timeout30000; release all.",
+      "observed": "Title unchanged; not a successful stage select. No debug patches.",
+      "evidence": [
+        "analysis/round-001/cheat-at-boot.snapshot",
+        "analysis/round-001/cheat-at-boot.ppm.png"
+      ]
+    },
+    {
+      "id": "S004",
+      "milestone": "built-in selector title press timing alternative",
+      "status": "attempted",
+      "route": "At title frame600, press start/down/left/a/b/select for30 frames max_operations1000000 timeout5000; release all; idle60 max_operations2000000 timeout10000.",
+      "observed": "Title unchanged, combination not validated on this revision.",
+      "evidence": [
+        "analysis/round-001/cheat-title-press.ppm.png"
+      ]
+    },
+    {
+      "id": "S005",
+      "milestone": "later areas and distinct mechanics",
+      "status": "visited",
+      "reason": "Supported task-stack RAM transition established; stages7/13/23 reached, later representative stages in progress."
+    },
+    {
+      "id": "S006",
+      "milestone": "bosses and ending/credits",
+      "status": "visited",
+      "reason": "Distinct stage36 boss and stage54 crown/final arena visited with supported task transition. Staff/program credits reached via fixed wrapperFD7E->bank12$8655."
+    },
+    {
+      "id": "S007",
+      "milestone": "artificial stage 7",
+      "status": "visited",
+      "route": "Import gameplay-start.snapshot atframe983; release8buttons; RAM$0459=6,$01FB=$3B,$01FC=$C5. traceenabled capacity0; step180frames,max_operations7000000,timeout30000 timesout after59frames; inspect state; traceoff; step120frames,max_operations5000000,timeout30000. Save stage07 snapshot. Artificial task RTS reaches C53C reset/select0->$833E transition->$80C4 initialization.",
+      "observed": "River/stone shore with flying enemy, active gameplay after ordinary initialization.",
+      "evidence": [
+        "analysis/redirect/r001-a/stage07.snapshot",
+        "analysis/redirect/r001-a/stage07.ppm"
+      ],
+      "provenance": "artificial RAM edits; fetched code observed only after execution"
+    },
+    {
+      "id": "S008",
+      "milestone": "artificial stage 13",
+      "status": "visited",
+      "route": "Import gameplay-start.snapshot, release buttons; write RAM$0459=12,$01FB=$3B,$01FC=$C5; resume task via fixed$C53C stack-reset wrapper->$833E transition->$80C4 initialization. Trace25frames twice; untrace100; right+A trace25frames; release+20.",
+      "observed": "Stage3-1 underwater blue scene, swimmer/squid enemies, player swimming and bubbles; right+A 25frames exercised movement.",
+      "evidence": [
+        "analysis/redirect/r001-a/stage13.snapshot",
+        "analysis/redirect/r001-a/stage13-entry.ppm"
+      ],
+      "provenance": "artificial RAM edits; fetched code observed only after execution"
+    },
+    {
+      "id": "S009",
+      "milestone": "artificial stage 23",
+      "status": "visited",
+      "route": "Import gameplay-start.snapshot, release buttons; write RAM$0459=22,$01FB=$3B,$01FC=$C5; resume task via fixed$C53C stack-reset wrapper->$833E transition->$80C4 initialization. Trace25frames twice; untrace100; right+A trace25frames; release+20.",
+      "observed": "Stage5-1 vertical orange/blue temple with multiple enemies; movement/jump exercised.",
+      "evidence": [
+        "analysis/redirect/r001-a/stage23.snapshot",
+        "analysis/redirect/r001-a/stage23-entry.ppm"
+      ],
+      "provenance": "artificial RAM edits; fetched code observed only after execution"
+    },
+    {
+      "id": "S010",
+      "milestone": "artificial stage36 boss arena",
+      "status": "visited",
+      "route": "Clean gameplay-start.snapshot; stage=35; saved task RTS C53C, ordinary transition initializes stage36; bounded right+A25frames.",
+      "observed": "Dark blue-stone boss arena with armed figure, player jump/movement exercised.",
+      "evidence": [
+        "analysis/redirect/r001-a/stage36-entry.ppm",
+        "analysis/redirect/r001-a/stage36-exercise.ppm",
+        "analysis/redirect/r001-a/stage36-contexts.json",
+        "analysis/redirect/r001-a/stage36.snapshot"
+      ],
+      "provenance": "Artificial RAM; fetch evidence only after running"
+    },
+    {
+      "id": "S011",
+      "milestone": "artificial stage54 boss arena",
+      "status": "visited",
+      "route": "Clean gameplay-start.snapshot; stage=53; saved task RTS C53C, ordinary transition initializes stage54; bounded right+A25frames.",
+      "observed": "Crown and stars final arena with opponent, player jump/movement exercised.",
+      "evidence": [
+        "analysis/redirect/r001-a/stage54-entry.ppm",
+        "analysis/redirect/r001-a/stage54-exercise.ppm",
+        "analysis/redirect/r001-a/stage54-contexts.json",
+        "analysis/redirect/r001-a/stage54.snapshot"
+      ],
+      "provenance": "Artificial RAM; fetch evidence only after running"
+    },
+    {
+      "id": "S012",
+      "milestone": "ending/staff credits",
+      "status": "visited",
+      "route": "Clean gameplay-start snapshot; release buttons; RAM$01FB=$7D,$01FC=$FD: resume to fixed$FD7E preserving bank wrapper->bank12$8655. Trace20frames then untrace three300frame windows. Three complete300frame windows preserved; fourth interrupted externally before next capture. Import ending-2.snapshot and trace5frames max_operations300000 timeout15000 confirms active credits code; exact RPC-direct retained.",
+      "observed": "STAFF screen progresses to PROGRAM and credited names; scrolling credits after artificial entry.",
+      "evidence": [
+        "analysis/redirect/r001-a/ending-0.ppm.png",
+        "analysis/redirect/r001-a/ending-2.ppm.png",
+        "analysis/redirect/r001-a/ending-2.snapshot",
+        "analysis/redirect/r001-a/credits-loop-contexts.json",
+        "analysis/redirect/r001-a/credits-loop.snapshot"
+      ],
+      "provenance": "Artificial entry, observed display progression; natural reachability not claimed"
+    },
+    {
+      "id": "S013",
+      "milestone": "artificial stage48 final arena and movement",
+      "status": "visited",
+      "route": "Import clean gameplay-start snapshot, releasebuttons; RAM0459=47,01FB=3B,01FC=C5. Trace5frames max1200000 timeout25000; traceoff step140frames max6000000 timeout25000; capture; right+A trace5frames max1200000 timeout25000; release+20frames max1000000 timeout15000. Earlier stage48 batch interrupted, stage48b settle budget exhausted; distinct stage48c artifacts preserve completed resumed experiment.",
+      "observed": "Orange final arena, player moves/jumps; no claim of opponent spawning in this specific48 visit. Crown/opponent separately observed stage54.",
+      "evidence": [
+        "analysis/redirect/r001-a/stage48c-entry.ppm",
+        "analysis/redirect/r001-a/stage48c-exercise.ppm",
+        "analysis/redirect/r001-a/stage48c-contexts.json",
+        "analysis/redirect/r001-a/stage48c.snapshot"
+      ],
+      "provenance": "Artificial RAM; actual fetched roots kept separate"
+    },
+    {
+      "id": "S014",
+      "milestone": "Type4A contact flag contract",
+      "status": "visited",
+      "route": "analysis/redirect/r002-a/runtime.py: importgameplay-start, finish1operation, release8buttons; RAM01FC=FF,01FD=05; PC=C568,stackFB,P24 => ordinarypair2 mapper returns0600. RAM03E5=4A; PC=A02D,X1,stackFB,P24;15operations(max1000,timeout3000).",
+      "observed": "AcceptedcallerCMP/BEQ/JSR actually fetches19517/19519 under[2,3,30,31],endingPC8C2F/P27; self-loop.15operationtracecaptured.",
+      "evidence": [
+        "analysis/redirect/r002-a/type4a-fetched-instructions.json",
+        "analysis/redirect/r002-a/type4a-step.json",
+        "analysis/redirect/r002-a/runtime.py"
+      ],
+      "provenance": "Artificial supported caller entry; no natural contact claim"
+    },
+    {
+      "id": "S015",
+      "milestone": "Type48 reflection-dependent child selectors",
+      "status": "visited",
+      "route": "runtime.py imports clean snapshot pervariant, finish1operation/releasebuttons; suppliedstackreturn0600; PC=C586 maps8/9. RAM03B4..03B9=[3,3,0,0,0,0],RAM0343=0or4; PC=A0F5,X1,stackFB,P24. RununtilPC0600 max20000operations/20000ms.",
+      "observed": "Returns749/751operations. Childslot2 type48/state2,selector00/20 respectively,onechild each; context8/9restored.",
+      "evidence": [
+        "analysis/redirect/r002-a/runtime.py",
+        "analysis/redirect/r002-a/type48-reflect0-ram.json",
+        "analysis/redirect/r002-a/type48-reflect4-ram.json"
+      ],
+      "provenance": "Artificial initializedactorcaller; natural variants unresolved"
+    }
+  ],
+  "redirect_round003_review": {
+    "attempt": "r003-a",
+    "status": "No unvisited obvious shortcut; S007..S013 later areas/mechanics/bosses/final arena/credits reuse successful bounded evidence",
+    "evidence": "analysis/redirect/r003-a/rejection-review.md"
+  }
+}

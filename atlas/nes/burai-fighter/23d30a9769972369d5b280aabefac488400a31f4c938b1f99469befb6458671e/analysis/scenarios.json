@@ -1,0 +1,182 @@
+{
+  "version": 1,
+  "phase": "round-001-redirect",
+  "input_api": {
+    "method": "emulator.input",
+    "params": {
+      "buttons": [],
+      "port": 1
+    }
+  },
+  "step_budget": {
+    "max_operations": 10000000,
+    "timeout_ms": 30000
+  },
+  "scenarios": [
+    {
+      "id": "D001-startup",
+      "milestone": "Reset/title/attract",
+      "status": "visited",
+      "artificial": false,
+      "route": "emulator.start; trace enabled capacity0; frame180 request timeout30000/max_operations10000000 stopped at frame102; inspected state and exported startup.snapshot. Subsequent untraced bounded advances through frame1852. See session.py/advance.py/menu.py.",
+      "result": "Title identifies Burai Fighter; natural attract demo reached. Initial button/pressed requests silently supplied no buttons; they are not valid controller experiments.",
+      "evidence": [
+        "analysis/round-001/contexts.json",
+        "analysis/round-001/menu.png",
+        "analysis/round-001/startup.snapshot"
+      ],
+      "deferred_reason": null
+    },
+    {
+      "id": "D001-natural-stage1",
+      "milestone": "Title/difficulty/stage1 combat",
+      "status": "visited",
+      "artificial": false,
+      "route": "From difficulty.snapshot attract frame1852: buttons[start]2, []90 =>title; [start]2, []90=>difficulty; [start]2, []180=>STAGE1; additional[]3,[start]3,[]100 acknowledges announcement. Exercise[b]10,[b,right,up]10,[a,b]10. Earlier intermediate wait samples and snapshots preserved.",
+      "result": "Actual movement/fire/bomb inputs and side-scrolling field confirmed. No RAM/register edits.",
+      "evidence": [
+        "analysis/round-001/play.py",
+        "analysis/round-001/play2.py",
+        "analysis/round-001/startstage.py",
+        "analysis/round-001/combat1.png",
+        "analysis/round-001/combat1-contexts.json",
+        "analysis/round-001/combat1.snapshot"
+      ],
+      "deferred_reason": null
+    },
+    {
+      "id": "D001-stage3",
+      "milestone": "Stage3 representative mechanics",
+      "status": "visited",
+      "artificial": true,
+      "route": "Import stage1.snapshot; reassert[]2; write RAM$008C=2; [start]2;[]130;[b,right]10;[a,b,down]10. All views PRG[0,1,2,3]; each step max_operations10000000 timeout30000.",
+      "result": "Overhead green field",
+      "evidence": [
+        "analysis/round-001/stage3.png",
+        "analysis/round-001/stage3-contexts.json",
+        "analysis/round-001/stage3.snapshot",
+        "analysis/round-001/later.py"
+      ],
+      "deferred_reason": null
+    },
+    {
+      "id": "D001-stage6",
+      "milestone": "Stage6 representative mechanics",
+      "status": "visited",
+      "artificial": true,
+      "route": "Import stage1.snapshot; reassert[]2; write RAM$008C=5; [start]2;[]130;[b,right]10;[a,b,down]10. All views PRG[0,1,2,3]; each step max_operations10000000 timeout30000.",
+      "result": "Overhead pink field",
+      "evidence": [
+        "analysis/round-001/stage6.png",
+        "analysis/round-001/stage6-contexts.json",
+        "analysis/round-001/stage6.snapshot",
+        "analysis/round-001/later.py"
+      ],
+      "deferred_reason": null
+    },
+    {
+      "id": "D001-stage7",
+      "milestone": "Stage7 representative mechanics",
+      "status": "visited",
+      "artificial": true,
+      "route": "Import stage1.snapshot; reassert[]2; write RAM$008C=6; [start]2;[]130;[b,right]10;[a,b,down]10. All views PRG[0,1,2,3]; each step max_operations10000000 timeout30000.",
+      "result": "Later side-scroll stage with distinct enemies/projectiles",
+      "evidence": [
+        "analysis/round-001/stage7.png",
+        "analysis/round-001/stage7-contexts.json",
+        "analysis/round-001/stage7.snapshot",
+        "analysis/round-001/later.py"
+      ],
+      "deferred_reason": null
+    },
+    {
+      "id": "D001-graphical-ending",
+      "milestone": "Graphical ending cinema",
+      "status": "visited",
+      "artificial": true,
+      "route": "Import stage7.snapshot;[]; RAM$008B=2 and$00ED=1; traced10,untraced180;Start2/release60,traced10; successive untraced300-frame bounded waits (terminal-continue and terminal-wait scripts), traced windows and Start acknowledgement as recorded.",
+      "result": "Ordinary stage-clear branch selected graphical ending after difficulty increment; planet-surface cinema visible at frame3881. Artificial completion, no boss defeat/natural reachability claim.",
+      "evidence": [
+        "analysis/round-001/ending.py",
+        "analysis/round-001/ending-continue.py",
+        "analysis/round-001/terminal-wait.py",
+        "analysis/round-001/ending-final-2.png",
+        "analysis/round-001/ending-final-2.snapshot"
+      ],
+      "deferred_reason": null
+    },
+    {
+      "id": "D001-lower-ending",
+      "milestone": "Lower-difficulty completion transition",
+      "status": "visited",
+      "artificial": true,
+      "route": "Same stage7 snapshot/clear recipe with$8B=0; bounded delays/Start as ending and terminal scripts.",
+      "result": "Returned to SELECT LEVEL with Albatross selected. Intermediate black frames were built-in wait loops, not proof of a failed transition.",
+      "evidence": [
+        "analysis/round-001/ending-final-0-before.png",
+        "analysis/round-001/ending-final-0.snapshot"
+      ],
+      "deferred_reason": null
+    },
+    {
+      "id": "D001-password",
+      "milestone": "Password entry",
+      "status": "visited",
+      "artificial": false,
+      "route": "Import real-menu.snapshot;[select]2,[]2,[start]2,[]30.",
+      "result": "Password alphabet ring displayed. Sourced passwords remain untested; RAM stage shortcut supplied later-stage evidence.",
+      "evidence": [
+        "analysis/round-001/password.png",
+        "analysis/round-001/password.snapshot"
+      ],
+      "deferred_reason": null
+    },
+    {
+      "id": "D001-deferred-Stages2",
+      "milestone": "Stages2/4/5",
+      "status": "visited",
+      "artificial": true,
+      "route": "probe-progression.py; same supported$8C=1/3/4 stage announcement shortcut;130 frames then b/right10,a/b/up10.",
+      "result": "Stages2/4/5 distinct fields captured; movement/fire/bomb exercised. Stage5 warp-style field.",
+      "evidence": [
+        "analysis/redirect/round-001-structural-review/probe-progression.py",
+        "analysis/redirect/round-001-structural-review/stage2.png",
+        "analysis/redirect/round-001-structural-review/stage4.png",
+        "analysis/redirect/round-001-structural-review/stage5.png"
+      ],
+      "deferred_reason": null
+    },
+    {
+      "id": "D001-deferred-Boss-combat",
+      "milestone": "Representative multipart controller encounter; secret-room identity unresolved",
+      "status": "visited",
+      "artificial": true,
+      "route": "See probe-revised.py/probe-progression.py; synthetic type3 command in unused low stack bytes, source-supported pointer then initialized center-X threshold80.",
+      "result": "Center31 type3 plus parts23..30 type4 initialized; part launch/animation seen with movement/fire. Artificial scene, no natural boss defeat claim; no supported secret-room route identified.",
+      "evidence": [
+        "analysis/redirect/round-001-structural-review/constructor-entry-ram.json",
+        "analysis/redirect/round-001-structural-review/controller-launch.png",
+        "analysis/redirect/round-001-structural-review/constructor-contexts.json",
+        "analysis/redirect/round-001-structural-review/probe-progression.py"
+      ],
+      "deferred_reason": null
+    },
+    {
+      "id": "D001-deferred-Final-END-card",
+      "milestone": "Ending terminal PUSH START screen",
+      "status": "visited",
+      "artificial": true,
+      "route": "Existing ending-final-2 snapshot; revised/progression scripts bounded waits total3242 additional frames; screenshot frame7253.",
+      "result": "Terminal PUSH START at7253; short press missed servicing interval; subsequent hold Start60/release120 exited to SELECT LEVEL/ULTIMATE at8036. No literal END/credits claim.",
+      "evidence": [
+        "analysis/redirect/round-001-structural-review/ending-long.png",
+        "analysis/redirect/round-001-structural-review/ending-long-state.json",
+        "analysis/redirect/round-001-structural-review/probe-progression.py",
+        "analysis/redirect/round-001-structural-review/ending-held.png",
+        "analysis/redirect/round-001-structural-review/probe-ending-held.py",
+        "analysis/redirect/round-001-structural-review/ending-held-state.json"
+      ],
+      "deferred_reason": null
+    }
+  ]
+}

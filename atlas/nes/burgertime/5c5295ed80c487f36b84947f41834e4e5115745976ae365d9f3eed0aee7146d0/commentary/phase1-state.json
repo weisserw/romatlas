@@ -1,0 +1,2221 @@
+{
+  "format": "romatlas-nes-map",
+  "version": 1,
+  "image_sha256": "5c5295ed80c487f36b84947f41834e4e5115745976ae365d9f3eed0aee7146d0",
+  "image_size": 24592,
+  "regions": [
+    {
+      "id": 1,
+      "offset": 30,
+      "length": 63,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49166,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "offset": 94,
+      "length": 176,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49230,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "offset": 319,
+      "length": 198,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49455,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "offset": 570,
+      "length": 811,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 49706,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "offset": 1551,
+      "length": 164,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 50687,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "offset": 1740,
+      "length": 311,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 50876,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "offset": 2055,
+      "length": 299,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 51191,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "offset": 2360,
+      "length": 45,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 51496,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "offset": 2412,
+      "length": 280,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 51548,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "offset": 2704,
+      "length": 32,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 51840,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "offset": 2743,
+      "length": 25,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 51879,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "offset": 2775,
+      "length": 92,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 51911,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "offset": 2915,
+      "length": 24,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 52051,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "offset": 2943,
+      "length": 70,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 52079,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "offset": 3025,
+      "length": 41,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 52161,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "offset": 3213,
+      "length": 108,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 52349,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "offset": 3365,
+      "length": 144,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 52501,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "offset": 3517,
+      "length": 8,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 52653,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "offset": 3533,
+      "length": 285,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 52669,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "offset": 3863,
+      "length": 93,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 52999,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "offset": 4340,
+      "length": 61,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 53476,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "offset": 4511,
+      "length": 18,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 53647,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "offset": 4561,
+      "length": 167,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 53697,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "offset": 4750,
+      "length": 359,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 53886,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "offset": 5215,
+      "length": 38,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 54351,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "offset": 5839,
+      "length": 163,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 54975,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "offset": 6042,
+      "length": 901,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 55178,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "offset": 6997,
+      "length": 118,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 56133,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "offset": 7143,
+      "length": 339,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 56279,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "offset": 7537,
+      "length": 815,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 56673,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "offset": 8391,
+      "length": 33,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 57527,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "offset": 8436,
+      "length": 108,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 57572,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "offset": 9810,
+      "length": 100,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 58946,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "offset": 9918,
+      "length": 96,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 59054,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "offset": 10026,
+      "length": 87,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 59162,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "offset": 10222,
+      "length": 147,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 59358,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "offset": 10425,
+      "length": 144,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 59561,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "offset": 10593,
+      "length": 164,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 59729,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "offset": 10794,
+      "length": 182,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 59930,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "offset": 13448,
+      "length": 385,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 62584,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "offset": 13844,
+      "length": 216,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 62980,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "offset": 14068,
+      "length": 366,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 63204,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "offset": 14597,
+      "length": 31,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 63733,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "offset": 14718,
+      "length": 20,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 63854,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "offset": 15668,
+      "length": 105,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 64804,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "offset": 15789,
+      "length": 601,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 64925,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "offset": 0,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "INES_Header",
+      "comment": "",
+      "evidence": "Validated iNES header and section sizes; structural-notes.md",
+      "views": []
+    },
+    {
+      "id": 48,
+      "offset": 16400,
+      "length": 8192,
+      "kind": "Image",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "CHR_PatternTiles",
+      "comment": "",
+      "evidence": "iNES CHR ROM section, mapper 0 pattern backing: 512 NES two-plane 16-byte tiles; CPU cannot execute this backing.",
+      "views": []
+    },
+    {
+      "id": 49,
+      "offset": 16394,
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "InterruptVectors",
+      "comment": "",
+      "evidence": "Validated NMI/reset/IRQ vector words $FF7F/$FD24/$FD24, NROM banks [0,1,0,1].",
+      "views": []
+    },
+    {
+      "id": 50,
+      "offset": 16,
+      "length": 14,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "MainStateHandlers",
+      "comment": "",
+      "evidence": "Seven little-endian main-state handler addresses consumed by RAM $16 doubled index at $FD4F; boundary first code $C00E. Targets inspected as coherent state handlers.",
+      "views": []
+    },
+    {
+      "id": 51,
+      "offset": 2867,
+      "length": 48,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 52003,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "offset": 3509,
+      "length": 8,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 52645,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "offset": 3525,
+      "length": 8,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 52661,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "offset": 3850,
+      "length": 13,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 52986,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "offset": 5263,
+      "length": 194,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 54399,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 56,
+      "offset": 5459,
+      "length": 380,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 54595,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "offset": 8352,
+      "length": 39,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 57488,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 58,
+      "offset": 8576,
+      "length": 612,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 57712,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 59,
+      "offset": 9202,
+      "length": 184,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 58338,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "offset": 9394,
+      "length": 404,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 58530,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "offset": 10113,
+      "length": 79,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 59249,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 62,
+      "offset": 11002,
+      "length": 87,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 60138,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 63,
+      "offset": 14434,
+      "length": 163,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 63570,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "offset": 14628,
+      "length": 36,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 63764,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "offset": 14738,
+      "length": 8,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Static connected control flow from validated vectors, inspected main-state handler contracts and accepted runtime roots. Individually decoded and checked for coherent branches/calls, no overlapping instructions; indirect jump barriers retained. analysis/round01/decoded-handlers.json; structural-notes.md. Natural reachability only where runtime contexts recorded.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 63874,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "offset": 270,
+      "length": 49,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "DemoInputScript",
+      "comment": "",
+      "evidence": "Paired movement direction/coordinate records with FF terminator, consumed via $C0FE script pointer in attract routine. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 67,
+      "offset": 517,
+      "length": 53,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ReadySpriteTemplate",
+      "comment": "",
+      "evidence": "Copy descriptor followed by repeating four-byte OAM records; $C1AA supplies descriptor to $C715. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 68,
+      "offset": 1381,
+      "length": 170,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "TitleTextAndDescriptors",
+      "comment": "",
+      "evidence": "ASCII menu/license/title strings terminated FF, source/PPU destination descriptors; $FE74 converts characters to tile IDs and handles newlines. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 69,
+      "offset": 1715,
+      "length": 25,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ScoreSpriteTemplate",
+      "comment": "",
+      "evidence": "Copy descriptor plus repeated four-byte sprite records; adjacent score-display consumer. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 70,
+      "offset": 2051,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "SaveSignature",
+      "comment": "",
+      "evidence": "Four-byte DECO marker compared/copied by $C76E initialization. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 71,
+      "offset": 2354,
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "StageFloorHeights",
+      "comment": "",
+      "evidence": "Six one-byte vertical bounds indexed by layout selector after $CEBE. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 72,
+      "offset": 2405,
+      "length": 7,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "StageIconDescriptor",
+      "comment": "",
+      "evidence": "Bounded copy descriptor and tile payload passed to $C741 from $C928. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 73,
+      "offset": 2692,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ScorePPUDestinations",
+      "comment": "",
+      "evidence": "Six little-endian PPU destination words, X<6 checked by $CA37 and doubled. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 74,
+      "offset": 2736,
+      "length": 7,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "LivesIconDescriptor",
+      "comment": "",
+      "evidence": "Bounded copy descriptor/payload passed by $CA87. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 75,
+      "offset": 2768,
+      "length": 7,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "PepperIconDescriptor",
+      "comment": "",
+      "evidence": "Bounded copy descriptor/payload passed by $CAA7. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 76,
+      "offset": 2939,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "InitialExtraLifeParameters",
+      "comment": "",
+      "evidence": "Four ordered non-code initialization parameters. $CB53 reads first value 02 into ExtraLifeThresholdStep and both next-extra-life BCD thresholds. Remaining three specific consumers unresolved. R01-004 independent consumer review; analysis/round02/review.md; historical evidence preserved in pass-001-final map.",
+      "views": []
+    },
+    {
+      "id": 77,
+      "offset": 3013,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "AttributeRowTemplate",
+      "comment": "",
+      "evidence": "Copy descriptor and repeated attribute bytes; $CB88 copies then repeats six PPU writes. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 78,
+      "offset": 3066,
+      "length": 147,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "TitleTileRecords",
+      "comment": "",
+      "evidence": "Eight pointer words read by $CBC1 loop count 8, followed by count-bounded copy descriptors/payloads and FF attribute runs. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 79,
+      "offset": 3321,
+      "length": 44,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "LayoutDispatchAndStagePointers",
+      "comment": "",
+      "evidence": "First 32 bytes: 16 handler words indexed by command low nibble doubled at $CC9F. Remaining 12 bytes: six level stream pointers selected after $CEBE. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 80,
+      "offset": 3818,
+      "length": 32,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "GamePalettes",
+      "comment": "",
+      "evidence": "Two 16-byte palette records selected by $CEC8 through $FDF0. All values valid NES palette indices. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 81,
+      "offset": 3956,
+      "length": 384,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "BonusTileDescriptors",
+      "comment": "",
+      "evidence": "Pointer families and eight-byte bonus drawing descriptors/payloads: $CEFA and erase counterpart set stride eight; $CF54 adds stride. Separate player-mode indicator family uses seven. Exact existing non-code bounds preserved. R01-004 independent consumer review; analysis/round02/review.md; historical evidence preserved in pass-001-final map.",
+      "views": []
+    },
+    {
+      "id": 82,
+      "offset": 4401,
+      "length": 110,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "CollisionCoordinateRecords",
+      "comment": "",
+      "evidence": "Six little-endian record pointers and FF-terminated coordinate pairs consumed by $D0E4. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 83,
+      "offset": 4529,
+      "length": 32,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "PlayerIndicatorTiles",
+      "comment": "",
+      "evidence": "Two pointer words plus four bounded PPU tile descriptors selected by player-mode renderer $D18F. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 84,
+      "offset": 4728,
+      "length": 22,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ControlDirectionTables",
+      "comment": "",
+      "evidence": "Five signed pepper X/Y offset pairs at $D268..$D271; twelve stored direction remaps at $D272..$D27D. Pepper facing indexes interleaved pairs; direction nibble indexes remaps. Opposing-input indices 12..15 cross next code; supported input domain unresolved. R01-004 independent consumer review; analysis/round02/review.md; historical evidence preserved in pass-001-final map.",
+      "views": []
+    },
+    {
+      "id": 85,
+      "offset": 5109,
+      "length": 106,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "EntityAnimationTables",
+      "comment": "",
+      "evidence": "Animation stream pointer pairs, repeated tile-frame sequences and signed movement deltas consumed by $D27E; explicit FF frame sentinels. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 86,
+      "offset": 5253,
+      "length": 10,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "MovementHandlerPointers",
+      "comment": "",
+      "evidence": "Five little-endian motion handler addresses, bounded by first handler at $D47F; $D44F uses orientation nibble byte index. Does not claim full selector reachability. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 87,
+      "offset": 5457,
+      "length": 2,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "MovementAlignmentValues",
+      "comment": "",
+      "evidence": "Two small constant data bytes between complete motion and alignment routines; inspect alignment consumers before inferring precise semantics. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 88,
+      "offset": 6002,
+      "length": 40,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "AnimationTileChoices",
+      "comment": "",
+      "evidence": "Repeated five-byte groups of tile IDs, read by neighboring entity animation code. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 89,
+      "offset": 6943,
+      "length": 54,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "EnemyStageParameters",
+      "comment": "",
+      "evidence": "Small repeated pacing/count arrays consumed by $DA99; independently bounded by next routine $DB45. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 90,
+      "offset": 7115,
+      "length": 28,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "EnemySpawnCoordinates",
+      "comment": "",
+      "evidence": "Orientation and repeated X/Y coordinates read by $DB45 spawn logic. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 91,
+      "offset": 7482,
+      "length": 55,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "EnemyMovementRecords",
+      "comment": "",
+      "evidence": "Six record pointers and repeated small movement selector streams with FF terminators consumed by adjacent enemy routines. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 92,
+      "offset": 8424,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "BonusStageParameters",
+      "comment": "",
+      "evidence": "Six tile selectors followed by six small duration/count parameters consumed by $E090 bonus logic. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 93,
+      "offset": 8544,
+      "length": 32,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "IngredientHandlerPointers",
+      "comment": "",
+      "evidence": "16 pointer words dispatched from ingredient state high nibble via $E11E; bounded by first handler NOP at $E170. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 94,
+      "offset": 9188,
+      "length": 14,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "IngredientTileRemap",
+      "comment": "",
+      "evidence": "Two identical seven-byte small selector arrays between complete ingredient routines; adjacent graphic selection references reviewed. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 95,
+      "offset": 9386,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "IngredientSegmentOffsets",
+      "comment": "",
+      "evidence": "Four segment indices and four signed horizontal increments consumed by $E488 and callers. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 96,
+      "offset": 9798,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "IngredientScoreParameters",
+      "comment": "",
+      "evidence": "Two six-byte parameter arrays indexed by enemy count in $E5DE. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 97,
+      "offset": 9910,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "PepperStunDurationValues",
+      "comment": "",
+      "evidence": "Eight pepper stun countdown values selected by one-based total stage capped at eight using $E6A5,Y table-minus-one addressing, stored to EntityCountdown. Descending high-nibble steps; exact existing non-code bounds preserved. R01-004 independent consumer review; analysis/round02/review.md; historical evidence preserved in pass-001-final map.",
+      "views": []
+    },
+    {
+      "id": 98,
+      "offset": 10014,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "EnemyTileChoices",
+      "comment": "",
+      "evidence": "Three four-byte tile arrays indexed by entity type at $E6AE. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 99,
+      "offset": 10192,
+      "length": 30,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "StageCompletionThresholds",
+      "comment": "",
+      "evidence": "Five six-byte stage-dependent completion thresholds, read by $E771. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 100,
+      "offset": 10369,
+      "length": 56,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "DeathAnimationTables",
+      "comment": "",
+      "evidence": "Ordered animation timer thresholds and repeated sprite tiles, read by $E81A. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 101,
+      "offset": 10569,
+      "length": 24,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "BonusSpawnTables",
+      "comment": "",
+      "evidence": "Stage coordinate, sprite and selector arrays consumed by $E8A9. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 102,
+      "offset": 10757,
+      "length": 37,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ScoreDigitTables",
+      "comment": "",
+      "evidence": "Small decimal score/digit selection arrays consumed by adjacent score routines. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 103,
+      "offset": 10976,
+      "length": 26,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "EntityOAMOffsets",
+      "comment": "",
+      "evidence": "Multiples of four for sprite slots and repeated tile constants read by collision/score logic. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 104,
+      "offset": 11089,
+      "length": 2356,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "StageLayoutRecords",
+      "comment": "",
+      "evidence": "FF-delimited three-byte layout/ingredient/ladder coordinate records, then bounded PPU descriptors, six-level pointer and parameter arrays. Consumers $CC9F/$CADC/$D68A agree with repeated records; exact sub-table semantics deferred. Boundary excludes trailing JMP at $F475. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 105,
+      "offset": 14060,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "AudioBitMasks",
+      "comment": "",
+      "evidence": "Eight descending powers-of-two used at $F6BA for sound-priority mask test. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 106,
+      "offset": 14664,
+      "length": 54,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "AudioCommandHandlers",
+      "comment": "",
+      "evidence": "27 handler words read by $F96E command decode. Exact physical interval ends at independently supported F96E routine; supported handler entry contracts separately reviewed. Natural command domain unresolved. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 107,
+      "offset": 14746,
+      "length": 922,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "AudioSequenceData",
+      "comment": "",
+      "evidence": "12 descending little-endian pitch periods, sound record pointers/descriptors and repeated duration/note/command streams. $F5B3 loads sound descriptors and $F6E4/$F748 interpret sequences; FF/command conventions and repeated channel initialization records visible. Detailed stream extents deferred. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 108,
+      "offset": 15773,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "StartupPalette",
+      "comment": "",
+      "evidence": "16-byte NES palette, pointer supplied by $FD83 to $FDF0. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 109,
+      "offset": 16390,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Zero plus uniform FF non-code tail between terminal scroll-reset RTS and vector table; boundaries checked; specific fill purpose unresolved. Static physical inspection and consumer/pattern review in analysis/round01/structural-notes.md.",
+      "views": []
+    },
+    {
+      "id": 110,
+      "offset": 13833,
+      "length": 11,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "CheckMusicReplacementPriority",
+      "comment": "",
+      "evidence": "R01-003 independently reviewed: MusicRequest $05A2 identity from music load/stop writers; mask helper $F6BA preserves X and incoming header $91/$92, carry permission; both branches converge exactly on established $F611 effect loader and refusal RTS balances caller stack. Adjacent effect guard shares protocol. Exact boundaries previous RTS and independent $F604 slot entry; fixed NROM [0,1,0,1]. Supported precondition caller stack, X selected effect slot, incoming header and SoundRequest. Structural code only; natural entry unresolved, no observed fetch claimed. analysis/round02/review.md; analysis/redirect/round01-contract-review/findings.md",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 62969,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              0,
+              1
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 111,
+      "offset": 93,
+      "length": 1,
+      "kind": "Data",
+      "provenance": "Manual",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Unknown meaning. User-directed batch fallback; unresolved code-versus-data ambiguity. Not an evidence-backed data role or observed execution.",
+      "evidence": "Explicit user-authorized <=10-byte residual fallback, freshly verified exact physical complement; see analysis/round03/fallback-record.json. Prior ambiguity and primary review retained in analysis/coordinator-rejection-review.md and analysis/redirect/round02-residual-review/rejection-review.md. Manual assignment only; no new structural proof.",
+      "views": []
+    },
+    {
+      "id": 112,
+      "offset": 13445,
+      "length": 3,
+      "kind": "Data",
+      "provenance": "Manual",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Unknown meaning. User-directed batch fallback; unresolved code-versus-data ambiguity. Not an evidence-backed data role or observed execution.",
+      "evidence": "Explicit user-authorized <=10-byte residual fallback, freshly verified exact physical complement; see analysis/round03/fallback-record.json. Prior ambiguity and primary review retained in analysis/coordinator-rejection-review.md and analysis/redirect/round02-residual-review/rejection-review.md. Manual assignment only; no new structural proof.",
+      "views": []
+    }
+  ],
+  "next_id": 113
+}

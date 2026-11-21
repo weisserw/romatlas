@@ -1,0 +1,51 @@
+# Round002 localized inference and rejection review
+
+This review uses primary artifacts, not a prior worker's exhaustion label. Map and unknown complement remain unchanged. It supports a four-byte role correction and bounded vector-layout refinement for independent disassembly review; it does not authorize terminal acceptance or speculative classification of the twelve residual bytes.
+
+## Corrected type-$4A claim
+
+**Exact claim:** physical19517..19521, CPU$8C2D..$8C30 under effective[2,3,30,31], is a four-byte conditional branch/self-loop reached by the accepted type-$4A contact branch with C=1,Z=1. These bytes also form one signed vector record. Original design intent and natural contact are separate unresolved claims.
+
+**Decisive primary evidence:** [caller decode](type4a-caller.json), [callee bytes/decode](type4a-callee.json), [actual fetched instruction sequence](type4a-fetched-instructions.json), [final artificial state](type4a-step.json), and [vector constraints](vector-constraints.json). The caller loads the type, compares#$4A, takes BEQ to JSR$8C2D and preserves both comparison flags. D0 02 is therefore not taken; B0 FE repeats at$8C2F. The artificial experiment starts at the accepted caller, not at the target, and confirms both target opcodes actually fetched with the predicted flags and effective banks.
+
+**Old rejection and actual scope:** r001-a structural-contracts.md and residual-review.md rejected a linear decode containing JSR$40FE/KIL. Those bytes occur at19523/19526, outside the supported entry's reachable closure. That result does not reject19517..19521. It still warns against treating the surrounding vector records as an unconstrained routine. The original records are preserved.
+
+**Combined independent constraints:** accepted direct-call operand and localized flag precondition; bank-preserving effective pair2 caller; two exact official branch boundaries; actual artificial fetch evidence; independently bounded signed-vector consumer and full scaled-row structure. Neither legal decoding alone nor a new arbitrary callee entry is used.
+
+**Strongest alternative:** an accidental/latent bad call into vector data, rather than deliberately authored trap code. This remains plausible and explains design intent poorly; it does not erase actual fetched branch behavior under the supported caller. The entire surrounding container remains positive Data. Proposal: expose only four dual-use bytes as Code with artificial Observed evidence and explicit vector-use commentary. Independent disassembly may choose a different representational disposition, but must retain the corrected flags and actual execution evidence. No natural reachability claim follows.
+
+## Residual return bytes
+
+For each row the candidate is a complete one-byte RTS Code entry in the listed bank/alias. The strongest competing interpretation is a redundant assembler/source suffix, inert scalar or delimiter byte between independent objects. [Residual source neighborhoods](residual-neighbors.txt) supply exact surrounding instructions and bounds; [word scan and configured decodes](residual-targets.json) supply all exact/predecremented-word hits; [full accepted-Code control/stack scan](source-control-scan.json) covers32306 instructions with zero decode failures and65 paired-PHA windows. The independently computed [ledger](unknown-ledger.json) gives neighboring region IDs and physical identities.
+
+| Physical byte | CPU / physical bank | Primary local constraint and alternative |
+|---|---|---|
+|7716|$9E14 /0|Predecessor tail-jumps to$9E15; no fallthrough to the extra return. Raw$9E13 hits are pair2 controls, not a pair0 synthesized return. Could be an unused redundant routine suffix or a separate null entry.|
+|52366|$8C7E /6|Prior encounter exit tail-jumps to its accepted continuation. Raw$8C7D occurs in bank24 asset data, without a matching bank6 stack consumer. No inferred entry.|
+|66546|$83E2 /8|Predecessor already returns; next independent vertical-collision entry starts$83E3. Raw$83E1 occurs in pair2 data, not a demonstrated pair8 return frame.|
+|74197|$A1C5 /9|Type48 start-motion ends with an accepted RTS at74196; material update starts74198. No direct/predecremented word target supports the extra return.|
+|81968|$8020 /10|Conventional bank entry position is genuine circumstantial code evidence; the actual pair10 wrappers call$8021/$8038 instead. All global$8020 control words resolve to other selected pairs. A null bank entry and inert prefix sentinel remain competing interpretations.|
+|135376|$90C0 /16|The adjacent effect record is[$90BD,$90BD], and$90BD tail-jumps to shutdown$90C1. It does not select the intervening return. Other raw$90C0 matches are operands/instruction substrings in unrelated banks.|
+|246555|$C30B /30|Observed IRQ exit ends in RTI immediately before it; buffered scroll entry starts$C30C. IRQ stack contract cannot turn the extra RTS into an ordinary continuation.|
+|252549|$DA75 /30|Prior bank-preserving wrapper tail-jumps to shared restore; next independent setup starts$DA76. No supported return frame or pointer selects$DA75.|
+|254471|$E1F7 /31|Known null actor service at254470/$E1F6 has an accepted caller at65819 and its own RTS. That positive contract localizes to the first byte; it does not establish the adjacent extra RTS.|
+|254922|$E3BA /31|Vertical motion setter's established return is254921/$E3B9. Exact raw words target that preceding accepted return, not$E3BA. Next banked status helper starts$E3BB.|
+
+**What this rules out:** direct branch/call selection from the accepted code and the specific known synthesized player/actor return templates. Shared bank-save frames preserve supplied caller returns; they do not independently create any of these entries. The player/actor dispatcher return words resolve to accepted$8D41/$812F. Audio records resolve to their independently accepted handler entries. No observed execution or absence of execution is used as a universal prerequisite.
+
+**Combined sufficiency assessment:** exact legal RTS boundary, nearby code, recurring redundant-return placement and the bank10 conventional entry position make Code plausible. They do not discriminate the inert-byte alternative for the precise byte. There is no uniform run, repeated data record or noninstruction pattern to justify generic Data either. A forced direct RTS call would demonstrate only the already-known opcode mechanics. No supported new writer, finite dispatch record or different discriminating test survives the local scan. Retain these ten unknown bytes, without claiming dead/unused status. This is a localized positive-evidence insufficiency, not a requirement for a natural caller.
+
+## Residual pair physical78315..78317
+
+**Claim and context:** CPU$B1DB..$B1DC under[8,9,30,31], C9 F9 could be a CMP#$F9 prefix falling into the accepted type-$0F initializer at78317, or a stored scalar/word between routines. The preceding state handler already terminates at78314. Full-Code control scan supplies no edge, and exact/predecremented word scan supplies no return or pointer record to this pair. See the dedicated neighborhood and decode in the same primary artifacts.
+
+**Competing constraints:** a CMP is legal and keeps a carry result after the following LDA#$84, but no supported entry/consumer assigns that comparison a role. The alternative little-endian word$F9C9 would point into accepted Data260505..260579; that weakens a specific executable return-word interpretation, without disproving a stored-data value. Neither alternative needs original-source reconstruction, but neither has independent role/extent support. The two-byte endpoint is exact because both neighbors are established; exact bounds alone do not settle code versus data. Generic Data would be speculation for this isolated instruction-like pair. Retain unknown; replaying a forced entry cannot discriminate the alternatives.
+
+## Independent avenues and stopping scope
+
+* The vector-table row-extent question is productive and **ready**. Encoded first origin fixes15 pointer words,15 successive origins stride128, independent next Code starts at20597, and every row matches a complete32-vector signed template at an exact scale with opposite symmetry. This establishes the layout without claiming a complete observed selector domain or an original waveform generator. The dual-use cell is included consistently, not removed to fit the model.
+* Type48 reflected/unreflected mechanics are **verified in artificial initialized actor calls**: childslot2 receives selector$20/$00 and both return normally after751/749 operations. Static role already covers these bytes. Natural occurrence/design intent remains unresolved. Existing59-stage spawn streams contain neither type48 nor4A, and saved representative milestone RAM contains neither active type. This rules out an obvious replay recipe from those specific records/snapshots, not all dynamic creation routes. The accepted source has no other literal type4A store; the only literal type48 store is this child creator. There is no concrete new scene route to test without further unsupported assumptions, and it is unnecessary for the supported structure claims.
+* Current-source uncertainties about grab coordinate restoration, history row/column comparison and duplicate effect-event comparisons are exact preserved mechanics; no concrete connection to remaining unknown structure or new bounded discriminating method emerged. More gameplay would repeat representative systems rather than resolve a specified missing fact.
+* Broad later-stage, underwater/vertical/boss, final-arena and ending/credits milestones already have successful saved evidence in scenariosS007..S013. Those routes are reused as evidence, not replayed. No unvisited obvious later-game shortcut is pending in the existing checklist. Exhaustive actor/state/scene coverage is not claimed.
+
+All identified promising actionable structural avenues are packaged together. The residual review supports incomplete status if no later evidence changes these premises. Because ready corrections remain, this handoff returns to independent disassembly review, not final editorial/archive acceptance. A rejected representation choice for dual-use bytes must not reinstate the falsified linear-path premise.

@@ -1,0 +1,9 @@
+# Round003 commentary handoff
+
+Current-source readability is complete:2063 scaffold regions/2665 units reviewed and source-linked, pending0intervals/0bytes. This reuses the sound completed2061/2664 prior scope by unchanged physical ranges and dependencies; full inventory carry assessment is analysis/round-003/commentary-scope-assessment.json. Entire previous commentary preserved before preparation at analysis/round-003/commentary-pass002a-preserved and commentary-original-pass002a. Fresh pass003a baseline prepared; maintained source carried with controlled edits rather than stale generated assembly.
+
+Changed vector container now explains15 pointers and15 rows of32 signed XY word-pair cells. Physical19517..19521 is the shared(720,-336) cell and observed artificial Code under[2,3,30,31]/CPU8C2D. Caller CMP#$4A supplies Z=1,C=1 through JSR: BNE not taken, BCS self-loop. Named target and caller replace former unresolved raw call. Source, review links, uncertainties and current question status reconciled; historical call/Data conflict retained only in prior records. Natural contact/selector coverage and authored intent remain unresolved.
+
+Fresh byte-identical verification passed and reading-after.asm refreshed. commentary/verification.json records source hashes. Map/state/fresh baseline SHA256 f24d8835160d5de6fef4dca61b263064cc9d040d046142de5180b264f8aba567. Classification remains393220/393232 bytes;12Unknown remain honestly explained with valid r002-a residual rejection review. No classification edits, toolkit edits, cleanup, archive or publication. Final editorial audit remains pending; this handoff establishes current-source readability only.
+
+Current question status: analysis/round-003/commentary-questions.md. No new concrete structural experiment arose; existing artificial type48 mechanics and residual rejection review remain valid. Continue redirect; reserve editorial audit for terminal acceptance.

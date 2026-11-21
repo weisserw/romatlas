@@ -1,0 +1,11 @@
+# Round 001 current-source readability
+
+Completed all current classified source: 326 code fragments (15070 bytes), 143255 other data bytes and 131072 CHR bytes. The 549 physical review intervals remain intact and reviewed; 408 compact semantic units explain meaningful entries/structures. The 103835 unknown bytes retain binary backing and explicit boundary/role uncertainty notes. Classification remains 73.59%; this is a separate readability result.
+
+Reviewed fixed-bank reset/scheduler, NMI, retry-safe MMC3 bank calls, controller input, PPU transfer queue/palette scripts, sprite descriptors/OAM, object parallel arrays, hit rectangles, camera-edge spawns, scrolling layout/metatile expansion, packed collision buffers and the audio bytecode/envelope engine. Added consistent CPU RAM, hardware, field, table-alias and constant names. Internal helper comments explain stack contracts, record strides, bounds and result conventions. Shared scratch remains neutral because lifetimes overlap. Unknown state fields keep explicit unresolved CPU RAM identities rather than invented game meanings.
+
+Concrete review corrections: the NMI entry is $C19A (physical 246186), including its initial PHA; the low-X edge helper returns zero below $F1 and one otherwise; the remembered-contact helper clears status bit $40 on types $16/$03. Context-aware bank wrappers now refer directly to classified service symbols where their selection contract establishes the view.
+
+No remaining numeric CPU RAM operands. Thirty-three literal call aliases remain for unclassified destinations; immediate constants and ROM read aliases remain where context/meaning is unresolved. Known table aliases are execution addresses only and do not classify the unknown backing. See uncertainties.md for useful follow-up questions.
+
+Fresh final verification: ok=true, byte_identical=true, original ROM SHA256 0f03f3444dfc405cb3767c8c387663f2ede55dbea96bfc1c8892427a9feaa180. reading-after.asm refreshed after final edits. Frozen before/, baseline and phase1-state retained; maps/current.json still equals maps/pass-001b.json. Final editorial/archive acceptance remains pending and its audit was not run. No toolkit edit, publication, cleanup or archive execution.

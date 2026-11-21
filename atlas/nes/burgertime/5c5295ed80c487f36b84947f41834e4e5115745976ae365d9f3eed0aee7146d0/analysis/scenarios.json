@@ -1,0 +1,255 @@
+{
+  "version": 1,
+  "context": {
+    "prg_banks": [
+      0,
+      1,
+      0,
+      1
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "R01-startup",
+      "milestone": "Title / menu / first stage",
+      "status": "visited",
+      "natural": true,
+      "route": [
+        {
+          "buttons": [],
+          "frames_requested": 180,
+          "max_operations": 10000000,
+          "timeout_ms": 30000,
+          "actual_frames": 132,
+          "result": "timeout partial state inspected"
+        },
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 2
+        },
+        {
+          "buttons": [],
+          "frames": 45
+        },
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 2
+        },
+        {
+          "buttons": [],
+          "frames": 60
+        },
+        {
+          "buttons": [
+            "right",
+            "a"
+          ],
+          "frames": 120
+        }
+      ],
+      "observed": "Title132, menu179, READY241, first stage361. First Start too early. First layout screenshot verifies stage, initial wait obscures amount of actual movement.",
+      "evidence": [
+        "analysis/round01/title.ppm",
+        "analysis/round01/started.ppm",
+        "analysis/round01/game.ppm",
+        "analysis/round01/movement.ppm",
+        "analysis/round01/active.snapshot"
+      ]
+    },
+    {
+      "id": "R01-bad-completion",
+      "milestone": "Completion-flag shortcut during initial READY",
+      "status": "attempted",
+      "natural": false,
+      "restore": "analysis/round01/active.snapshot",
+      "patches": {
+        "0x001B": 6,
+        "0x0400": 5,
+        "0x0464": 1
+      },
+      "route": [
+        {
+          "buttons": [
+            "up",
+            "b"
+          ],
+          "frames_requested": 120,
+          "actual_frames": 97,
+          "timeout_ms": 30000
+        },
+        {
+          "buttons": [],
+          "frames_requested": 120,
+          "timeout_ms": 30000
+        }
+      ],
+      "observed": "Blank/transition screen and no sixth-layout proof. This patch was applied before stage initialization finished. Superseded by explicit dispatcher initialization; do not retry unchanged.",
+      "evidence": [
+        "analysis/round01/stage-patch.ppm",
+        "analysis/round01/patched-progress.ppm"
+      ]
+    },
+    {
+      "id": "R01-stage6",
+      "milestone": "Sixth layout, enemies and pepper/movement",
+      "status": "visited",
+      "natural": false,
+      "restore": "analysis/round01/active.snapshot",
+      "patches": {
+        "0x0400": 5,
+        "0x001B": 6,
+        "0x0051": 0,
+        "0x0031": 0,
+        "0x0016": 6
+      },
+      "registers": {
+        "pc": 64847,
+        "stack": 255
+      },
+      "entry_contract": "Main dispatcher FD4F reached by JMP; NROM banks fixed, PPU/NMI initialized, reset stack depth to FF after discarding old wait frames; complete one operation before register edit.",
+      "route": [
+        {
+          "buttons": [
+            "up",
+            "a"
+          ],
+          "frames_requested": 120,
+          "timeout_ms": 30000,
+          "result": "timeout at frame465"
+        },
+        {
+          "buttons": [
+            "right",
+            "b"
+          ],
+          "frames": 40
+        },
+        {
+          "buttons": [],
+          "trace_enabled": false,
+          "frames": 500,
+          "max_operations": 16000000,
+          "timeout_ms": 15000
+        },
+        {
+          "trace_enabled": true,
+          "buttons": [
+            "left",
+            "a"
+          ],
+          "frames": 35,
+          "max_operations": 1200000,
+          "timeout_ms": 15000
+        },
+        {
+          "buttons": []
+        }
+      ],
+      "observed": "Frame1005 actual sixth layout, stage values0400..0403=[6,1,5,5]; mechanics traced1005..1040. artificial reachability only.",
+      "evidence": [
+        "analysis/round01/stage6-after-wait.ppm",
+        "analysis/round01/stage6-mechanics.ppm",
+        "analysis/round01/stage6-play.snapshot",
+        "analysis/round01/trace-stage6.json"
+      ]
+    },
+    {
+      "id": "R01-stage3",
+      "milestone": "Third layout / representative middle stage",
+      "status": "visited",
+      "natural": false,
+      "restore": "analysis/round01/active.snapshot",
+      "patches": {
+        "0x0400": 2,
+        "0x001B": 3,
+        "0x0051": 0,
+        "0x0031": 0,
+        "0x0016": 6
+      },
+      "registers": {
+        "pc": 64847,
+        "stack": 255
+      },
+      "route": [
+        {
+          "buttons": [],
+          "operations": 1
+        },
+        {
+          "trace_enabled": false,
+          "buttons": [],
+          "frames": 600,
+          "max_operations": 19000000,
+          "timeout_ms": 15000
+        },
+        {
+          "trace_enabled": true,
+          "buttons": [
+            "up",
+            "b"
+          ],
+          "frames": 30,
+          "max_operations": 1000000,
+          "timeout_ms": 15000
+        },
+        {
+          "buttons": []
+        }
+      ],
+      "observed": "Frame991 third layout with stage values[3,1,2,2], enemies/ingredients rendered; movement/pepper input exercised with execution capture.",
+      "evidence": [
+        "analysis/round01/stage3.ppm",
+        "analysis/round01/stage3.snapshot"
+      ]
+    },
+    {
+      "id": "R01-terminal",
+      "milestone": "Game over terminal screen",
+      "status": "visited",
+      "natural": false,
+      "restore": "analysis/round01/stage3.snapshot",
+      "patches": {
+        "0x0052": 0,
+        "0x005A": 255
+      },
+      "registers": {
+        "pc": 50024,
+        "stack": 255
+      },
+      "entry_contract": "C368 game-over path is JMP entry from exhausted-life branch, PPU/NMI initialized; no return contract.",
+      "route": [
+        {
+          "buttons": [],
+          "operations": 1
+        },
+        {
+          "buttons": [],
+          "frames": 35,
+          "max_operations": 1200000,
+          "timeout_ms": 15000
+        }
+      ],
+      "evidence": [
+        "analysis/round01/gameover.ppm",
+        "analysis/round01/gameover.snapshot"
+      ],
+      "observed": "Artificial C368 entry rendered GAME OVER at frame1026; accepted post-edit fetches captured. Natural exhausted-life reachability remains untested."
+    },
+    {
+      "id": "R01-other-layouts",
+      "milestone": "Layouts2/4/5",
+      "status": "deferred",
+      "reason": "Representative first/middle/sixth layouts reached; all six shared initialization/layout consumers structurally covered. No concrete new structural question requires every layout in this pass. Same successful stage recipe uses desired N."
+    },
+    {
+      "id": "R01-ending",
+      "milestone": "Ending / credits / bosses",
+      "status": "unavailable",
+      "reason": "Static completion routine C2AC wraps layout selector7 to1 while total stage increments. No ending/credits/boss contract identified; sixth layout visited. A separate ending is unproven; redirect should reopen only on concrete evidence."
+    }
+  ]
+}

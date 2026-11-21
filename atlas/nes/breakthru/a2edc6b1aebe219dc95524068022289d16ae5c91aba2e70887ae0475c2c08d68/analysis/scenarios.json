@@ -1,0 +1,151 @@
+{
+  "version": 1,
+  "round": 1,
+  "game": "BreakThru NES (local1987 USA title)",
+  "identity": "workspace.json",
+  "milestones": [
+    {
+      "milestone": "Title and single-player Mountain",
+      "status": "visited",
+      "artificial": false,
+      "recipe": "start-game.py then start-confirm.py. From the title snapshot: hold Start 60 frames, release 5, hold Start 60, release 300. Original natural-session inputs and partial timeout budgets are in rpc-log.jsonl.",
+      "observed_result": "Title, Mountain intro and actual gameplay confirmed. Right+B+A exercises movement, shooting and jump. Natural game-clean snapshot is at frame 847, banks [2,3,14,15].",
+      "evidence": [
+        "round-001/start-confirm.py",
+        "round-001/game-clean.snapshot.json",
+        "round-001/play.png"
+      ]
+    },
+    {
+      "milestone": "Bridges",
+      "status": "visited",
+      "artificial": true,
+      "recipe": "Restore game-clean snapshot and release buttons. RAM $8f=2, $90=0, $b2=9, $be=0; PC=$c0c0, SP=$ed, P=$24 at an instruction boundary. Run 90 frames untraced, then right+B+A for 12 traced frames; release buttons. Exact operation/time budgets are in stage scripts.",
+      "observed_result": "Area initialized successfully with correct scene and effective banks. Accepted instruction fetches and representative vehicle movement, firing and jumping were observed.",
+      "evidence": [
+        "round-001/stage-2-direct-after.ppm",
+        "round-001/stage-2-direct-roots.json",
+        "round-001/stage-2-direct.snapshot.json"
+      ]
+    },
+    {
+      "milestone": "Prairie",
+      "status": "visited",
+      "artificial": true,
+      "recipe": "Restore game-clean snapshot and release buttons. RAM $8f=3, $90=0, $b2=9, $be=0; PC=$c0c0, SP=$ed, P=$24 at an instruction boundary. Run 90 frames untraced, then right+B+A for 12 traced frames; release buttons. Exact operation/time budgets are in stage scripts.",
+      "observed_result": "Area initialized successfully with correct scene and effective banks. Accepted instruction fetches and representative vehicle movement, firing and jumping were observed.",
+      "evidence": [
+        "round-001/stage-3-direct-after.ppm",
+        "round-001/stage-3-direct-roots.json",
+        "round-001/stage-3-direct.snapshot.json"
+      ]
+    },
+    {
+      "milestone": "City",
+      "status": "visited",
+      "artificial": true,
+      "recipe": "Restore game-clean snapshot and release buttons. RAM $8f=4, $90=0, $b2=9, $be=0; PC=$c0c0, SP=$ed, P=$24 at an instruction boundary. Run 90 frames untraced, then right+B+A for 12 traced frames; release buttons. Exact operation/time budgets are in stage scripts.",
+      "observed_result": "Area initialized successfully with correct scene and effective banks. Accepted instruction fetches and representative vehicle movement, firing and jumping were observed.",
+      "evidence": [
+        "round-001/stage-4-direct-after.ppm",
+        "round-001/stage-4-direct-roots.json",
+        "round-001/stage-4-direct.snapshot.json"
+      ]
+    },
+    {
+      "milestone": "Airfield",
+      "status": "visited",
+      "artificial": true,
+      "recipe": "Restore game-clean snapshot and release buttons. RAM $8f=5, $90=0, $b2=9, $be=0; PC=$c0c0, SP=$ed, P=$24 at an instruction boundary. Run 90 frames untraced, then right+B+A for 8 traced frames; release buttons. Exact operation/time budgets are in stage scripts.",
+      "observed_result": "Area initialized successfully with correct scene and effective banks. Accepted instruction fetches and representative vehicle movement, firing and jumping were observed.",
+      "evidence": [
+        "round-001/stage-5-direct-v2-after.ppm",
+        "round-001/stage-5-direct-v2-roots.json",
+        "round-001/stage-5-direct-v2.snapshot.json"
+      ]
+    },
+    {
+      "milestone": "Bridges/Prairie intro shortcut",
+      "status": "attempted",
+      "artificial": true,
+      "recipe": "stage-intro.py: same RAM patches, but PC=$c095; run 300 untraced and 12 traced frames.",
+      "observed_result": "Correct intro cards, still in timing loop at 312 frames. Superseded by the supported $c0c0 continuation; intro alone does not count as gameplay.",
+      "evidence": [
+        "round-001/stage-2-after.ppm",
+        "round-001/stage-3-after.ppm"
+      ]
+    },
+    {
+      "milestone": "Late airfield enemy line",
+      "status": "visited",
+      "artificial": true,
+      "recipe": "stage-late.py 5: set RAM $90=58, otherwise use the $c0c0 stage recipe; run 90 untraced and 8 traced frames.",
+      "observed_result": "Late runway, missile vehicles, player projectiles and jump observed; 2227 roots and two additional code bytes.",
+      "evidence": [
+        "round-001/stage-5-late-after.png",
+        "round-001/stage-5-late-roots.json"
+      ]
+    },
+    {
+      "milestone": "Congratulations/aircraft recovered",
+      "status": "visited",
+      "artificial": true,
+      "recipe": "Restore stage-5-direct-v2.snapshot.json, release buttons; PC=$c11c, SP=$ed, P=$24. Run 8 traced and 450 untraced frames.",
+      "observed_result": "Congratulations / recovered aircraft text shown. The first traced slice retained 639 roots; the display is before the separate animation.",
+      "evidence": [
+        "round-001/ending.png",
+        "round-001/ending.snapshot.json",
+        "round-001/ending-roots.json"
+      ]
+    },
+    {
+      "milestone": "Aircraft ending animation",
+      "status": "visited",
+      "artificial": true,
+      "recipe": "Restore ending.snapshot.json; release buttons; PC=$c12c (actual JSR $c45b), SP=$ed, P=$24. Run 6 traced, 90 untraced and 6 traced frames; A+B for the last six, then release.",
+      "observed_result": "Aircraft-on-runway sequence confirmed. Bank 6 handler and NMI $c5 mechanism executed: 996 roots and 823 new code bytes.",
+      "evidence": [
+        "round-001/ending-animation.png",
+        "round-001/ending-animation.snapshot.json",
+        "round-001/ending-animation-roots.json"
+      ]
+    },
+    {
+      "milestone": "Post-ending return to next loop",
+      "status": "visited",
+      "artificial": true,
+      "recipe": "Restore round-001/ending-animation.snapshot.json; release buttons; RAM$9e=1; retain PC/stack. Run6-frame bounded completion test; see redirect/round002-residual-roles/probe-completion-filter.py.",
+      "observed_result": "Completion-latch shortcut returns through aircraft call, resets stage1/checkpoint0 and banks[0,1,14,15]; stage map displayed. Natural aircraft completion and resumed stage1 gameplay not claimed.",
+      "evidence": [
+        "redirect/round002-residual-roles/runtime.jsonl",
+        "redirect/round002-residual-roles/post-ending.png",
+        "redirect/round002-residual-roles/runtime-completion-filter.jsonl",
+        "redirect/round002-residual-roles/completion-filter-fetches.json"
+      ],
+      "attempt_history": [
+        {
+          "milestone": "Post-ending return to next loop",
+          "status": "deferred",
+          "artificial": true,
+          "recipe": "Continue ending-animation.snapshot.json, or inspect $9e completion flag and main continuation at $c12f.",
+          "observed_result": "Not observed. Reset to stage 1 is statically supported; the external full-run description remains an unconfirmed runtime hypothesis. Deferred after bounded representative ending coverage.",
+          "evidence": [
+            "round-001/ending-animation.py",
+            "round-001/fixed-gap-review.asm"
+          ]
+        }
+      ]
+    },
+    {
+      "milestone": "Stage5 first direct trace",
+      "status": "attempted",
+      "artificial": true,
+      "recipe": "stage-direct-v1.py 5: 90 untraced plus 12 traced frames with a 10-second timeout.",
+      "observed_result": "Traced request timed out under concurrent CPU load. Before image preserved; no after snapshot. Retried with eight frames and 30 seconds, successfully.",
+      "evidence": [
+        "round-001/stage-5-direct-before.ppm",
+        "round-001/batch-log.jsonl"
+      ]
+    }
+  ]
+}

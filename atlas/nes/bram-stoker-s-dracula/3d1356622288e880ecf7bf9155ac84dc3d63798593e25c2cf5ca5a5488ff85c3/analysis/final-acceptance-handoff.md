@@ -1,0 +1,13 @@
+# Final editorial acceptance handoff
+
+Checkpoint `pass-003-final-context`. ROM classification **100.00% (262160/262160 bytes)**;32774 Code,98314 Data,131072 Image,0 Unknown. Map/state unchanged, validated with configured `/root/romatlas/target/release/romatlas` (both store/map validation passed).
+
+Full current-source readability complete:13019 reviewed scaffold entries and512 canonical units. Reused valid round003 review credit and conducted targeted final substantive review; rationale in `commentary/editorial-audit.md`. Fixed stale Unknown wording after screen-disable to name following six-byte controller-mask table and corrected current template comparison to ten operand-byte differences. Primary hex independently rechecked; historical outcomes retained, authoritative correction `analysis/final-acceptance/corrections.md`. No structural defect or further naming/comment/boundary inconsistency found in affected dependencies.
+
+**Final editorial acceptance complete.** `commentary/review.json` editorial_audit is reviewed. Authorized documented commentary.py audit completed exit0: ok=true, editorial_audit=true, fresh byte_identical=true; reading-after.asm refreshed. Audit counts13019 regions and12977 scaffold-local reviewed unit records; canonical meaningful units512 (different inventory granularity). Results: `commentary/audit.json`, `commentary/verification.json`, durable copies in `analysis/final-acceptance/`. No pending editorial ranges or audit work. `analysis/final-acceptance/integrity.json` confirms executable source unchanged (comments only), ROM/state/current/checkpoint/frozen baselines/symbols unchanged, all inventory/canonical units reviewed, and map/state validation passed.
+
+Limits preserved: R008 is static relocated code only; bank8 JSR8003 initializes screen, with no demonstrated working sound path/caller/safe returning use/natural reachability. F14A/F14E distinction, bank12 nonzero-frame precondition and all round003 mapper contexts retained. Natural boss defeat and credits unverified; prior shortcut did not establish active boss initialization. No changed useful gameplay method and no replay. Existing NES-001 remains sole nonblocking toolkit issue; no new toolkit issue.
+
+No toolkit, ROM, map or state changes; no archive, publication, deletion or cleanup. Coordinator owns archive-options.json selection; untouched.
+
+Final source game.asm SHA256 `5735fd40b621954ae4acbf2252acec7292736697837368b5ff166896d99fd8d5`; symbols.inc `a3370c27ffd04523c48dc5c8d6a254b98d46cd82f65a4b2bdee13acc6d980199`; reading-after.asm `2b7e51da153bcc966d37179e927deb9525fa7b65d93fa7f13f7df0d02a537f66`. ROM SHA256 remains workspace identity. Approximately3.2GiB free; no bulk scratch created or removed.

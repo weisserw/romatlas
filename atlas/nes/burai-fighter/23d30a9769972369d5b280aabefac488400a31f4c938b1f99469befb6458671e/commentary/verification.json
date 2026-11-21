@@ -1,0 +1,30 @@
+{
+  "byte_identical": true,
+  "ok": true,
+  "rom_sha256": "23d30a9769972369d5b280aabefac488400a31f4c938b1f99469befb6458671e",
+  "source_sha256": {
+    "actor-support.asm": "71038e3560b5fcd2a57a0d8e95c610612a8cbe3d2aa067c8f9aa29a5be170ad4",
+    "actors.asm": "9575d4ea867588ab4e997890f6a043c5c729af88c529a86be06cb20f310c66e6",
+    "camera-terrain.asm": "a7d0b486ef23caee8b28b8fd6c488cc8c34de73fab99e1d116cc5f646da496b1",
+    "chr.asm": "63df2de662877fba06302a8dc57061d7aa0030ebc144973977ed8461d34c5e5e",
+    "collisions.asm": "4df8d97efdfd67526356e4bcc1996406e7ec626cabb0b6cc80fa5ba9af2e9ecb",
+    "game.asm": "def968771e2cbbbb8935fb90483e0f1bbfb4d63ba0463afe802f7ac39aa67abd",
+    "gameplay.asm": "fc4dcdf92faed470a37833fb84a44b0a94ce7845c96e09cee2ea7c173d363086",
+    "hud.asm": "edef79eef3da644517c172e509d5fb42ef2a07ab1268df7c75e478fe2d28ff4a",
+    "input.asm": "b0669c96470deeaed2f164eac5e5ea449b79fef07387e8c00b949dc3dfec8ba2",
+    "irq-abi.asm": "cc2dcda5f58f97fce9980d6c61bde22e405c29856f730c55375ca31da23dcd23",
+    "nmi-ppu.asm": "e3414834ba7dcc55b50506eab08e1f76792896c52af3c63289bd0d0e8e929125",
+    "pickups-clear.asm": "eb0c77afc2d37a4996d43f467de2fe451c6dd6cee71fdb9f29604b11050728ed",
+    "player-shots.asm": "2a4f26374bd6e9198fc51d82a1e72ba50f1bb6c07d61810c796f8a46b14858dc",
+    "raster.asm": "d54291404e205f01484ce9fa36d489d31e534bb4ac03f1b62da750b6de0462bd",
+    "reset.asm": "b9623a9cd6deb5bb14a251248197ef1d6b768dbeb4a30015c6c7bf70be60947c",
+    "resources.asm": "a48128ee1a115791149f0b77e5270964db58da5cd2a1942c872712b9a39a2a7e",
+    "sound.asm": "a259e9f1ad6d660fd671c54d1c94867ab543de277d7217c5db840bb21f256cd5",
+    "stage-commands.asm": "a688204658def870d4626d86986de6af12018e04fc363d53514bc4016e8d2954",
+    "stage-init.asm": "0117de9f6993353fd7c085d6bcec440ed587962b86c7335abe58e3bdc57f3db8",
+    "stage-motion.asm": "1ec2fb7bfdeedca443976cfbbd936787aca84be386eb8a244d68e798dbabbba2",
+    "symbols.inc": "e15a2bf97125d0e8a9cf92fab71571eb32ba8b66875b5b85ed89f66b4264848f",
+    "transitions.asm": "e8b015b5a9467982acd33e789ee81451db7b574596be00c03a0af9c4516b2e5b",
+    "utilities.asm": "6667bb34313a17ccb10e9e1e0471550e1c81f9a9d14003087da3afade8122b62"
+  }
+}

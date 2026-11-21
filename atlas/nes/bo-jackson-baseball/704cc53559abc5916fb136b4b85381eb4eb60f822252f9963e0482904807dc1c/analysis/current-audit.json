@@ -1,0 +1,42 @@
+{
+  "scope": "Independent physical accounting after user-authorized residual fallback",
+  "rom_sha256": "704cc53559abc5916fb136b4b85381eb4eb60f822252f9963e0482904807dc1c",
+  "image_size": 393232,
+  "classified_bytes": 393232,
+  "unknown_bytes": 0,
+  "unknown": [],
+  "percentage": 100.0,
+  "classification_complete_under_user_exception": true,
+  "evidence_backed_bytes": 393231,
+  "manual_fallback_bytes": 1,
+  "kind_bytes": {
+    "Code": 41098,
+    "Data": 89990,
+    "Image": 262144
+  },
+  "provenance_bytes": {
+    "Observed": 16070,
+    "Static": 377161,
+    "Manual": 1
+  },
+  "manual_fallback": [
+    {
+      "id": 10347,
+      "offset": 122751,
+      "length": 1,
+      "kind": "Data",
+      "provenance": "Manual",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "Generic data of unknown meaning by explicit user-directed fallback. Physical $1DF7F, PRG bank14 CPU $9F6F, byte $60. Code-versus-data ambiguity remains: preceding JMP excludes fallthrough only; standalone RTS and data interpretations were unresolved. No claim of observed use, natural reachability, deadness or structural proof.",
+      "evidence": "Explicit user-directed batch-only fallback authorization: first verify exact physical unknown complement; only when <=10 bytes, classify residual singleton as generic Data with Manual provenance. Verified 1 unknown byte at physical 122751 in analysis/fallback-final/before.json. This is authorization, not new structural evidence. Prior ambiguity preserved in analysis/redirect/r004-20261120/rejection-review.md and primary-evidence.json.",
+      "views": []
+    }
+  ],
+  "prior_regions_unchanged": true,
+  "all_regions_evidence_or_explicit_authorization_and_code_views_valid": true,
+  "errors": [],
+  "map_state_checkpoint_equal": true,
+  "checkpoint": "maps/disassembly-fallback-final-verified.json",
+  "map_sha256": "00094b395a8de763f1aef7cb427bc79a0ede27099dbfc0fe1984829489eaacd9"
+}

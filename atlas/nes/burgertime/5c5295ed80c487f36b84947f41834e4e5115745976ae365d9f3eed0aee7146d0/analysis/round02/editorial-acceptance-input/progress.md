@@ -1,0 +1,51 @@
+# Commentary progress
+
+Round 2 current-source readability is complete against **pass-002-reviewed**.
+Classification is separate: 24,588/24,592 bytes (99.98%), with four unknown bytes
+at [005D,005E) and [3485,3488). No readability ranges are deferred.
+
+Preserved the entire previous phase under
+analysis/round02/commentary-round01-final/ before refreshing the frozen baseline.
+The original before/ directory is also retained under
+analysis/round02/commentary-round01-before-retained/. Generated the current
+baseline separately and installed only baseline artifacts; maintained source was
+never regenerated. Current baseline, phase1 state, source mapping and review
+metadata match maps/current.json and analysis/state.json.
+
+Reviewed the complete current physical inventory: 112 scaffold intervals, including
+62 code intervals (11,307 bytes), 48 data/image intervals (13,281 bytes), and two
+explained unknown intervals (four bytes). Carried all 322 valid earlier unit
+reviews by unchanged physical identity/dependencies, and added the reviewed
+CheckMusicReplacementPriority unit for [3609,3614), now five named instructions.
+Full code-unit coverage, all review source locations, all source differences,
+known metadata corrections and source-wide operand naming were checked. No raw
+numeric address operands remain. Current source has 7,576 lines plus symbols.
+Full readability reuses sound round1 prose and review, without cosmetic rewrites.
+
+The new entry tests the incoming header's replacement mask using the active music
+ID. Zero music or permission loads the selected effect slot; refusal returns to
+the original caller. Comments give slot/header/request/stack assumptions, helper
+preservation and fixed NROM bank context. Natural entry remains unresolved;
+no observed execution is claimed. Both other unknowns retain boundary notes.
+
+Reconciled four round2 map corrections with existing source explanations: initial
+BCD extra-life parameters; eight-byte bonus descriptors versus separate seven-byte
+player indicators; five pepper coordinate pairs plus twelve remaps; one-based,
+stage-capped pepper stun countdowns. Corrected the older initialization comment
+that still called the first parameter a pacing value, removed resolved stale-map
+complaints and renamed the unused generic EntityStatusValues alias. Source-line
+references were remapped after edits, preserving valid review credit.
+
+Fresh verification rebuilt and linked source/game.o and confirmed whole-file byte
+identity. The independently generated before/ baseline also verified byte-identical.
+reading-after.asm was refreshed afterward; reading-before.asm now reflects the
+new frozen baseline, with its original retained in the round1 archive. Evidence:
+analysis/round02/commentary-final-verification.json and
+analysis/round02/commentary-readability-review.json. No toolkit issues found.
+
+Remaining meanings and assumptions are in uncertainties.md: natural priority entry,
+negative sound request domain, opposing directional inputs, segment-wrapper
+fallthrough, precise generic data/audio extents and the two structural unknowns.
+These are documented limitations, not deferred readability work. Final
+editorial_audit stays pending for terminal editorial/archive acceptance. No final
+audit, redirect, toolkit edits, archive publication or cleanup ran in this phase.

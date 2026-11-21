@@ -1,0 +1,9 @@
+# Final editorial handoff — r004
+
+Current-source readability and final editorial review are complete. All 10,346 scaffold entries and 837 unique meaningful units are reviewed; no readability ranges remain. The accepted terminal classification result remains INCOMPLETE: 393231/393232 bytes, 99.9997456972%, one Unknown byte at physical 0x1DF7F (bank 14 CPU 0x9F6F, stored 0x60). Existing sound singleton research was reused without reclassification or reopening.
+
+Final targeted review reuses r001–r004 full-source credit and checks current saved-tail/RTS/interpreter dependencies, roster/DBF4/saved-mode corrections, singleton boundaries, numeric aliases, inventory locations and concrete stale claims. Corrected 24 stale source-comment patterns and 43 affected inventory summaries; named five local loop/continuation CPU aliases; corrected the projection-wrapper comment and current uncertainty preamble. Existing assembly source line locations remain valid. Details: commentary/editorial-audit.md and analysis/editorial-final-scope.json.
+
+Verification artifacts: commentary/audit.json (supported final audit and fresh configured-release byte-identical full-ROM rebuild), commentary/verification.json (source hashes), commentary/reading-after.asm (refreshed), analysis/editorial-final-audit-output.json (CLI result) and analysis/editorial-final-verification.json (current baseline/state/map identity, unchanged ROM digest, reading/source hashes and read-only archive.editorial_status contract). Final archive execution/restore, cleanup, publication and toolkit changes are outside this pass; none performed.
+
+Remaining uncertainty concerns singleton code/data role, saved-tail natural selection and localized game units/meanings in commentary/uncertainties.md. It does not constitute pending readability work or full hardware compatibility. Preserve source and local assets for any later archive preparation; do not distribute internal source/assets as a portable map.
