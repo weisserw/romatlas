@@ -1,0 +1,162 @@
+{
+ "version": 1,
+ "notes": "Inputs use NES emulator.input {buttons:[...]} (held set; [] releases) -- see TK-001. Route tokens: 'btn:N' hold N frames then release; 'w:N' wait N frames traced; 'q:N' wait N frames with tracing disabled (TK-002). Frame stepping: emulator.step unit=frame. Round-1 helper: analysis/round1-tools/act.py.",
+ "scenarios": [
+  {
+   "id": "S1-startup-title",
+   "milestone": "Power-on legal screen -> title (CAESARS PALACE fountain)",
+   "route": "emulator.start; w:420",
+   "budget": "420 frames",
+   "status": "visited",
+   "result": "Legal notice then title; frame wait loop $D9E5; switch slot banks 1/4 selected for data loads",
+   "evidence": "analysis/snapshots (title not exported; replay route)"
+  },
+  {
+   "id": "S2-taxi-intro",
+   "milestone": "Taxi arrival intro",
+   "route": "S1 then start:3 w:60 w:200",
+   "status": "visited",
+   "result": "Taxi scene, Start skips",
+   "evidence": "replay"
+  },
+  {
+   "id": "S3-cashier",
+   "milestone": "Cashier dialogue ($1000 credit)",
+   "route": "S2 then start:3 w:150 a:3 w:180 a:3 w:200",
+   "status": "visited",
+   "result": "ASCII dialogue text at $C84D (fixed bank) displayed; A advances",
+   "evidence": "Read stream of data banks during S1-S3 summarized in analysis/round1-tools/readoffs_startup.json.gz"
+  },
+  {
+   "id": "S4-casino-floor",
+   "milestone": "Casino floor overhead (cursor + walking player)",
+   "route": "S3 then q:60 a:3 w:120 (frame ~1315)",
+   "status": "visited",
+   "result": "Cursor ($04EA x/$04EB y) moves with d-pad; A on a destination makes the player walk; screen scrolls vertically; slots ($1/$5/$25/$100) and cashier visible",
+   "evidence": "analysis/snapshots/casino-floor.snap.json, casino-floor.png"
+  },
+  {
+   "id": "S5-slot-25",
+   "milestone": "$25 Magnificent Sevens slot machine",
+   "route": "S4 then right:40 w:5 down:12 right:6 w:3 a:3 w:150",
+   "status": "visited",
+   "result": "Slot screen entered (bank 6 code); could not insert coin / pull lever with A, B, or A+drag in a few attempts",
+   "evidence": "analysis/snapshots/slot-25.png",
+   "obstacle": "Unknown slot UI contract; hotspot code is in bank 6. Investigate $0537 hotspot index / $9AD7 hit tests in redirect rather than more button guessing.",
+   "redirect_r1a1": {
+    "result": "Coin insert and spin work: cursor ($04EA/$04EB) to coin slot X $B0-$C7,Y $70-$7F (SlotHotspotTest id 1) + A inserts one coin (PayOneCoin, chips debited); then cursor to handle X $E0-$F7,Y $28-$B7 (id 2, kind 9 4-reel: Y $28-$97) + A spins. Round-1 failure was cursor placement, not a missing UI step.",
+    "route": "From analysis/snapshots/casino-floor.snap.json: emulator.run_until main.pc==$C403 (UpdateCasinoFloor entry, JSR'd from CasinoFloorLoop, so the stack matches the JMP DispatchGameScreen contract), then emulator.registers.set {pc:$C438, y:13..23}; step 120-150 frames (untraced). Helper: analysis/redirect/r1-a1/tools/drv.py enter(y). Artificial register entry: proves the hotspot contract/screens, not the natural floor route. then tools/slot.py: move_to(0xBA,0x78), A x coins, move_to(0xEA,0x60), A, step 500.",
+    "evidence": [
+     "analysis/redirect/r1-a1/shots/s15-spin.png",
+     "analysis/redirect/r1-a1/shots/s13-spin.png",
+     "analysis/redirect/r1-a1/shots/s14-spin.png",
+     "analysis/redirect/r1-a1/shots/s23-spin.png",
+     "analysis/redirect/r1-a1/tools/slot.py"
+    ]
+   }
+  },
+  {
+   "id": "S6-blackjack-table",
+   "milestone": "Blackjack table (INSURANCE PAYS 2 TO 1, chip stacks $100/$25/$10/$5/$1, BET)",
+   "route": "S4 then down:60 w:2 right:8 w:2 a:3 w:120 down:40 w:2 a:3 w:200 down:40 w:2 a:3 q:200 w:10",
+   "status": "visited",
+   "result": "Table entered; clicking/dragging chips to BET did not place a bet in 2 attempts",
+   "evidence": "analysis/snapshots/blackjack-table.snap.json, blackjack-table.png",
+   "obstacle": "Betting UI contract unknown (possibly chips must be obtained first).",
+   "redirect_r1a1": {
+    "result": "Bet placed and hand played to a win: first pick a chip on the chip bar (Y $B0-$DF; X $40/$60/$80/$A0/$C0 bands = $100/$25/$10/$5/$1; SelectedChip $B1), then A on the bet circle (X $70-$8F,Y $88-$97, id 2) places it, A on DEAL (X $78-$87,Y $60-$6F, id 1). Stand = hotspot 2 at Y $75-$80 around HitButtonX ($0654). Bet 3x$1, player 17 vs dealer bust, $1 stack 7->13.",
+    "route": "From analysis/snapshots/casino-floor.snap.json: emulator.run_until main.pc==$C403 (UpdateCasinoFloor entry, JSR'd from CasinoFloorLoop, so the stack matches the JMP DispatchGameScreen contract), then emulator.registers.set {pc:$C438, y:8}; step 120-150 frames (untraced). Helper: analysis/redirect/r1-a1/tools/drv.py enter(y). Artificial register entry: proves the hotspot contract/screens, not the natural floor route. then tools/bj.py",
+    "evidence": [
+     "analysis/redirect/r1-a1/shots/bj-stand.png",
+     "analysis/redirect/r1-a1/tools/bj.py"
+    ]
+   }
+  },
+  {
+   "id": "S7-other-games",
+   "milestone": "Roulette, video poker, keno/red dog/horse racing (game list unconfirmed for NES)",
+   "route": "not attempted",
+   "status": "visited",
+   "reason": null,
+   "redirect_r1a1": {
+    "result": "Video poker (Y=3, $100 machine): 5 coins (coin slot Y $90-$9F, X>=$E0), DEAL (Y $C0-$CF, X>=$D0), HOLD buttons Y $A0-$AF at X $30-$C7, draw; hand lost ($1000 -> $500). Roulette (Y=10): chip bar select, A on layout spot, scroll layout back left (TableScrollX $05E9 -> 0) and A on wheel area ((CursorX+TableScrollX)/4 < $0C, CursorY $10-$6F; hotspot 2) spins; result 16 red, bet lost. Big Six (Y=12): chip bar select, A on '$1' sign (X $20-$4F,Y $68-$7F), A on wheel strip (X $40-$AF,Y $08-$17, id 8) spins; lost. Slot kinds 9 (Y=13 4-reel 'Fountains of Fortune'), 10 (Y=14 'Magnificent Sevens', won $10), 11 (Y=15 'Riches of Rome'), $500 machine Y=23. Clock (Y=1, Caesars sign with time/temperature), restroom door (Y=2, 'closed' message screen $0D). Info/pay-table screens (InfoScreenAtTopEdge) confirmed by moving the cursor to the top edge: video poker payoff table, 3-reel and 4-reel pay tables with progressive jackpots.",
+    "route": "From analysis/snapshots/casino-floor.snap.json: emulator.run_until main.pc==$C403 (UpdateCasinoFloor entry, JSR'd from CasinoFloorLoop, so the stack matches the JMP DispatchGameScreen contract), then emulator.registers.set {pc:$C438, y:HOTSPOT}; step 120-150 frames (untraced). Helper: analysis/redirect/r1-a1/tools/drv.py enter(y). Artificial register entry: proves the hotspot contract/screens, not the natural floor route. then tools/poker.py, roul.py (+ left 120 frames, move_to(0x18,0x40), A), b6.py, slot.py",
+    "evidence": [
+     "analysis/redirect/r1-a1/shots/g3.png",
+     "analysis/redirect/r1-a1/shots/p-deal.png",
+     "analysis/redirect/r1-a1/shots/p-draw.png",
+     "analysis/redirect/r1-a1/shots/g10.png",
+     "analysis/redirect/r1-a1/shots/r-spin.png",
+     "analysis/redirect/r1-a1/shots/g12.png",
+     "analysis/redirect/r1-a1/shots/b6-spin.png",
+     "analysis/redirect/r1-a1/shots/g1.png",
+     "analysis/redirect/r1-a1/shots/g2.png",
+     "analysis/redirect/r1-a1/shots/info-poker.png",
+     "analysis/redirect/r1-a1/shots/info-slotB.png",
+     "analysis/redirect/r1-a1/shots/info-slot4.png"
+    ]
+   }
+  },
+  {
+   "id": "S8-cash-out-ending",
+   "milestone": "Cash in chips / run of bad luck / ending",
+   "route": "not attempted",
+   "status": "visited",
+   "reason": null,
+   "redirect_r1a1": {
+    "result": "Exit hotspot Y=0 -> 'CASH IN YOUR CHIPS? YES NO'; A on YES -> EndingTally ($C72B): rating screen (flashing message), ending music $83, scrolling desert picture (screens $16/$17), then MainInit (legal screen). All six ratings visited by patching ChipCounts $A7-$AB / ChipOverflow $077E before entry: $0 -> bus (broke path), $1000 natural -> taxi ($11), 60x$100 -> green car ($12), 200x$100 -> orange sedan ($13), overflow 3 -> limousine ($14), 255x$100+overflow 10 -> red sports car ($15). Broke path: zero chips, enter slot Y=15 -> SlotTypeB_Round sees PlayerIsBroke -> ReturnFromGame -> GameOverBroke ('I'M SORRY YOU HAD A RUN OF BAD LUCK. COME AGAIN SOON.') -> A -> EndingTally message $10 (bus). Cash status screen: START on floor ('TOTAL EARNINGS $1000').",
+    "route": "From analysis/snapshots/casino-floor.snap.json: emulator.run_until main.pc==$C403 (UpdateCasinoFloor entry, JSR'd from CasinoFloorLoop, so the stack matches the JMP DispatchGameScreen contract), then emulator.registers.set {pc:$C438, y:0}; step 120-150 frames (untraced). Helper: analysis/redirect/r1-a1/tools/drv.py enter(y). Artificial register entry: proves the hotspot contract/screens, not the natural floor route. then A (YES), step ~900; patches written with emulator.memory.write before run_until (tools/ending.py, msgs.py).",
+    "evidence": [
+     "analysis/redirect/r1-a1/shots/g0.png",
+     "analysis/redirect/r1-a1/shots/e-nat-msg.png",
+     "analysis/redirect/r1-a1/shots/e-nat-pic.png",
+     "analysis/redirect/r1-a1/shots/e-nat-after.png",
+     "analysis/redirect/r1-a1/shots/e-rich-msg.png",
+     "analysis/redirect/r1-a1/shots/e-m12-msg.png",
+     "analysis/redirect/r1-a1/shots/e-m13-msg.png",
+     "analysis/redirect/r1-a1/shots/e-m14-msg.png",
+     "analysis/redirect/r1-a1/shots/e-broke-text.png",
+     "analysis/redirect/r1-a1/shots/e-broke-msg.png",
+     "analysis/redirect/r1-a1/shots/cash.png"
+    ]
+   }
+  },
+  {
+   "id": "S9-redirect-traced-replay",
+   "milestone": "Bounded traced replay of all r1-a1 milestone routes for observed coverage",
+   "route": "analysis/redirect/r1-a1/tools/cov.py (trace capacity 0 enabled only after each artificial entry; all games, info screens, clock, restroom, cash status, quit YES/NO, ending to MainInit, broke ending)",
+   "status": "visited",
+   "evidence": [
+    "analysis/redirect/r1-a1/obs-r1a1.json.gz",
+    "analysis/redirect/r1-a1/coverage-delta.json"
+   ],
+   "result": "3,809 s, ~11k frames; 14,166 observed ROM contexts; all milestones re-run traced; summary analysis/redirect/r1-a1/coverage-delta.json"
+  },
+  {
+   "id": "S10-r2a2-read-watch",
+   "milestone": "Data read-watch over slot routes and startup (redirect r2-a2)",
+   "route": "analysis/redirect/r2-a2/tools/watch.py LO HI TAG [machines]; watch2.py LO HI TAG; hunt.py/hunt2.py + bsearch.py to locate the reading instruction",
+   "status": "visited",
+   "evidence": [
+    "analysis/redirect/r2-a2/read-watch.json",
+    "analysis/handoffs/round-2-redirect-a2.md"
+   ],
+   "result": "see read-watch.json: $B59C-$B5A7 and $B678-$B6B3 read (consumers found), $85CE and $B554 never read in four slot machines; $E195 read once at startup (see handoff)"
+  },
+  {
+   "id": "S11-r3a1-clock-and-slot-symbols",
+   "milestone": "Clock screen alternate phase; slot reel symbol identification (four-reel, kind 10, kind 11)",
+   "route": "analysis/redirect/r3-a1/tools/clock.py (enter(1)); symbols.py Y TAG with Y=13/14/23 (r1-a1 drv.enter: casino-floor snapshot, run to 7:$C403, set pc=$C438,y=Y)",
+   "budget": "clock <=600 frames; each slot entry 150 frames",
+   "status": "visited",
+   "result": "Clock alternate phase shows the temperature ('85' + degree sign at 8:00). Symbol ids mapped to pictures and checked against ReelPos x strips on screen. Artificial entry; natural routes to these screens were already visited in r1-a1.",
+   "evidence": "analysis/redirect/r3-a1/findings.json, analysis/redirect/r3-a1/shots/"
+  }
+ ],
+ "notes_r1a1": "Redirect r1-a1: all games, ending and all ending ratings visited via the DispatchGameScreen register contract (artificial entry) and RAM patches of ChipCounts/ChipOverflow; game mechanics exercised with ordinary d-pad/A input. Natural floor walking to each hotspot was not repeated (S4-S6 show the floor route works).",
+ "notes_r2_disasm": "Round 2 disassembly: no new gameplay. All milestones (every game type, info screens, quit dialog, all ending ratings, broke ending) were already visited in r1-a1; their traced replay obs-r1a1.json.gz was imported as Observed provenance. Unvisited-coverage residue (6,535 Static code bytes, e.g. 7:$D1D6, 6:$9E1E) is a provenance question only; deferred because classification is complete and traced stepping is ~15-30x slower (TK-002).",
+ "notes_r2a1": "Redirect r2-a1: no new gameplay (static investigation only). All milestones incl. every game, all six ending ratings and the broke ending remain visited (r1-a1). Screens $10-$15 identified from existing r1-a1 ending captures (entrance picture with bus/taxi/green car/orange sedan/limousine/red sports car). Deferred: screen $02 capture (no literal caller; recipe: from casino-floor.snap.json, bounded run with a breakpoint on ScreenDecode 7 entry logging A, or artificial ScreenDecode A=2 + one frame capture labeled artificial) - semantic only, ScreenData02 already typed.",
+ "notes_r2a2": "Redirect r2-a2 (artificial states, bounded): (1) Screen $02 decode: from analysis/snapshots/casino-floor.snap.json hold START, run_until PC=$DD99 (ShowCashStatus `jsr ScreenDecode`, A=#$0C), registers.set a=2, release, 90 frames -> analysis/redirect/r2-a2/shots/screen-02.png (control A=$0C -> ctl-0c.png). Screen $02 is a developer placeholder text page: 'Front of Caesar's palace with taxi and flashing lights. Lights will be made to flash by rewriting their char definitions.' (ShowCashStatus then prints its amount over it). Artificial: proves content only; no natural selector of screen $02 is known. (2) Read-watch replays of the r1-a1 slot routes (machines Y=13,14,15,23; tools/watch.py, Read events filtered to a physical range, streamed then deleted) and of power-on->title->taxi->cashier (tools/watch2.py). No new milestones; all S1-S9 remain visited.",
+ "notes_r3_disasm": "Round 3 disassembly: no new gameplay. Every milestone (every game type, info screens, quit dialog, ending ratings, broke ending) was already visited in r1-a1, and the round's leads were all static table and code-vs-data corrections backed by saved r2-a2 read-watch evidence. More play would only add provenance (TK-002: tracing is slow).",
+ "notes_r3a1": "Round 3 redirect r3-a1: reviewed unvisited milestones - none remain (all game types, info screens, quit dialog, ending ratings and broke ending visited in r1-a1). Added S11 (bounded artificial captures answering commentary questions). No further gameplay planned: the remaining residuals are static no-consumer data spans whose read-watch/scan evidence would not change with more play."
+}

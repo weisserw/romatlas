@@ -1,0 +1,292 @@
+[
+ {
+  "milestone": "boot/title/credits",
+  "route": "reset; run 300 frames (untraced and traced)",
+  "result": "Mindscape title, credits; idle main loop $FA44; NMI-driven task scheduler",
+  "status": "visited",
+  "artificial": false
+ },
+ {
+  "milestone": "attract demo (level 1 Geo-Cruiser)",
+  "route": "reset; wait ~965 frames without Start",
+  "result": "AI-driven Geo-Cruiser demo over ocean; banks 12/3/6 executed at $A000",
+  "status": "visited",
+  "artificial": false
+ },
+ {
+  "milestone": "start game -> password screen",
+  "route": "reset; w:300; press Start (2f) every 22 frames until $0793==1 (tools_local/press_until.py start 793 1); wait to frame ~1200",
+  "result": "'USE JOYSTICK TO ENTER PASSWORD' screen; snapshot tools_local/snaps/password_screen.json (local, same-build)",
+  "status": "visited",
+  "artificial": false
+ },
+ {
+  "milestone": "password entry by joystick",
+  "route": "on password screen: up:2 w:5 right:2 w:5 up:2 w:5 down:2 w:5 left:2 w:5",
+  "result": "digit 1 incremented to 1; cursor movement confirmed",
+  "status": "visited",
+  "artificial": false
+ },
+ {
+  "milestone": "L1 Captain Planet stage (intro/briefing+summon+transformation)",
+  "route": "tools_local/pw.py 0 (password 763754) + play.py inputs (see tools_local/allscen.sh, cpscen.sh)",
+  "patch": "password digits written to $057B-$0580 (=digit+4) on restored password snapshot, then Start held 10 frames; ROM password check selects stage",
+  "result": "after ~1500 untraced frames CP side-view stage (industrial pipes, health bar) reached; snapshot tools_local/snaps/cp_stage1.json; ~360 traced frames: bank 7 heavily executed, data bank 9 at $8000",
+  "status": "visited",
+  "artificial": true
+ },
+ {
+  "milestone": "L2 Geo-Cruiser stage",
+  "route": "tools_local/pw.py 1 (password 955783) + play.py inputs (see tools_local/allscen.sh, cpscen.sh)",
+  "patch": "password digits written to $057B-$0580 (=digit+4) on restored password snapshot, then Start held 10 frames; ROM password check selects stage",
+  "result": "L2 Geo-Cruiser gameplay (forest/canyon), traced ~240 frames of move/fire",
+  "status": "visited",
+  "artificial": true
+ },
+ {
+  "milestone": "L2 Captain Planet stage",
+  "route": "tools_local/pw.py 2 (password 637511) + play.py inputs (see tools_local/allscen.sh, cpscen.sh)",
+  "patch": "password digits written to $057B-$0580 (=digit+4) on restored password snapshot, then Start held 10 frames; ROM password check selects stage",
+  "result": "briefing/summon reached; CP gameplay not traced (transformation still running when trace window ran)",
+  "status": "visited",
+  "artificial": true,
+  "notes": [
+   "r002-a: CP gameplay reached (volcanic cave, bank 8, Level 1) with pw.py 2 + play.py \"start:10 w:900 start:10 w:300 start:10 w:400\" + \"w:900\"; then \"right+b:200 down+b:150 right+b:200\"; task 8:B307 live."
+  ]
+ },
+ {
+  "milestone": "L3 Geo-Cruiser",
+  "route": "tools_local/pw.py 3 (password 148574) + play.py inputs (see tools_local/allscen.sh, cpscen.sh)",
+  "patch": "password digits written to $057B-$0580 (=digit+4) on restored password snapshot, then Start held 10 frames; ROM password check selects stage",
+  "result": "L3 Geo-Cruiser gameplay traced ~240 frames",
+  "status": "visited",
+  "artificial": true
+ },
+ {
+  "milestone": "L3 Captain Planet",
+  "route": "tools_local/pw.py 4 (password 786565) + play.py inputs (see tools_local/allscen.sh, cpscen.sh)",
+  "patch": "password digits written to $057B-$0580 (=digit+4) on restored password snapshot, then Start held 10 frames; ROM password check selects stage",
+  "result": "briefing/summon reached; CP gameplay not traced (transformation still running when trace window ran)",
+  "status": "visited",
+  "artificial": true,
+  "notes": [
+   "r001-a: tools_local/pw.py 4 then play.py \"start:10 w:1000 start:10 w:500 start:10 w:500\" + \"w:1200\" (untraced, ~4430 frames) -> CP gameplay (green industrial level, bank 8, CpStageBank $07C9=8). Snapshot analysis/redirect/r001-a/runs/l3cp_start.json. Moved right/up/down ~1200 frames with task sampling (analysis/redirect/r001-a/runs/l3cp_tasks.json: 8 bank-8 task resume PCs in previously unknown bytes) + 150 traced frames (observed bank 8 fetches, analysis/redirect/r001-a/runs/obs_roots_r001a.json)."
+  ]
+ },
+ {
+  "milestone": "L4 Geo-Cruiser",
+  "route": "tools_local/pw.py 5 (password 920272) + play.py inputs (see tools_local/allscen.sh, cpscen.sh)",
+  "patch": "password digits written to $057B-$0580 (=digit+4) on restored password snapshot, then Start held 10 frames; ROM password check selects stage",
+  "result": "L4 Geo-Cruiser gameplay traced",
+  "status": "visited",
+  "artificial": true
+ },
+ {
+  "milestone": "L4 Captain Planet",
+  "route": "tools_local/pw.py 6 (password 799274) + play.py inputs (see tools_local/allscen.sh, cpscen.sh)",
+  "patch": "password digits written to $057B-$0580 (=digit+4) on restored password snapshot, then Start held 10 frames; ROM password check selects stage",
+  "result": "password k=6 + start:10 w:900 start:10 w:300 start:10 w:400 untraced, then ~300 traced frames: transformation end and CP stage start; bank 13 executed (93 contextual roots), data bank 10 at $8000",
+  "status": "visited",
+  "artificial": true
+ },
+ {
+  "milestone": "L5 Geo-Cruiser",
+  "route": "tools_local/pw.py 7 (password 344551) + play.py inputs (see tools_local/allscen.sh, cpscen.sh)",
+  "patch": "password digits written to $057B-$0580 (=digit+4) on restored password snapshot, then Start held 10 frames; ROM password check selects stage",
+  "result": "L5 Geo-Cruiser gameplay traced",
+  "status": "visited",
+  "artificial": true
+ },
+ {
+  "milestone": "L5 Captain Planet",
+  "route": "tools_local/pw.py 8 (password 829443) + play.py inputs (see tools_local/allscen.sh, cpscen.sh)",
+  "patch": "password digits written to $057B-$0580 (=digit+4) on restored password snapshot, then Start held 10 frames; ROM password check selects stage",
+  "result": "briefing/summon reached; CP gameplay not traced (transformation still running when trace window ran)",
+  "status": "visited",
+  "artificial": true,
+  "notes": [
+   "r001-a: tools_local/pw.py 8, play.py \"start:10 w:200\", until 7d3!=0, \"start:10 w:100\", until 7c9!=0, \"w:600\" + 900 more frames -> CP gameplay (blue base level, $FC=4, CpStageBank=13). Snapshot analysis/redirect/r001-a/runs/l5cp_start.json. ~1500 frames movement sampled (analysis/redirect/r001-a/runs/l5cp_tasks.json, task 13:$B9C6) + 280 traced frames. Large structure seen at top of the level (possible boss/target, not engaged)."
+  ]
+ },
+ {
+  "milestone": "Ending",
+  "route": "tools_local/pw.py 9 (password 506210) + play.py inputs (see tools_local/allscen.sh, cpscen.sh)",
+  "patch": "password digits written to $057B-$0580 (=digit+4) on restored password snapshot, then Start held 10 frames; ROM password check selects stage",
+  "result": "ending screens 'FINAL SCORE', 'EARTH IS SAVED! THANK YOU, PLANETEERS' (traced ~390 frames)",
+  "status": "visited",
+  "artificial": true
+ },
+ {
+  "milestone": "direct stage start via task-table patch",
+  "route": "tools_local/stage.py 0 1 at idle loop",
+  "patch": "$FC=0,$0799=1,$04AA..$04BB=0, task0 $04AA=$80 $0486/$0498=$E418 $04BC=0 $052B=$FF",
+  "result": "L1 CP briefing ('HEY DUDES...') started; superseded by password route",
+  "status": "visited",
+  "artificial": true
+ },
+ {
+  "milestone": "bosses",
+  "status": "visited",
+  "reason": "not reached in round 1; CP stages need ~1500 untraced frames of briefing/transformation before gameplay; tracing runs ~3 fps (TI-004)",
+  "notes": [
+   "r002-a: level-3 boss arena and level-4 boss visited artificially (see r002-a rows); level-1 goal objects started; level-0 goal not visited."
+  ]
+ },
+ {
+  "milestone": "game over / continue",
+  "status": "visited",
+  "reason": "not reached in round 1; CP stages need ~1500 untraced frames of briefing/transformation before gameplay; tracing runs ~3 fps (TI-004)",
+  "notes": [
+   "r001-a: GameOverScreenSetup ($F1xx) is actually the post-CP-stage \"WELL DONE / PASSWORD FOR THE NEXT LEVEL IS\" screen (StageClearTask path with ContinueFlag set); a real game-over screen was not located. Deferred: lives/health RAM contract not identified.",
+   "r002-a: real game over reached (RingLevel/Energy patch, natural sequence afterwards); see r002-a row."
+  ]
+ },
+ {
+  "milestone": "CP stage gameplay for levels 2-5",
+  "status": "visited",
+  "reason": "not reached in round 1; CP stages need ~1500 untraced frames of briefing/transformation before gameplay; tracing runs ~3 fps (TI-004)",
+  "notes": [
+   "r001-a: levels 3 and 5 CP visited (see those rows); L2 CP left attempted (same bank 8 object code family as L1/L3)."
+  ]
+ },
+ {
+  "milestone": "level-clear password screen (after CP stage)",
+  "route": "restore tools_local/snaps/cp_stage1.json; python3 analysis/redirect/r001-a/tools/starttask.py E2E8 7D6=1 (at idle loop: ContinueFlag=1, kill tasks, task0=StageClearTask $E2E8, TaskBank $FF); run 550 frames",
+  "patch": "$07D6=1; $04AA-$04BB=0; task0 {$04AA=$80,$0486/$0498=$E2E8,$04BC=0,$052B=$FF}",
+  "result": "Captain Planet portrait, \"WELL DONE\", \"PASSWORD FOR THE NEXT LEVEL IS\"; $F1E6 portrait tasks observed executing ($F1E6-$F214)",
+  "status": "visited",
+  "artificial": true,
+  "evidence": [
+   "analysis/redirect/r001-a/runs/obs_roots_r001a.json"
+  ]
+ },
+ {
+  "milestone": "credits scene (CreditsTask)",
+  "route": "after the previous scenario: python3 analysis/redirect/r001-a/tools/starttask.py E39A; trace 200 frames",
+  "patch": "task0 = CreditsTask $E39A (artificial start; CHR/palette context not from the natural ending)",
+  "result": "credits scene with flying Captain Planet sprite; $F3D9 credit sprite tasks observed ($F3D9-$F490)",
+  "status": "visited",
+  "artificial": true,
+  "evidence": [
+   "analysis/redirect/r001-a/runs/obs_roots_r001a.json"
+  ]
+ },
+ {
+  "milestone": "L5 Captain Planet progression toward boss (round 2)",
+  "route": "emulator.start; emulator.snapshot.import analysis/redirect/r001-a/runs/l5cp_start.json; play.py w:2; tasksample.py \"right+b:600 right+down+b:300 right+up+b:300 right+b:600\" then \"down+b:300 right+b:300 up+b:400 right+b:300 left+b:200\" (untraced, sampled every 8 frames)",
+  "result": "Captain Planet flew through the industrial maze but did not progress far (blocked by walls); health bar emptied visually but no game over within ~3600 frames; only 5 distinct live tasks (D1CD, D271, 13:B9C6, 7:A00F, 7:AACC), all in classified code. No boss reached.",
+  "status": "attempted",
+  "artificial": true,
+  "pass": "pass-002",
+  "notes": [
+   "Stopped: no classification gain possible (residual 5 bytes are unreferenced), repetitive maze play. Boss/game-over still need the CP health/position RAM contract (redirect)."
+  ]
+ },
+ {
+  "milestone": "game over sequence + CONTINUE/END menu (round 2)",
+  "route": "snapshot.import analysis/redirect/r001-a/runs/l5cp_start.json; write $0713=0 (RingLevel), $0563=$DD (Energy >= $DC -> CpPlayerDeath); run ~1700 frames; Start; menu: Start = CONTINUE, Down:4 then Start = END",
+  "patch": "$0713=0, $0563=$DD (Level 4 CP stage, bank 13 at $A000)",
+  "result": "death animation, EndingFlag=$FF, Gaia scene \"I AM VERY SAD, PLANETEERS... YOU ... THE PLANET IS DYING...\" (EndingTask $E1DB, $EDBE); Start -> \"FINAL SCORE / CONTINUE / END\" (EndingPictureTask $E297); CONTINUE -> stage restarts with RingLevel 4, Energy refilled; END -> Mindscape title (TitleLoop $DDAC). Traced ~360 frames.",
+  "status": "visited",
+  "artificial": true,
+  "pass": "redirect-r002-a",
+  "evidence": [
+   "analysis/redirect/r002-a/README.md",
+   "analysis/redirect/r002-a/cov_r002a.json"
+  ]
+ },
+ {
+  "milestone": "level-3 (4th level) Captain Planet boss arena (round 2)",
+  "route": "tools_local/pw.py 6; play.py \"start:10 w:900 start:10 w:300 start:10 w:400\" + \"w:1200\"; analysis/redirect/r002-a/tools/addtask.py 13 A015 F5=1 (artificial creation of the boss-zone task normally made by bank 7 $B0CA); run_until pc=$AD95 & prg_banks[1]=13, write $AE=$D0; ~100 frames",
+  "patch": "EventPhase $F5=1; task slot {entry $A015, TaskBank 13}; CpSavedX $AE=$D0 once",
+  "result": "Level3BossTrigger -> Level3BossTask: arena map from bank $0B, EventPhase 2->3, boss vehicle with two part tasks (13:ADE9, AE4D, AE5E, AFBA, AFC7). Boss escaping right (anchor X hi=1, lo=$20) -> EventPhase 2/4 restart and RingLevel 4->3->2 (observed). Boss not defeated (needs A-move hit within CpSavedX+$26). Traced 120 frames. Snapshot analysis/redirect/r002-a/l3boss_arena.json.",
+  "status": "visited",
+  "artificial": true,
+  "pass": "redirect-r002-a",
+  "evidence": [
+   "analysis/redirect/r002-a/README.md",
+   "analysis/redirect/r002-a/l3boss_arena.json"
+  ]
+ },
+ {
+  "milestone": "level-4 (final) boss, victory and ending via boss clear (round 2)",
+  "route": "snapshot.import analysis/redirect/r001-a/runs/l5cp_start.json; addtask.py 13 A015 F5=1; 300 frames; write $0709=5 (GoalHitCount); ~1300 frames",
+  "patch": "EventPhase=1, task {A015, bank 13}, GoalHitCount=5",
+  "result": "Level4BossTask/ShieldBuilder/claw tasks live (13:B68D, B6B2, B7E5, B8B8, B8CA; BossClawState $C8 launched). After GoalHitCount=5: EndingFlag 2, CpVictoryPose (7:BB5E/BB6B), then EndingTask with \"FINAL SCORE\" and \"EARTH IS SAVED! THANK YOU, PLANETEERS\". Boss fight itself not played (boss placed at the level anchor away from the start position). Traced ~500 frames.",
+  "status": "visited",
+  "artificial": true,
+  "pass": "redirect-r002-a",
+  "evidence": [
+   "analysis/redirect/r002-a/README.md",
+   "analysis/redirect/r002-a/cov_r002a.json"
+  ]
+ },
+ {
+  "milestone": "level-1 (2nd level) goal objects (round 2)",
+  "route": "L2 CP route above; addtask.py 8 A015 F5=1; \"w:100 right:300\"",
+  "patch": "EventPhase=1, task {A015, bank 8}",
+  "result": "bank 8 CreateInitialObjects created the level-1 goal object family (8:A435, A49F, A8C5, A8D4, A8E3, B3A3, B4D3, B5AA live, all Static instruction starts); objects are at the level anchor, not engaged.",
+  "status": "attempted",
+  "artificial": true,
+  "pass": "redirect-r002-a",
+  "evidence": [
+   "analysis/redirect/r002-a/README.md"
+  ],
+  "notes": [
+   "r003-a: defeat sequence visited (see row \"level-1 goal defeat (round 3)\")."
+  ]
+ },
+ {
+  "milestone": "level-0 (1st level) goal (Level1GoalTask)",
+  "status": "visited",
+  "reason": "Not attempted in r002-a: same CreateInitialObjects($A015, bank 8) mechanism as level 1 and the remaining value is gameplay coverage only; recipe: tools_local/pw.py 0 route + addtask.py 8 A015 F5=1, then move to the anchor area / patch BossPartsHit $07A0=5.",
+  "artificial": true,
+  "notes": [
+   "r003-a: visited; label correction: level-0 list is GrabberEntryA/B, GoalEntryL0 (GoalTask), IdlerEntryL0, GoalTargetTask, GoalGuardEntryL0 (Level1GoalTask belongs to level 1). See next rows."
+  ]
+ },
+ {
+  "milestone": "level-0 boss zone + target defeated by played A-button hits (round 3)",
+  "route": "tools_local/pw.py 0; play.py \"start:10 w:900 start:10 w:300 start:10 w:400 w:600\"; analysis/redirect/r002-a/tools/addtask.py 8 A015 F5=1; w:60 (snapshot analysis/redirect/r003-a/l0boss_zone.json); write slot-9 (GoalTargetTask) ObjXLo $1B=$88 ObjXHi $2D=0 ObjYLo $3F=$60 ObjYHi $51=0; then \"a:4 w:50\" x6",
+  "patch": "EventPhase $F5=1, boss-zone task {A015, bank 8}; target object teleported onto CP (position only)",
+  "result": "each real A press hit the target (ObjIndex 1..5, sprite changes); 6th set GoalHitCount 4 -> GoalTask MarkStageCleared, score 50, StageEndFlag 2, target -> debris (bank 13 $B533), CP victory pose, then WELL DONE stage-clear screen",
+  "evidence": [
+   "analysis/redirect/r003-a/README.md",
+   "analysis/redirect/r003-a/shots/l0t2.png",
+   "analysis/redirect/r003-a/shots/l0d.png",
+   "analysis/redirect/r003-a/cov_r003a.json"
+  ],
+  "status": "visited",
+  "artificial": true
+ },
+ {
+  "milestone": "level-1 goal defeat (Level1GoalTask barrier phase) (round 3)",
+  "route": "tools_local/pw.py 2; same play tokens; addtask.py 8 A015 F5=1; w:120; write $0709=4; w:200; write $07A0=5; w:900",
+  "patch": "GoalHitCount=4, BossPartsHit=5 (artificial)",
+  "result": "BarrierBuilderTask built 5 barrier parts (bank 8 $B732) and minion task (bank 8 $B6A1) appeared; BossPartsHit 5 -> MarkStageCleared, StageEndFlag 2, stage-clear tasks $E360/$F1F1",
+  "evidence": [
+   "analysis/redirect/r003-a/shots/l1a.png",
+   "analysis/redirect/r003-a/shots/l1c.png"
+  ],
+  "status": "visited",
+  "artificial": true,
+  "deferred": "destroying the parts by play needs power 2 (power-select RAM contract not established); outcome already observed"
+ },
+ {
+  "milestone": "level-2 (3rd level) CP stage gameplay + goal rule (round 3)",
+  "route": "tools_local/pw.py 4; same play tokens; traced \"right+b:60 left+b:30 down+b:40 a:4 w:30 up:30\"; addtask.py 8 A015 F5=1; w:820",
+  "patch": "EventPhase=1, boss-zone task {A015, bank 8} at MapColumn 3",
+  "result": "CP gameplay with damage (Energy 193->104); GoalTask set GoalHitCount 4 at once because MapColumn<4 (level-2 rule), victory pose, then next stage (Geo-Cruiser, banks 1/12) started",
+  "evidence": [
+   "analysis/redirect/r003-a/shots/l2c.png",
+   "analysis/redirect/r003-a/shots/l2d.png"
+  ],
+  "status": "visited",
+  "artificial": true
+ },
+ {
+  "milestone": "CpHurtCount>=$10 boss-escape life-loss exception",
+  "status": "deferred",
+  "reason": "semantic question only (commentary uncertainty); no unknown byte or classification depends on it; r002-a level-3 arena recipe available if wanted"
+ }
+]

@@ -1,0 +1,167 @@
+[
+ {
+  "id": "S01-boot-title",
+  "milestone": "Power-on, license screen, title (PRESS START)",
+  "route": "emulator.start; step ~425 frames (no input). Title loops between license and logo screens.",
+  "budget": "frame steps <=600 per call, max_operations 1e8",
+  "result": "Visited; no attract-mode gameplay demo observed within ~1300 frames.",
+  "evidence": [
+   "traces/round01-contexts.json"
+  ],
+  "status": "visited",
+  "notes": "Snapshot file scratch/snap_title.json (same-build, local)."
+ },
+ {
+  "id": "S02-main-menu",
+  "milestone": "Main menu (compete all/some, practice, high scores)",
+  "route": "From title: start held 4 frames (emulator.input buttons=[start]) then release; menu at ~frame 1878.",
+  "result": "Visited. Cursor: up/down; select with A (Start does not select).",
+  "evidence": [
+   "scratch/snap_menu.json"
+  ],
+  "status": "visited"
+ },
+ {
+  "id": "S03-practice-menu",
+  "milestone": "Practice event list (1 half pipe .. 6 flying disk, 7 done)",
+  "route": "Menu: down x2, A.",
+  "result": "Visited",
+  "evidence": [
+   "scratch/snap_practice.json",
+   "scratch/snap_practice2.json (cursor on 4 SKATING)"
+  ],
+  "status": "visited"
+ },
+ {
+  "id": "S04-half-pipe",
+  "milestone": "Half Pipe skateboarding event",
+  "route": "Practice: A on 1) -> 'NEXT EVENT' -> ~250 frames load -> 'PRESS BUTTON A TO START' -> A + mash:300:1 (a,b,left,right,up,down, 6-frame holds, seed 1)",
+  "result": "Visited; rider falls; fall messages ('CAN'T KICK TURN BACKWARDS.'), PRACTICE AGAIN? prompt (down toggles YES/NO, A confirms).",
+  "status": "visited"
+ },
+ {
+  "id": "S05-foot-bag",
+  "milestone": "Foot Bag event incl. timer expiry and FOOTBAG SUMMARY",
+  "route": "Practice 2); A; mash; timer 1:15 runs out (RAM $52 = seconds counter, observed 53->52->51 per 60 frames); A -> FOOTBAG SUMMARY screen",
+  "result": "Visited incl. summary screen and seagull appearance in second round.",
+  "status": "visited"
+ },
+ {
+  "id": "S06-surfing",
+  "milestone": "Surfing event",
+  "route": "Practice 3); A; mash 300 traced, rest untraced",
+  "result": "Visited (gameplay traced 300 frames). Surfing end-of-run screen not captured.",
+  "status": "visited"
+ },
+ {
+  "id": "S07-skating",
+  "milestone": "Roller skating event",
+  "route": "Practice 4); A; mash (seed 4) - rider falls quickly",
+  "result": "Visited briefly",
+  "status": "visited"
+ },
+ {
+  "id": "S08-bmx",
+  "milestone": "BMX event",
+  "route": "Practice 5); A; mash:300:6 then mash:420:7 right-heavy",
+  "result": "Visited; crash messages ('TOO BAD HOTSHOT', 'DORKY').",
+  "status": "visited"
+ },
+ {
+  "id": "S09-flying-disk",
+  "milestone": "Flying disk event",
+  "route": "Practice 6); A. Throw recipe found: left held 20 frames, right held 15, then A 2 frames -> disk thrown; 'PRESS A TO CONTINUE'.",
+  "result": "Visited; throws registered (score 0); FLYING DISK RESULTS trophy in compete mode.",
+  "status": "visited",
+  "notes": "r03-a1: the S09 recipe (left 20, right 15) turns the meter at $B5 >= $70, so power is 0 and the disk drops (score 0). A real throw: left ~75 f (marker near $48-$4F), right 2 f, ~52 f, left 2 f -> disk flies (evidence/watch-disk3.txt)."
+ },
+ {
+  "id": "S10-high-scores",
+  "milestone": "View high scores",
+  "route": "Menu down x3, A",
+  "result": "Visited (table: POPPI/KEV/PAUL/TESS/SWEEP/RACHEL)",
+  "status": "visited"
+ },
+ {
+  "id": "S11-compete-registration",
+  "milestone": "Compete in all events: name entry, team (sponsor) select, IS THIS CORRECT?",
+  "route": "Menu A; name grid: A pressed once on 'A', then down x3 right x6 -> END, A; team grid right 1, A (COSTA DEL MAR); player 2 END with empty name; confirm YES.",
+  "result": "Visited",
+  "evidence": [
+   "snapshot compete_confirm (session-local)"
+  ],
+  "status": "visited"
+ },
+ {
+  "id": "S12-compete-circuit",
+  "milestone": "Compete: event results trophy screens (FOOT BAG RESULTS, FLYING DISK RESULTS)",
+  "route": "Continue compete run with mash per event; untraced except transitions.",
+  "result": "Visited trophy screens. After flying disk the circuit showed 'NEXT EVENT: HALF PIPE' again and continued looping events; no overall winner/ending screen observed within ~25000 frames. | r03-a1: NATURAL completion reached (artificial=false, no RAM/register writes): compete-all flying disk finished (3 tries), EventIntroFrame, one A press -> CurrentEvent 6 -> FINAL RESULTS trophy (1ST, COSTA DEL MAR) -> main menu after timeout.",
+  "evidence": [
+   "scratch/snap_r7.json (frame 25064, second foot bag)"
+  ],
+  "status": "visited",
+  "notes": "Ending/award ceremony not reached; event order/round count unknown. Redirect: find RAM event index / round counter and the routine selecting the next event.",
+  "attempts": [
+   {
+    "round": 2,
+    "phase": "redirect",
+    "attempt": "r02-a1",
+    "route": "import scratch/snap_r7.json (natural compete-all, frame 25064, CurrentEvent 1, 1 player); random 6-frame mash with no RAM writes, polling $03/$3C every 6 frames, stop at CurrentEvent=6 (analysis/redirect/r02-a1/tools/natural_end.py)",
+    "result": "Run 1 (seed 7, a/b/left/right, 30000 frames): foot bag -> surfing -> skating; stalled in skating (NmiState $14) from frame 29420. Run 2 (seed 11, right-biased, 36000 frames): foot bag -> surfing -> skating -> BMX -> flying disk; stalled in flying disk (NmiState $0C) from frame 35360. Ending not reached naturally. The earlier loop observation is explained statically: EventIntroFrame with CurrentEvent=6 jumps to ShowMainMenu on any new press, so mashing skips FINAL RESULTS and restarts compete.",
+    "evidence": [
+     "analysis/redirect/r02-a1/evidence/natural-ending-run1-seed7.json",
+     "analysis/redirect/r02-a1/evidence/natural-ending-run2-seed11.json"
+    ],
+    "status": "attempted (deferred: diminishing value; FINAL RESULTS visited artificially in S14, code classified)"
+   },
+   {
+    "round": 3,
+    "phase": "redirect",
+    "attempt": "r03-a1",
+    "route": "tools/disk_natural.py: import scratch/snap_r7.json; deterministic replay of r02-a1 run 2 (seed 11, 6-frame random holds) to CurrentEvent=5/NmiState=$0C (frame 35360, saved scratch/snap_r03_disk_nat.json); then per cycle: left 20 f, right 15 f, A 2 f, wait <=900 f for round end, A 2 f + 200 f (alternate cycles only dismiss the 'press A' prompt); stop at NmiState=8; press A once; idle 900 f",
+    "result": "Flying disk ended naturally (EventTries 3->0; the stall had been missing throw input - the round ends only when the disk lands, DiskFlightStep $AE>=$A8, no timer). After one A press at EventIntroFrame: CurrentEvent 6, FINAL RESULTS screen (frame ~40358), main menu by frame 40658. Snapshot at FINAL RESULTS: scratch/snap_r03_final_nat.json.",
+    "evidence": [
+     "analysis/redirect/r03-a1/evidence/disk-natural-run2.log",
+     "analysis/redirect/r03-a1/evidence/disk-natural-completion.json",
+     "analysis/redirect/r03-a1/evidence/natural-final-results.png",
+     "analysis/redirect/r03-a1/evidence/disk-natural-run1.log (run 1: extra A press at CurrentEvent 6 skipped FINAL RESULTS -> main menu, as predicted statically)"
+    ],
+    "status": "visited (natural)"
+   }
+  ]
+ },
+ {
+  "id": "S13-compete-some",
+  "milestone": "Compete in some events selection",
+  "route": "round 2: poweron; import scratch/snap_menu.json; trace enabled capacity 0; down:3 f6 a:3 f90 (P1 name grid) ; a:3 f6, down:3 x3, right:3 x6, a:3 f40 (name A, END); right:3 f4 a:3 f60 (team COSTA DEL MAR); P2: down x3, right x6, a:3 f60 (END, empty); a:3 f90 (YES) -> COMPETE IN WHICH EVENTS; down a (foot bag), down x4 a (flying disk), down a (DONE) f120 -> NEXT EVENT: FOOT BAG",
+  "status": "visited",
+  "notes": "Expected to reuse registration code; low priority. r01-a1: still deferred - NextSelectedEvent ($8972) and registration code already classified; no unknown structure expected.",
+  "result": "Visited naturally (frames 1880-2636). Event selection list and NEXT EVENT screen shown; 1576 ROM fetch addresses, none on non-Code bytes (no new code).",
+  "evidence": [
+   "scratch/r02_some5.png",
+   "scratch/r02_some6.png (scratch, not retained)"
+  ]
+ },
+ {
+  "id": "S14-ending",
+  "milestone": "Final standings / ending / credits",
+  "route": "ARTIFICIAL: import scratch/snap_trophy.json (EventIntroFrame, NmiState $08, compete all $3A=0); emulator.memory.write RAM $3C (CurrentEvent)=5; press A 2 frames; 80 frames -> FINAL RESULTS (trophy, team) ; DelayTimer expiry (~340 frames) -> main menu (NmiState 0).",
+  "status": "visited",
+  "notes": "redirect r01-a1; natural route = finishing flying disk in compete-all (earlier loop observation in S12 unexplained; likely $3A nonzero or event order).",
+  "result": "Visited FINAL RESULTS screen (EventIntroFrame inc CurrentEvent -> 6 -> ResetScores -> ShowAwards). No separate credits: after timeout game returns to main menu. Artificial-state observation; no new code fetched (all already classified).",
+  "evidence": [
+   "analysis/redirect/r01-a1/evidence/final-results-trace-fetches.json"
+  ]
+ },
+ {
+  "id": "S06b-surf-end",
+  "milestone": "Surfing end of run -> judges' score screen (ShowEventScore) -> frame handler $18",
+  "route": "ARTIFICIAL: from practice surfing (snapshot surf_start: practice cursor 2, A, 300f, A, 200f; NmiState $16, $87=4) write RAM $87 (EventTries)=1; ~130 frames no input -> wipeout -> NmiState $1A -> $E2ED jmp $8F43; trace 90 frames; A -> surfing restarts",
+  "result": "Visited: judge score board screen; observed bank0 $B9F1 handler, bank1 $84AB, bank2 $9F0A/$A05B (previously unknown).",
+  "evidence": [
+   "analysis/redirect/r01-a1/evidence/surf-end-trace-fetches.json"
+  ],
+  "status": "visited"
+ }
+]

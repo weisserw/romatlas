@@ -1,0 +1,213 @@
+{
+ "version": 1,
+ "notes": "Round-1 scenarios. Inputs use emulator.input {buttons:[...],port:1} (button/pressed params are silently ignored on NES, see TK-001). Durable snapshots: traces/round01/*.snap.gz (same-build romatlas snapshots; gunzip then emulator.snapshot.import). Tracing was aggregate-only (capacity 0, all kinds); coverage/contexts/edges dumps in traces/round01/*.json.gz. Frame counts are approximate where noted; routes are replayable by the listed button sequences.",
+ "scenarios": [
+  {
+   "id": "S01",
+   "milestone": "Power-on -> Sofel logo -> flag intro -> title menu",
+   "route": "emulator.reset; ~1000 frames; start (hold 4); title menu appears (NEW GAME / SAVED GAME)",
+   "budget": "1400 frames traced",
+   "result": "visited; boot/intro/title code observed",
+   "evidence": [
+    "traces/round01/ctx_boot.json.gz",
+    "traces/round01/title.snap.gz"
+   ],
+   "status": "visited"
+  },
+  {
+   "id": "S02",
+   "milestone": "NEW GAME story text -> world map",
+   "route": "title.snap; start(4)+60; ~320 frames; A(4)+60 x ~26",
+   "result": "visited; text printer, story portrait, world map; opponent cursor cycles Canada(Rocky Hammer, blackjack), England(Paul Kieton, roulette), Russia(Nikorai Bunin, blackjack), China(Rie Lenka, roulette), Japan(Ryu Mishima, poker), Australia(Jyina Nagule, blackjack); Brazil/Africa flags not selectable at start",
+   "evidence": [
+    "traces/round01/ctx_game.json.gz"
+   ],
+   "status": "visited"
+  },
+  {
+   "id": "S03",
+   "milestone": "Travel cutscenes (day plane to Canada, night plane to Australia) and country title",
+   "route": "map: right(4)+30 to opponent, A; ~900-1500 frames",
+   "result": "visited (partly untraced to save time; day travel traced)",
+   "status": "visited"
+  },
+  {
+   "id": "S04",
+   "milestone": "Blackjack vs Rocky Hammer: bet, deal, stand/hit(bust)/split(rejected)/surrender/double-down",
+   "route": "bj_start -> A until chip panel; up adds chip, left/right change chip denomination, A confirms; choice menu cursor right=HIT, down=SPLIT, down+right=SURRENDER, down,down=DOUBLE-DOWN",
+   "result": "visited; all five choices exercised from snapshot bj_choice",
+   "evidence": [
+    "traces/round01/bj_choice.snap.gz"
+   ],
+   "status": "visited"
+  },
+  {
+   "id": "S05",
+   "milestone": "Roulette vs Paul Kieton: table, cursor, chip placement, quit dialog",
+   "route": "roulette_start; A x4; dpad moves chip cursor; A opens chip panel; up adds chip; A places; select opens 'DO YOU WANNA QUIT NOW? YES/NO'",
+   "result": "attempted; bet placement and quit dialog seen; wheel spin trigger not found (start/b/A at NO did not continue) | Redirect r01-a1: Start (dispatch index 4, B5_StartPressed) after placing a bet spins the wheel; result \"YOU LOST ALL YOUR BETS\" observed (final match table).",
+   "evidence": [
+    "traces/round01/roulette_start.snap.gz",
+    "traces/redirect-r01/final_roulette_betplaced.snap.gz"
+   ],
+   "status": "visited",
+   "next": null
+  },
+  {
+   "id": "S06",
+   "milestone": "Blackjack vs Jyina Nagule (Australia, $100 bankroll), win a hand",
+   "route": "aus_betscreen; RAM patch $07AD=10 (artificial) then up, A; stand",
+   "result": "visited; dealer bust 'I'VE BUSTED. YOU WON!'; Jyina 100->99 on screen while $07AD stayed 10, so $07AD is not the displayed bankroll; opponent defeat not reached | Redirect r01-a1: Jyina money is $07A9 (+ copy $075B), 32-bit cents. Patched both to 100 (artificial), bet $1, stand, dealer busted -> Jyina $0 -> \"OH, NO!\" -> GameOutcome=3, OpponentResultBits+1=$0C, map shows X (traced; $C197-$C1A2 continuation executed).",
+   "evidence": [
+    "traces/round01/aus_betscreen.snap.gz",
+    "traces/redirect-r01/jyina_broke.snap.gz",
+    "traces/redirect-r01/cov_defeat.json.gz",
+    "traces/redirect-r01/ctx_defeat.json.gz",
+    "traces/redirect-r01/map_after_aus.snap.gz",
+    "analysis/redirect/r01-a1/frames/jyina_defeated_map.png"
+   ],
+   "status": "visited",
+   "next": "identify bankroll variables (R1-L004)"
+  },
+  {
+   "id": "S07",
+   "milestone": "SAVED GAME password screen",
+   "route": "title.snap; right; start; ~120 frames; A/right/down to enter characters; start",
+   "result": "visited; password grid (0-9,B-H,J-R,T-Y,$,!,?) and entry; invalid password handling not confirmed",
+   "status": "visited"
+  },
+  {
+   "id": "S08",
+   "milestone": "Poker vs Ryu Mishima (Japan)",
+   "route": "map cursor right x6 -> Japan, A",
+   "result": "unavailable at start: 'BEAT AILTON FIRST!' (Ailton presumably Brazil); traced the lock message | Redirect r01-a1: after writing OpponentResultBits $0526-$0528 (FF 0F 00, artificial) the map offered Abu Ganzil (India, roulette), Othman Jr. (Nigeria, poker), Ailton Silver (Brazil, poker). Played poker vs Ailton (opponent 9): A toggles HOLD, B draws, A advances; Ailton money $075B patched to 100; won (\"YOU'VE WON THE GAME\", OpponentResultBits+2=$03).",
+   "evidence": [
+    "traces/round01/map_japan_locked.snap.gz",
+    "traces/redirect-r01/poker_ailton_start.snap.gz",
+    "traces/redirect-r01/cov_poker.json.gz",
+    "traces/redirect-r01/ctx_poker.json.gz",
+    "traces/redirect-r01/map_after_ailton.snap.gz",
+    "analysis/redirect/r01-a1/frames/poker_ailton_won.png"
+   ],
+   "status": "visited",
+   "reason": "needs progression state (opponent defeat / unlock flags) - RAM contract unknown (R1-L004)"
+  },
+  {
+   "id": "S09",
+   "milestone": "Opponent defeat, later opponents, final leader, ending/credits",
+   "route": "none yet",
+   "result": "Redirect r01-a1: see S10-S12 (later opponents unlocked, final match reached, credits via artificial entry). | r02-a1: S13.",
+   "status": "attempted",
+   "reason": null
+  },
+  {
+   "id": "S10",
+   "milestone": "All opponents marked defeated; final leader KING (Las Vegas) unlocked",
+   "route": "jyina_broke.snap (Jyina at $0, before \"OH, NO!\"); write $0526-$0528 = FF FF 03 (artificial); press A x7 (8-frame hold, 120 after) -> map; cursor right x6..8 reaches \"KING / LAS VEGAS\" at USA",
+   "result": "visited; WorldMapMarkCountries sets WorkBuffer[0]=$FF when all 9 defeated, map adds KING entry",
+   "evidence": [
+    "traces/redirect-r01/map_all_defeated.snap.gz",
+    "analysis/redirect/r01-a1/frames/map_king_unlocked.png"
+   ],
+   "status": "visited"
+  },
+  {
+   "id": "S11",
+   "milestone": "Final match vs KING (FinalMatch: roulette first, bet range $1000-$10000, King $100000)",
+   "route": "map_all_defeated.snap; select KING, A, ~1500 frames; write PlayerMoney $050E = 80 84 1E 00 ($20000, artificial); A x4, A (chip panel), up, A (place), Start spins",
+   "result": "visited roulette stage and a spin; King money at $06A0/$06DB; win not obtained (11 timing variations of Start lost; patching King money to 0 before a losing spin just paid King). Next: locate winning-number variable / bet on it, or patch King money after a win. | Round 2 (artificial): final_roulette_betplaced.snap, King money $06A0/$06DB patched to 00 01 86 A0 ($1000), Start 8 frames; $06D2 (set to 35 at frame 7) patched to 0/1/37 -> still 'YOU LOST ALL YOUR BETS' (not the result variable). Wheel frames: traces/round02/final_roulette_spin_sheet.png. Lead R2-L022. | Redirect r02-a1: winning number $0718 is chosen at round init before betting (B5_OpponentBet via $A8F6 lists), so Start timing cannot change it. Bet $4000 straight on the preset number 27 -> 35:1, King broke (natural roulette win given the money patch). See S13.",
+   "evidence": [
+    "traces/redirect-r01/final0.snap.gz",
+    "traces/redirect-r01/final_roulette_betplaced.snap.gz",
+    "analysis/redirect/r01-a1/frames/final_king_roulette.png",
+    "analysis/redirect/r01-a1/frames/roulette_spin_result.png",
+    "traces/round02/final_roulette_spin_sheet.png"
+   ],
+   "status": "visited"
+  },
+  {
+   "id": "S12",
+   "milestone": "Ending / staff credits",
+   "route": "ARTIFICIAL: king_sel map state, step to instruction boundary, emulator.registers.set pc=$C1FD (FinalMatch success tail: ldx #$80; jsr $C360; jsr $C312; loop), stack=$F0; run ~900 frames then A presses",
+   "result": "visited artificially: laughing Casino Kid ending picture (garbled background because preceding setup skipped) then scrolling staff credits (CASINO KID 2 BY SOFEL CORP. ...). Not natural reachability. | Redirect r02-a1: ending now also reached via the game's own FinalMatch fall-through ($C1FB -> $C1FD), see S13.",
+   "evidence": [
+    "traces/redirect-r01/ending_credits.snap.gz",
+    "traces/redirect-r01/cov_ending.json.gz",
+    "traces/redirect-r01/ctx_ending.json.gz",
+    "analysis/redirect/r01-a1/frames/credits_artificial.png"
+   ],
+   "status": "visited-artificial"
+  },
+  {
+   "id": "S13",
+   "milestone": "Final match won through all three stages -> natural ending sequence",
+   "route": "final0.snap; PlayerMoney $050E=80 84 1E 00 (artificial); A x4; Down x18, Right x4 (cursor on 27 = preset $0718); A, Up x11 ($4000), A; Start -> 35:1, King broke -> blackjack: $07A9/$075B=A0 86 01 00 (artificial), A, Up x2, A, A... dealer busts -> poker: $075B=A0 86 01 00 (artificial), A x15 -> King antes all -> 'NOW, YOU'RE THE KING OF CASINO!' -> FinalMatch_Ending $C1FD by fall-through -> ending cutscene",
+   "budget": "~6,000 frames; ending traced ~3,000 frames (Instruction kind)",
+   "result": "visited: roulette/blackjack/poker stages vs KING each won, FinalMatch_Ending executed by fall-through (not $C1B3), ending cutscene text shown. Money patches artificial; no result/flow patch.",
+   "evidence": [
+    "traces/redirect-r02/f_board.snap.gz",
+    "traces/redirect-r02/f_bet27.snap.gz",
+    "traces/redirect-r02/f_after27.snap.gz",
+    "traces/redirect-r02/f_bj_after.snap.gz",
+    "traces/redirect-r02/f_pk0.snap.gz",
+    "traces/redirect-r02/f_pk1.snap.gz",
+    "traces/redirect-r02/cov_ending_nat.json.gz",
+    "analysis/redirect/r02-a1/frames/win27.png",
+    "analysis/redirect/r02-a1/frames/bj4.png",
+    "analysis/redirect/r02-a1/frames/pk1.png"
+   ],
+   "status": "visited"
+  },
+  {
+   "id": "S14",
+   "milestone": "Poker debug/test menu (zpDebugFlag $9D)",
+   "route": "poker_ailton_start.snap -> pre-deal prompt (pk_predeal.snap, pc $89CD bank 8); write $9D=1 (artificial); Start",
+   "result": "visited: FIRST / ESCAPE / WIN COMPUTER / WIN PLAYER menu; a choice ends the match via B4_CheckMatchEnd ('YOU'VE QUIT THE GAME'). Control without $9D: Start ignored. $9D is never written by ROM code, so this is not naturally reachable.",
+   "evidence": [
+    "traces/redirect-r02/pk_predeal.snap.gz",
+    "traces/redirect-r02/cov_debug.json.gz",
+    "analysis/redirect/r02-a1/frames/debug.png"
+   ],
+   "status": "visited"
+  },
+  {
+   "id": "S15",
+   "milestone": "Full staff credits scroll after the natural ending",
+   "route": "continue f_pk1.snap with A presses (~4,000+ frames)",
+   "result": "deferred: traced run stopped after ~1,000 frames of the ending cutscene to save time; credits scroll itself was already visited artificially (S12) and its setup $B62B executed here ($B70C not within the traced window).",
+   "status": "deferred",
+   "reason": "time; no unresolved structural question depends on it"
+  },
+  {
+   "id": "S16",
+   "milestone": "Game over (player out of money) -> GAME OVER screen -> restart",
+   "route": "traces/redirect-r04/go_after.snap.gz is after the event; source traces/redirect-r02/f_bet27.snap.gz; write $0718=05 $0719=09, $050E=00 00 00 00 (artificial); Start 8 frames; then 22 x (150 frames, A 4 frames, 30 frames) max",
+   "budget": "~1,300 frames to $C1A3, ~1,100 more to title",
+   "result": "visited: loss dialogue, GameOutcome 2, MainLoop_AfterGame $C1A3 executed, GAME OVER screen (bank 3 post-game), Sofel logo, title. Patches artificial (money/number); loss flow natural.",
+   "evidence": [
+    "analysis/redirect/r04-a1/frames/gameover.png",
+    "traces/redirect-r04/cov_gameover.json.gz",
+    "analysis/redirect/r04-a1/covcheck_gameover.txt"
+   ],
+   "status": "visited-artificial",
+   "reason": null
+  },
+  {
+   "id": "S17",
+   "milestone": "Final-match poker: scripted royal-flush deal (hand 25/40) and a full showdown vs KING",
+   "route": "ARTIFICIAL: traces/redirect-r02/f_pk0.snap.gz; 1 frame; write PkrHandCount $0746=$18 (hand 25; $27 for hand 40); 5 x (A hold 4, 60 after) -> deal (traces/redirect-r07/deal25.snap.gz). For a showdown: write King money $075B-$075E = 00 E1 F5 05; A (hold 6, 80 after) until the hold prompt; A on each card with Right between (hold 6/60 and 6/80) to hold all five; B (6/120) draws (traces/redirect-r07/afterdraw.snap.gz); 10 x A (6/80).",
+   "budget": "~2,700 frames; Instruction coverage only after the draw (full-ROM Instruction tracing runs ~1 frame/s)",
+   "result": "visited (artificial): PkrScriptedDeal set by B4_PickRoundMessage and cleared by the terminator; player dealt Q 10 K J A of spades; King also held the ace of spades (terminator card dealt without used check); showdown ROYAL FLUSH vs HIGH CARD, PkrShowdownWinner=1, PkrPlayerHandRank=10; pot paid, next hand 'PLACE AN ANTE.'. 53 Static bank-4 code regions executed (R7-L041).",
+   "evidence": [
+    "analysis/redirect/r07-a1/frames/deal25.png",
+    "analysis/redirect/r07-a1/frames/showdown3.png",
+    "analysis/redirect/r07-a1/scripted_deal.json",
+    "analysis/redirect/r07-a1/showdown3.json",
+    "analysis/redirect/r07-a1/deal40.json",
+    "traces/redirect-r07/cov_scripted3.json.gz",
+    "traces/redirect-r07/cov_deal40.json.gz"
+   ],
+   "status": "visited"
+  }
+ ]
+}

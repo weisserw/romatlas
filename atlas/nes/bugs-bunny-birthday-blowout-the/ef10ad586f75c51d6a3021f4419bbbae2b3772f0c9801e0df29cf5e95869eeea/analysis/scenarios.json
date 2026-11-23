@@ -1,0 +1,176 @@
+[
+ {
+  "id": "S1-boot-title-intro",
+  "milestone": "power-on, title, intro text, Stage 1 Round 1 start",
+  "route": "emulator.start; trace enabled (capacity 0) frames 0-~1300; press start (6 frames hold) at title (~frame 650); press A/start every 25-60 frames through intro text pages (untraced from ~frame 1650 to 3109); reaches play at ~frame 3109",
+  "patch": null,
+  "result": "Title 'Happy Birthday Bugs', English intro story, Stage 1 Round 1 gameplay; snapshot stage1 exported (local /tmp, not retained)",
+  "evidence": [
+   "analysis/evidence/screens/round1-title.png",
+   "analysis/evidence/round1-observed-coverage.json#session1"
+  ],
+  "status": "visited",
+  "artificial": false,
+  "round": 1,
+  "input_api": "emulator.input {port:1, buttons:[...]} (full held set); frame stepping via emulator.step unit=frame"
+ },
+ {
+  "id": "S2-stage1-play",
+  "milestone": "Stage 1 Round 1 movement/jump/mallet",
+  "route": "from S1: hold right 60f, A 10f, B 4f, A 20f (traced)",
+  "patch": null,
+  "result": "Bugs walks/jumps, collects carrot (HUD 00->01)",
+  "evidence": [
+   "analysis/evidence/round1-observed-coverage.json#session1"
+  ],
+  "status": "visited",
+  "artificial": false,
+  "round": 1,
+  "input_api": "emulator.input {port:1, buttons:[...]} (full held set); frame stepping via emulator.step unit=frame"
+ },
+ {
+  "id": "S3-round-clear",
+  "milestone": "round completion + bonus board + next round",
+  "route": "in play write $043F=$08; wait ~240 frames; press start every 40 frames",
+  "patch": "emulator.memory.write $043F=[8] (RAM, cpu space)",
+  "result": "'STAGE 1 ROUND 1 COMPLETED!! GO TO THE BONUS ROUND' -> bonus board 'YOU NEED MORE CARROTS'/'SEE YOU LATER' -> 'STAGE 1 ROUND 2 GET READY' -> play. $043F=$80 direct write fails (INC at $C6E3); $043F=$04 = door/scroll transition, Bugs died.",
+  "evidence": [
+   "analysis/evidence/screens/round1-bonus-board.png",
+   "analysis/evidence/round1-progression.log"
+  ],
+  "status": "visited",
+  "artificial": true,
+  "round": 1,
+  "input_api": "emulator.input {port:1, buttons:[...]} (full held set); frame stepping via emulator.step unit=frame"
+ },
+ {
+  "id": "S4-stage-progression",
+  "milestone": "all six stages (grass, desert, rocky hills, cave/waterfall, forest, castle), rounds 1-4 of stages 1-2, rounds 1 and 4 of stages 3-6",
+  "route": "auto2.py goto(w,r): if current != (w,r-1) write $0420=w,$0421=r-1 (r=0: w-1,3); write $043F=8; step 20-frame chunks, press start when not in stage loop until PC hits $D41C (stage frame handler) 3x with matching world/round; then traced play window: hold right 40f, A 12f, B 4f, wait 30f, A 14f, release, B 4f (~150 frames)",
+  "patch": "$0420/$0421/$043F writes listed per step in analysis/evidence/round1-progression.log",
+  "result": "Each target reached and rendered (see contact sheet). Stage-4 rounds use cave tiles, stage 6 castle. Bosses not encountered in the short play windows.",
+  "evidence": [
+   "analysis/evidence/screens/round1-stages.png",
+   "analysis/evidence/round1-progression.log",
+   "analysis/evidence/round1-observed-coverage.json#session2"
+  ],
+  "status": "visited",
+  "artificial": true,
+  "round": 1,
+  "input_api": "emulator.input {port:1, buttons:[...]} (full held set); frame stepping via emulator.step unit=frame"
+ },
+ {
+  "id": "S5-ending",
+  "milestone": "ending / The End",
+  "route": "at Stage 6 Round 4 play: write $043F=8, traced, 16x60 frames with start every 3rd, then 12x(A 3f + 57f)",
+  "patch": "$043F=[8] at $0420=5,$0421=3",
+  "result": "$0420 becomes 6 -> ending text 'FINALLY BUGS ARRIVES AT HIS PARTY ... HAPPY BIRTHDAY BUGS! AND CONGRATULATIONS!!!' and 'The End' screen",
+  "evidence": [
+   "analysis/evidence/screens/round1-ending-1.png",
+   "analysis/evidence/screens/round1-ending-2.png",
+   "analysis/evidence/round1-progression.log"
+  ],
+  "status": "visited",
+  "artificial": true,
+  "round": 1,
+  "input_api": "emulator.input {port:1, buttons:[...]} (full held set); frame stepping via emulator.step unit=frame"
+ },
+ {
+  "id": "S6-death",
+  "milestone": "death/respawn",
+  "route": "side effect of $043F=$04 experiment in Stage 1 Round 1",
+  "patch": "$043F=[4]",
+  "result": "$043F=1, lives 3->2, round reloads; untraced",
+  "evidence": [],
+  "status": "attempted",
+  "artificial": true,
+  "round": 1,
+  "input_api": "emulator.input {port:1, buttons:[...]} (full held set); frame stepping via emulator.step unit=frame"
+ },
+ {
+  "id": "S7-bonus-game",
+  "milestone": "bonus round game (carrot-gated)",
+  "route": "after patch: 40-frame steps, press A every step from step 6",
+  "patch": "$042A=[48] (Carrots, internal RAM) + $043F=[8] in Stage 1 Round 1 play (stage1 snapshot)",
+  "result": "bonus round panel game entered (carrots 48->38, balls 3/12/5/7 drawn); 799 newly observed code addresses, none in unknown ranges",
+  "evidence": [
+   "analysis/redirect/r1-a7c2/bonus-round-board.png",
+   "analysis/redirect/r1-a7c2/bonus-round-play.png",
+   "analysis/redirect/r1-a7c2/bonus-coverage.json"
+  ],
+  "status": "visited",
+  "artificial": true,
+  "round": "1 (redirect r1-a7c2)",
+  "input_api": "emulator.input {port:1, buttons:[...]} (full held set); frame stepping via emulator.step unit=frame"
+ },
+ {
+  "id": "S8-bosses",
+  "milestone": "boss encounters (Yosemite Sam, Sylvester per external sources)",
+  "route": "play to end of round 4 of a stage",
+  "patch": null,
+  "result": "attempted: SpawnTable/object slots are in PRG-RAM ($7280/$7680), not writable by emulator.memory.write (TK-006); PlayerX/CameraX teleport ($0432=$0600,$0456=$0590,$009C=$0598) in stage 6 round 4 clamped PlayerX to $01F0 and produced a broken scene",
+  "evidence": [
+   "analysis/redirect/r1-a7c2/boss-teleport-broken.png"
+  ],
+  "status": "visited",
+  "reason": "resolved in round 2 redirect r2-b3d9 by the door-warp shortcut; earlier deferral reasons kept above for history",
+  "artificial": true,
+  "round": "1 (redirect r1-a7c2)",
+  "input_api": "emulator.input {port:1, buttons:[...]} (full held set); frame stepping via emulator.step unit=frame",
+  "round2_attempt": {
+   "route": "emulator.start; snapshot.import /tmp/ra/snaps/w5r3_pre_ending.json (stage 6 round 4 play, local scratch); 25x[write $0428=$0C,$0429=3; buttons right+a 14f, right 16f, right+b 4f, right 26f]",
+   "result": "PlayerX 163->467, CameraX $1B->$0100 then stuck at a wall; periodic damage; no boss",
+   "evidence": [
+    "analysis/evidence/round2-boss-attempt-s6r4.png"
+   ],
+   "status": "attempted",
+   "artificial": true
+  },
+  "round2_redirect": {
+   "attempt": "r2-b3d9",
+   "route": "From any play snapshot (used /tmp/ra/snaps/w5r3_pre_ending.json): goto(stage,3) = write $0420/$0421 to the previous round, $043F=8, step 20-frame chunks pressing start until PC hits $D41C 3x (tools/lib.py goto). Then door-warp shortcut (tools/warp.py): write $0460-$0467=[0,0,0,0,0,$0F,$EF,$0F] (widen AreaMinX/MapTopY/AreaMaxX/MapBottomY so the player clamp keeps the patched X), PlayerX $0432=srcX*16+8, PlayerY $0435=srcY*16-$20 (door animation moves Bugs down two cells), RoundState $043F=2; step 180 frames. Boss doors (WarpRecordTable round-4 records, scene 6..$0B): 1-4 (7c,04), 2-4 (34,03), 3-4 (2d,0b), 4-4 (ec,0b), 5-4 (6d,1a), 6-4 (6d,0b). Fight: tools/fight.py (10-frame steps, $0428=$0C refill each step, approach + A/B), trace aggregation on.",
+   "patch": "internal RAM only: $0420/$0421/$043F, $0460-$0467, $0432-$0433, $0435-$0436, $0428 (refill). No PRG-RAM writes (TK-006 not involved).",
+   "result": "EnterDoorOrWarp matched each record; boss + $58 controller spawned from SpawnTable in all six rooms: 1-4 type $07 (coyote-like jumper) defeated in ~900 frames -> $58 became $57 goal -> touched -> RoundState 8 -> $80 -> Stage 2 Round 1; 2-4 type $08 (+$09 projectiles) defeated -> goal -> RoundState 8; 3-4 type $0A and 4-4 type $0E: Bugs died early (death despite health refill, likely contact/instant kill), round restarted; 5-4 types $10/$11 and 6-4 type $12 (+$13 projectiles, Yosemite-Sam-like) fought 1500 frames, not defeated. 1375 newly observed opcode offsets, all inside Static Code regions (74 regions), no fetch in Data/unknown.",
+   "evidence": [
+    "analysis/redirect/r2-b3d9/boss-coverage.json",
+    "analysis/redirect/r2-b3d9/boss-s1r4-room.png",
+    "analysis/redirect/r2-b3d9/boss-s1r4-cleared.png",
+    "analysis/redirect/r2-b3d9/boss-s2r4-room.png",
+    "analysis/redirect/r2-b3d9/boss-s3r4-room.png",
+    "analysis/redirect/r2-b3d9/boss-s4r4-room.png",
+    "analysis/redirect/r2-b3d9/boss-s5r4-room.png",
+    "analysis/redirect/r2-b3d9/boss-s6r4-room.png"
+   ],
+   "snapshots": "local scratch /tmp/rb2/s{1..6}r4 room snapshots (s1r4_bossroom.json, sN r4_room.json); disposable, reproducible from the route",
+   "status": "visited",
+   "artificial": true
+  }
+ },
+ {
+  "id": "S9-game-over",
+  "milestone": "game over / continue",
+  "route": "step 12x30 frames, no input",
+  "patch": "$0429=[0] (Lives), $0428=[0] (PlayerHealth) in Stage 1 Round 1 play",
+  "result": "death -> Lives $FF -> GAME OVER / WHAT A PITY / PUSH START screen (banks 4/5); 119 newly observed code addresses",
+  "evidence": [
+   "analysis/redirect/r1-a7c2/game-over.png",
+   "analysis/redirect/r1-a7c2/gameover-coverage.json"
+  ],
+  "status": "visited",
+  "round": "1 (redirect r1-a7c2)",
+  "input_api": "emulator.input {port:1, buttons:[...]} (full held set); frame stepping via emulator.step unit=frame",
+  "artificial": true
+ },
+ {
+  "id": "S10-mid-boss-rooms",
+  "milestone": "round-2 mid-boss rooms ($5A/$5C with $58 controller, scene $0C/$0D doors)",
+  "route": "same door-warp shortcut as S8 with the round-2 records: 1-2 (7c,07), 2-2 (60,03), 3-2 (45,03), 4-2 (7c,14), 5-2 (7d,0b), 6-2 (ee,0b)",
+  "patch": null,
+  "result": "not attempted this round",
+  "evidence": [],
+  "status": "deferred",
+  "reason": "coverage-only; boss-room mechanism already demonstrated in S8 and all bank code is classified; recipe recorded for a future coverage pass",
+  "artificial": true,
+  "round": "2 (redirect r2-b3d9)"
+ }
+]

@@ -1,0 +1,226 @@
+[
+ {
+  "id": "S01",
+  "milestone": "Boot -> credits -> attract -> title",
+  "route": "emulator.start; step 760 frames (no input)",
+  "budget": "760 frames, traced (aggregates only, capacity 0)",
+  "result": "credits screen ~f200, letter-scatter attract, title PRESS START ~f750",
+  "evidence": [
+   "analysis/evidence/round-01/frames/a3.png",
+   "analysis/evidence/round-01/camp1.log"
+  ],
+  "snapshot": "analysis/evidence/round-01/snapshots/title.snap",
+  "status": "visited",
+  "artificial": false
+ },
+ {
+  "id": "S02",
+  "milestone": "Logo screen and mission-1 briefing",
+  "route": "from title: buttons [start] 6 frames, release, 120 frames; logo shows; after ~200 frames briefing 'DESTROY ENEMY BASE'",
+  "budget": "~320 frames",
+  "result": "briefing screen; $0669=$FF during briefing",
+  "evidence": [
+   "analysis/evidence/round-01/frames/b2.png"
+  ],
+  "snapshot": "analysis/evidence/round-01/snapshots/brief.snap",
+  "status": "visited",
+  "artificial": false
+ },
+ {
+  "id": "S03",
+  "milestone": "Mission 1 flight (isometric terrain)",
+  "route": "from briefing: [start] 6 frames, release; then repeated [a,left]20,[]5,[a,right]20,[b]5,[a,up]20,[a,down]20",
+  "budget": "~2400 frames",
+  "result": "flight, shooting, explosions, score; lives lost; $0669=0",
+  "evidence": [
+   "analysis/evidence/round-01/frames/c2.png",
+   "analysis/evidence/round-01/frames/p2.png"
+  ],
+  "snapshot": "analysis/evidence/round-01/snapshots/c2.snap",
+  "status": "visited",
+  "artificial": false
+ },
+ {
+  "id": "S04",
+  "milestone": "Game over -> high-score name entry -> attract",
+  "route": "continue S03 until lives exhausted; [right]10,[]5,[a]5,[]10,[start]5,[]200; then 600 frames",
+  "budget": "~830 frames",
+  "result": "TODAYS GREATEST HEROES / ENTER YOUR NAME, then attract/high-score table",
+  "evidence": [
+   "analysis/evidence/round-01/frames/p5.png",
+   "analysis/evidence/round-01/frames/camp1_attract.png"
+  ],
+  "snapshot": "analysis/evidence/round-01/snapshots/gameover_name.snap",
+  "status": "visited",
+  "artificial": false
+ },
+ {
+  "id": "S05",
+  "milestone": "Missions 2-8 flight",
+  "route": "load brief.snap; emulator.memory.write space=ram address=$0669 bytes=[k-1] (k=2..8); [start]6, release 120; then 2x([a,left]20,[a,up]20,[a,right]20,[b]5,[a,down]20)",
+  "budget": "~300 frames per mission, traced",
+  "result": "distinct terrains (water, cyan pyramids, purple, etc.) per mission; $0669 increments on start (patched k-1 -> k)",
+  "evidence": [
+   "analysis/evidence/round-01/frames/m4play2.png",
+   "analysis/evidence/round-01/frames/camp2_m3.png",
+   "analysis/evidence/round-01/frames/camp2_m5.png",
+   "analysis/evidence/round-01/frames/camp2_m8.png",
+   "analysis/evidence/round-01/camp2.log"
+  ],
+  "status": "visited",
+  "artificial": true,
+  "note": "artificial RAM patch; not natural reachability. Mission 8 ($0669=7) briefing text path differs (bank0 $DD01)."
+ },
+ {
+  "id": "S06",
+  "milestone": "Wait-for-NMI resume targets (screen states)",
+  "route": "load c2.snap; step 1 frame (pc=$AE23 wait loop); write RAM $20/$21 = target ($8688,$8806,$8BD2,$A838,$A99B,$CEF3,$D671,$DE6A); 120 frames; [start]6; 60 frames",
+  "budget": "~190 frames each, traced",
+  "result": "$8688 logo; $CEF3 high-score table; $D671 'GET READY FOR MISSION 1' briefing; $A99B a distinct terrain/approach phase with banded ground; others resumed play/titles",
+  "evidence": [
+   "analysis/evidence/round-01/frames/camp3_a99b.png",
+   "analysis/evidence/round-01/frames/camp3_cef3.png",
+   "analysis/evidence/round-01/frames/camp3_d671.png",
+   "analysis/evidence/round-01/camp3.log"
+  ],
+  "status": "visited",
+  "artificial": true,
+  "note": "entry contract: NMI handler bank0 $ADE9 sets bank 0, S=$FF and jmp ($0020); targets come from ldy/ldx/jmp $AE10 sites. Dependent state may be inconsistent."
+ },
+ {
+  "id": "S07",
+  "milestone": "Mission completion -> space battle (code $88) -> docking (code $44)",
+  "route": "load round-01 c2.snap (mission 1 flight); write RAM $066B (MissionStage)=$01 (=MissionObjectiveStage[0], table 0:$F9C0); hold Down ~120 frames: Landing $83=2 lifts the $60 altitude floor, PlayerY<$14 -> BriefingScreenInit with $88 (space-battle briefing \"DESTROY ENEMY FIGHTER PLANES\"); [start] -> space battle (SpacePhase=1, SpaceMode=$80); write $066E (SpaceWave)=$40 (next spawn reaches $42 -> PauseState=2) OR hold controller-2 B+Up (port 2, natural debug input, PauseState=2 within 20 frames); results \"NICE SHOOTING / ENEMY PLANES DESTROYED\"; ~600 frames + [start] -> \"DOCK WITH SPACE STATION\" briefing; [start] -> docking approach (SpaceMode=1, \"PREPARE TO DOCK\")",
+  "status": "visited",
+  "history": [
+   {
+    "status_before": "deferred",
+    "reason_before": "mission-complete trigger RAM contract unknown; investigate in redirect (lead L003)"
+   }
+  ],
+  "budget": "~200+300+700+300 frames; e4/e5 traced (aggregates)",
+  "artificial": true,
+  "evidence": [
+   "analysis/redirect/r01-a/frames/e2_none.png",
+   "analysis/redirect/r01-a/frames/e3_space1.png",
+   "analysis/redirect/r01-a/frames/e4_brief2.png",
+   "analysis/redirect/r01-a/frames/e5_a.png",
+   "analysis/redirect/r01-a/frames/e5_c.png",
+   "analysis/redirect/r01-a/tools/e2.py",
+   "analysis/redirect/r01-a/tools/e3.py",
+   "analysis/redirect/r01-a/tools/e4.py",
+   "analysis/redirect/r01-a/tools/e5.py"
+  ],
+  "snapshot": "analysis/redirect/r01-a/snapshots/space_brief.snap, space_battle.snap, dock_brief.snap, docking.snap",
+  "result": "all transitions executed by game code after the patches (FrameHandler $8F2A FlightFrame / $DE6A BriefingFrame)."
+ },
+ {
+  "id": "S08",
+  "milestone": "Docking completion -> shop",
+  "status": "visited",
+  "history": [
+   {
+    "status_before": "deferred",
+    "reason_before": "needs mission completion or a known shop entry contract (lead L003)"
+   }
+  ],
+  "route": "load docking.snap; each 8 frames write PlayerX $3B=$67, PlayerY $3D=$3F (inside Flight_ExplodeEnd window X $62-$6D, Y $3A-$45); press B once (CrashState=$75 docking sequence); ~200 frames -> Flight_EnterShop (ShopStage $81=$FF, EndingFlag $90=1) -> ShopInit, frame handler $A99B. Shop: A opens AIM54 PHOENIX submenu, A buys (credits 2->0, Phoenix 2->3), Down+A RETURN TO MENU, Down x4 + A = NEXT MISSION -> SpacePhase=3 departure -> mission-2 briefing \"DROP SUPPLIES IN CROSSES\"",
+  "artificial": true,
+  "evidence": [
+   "analysis/redirect/r01-a/frames/e6_b.png",
+   "analysis/redirect/r01-a/frames/e8_bought.png",
+   "analysis/redirect/r01-a/frames/e8_after.png",
+   "analysis/redirect/r01-a/frames/e9_b.png",
+   "analysis/redirect/r01-a/tools/e6.py",
+   "analysis/redirect/r01-a/tools/e7.py",
+   "analysis/redirect/r01-a/tools/e8.py",
+   "analysis/redirect/r01-a/tools/e9.py"
+  ],
+  "snapshot": "analysis/redirect/r01-a/snapshots/shop.snap, after_shop.snap, mission2_brief_natural.snap",
+  "result": "docking success, weapons shop, purchase, departure and next-mission briefing executed."
+ },
+ {
+  "id": "S09",
+  "milestone": "Final mission (mission 8) base attack and ending",
+  "status": "visited",
+  "history": [
+   {
+    "status_before": "deferred",
+    "reason_before": "needs late-mission completion route (lead L003)"
+   }
+  ],
+  "route": "load round-01 brief.snap; write $0669=6; [start]; write $066B=1, hold Down -> climb-out to space battle briefing; [start]; $066E=$40; results; [start] -> enemy-base briefing; [start] -> base attack (m8_docking.snap). Write $066B=$40 (BaseExplosionsAndShots final sequence) -> base explodes -> BriefingScreenInit with TargetsHit=$80: \"CONGRATULATIONS\" / \"FLEET DESTROYED\" / \"CONGRATULATIONS\" -> Briefing_Leave (Mission=7) -> GameOverScreenInit with Continues=0 -> GAME OVER -> ENTER YOUR NAME high-score entry",
+  "artificial": true,
+  "evidence": [
+   "analysis/redirect/r01-a/frames/e10_end.png",
+   "analysis/redirect/r01-a/frames/e11_dockbrief.png",
+   "analysis/redirect/r01-a/frames/e12_montage.png",
+   "analysis/redirect/r01-a/tools/e10.py",
+   "analysis/redirect/r01-a/tools/e11.py",
+   "analysis/redirect/r01-a/tools/e12.py"
+  ],
+  "snapshot": "analysis/redirect/r01-a/snapshots/m8_flight.snap, m8_after.snap, m8_docking.snap, m8_results.snap",
+  "note": "e11 also tried the mission-1 docking patch at the mission-8 base: plane crashed repeatedly -> CONTINUE? 9 -> high-score table (continue screen visited). e12 mistakenly wrote $FE to RAM $FE instead of InvulnTimer $0C (harmless for the observed result; record only).",
+  "result": "ending sequence visited; no separate credits roll observed beyond the congratulations/results screens, game-over and name entry."
+ },
+ {
+  "id": "S10",
+  "milestone": "Controller-2 debug inputs",
+  "route": "space_battle.snap: emulator.input port=2 buttons=[b,up] 20 frames -> Joy2Held $1C=$48, PauseState=2, results screen. c2.snap (ground): port 2 [b,down] 30 frames -> $1C=$44, no visible effect.",
+  "status": "visited",
+  "artificial": false,
+  "note": "natural controller-2 input on artificial/restored states; confirms the B+Up debug end of the space battle (commentary uncertainty 2).",
+  "evidence": [
+   "analysis/redirect/r01-a/handoff notes (inline run)"
+  ]
+ },
+ {
+  "id": "S11",
+  "milestone": "Carrier missions: objective in terrain sections $44/$2C -> landing autopilot -> deck landing -> climb-out (MissionEndMode=1)",
+  "route": "brief.snap (round-01); RAM $0669:=2; Start 6 frames, release, 200 frames -> mission 4 (index 3) airborne in section $2C (analysis/redirect/r02-a/snapshots/m4_start.snap). E2: $066B:=1 at once (section $2C) -> autopilot branch 0:$92DC executed (Inv timer forced, throttle 5) but the section ended ($30) before landing -> MissionEndMode=2 climb-out -> space battle. E4: 20 frames, then $066A (SectionIndex):=5, $50:=3, $4F:=$B0 -> next wrap enters section $44 (m4_sect44.snap); $066B:=1; no input.",
+  "budget": "E2 1200 frames, E4 ~1110 frames, traced aggregates (capacity 0)",
+  "result": "E4: autopilot holds Down in $44, section list wraps $44 -> $2C (carrier deck); plane descends to Y=$90, Throttle/Speed -> 0, OnDeck=1; ObjType[0] = $5D/$5E marker approaches; at GroundObjRow $68 and X match GroundObjs_Landed sets ObjType $FF and MissionEndMode=1 (~frame 970); forced climb-out, Y<$14 -> BriefingScreenInit ($DE6A) as for other missions. Coverage: bank 0 $92A0-$937E (Flight_ClimbOutInput/CheckObjective/AutoLand*) and bank 3 UpdateGroundObjects landing path $D8A8-$D909 incl. GroundObjs_Landed.",
+  "evidence": [
+   "analysis/redirect/r02-a/e4.out",
+   "analysis/redirect/r02-a/e4_log.json",
+   "analysis/redirect/r02-a/e4_cov.json",
+   "analysis/redirect/r02-a/e2_log.json",
+   "analysis/redirect/r02-a/e2_cov.json",
+   "analysis/redirect/r02-a/frames/e4_070.png",
+   "analysis/redirect/r02-a/frames/e4_097.png",
+   "analysis/redirect/r02-a/frames/e4_110.png"
+  ],
+  "snapshot": "analysis/redirect/r02-a/snapshots/m4_landed.snap",
+  "status": "visited",
+  "artificial": true,
+  "note": "Artificial RAM patches (stage, section index, terrain position); observed execution in that scenario, not natural reachability. Resolves commentary question 1 (Flight_AutoLand / UpdateGroundObjects landing no longer static-only)."
+ },
+ {
+  "id": "S12",
+  "milestone": "Controller-2 phase codes at mission start (B+Down $44, A+Up $88, B+Up $48)",
+  "route": "brief.snap; emulator.input port=2 buttons held while port-1 Start 6 frames, then 30 frames, release port 2, 250 frames",
+  "result": "Joy2Held reads $44/$88/$48 but MissionStart still starts the normal ground mission for $44 and $88 (Briefing_NextPhase stores the saved phase code DecodeSrc+1 into Joy2Held before jmp MissionStart, so the pad cannot select the phase). B+Up only triggers the known ground climb-out debug (MissionEndMode=1 -> $DE6A). Static: no ground code compares Joy2Held with $44; bits $80/$40 only change StarSpeed in UpdateStars (space). Closes commentary question 2.",
+  "evidence": [
+   "analysis/redirect/r02-a/e5.out",
+   "analysis/redirect/r02-a/frames/e5_bdown.png",
+   "analysis/redirect/r02-a/frames/e5_bup.png"
+  ],
+  "status": "visited",
+  "artificial": false
+ },
+ {
+  "id": "S13",
+  "milestone": "Mission 2 objective area: objective object $42 and map block $F7 (BlockSubst) in section $24",
+  "route": "brief.snap (round-01); $0669:=0; [start]6, release, 200 frames (analysis/redirect/r03-a/snapshots/m2_start.snap, mission index 1); 20 frames; $066A:=2, $4F:=$B0, $50:=3 -> section $24; each 10-frame step write $02:=5, $0C:=$40; hold [a] ([a,b] every 4th step)",
+  "budget": "<= 70 steps x 10 frames per run (E3c/E4/E5), E6 60 x 4 frames",
+  "result": "Objective $42 appears in ObjType slot 15 at TP $0204 (m2_objective.snap). Block $F7 at row 11 drawn TP ~$02DD-$0318: normal $69 = dark recessed opening; artificial BlockSubst+7/+8:=$6B = closed flat panel. Missiles launched with B but no natural objective hit (HitCount 0).",
+  "evidence": [
+   "analysis/redirect/r03-a/observations.txt",
+   "analysis/redirect/r03-a/frames/e3_block69_vs_6b_038_zoom.png",
+   "analysis/redirect/r03-a/frames/e5_objective_026.png"
+  ],
+  "status": "visited",
+  "artificial": true,
+  "note": "RAM patches (section jump, lives, invulnerability, BlockSubst); not natural reachability. Natural objective hit deferred: needs objective screen position/missile geometry; meaning-only."
+ }
+]
