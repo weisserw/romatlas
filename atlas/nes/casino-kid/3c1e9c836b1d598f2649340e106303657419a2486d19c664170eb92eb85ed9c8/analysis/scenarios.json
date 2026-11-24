@@ -1,0 +1,164 @@
+[
+ {
+  "id": "S1-boot-title",
+  "milestone": "Power-on, SOFEL logo, star intro, title menu",
+  "route": "tools/routes.json boot_to_casino: emulator.start, trace enabled (capacity 0), 620 frames no input",
+  "result": "Title (NEW GAME / SAVED GAME) at frame ~600; coverage merged as tag boot_to_casino",
+  "evidence": [
+   "traces/coverage.json (tag boot_to_casino)"
+  ],
+  "natural": true,
+  "status": "visited"
+ },
+ {
+  "id": "S2-intro-casino",
+  "milestone": "NEW GAME -> intro story text -> casino overworld",
+  "route": "from title: hold Start 12f +60f; Start 8f +120f; A 8f +240f (inputs as buttons arrays, port 1)",
+  "result": "Casino floor overworld reached at frame 1068; snapshot traces/snapshots/casino.json exported",
+  "evidence": [
+   "traces/coverage.json (tag boot_to_casino)",
+   "traces/snapshots/casino.json"
+  ],
+  "natural": true,
+  "status": "visited"
+ },
+ {
+  "id": "S3-overworld-walk-talk",
+  "milestone": "Overworld walking, NPC dialogue (portrait text screens)",
+  "route": "tools/routes.json traced_segments first block (from title: intro, walk Down 36, A talk; long walks Down/Right; A talks)",
+  "result": "Untraced exploration: red-haired NPC says 'LATER, BUDDY!'; another NPC gives hint 'STEPHEN CAN'T HIDE HIS EMOTION!'. No card-game opponent found by walking.",
+  "evidence": [
+   "traces/coverage.json (tag overworld_walk_and_talks)"
+  ],
+  "natural": true,
+  "status": "visited"
+ },
+ {
+  "id": "S4-password-wrong",
+  "milestone": "SAVED GAME password screen, wrong password",
+  "route": "from title: Down 12f+20, Start 12f+90 (snapshot pw); A x3 (6f+10), Down x3, Right x2, A 6f+120",
+  "result": "'IT'S WRONG!' response",
+  "evidence": [
+   "traces/coverage.json (tag password_wrong)"
+  ],
+  "natural": true,
+  "status": "visited"
+ },
+ {
+  "id": "S5-king-debug-password",
+  "milestone": "Final rival (King) via built-in debug string check",
+  "route": "from pw snapshot: emulator.memory.write $05DC = 30 bytes [12 00 20 0A 17 17 0A 00 1C 0E 0E 00 1D 11 0E 00 14 12 17 10 + 10x00] ('I WANNA SEE THE KING'); Down x3, Right x2 (END); hold A+Start 400f; wait 1000f",
+  "result": "Money $055D = 100,000,000, $AA=1; mansion scene then poker table 'HI, HONEY! I'M YOUR SWEET DEALER' vs KING ($1,000,000 each displayed). ARTIFICIAL (RAM-written password buffer).",
+  "evidence": [
+   "traces/coverage.json (tag king_debug_password_mansion)",
+   "analysis/gameplay.md"
+  ],
+  "natural": false,
+  "status": "visited"
+ },
+ {
+  "id": "S6-poker-vs-king",
+  "milestone": "Five-card draw poker hand (bank 4)",
+  "route": "from kinggame snapshot: A x5 (8f+90), A x8 (8f+60), A x30 (8f+40); A,Right,A,Right,Right,Right,A (8f+30); Start, B (8f+90); 120f; A x25 (8f+40)",
+  "result": "Hand won, player money displayed $1,090,000; King $880,000 (King money at $075B).",
+  "evidence": [
+   "traces/coverage.json (tag poker_vs_king_hand)"
+  ],
+  "natural": false,
+  "status": "visited"
+ },
+ {
+  "id": "S7-ending-credits",
+  "milestone": "Ending / staff credits",
+  "route": "from poker2 snapshot: emulator.memory.write $075B = [40 42 0F 00]; A x40 (8f+40); B 8f+150; A x30 (8f+40); 600f",
+  "result": "King $0 -> trophy credits screen ('CG DESIGN T.NOMURA', 'PROGRAMMER K.TAKAHASHI'). ARTIFICIAL (King money patched).",
+  "evidence": [
+   "traces/coverage.json (tag poker_king_broke_ending)"
+  ],
+  "natural": false,
+  "status": "visited"
+ },
+ {
+  "id": "S8-blackjack",
+  "milestone": "Blackjack game (bank 3, entry $C0E8 -> $C19F -> bank 3 $8010)",
+  "route": "traces/snapshots/casino.json; write $0559=[26,35] (ViewCellX/Y), $AE=0 (face up); A 8f -> seat id $18 (dealer LISA); A x2 -> bet prompt (exported analysis/redirect/r1-a1/bjbet.json). Rounds: analysis/redirect/r1-a1/bjsession.sh 1 (rr.py; deck patches at $06E0+$93, BjCheatActive $07D0=0 where noted).",
+  "result": "Blackjack session vs LISA: 12 rounds (stand, hit, dealer bust, push, player blackjack 3:2, insurance yes/no, split, surrender, double, natural hand, BET ALL MONEY) then dealer broke -> session end -> encounter \"NOT ANYMORE!\", OpponentLevel 3, progress $056B=$C0. 1659/1862 bank 3 instruction starts observed. ARTIFICIAL position patch + deck patches; game logic natural.",
+  "evidence": [
+   "analysis/redirect/r1-a1/notes.md",
+   "analysis/redirect/r1-a1/rr.log",
+   "analysis/redirect/r1-a1/coverage-all.json"
+  ],
+  "natural": false,
+  "status": "visited",
+  "history": [
+   {
+    "round": 1,
+    "phase": "disassembly",
+    "status": "deferred: needs opponent-location/selection contract (redirect)",
+    "result": "Not reached. Opponent selection RAM ($055B/$055C/$0569-$056C, bank 5 $A534-$A6A8) not understood yet."
+   }
+  ]
+ },
+ {
+  "id": "S9-richman-cheat",
+  "milestone": "Debug money string 'I AM A RICHMAN'",
+  "route": "same as S5 with string at bank 5 $93DF",
+  "result": "Not run (S5 covers the same check routine; the RICHMAN branch sets 10,000,000 and returns).",
+  "evidence": [],
+  "natural": false,
+  "status": "deferred: low value"
+ },
+ {
+  "id": "S10-debug-screen",
+  "milestone": "Hidden debug monitor (memory viewer/editor, music test, sound-effect test)",
+  "route": "analysis/redirect/r1-a1/dbg.py 1 debugpw; dbg.py 1 screen (password buffer $05DC RAM-written \"DEBUG MONITOR SWITCH ON\", END, pad1 A+Start + pad2 A+Left until $AA=1; then pad2 A+Left + pad1 Start 12f on the floor)",
+  "result": "\"MONITOR VERSION 1.00 / PRESENTED BY HIRO\"; address read/edit ($07F0 := $1F), MUSIC 1-10 (A/B), SOUND EFFECT 0-35 (A/B) all exercised; Select returns to the floor. ARTIFICIAL (password buffer written).",
+  "evidence": [
+   "analysis/redirect/r1-a1/dbg.log",
+   "analysis/redirect/r1-a1/dbg_addr.png",
+   "analysis/redirect/r1-a1/dbg_music.png",
+   "analysis/redirect/r1-a1/dbg_sfx.png"
+  ],
+  "natural": false,
+  "status": "visited"
+ },
+ {
+  "id": "S11-bankrupt-game-over",
+  "milestone": "GAME OVER (broke) screen via \"I WANNA GO BANKRUPT\"",
+  "route": "analysis/redirect/r1-a1/dbg.py 1 bankrupt (pw.json; buffer RAM-written; END; pad1 A+Start 400f; 1000f)",
+  "result": "GAME OVER screen, bank 6 (prg_banks 12,13), PC $8A84 (Api_EnterBrokeScreen $C0F4 -> bank 6 $8013). ARTIFICIAL.",
+  "evidence": [
+   "analysis/redirect/r1-a1/dbg.log",
+   "analysis/redirect/r1-a1/dbg_bankrupt.png"
+  ],
+  "natural": false,
+  "status": "visited"
+ },
+ {
+  "id": "S12-poker-regular-opponent",
+  "milestone": "Five-card draw vs a regular gambler (JOSEPH, people id $10)",
+  "route": "casino.json; NPC 22 (id $10) at cell (56,39): write $0559=[48,33], $AE=0; A 8f; A x3 (200f each); rr.py until:grid|bet -> analysis/redirect/r1-a1/pkbet.json; analysis/redirect/r1-a1/pk.py pkbet.json pk3t 1 45 (deterministic action cycle)",
+  "result": "Poker vs JOSEPH (opponent 0 of bank 4 records): 45 prompt decisions traced (bets, raises/see/fold menu choices, hold/draw), several hands won and lost (player money between $430 and $560, JOSEPH between $860 and $1020; ended $450 vs $980). 302 new bank 4 opcode starts. ARTIFICIAL position patch; game logic natural.",
+  "evidence": [
+   "analysis/redirect/r1-a1/pk.log",
+   "analysis/redirect/r1-a1/pk.py",
+   "analysis/redirect/r1-a1/pkbet.json",
+   "analysis/redirect/r1-a1/coverage-all.json"
+  ],
+  "natural": false,
+  "status": "visited"
+ },
+ {
+  "id": "S13-status-password-roundtrip",
+  "milestone": "Status screen password (EncodePassword) and SAVED GAME decode",
+  "route": "after S8 (b13 encounter \"NOT ANYMORE!\": B 8f, 300f -> floor); Select 12f + 400f -> status screen \"DON'T FORGET THIS PASSWORD!\"; then pw.json: write the 30 encoded bytes to $05DC, END, A, 1200f (analysis/redirect/r1-a1/pwchain.py 1)",
+  "result": "Encoded password (30 chars, Money $1000, progress $056B=$C0) accepted by DecodePassword: money and progress restored, intro text screen (bank 6). Typing replaced by a RAM write of the buffer (artificial); encoding/decoding natural.",
+  "evidence": [
+   "analysis/redirect/r1-a1/pwchain.log",
+   "analysis/redirect/r1-a1/status_password.png",
+   "analysis/redirect/r1-a1/password_restored.png"
+  ],
+  "natural": false,
+  "status": "visited"
+ }
+]

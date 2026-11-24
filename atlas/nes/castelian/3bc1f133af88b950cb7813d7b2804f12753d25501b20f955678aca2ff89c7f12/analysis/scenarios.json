@@ -1,0 +1,140 @@
+{
+ "version": 1,
+ "notes": "Round 1 disassembly. Inputs use NES emulator.input {buttons:[...],port:1} (each call replaces held set; see TK-001). Frame steps use emulator.step unit=frame with max_operations=100000000. Tracing (aggregates, capacity 0) runs ~3 fps vs ~40 fps untraced, so navigation was done untraced and traced windows were used in each new state. Named snapshots were session-local and are not persisted; routes below are replayable from power-on. Round 2: emulator.run_until is limited to <=1,000,000 operations and timeout_ms<=30000 per call (loop it). In 2-player mode player 2 prompts read controller port 2. Round 2 redirect r2-a1: S13b, S14 added; all listed milestones visited; no high-score name entry exists; ending S10 visited.",
+ "milestones": [
+  {
+   "id": "S01",
+   "milestone": "Power-on, title (CASTELIAN) and credits screen",
+   "route": "emulator.start; step 120 frames traced; 200 more frames -> credits text 'PRESS SELECT FOR OPTIONS OR START TO PLAY'",
+   "result": "Title and credits shown; snapshot 'credits'",
+   "status": "visited",
+   "evidence": "observed coverage (analysis.contexts) round 1"
+  },
+  {
+   "id": "S02",
+   "milestone": "Options menu (players / effects-music / difficulty)",
+   "route": "credits; Select (6f) opens menu; Up/Down moves cursor; Select toggles item (A/B/Left/Right do not)",
+   "result": "PLAYERS 1/2, EFFECTS/MUSIC, NOVICE/HERO toggled; Start launches game",
+   "status": "visited",
+   "evidence": "scratch screenshots (not retained)"
+  },
+  {
+   "id": "S03",
+   "milestone": "Tower 1 (TOWER OF EYES) gameplay",
+   "route": "credits; Start 3f; ~260 frames -> tower; inputs right/left/A(jump)/B(fire)/up/down",
+   "result": "Walking, jumping, firing, falling/drowning death (lives 3->2)",
+   "status": "visited",
+   "evidence": "observed coverage"
+  },
+  {
+   "id": "S04",
+   "milestone": "Tower select shortcut (towers 2..8)",
+   "route": "credits; Start 3f; emulator.run_until PC==$F683 (fixed bank, just before tower-name print reads $0A,x); emulator.memory.write ram $000A = n (0..7); continue 240 frames",
+   "result": "'ENTERING THE <name>' shows the selected tower name and HUD tower number n+1; all 8 towers loaded and played ~400 traced frames each",
+   "status": "visited (artificial RAM patch)",
+   "evidence": "towers 2-8 added only ~50 new instruction addresses over tower 1"
+  },
+  {
+   "id": "S05",
+   "milestone": "Pause",
+   "route": "in tower: Start toggles $4B (pause) via $C601",
+   "result": "pause/unpause exercised",
+   "status": "visited"
+  },
+  {
+   "id": "S06",
+   "milestone": "TIME OUT",
+   "route": "in tower: write ram $41,$42,$43 = 00,00,02 (timer digits hundreds/tens/units); hold right 60f; ~200f",
+   "result": "'TIME OUT' screen, life lost",
+   "status": "visited (artificial RAM patch)"
+  },
+  {
+   "id": "S07",
+   "milestone": "Continue screen and single-player GAME OVER",
+   "route": "in tower: write $12 (P1 lives)=01 and timer=00,00,02; ~400f -> CONTINUE YES A / NO B, CREDITS 2; B -> GAME OVER/SCORE/HISCORE; A -> restart tower",
+   "result": "both branches visited",
+   "status": "visited (artificial RAM patch)"
+  },
+  {
+   "id": "S08",
+   "milestone": "Tower completion, score tally (TIME LEFT/TECHNIQUE/EXTRAS)",
+   "route": "in tower: run_until PC==$C5ED (main-loop vblank wait); write $46=01 (tower-complete flag tested at $C2AF); registers.set pc=$C2B3 (main loop post-tower path: jsr $F6EE tally, inc $0A,x, then bank 6 jmp $8000). Stack has 2 stale bytes, reset by ldx #$1f/txs at $C2F4",
+   "result": "tally screen, then A, then bonus stage",
+   "status": "visited (artificial register+RAM patch)"
+  },
+  {
+   "id": "S09",
+   "milestone": "Bonus stage between towers (bank 6 at $8000)",
+   "route": "continue from S08 ~200f; play right/A/B; end by writing timer $41-$43=00,00,01",
+   "result": "bonus stage (side view, flying gems/fish), then 'ENTERING THE REALM OF ROBOTS' (tower 2)",
+   "status": "visited (artificial entry)"
+  },
+  {
+   "id": "S10",
+   "milestone": "Ending (CONGRATULATIONS)",
+   "route": "as S08 but also write $0A=07 before pc=$C2B3; tally; A; -> $0A=8 -> jsr $F469",
+   "result": "'CONGRATULATIONS SCORE HISCORE' terminal screen; Start does nothing further within 200f",
+   "status": "visited (artificial register+RAM patch)"
+  },
+  {
+   "id": "S11",
+   "milestone": "2-player game, player switch, GAME DRAWN result",
+   "route": "options: Select on PLAYERS -> 2; Start; write $12,$13=01,01 and timer 00,00,02 repeatedly; B on continue prompts",
+   "result": "'PLAYER 2 ENTERING THE TOWER OF EYES', 'PLAYER 2 GAME OVER ... GAME DRAWN', then back to title",
+   "status": "visited (artificial RAM patch)"
+  },
+  {
+   "id": "S12",
+   "milestone": "Attract/demo mode",
+   "route": "emulator.start; no input; step 2700 frames (NmiTitle $FC0E sets AttractMode=$FF when TitleFrame reaches $0A6E); demo continues on its own",
+   "result": "Attract/demo mode reached naturally (AttractMode $FF at frame ~2650-2700); demo plays tower index 3 (TOWER 4) driven by AttractInput/$BCCF; executed L1-05 bank-5 drawers and L1-09 chain blocks",
+   "status": "visited",
+   "evidence": "analysis/redirect/r1-a1/attract-run.log, attract-demo-tower4.png, attract-unknown-execution.json (round 1 redirect)",
+   "history": [
+    {
+     "round": 1,
+     "phase": "disassembly",
+     "result": "no demo started; $3F stayed 0 (bit7 of $3F gates alternate main-loop paths, meaning unresolved)",
+     "status": "attempted"
+    }
+   ]
+  },
+  {
+   "id": "S13",
+   "milestone": "PLAYER 1/2 WINS result (2-player unequal scores); high-score display",
+   "route": "analysis/evidence/round2/tools/s13_wins.py: emulator.start; 330f; Select (opens options; cursor on START); Down; Select (PLAYERS 2, $09=01); Start; 300f; write ram $0C-$0E=00,50,02 (P1 score, $0E most significant) and $0F-$11=00,10,01 (P2), $12,$13=01,01 (lives); run_until pc==$C5ED (<=1M ops per call, looped); write $41-$43=00,00,02 (timer) -> TIME OUT; press B on port 1 at the P1 CONTINUE prompt (NO); 200f; run_until $C5ED (P2 tower); trace on (Instruction, capacity 0); timer 00,00,02; 300f; press B on PORT 2 (P2 prompt reads controller 2) -> PLAYER 2 GAME OVER / SCORE / HISCORE / PLAYER 1 WINS. Budget ~1700 frames, ~7 min wall (traced part ~3 fps).",
+   "status": "visited (artificial RAM patch)",
+   "reason": "low expected code gain this pass; score RAM not yet identified",
+   "history": [
+    {
+     "round": 1,
+     "phase": "redirect",
+     "note": "still deferred: no unknown range depends on it (residual unknown is 2 bytes after the ready batch); score RAM is now known (PlayerScore $0C, 3 bytes/player) for a later shortcut"
+    },
+    {
+     "round": 2,
+     "phase": "disassembly",
+     "note": "visited PLAYER 1 WINS; P2 continue prompt needs controller 2 (B on port 2). 1 static region split: $F4ED-$F4FC Observed, $F4FD Static."
+    }
+   ],
+   "result": "PLAYER 1 WINS shown (analysis/evidence/round2/s13-player1-wins.png); $F4ED-$F4FB score comparison fetched (Static -> Observed, artificial). PLAYER 2 WINS branch ($F4FD iny) not taken; GAME DRAWN visited in S11. High-score entry: the game shows SCORE/HISCORE only; no name-entry screen was found (no entry code/text located), so treated as unavailable. | r2-a1 variant S13b: P2 score > P1 -> PLAYER 2 WINS shown; $F4FD fetched.",
+   "evidence": "analysis/evidence/round2/s13-player1-wins.png; analysis/investigation.md Round 2 ; analysis/redirect/r2-a1/evidence/s13b-player2-wins.png, analysis/redirect/r2-a1/s13b-run.log"
+  },
+  {
+   "id": "S13b",
+   "milestone": "PLAYER 2 WINS result (2-player, P2 score higher)",
+   "route": "analysis/redirect/r2-a1/tools/s13b_p2wins.py: as S13 but write $0C-$0E=00,10,01 (P1) and $0F-$11=00,50,02 (P2); B on port 1 then port 2 at the continue prompts (~25 min wall incl. traced window)",
+   "result": "'PLAYER 2 GAME OVER ... PLAYER 2 WINS'; $F4FD (iny selecting the P2 message) fetched",
+   "status": "visited (artificial RAM patch)",
+   "evidence": "analysis/redirect/r2-a1/evidence/s13b-player2-wins.png, analysis/redirect/r2-a1/evidence/s13b-p2wins-coverage.json"
+  },
+  {
+   "id": "S14",
+   "milestone": "HERO difficulty game (faster timer, no continues, HERO extra-life path)",
+   "route": "analysis/redirect/r2-a1/tools/s14_hero.py: emulator.start; 330f; Select (options); then repeat Down+Select until $40 bit7 set (3x; the first Select also set PLAYERS 2); Start; 300f; trace on; write $0C-$0E=50,99,00; hold right/right+A/B/left/left+B/right+B 40f each; write $12=01 and $41-$43=00,00,02; 400f; B x2",
+   "result": "HeroMode $40=$FF, TimerSpeed $45=$2D; TIME OUT -> P1 GAME OVER with no CONTINUE prompt; jmp CheckExtraLifeHero ($CDB1) and 5 more Static regions fully fetched, 9 partially",
+   "status": "visited (options by buttons; artificial score/lives/timer patches)",
+   "evidence": "analysis/redirect/r2-a1/s14-run.log, analysis/redirect/r2-a1/evidence/s14-hero-coverage.json"
+  }
+ ]
+}

@@ -1,0 +1,296 @@
+[
+ {
+  "id": "S-A",
+  "milestone": "Power-on, title, idle title (no attract demo seen), intro castle scene, map screen",
+  "route": "power-on; 300f idle; 1500f idle; start(5f); 400f; a(5f); 200f; then misc inputs (they landed in intro/map, not gameplay); pause/select presses. Inputs: analysis/evidence/round-1-disassembly/scenA_inputs.json",
+  "budget": "frame steps <=200 per call, max_operations 1e8",
+  "trace": "capacity 0 aggregates, full run",
+  "observed": "title, intro, map screen code; 2509 unique instructions, all bank 7",
+  "evidence": [
+   "analysis/evidence/round-1-disassembly/traces/covA.json.gz",
+   "analysis/evidence/round-1-disassembly/frames/sheetA.png"
+  ],
+  "status": "visited"
+ },
+ {
+  "id": "S-B",
+  "milestone": "Stage 1 (index 0, Wenlary castle hall) gameplay: walk, attack (B), jump (A), crouch/down+B, up, select",
+  "route": "snapshot snap_h2_stage0 (power-on 240f; start5; 60f+120f; start5; 180f; a5; 180f; start5; 180f; right 120f) then inputs in analysis/evidence/round-1-disassembly/scenB_inputs.json",
+  "trace": "aggregates",
+  "observed": "bank-6 object/stage code first executed (653 bank-6 instrs); player stuck at skeleton enemy, no death within run",
+  "evidence": [
+   "analysis/evidence/round-1-disassembly/traces/covB.json.gz",
+   "analysis/evidence/round-1-disassembly/frames/sheetB.png",
+   "analysis/evidence/round-1-disassembly/snapshots/snap_h2_stage0.json.gz"
+  ],
+  "status": "visited"
+ },
+ {
+  "id": "S-W",
+  "milestone": "Untraced long play stage 1 holding right+B",
+  "route": "snap_h2 then 12x(25x(4f right+b,4f right))",
+  "observed": "player blocked by skeleton, energy drained, GAME OVER then title",
+  "evidence": [
+   "analysis/evidence/round-1-disassembly/frames/sheet_w.png"
+  ],
+  "status": "visited (untraced)"
+ },
+ {
+  "id": "S0-S7",
+  "milestone": "All 8 stages via RAM shortcut (0 castle hall, 1 castle exterior, 2 Heresy forest, 3 tower field, 4 palace hall, 5 arcade corridor, 6 dark forest, 7 dragon boss)",
+  "route": "snap_map0 (power-on 240f; start5; 180f; start5; 120f = map screen). Write CPU $052A=k (stage index; artificial). Press a(5f), 100f; for k>=3 also start(5f), 40f, a(5f) (map route selection consumes Start); 150f; then 4x(right20, b4, 6, a4, right+a16, down+b4, left10)",
+  "patch": "$052A=k (internal RAM; bank context n/a); verified by screenshots that different stage graphics/objects load",
+  "trace": "aggregates + Read stream filtered to physical 16..0x18010 (banks 0-5) in 10-frame chunks",
+  "observed": "all 8 stages loaded and played briefly; stage 7 dragon visited and player died -> GAME OVER screen. Artificial state edit; natural reachability of stages 1-7 not claimed (map route logic $E874/$E960 shows $052A progression)",
+  "evidence": [
+   "analysis/evidence/round-1-disassembly/traces/cov_s0123.json.gz",
+   "analysis/evidence/round-1-disassembly/traces/cov_s4567.json.gz",
+   "analysis/evidence/round-1-disassembly/traces/reads_s0123.json.gz",
+   "analysis/evidence/round-1-disassembly/traces/reads_s4567.json.gz",
+   "analysis/evidence/round-1-disassembly/frames/sheet_S1.png",
+   "analysis/evidence/round-1-disassembly/frames/sheet_S2.png",
+   "analysis/evidence/round-1-disassembly/frames/sheet_sel.png"
+  ],
+  "status": "visited"
+ },
+ {
+  "id": "T1",
+  "milestone": "Hidden TEST MODE menu (natural input route)",
+  "route": "power-on; 240f; then 8x(A,A,Left,Left) each press 4f + release 4f (table $D0CA); $050C becomes $FF; 120f -> snap_cheat; menu inputs down/up/left/right/a/b/select 5f each + 25f gaps",
+  "observed": "TEST MODE menu: EXIT, PLAYER?, WEAPON, STAGE, SOUND, SPTEST, BGTEST",
+  "evidence": [
+   "analysis/evidence/round-1-disassembly/traces/cov_test.json.gz",
+   "analysis/evidence/round-1-disassembly/frames/sheet_cheat.png",
+   "analysis/evidence/round-1-disassembly/frames/T_test.png",
+   "analysis/evidence/round-1-disassembly/snapshots/snap_cheat.json.gz"
+  ],
+  "status": "visited"
+ },
+ {
+  "id": "T2",
+  "milestone": "Test-mode entry traced + menu option navigation (sprite test reached)",
+  "route": "power-on; 240f untraced; trace on; cheat sequence; 60f; down,a,down,right,right,down,right,down,a,down,a,right,a,down,a,right,a (5f press + 40f); b; start",
+  "observed": "Observed execution of $DC8F..$DCA2 including unofficial NOP #$04 (89 04) at $DCA2; sprite test screen",
+  "evidence": [
+   "analysis/evidence/round-1-disassembly/traces/cov_test2.json.gz",
+   "analysis/evidence/round-1-disassembly/frames/sheet_T2.png"
+  ],
+  "status": "visited"
+ },
+ {
+  "id": "END",
+  "milestone": "Defeat dragon / ending credits",
+  "route": "snap_map0; write $0511=$F0 (QuestItems), $0512=$80 (PlayerEquip armour), $052A=7 (StageIndex); leave $053B=0 so SetupStage loads the dragon directly; a5,100f,start5,40f,a5,150f. Fight loop with $030A=$3F refill each step; after first natural hit write $03CA (BossHitPoints)=0; next natural hit defeats. Then ~7500 frames without input.",
+  "observed": "Dragon hits landed naturally (CheckBossHit/BossTakesHit, HP 20->19); defeat -> FinalBossDefeated (QuestItems bit4) -> PlayEnding: scene 1 palace walk with companions, scene 2 castle/forest staff roll (slot 8 ObjFrame $F6..$FF: PRODUCER ... THANK YOU FOR PLAYING THE END), final frame holds in endless yield. Natural reachability not claimed (items/stage/HP patched).",
+  "status": "visited (artificial state)",
+  "evidence": [
+   "analysis/redirect/r1-a1/evidence/cov_ending.json.gz",
+   "analysis/redirect/r1-a1/evidence/ending_log.txt",
+   "analysis/redirect/r1-a1/evidence/frames/sheet_ending.png",
+   "analysis/redirect/r1-a1/evidence/snapshots/snap_d7_dragon_patched.json.gz",
+   "analysis/redirect/r1-a1/evidence/snapshots/snap_dragon_defeated.json.gz"
+  ],
+  "budget": "frame steps <=200/call, 20-frame steps in chunks of 300 frames; 25 traced chunks; trace capacity 0 (aggregates)",
+  "round2": "Coverage reused in round-2 disassembly: 17 Static regions upgraded/split to Observed (artificial context) in pass-002b."
+ },
+ {
+  "id": "TM-OPTS",
+  "milestone": "Test-mode STAGE/WEAPON/SOUND/BGTEST options exercised individually",
+  "status": "visited",
+  "route": "snap_cheat (natural); up(wrap), down(wrap), down x4, a,a, start (sound), up x2, right x8 (WEAPON +$80), down, a (row3 +1), up x3, start (EXIT); 300f. Each press 4f + 20f gap.",
+  "observed": "WEAPON value $80 -> PlayerEquip $80 (armour) on EXIT; row 3 (STAGE text) changes MaxEnergy 4->5 (no stage select); SOUND plays; returns to title PUSH START.",
+  "evidence": [
+   "analysis/redirect/r1-a1/evidence/cov_testmode.json.gz",
+   "analysis/redirect/r1-a1/evidence/frames/sheet_tm.png"
+  ],
+  "round2": "Coverage reused: 7 regions upgraded to Observed (natural route) in pass-002b."
+ },
+ {
+  "id": "S7-WALK",
+  "milestone": "Stage 7 palace walk (StagesCleared >= $7F variant)",
+  "route": "snap_map0; $0511=$F0,$0512=$80,$053B=$7F,$052A=7; enter stage; hold right with attacks",
+  "observed": "Palace hall walk instead of dragon; player blocked by page guardian (duel) at X~$96; confirms SetupStage branch on StagesCleared",
+  "status": "visited (artificial, untraced)",
+  "evidence": []
+ },
+ {
+  "id": "S-WPN",
+  "milestone": "Alternate weapons A/B and sword power-ups (stage 0)",
+  "status": "visited (artificial, traced)",
+  "route": "snap_map0 (round-1); $052A=0; a5, 250f; write $06FC=$03 (WeaponsOwned), $0512=$00; trace on; 3x(start 4f, 30f, then attack cycle b/b/down+b/right/b/a/a+b/left/b each 4f press + 16f, $030A=$3F before each); then $0512=$04,$08,$0C each + 10f + attack cycle. ~1210 frames traced.",
+  "observed": "first Start in stage did not switch (equip stayed 0); second Start -> PlayerEquip $02 (weapon A, projectile), third -> $01 (weapon B); power-up values accepted. AltWeaponA/B ($EF10-$F41F) and weapon-switch code executed; 793 new instruction starts in Static regions (1920 bytes upgraded).",
+  "evidence": [
+   "analysis/evidence/round-2-disassembly/traces/cov_wpn.json.gz",
+   "analysis/evidence/round-2-disassembly/scenarios/scen_wpn.py",
+   "analysis/evidence/round-2-disassembly/frames/wpn_weaponB.png"
+  ]
+ },
+ {
+  "id": "S-PROG3",
+  "milestone": "Stage 3 (tower field) progression toward the boss door with RAM assists",
+  "status": "attempted (artificial, traced)",
+  "route": "snap_map0; $052A=3; a5,100f,start5,40f,a5,150f; 150 steps: right 6f, right+b 4f, 6f idle, every 5th step a+right 12f; each step $030A=$3F, $032A=1 if slot-2 type nonzero; if page unchanged 25 steps write $0480+page/8=$FF.",
+  "observed": "stayed on page 18; around step 60-80 left gameplay to an emblem screen then title (mode 0); cause not determined (possibly a side effect of the GuardianDefeated/ObjHP writes). 297 new instruction starts (686 bytes upgraded), all inside classified code.",
+  "evidence": [
+   "analysis/evidence/round-2-disassembly/traces/cov_prog3.json.gz",
+   "analysis/evidence/round-2-disassembly/scenarios/prog3.log",
+   "analysis/evidence/round-2-disassembly/frames/prog3_step60.png"
+  ],
+  "round2_redirect": "Cause of the title drop determined from cov_prog3 edges: pit death (ObjY >= $E0 path $FCD9-$FCE8, JMP @GameOver $FCF7), game-over figure frame $D0 (the emblem), then JMP Reset -> title. Not a patch artifact (r2-a1, L-009)."
+ },
+ {
+  "id": "S-PROG4",
+  "milestone": "Stage 4 (palace hall) multi-page progression with RAM assists",
+  "status": "visited (artificial, traced; boss door not reached)",
+  "route": "as S-PROG3 with $052A=4.",
+  "observed": "pages 26->30 traversed (guardian flag written for page 26 at step 25); boss not reached within 150 steps. 361 new starts (231 bytes upgraded after S-PROG3).",
+  "evidence": [
+   "analysis/evidence/round-2-disassembly/traces/cov_prog4.json.gz",
+   "analysis/evidence/round-2-disassembly/scenarios/prog4.log"
+  ]
+ },
+ {
+  "id": "S-BOSS3-6",
+  "milestone": "Stage 3-6 boss rooms (BossStage3 etc.), stage clear rewards, natural stage-to-stage progression",
+  "status": "superseded by S-BOSS3/S-BOSS4/S-BOSS5F/S-BOSS6F (round-2 redirect r2-a1)",
+  "reason": "Boss door needs the page with PageSpawnTbl marker $7F and X>=$D8 after guardians; S-PROG3 dropped to title, S-PROG4 ran out of budget at page 30 (end page 32+1). Next: from S-PROG4 end state continue ~100 steps, or patch ScrollXPage near StageMapEndTbl after studying the scroll/draw contract; diminishing byte gains (231 bytes in last run)."
+ },
+ {
+  "id": "S-BOSS3",
+  "milestone": "Stage 3 boss (bird-serpent) via natural boss door, defeat, stage clear, map screen",
+  "status": "visited (artificial, traced)",
+  "route": "warp.py: snap_map0; $052A=k; inputs a5,100f(,start5,40f,a5 for k>=3); sentinel $F3=$EE; step 1 frame at a time until $F3=StageMapStartTbl[k], reload previous frame, run_until PC=$E626 (SetupStage JSR DrawMapScreen, fixed bank 7), write $F3=page; 150f. k=3 page=24; play.py assists: $030A=$3F every step; guardian (slot 2, type<$25) HP $032A=1 once; GuardianDefeated bit after 40 unchanged steps; pit: restore last grounded snapshot and retry jump variants (A 6f full charge). play until PauseFlags bit7 (boss screen) then boss_fight(): per frame $030A=$3F, walk so attack object X lies in the BossHitBoxTbl weak spot (minus ScrollX), jump+B; after the first natural hit write $03CA=0 so the next natural hit defeats. (tools/boss.py 3 24 260 b3; tools/bossclear.py s3_bossroom 3 1500 b3clear)",
+  "observed": "page-24 guardian $0B defeated, reward collected, X>=$D8 -> LoadStage (page 25, BossHitPoints $40); natural hits at frames 104 and 344 (after HP patch) -> BossTakesHit defeat (sound $0C), @StageCleared: StagesCleared=$08, all-buttons abort ($E59E) -> map screen.",
+  "evidence": [
+   "analysis/redirect/r2-a1/evidence/traces/cov_b3.json.gz",
+   "analysis/redirect/r2-a1/evidence/traces/cov_b3clear.json.gz",
+   "analysis/redirect/r2-a1/evidence/frames/b3_end.png",
+   "analysis/redirect/r2-a1/evidence/frames/b3clear_post.png",
+   "analysis/redirect/r2-a1/evidence/snapshots/s3_bossroom.json.gz",
+   "analysis/redirect/r2-a1/evidence/logs/b3.out"
+  ],
+  "round3": "Coverage applied in pass-003 (L-008) as artificial context"
+ },
+ {
+  "id": "S-BOSS4",
+  "milestone": "Stage 4 boss (flying dragon) via boss door, defeat, stage clear",
+  "status": "visited (artificial, traced)",
+  "route": "warp.py: snap_map0; $052A=k; inputs a5,100f(,start5,40f,a5 for k>=3); sentinel $F3=$EE; step 1 frame at a time until $F3=StageMapStartTbl[k], reload previous frame, run_until PC=$E626 (SetupStage JSR DrawMapScreen, fixed bank 7), write $F3=page; 150f. k=4 page=32; play.py assists: $030A=$3F every step; guardian (slot 2, type<$25) HP $032A=1 once; GuardianDefeated bit after 40 unchanged steps; pit: restore last grounded snapshot and retry jump variants (A 6f full charge). boss_fight(): per frame $030A=$3F, walk so attack object X lies in the BossHitBoxTbl weak spot (minus ScrollX), jump+B; after the first natural hit write $03CA=0 so the next natural hit defeats. (tools/stagerun.py 4 32 200 1800 b4; tools/bossclear.py b4_bossroom 4 3600 b4clear)",
+  "observed": "guardian $0E defeated, door -> page 33 boss; hits at frames 304 and 1944 -> defeat, StagesCleared=$10, map screen.",
+  "evidence": [
+   "analysis/redirect/r2-a1/evidence/traces/cov_b4a.json.gz",
+   "analysis/redirect/r2-a1/evidence/traces/cov_b4clear.json.gz",
+   "analysis/redirect/r2-a1/evidence/frames/b4_b.png",
+   "analysis/redirect/r2-a1/evidence/snapshots/b4_bossroom.json.gz",
+   "analysis/redirect/r2-a1/evidence/logs/b4.out",
+   "analysis/redirect/r2-a1/evidence/logs/b4c.out"
+  ],
+  "round3": "Coverage applied in pass-003 (L-008) as artificial context"
+ },
+ {
+  "id": "S-BOSS5F",
+  "milestone": "Stage 5 boss room (no natural entry; forced)",
+  "status": "visited (FORCED entry, traced)",
+  "route": "enter stage 5 normally (warp.py, no page warp); 30f; run_until PC=$90D8 (SpawnPageObjects, bank 6 = prg [12,13]); emulator.registers.set pc=$E129 (LoadStage, same state as SpawnPageObjects' own JMP LoadStage); 200f; boss_fight(): per frame $030A=$3F, walk so attack object X lies in the BossHitBoxTbl weak spot (minus ScrollX), jump+B; after the first natural hit write $03CA=0 so the next natural hit defeats. (tools/stagerun.py 5 -1 0 3000 b5 1)",
+  "observed": "hydra boss drawn (slot-2 stage guardian left active -> garbage sprite, artifact of forced entry); hits register; HP 0 -> $FF -> $FE: defeat never clears the stage (stage 5 uses the end-page check). Natural reachability statically excluded (L-009).",
+  "evidence": [
+   "analysis/redirect/r2-a1/evidence/traces/cov_b5.json.gz",
+   "analysis/redirect/r2-a1/evidence/frames/b5_a.png",
+   "analysis/redirect/r2-a1/evidence/logs/b5.out"
+  ],
+  "round3": "Coverage applied in pass-003 (L-008) as FORCED-entry context"
+ },
+ {
+  "id": "S-BOSS6F",
+  "milestone": "Stage 6 boss room (no natural entry; forced)",
+  "status": "visited (FORCED entry, traced)",
+  "route": "as S-BOSS5F with k=6 (tools/stagerun.py 6 -1 0 2000 b6 1)",
+  "observed": "dragon-like boss; hits register; BossHitPoints wraps $FF,$FE,$FD; no stage clear.",
+  "evidence": [
+   "analysis/redirect/r2-a1/evidence/traces/cov_b6.json.gz",
+   "analysis/redirect/r2-a1/evidence/frames/b6_b.png",
+   "analysis/redirect/r2-a1/evidence/logs/b6.out"
+  ],
+  "round3": "Coverage applied in pass-003 (L-008) as FORCED-entry context"
+ },
+ {
+  "id": "S-GUARD",
+  "milestone": "Page guardians of later stages + stage 6 natural clear",
+  "status": "visited (artificial, traced)",
+  "route": "warp.py: snap_map0; $052A=k; inputs a5,100f(,start5,40f,a5 for k>=3); sentinel $F3=$EE; step 1 frame at a time until $F3=StageMapStartTbl[k], reload previous frame, run_until PC=$E626 (SetupStage JSR DrawMapScreen, fixed bank 7), write $F3=page; 150f. play.py assists: $030A=$3F every step; guardian (slot 2, type<$25) HP $032A=1 once; GuardianDefeated bit after 40 unchanged steps; pit: restore last grounded snapshot and retry jump variants (A 6f full charge). one session, pages 6:48 6:47 6:46 5:38 5:36 4:28 4:30 2:16 (tools/guardians.py gd ...); stop 10 steps after the guardian is replaced by its reward",
+  "observed": "guardian types $15,$11,$05,$12,$01,$0D,$07,$03 fought and defeated (HP-1 assist); page 48: reward, X>=$D8 -> stage 6 cleared (StagesCleared=$40) via end-page path $FC88ff.",
+  "evidence": [
+   "analysis/redirect/r2-a1/evidence/traces/cov_gd.json.gz",
+   "analysis/redirect/r2-a1/evidence/logs/gd.out",
+   "analysis/redirect/r2-a1/evidence/frames/gd_6_48.png",
+   "analysis/redirect/r2-a1/evidence/frames/gd_5_38.png",
+   "analysis/redirect/r2-a1/evidence/frames/gd_4_30.png"
+  ],
+  "round3": "Coverage applied in pass-003 (L-008) as artificial context"
+ },
+ {
+  "id": "S6-PROG",
+  "milestone": "Stage 6 multi-page walk 42->44",
+  "status": "attempted (artificial)",
+  "route": "warp.py: snap_map0; $052A=k; inputs a5,100f(,start5,40f,a5 for k>=3); sentinel $F3=$EE; step 1 frame at a time until $F3=StageMapStartTbl[k], reload previous frame, run_until PC=$E626 (SetupStage JSR DrawMapScreen, fixed bank 7), write $F3=page; 150f. k=6 page=42; play.py assists: $030A=$3F every step; guardian (slot 2, type<$25) HP $032A=1 once; GuardianDefeated bit after 40 unchanged steps; pit: restore last grounded snapshot and retry jump variants (A 6f full charge). (tools/stagerun.py 6 42 500 0 s6)",
+  "observed": "first attempt: fell into the page-43 pit before the restore logic existed -> game over (cov_s6a). second: guardians $10/$11 defeated, pit crossed with jump variant, then looped at page 44 X~$80 (terrain); killed at step ~190, coverage not saved (no unique code expected beyond S-GUARD).",
+  "evidence": [
+   "analysis/redirect/r2-a1/evidence/traces/cov_s6a.json.gz"
+  ],
+  "round3": "Coverage applied in pass-003 (L-008) as artificial context"
+ },
+ {
+  "id": "S7-WALK2",
+  "milestone": "Stage 7 palace walk: guardian $16 (page 51), natural boss door page 52 -> dragon room; level-up",
+  "status": "visited (artificial, traced)",
+  "route": "warp.py: snap_map0; $052A=k; inputs a5,100f(,start5,40f,a5 for k>=3); sentinel $F3=$EE; step 1 frame at a time until $F3=StageMapStartTbl[k], reload previous frame, run_until PC=$E626 (SetupStage JSR DrawMapScreen, fixed bank 7), write $F3=page; 150f. k=7 with pre $053B=$7F,$0511=$F0,$0512=$80 (+$0536=$50 for level-up), page 51 then 52 (tools/guardians.py s7b/s7c)",
+  "observed": "guardian $16 takes over the overlay object (SpawnGuardian $91BB) and is not defeated in 45 steps (HP regenerates); level-up path $FB89 observed; page 52 X>=$D8 -> LoadStage dragon (page 53, BossHitPoints 20).",
+  "evidence": [
+   "analysis/redirect/r2-a1/evidence/traces/cov_s7.json.gz",
+   "analysis/redirect/r2-a1/evidence/traces/cov_s7b.json.gz",
+   "analysis/redirect/r2-a1/evidence/traces/cov_s7c.json.gz",
+   "analysis/redirect/r2-a1/evidence/frames/s7c_7_52.png"
+  ],
+  "round3": "Coverage applied in pass-003 (L-008) as artificial context"
+ },
+ {
+  "id": "S2-LIFT",
+  "milestone": "Stage 2 page 14 half-page type $24 spawn (floating platforms)",
+  "status": "visited (artificial, traced)",
+  "route": "warp.py: snap_map0; $052A=k; inputs a5,100f(,start5,40f,a5 for k>=3); sentinel $F3=$EE; step 1 frame at a time until $F3=StageMapStartTbl[k], reload previous frame, run_until PC=$E626 (SetupStage JSR DrawMapScreen, fixed bank 7), write $F3=page; 150f. k=2 page=14; play.py assists: $030A=$3F every step; guardian (slot 2, type<$25) HP $032A=1 once; GuardianDefeated bit after 40 unchanged steps; pit: restore last grounded snapshot and retry jump variants (A 6f full charge). (tools/stagerun.py 2 14 70 0 s2b)",
+  "observed": "$C5D4-$C6D4 (labelled SpawnStage7BossBody) fully executed; floating leaf platforms appear and UpdateStageScenery @LiftLoop $C6E7 runs; repeated pit-jump restores on page 15; post-run idle fell into a pit (game over).",
+  "evidence": [
+   "analysis/redirect/r2-a1/evidence/traces/cov_s2b.json.gz",
+   "analysis/redirect/r2-a1/evidence/frames/s2b_lifts.png",
+   "analysis/redirect/r2-a1/evidence/logs/s2b.out"
+  ],
+  "round3": "Coverage applied in pass-003 (L-008) as artificial context"
+ },
+ {
+  "id": "S-MAPSEL",
+  "milestone": "Map route selection for stages 3-7",
+  "status": "visited (artificial StageIndex=3, traced)",
+  "route": "snap_map0; $052A=3; a5,100f; then down x4, up x4, right, down, right, up (4f press + 20f)",
+  "observed": "StageIndex 4,5,6,6,5,4,3,3,7,5,7,4: Down/Up clamp 3..6, Right -> 7, from 7 Down -> 5, Up -> 4.",
+  "evidence": [
+   "analysis/redirect/r2-a1/evidence/traces/cov_mapsel.json.gz",
+   "analysis/redirect/r2-a1/evidence/frames/mapsel.png"
+  ],
+  "round3": "Coverage applied in pass-003 (L-008) as artificial context"
+ },
+ {
+  "id": "S-TMSUB",
+  "milestone": "Test-mode SPTEST and BGTEST sub-options driven with input",
+  "status": "visited (natural route, traced)",
+  "route": "round-1 snap_cheat (test mode reached by the natural cheat input; cursor row 0); trace capacity 0; each press 4f + gap. down x5 (row 5 SPRITE), right, left, right (+$10), start 120f; in SPTEST: A x8 (->$18, 40f gaps), A, B, A x13 (wrap to 0), B (wrap to $24), A, start 120f; down (row 6 BG), right, left, start 150f; in BGTEST: up 90f, down 90f, hold right 40f, hold left 40f, start 150f. 2358 frames. tools/tm_sub.py",
+  "observed": "SpriteTest: TestSpriteNum $10->$18 (frame at $18 shows a princess-like figure; the $18 companion-object path $DD9F was fetched), wraps $25->0 and -1->$24, Start returns to menu. BGTEST: title map drawn, TestBgNum stayed 0 through Up/Down; Start returns. 549 bytes of Static code fetched (L-010).",
+  "evidence": [
+   "analysis/evidence/round-3-disassembly/cov_tmsub.json.gz",
+   "analysis/evidence/round-3-disassembly/frames/tm_sptest_10.png",
+   "analysis/evidence/round-3-disassembly/frames/tm_sptest_18.png",
+   "analysis/evidence/round-3-disassembly/frames/tm_bgtest_a.png",
+   "analysis/evidence/round-3-disassembly/frames/tm_bgtest_b.png",
+   "analysis/evidence/round-3-disassembly/frames/tm_after.png"
+  ]
+ }
+]

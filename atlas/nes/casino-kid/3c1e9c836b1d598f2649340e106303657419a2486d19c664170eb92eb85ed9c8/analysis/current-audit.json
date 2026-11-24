@@ -1,0 +1,60 @@
+{
+  "checkpoint": "pass-003",
+  "generated_by": "final acceptance worker from configured-binary outputs (map validate, store validate, generate+verify) and commentary.py audit",
+  "binary": "/root/romatlas/target/release/romatlas",
+  "hashes": {
+    "input/game.nes": "3c1e9c836b1d598f2649340e106303657419a2486d19c664170eb92eb85ed9c8",
+    "maps/current.json": "9e2a7bca32ad62551d63f75b268a4075d22a4cc61760e4ebb63aebf2c1aa22f2",
+    "maps/pass-003.json": "9e2a7bca32ad62551d63f75b268a4075d22a4cc61760e4ebb63aebf2c1aa22f2",
+    "analysis/state.json": "9e2a7bca32ad62551d63f75b268a4075d22a4cc61760e4ebb63aebf2c1aa22f2",
+    "commentary/baseline.json": "9e2a7bca32ad62551d63f75b268a4075d22a4cc61760e4ebb63aebf2c1aa22f2",
+    "commentary/phase1-state.json": "9e2a7bca32ad62551d63f75b268a4075d22a4cc61760e4ebb63aebf2c1aa22f2",
+    "commentary/source/game.asm": "cf92d8e2a24e0fbca5e3a71179f7e674bdb5c0b2eedb50a92934871e4590d3fd",
+    "commentary/source/ram.inc": "c9df9d5321295aa7d1fa535fbbd963a15134576be4b1b9543ee0ecbfa4cbda21",
+    "commentary/reading-after.asm": "7e9072e739d7d03fe7b9b09973bdb29e0c569952b39ee0d9a2435a750b2299ba",
+    "commentary/review.json": "e73f979c0cd9bb054895c4906c027dbca6e7f331bea85bad6d6acc5e05488033",
+    "commentary/audit.json": "e7d690adfd43d561e85c3f958efbc11dd69a0cd08b4d7a542bd4ac6dcf84aae0"
+  },
+  "validation": {
+    "maps/current.json (map validate)": {
+      "ok": true
+    },
+    "maps/pass-003.json (map validate)": {
+      "ok": true
+    },
+    "analysis/state.json (store validate)": {
+      "ok": true
+    }
+  },
+  "checkpoint_regeneration": {
+    "map": "maps/pass-003.json",
+    "output": "scratch/final-acceptance/pass-003-gen",
+    "verify": {
+      "byte_identical": true,
+      "ok": true
+    }
+  },
+  "image_size": 131088,
+  "classified": 131088,
+  "unknown_bytes": 0,
+  "regions": 1582,
+  "kinds": {
+    "Data": 99263,
+    "Code": 31825
+  },
+  "commentary_audit": {
+    "byte_identical": true,
+    "ok": true,
+    "rom_sha256": "3c1e9c836b1d598f2649340e106303657419a2486d19c664170eb92eb85ed9c8",
+    "source_sha256": {
+      "game.asm": "cf92d8e2a24e0fbca5e3a71179f7e674bdb5c0b2eedb50a92934871e4590d3fd",
+      "ram.inc": "c9df9d5321295aa7d1fa535fbbd963a15134576be4b1b9543ee0ecbfa4cbda21"
+    },
+    "reviewed_regions": 1582,
+    "reviewed_units": 1435,
+    "editorial_audit": true
+  },
+  "pending_regions": [],
+  "pending_units": [],
+  "editorial_audit_status": "reviewed"
+}
