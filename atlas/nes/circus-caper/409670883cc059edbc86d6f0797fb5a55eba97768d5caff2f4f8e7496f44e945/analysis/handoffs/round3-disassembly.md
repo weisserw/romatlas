@@ -1,0 +1,13 @@
+# Round3 disassembly handoff
+
+ROM classification: 84.10% (220484 / 262160 bytes classified; 41676 bytes unknown).
+
+One substantive pass complete, ROM incomplete. Fresh final maps/pass-003-final.json matches analysis/state.json and maps/current.json exactly; byte-identical generated/pass-003-final verified in analysis/pass-003-final-verification.json. Intermediate pass-003-verified preserved. New20896bytes:3944code/16952data. Current totals20952code/68460data/131072CHRimage. All10080regions evidence-backed;8152previous regions unchanged. Exact188range/41676unknown complement and per-bank counts in analysis/pass-003/counts.json and final-checks.json.
+
+AllR006..R009 verified; lead-outcomes.json records exact6177/14101/519/99byte gains respectively. Independent review found original13E73operand-root bug:13E72A5C8 isLDA C8, sprite end13E72, not dataA5 thenINY. Preserved original redirect evidence; corrected separate graph and reviewed-proposals.json. Four connected transition lookup slices add24bytes, exact complement further adds111audio-mask/helper/reset-template/vector/scalar bytes. Static replicated JMP roles do not claim physical fetch after MMC1 write resets mapping. Final review.md distinguishes role evidence from fresh decode identity checks and explains exact bounds, bank/stack/inline contracts and generic data fallbacks.
+
+Allnew annotationsStatic; execution coverage unchanged8562bytes/3840instructionstarts with prior natural/artificial provenance intact. Representative sixstage/laterroom/boss/fairy/THE END routes in scenarios.json reused; no redundant gameplay. Full current-source commentary next, final editorial audit pending. Current maintained commentary is older round2 and not yet reviewed against new map.
+
+Concrete next research after commentary: E120generic actor frame-offset source tables need localized per-actor record bounds; other inline actor dispatchers need writer/entry contracts distinct from finite response selector; bank1mixed script/text spans include known PPU helpers and need localized boundaries, not blanket data. Small unresolvedAB20RTS/BFDEtwo-byte lower tail/1300EA900remain structurally ambiguous after neighbor review. Broad unknown banks00/01/02/07 and fixed14/15 require focused contracts/record consumers, not repeated startup or arbitrary pointer decoding. No terminal exhaustion claim or final rejection audit requested.
+
+No toolkit issues found; analysis/toolkit-issues.md. ROM/configured binary/maintained commentary preserved, no publishing/archive/deletion/cleanup. Disk about2.5GiB before checkpoint; compact handoff and review artifacts are local.

@@ -1,0 +1,239 @@
+{
+  "version": 1,
+  "pass": "pass-001",
+  "scenarios": [
+    {
+      "milestone": "Copyright and opening story",
+      "status": "visited",
+      "route": "Fresh emulator;180 frames with tracing, stopped by30s timeout at70; second180 stopped at155; tracing disabled advance300 ->455. Later fresh replay300, Start press1/release180 ->481, A held600/release ->1081; Start2/release600 ->1683; four600-frame batches ->4083 and final600 ->4683.",
+      "observed": "Toho1990 copyright and Circus Caper narrative. A/Start did not skip long story; player-only black screen after story.",
+      "evidence": [
+        "pass-001/rpc.jsonl",
+        "pass-001/title.png",
+        "pass-001/title3.png",
+        "pass-001/advance.json",
+        "pass-001/ready.snapshot"
+      ]
+    },
+    {
+      "milestone": "First playable scene / boss curtain shortcut",
+      "status": "attempted",
+      "route": "At natural frame4683 context[0,1,14,15], trace60 ->4743; Start2/release180 ->4925; Left90/release ->5015.",
+      "observed": "Player sprite responds/moves but background remains black. No boss or complete scene confirmed; do not treat as successful ordinary gameplay progression.",
+      "evidence": [
+        "pass-001/game.snapshot",
+        "pass-001/game.png",
+        "pass-001/left.png"
+      ]
+    },
+    {
+      "milestone": "Initializer selector1/4/8",
+      "status": "attempted",
+      "route": "Restore game.snapshot each; release all buttons; step1operation; RAM$039F=1,4,8 respectively; RAM$0392=$80; PC=$8006; trace8frames,90untraced,Right+A+B trace8frames; context[0,1,14,15].",
+      "observed": "Accepted artificial fetches and distinct sprite states, malformed backgrounds. $039F is graphics/init-dispatch selector (written bank4 CPU$8000), not established stage number; dependent initialization missing. No later-level visit claimed.",
+      "evidence": [
+        "pass-001/stage.py",
+        "pass-001/stage1.png",
+        "pass-001/stage4.png",
+        "pass-001/stage8.png",
+        "pass-001/stage1-results.json",
+        "pass-001/stage4-results.json",
+        "pass-001/stage8-results.json"
+      ]
+    },
+    {
+      "milestone": "Parent gameplay initialization",
+      "status": "attempted",
+      "route": "Restore ready.snapshot; release all; step1operation; PC=$C0BB,SP=$FF; trace12frames+120untraced; context[0,1,14,15].",
+      "observed": "PC$C0BB and$C0BE entered narrative scheduler/helpers; PC$C0DB bypassed narrative and set room byte$2B=1 but later black output and unusual stack state showed dependent state still incomplete. No confirmed ordinary game level. Routes/captures saved as main-start/main-route/main-late.",
+      "evidence": [
+        "pass-001/main-start.py",
+        "pass-001/main-start.png",
+        "pass-001/main-start.snapshot",
+        "pass-001/scene-loop.json",
+        "pass-001/main-route.py",
+        "pass-001/main-route.png",
+        "pass-001/main-late.py",
+        "pass-001/main-late.png"
+      ]
+    },
+    {
+      "milestone": "Scenes2-6, bosses and distinct flight/warp mechanics",
+      "status": "deferred",
+      "reason": "Need validated parent scene-state contract; selector-only shortcuts failed. Source-backed room/state $2B setup and higher-level transitions are concrete redirect avenue; no arbitrary RAM brute force.",
+      "evidence": [
+        "gameplay.md",
+        "pass-001/scene-loop.json"
+      ],
+      "historical_record": true,
+      "recorded_in_pass": "pass-001",
+      "superseded_for_stage_and_boss_visits_by": [
+        "Stage1 coherent gameplay",
+        "Stage2 coherent gameplay",
+        "Stage3 coherent gameplay",
+        "Stage4 coherent gameplay",
+        "Stage5 coherent gameplay",
+        "Stage6 coherent gameplay",
+        "Stage1room1 andstage6room4 representative mechanics",
+        "Clown/unicycle boss encounter",
+        "Stage6completion fairy narrative"
+      ]
+    },
+    {
+      "milestone": "Ending and credits",
+      "status": "deferred",
+      "reason": "Need parent scene/progression transition contract. External debug ROM-patch cheat was researched but ROM is immutable; no patch applied.",
+      "evidence": [
+        "gameplay.md"
+      ],
+      "historical_record": true,
+      "recorded_in_pass": "pass-001",
+      "superseded_for_ending_by": "THE END terminal screen",
+      "remaining_limit": "Natural completion and credits remain unconfirmed; THE END was visited artificially."
+    },
+    {
+      "milestone": "Stage1 coherent gameplay",
+      "status": "visited",
+      "artificial": true,
+      "route": "analysis/redirect/round1-20261126/progression-render-safe.py",
+      "observed": "Coherent HUD/background/player/enemies, then45framesRight+A. Visual inspectionconfirmed; no natural route claimed.",
+      "evidence": [
+        "analysis/redirect/round1-20261126/render-safe-stage1.ppm",
+        "analysis/redirect/round1-20261126/render-safe-stage1-motion.ppm",
+        "analysis/redirect/round1-20261126/later-contact-0.png",
+        "analysis/redirect/round1-20261126/later-contact-5.png"
+      ]
+    },
+    {
+      "milestone": "Stage2 coherent gameplay",
+      "status": "visited",
+      "artificial": true,
+      "route": "analysis/redirect/round1-20261126/progression-later.py",
+      "observed": "Coherent HUD/background/player/enemies, then45framesRight+A. Visual inspectionconfirmed; no natural route claimed.",
+      "evidence": [
+        "analysis/redirect/round1-20261126/later-stage2-room0.ppm",
+        "analysis/redirect/round1-20261126/later-stage2-room0-motion.ppm",
+        "analysis/redirect/round1-20261126/later-contact-0.png",
+        "analysis/redirect/round1-20261126/later-contact-5.png"
+      ]
+    },
+    {
+      "milestone": "Stage3 coherent gameplay",
+      "status": "visited",
+      "artificial": true,
+      "route": "analysis/redirect/round1-20261126/progression-render-safe.py",
+      "observed": "Coherent HUD/background/player/enemies, then45framesRight+A. Visual inspectionconfirmed; no natural route claimed.",
+      "evidence": [
+        "analysis/redirect/round1-20261126/render-safe-stage3.ppm",
+        "analysis/redirect/round1-20261126/render-safe-stage3-motion.ppm",
+        "analysis/redirect/round1-20261126/later-contact-0.png",
+        "analysis/redirect/round1-20261126/later-contact-5.png"
+      ]
+    },
+    {
+      "milestone": "Stage4 coherent gameplay",
+      "status": "visited",
+      "artificial": true,
+      "route": "analysis/redirect/round1-20261126/progression-later.py",
+      "observed": "Coherent HUD/background/player/enemies, then45framesRight+A. Visual inspectionconfirmed; no natural route claimed.",
+      "evidence": [
+        "analysis/redirect/round1-20261126/later-stage4-room0.ppm",
+        "analysis/redirect/round1-20261126/later-stage4-room0-motion.ppm",
+        "analysis/redirect/round1-20261126/later-contact-0.png",
+        "analysis/redirect/round1-20261126/later-contact-5.png"
+      ]
+    },
+    {
+      "milestone": "Stage5 coherent gameplay",
+      "status": "visited",
+      "artificial": true,
+      "route": "analysis/redirect/round1-20261126/progression-later.py",
+      "observed": "Coherent HUD/background/player/enemies, then45framesRight+A. Visual inspectionconfirmed; no natural route claimed.",
+      "evidence": [
+        "analysis/redirect/round1-20261126/later-stage5-room0.ppm",
+        "analysis/redirect/round1-20261126/later-stage5-room0-motion.ppm",
+        "analysis/redirect/round1-20261126/later-contact-0.png",
+        "analysis/redirect/round1-20261126/later-contact-5.png"
+      ]
+    },
+    {
+      "milestone": "Stage6 coherent gameplay",
+      "status": "visited",
+      "artificial": true,
+      "route": "analysis/redirect/round1-20261126/progression-render-safe.py",
+      "observed": "Coherent HUD/background/player/enemies, then45framesRight+A. Visual inspectionconfirmed; no natural route claimed.",
+      "evidence": [
+        "analysis/redirect/round1-20261126/render-safe-stage6.ppm",
+        "analysis/redirect/round1-20261126/render-safe-stage6-motion.ppm",
+        "analysis/redirect/round1-20261126/later-contact-0.png",
+        "analysis/redirect/round1-20261126/later-contact-5.png"
+      ]
+    },
+    {
+      "milestone": "Stage1room1 andstage6room4 representative mechanics",
+      "status": "visited",
+      "artificial": true,
+      "route": "analysis/redirect/round1-20261126/progression-later.py",
+      "observed": "Bothrooms coherent; movingenemies/hazards andplayerjump/motion exercised. Flight-specific behavior not established.",
+      "evidence": [
+        "analysis/redirect/round1-20261126/later-contact-0.png",
+        "analysis/redirect/round1-20261126/later-contact-5.png"
+      ]
+    },
+    {
+      "milestone": "Clown/unicycle boss encounter",
+      "status": "visited",
+      "artificial": true,
+      "route": "Restore later-stage1-room1.snapshot; releasebuttons; RAM28=0F, runbounded500frames via boss-step.py0; then Right+B120frames withAjump pulse via boss-exercise.py1.",
+      "observed": "Coherent bossarena/clown/unicycle/projectiles; fightinputs exercised; victory not claimed.",
+      "evidence": [
+        "analysis/redirect/round1-20261126/boss-step0.png",
+        "analysis/redirect/round1-20261126/boss-step0-rpc.jsonl",
+        "analysis/redirect/round1-20261126/boss-step1-rpc.jsonl"
+      ]
+    },
+    {
+      "milestone": "Stage6completion fairy narrative",
+      "status": "visited",
+      "artificial": true,
+      "route": "Restore later-stage6-room4.snapshot; releasebuttons; RAM28=0F; F8E6 table sets2B=C9; boundedending-step.py0/1.",
+      "observed": "Coherent fairy YOU ARE DOING GREAT screen; distinctfromending.",
+      "evidence": [
+        "analysis/redirect/round1-20261126/ending-step1.png",
+        "analysis/redirect/round1-20261126/ending-step0.snapshot",
+        "analysis/redirect/round1-20261126/ending-step1.snapshot"
+      ]
+    },
+    {
+      "milestone": "THE END terminal screen",
+      "status": "visited",
+      "artificial": true,
+      "route": "Restore initializedstage6room4; instructionboundary1operation; setPCC0A6/SPFF; sourcecallerloadsA1C andCEBAperformscompleteinitialization; terminal-screen.py0 bounded500frames.",
+      "observed": "Visually THE END, scene82=28, PC CF1C terminal musicloop. No naturalgamecompletion/creditsclaim.",
+      "evidence": [
+        "analysis/redirect/round1-20261126/terminal-screen0.png",
+        "analysis/redirect/round1-20261126/terminal-screen0-rpc.jsonl",
+        "analysis/redirect/round1-20261126/terminal-screen0.snapshot"
+      ]
+    }
+  ],
+  "passes": [
+    {
+      "id": "round1-redirect",
+      "evidence": "analysis/redirect/round1-20261126/findings.md"
+    }
+  ],
+  "current_progression_summary": {
+    "evidence": "analysis/coordinator-gameplay-check.json",
+    "stages": "All six visited artificially with bounded movement/action inputs",
+    "boss": "Clown/unicycle encounter visited and fight inputs exercised; victory unclaimed",
+    "terminal": "THE END visited artificially",
+    "later_rooms": "Stage1room1 and stage6room4 exercised; fairy transition distinct from ending",
+    "limits": [
+      "Natural complete playthrough and credits unconfirmed",
+      "Flight/warp-specific identities and every boss are unconfirmed; representative all-six-stage/later-room/boss/terminal coverage was achieved",
+      "No source-supported missing route now offers a concrete discriminator for the 26 tiny structural residual bytes"
+    ],
+    "historical_notes": "Original pass-001 status, route and observation text is preserved with explicit supersession metadata; those historical deferrals are not current claims that stages/boss/ending remain unvisited."
+  }
+}

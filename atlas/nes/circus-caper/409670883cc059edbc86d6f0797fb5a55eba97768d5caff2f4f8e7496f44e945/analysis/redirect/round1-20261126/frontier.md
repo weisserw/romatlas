@@ -1,0 +1,7 @@
+# Round1 redirect — closed with combined ready batch
+
+Final handoff: analysis/handoffs/round1-redirect.md. Final claims and corrections: findings.md. Machine manifest: combined-proposals.json,8882code+41898data=50780proposedbytes;accepted0. Exact current unknown116678;prospective65898 if all accepted. Current map/state remain byte-identical to maps/pass-001-final.json, input hash unchanged; handoff-checks.json confirms zero code/data conflicts and zero overlapping instruction starts.
+
+Ready IDs R001/R002/R003/R004/R005 persisted in analysis/leads.json. Allsixstages, representative laterrooms, clown/unicycleboss, fairy narrative and THE END visitedartificially; scenarios.json has recipes/evidence. Safe graph, actor bank-effect, graphics-context and mixed-data corrections are consolidated in findings.md; historical exploratory records retained.
+
+No operation remains running or interrupted for this attempt. Latest actor/lower/helper continuations were inspected and incorporated. Specific unclaimed frontiers: selector/writer/extent contracts for further inline dispatch slices; returning lower-window bank effects; audio stream/envelope extent; mixed data/code after inspected asset/sprite bounds. No terminal exhaustion claim. Coordinator may independently assess and pass combined proposals to disassembly, then commentary/redirect. No map/source/ROM/binary changes, archive, publishing or cleanup. No toolkit issues found.

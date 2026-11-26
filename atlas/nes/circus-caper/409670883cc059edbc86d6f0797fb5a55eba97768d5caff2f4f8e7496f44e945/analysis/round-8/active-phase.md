@@ -1,0 +1,1 @@
+Round8 and final editorial acceptance complete. Coordinator accepted terminal incomplete, not whole-ROM completion. Final checkpoint maps/pass-008-final.json; 262134 classified, 26 unknown bytes in20intervals. Strict audit/fresh byte-identical verification/reading and final document accounting passed. See analysis/final-handoff.md. No active phase.

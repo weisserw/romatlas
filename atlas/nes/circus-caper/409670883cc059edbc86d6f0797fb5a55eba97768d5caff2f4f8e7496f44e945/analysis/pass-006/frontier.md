@@ -1,0 +1,1 @@
+Round6 DISASSEMBLY COMPLETE; ROM INCOMPLETE. ROM classification: 99.95% (262016 / 262160 bytes classified; 144 bytes unknown). Freshpass-006-final verified byte-identical; exact state/current/checkpoint identity, union/perbank/complement and R013history saved. Next full current-source commentary; terminal/editorial audit not run.

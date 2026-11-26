@@ -1,0 +1,460 @@
+[
+ {
+  "id": "S0",
+  "milestone": "Conventions and RAM facts (pass-001)",
+  "notes": "Inputs via emulator.input {buttons:[...], port:N} (TK-001). 'press b' = hold b 4 frames then release ([]) and wait N frames. Frame budgets via emulator.step unit=frame (max_operations 1e8). Traced segments used trace.configure enabled=true capacity=0 (aggregates only; ~12x slower, TK-004). Snapshots (same-build only) in analysis/snapshots/. Evidence montages in analysis/evidence/pass-001/. Natural coverage used for Observed provenance: analysis/evidence/pass-001/coverage.json entries without context.artificial.",
+  "ram_facts": {
+   "$01": "players-1 on title menu (0..3), observed 0->1->2->3 with Right",
+   "$02": "lane-1 on title menu, observed 4 = lane 5",
+   "$92": "current frame number 1..10 (lane play)",
+   "$96": "per-frame counter (changes 0..2 then 9 by 10th frame; meaning unresolved)",
+   "$17": "controller 1 shift result written by $F82E (from TK-001 investigation)",
+   "$C2-$C7": "HighScores table (3 words, preset 200); updated only on the results screen after a game (round-1 redirect correction of S8)",
+   "$87": "NumPlayersMinus1 (copied from title Temp1 $01)",
+   "$90": "LaneNumber (lane-1, from title Temp2 $02)",
+   "$92-$95": "PlayerFrame per bowler (1..10)",
+   "$96-$99": "FramesScored per bowler (10 = done)",
+   "$0300": "FrameMarks [4][11] ($A0 strike, $xB spare, $xC second-ball miss, $D0 first-ball miss)",
+   "$032C": "FrameTotals [4][11 words]; word 10 (offset $14, +22 per bowler) is read by UpdateHighScores/CheckScoreAward",
+   "$0385/$0386": "PinsHitThisThrow / PinsDownInFrame",
+   "$065B": "LaneBallX aim position (197..228)",
+   "$CF": "PowerLevel 0..16",
+   "$D0": "HookCurveIndex 0..8"
+  },
+  "status": "reference",
+  "notes_round1_redirect": "Redirect r1-a1 tools: analysis/redirect/r1-a1/tools (lib.py, strike.py); inputs log analysis/redirect/r1-a1/evidence/inputs.log."
+ },
+ {
+  "id": "S1",
+  "milestone": "Power-on / title screen",
+  "route": "emulator.start; step 120 frames (traced)",
+  "result": "Title 'Championship Bowling' with HOW MANY PLAYERS / LANE NUMBER, demo pin animation in box. Inputs ignored for ~100 frames of intro.",
+  "evidence": [
+   "evidence/pass-001/m_title.png",
+   "snapshots/snap_title.json"
+  ],
+  "status": "visited",
+  "natural": true
+ },
+ {
+  "id": "S2",
+  "milestone": "Title menu option editing",
+  "route": "from snap_title: wait ~100 frames, then Left/Up (cursor appears), Right increments players, Down selects lane, Right increments lane",
+  "result": "Players 1->4 ($01), lane 1->5 ($02) observed; arrow cursor",
+  "evidence": [
+   "evidence/pass-001/m_title3.png"
+  ],
+  "status": "visited",
+  "natural": true
+ },
+ {
+  "id": "S3",
+  "milestone": "Player selection (MENU n PLAYER SELECTION)",
+  "route": "title: press start; A x3 (name letters), Up, A, A, Start (1P path); P2 uses controller port 2 (press2 right, A x3, Up, A, A, A)",
+  "result": "4 bowler portraits, 3-letter NAME entry, BALL weight (09/07 PND). 2P selection requires port 2. 3P/4P selection: P3 cursor returned to box 1, contract unresolved",
+  "evidence": [
+   "evidence/pass-001/m_start.png",
+   "evidence/pass-001/m_sel2.png",
+   "evidence/pass-001/m_name.png"
+  ],
+  "status": "visited (1P,2P); attempted (3P/4P)",
+  "natural": true
+ },
+ {
+  "id": "S4",
+  "milestone": "Lane play, throwing (frames 1-3 traced)",
+  "route": "from snap_lane1: repeat [press A,30; press A,30; press A,30; wait 200]",
+  "result": "Approach, power meter, control, roll, pin action, pinsetter, scorecard digits; frame counter $92 advances",
+  "evidence": [
+   "evidence/pass-001/m_throws.png",
+   "snapshots/snap_lane1.json"
+  ],
+  "status": "visited",
+  "natural": true
+ },
+ {
+  "id": "S5",
+  "milestone": "Frames 4-9 (untraced) and 10th frame + game end (traced)",
+  "route": "same throw loop untraced until $92==10 (28 iterations), then traced throws; final throw from snapshots/snap_f10_last.json",
+  "result": "10th frame played; game-over full scorecard overlay (frames 7-10, total 40). Start/A after game over did not leave the scorecard within 300 frames",
+  "evidence": [
+   "evidence/pass-001/m_end2.png",
+   "snapshots/snap_f10_last.json"
+  ],
+  "status": "visited",
+  "natural": true
+ },
+ {
+  "id": "S6",
+  "milestone": "2-player game",
+  "route": "title: players=2 via Right; P1 selection port 1, P2 selection port 2, Start; traced: 4 throw loops alternating port 1/2",
+  "result": "Lane intro with girl holding '1PLAY' sign (untraced), 2P lane play began; throw cadence for alternating players not fully synchronized (gutter 'G' recorded)",
+  "evidence": [
+   "evidence/pass-001/m_p2.png",
+   "snapshots/snap_2p_ready.json"
+  ],
+  "status": "visited (start + first frame)",
+  "natural": true
+ },
+ {
+  "id": "S7",
+  "milestone": "Strike / spare celebration",
+  "route": "from snap_lane1 varied Left/Right offsets (10-30 frames) and A spacing (5-40 frames)",
+  "result": "No strike obtained; several variants did not release the ball within the window. Throw timing/aim RAM contract unknown",
+  "evidence": [
+   "redirect/r1-a1/evidence/e4t_celebrations.png"
+  ],
+  "status": "visited (round-1 redirect)",
+  "natural": true,
+  "result_round1_redirect": "Natural strikes frames 1-3, spare frame 4 with the strike recipe (see S12)"
+ },
+ {
+  "id": "S8",
+  "milestone": "New hi score",
+  "route": "ARTIFICIAL: from snap_f10_last-equivalent state wrote $C2..$C7 = 0A 00 0A 00 0A 00 (emulator.memory.write), then final throw traced",
+  "result": "HUD hi score stayed 200; no hi-score sequence. $C2-$C7 is not the hi-score store. Trace from this run marked artificial and not used for Observed provenance",
+  "evidence": [
+   "evidence/pass-001/m_hiscore.png"
+  ],
+  "status": "attempted (unsuccessful)",
+  "natural": false,
+  "round1_redirect": "Premise corrected: $C2-$C7 is the table but is filled only on the results screen reached by B at the scorecard; see S13."
+ },
+ {
+  "id": "S9",
+  "milestone": "3-4 player game, lanes other than 1",
+  "route": "title players=4 lane=5 reached; selection stalled at player 3",
+  "result": "Not reached",
+  "evidence": [
+   "redirect/r1-a1/evidence/e3_title_4p.png"
+  ],
+  "status": "visited (round-1 redirect, 4P selection + lane start)",
+  "natural": true,
+  "result_round1_redirect": "See S14"
+ },
+ {
+  "id": "S10",
+  "milestone": "Return to title / ending after game over",
+  "route": "press Start, A at scorecard",
+  "result": "Scorecard persisted 300+ frames",
+  "evidence": [
+   "evidence/pass-001/m_end2.png"
+  ],
+  "status": "visited (round-1 redirect)",
+  "natural": true,
+  "result_round1_redirect": "B closes the final scorecard (Start/A are not polled); see S11"
+ },
+ {
+  "id": "S11",
+  "milestone": "Leave final scorecard -> results screen -> title (game restart)",
+  "route": "analysis/snapshots/snap_f10_last.json: A,30 x3 (final throw); 400 f; press B (4 f) ; ~500 f results screen; press A -> title",
+  "result": "Results \"HI SCORE / A PRIZE WINNER!\" with trophies and ranks (total 40 < 200, no insertion); WaitAnyButton -> TitleLoop",
+  "evidence": [
+   "redirect/r1-a1/evidence/e1_leave_scorecard.png",
+   "redirect/r1-a1/evidence/e1t_coverage.json",
+   "redirect/r1-a1/evidence/e1_scorecard.json"
+  ],
+  "status": "visited",
+  "natural": true
+ },
+ {
+  "id": "S12",
+  "milestone": "Strike, strike celebrations (streak 1-3), spare",
+  "route": "analysis/snapshots/snap_lane1.json; per ball: hold Left 60 f, release 6 f, A (4 f), wait 14 f, poll $D0 each frame until 6 then hold A 6 f, wait 18 f, poll $CF until 16 then hold A 6 f; wait for next ball ($0385 returns to 0). tools/strike.py, tools/e4.py",
+  "result": "Frames 1-3 strikes (StrikeStreak 1,2,3; three different celebrations), frame 4: 9 then spare ($9B), frame 5 strike, frame 6 9 + miss ($9C); total 127 after frame 6. Deterministic between traced and untraced runs",
+  "evidence": [
+   "redirect/r1-a1/evidence/e4t_celebrations.png",
+   "redirect/r1-a1/evidence/e4_strikes.png",
+   "redirect/r1-a1/evidence/e4t_coverage.json"
+  ],
+  "status": "visited",
+  "natural": true
+ },
+ {
+  "id": "S13",
+  "milestone": "Hi-score entry and award scenes (300/275/250)",
+  "route": "ARTIFICIAL: import redirect/r1-a1/evidence/e1_scorecard.json; write $87=02, $0340=2C 01, $0356=13 01, $036C=FA 00, $AA..$B1 = 01 02 03 00 04 05 06 00; press B; 3300 f; A",
+  "result": "Per bowler: hi-score insertion (slots 1-3), sound 9, name revealed letter by letter; award scenes 300 (car), 275 (SPORTS NEWS / BCD TV), 250 (beach); back to title",
+  "evidence": [
+   "redirect/r1-a1/evidence/e2_awards.png",
+   "redirect/r1-a1/evidence/e2t_coverage.json"
+  ],
+  "status": "visited (artificial)",
+  "natural": false
+ },
+ {
+  "id": "S14",
+  "milestone": "4-player game: title setting, selection, lane start",
+  "route": "analysis/snapshots/snap_title.json: 250 f; Left Up Down Right Left Up (players 4, lane 2); Start; P1 port1: A, Down, A x3, Up, A; P2 port2: Right, same; P3 port1: Down, same; P4 port2: Down, Right, same; 600 f. tools/e3.py",
+  "result": "ActivePad alternates 0/1/0/1; characters 0-3, names ZAA; 4P lane 2 (green) with announcement; snapshot e3_4p_lane.json. E6 (traced): all four bowlers threw on lane 2 with pad switching 0/1/0/1 and NextPlayer rotation; lane-1 strike recipe gives 8 then 4 on lane 2",
+  "evidence": [
+   "redirect/r1-a1/evidence/e3_title_4p.png",
+   "redirect/r1-a1/evidence/e3_coverage.json",
+   "redirect/r1-a1/evidence/e3_4p_lane.json",
+   "redirect/r1-a1/evidence/e6t_4p_throws.png",
+   "redirect/r1-a1/evidence/e6t_coverage.json"
+  ],
+  "status": "visited (selection, lane start, one ball/frame per bowler)",
+  "natural": true
+ },
+ {
+  "id": "S15",
+  "milestone": "Natural full game >= 200 with hi-score insertion",
+  "route": "tools/e5.py: snap_lane1.json, strike recipe for every ball, B at scorecard",
+  "result": "NATURAL game total 235 (strikes frames 1-3,5-7; spares 4,8,9,10 region): B at scorecard -> results screen inserted 235 at rank 1 with name AAA (sound 9 + letter reveal), A -> title. No award (235 < 250). Exported natural scorecard snapshot e5_scorecard_natural.json",
+  "evidence": [
+   "redirect/r1-a1/evidence/e5_natural_game.png",
+   "redirect/r1-a1/evidence/e5_scorecard_natural.json"
+  ],
+  "status": "visited (untraced)",
+  "natural": true
+ },
+ {
+  "id": "S16",
+  "milestone": "Natural perfect game (300) and the 300 award scene",
+  "route": "E7 (tools/e7.py, untraced): from snapshots/snap_lane1.json play per-ball recipes (aim Left N frames, A, A when HookCurveIndex $D0 = h, A when PowerLevel $CF = p, presses held 6 frames), searching a small aim/hook grid from an in-session snapshot before each ball; kept recipe list (Left frames, hook, power): 60/6/16 x3, 60/5/16, 60/6/16, 60/5/16, 60/5/16, 64/4/16, 60/5/16, then 10th frame 60/6/16, 60/7/16, 60/4/16. Deterministic replay (tools/e7r.py) reproduced all strikes. E7t (traced) from evidence/pass-002/e7_frame10_start.json: three 10th-frame strikes; E7t2 (traced, same session): B (held 8 frames) at the final scorecard, 16x300 frames, A.",
+  "result": "NATURAL 300 game (12 strikes, FrameMarks $A0 frames 1-9, $AA 10th). Results screen inserted 300 at rank 1 (AAA), then the 300 award scene (convertible car, 'CONGRATULATIONS! AAA'), then HI SCORE/A PRIZE WINNER, A -> title. Note: a B pressed 300 frames after the last ball (4-frame hold) was not accepted; holding B 8 frames later worked.",
+  "evidence": [
+   "evidence/pass-002/e7t_coverage.json",
+   "evidence/pass-002/e7t2_coverage.json",
+   "evidence/pass-002/e7t_perfect_game.png",
+   "evidence/pass-002/e7t2_results_award.png",
+   "evidence/pass-002/e7_frame10_start.json",
+   "evidence/pass-002/e7_scorecard_300.json",
+   "evidence/pass-002/logs/e7.log",
+   "evidence/pass-002/logs/e7r.log",
+   "evidence/pass-002/inputs.log"
+  ],
+  "status": "visited",
+  "natural": true
+ },
+ {
+  "id": "S17",
+  "milestone": "Natural 299 game and the 275 award scene",
+  "route": "E9a (tools/e9.py a): from e7_frame10_start.json, 10th frame 60/6/16, 60/7/16 (strikes), 60/6/16 (9 pins) -> 299; traced B (8 frames), 14x300 frames, A. The client was killed by the harness time limit at k=11; tools/e9fin.py finished the remaining 600 frames + A in the same server session with tracing still enabled.",
+  "result": "NATURAL 299: rank-1 insertion, 275 award scene (SPORTS NEWS / BCD TV) executed (Award275 $C288 150 instruction starts), results, title.",
+  "evidence": [
+   "evidence/pass-002/e9a_coverage.json",
+   "evidence/pass-002/e9a_end.png",
+   "evidence/pass-002/logs/e9a.log",
+   "evidence/pass-002/logs/e9fin.log"
+  ],
+  "status": "visited",
+  "natural": true
+ },
+ {
+  "id": "S18",
+  "milestone": "Natural 267 game and the 250 award scene",
+  "route": "E9b (tools/e9.py b): from e7_frame10_start.json, 10th frame 60/7/16 (9 pins), second ball no aim hook 6 power 16 (0 pins) -> 267; traced B, 14x300 frames, A.",
+  "result": "NATURAL 267: rank-1 insertion, 250 award scene (beach; Award250 $C7AB 85 starts) executed, results, title.",
+  "evidence": [
+   "evidence/pass-002/e9b_coverage.json",
+   "evidence/pass-002/e9b.png",
+   "evidence/pass-002/logs/e9b.log"
+  ],
+  "status": "visited",
+  "natural": true
+ },
+ {
+  "id": "S19",
+  "milestone": "Unskipped title animation (bowler walk-in and throw)",
+  "route": "E8 (tools/e8.py, traced): emulator.start (power-on), no input for 900 frames",
+  "result": "TitleSkipped $04AB stayed 0; TitleBowlerThrow walk ($B3F0) and TitleBowlerRelease ($B454) executed; 'BONG' pin crash in the title box. Earlier runs had skipped it.",
+  "evidence": [
+   "evidence/pass-002/e8_coverage.json",
+   "evidence/pass-002/e8_title_lane4.png"
+  ],
+  "status": "visited",
+  "natural": true
+ },
+ {
+  "id": "S20",
+  "milestone": "Lane 4, non-default bowler, name/weight wrap paths, scorecard during aiming",
+  "route": "E8 continued: title Down (ignored), Up x4 (first ignored) -> LANE NUMBER 4; Start; selection cursor left/up/right/down/left/up/right/down then A (bowler 4, PlayerCharacter 3); name Down/Up/Down/Down (A->Z, Z->A, A->Z, Z->Y), A x3; weight Up x5 (wrap), Down x2, A; lane 4: B during aiming (scorecard page 1), Right (page 2), Left, Right, B (close); aim Right/Left; throws Left60/h6/p16, no-aim h8/p16, Right20/h8/p8.",
+  "result": "Lane 4 (LaneNumber $90 = 3) intro and play; scorecard overlay during aiming with page switching; name 'YAA', weight index 3; throws 7+0, then 8. Covered AimAndWaitForThrow B path, ShowScorecard page 1/2 paths, PlayerSelection/EnterPlayerName/ChooseBallWeight wrap paths, AdjustHookForLane lane-4/character paths, RunSpinMeter top-of-range path.",
+  "evidence": [
+   "evidence/pass-002/e8_coverage.json",
+   "evidence/pass-002/e8_title_lane4.png",
+   "evidence/pass-002/e8_lane4_start.json",
+   "evidence/pass-002/logs/e8.log"
+  ],
+  "status": "visited",
+  "natural": true
+ },
+ {
+  "id": "S21",
+  "milestone": "2-player game to the end (results per bowler)",
+  "route": "E10 (tools/e10.py): snapshots/snap_2p_ready.json, 300 frames, strike recipe for every ball with port = CurrentPlayer($91)+1, untraced until bowler 1 reached frame 10, then traced through both 10th frames, final scorecard (exported e10_2p_scorecard.json), B (8 frames), 20x300 frames, A.",
+  "result": "NATURAL 2P game end: P1 215, P2 73 (bowler 2's recipe/character differ). Frame-10 AnnounceBowler, 2-row final scorecard, results (215 inserted rank 1 as 'BAA'), title.",
+  "evidence": [
+   "evidence/pass-002/e10t_coverage.json",
+   "evidence/pass-002/e10_2p_end.png",
+   "evidence/pass-002/e10_2p_scorecard.json",
+   "evidence/pass-002/logs/e10.log"
+  ],
+  "status": "visited",
+  "natural": true
+ },
+ {
+  "id": "S22",
+  "milestone": "Remaining unvisited variants (pass-002 review)",
+  "route": "none run",
+  "result": "Not visited: lane 5 (title lane input reached 4), hi-score insertion at ranks 2/3 (UpdateHighScores $BD33/$BD6C; needs a second game > 200 but below rank 1 in the same power-on session, or 2 bowlers both > 200), CelebrationTilesA ($BAA6, random choice), CheckPause ($F7AE; no caller). The game has no levels/bosses; ending = results/award scenes, all three visited naturally.",
+  "status": "mostly visited (round-2 redirect); CelebrationTilesA deferred (random selection, provenance-only value)",
+  "natural": null,
+  "result_round2_redirect": "Lane 5 visited naturally (S24); title wraps (S25); hi-score ranks 2/3 inserted naturally in a 3P game (S23). Still not visited: CelebrationTilesA (random choice; not targeted), CheckPause (no caller, L-001)."
+ },
+ {
+  "id": "S23",
+  "milestone": "3-player game to the end with natural hi-score insertion at ranks 1, 2 and 3 and all three award scenes in one game",
+  "route": "E11 setup (tools/e11setup.py): snap_title.json, 250 f, Right until accepted then Right (players 3), Start, each bowler A (portrait 1), A x3, A (P1/P3 port 1, P2 port 2) -> e11_3p_lane1.json. E11 (tools/e11.py): per-ball aim/hook search from in-session snapshots, frames 1-9 -> e11_frame10_start.json. E11b (tools/e11b.py): 10th frames with plan retry (P1 max, P2 fixed 60/6/16 x3, P3 nine-pin 28/4/16 x2), final scorecard export, trace from B (8 frames), 300-frame steps, A.",
+  "result": "NATURAL totals 300 / 278 / 257 (P1 perfect game; P2 and P3 lowered by their 10th-frame plans). Results: per-bowler award scene and HI SCORE screen; HighScores became 300, 278, 257 (ranks 1, 2, 3 inserted in order).",
+  "evidence": [
+   "redirect/r2-a1/evidence/e11t_results_coverage.json",
+   "redirect/r2-a1/evidence/e11_3p_results.png",
+   "redirect/r2-a1/evidence/e11_scorecard_3p.json",
+   "redirect/r2-a1/evidence/e11_frame10_start.json",
+   "redirect/r2-a1/evidence/e11_3p_lane1.json",
+   "redirect/r2-a1/README.md"
+  ],
+  "status": "visited",
+  "natural": true
+ },
+ {
+  "id": "S24",
+  "milestone": "Lanes 2, 4 and 5 hook adjustments with a low spin index",
+  "route": "E12 (tools/e12.py lane...): snap_title.json, Up until accepted then Up to the lane, Start, A x5 (1P, portrait 1), traced throw: Left 60 f, A, spin A when HookCurveIndex reads 2 (released 3), power A at 16.",
+  "result": "Lane 2/4/5 throws (8 pins each); AdjustHookForLane branches $9DA9 (lane 2, index<4), $9DBB (lane 4, index<4), $9DC7 (lane 5) executed.",
+  "evidence": [
+   "redirect/r2-a1/evidence/e12_lane2_coverage.json",
+   "redirect/r2-a1/evidence/e12_lane4_coverage.json",
+   "redirect/r2-a1/evidence/e12_lane5_coverage.json",
+   "redirect/r2-a1/evidence/e12_lanes.png"
+  ],
+  "status": "visited",
+  "natural": true
+ },
+ {
+  "id": "S25",
+  "milestone": "Title menu wraparounds (lane up/down, players right)",
+  "route": "E13 (tools/e13.py, traced): snap_title.json, 250 f, Up until accepted, Up x4, Right x4, Down x2.",
+  "result": "Lane 2,3,4,5 -> wrap to 1; players 2,3,4 -> wrap to 1; Down from lane 1 wraps to 5 then 4. TitleMenu $B51D and $B545 fully executed.",
+  "evidence": [
+   "redirect/r2-a1/evidence/e13_title_coverage.json"
+  ],
+  "status": "visited",
+  "natural": true
+ },
+ {
+  "id": "S26",
+  "milestone": "Pass-003 progression review (no new play)",
+  "route": "Reviewed S1-S25: title, menus, selection 1-4P, lanes 1-5, full games 1-3P, strike/spare celebrations, all three award scenes, hi-score insertion ranks 1-3, results, return to title. The game has no levels, bosses or credits.",
+  "result": "All practical milestones already visited naturally; only CelebrationTilesA (random) and CheckPause (no caller, L-001) remain, both provenance-only. No new gameplay run this pass; L-014 used saved natural coverage from redirect r2-a1 (S23-S25).",
+  "evidence": [
+   "analysis/evidence/pass-003/apply_log.json"
+  ],
+  "status": "deferred",
+  "natural": true
+ },
+ {
+  "id": "S27",
+  "milestone": "Double-strike celebration variant CelebrationTilesA (random choice)",
+  "route": "analysis/snapshots/snap_lane1.json (power-on session, seed 0, char 0, default weight 0 = mismatch): frame 1 Right 40/hook 6/power 16 twice (0+0), frames 2-3 Left 60/hook 6/power 16 (strikes). RNG model rng.py predicts Random(10)=7 after 4 Random(7) calls.",
+  "result": "CelebrationTilesA (two cheering girls, sound $0E) ran; $BAA6 and @doubleB $B847 executed; RandomSeed matched the model after every throw.",
+  "evidence": [
+   "analysis/redirect/r3-a1/evidence/e14_result.json",
+   "analysis/redirect/r3-a1/evidence/e14_double_celebration.png",
+   "analysis/redirect/r3-a1/evidence/e14_double_coverage.json",
+   "analysis/redirect/r3-a1/evidence/e14_before_f3.json"
+  ],
+  "status": "visited",
+  "natural": true
+ },
+ {
+  "id": "S28",
+  "milestone": "10th-frame mark patterns: third-ball spare, spare then strike, spare then miss",
+  "route": "r2-a1 e11_frame10_start.json (3P lane 1): per-ball retry, kept inputs in analysis/redirect/r3-a1/evidence/e15_kept.json; replayed traced",
+  "result": "Marks X 9 / (289), 7 / X (277), 7 / - (257); ScoreBall/ScoreFrames/WriteTenthFrameMarks spare/miss branches executed.",
+  "evidence": [
+   "analysis/redirect/r3-a1/evidence/e15_replay.log",
+   "analysis/redirect/r3-a1/evidence/e15_scorecard.png",
+   "analysis/redirect/r3-a1/evidence/e15_tenth_coverage.json"
+  ],
+  "status": "visited",
+  "natural": true
+ },
+ {
+  "id": "S29",
+  "milestone": "Low-power throw (slow rolling sound)",
+  "route": "snap_lane1, Left 60/hook 6/power 6",
+  "result": "ReleaseBall SFX_ROLL_SLOW branch $86C7 executed.",
+  "evidence": [
+   "analysis/redirect/r3-a1/evidence/e16_console.log",
+   "analysis/redirect/r3-a1/evidence/e16_slowroll_coverage.json"
+  ],
+  "status": "visited",
+  "natural": true
+ },
+ {
+  "id": "S30",
+  "milestone": "Round-3 redirect progression review",
+  "route": "Reviewed S1-S29. The game has no levels, bosses or credits; terminal screens (results, three award scenes, hi-score ranks 1-3, return to title) are all visited naturally.",
+  "result": "Only unvisited behavior: pause (CheckPause $F7AE is outside the vector-rooted control-flow closure, so it cannot run in this ROM - unavailable, not deferred) and residual library branches gated by RAM flags that no reachable store opens (analysis/redirect/r3-a1/evidence/gate_writers.json).",
+  "evidence": [
+   "analysis/redirect/r3-a1/evidence/closure.json",
+   "analysis/redirect/r3-a1/evidence/gate_writers.json"
+  ],
+  "status": "unavailable (pause); all practical milestones visited",
+  "natural": null
+ },
+ {
+  "id": "S31",
+  "milestone": "Round-4 disassembly progression review",
+  "route": "Reviewed S1-S30 and the r3-a1 residual list; no new play.",
+  "result": "All practical milestones visited (no levels/bosses/credits; terminal screens visited). Remaining reachable Static branches (481 bytes) need gates no reachable store opens or specific carry/pointer states; no cheap natural route identified. Left-gutter $8A2D remains an unverified possibility (left aim seems clamped).",
+  "evidence": [
+   "analysis/redirect/r3-a1/evidence/gate_writers.json",
+   "analysis/evidence/pass-004/apply_log.json"
+  ],
+  "status": "visited (review); no new gameplay",
+  "natural": null
+ },
+ {
+  "id": "S32",
+  "milestone": "Round-4 redirect: left gutter, bowler announcement sign, progression review",
+  "route": "E17: analysis/snapshots/snap_lane1.json, step 300, Left held 110 frames, spin meter 0, power 16 (natural; untraced then traced). E18/E18b: snap_2p_ready.json, step 300, bowler 1 throws Left 60 / spin 6 / power 16, then bowler 2's AnnounceBowler sign (untraced, natural).",
+  "result": "Left-edge clamp LaneBallX=$C0 reached (UpdateLaneBall $8A2D executed). Bowler 2 sign reads '2PLAY' (first tile $94, CHR bank 2 sprite half $0000). Review of S1-S31: no levels/bosses/credits; all terminal screens visited; pause unavailable (S30). No unvisited practical milestone.",
+  "evidence": [
+   "analysis/redirect/r4-a1/evidence/e17_leftgutter_coverage.json",
+   "analysis/redirect/r4-a1/evidence/e18_sign2.png",
+   "analysis/redirect/r4-a1/evidence/e18_sign_tiles.txt"
+  ],
+  "status": "visited",
+  "natural": true
+ },
+ {
+  "id": "S33",
+  "milestone": "Round-5 redirect: open frame after a first-ball miss; progression review",
+  "route": "E19: analysis/snapshots/snap_lane1.json, step 300, two natural left-gutter throws (Left held 110 frames, spin 0, power 16, settle 700 frames each); untraced then traced. No RAM/register writes.",
+  "result": "FrameMarks[0] = $D4 (first ball missed, second ball 4). The frame-total @open first-ball clamp $A92B ran (region 386). Review of S1-S32 unchanged: no levels/bosses/credits; all terminal screens visited; pause unavailable (S30). No unvisited practical milestone.",
+  "evidence": [
+   "analysis/redirect/r5-a1/evidence/e19_open_miss_coverage.json",
+   "analysis/redirect/r5-a1/evidence/e19_end.png",
+   "analysis/redirect/r5-a1/evidence/gain_r5.json"
+  ],
+  "status": "visited",
+  "natural": true
+ },
+ {
+  "id": "S34",
+  "milestone": "Round-6 redirect: final unvisited-milestone review",
+  "route": "No new run. Review of S0-S33 and r6-a1 static object-range census.",
+  "result": "Game has no levels, bosses or credits. Visited (S1-S33): title, unskipped title animation and menus, 1-4 player selection, lanes 1/2/4/5, full natural games (incl. 300/299/267), strikes and all celebration variants (incl. CelebrationTilesA, S27), spares, gutters, open frames, 10th-frame patterns, results, three award scenes, high-score ranks, return to title. Pause unavailable (S30). No practical unvisited milestone; no RAM shortcut has a remaining target.",
+  "evidence": [
+   "analysis/scenarios.json (S0-S33)",
+   "analysis/redirect/r6-a1/README.md"
+  ],
+  "status": "visited",
+  "natural": true
+ }
+]

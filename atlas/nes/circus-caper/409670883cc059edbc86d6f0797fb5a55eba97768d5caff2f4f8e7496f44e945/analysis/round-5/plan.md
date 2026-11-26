@@ -1,0 +1,11 @@
+# Round5 commentary plan — active
+
+Entire round4 commentary preserved in commentary-round4; preparation-original is the unchanged working predecessor retained during fresh preparation. Prepare pass005 baseline, migrate exact physical blocks and valid review credit, then review all pending classified intervals, all changed unknown boundaries and concrete palette/legacy/serializer/reset/vector dependencies. Reuse sound round4 prose. Verify coherent edits, refresh source locations and full inventory, fresh byte-identical verify and reading copy before handoff. Final editorial audit remains pending. No disassembly, redirect, map/state/ROM/toolkit edits, publication or cleanup.
+
+Frontier: fresh baseline preparation running; migration and pending inventory next. No completion claimed.
+
+Milestone: exact migration carried 18,633 classified blocks. Reviewed all 318 changed scaffold records: 301 instruction starts / 636 code bytes, 134 current data bytes including retained 48-byte palette, and the narrowed 502-byte unknown prefix. First two coherent byte-identical verifications passed. All 22 unknown boundary notes restored. Palette suffix hypothesis replaced with controller latch role; legacy collision and explicit serializer/reset/vector contracts documented. Final source locations/full-inventory coverage and identity report running; fresh verify/read remain before handoff.
+
+Full scope gate passed: 18,972 reviewed scaffold records, 2,063 reviewed units; zero pending/deferred, zero uncovered new instructions, zero raw numeric operands. All 22 unknown intervals noted and frozen/current identities checked. Final prose refinement preserves the palette physical label and removes duplicate generated data comments; scope/source locations rerunning, followed by final fresh verify/read. No final editorial audit.
+
+COMPLETE: final current-source gate and fresh byte-identical verification passed; reading copy refreshed. Handoff analysis/handoffs/round5-commentary.md. No pending/deferred ranges or units. Final editorial acceptance pending, not run. Local scope-editor rerun introduced duplicate branch labels; corrected before final successful verification, with source-location line counts preserved and hashes refreshed. Do not rerun historical editors as regeneration commands.

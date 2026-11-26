@@ -1,0 +1,1915 @@
+{
+  "format": "romatlas-nes-map",
+  "version": 1,
+  "image_sha256": "9f180bfd1c5eeb71e44466cb81cc5a5b084f35a9e72953125289ac06f8ca0450",
+  "image_size": 65552,
+  "regions": [
+    {
+      "id": 1,
+      "offset": 0,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "INESHeader",
+      "comment": "",
+      "evidence": "Validated iNES header defines mapper 3, 32 KiB PRG and 32 KiB CHR.",
+      "views": []
+    },
+    {
+      "id": 2,
+      "offset": 32784,
+      "length": 32768,
+      "kind": "Image",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "CharacterPatterns",
+      "comment": "",
+      "evidence": "CNROM CHR-ROM section, four 8KiB banks of 16-byte two-plane tile patterns; separated from CPU PRG backing by verified header.",
+      "views": []
+    },
+    {
+      "id": 3,
+      "offset": 32778,
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "InterruptVectors",
+      "comment": "",
+      "evidence": "Three little endian vectors validated against NMI/reset/IRQ instruction contracts.",
+      "views": []
+    },
+    {
+      "id": 4,
+      "offset": 2637,
+      "length": 20,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "OamTemplate",
+      "comment": "",
+      "evidence": "Sprite OAM template: CPU $8A14 loads X=$13 and copies $8A3D,X to $0700,X descending; $8A35 LDX #0/BEQ always branches over this 20-byte template.",
+      "views": []
+    },
+    {
+      "id": 5,
+      "offset": 21406,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "StateDispatchTargets",
+      "comment": "",
+      "evidence": "Inline word dispatch operands after JSR $825C, whose PLA-based return-address reader indexes words then JMP ($12). Six consecutive destinations; following $D39A is also a table target. Extent anchored by next routine.",
+      "views": []
+    },
+    {
+      "id": 6,
+      "offset": 272,
+      "length": 107,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33024,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "offset": 421,
+      "length": 148,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33173,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "offset": 601,
+      "length": 820,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33353,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "offset": 1437,
+      "length": 64,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34189,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "offset": 1541,
+      "length": 79,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34293,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "offset": 1660,
+      "length": 153,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34412,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "offset": 1837,
+      "length": 139,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34589,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "offset": 2325,
+      "length": 312,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35077,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "offset": 2657,
+      "length": 103,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 35409,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "offset": 3784,
+      "length": 79,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36536,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "offset": 4049,
+      "length": 56,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36801,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "offset": 4135,
+      "length": 501,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 36887,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "offset": 4676,
+      "length": 108,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37428,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "offset": 5084,
+      "length": 450,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 37836,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "offset": 5570,
+      "length": 155,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38322,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "offset": 5729,
+      "length": 256,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38481,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "offset": 6057,
+      "length": 671,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 38809,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "offset": 6732,
+      "length": 408,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39484,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "offset": 7160,
+      "length": 378,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 39912,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "offset": 7634,
+      "length": 14,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40386,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "offset": 7662,
+      "length": 355,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40414,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "offset": 8033,
+      "length": 58,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40785,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "offset": 8123,
+      "length": 113,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40875,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "offset": 8252,
+      "length": 14,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41004,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "offset": 8318,
+      "length": 188,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41070,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "offset": 8560,
+      "length": 843,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 41312,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "offset": 9427,
+      "length": 36,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42179,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "offset": 9479,
+      "length": 19,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42231,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "offset": 9506,
+      "length": 230,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42258,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "offset": 9754,
+      "length": 15,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42506,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "offset": 9791,
+      "length": 13,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 42543,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "offset": 20496,
+      "length": 524,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "ResetEntry",
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 53248,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "offset": 21030,
+      "length": 197,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 53782,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "offset": 21233,
+      "length": 173,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 53985,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "offset": 23341,
+      "length": 619,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 56093,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "offset": 23968,
+      "length": 128,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 56720,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "offset": 24106,
+      "length": 191,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 56858,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "offset": 32528,
+      "length": 25,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Validated vector-rooted recursive control flow; official routine/branch contracts reviewed, inline OAM and return-address dispatch data barriers excluded. Reachability is static, except separately traced fetches.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 65280,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "offset": 20,
+      "length": 252,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Uniform $FF run; exact first/last differing-byte boundary inspected, no vector/control-flow candidate enters run; neighboring data/code retained separately. Generic non-code, fill purpose unresolved.",
+      "views": []
+    },
+    {
+      "id": 45,
+      "offset": 2760,
+      "length": 91,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Uniform $00 run; exact first/last differing-byte boundary inspected, no vector/control-flow candidate enters run; neighboring data/code retained separately. Generic non-code, fill purpose unresolved.",
+      "views": []
+    },
+    {
+      "id": 46,
+      "offset": 3652,
+      "length": 105,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Uniform $00 run; exact first/last differing-byte boundary inspected, no vector/control-flow candidate enters run; neighboring data/code retained separately. Generic non-code, fill purpose unresolved.",
+      "views": []
+    },
+    {
+      "id": 47,
+      "offset": 11314,
+      "length": 990,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Uniform $FF run; exact first/last differing-byte boundary inspected, no vector/control-flow candidate enters run; neighboring data/code retained separately. Generic non-code, fill purpose unresolved.",
+      "views": []
+    },
+    {
+      "id": 48,
+      "offset": 16368,
+      "length": 1070,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Uniform $FF run; exact first/last differing-byte boundary inspected, no vector/control-flow candidate enters run; neighboring data/code retained separately. Generic non-code, fill purpose unresolved.",
+      "views": []
+    },
+    {
+      "id": 49,
+      "offset": 17442,
+      "length": 590,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Uniform $FF run; exact first/last differing-byte boundary inspected, no vector/control-flow candidate enters run; neighboring data/code retained separately. Generic non-code, fill purpose unresolved.",
+      "views": []
+    },
+    {
+      "id": 50,
+      "offset": 18157,
+      "length": 2339,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Uniform $FF run; exact first/last differing-byte boundary inspected, no vector/control-flow candidate enters run; neighboring data/code retained separately. Generic non-code, fill purpose unresolved.",
+      "views": []
+    },
+    {
+      "id": 51,
+      "offset": 24431,
+      "length": 8097,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Uniform $FF run; exact first/last differing-byte boundary inspected, no vector/control-flow candidate enters run; neighboring data/code retained separately. Generic non-code, fill purpose unresolved.",
+      "views": []
+    },
+    {
+      "id": 52,
+      "offset": 32553,
+      "length": 199,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Uniform $FF run; exact first/last differing-byte boundary inspected, no vector/control-flow candidate enters run; neighboring data/code retained separately. Generic non-code, fill purpose unresolved.",
+      "views": []
+    },
+    {
+      "id": 53,
+      "offset": 21418,
+      "length": 426,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Return-address dispatch table consumer at $825C supplies effective fixed CNROM PRG context; target routines initialize pointers, copy PPU tiles and return, connected direct calls reviewed. Static structural evidence; natural selector status unresolved.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 54170,
+          "context": {
+            "prg_banks": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "offset": 16,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "CNROM selector identity bytes 00 01 02 03 before FF run; values used as bus-conflict-safe bank constants; non-code even without consumer extent claim.",
+      "views": []
+    },
+    {
+      "id": 55,
+      "offset": 569,
+      "length": 32,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "32-byte NES palette values; indexed ROM read at physical559 feeds PPU palette writer.",
+      "views": []
+    },
+    {
+      "id": 56,
+      "offset": 1421,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Symmetric incrementing/decrementing values 4,8,..32; indexed LDA consumer physical1254.",
+      "views": []
+    },
+    {
+      "id": 57,
+      "offset": 1501,
+      "length": 40,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "RAM initialization record dominated by zero, indexed LDA consumers1488/21183.",
+      "views": []
+    },
+    {
+      "id": 58,
+      "offset": 1621,
+      "length": 39,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated PPU-address progression words and bit patterns; indexed consumers1554/1581/1613.",
+      "views": []
+    },
+    {
+      "id": 59,
+      "offset": 1813,
+      "length": 24,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Visible WARP BONUS/OIL/1000 POINTS screen text read by indexed consumers1759/1780/1801.",
+      "views": []
+    },
+    {
+      "id": 60,
+      "offset": 2851,
+      "length": 801,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Sparse tile grid: repeated 32-byte rows of zero/background plus sequential tile numbers; neighboring zero runs separated, no conflicting code traversal.",
+      "views": []
+    },
+    {
+      "id": 61,
+      "offset": 3757,
+      "length": 27,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Continuation of sparse tile/attribute matrix with 00 runs and packed repeated attribute values, bounded before supported code.",
+      "views": []
+    },
+    {
+      "id": 62,
+      "offset": 3863,
+      "length": 186,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated four-byte OAM records y/tile/attribute/x, indexed consumers3790..3853 read two related bases.",
+      "views": []
+    },
+    {
+      "id": 63,
+      "offset": 4105,
+      "length": 30,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated screen-character and zero pattern, checked nearby routines and references; no exact text encoding claimed.",
+      "views": []
+    },
+    {
+      "id": 64,
+      "offset": 4636,
+      "length": 40,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Symmetric step values and bounded small lookup entries; indexed consumers4403/4414/4572/5834.",
+      "views": []
+    },
+    {
+      "id": 65,
+      "offset": 4784,
+      "length": 300,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Paired coordinate offsets plus repeated sprite tile/attribute patterns, indexed consumers4712/4717/24230/24235.",
+      "views": []
+    },
+    {
+      "id": 66,
+      "offset": 5534,
+      "length": 36,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Small signed delta grid using only FF/00/01, indexed consumers5470/5481.",
+      "views": []
+    },
+    {
+      "id": 67,
+      "offset": 5725,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Four regularly spaced byte values40/70/A0/D0, bounded between code runs; meaning unresolved.",
+      "views": []
+    },
+    {
+      "id": 68,
+      "offset": 5985,
+      "length": 72,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated tile/attribute pairs, indexed readers5960/5967; generic data without complete record semantics.",
+      "views": []
+    },
+    {
+      "id": 69,
+      "offset": 6728,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Four regularly spaced byte values30/60/90/C0, bounded between code runs; meaning unresolved.",
+      "views": []
+    },
+    {
+      "id": 70,
+      "offset": 7140,
+      "length": 20,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated three-byte pattern records ending FF, bounded by supported code; reviewed nearby/reference context, semantic format unresolved.",
+      "views": []
+    },
+    {
+      "id": 71,
+      "offset": 7538,
+      "length": 96,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated NES palette entries with0F/color indices, indexed readers7507/7525.",
+      "views": []
+    },
+    {
+      "id": 72,
+      "offset": 8017,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Regular paired PPU/RAM address words, indexed reader7971.",
+      "views": []
+    },
+    {
+      "id": 73,
+      "offset": 8091,
+      "length": 32,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Four-byte address records, indexed consumers8042/8047/8057/8063.",
+      "views": []
+    },
+    {
+      "id": 74,
+      "offset": 8236,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Four-byte address records consumed fieldwise8140..8155.",
+      "views": []
+    },
+    {
+      "id": 75,
+      "offset": 8266,
+      "length": 52,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Packed bit patterns including55/FF/00 followed by repeated row patterns; bounded by code, semantic role unresolved after nearby inspection.",
+      "views": []
+    },
+    {
+      "id": 76,
+      "offset": 8506,
+      "length": 54,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Screen-tile/zero patterns and coordinate pairs, indexed readers8357..8394/8494.",
+      "views": []
+    },
+    {
+      "id": 77,
+      "offset": 9415,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Six monotonically descending big-endian quantities; nearby sound code inspection supports non-code, exact pitch interpretation unresolved.",
+      "views": []
+    },
+    {
+      "id": 78,
+      "offset": 9463,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Small lookup values indexed at9439; non-code bounded by neighboring supported code.",
+      "views": []
+    },
+    {
+      "id": 79,
+      "offset": 9498,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "One-hot bit masks and inverted low-bit masks, ORA/AND indexed consumers9481/9492.",
+      "views": []
+    },
+    {
+      "id": 80,
+      "offset": 9736,
+      "length": 18,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Pointer records read six bytes at a time by indexed consumers9697..9722; format extent bounded by next routine.",
+      "views": []
+    },
+    {
+      "id": 81,
+      "offset": 9769,
+      "length": 22,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Little endian pointer sequence read paired by9754/9759; targets remain hypotheses.",
+      "views": []
+    },
+    {
+      "id": 82,
+      "offset": 9804,
+      "length": 1510,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated note/control-like byte pairs with F0..FF command patterns throughout; checked full range in128-byte windows, sound-pointer consumer context and code conflicts. Generic non-code; precise streams unresolved.",
+      "views": []
+    },
+    {
+      "id": 83,
+      "offset": 12304,
+      "length": 4064,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated graphics-like command/count/tile sequences40/41/43 and long tile repetitions throughout; checked full range in128-byte windows and neighboring fill boundary; no conflicting code evidence. Generic data, compression schema unresolved.",
+      "views": []
+    },
+    {
+      "id": 84,
+      "offset": 17438,
+      "length": 4,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Two adjacent little endian pointers between long FF runs; non-code, target role unresolved.",
+      "views": []
+    },
+    {
+      "id": 85,
+      "offset": 21020,
+      "length": 10,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "GAME@OVER@ text bytes between returning routines.",
+      "views": []
+    },
+    {
+      "id": 86,
+      "offset": 21227,
+      "length": 6,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "READY@ text read by physical21212 indexed loop.",
+      "views": []
+    },
+    {
+      "id": 87,
+      "offset": 21844,
+      "length": 1497,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Connected dispatch handlers read tile grids and OAM/palette records here; repeated grids/4-byte sprite records/palettes/score-like streams throughout plus internal FF padding. Full128-byte-window inspection supports generic noncode; individual schemas deferred.",
+      "views": []
+    },
+    {
+      "id": 88,
+      "offset": 23960,
+      "length": 8,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated small coordinate-like constants3E/6E/9E/CE bounded between supported routines.",
+      "views": []
+    },
+    {
+      "id": 89,
+      "offset": 24096,
+      "length": 10,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated two-byte small value/tile pairs, boundary inspected between code runs; semantics unresolved.",
+      "views": []
+    },
+    {
+      "id": 90,
+      "offset": 24297,
+      "length": 134,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "Repeated8-byte sprite tile/attribute patterns, indexed consumers24211/24216/24251 and tail consumer24187.",
+      "views": []
+    },
+    {
+      "id": 91,
+      "offset": 32752,
+      "length": 26,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": null,
+      "comment": "",
+      "evidence": "CITY CONNECTION identification string plus compact metadata trailer preceding independently validated vector words. Noncode; exact trailer fields unresolved.",
+      "views": []
+    },
+    {
+      "id": 92,
+      "offset": 379,
+      "length": 16,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "AttractInputPairs",
+      "comment": "",
+      "evidence": "Attract reader at physical286/292 consumes prefix as duration/input pairs; noncode prefix ends at two 13-byte setup helpers. Helpers set fill tile $33 and high address $20/$28, constant BNE to accepted $81AD fill consumer; sibling setup comparison. Full attract selector extent and natural use unresolved. Independent review analysis/disassembly/pass-002/review.md; primary details analysis/redirect/round-001-a/findings.md.",
+      "views": []
+    },
+    {
+      "id": 93,
+      "offset": 395,
+      "length": 13,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "FillFirstNametableTile33",
+      "comment": "",
+      "evidence": "Attract reader at physical286/292 consumes prefix as duration/input pairs; noncode prefix ends at two 13-byte setup helpers. Helpers set fill tile $33 and high address $20/$28, constant BNE to accepted $81AD fill consumer; sibling setup comparison. Full attract selector extent and natural use unresolved. Independent review analysis/disassembly/pass-002/review.md; primary details analysis/redirect/round-001-a/findings.md.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33147,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 94,
+      "offset": 408,
+      "length": 13,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "FillThirdNametableTile33",
+      "comment": "",
+      "evidence": "Attract reader at physical286/292 consumes prefix as duration/input pairs; noncode prefix ends at two 13-byte setup helpers. Helpers set fill tile $33 and high address $20/$28, constant BNE to accepted $81AD fill consumer; sibling setup comparison. Full attract selector extent and natural use unresolved. Independent review analysis/disassembly/pass-002/review.md; primary details analysis/redirect/round-001-a/findings.md.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 33160,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 95,
+      "offset": 1976,
+      "length": 32,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "TitlePalette",
+      "comment": "",
+      "evidence": "Exact X<32 palette reader; bounded OAM setup and 32/8/6/7-byte consumers tile data interval; local score renderer calls shared six-tile writer, accepted numeric conversion and balanced nibble helper. All boundaries independently checked, external reachability unresolved. Independent review analysis/disassembly/pass-002/review.md; primary details analysis/redirect/round-001-a/findings.md.",
+      "views": []
+    },
+    {
+      "id": 96,
+      "offset": 2008,
+      "length": 114,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "InitializeTitleOam",
+      "comment": "",
+      "evidence": "Exact X<32 palette reader; bounded OAM setup and 32/8/6/7-byte consumers tile data interval; local score renderer calls shared six-tile writer, accepted numeric conversion and balanced nibble helper. All boundaries independently checked, external reachability unresolved. Independent review analysis/disassembly/pass-002/review.md; primary details analysis/redirect/round-001-a/findings.md.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34760,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 97,
+      "offset": 2122,
+      "length": 53,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "TitleOamTextAndPositions",
+      "comment": "",
+      "evidence": "Exact X<32 palette reader; bounded OAM setup and 32/8/6/7-byte consumers tile data interval; local score renderer calls shared six-tile writer, accepted numeric conversion and balanced nibble helper. All boundaries independently checked, external reachability unresolved. Independent review analysis/disassembly/pass-002/review.md; primary details analysis/redirect/round-001-a/findings.md.",
+      "views": []
+    },
+    {
+      "id": 98,
+      "offset": 2175,
+      "length": 150,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "RenderTitleScoreRows",
+      "comment": "",
+      "evidence": "Exact X<32 palette reader; bounded OAM setup and 32/8/6/7-byte consumers tile data interval; local score renderer calls shared six-tile writer, accepted numeric conversion and balanced nibble helper. All boundaries independently checked, external reachability unresolved. Independent review analysis/disassembly/pass-002/review.md; primary details analysis/redirect/round-001-a/findings.md.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 34927,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 99,
+      "offset": 7648,
+      "length": 14,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "IncrementAlternatePointer",
+      "comment": "",
+      "evidence": "Complete adjacent 14-byte pointer increment clone with zero-page operands translated +3; carry propagates low to high, balanced RTS and no inline data. Calling contract static, caller/natural use unresolved. Independent review analysis/disassembly/pass-002/review.md; primary details analysis/redirect/round-001-a/findings.md.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 40400,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 100,
+      "offset": 18032,
+      "length": 41,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "DebugPatchNmiSetup",
+      "comment": "",
+      "evidence": "Patch setup encodes JSR $C69B in exact existing 3-NOP NMI slot and JSR $9DFE at accepted NMI instruction boundary, returns via reset. Internal hook and frame&3 four-handler finite domain establish complete OAM-quarter uploader. PRG backing immutable on CNROM; historical debug purpose inferred, natural use unresolved. Independent review analysis/disassembly/pass-002/review.md; primary details analysis/redirect/round-001-a/findings.md.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 50784,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 101,
+      "offset": 18073,
+      "length": 18,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "DebugPatchPaletteHook",
+      "comment": "",
+      "evidence": "Patch setup encodes JSR $C69B in exact existing 3-NOP NMI slot and JSR $9DFE at accepted NMI instruction boundary, returns via reset. Internal hook and frame&3 four-handler finite domain establish complete OAM-quarter uploader. PRG backing immutable on CNROM; historical debug purpose inferred, natural use unresolved. Independent review analysis/disassembly/pass-002/review.md; primary details analysis/redirect/round-001-a/findings.md.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 50825,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 102,
+      "offset": 18091,
+      "length": 66,
+      "kind": "Code",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "UploadOamQuarter",
+      "comment": "",
+      "evidence": "Patch setup encodes JSR $C69B in exact existing 3-NOP NMI slot and JSR $9DFE at accepted NMI instruction boundary, returns via reset. Internal hook and frame&3 four-handler finite domain establish complete OAM-quarter uploader. PRG backing immutable on CNROM; historical debug purpose inferred, natural use unresolved. Independent review analysis/disassembly/pass-002/review.md; primary details analysis/redirect/round-001-a/findings.md.",
+      "views": [
+        {
+          "cpu": "main",
+          "cpu_address": 50843,
+          "context": {
+            "prg_banks": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 103,
+      "offset": 9403,
+      "length": 12,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "PitchTimerPrefix",
+      "comment": "",
+      "evidence": "Twelve-word pitch reader domain note&15<12 doubled gives exact24-byte big-endian timer span. LDA #0; STA $11; BEQ $A475 cannot fall into this prefix. Correct previously false Code prefix; no accepted conflicting entry. Independent review analysis/disassembly/pass-002/review.md; primary details analysis/redirect/round-001-a/findings.md.",
+      "views": []
+    },
+    {
+      "id": 104,
+      "offset": 1620,
+      "length": 1,
+      "kind": "Data",
+      "provenance": "Static",
+      "confidence": 1.0,
+      "label": "RoadRowPointerFirstByte",
+      "comment": "",
+      "evidence": "Frame&15 doubled reads sixteen exact little-endian road pointers. Y&7 indexes eight nonzero one-hot masks; OR sets nonzero, STA preserves flags, BNE $8622 cannot fall into first pointer byte. Correct false Code tail. Independent review analysis/disassembly/pass-002/review.md; primary details analysis/redirect/round-001-a/findings.md.",
+      "views": []
+    }
+  ],
+  "next_id": 105
+}

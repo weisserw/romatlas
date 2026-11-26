@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "evidence_root": "analysis/disassembly/pass-001",
+  "scenarios": [
+    {
+      "id": "startup",
+      "milestone": "Title",
+      "status": "visited",
+      "route": "Fresh emulator.start; trace enabled capacity0; six steps of20 frames, max_operations3000000 timeout_ms20000; no input.",
+      "evidence": [
+        "startup.ppm",
+        "startup.snapshot",
+        "startup-trace.json",
+        "explore.py"
+      ]
+    },
+    {
+      "id": "invalid-input-attempt",
+      "milestone": "Start gameplay",
+      "status": "attempted",
+      "route": "game.py/advance.py used button/pressed, silently ignored by NES API; remained title. Superseded by play.py buttons array; do not retry.",
+      "evidence": [
+        "game-start.ppm",
+        "late-start.ppm"
+      ]
+    },
+    {
+      "id": "new-york",
+      "milestone": "Initial city gameplay, jumping/oil",
+      "status": "visited",
+      "route": "Import startup.snapshot; buttons[start]2frames; []15; [right]20; [right,up,a]20; [left,b]20. Import actions.snapshot, reassert[right,up,a], four steps30frames. max_operations4000000/5000000 timeout30000. Natural gameplay; no RAM edits.",
+      "evidence": [
+        "play.py",
+        "progress-game.py",
+        "progress-game.ppm",
+        "progress-game.snapshot",
+        "progress-contexts.json",
+        "progress-game-trace.json"
+      ]
+    },
+    {
+      "id": "late-shortcut",
+      "milestone": "Level-clear oil bonus",
+      "status": "visited",
+      "route": "Import progress-game.snapshot; release all; RAM $A0=4,$63=$80. Alternate[left,b]/[right,up,a] in four20frame steps, max_operations5000000 timeout30000. Artificial.",
+      "evidence": [
+        "shortcut.py",
+        "shortcut-tokyo.ppm",
+        "shortcut.snapshot",
+        "shortcut-log.json",
+        "shortcut-contexts.json"
+      ]
+    },
+    {
+      "id": "tokyo",
+      "milestone": "Later city and representative controls",
+      "status": "visited",
+      "route": "Import shortcut.snapshot; release all; RAM $5A=$FF. [right,up,a]25frames; RAM $17=1 then[right,up,a]25; [left,b]25. max_operations5000000 timeout30000. Artificial. Pagoda/Fuji plus moving car observed; not just stage-byte write.",
+      "evidence": [
+        "late.py",
+        "late-stage.ppm",
+        "late-log.json",
+        "late-contexts.json",
+        "late-trace.json"
+      ]
+    },
+    {
+      "id": "middle-cities",
+      "milestone": "London/Paris/other backgrounds",
+      "status": "visited",
+      "reason": "Round001 redirect reached stages1/2/3/4 with initialized distinct backgrounds and bounded control inputs.",
+      "history": [
+        {
+          "status": "deferred",
+          "reason": "Two distinct city systems and transition visited; remaining backgrounds use now-established RAM transition recipe. Redirect can sample if semantic evidence warrants; not exhausted."
+        }
+      ],
+      "evidence": [
+        "analysis/redirect/round-001-a/progression.py",
+        "analysis/redirect/round-001-a/city-1.ppm",
+        "analysis/redirect/round-001-a/city-2.ppm",
+        "analysis/redirect/round-001-a/city-3.ppm",
+        "analysis/redirect/round-001-a/finish-progression.py",
+        "analysis/redirect/round-001-a/exercise.py",
+        "analysis/redirect/round-001-a/city-4-exercise.ppm"
+      ]
+    },
+    {
+      "id": "terminal",
+      "milestone": "Artificial Tokyo completion and six-stage wrap to first city",
+      "status": "visited",
+      "reason": "RAM stage5+$63=$80 triggers supported completion. Bonus handshake$5A=$FF then ready bypass$17=1 and bounded inputs produce stage0/course1, first-city rendering; no separate ending on this route. Does not establish absence of another terminal path.",
+      "history": [
+        {
+          "status": "deferred",
+          "reason": "Static $D216 wraps stage6 to0 and increments $A1; no separate ending proven. Practical next test use Tokyo completion flag and inspect loop/terminal. Current snapshots are before/artificial transition; recipe reusable."
+        }
+      ],
+      "evidence": [
+        "analysis/redirect/round-001-a/finish-progression.py",
+        "analysis/redirect/round-001-a/finish-progression-log.json",
+        "analysis/redirect/round-001-a/city-0-ram.json",
+        "analysis/redirect/round-001-a/city-0-exercise.ppm",
+        "analysis/redirect/round-001-a/finish-progression-contexts.json",
+        "analysis/redirect/round-001-a/exercise-log.json"
+      ]
+    },
+    {
+      "id": "redirect-title-wait",
+      "milestone": "Natural title attract timeout",
+      "status": "attempted",
+      "route": "startup.snapshot, release input,90frames,max_operations8000000,timeout30000; execution timeout before first completed batch. No attract-visit claim. Static RunTitleFrame\u2192RestoreNmiRegisters\u2192IncrementFrameCounter resolves counter source; next commentary corrects misleading comments.",
+      "evidence": [
+        "analysis/redirect/round-001-a/title.py",
+        "analysis/redirect/round-001-a/findings.md"
+      ]
+    }
+  ],
+  "redirect_round_001_evidence_root": "analysis/redirect/round-001-a"
+}

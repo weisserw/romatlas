@@ -1,0 +1,47 @@
+{
+  "ok": true,
+  "terminal_handoff": "analysis/handoffs/terminal.md",
+  "checkpoint": "pass-003",
+  "rom_sha256": "0d45759cb5375a3e799a5da6b9a4f3431501350b524901b4f987a48bc2280659",
+  "classified_bytes": 131088,
+  "total_bytes": 131088,
+  "classification_percent": 100.0,
+  "counts": {
+    "Data": 111676,
+    "Code": 19412
+  },
+  "unknown_complement": [],
+  "checkpoint_hashes": {
+    "analysis/state.json": "6568e1188ec98ee68f3c5110286d1b938688e9eaa3267e31238272aacf40557a",
+    "maps/current.json": "6568e1188ec98ee68f3c5110286d1b938688e9eaa3267e31238272aacf40557a",
+    "maps/pass-003.json": "6568e1188ec98ee68f3c5110286d1b938688e9eaa3267e31238272aacf40557a",
+    "commentary/phase1-state.json": "6568e1188ec98ee68f3c5110286d1b938688e9eaa3267e31238272aacf40557a",
+    "commentary/baseline.json": "6568e1188ec98ee68f3c5110286d1b938688e9eaa3267e31238272aacf40557a"
+  },
+  "supported_map_store_validation": "analysis/coordinator-structural-checks.json",
+  "final_source_hashes": {
+    "game.asm": "b5b1a0eff39a02bfa2d5be83fd7e5244e019d87f6b88395629d4363b0cd39303",
+    "symbols.inc": "2c3b8d14704e9ffc58b573f2d722f301ba7e6232065a54145cdd1d6744231606"
+  },
+  "reading_copy_current": true,
+  "reviewed_regions": 9629,
+  "distinct_meaningful_units": 595,
+  "embedded_unit_references": 9560,
+  "validated_source_references": 19784,
+  "byte_identical": true,
+  "editorial_audit": true,
+  "actual_editorial_review": "commentary/editorial-audit.md",
+  "coordinator_reasoning_review": "analysis/coordinator-audit.md",
+  "redirect_closure_review": "analysis/redirect/round003-a/review.md",
+  "ready_leads": [],
+  "blocked_gameplay_leads_preserved": [
+    "R001-progression-wait"
+  ],
+  "gameplay_complete": false,
+  "hardware_compatibility_claim": false,
+  "archive_document_audit": "analysis/archive-document-audit.json",
+  "configured_binary": "/root/romatlas/target/release/romatlas",
+  "archive_executed": false,
+  "cleanup_executed": false,
+  "scope": "Current physical coverage, annotations, bank-view identities, protected hashes, full review inventory/source locations, fresh supported fidelity audit and document selection. Semantic/prose sufficiency uses actual worker and coordinator reviews, not counts alone."
+}

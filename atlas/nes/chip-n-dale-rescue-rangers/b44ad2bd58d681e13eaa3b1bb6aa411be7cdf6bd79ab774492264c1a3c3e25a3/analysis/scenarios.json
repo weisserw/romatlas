@@ -1,0 +1,164 @@
+[
+ {
+  "id": "S01-title-1p-zone0",
+  "milestone": "Power-on, title, 1P, CHIP select, intro dialogue, Zone 0 start",
+  "route": "emulator.start; input {port:1,buttons:[start]} 2f, none 60f, start 2f, none 100f, then start/a 2f + none 30f x6, none 60f -> gameplay at frame ~515 (snapshot zoneA_start, exported to scratch only)",
+  "budget": "~515 frames; first ~40 frames traced, rest untraced",
+  "result": "Zone 0 gameplay reached (pole/fence stage)",
+  "status": "visited",
+  "artificial": false
+ },
+ {
+  "id": "S02-zone0-walk",
+  "milestone": "Zone 0 walking, jump, pick up/throw crate, pause/unpause",
+  "route": "from zoneA_start: start 2f (unpause), right 60, right+a 20, right 40, b 5 ...",
+  "budget": "~280 frames traced",
+  "result": "scrolling, crate pickup, enemy (mechanical bulldog) visible",
+  "status": "visited",
+  "artificial": false
+ },
+ {
+  "id": "S03-level-transition-shortcut",
+  "milestone": "Between-zone Gadget cutscene and zone map 1",
+  "route": "zoneA_start; memory.write $37=1, $4E=$01, $4F=$00; run 200f; A/start 2f + none 25f repeated",
+  "budget": "~1900 frames, partly traced",
+  "result": "Gadget radio cutscene text, then map screen (nodes A-G, RR). Map node logic at bank2 $8B00 observed",
+  "status": "visited",
+  "artificial": true
+ },
+ {
+  "id": "S04-level-sweep",
+  "milestone": "Every level/map index $31=0..14 (zones 0-10, maps 11/12, stages 13/14)",
+  "route": "zoneA_start; run_until PC=$C77B (untraced); memory.write $31=N; registers.set pc=$C60E; traced: none 60, right 30, right+a 10, right 20, b 3, none 10, b 3, right+a 20, left 20 (176 frames) with ROM Read stream per frame",
+  "budget": "176 frames per level, 15 levels",
+  "result": "All 15 indices load distinct screens and run level init + early gameplay; coverage grew little (shared engine) but ~28.5k ROM read offsets captured; NOTE: the warp snapshot was paused ($98=1) so enemies/players did not move in this sweep",
+  "status": "visited",
+  "artificial": true,
+  "evidence": "analysis/evidence/pass-001/acc_reads.json (ROM Read offsets; includes opcode-fetch duplicates), acc_cov.json"
+ },
+ {
+  "id": "S05-attract-demo",
+  "milestone": "Power-on title idle, attract-mode 2-player demo",
+  "route": "emulator.start; no input; 1440 frames traced",
+  "budget": "1440 frames",
+  "result": "Title then 2P demo gameplay (Chip+Dale, Zone 0 garden area); coverage 3873->5014 instructions",
+  "status": "visited",
+  "artificial": false,
+  "evidence": "analysis/evidence/pass-001/acc_cov.json"
+ },
+ {
+  "id": "S06-death-gameover",
+  "milestone": "Player death x4 -> GAME OVER screen ($31=14) -> back to Zone 0",
+  "route": "snapshot zoneA_play (zoneA_start + start 2f + none 20f); repeat 4x: memory.write $04D0=$00, $54=$0A (mirrors fixed $EB30 kill routine), run none 250f, start 2f, none 30f; then none 300, a 2, none 100, start 2, none 200",
+  "budget": "~1700 frames, deaths traced",
+  "result": "respawn after each death; 4th death -> GAME OVER panel; later returned to Zone 0 ($31=0)",
+  "status": "visited",
+  "artificial": true,
+  "evidence": "analysis/snapshots/zoneA_play.json"
+ },
+ {
+  "id": "S07-level-sweep-unpaused",
+  "milestone": "All levels 0..13 with live gameplay (pause cleared)",
+  "route": "as S04 but also memory.write $98=0 (unpause) before PC=$C60E, and $5E/$5F=$7F (invincibility timer) every 3 input steps; inputs none 30,right 40,right+a 20,right 40,b 5,none 10,b 5,right+a 25,left 30,up+a 20,right 40,down 10,right+a 30",
+  "budget": "305 frames/level traced",
+  "result": "enemy/object handlers executed; coverage 5014->6150 unique ROM opcodes; level 11/12 (maps) fell through to $31=14 layout",
+  "status": "visited",
+  "artificial": true
+ },
+ {
+  "id": "S08-map-traced",
+  "milestone": "Gadget cutscene + zone map 1 + map->zone entry",
+  "route": "zoneA_start; $98=0, $37=1, $4E=1,$4F=0; none 120; (a 2, none 25)x30; start 2, none 60; left 30, none 60; up 30, none 60 (enters node 0); a 2, none 240",
+  "budget": "~1300 frames traced",
+  "result": "cutscene, map node movement and zone entry executed",
+  "status": "visited",
+  "artificial": true
+ },
+ {
+  "id": "S09-zone0-autoplay",
+  "milestone": "Progress through Zone 0 toward boss",
+  "route": "warp 0 unpaused; ($5E=$7F) right 20, right+a 15 x40 then up+right/right+a/up x60",
+  "budget": "~3500 frames untraced",
+  "result": "reached X screen 5 (wall/pole); blind input could not climb further",
+  "status": "attempted",
+  "artificial": true
+ },
+ {
+  "id": "S10-select-menu",
+  "milestone": "Select-button pause screen (bank 2 $8900) and A+B sub-screen ($A597)",
+  "route": "import analysis/snapshots/zoneA_play.json (zone 0 gameplay); input select 1f, none 5f, a+b 1f, none 30f, down 1f, none 10f, up 1f, none 10f, start 1f, none 10f, a 1f, none 40f; tracing enabled capacity 0",
+  "budget": "~110 frames traced",
+  "result": "Select freezes play and saves object/palette/OAM state; A+B (new press $14==$C0) opens the $A597 sub-screen; 180 of 257 proposed bank-2 instructions fetched",
+  "evidence": "analysis/redirect/r1-a1/runtime-new-fetches.json",
+  "status": "visited",
+  "artificial": false,
+  "round": "r1-redirect"
+ },
+ {
+  "id": "S11-level-clear-tally",
+  "milestone": "Level-clear tally screen (bank 2 $A410) and next-level transition",
+  "route": "zoneA_play snapshot; emulator.memory.write $6D (LevelClearDelay)=2; none 550f (first 150 traced)",
+  "budget": "~550 frames",
+  "result": "$31 -> 13 (tally resources), all 78 proposed $A410-$A4FC instructions fetched, then cutscene/map for the next level",
+  "evidence": "analysis/redirect/r1-a1/runtime-new-fetches.json",
+  "status": "visited",
+  "artificial": true,
+  "round": "r1-redirect"
+ },
+ {
+  "id": "S12-boss-zone0",
+  "milestone": "Zone 0 boss room and defeat",
+  "route": "zoneA_play snapshot; write $6C (PendingWarp)=2 (door section 2 of level 0, from LevelScreenFlags), none 150f; hold right 240f writing $5E=$FF every 30f (invincibility) -> boss types $4C/$4D spawn (slots 13-15); trace 60f; write $EE (BossHits)=5, $EF (BossSlot)=13; none 320f",
+  "budget": "~770 frames, 80 traced",
+  "result": "boss handlers $AE97 (type $4C) and boss helpers $B350-$B4A9 fetched; BossFlashUpdate->BossDefeated started LevelClearDelay; $31 -> 13 tally. Snapshot analysis/snapshots/r1-a1/z0_boss.json",
+  "evidence": "analysis/redirect/r1-a1/runtime-new-fetches.json",
+  "status": "visited",
+  "artificial": true,
+  "round": "r1-redirect"
+ },
+ {
+  "id": "S13-ending",
+  "milestone": "Ending cutscene (\"THE RESCUE RANGERS! - END -\")",
+  "route": "zoneA_play snapshot; emulator.run_until main/pc==$C77B; write $31=10, $98=0; registers.set pc=$C60E (main-loop StartLevel contract, Shortcut B); none 200f (snapshot analysis/snapshots/r1-a1/l10.json); write $6D=2; none 940f; then a 1f + none 120f x10",
+  "budget": "~2500 frames, 40 traced",
+  "result": "UpdatePlayers_LevelCleared -> FinalLevel (level 10) -> MainLoop_NextLevel -> Cutscene level 10 = ending dialogue; final screen \"THE RESCUE RANGERS! - END -\" persists (Start/A do nothing further within 600f). Frames end1.png/end2.png",
+  "evidence": "analysis/redirect/r1-a1/runtime-new-fetches.json",
+  "status": "visited",
+  "artificial": true,
+  "round": "r1-redirect"
+ },
+ {
+  "id": "S14-final-boss",
+  "milestone": "Final boss (Fat Cat, level 10) and defeat into ending",
+  "route": "l10 snapshot; write $6C=$16 (section 22: boss room, extra screen list 1); none 150f; hold right 300f with $5E=$FF; trace 60f; write $EE=5, $EF=14; none 320f",
+  "budget": "~830 frames, 80 traced",
+  "result": "types $4F (fan boss body), $39, $4E shots active; handlers $AF32/$AF6B/$AF71.. fetched; defeat -> level clear -> ending cutscene path (bank 2, $31=10). Snapshot analysis/snapshots/r1-a1/l10_boss.json; frame l10boss.png",
+  "evidence": "analysis/redirect/r1-a1/runtime-new-fetches.json",
+  "status": "visited",
+  "artificial": true,
+  "round": "r1-redirect"
+ },
+ {
+  "id": "M-boss",
+  "milestone": "Zone bosses",
+  "route": "PendingWarp ($6C) = door section id from the level's LevelScreenFlags (low 5 bits); walk right with $5E=$FF; BossHits $EE=5 + BossSlot $EF=body slot defeats. See S12/S14",
+  "status": "visited",
+  "reason": "zone 0 and final boss visited (r1 redirect); other zone bosses not individually visited (same recipe, section ids per level in analysis/redirect/r1-a1/notes.md)"
+ },
+ {
+  "id": "M-ending",
+  "milestone": "Final boss / ending / credits",
+  "route": "see S13 (level 10 + LevelClearDelay) or S14 (final boss defeat)",
+  "status": "visited",
+  "reason": "ending dialogue and END screen reached artificially; no separate credits roll observed"
+ },
+ {
+  "id": "M-2p",
+  "milestone": "2-player game",
+  "route": "emulator.start; pad1 start 2f, none 60, select 2, none 10, start 2, none 100; 10x(start both pads 2f, none 30); none 60 -> 2P Zone 0 ($50=1) frame 556; then pad1 right/left with B taps to 940",
+  "status": "visited",
+  "artificial": false,
+  "result": "2-player game started naturally; PlayerBump partner bump/lift executed; 230 B Static code fully fetched",
+  "evidence": "analysis/redirect/r2-a1/twop-run.txt, twop-cov.json"
+ }
+]

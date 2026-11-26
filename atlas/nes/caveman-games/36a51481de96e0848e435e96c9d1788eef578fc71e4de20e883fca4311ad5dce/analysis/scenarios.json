@@ -1,0 +1,153 @@
+{
+ "version": 1,
+ "game": "Caveman Games (NES, Data East 1990)",
+ "input_note": "NES emulator.input uses {buttons:[...],port:1} (held set); presses listed with hold/after frames; release = buttons [] after hold.",
+ "scenarios": [
+  {
+   "id": "S01",
+   "milestone": "boot/attract (intro picture <-> title)",
+   "route": "emulator.start; 1683 frames, tracing on (session 1)",
+   "result": "intro image, title screen, attract loop; 818 instruction starts",
+   "status": "visited",
+   "trace": "session-1 coverage scratch/cov_s1.json"
+  },
+  {
+   "id": "S02",
+   "milestone": "menus: players, character select, bio, main menu, practice event select",
+   "route": "emulator.start; trace capacity 0; step 1300 frames; buttons [a] 2 frames (title/intro -> Number of players); then [a] 2f + 60f idle x3 -> main menu (snapshot analysis/snapshots/mainmenu.json); Practice = [a]",
+   "result": "all menu screens drawn; bank 0 menu code observed",
+   "status": "visited",
+   "snapshots": [
+    "analysis/snapshots/mainmenu.json",
+    "analysis/snapshots/evsel.json (practice event select)"
+   ]
+  },
+  {
+   "id": "S03",
+   "milestone": "Practice: Saber Race (16K bank 4)",
+   "route": "evsel snapshot; [a] 2f+30; 800 frames mix pattern: 10x([a] 2f,2f idle), 10x([b] 2f,2f idle), 3x([right] 8f,[left] 8f), [a,right] 6f+2, [up] 4f+2, [down] 4f+2 (tools/play.py 'mix')",
+   "result": "event runs; player chased by sabertooth; not finished",
+   "status": "visited"
+  },
+  {
+   "id": "S04",
+   "milestone": "Practice: Mate Toss (bank 1)",
+   "route": "evsel; [down] 2f+25; [a] 2f+30; 800 frames mix",
+   "result": "event runs (speed/angle meter)",
+   "status": "visited"
+  },
+  {
+   "id": "S05",
+   "milestone": "Practice: Clubbing (bank 5)",
+   "route": "evsel; 2x([down] 2f+25); [a]; 800 frames mix",
+   "result": "event runs",
+   "status": "visited"
+  },
+  {
+   "id": "S06",
+   "milestone": "Practice: Fire Starting (bank 2)",
+   "route": "evsel; 3x([down] 2f+25); [a]; 800 frames mix",
+   "result": "event runs (timer)",
+   "status": "visited"
+  },
+  {
+   "id": "S07",
+   "milestone": "Practice: Dino Race (bank 3)",
+   "route": "evsel; 4x([down] 2f+25); [a]; 800 frames mix",
+   "result": "event runs; no progress with mashing",
+   "status": "visited"
+  },
+  {
+   "id": "S08",
+   "milestone": "Practice: Dino Vault (bank 6)",
+   "route": "evsel; 5x([down] 2f+25); [a]; 800 frames mix",
+   "result": "event runs",
+   "status": "visited"
+  },
+  {
+   "id": "S09",
+   "milestone": "Start the Games: Clubbing -> Mate Toss -> Dino Vault -> Dino Race (natural, trace off)",
+   "route": "mainmenu; [right] 2f+25; [a] 2f+60; mix pattern ~16000 frames",
+   "result": "clubbing ends ~6600-7200 frames, mate toss, dino vault completed; stuck in Dino Race (no progress by mashing)",
+   "status": "visited (trace off; bounded)"
+  },
+  {
+   "id": "S10",
+   "milestone": "Final placings (end of Start the Games)",
+   "route": "games start; wait until $8000 bank = 16K bank 5 (clubbing, ~13x30 frames) + 60 frames; ARTIFICIAL: emulator.memory.write $0659=[6] (event counter); mix pattern; clubbing ends at 6600..7200 frames -> scoring $CFC9, INC $0659 = 7 -> final placings $D357 -> main menu. Traced from chunk snapshot c11 (exported analysis/snapshots/club_end_patched6.json) for 1500 frames.",
+   "result": "FINAL PLACINGS screen and return to main menu observed (5433 new instruction starts incl. subsequent practice saber race)",
+   "status": "visited (artificial shortcut)"
+  },
+  {
+   "id": "S11",
+   "milestone": "Intermediate results between events",
+   "route": "club_end_patched6 snapshot; ARTIFICIAL $0659=[2]; mix 1400 frames traced",
+   "result": "event result then next event (dino vault, 16K bank 6) loaded",
+   "status": "visited (artificial)"
+  },
+  {
+   "id": "S12",
+   "milestone": "Caves of Fame",
+   "route": "mainmenu; [down] 2f+25; [right] 2f+25; [a]; 400 frames; [a] 120 frames (traced)",
+   "result": "per-event champion screens (Mate-Toss event, Competition/Practice champion)",
+   "status": "visited"
+  },
+  {
+   "id": "S13",
+   "milestone": "Restart",
+   "route": "mainmenu; [down] 2f+25; [a]; 300 frames traced",
+   "result": "returns to Number of players",
+   "status": "visited"
+  },
+  {
+   "id": "S14",
+   "milestone": "Finish Saber Race / Dino Race naturally (event win/finish code)",
+   "route": "Dino Race: import analysis/snapshots/evsel.json, 4x([down] 2f+25), [a] 2f+30, then per frame: A held on alternate 2-frame halves, B added when RAM $0478==0 and $0476<$20 (analysis/redirect/r01-a1/dino_race.py); trace off until course hi>=$0E. Saber Race: evsel, [a] 2f+30, A toggled every 2 frames, B when course pos (SrScrollX+runnerX+$100) within 16 px before a kind-1 obstacle (saber_race.py, JK=1 AP=2).",
+   "result": "Both events finished naturally (practice, 1P): Dino Race both racers reached $0F00, results with seconds; Saber Race both runners reached the goal, results screen. 537 new instruction starts, all inside Static Code regions.",
+   "status": "visited",
+   "evidence": [
+    "analysis/redirect/r01-a1/notes.md",
+    "analysis/redirect/r01-a1/dinorace_results.json",
+    "analysis/redirect/r01-a1/saberrace_results.json",
+    "analysis/redirect/r01-a1/frames/dr_after400.png",
+    "analysis/redirect/r01-a1/frames/sr_fin300.png"
+   ]
+  },
+  {
+   "id": "S15",
+   "milestone": "Multi-player mode (2-6 players): number-of-players menu, per-player character select on keypads 1/2, multi-player Practice events",
+   "route": "Natural input only, no RAM writes. analysis/snapshots/mainmenu.json -> Restart ([down] 2f+25, [a] 2f+300) -> Number of players: hold Up until $04E8 = '0'+N, [a] -> player p picks a free character on keypad 1 (even p) / keypad 2 (odd p): [a] 3f+90 twice (select + biography), D-pad 12f+30 toward an untaken character when the cursor is on a taken one -> main menu (snapshots analysis/redirect/r02-a1/mp3_mainmenu.json, mp6_mainmenu.json) -> [a] Practice 150f -> [down]x2 (2f+30) [a] Clubbing -> 600-900 frames A/Right on both pads (4-frame steps), trace on capacity 0. Scripts: analysis/redirect/r02-a1/mp_full.py, mp_pick.py, mp_event.py, covcheck.py.",
+   "status": "visited",
+   "history": [
+    {
+     "pass": "up to round-02-disassembly",
+     "status": "deferred",
+     "reason": "No unknown or contested range depends on 2-player paths; the multi-player bracket code (CL_Bracket*) is statically established and L-010's extent proof does not need execution. Remaining value: reachability of L-004 roots. Try it next round if L-004 reachability is wanted. Round-2 disassembly: still deferred; classification reached 100% without it, and the only remaining value is L-004 reachability (prior natural event finishes added 0 bytes outside existing Code).",
+     "route": "not attempted"
+    }
+   ],
+   "result": "3 players: 3-player Saber Race (GLUNK VS CRUDLA) and Clubbing ran; CL_Bracket3 fetched. 6 players: Clubbing ran; CL_Bracket6 and CL_PairFromWinners fetched. 144 new instruction starts (analysis/redirect/r02-a1/cov_new_r02.json), all on decoded Code starts in 21 Static regions; 0 outside Code.",
+   "evidence": [
+    "analysis/redirect/r02-a1/notes.md",
+    "analysis/redirect/r02-a1/cov_mp3.json",
+    "analysis/redirect/r02-a1/cov_mp6.json"
+   ]
+  },
+  {
+   "id": "S16",
+   "milestone": "Natural (no-shortcut) full Start the Games run to final placings / ending",
+   "route": "not attempted in r02-a1",
+   "status": "deferred",
+   "reason": "Final placings, intermediate results, Caves of Fame and return to menu were already visited (S10-S12; the S10 shortcut only set the event counter $0659, the placings code ran normally), and every event has now finished naturally in Practice (S09, S14). A natural 6-event run (~25k frames, ~4 fps when traced, TK-002) would only re-execute intermediate-result paths already observed; no classification or contested range depends on it. In S10 the end of the competition went final placings -> main menu; no other terminal screen was observed, and no further ending path is claimed or excluded.",
+   "evidence": [
+    "analysis/redirect/r02-a1/notes.md"
+   ],
+   "history": [
+    {
+     "pass": "round-03-redirect (r03-a1)",
+     "note": "Reviewed, not run: no classification/role question depends on it (r03-a1 findings are static consumer anchors). Reason unchanged."
+    }
+   ]
+  }
+ ]
+}

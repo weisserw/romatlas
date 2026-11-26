@@ -1,0 +1,5 @@
+# Round8 redirect — complete terminal review, incomplete ROM
+
+Input/current maps/pass-008-final.json:262134 classified,26 unknown/20intervals.0proposed/accepted. Full current-source readability complete; no outstanding writes. Exact complement, fresh source windows and primary-linked rejection-review.md complete. Accepted114encoded fragment bytes remain properly scoped; new23edge delta supplements prior3858edge audit with no residual target.
+
+All tiny alternatives and consistent helper/replica/generic-data criteria assessed; no identified useful revised inference/test remains. Terminal sufficiency is subject to coordinator inspection, not presumed from missingfacts/attemptcounts. Current frontier: coordinator reads rejection-review.md and ledger, then separate final editorial phase if accepted. No automatic relaunch/replay on unchanged sound reasoning. Handoff analysis/handoffs/round8-redirect.md; research/leads only. Preserved identities in final-checks.json; no runtime/classification mutation/cleanup/publication.

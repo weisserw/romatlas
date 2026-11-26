@@ -1,0 +1,4 @@
+# Round4 redirect ready combined batch
+Input maps/pass-004-final.json unchanged260918classified/1242unknown/34intervals. Research completed connectedlocalgraph and promisingindependent serializer/reset/vector methods. Combined proposals636Code+86Data=722bytes,710new+12Data-to-Code; accepted0. Prospective532unknown/22intervals.
+Authoritative combined-proposals.json and contracts.md; handoff analysis/handoffs/round4-redirect.md. Fullcurrentcomplement unknown-ledger.json, hypothetical complement prospective-residual.json. analysis/leads.json reopens4stableIDs with current_attempt and ready_physical_ranges; old verified ranges/history retained.
+Nextphase independentdisassembly review of combinedrecipe. This is nonterminal, not interrupted productive research. Remaining actual discrimination barriers/competinginterpretations documented in contracts.md/handoff; no deferred supportedcontinuation solely due independence. No map/state/source/ROM changes.

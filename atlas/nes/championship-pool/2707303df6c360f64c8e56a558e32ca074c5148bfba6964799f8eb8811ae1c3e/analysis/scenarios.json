@@ -1,0 +1,265 @@
+{
+ "version": 1,
+ "notes": "Round 1 (disassembly). Server: python3 run.py serve via analysis/tools/rpcd.py bridge; helpers analysis/tools/nes.py. press(b,hold,after) = hold button b for `hold` frames then release for `after` frames (emulator.input buttons list + emulator.step unit=frame, max_operations 1e8). Tracing (trace.configure enabled, capacity 0, kinds Instruction/ControlFlow/BankSwitch) runs at ~3 frames/s, so it was enabled only around transitions/menus. Named snapshots are session-local; analysis/snapshots/title.json is an exported snapshot of the title screen (same-build only). Redirect r1-a7 helper: /tmp scratch step.py equivalent = analysis/tools/nes.py press(b,hold,after)/run(n)/write(addr,bytes); bridge socket path via env ROMATLAS_SCRATCH. Base snapshot boot1340 = emulator.start; run(140) untraced; run(1200) traced (frame 1340, title screen).",
+ "scenarios": [
+  {
+   "id": "S1-boot-attract",
+   "milestone": "power-on, Bitmasters logo, staff credits, title screen",
+   "route": "emulator.start; frames 0-153 traced; then untraced run to frame ~1990 (title shown ~frame 1300+)",
+   "result": "Bitmasters logo, DESIGN/PROGRAMMING/GRAPHICS/MUSIC and SOUND FX/PRODUCER/TESTING credits, title 'Championship Pool' PRESS START. Attract loop has no demo play observed.",
+   "evidence": [
+    "analysis/observed-roots-r1a.json"
+   ],
+   "status": "visited (boot partly traced)"
+  },
+  {
+   "id": "S2-mode-menu",
+   "milestone": "Game Mode menu",
+   "route": "from title snapshot: press(start,4,60) traced",
+   "result": "TOURNAMENT/CHALLENGE/PARTY/FREESTYLE menu",
+   "status": "visited"
+  },
+  {
+   "id": "S3-tournament-setup",
+   "milestone": "Tournament: break type, games, welcome, coin flip",
+   "route": "S2 then press(a,4,60) [AUTO break]; press(a,4,60) [8 BALL]; press(a,4,90) [welcome]; press(a,4,120) [HEADS]; run 240",
+   "result": "BREAK TYPE, TOURNAMENT GAMES (8/9 BALL), WELCOME (BCA regional qualifying, 32 contestants single elimination), FLIP FOR BREAK, auto break physics, table with 'PLAYER 1 AUTO BREAK / BREAK COMPLETED! IT IS YOUR SHOT'",
+   "status": "visited (traced)"
+  },
+  {
+   "id": "S4-table-ui",
+   "milestone": "in-game table UI, overview, menus",
+   "route": "from S3 table (snapshot aim1 = after press(a,4,60) dismissing message): left x20 frames; select tap (overview); start (MAIN MENU); start/down/a (GAME CONTROL: SET POWER, SET SPIN, ZOOM, JUKEBOX); start/down/down/a (ACTIONS: SPECIAL ACTIONS 'CALL A SAFETY', VIEW REPLAY, SCOREBOARD). Each submenu entered with down*k + a, from aim1.",
+   "result": "All listed menus/panels displayed and traced; SET SPIN cue-ball panel; JUKEBOX; overview with GAMES/TOURNAMENT OPEN TABLE header",
+   "status": "visited (traced)"
+  },
+  {
+   "id": "S5-shoot",
+   "milestone": "player shot (phantom ball + A)",
+   "route": "aim1: press(a) then press(a) with 10-60 frame gaps; B power panel with right held 40 frames then A; repeated",
+   "result": "Phantom/cursor animation only; no ball motion observed. Shot mechanics not established; physics code observed only through the AUTO break.",
+   "status": "visited (resolved in redirect r1-a7, see S8)"
+  },
+  {
+   "id": "S6-data-read-scan",
+   "milestone": "data reads of banks 0-1, 4, 6-low during S2-S3 route",
+   "route": "analysis/tools/readscan.py lo hi out (title snapshot -> S3 route with ROM Read stream limited to [lo,hi))",
+   "result": "banks 0/1 read ranges in analysis/observed-reads-r1-b01.json; banks 4/6 see analysis/observed-reads-r1-b4.json, -b6.json",
+   "status": "visited"
+  },
+  {
+   "id": "M-later",
+   "milestone": "tournament later rounds / World Championship / ending text (bank 2 contains 'WISHING YOU A GOOD NIGHT' text)",
+   "route": "none yet",
+   "result": "not reached; needs shot input contract or RAM shortcut (match result / round variables unknown)",
+   "status": "visited (artificial RAM shortcut, see S11/S12)"
+  },
+  {
+   "id": "S7-challenge-party",
+   "milestone": "CHALLENGE and PARTY setup",
+   "route": "from mode menu (snapshot after title press(start,4,60)): press(down,4,15) x k, press(a,4,60), press(a,4,60), press(a,4,90), press(a,4,120); traced. k=1 and k=2 both landed on CHALLENGE (second down not registered with 15-frame gaps); k=3 reached PARTY.",
+   "result": "CHALLENGE GAMES (14.1 CHALLENGE, EIGHT BALL, NINE BALL, EQUAL OFFENSE, THREE BALL, SPEED POOL) -> table 'PLAYER 1 GET READY / YOU GET THE CUE BALL IN HAND BEHIND THE HEAD STRING' with racked balls; PARTY GAMES list (2-8 players, 11 games) -> GAME LENGTH (ONE GAME .. RACE TO EIGHT) -> SELECT CONTROLLER. +320 unique instructions (analysis/observed-roots-r1b.json), incl. bank-3 $9385-$94A3.",
+   "status": "visited (traced)"
+  },
+  {
+   "id": "M-other-modes",
+   "milestone": "FREESTYLE, 9-ball tournament, party play",
+   "route": "mode menu down x3 (use longer gaps between presses)",
+   "result": "not visited in round 1",
+   "status": "visited (S9 Freestyle, S10 Party 9-ball)"
+  },
+  {
+   "id": "S8-boot-trace",
+   "milestone": "boot credits/title animation traced",
+   "route": "emulator.start; run 140 untraced; trace on; run 1200 (12x100); trace off -> snapshot boot1340",
+   "result": "Observed bank-3 $830E-$8325, $832B-$8644 (title/credit animation) and $FC65-$FC78 (natural, no edits).",
+   "evidence": [
+    "analysis/redirect/r1-a7/observed-boot-140-1340.json"
+   ],
+   "status": "visited (traced)"
+  },
+  {
+   "id": "S8-tournament-shots",
+   "milestone": "player shots in tournament 8-ball (manual break)",
+   "route": "boot1340: press(start,4,60) a(4,60) down(4,30) a(4,60) a(4,90) a(4,120) run240 [lands on WELCOME due to input lag]; a(4,120) [FLIP FOR BREAK]; a(4,120) a(4,200) run200 [MANUAL break chosen: GET READY ball-in-hand]; a(4,60) dismiss; a(4,30) [GameCmd 1->2]; a(4,30) [shot, GameCmd 3]; run 500 -> balls scatter.",
+   "result": "Break shot fires naturally. Second shot: A, then RAM patch CalledPocket $D9=$00 (bypass call requirement), A -> shot, cue ball scratched (\"YOU SCRATCHED\").",
+   "status": "visited (first shot natural; second with 1-byte RAM patch)"
+  },
+  {
+   "id": "S8b-opponent-message",
+   "milestone": "opponent turn message with portrait (TimeWarp, JOHN DOYLE, \"YOUR OPPONENT SANK SOME BALLS, THEN MISSED\")",
+   "route": "after S8 scratch message: trace on; a(4,60); run30; a(4,60); trace off",
+   "result": "Observed $F885-$F8AC, bank-3 $899E-$89C0, $8A51-$8A74, fixed $E3A3-$E3E1 (scenario marked artificial by the earlier $D9 patch).",
+   "evidence": [
+    "analysis/redirect/r1-a7/observed-oppmsg.json"
+   ],
+   "status": "visited (traced, artificial route)"
+  },
+  {
+   "id": "S9-freestyle",
+   "milestone": "FREESTYLE mode",
+   "route": "boot1340: start(4,120) down(4,40)x3 a(4,120) a(4,120) a(4,150) [shot fired]; run300; hold select+a 4 frames",
+   "result": "GameMode 3, GameType $13; break shot fired, balls scatter; Select+A -> GameCmd 5 (ball move).",
+   "status": "visited (untraced)"
+  },
+  {
+   "id": "S10-party-9ball",
+   "milestone": "PARTY play (9-ball, 2 players)",
+   "route": "boot1340: start(4,120) down(4,40)x2 a(4,120) [PARTY GAMES]; down(4,40) a(4,120) [9 BALL, NUMBER OF PLAYERS]; a(4,120) [GAME LENGTH]; start(4,120) start(4,150) [SELECT CONTROLLER P1/P2]; start(4,200) [FLIP]; a(4,200) a(4,200) run200 [GET READY]; a(4,60) a(4,30) a(4,30) run300",
+   "result": "GameType 1 confirmed for party NINE BALL; break shot fired.",
+   "status": "visited (untraced)"
+  },
+  {
+   "id": "S11-world-championship",
+   "milestone": "Tournament round 5: BCA World Championship",
+   "route": "aiming state in tournament (GameCmd 1, e.g. snapshot after S8b + run30 + a(4,60)): write $EF=$04, $E6=$00, $DD=$02 (MatchExitCode 2 = leave match; CurrentPlayer 0 = player 1 won); run120",
+   "result": "StartTournament @won_match: TournamentRound 5, ShowTournamentStage \"WELCOME TO THE BCA WORLD CHAMPIONSHIP TOURNAMENT ... BLOOMINGTON, INDIANA\"; next FLIP FOR BREAK and table (MatchesPlayed 2).",
+   "status": "visited (artificial RAM shortcut)"
+  },
+  {
+   "id": "S12-ending",
+   "milestone": "Tournament won / interview ending",
+   "route": "same aiming state: write $EF=$09, $E6=$00, $DD=$02; run150 [\"CONGRATULATIONS YOU WON THE TOURNAMENT\"]; a(4,150) x2 [JOE NOZERAK interview]; then a(4,100)+start(4,100) pairs (A shows answers, START continues) ~10 times",
+   "result": "TournamentComplete: interview questions with answer choices, final \"...THIS IS JOE NOZERAK FOR THE BCA, WISHING YOU A GOOD NIGHT...\", then returns to the title screen and a new tournament.",
+   "status": "visited (artificial RAM shortcut, untraced); traced in round 2 as S14-ending-traced"
+  },
+  {
+   "id": "S13-intermission-artificial",
+   "milestone": "Intermission/scoreboard screen (ShowIntermission)",
+   "route": "tournament aiming state (GameCmd 1): write $D2=$19; trace on; run90; a(4,60); trace off",
+   "result": "SCOREBOARD \"RACE TO 4 / PLAYER WINS\" screen; observed 130 starts in bank-3 $95F6-$981F.",
+   "evidence": [
+    "analysis/redirect/r1-a7/observed-intermission-artificial.json"
+   ],
+   "status": "visited (artificial GameCmd patch, traced)"
+  },
+  {
+   "id": "M-challenge-play",
+   "milestone": "Challenge mode challenges completed (Speed Pool unlock of World Championship)",
+   "route": "not attempted beyond S7 setup",
+   "result": " Round-2 redirect: S15-worldchamp-unlock confirmed the StartTournament consumer of WorldChampUnlock $EE with an artificial write; a natural Speed Pool clear under 141 needs repeated accurate manual shots (8-ball style call contract, physics) - impractical and of no structural value now that every byte is classified. Round-3 redirect: S21 exercised the Speed Pool clear rule with an artificial ball-clear write; the game itself incremented WorldChampUnlock; Challenge end/EVALUATION screen visited.",
+   "status": "visited (artificial shortcut S21; natural manual clear still not attempted)"
+  },
+  {
+   "id": "S14-ending-traced",
+   "milestone": "Tournament won / Joe Nozerak interview ending (traced) and return to title/new tournament",
+   "route": "analysis/tools/r2_ending.py: emulator.start; run 1340; S8 route to manual-break aiming (GameCmd 1, untraced); trace.clear + trace on (capacity 0; Instruction/ControlFlow/BankSwitch); write $EF=$09,$E6=$00,$DD=$02; run150; a(4,120) x2; 14 x [a(4,60), start(4,60)]; run120; trace off; dump analysis.contexts",
+   "result": "CONGRATULATIONS / interview screens with Joe Nozerak portrait, questions and answers, then return to title and TOURNAMENT GAMES menu of a new tournament (EF=$FF). 4,976 unique ROM instruction starts, all on classified instruction starts; 2,310 traced frames, aggregate_dropped 0. Used to upgrade 10 fully observed Static code regions (223 bytes) to Observed (artificial RAM-shortcut route).",
+   "evidence": [
+    "analysis/observed-r2-ending.json",
+    "analysis/r2-captures/s14_congrats.png",
+    "analysis/r2-captures/s14_interview.png",
+    "analysis/r2-captures/s14_final.png"
+   ],
+   "status": "visited (traced; artificial RAM shortcut entry)",
+   "round": 2
+  },
+  {
+   "id": "S15-worldchamp-unlock",
+   "milestone": "World Championship unlock path (WorldChampUnlock consumer)",
+   "route": "boot1340 (run_q.py base); press(start,4,60); write $EE=$01; a(4,60) down(4,30) a(4,60) a(4,90) [TOURNAMENT GAMES]; a(4,120) run120 [WELCOME regional]; a(4,120) run60",
+   "result": "TournamentRound=5 and 'WELCOME TO THE BCA WORLD CHAMPIONSHIP TOURNAMENT ... BLOOMINGTON, INDIANA'",
+   "evidence": [
+    "analysis/redirect/r2-q1/unlock-ram.json",
+    "analysis/redirect/r2-q1/unlock-worldchamp-welcome.png"
+   ],
+   "status": "visited (artificial RAM write)"
+  },
+  {
+   "id": "S16-credits-entry",
+   "milestone": "credits pages entry state",
+   "route": "emulator.start; run140; Instruction trace limited to bank-3 $830E then $831A in 10-frame chunks; cycle-step to entry (run_q.py credits)",
+   "result": "$830E at frame 532 (Tmp08=0, DstPtr=$0000); $831A at frame 790 (Tmp08=0, DstPtr=$CD43); scripts override via menu op 07 (NameCharMap, offset $80)",
+   "evidence": [
+    "analysis/redirect/r2-q1/credits-entry-state.json"
+   ],
+   "status": "visited (natural, traced)"
+  },
+  {
+   "id": "S17-charmap-reads",
+   "milestone": "bank-7 font/char-map data reads over menus and ending",
+   "route": "boot1340 -> S8 route to aim0 (natural) -> S14 shortcut and 6 interview pages (artificial), Read trace limited to $C86D-$D0C3 (run_q.py names)",
+   "result": "1,871 reads at 290 offsets; NameCharMap indices $20-$6A",
+   "evidence": [
+    "analysis/redirect/r2-q1/names-reads.json"
+   ],
+   "status": "visited (traced; partly artificial)"
+  },
+  {
+   "id": "S18-match-exit-portrait",
+   "milestone": "EndOfMatch portrait expressions",
+   "route": "aim0: write $E6=0|1, $DD=2; 12 x run15 with captures (run_q.py expr)",
+   "result": "$DD=2 bypasses EndOfMatch (next FLIP FOR BREAK / ELIMINATED screens); PortraitFrame stayed 0. Expression meaning answered statically from message contexts. Round-3 redirect: resolved by S19 (GameCmd $12 entry reaches EndOfMatch).",
+   "evidence": [
+    "analysis/redirect/r2-q1/expr-ram.json",
+    "analysis/redirect/r2-q1/expr-dd2-skips-endofmatch.png"
+   ],
+   "status": "attempted (superseded by S19, visited)"
+  },
+  {
+   "id": "S19-portrait-expressions",
+   "milestone": "game won / match won / match lost portrait screens (RecordGameWin, EndOfMatch)",
+   "route": "run_r3.py base (boot; run 1340; S8 route -> aim0, tournament round 0, GameCmd 1); then ARTIFICIAL: write GameCmd $D2=$12 (GameCmdDispatch case $12 = jsr RecordGameWin); win0: run_until PC $B1F9 bank 3, RandomLo $5A := $A0; match0: PlayerWins $0457 := 3; match1: CurrentPlayer $E6 := 1, PlayerWins $0458 := 3; then 40 x run(10) with A every 8th step",
+   "result": "win0: RandomMessageTable entry 0 'SO, YOU THINK YOU'RE GOOD...' with PortraitFrame 1 (scowl). match0: 'YOUR OPPONENT CONGRATULATES YOU', intermission, 'YOU WIN THE MATCH. YOUR OPPONENT STALKS OFF...' frame 1, next round. match1: 'YOUR OPPONENT WINS THE MATCH.' frame 2 (grin), ELIMINATED, title.",
+   "evidence": [
+    "analysis/redirect/r3-p1/exp-win0.json",
+    "analysis/redirect/r3-p1/exp-match0.json",
+    "analysis/redirect/r3-p1/exp-match1.json",
+    "analysis/redirect/r3-p1/portrait-frame1-win0.png",
+    "analysis/redirect/r3-p1/portrait-frame2-match1.png",
+    "analysis/redirect/r3-p1/sheet-match0-stalks-off.png",
+    "analysis/redirect/r3-p1/sheet-match1-opp-wins.png"
+   ],
+   "status": "visited (artificial GameCmd/RAM shortcut)"
+  },
+  {
+   "id": "S20-power-panel-reads",
+   "milestone": "SET POWER panel (window frame style 1) data reads",
+   "route": "aim0; ROM Read trace limited to phys $1CDBE-$1D0D3 (then $CA86-$CB0F); press(b,4,60); hold right 30; run 30; press(a,4,60) (run_power.py)",
+   "result": "bank-7 $CDC3-$D0C3 read completely (769 distinct, window tile set 3); nothing in $CDAE-$CDC2; bank-3 $8A76-$8AFF read completely (138, power panel rect)",
+   "evidence": [
+    "analysis/redirect/r3-p1/power-panel-reads.json",
+    "analysis/redirect/r3-p1/power-panel.png"
+   ],
+   "status": "visited (natural input, traced)"
+  },
+  {
+   "id": "S21-challenge-speedpool",
+   "milestone": "Challenge mode Speed Pool clear -> WorldChampUnlock; challenge end EVALUATION",
+   "route": "boot1340; start(4,120) down(4,40) a(4,120) down(4,40)x5 a(4,150) a(4,150) -> sp_aim. Unlock: ARTIFICIAL BallState low bytes $075C..$0778 (even) := 0; a(4,30) a(4,30); 30 x run30. Result: from sp_aim also MatchSetting3 $E3 := 3; same shot; A presses",
+   "result": "Unlock: speed-pool rule saw an empty table, PlayerScore 7 < 141, WorldChampUnlock 0 -> 1 (game code), ROUND 1 OF 3 scoreboard, round 2 racked. Result: ROUND 3 OF 3, PLAYER 1 GAME OVER, EVALUATION 'YOUR RANKING IS: NOVICE', back to GAME MODE menu. A naive 3-round automation desynchronised (challenge-finish.json, superseded).",
+   "evidence": [
+    "analysis/redirect/r3-p1/challenge-route.json",
+    "analysis/redirect/r3-p1/challenge-unlock.json",
+    "analysis/redirect/r3-p1/challenge-result.json",
+    "analysis/redirect/r3-p1/sheet-speedpool-unlock.png",
+    "analysis/redirect/r3-p1/sheet-challenge-result.png"
+   ],
+   "status": "visited (artificial RAM shortcut; route to sp_aim natural)"
+  },
+  {
+   "id": "S22-spin-panel-reads",
+   "milestone": "SET SPIN panel (in-game control window) with ROM Read trace",
+   "route": "boot: emulator.start; run 1340; run_r3.s8_route -> aim0 (frame 2740, GameCmd 1). Hold Select 10f, Select+B 4f, Select 10f, idle 60, Up 30, idle 30, A(4,60). Trace Read space rom range phys $D053-$D0E2. No RAM edits.",
+   "result": "SET SPIN window shown; reads exactly $9043-$909A (rect 82 + attrs 6); $909B-$90D2 unread.",
+   "evidence": [
+    "analysis/redirect/r4-m1/spin-panel-reads.json",
+    "analysis/redirect/r4-m1/r4_spin.png",
+    "analysis/redirect/r4-m1/run_r4.py"
+   ],
+   "status": "visited (natural input)"
+  },
+  {
+   "id": "S23-ball-calling-marker",
+   "milestone": "Call-shot ball selection (GameCmd $10, BallInHandMode) with ball-marker sprite",
+   "route": "aim0; hold Select 10f, Select+A 4f, Select 10f, idle 60 (GameCmd $10, CalledBall 10, overview); then 4 x B(4,40). Trace Read space rom range phys $13219-$14000. No RAM edits.",
+   "result": "Ring marker drawn around the called ball; 2079 reads in the block, all with prg_banks [8,9,14,15] (bank 4); $B209 pointer word and record $B5D8-$B5E4 read. B returned to GameCmd 2.",
+   "evidence": [
+    "analysis/redirect/r4-m1/ball-marker-reads.json",
+    "analysis/redirect/r4-m1/r4_mark0.png",
+    "analysis/redirect/r4-m1/r4_mark1.png"
+   ],
+   "status": "visited (natural input)"
+  }
+ ]
+}

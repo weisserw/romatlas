@@ -1,0 +1,423 @@
+[
+ {
+  "id": "SC-001",
+  "milestone": "Title screen and attract demo (natural)",
+  "round": 1,
+  "status": "visited",
+  "route": "emulator.start; 120 frames -> title. Without input the attract demo starts (state $18=2, HUD STAGE 12) after roughly 400 frames.",
+  "result": "Title/attract code executed (state 1/2). Coverage merged into round-1 code regions.",
+  "natural": true,
+  "evidence": [
+   "scratch/snap_title.json (local snapshot, frame 120)"
+  ],
+  "budget": "frame stepping, tracing on (capacity 0)"
+ },
+ {
+  "id": "SC-002",
+  "milestone": "Game start and Stage 1 courtyard (natural)",
+  "round": 1,
+  "status": "visited",
+  "route": "From SC-001 title (frame 120): buttons [start] 3 frames, [] ; 600 frames -> state $18=5,$19=6, stage $28=0 with control.",
+  "result": "Startup, stage load and stage-1 gameplay code executed naturally; 4519 natural instruction starts.",
+  "natural": true,
+  "evidence": [
+   "scratch/snap_stage1.json (local snapshot, start of stage 1)",
+   "scratch/cov_nat1_keep.json"
+  ]
+ },
+ {
+  "id": "SC-003",
+  "milestone": "Stage 1 natural play: walk right, whip, jump, sub-weapon input, crouch-whip",
+  "round": 1,
+  "status": "visited",
+  "route": "From SC-002: right 60, b 8, - 4, right 40, right+b 8, right 40, a 20, right 60, b 8, right 60, right+a 25, right 60, b 8, right 80, up+b 8, right 60, down+b 10, right 80 (frames).",
+  "result": "Simon stayed near the start area (no ground progress observed); whip/jump/crouch handlers executed. Ended state 5/6, health 64.",
+  "natural": true,
+  "evidence": [
+   "scratch/snap_nat1end.json"
+  ]
+ },
+ {
+  "id": "SC-STG00",
+  "milestone": "Stage 0 via RAM warp (artificial)",
+  "round": 1,
+  "status": "visited",
+  "route": "Import SC-002 snapshot; emulator.memory.write $28=[0], $45=[0], $2A=[4]; run 150-200 frames (death sequence reloads stage 0); then traced input pattern: right 40, right+b 6, right 30, a+right 20, right 10, b 8, - 6, left 30, up+b 8, - 8, down 10, down+b 8, right 60.",
+  "result": "Stage 0 loaded and played briefly (state 5/6, HUD STAGE 00); per-stage new coverage fell to <200 instruction starts by stage 6 and ~10 by stage 12.",
+  "natural": false,
+  "patch": {
+   "$28": 0,
+   "$45": 0,
+   "$2A": 4
+  },
+  "evidence": [
+   "scratch/st00.png (local)"
+  ]
+ },
+ {
+  "id": "SC-STG01",
+  "milestone": "Stage 1 via RAM warp (artificial)",
+  "round": 1,
+  "status": "visited",
+  "route": "Import SC-002 snapshot; emulator.memory.write $28=[1], $45=[0], $2A=[4]; run 150-200 frames (death sequence reloads stage 1); then traced input pattern: right 40, right+b 6, right 30, a+right 20, right 10, b 8, - 6, left 30, up+b 8, - 8, down 10, down+b 8, right 60.",
+  "result": "Stage 1 loaded and played briefly (state 5/6, HUD STAGE 01); per-stage new coverage fell to <200 instruction starts by stage 6 and ~10 by stage 12.",
+  "natural": false,
+  "patch": {
+   "$28": 1,
+   "$45": 0,
+   "$2A": 4
+  },
+  "evidence": [
+   "scratch/st01.png (local)"
+  ]
+ },
+ {
+  "id": "SC-STG02",
+  "milestone": "Stage 2 via RAM warp (artificial)",
+  "round": 1,
+  "status": "visited",
+  "route": "Import SC-002 snapshot; emulator.memory.write $28=[2], $45=[0], $2A=[4]; run 150-200 frames (death sequence reloads stage 2); then traced input pattern: right 40, right+b 6, right 30, a+right 20, right 10, b 8, - 6, left 30, up+b 8, - 8, down 10, down+b 8, right 60.",
+  "result": "Stage 2 loaded and played briefly (state 5/6, HUD STAGE 02); per-stage new coverage fell to <200 instruction starts by stage 6 and ~10 by stage 12.",
+  "natural": false,
+  "patch": {
+   "$28": 2,
+   "$45": 0,
+   "$2A": 4
+  },
+  "evidence": [
+   "scratch/st02.png (local)"
+  ]
+ },
+ {
+  "id": "SC-STG03",
+  "milestone": "Stage 3 via RAM warp (artificial)",
+  "round": 1,
+  "status": "visited",
+  "route": "Import SC-002 snapshot; emulator.memory.write $28=[3], $45=[0], $2A=[4]; run 150-200 frames (death sequence reloads stage 3); then traced input pattern: right 40, right+b 6, right 30, a+right 20, right 10, b 8, - 6, left 30, up+b 8, - 8, down 10, down+b 8, right 60.",
+  "result": "Stage 3 loaded and played briefly (state 5/6, HUD STAGE 03); per-stage new coverage fell to <200 instruction starts by stage 6 and ~10 by stage 12.",
+  "natural": false,
+  "patch": {
+   "$28": 3,
+   "$45": 0,
+   "$2A": 4
+  },
+  "evidence": [
+   "scratch/st03.png (local)"
+  ]
+ },
+ {
+  "id": "SC-STG06",
+  "milestone": "Stage 6 via RAM warp (artificial)",
+  "round": 1,
+  "status": "visited",
+  "route": "Import SC-002 snapshot; emulator.memory.write $28=[6], $45=[0], $2A=[4]; run 150-200 frames (death sequence reloads stage 6); then traced input pattern: right 40, right+b 6, right 30, a+right 20, right 10, b 8, - 6, left 30, up+b 8, - 8, down 10, down+b 8, right 60.",
+  "result": "Stage 6 loaded and played briefly (state 5/6, HUD STAGE 06); per-stage new coverage fell to <200 instruction starts by stage 6 and ~10 by stage 12.",
+  "natural": false,
+  "patch": {
+   "$28": 6,
+   "$45": 0,
+   "$2A": 4
+  },
+  "evidence": [
+   "scratch/st06.png (local)"
+  ]
+ },
+ {
+  "id": "SC-STG09",
+  "milestone": "Stage 9 via RAM warp (artificial)",
+  "round": 1,
+  "status": "visited",
+  "route": "Import SC-002 snapshot; emulator.memory.write $28=[9], $45=[0], $2A=[4]; run 150-200 frames (death sequence reloads stage 9); then traced input pattern: right 40, right+b 6, right 30, a+right 20, right 10, b 8, - 6, left 30, up+b 8, - 8, down 10, down+b 8, right 60.",
+  "result": "Stage 9 loaded and played briefly (state 5/6, HUD STAGE 09); per-stage new coverage fell to <200 instruction starts by stage 6 and ~10 by stage 12.",
+  "natural": false,
+  "patch": {
+   "$28": 9,
+   "$45": 0,
+   "$2A": 4
+  },
+  "evidence": [
+   "scratch/st09.png (local)"
+  ]
+ },
+ {
+  "id": "SC-STG12",
+  "milestone": "Stage 12 via RAM warp (artificial)",
+  "round": 1,
+  "status": "visited",
+  "route": "Import SC-002 snapshot; emulator.memory.write $28=[12], $45=[0], $2A=[4]; run 150-200 frames (death sequence reloads stage 12); then traced input pattern: right 40, right+b 6, right 30, a+right 20, right 10, b 8, - 6, left 30, up+b 8, - 8, down 10, down+b 8, right 60.",
+  "result": "Stage 12 loaded and played briefly (state 5/6, HUD STAGE 12); per-stage new coverage fell to <200 instruction starts by stage 6 and ~10 by stage 12.",
+  "natural": false,
+  "patch": {
+   "$28": 12,
+   "$45": 0,
+   "$2A": 4
+  },
+  "evidence": [
+   "scratch/st12.png (local)"
+  ]
+ },
+ {
+  "id": "SC-STG15-18",
+  "milestone": "Stages 15, 17, 18 via RAM warp",
+  "round": 1,
+  "status": "deferred",
+  "route": "Same recipe as SC-STGnn.",
+  "result": "Stopped: stage warps had ceased yielding new code (stage 12 added ~10 instruction starts). Retry only to reach the boss rooms. | Round 2: stage 18 visited via SC-WARP-CLEAR.",
+  "natural": false
+ },
+ {
+  "id": "SC-BOSS",
+  "milestone": "Boss fights (end of stages 3/6/9/12/15/18) and Dracula",
+  "round": 1,
+  "status": "visited",
+  "route": "Needs a position/checkpoint RAM contract (scroll/room index) not yet identified; a stage warp alone starts at the stage entrance.",
+  "result": "Not reached in round 1. Lead L-007. | Round 2: stage-3 and stage-18 bosses visited via SC-BOSS3/SC-BOSS18 (artificial). Bosses of stages 6/9/12/15 not visited (same recipe: StageCameraLockTable $FC3A gives half/page).",
+  "natural": false
+ },
+ {
+  "id": "SC-GS07",
+  "milestone": "Game state $18=7 probe (artificial)",
+  "round": 1,
+  "status": "visited",
+  "route": "Import SC-002 snapshot; emulator.memory.write $18=[7,0] (sets $18=7, $19=0); trace 200-250 frames, Start pressed in the third 50-frame block",
+  "result": "returned to state 5/6 (stage restart path)",
+  "natural": false,
+  "patch": {
+   "$18": 7,
+   "$19": 0
+  },
+  "evidence": [
+   "scratch/gst07_0.png (local)"
+  ]
+ },
+ {
+  "id": "SC-GS08",
+  "milestone": "Game state $18=8 probe (artificial)",
+  "round": 1,
+  "status": "visited",
+  "route": "Import SC-002 snapshot; emulator.memory.write $18=[8,0] (sets $18=8, $19=0); trace 200-250 frames, Start pressed in the third 50-frame block",
+  "result": "stayed in state 8 (stage-transition/handler at $C333; $28 != $12 path)",
+  "natural": false,
+  "patch": {
+   "$18": 8,
+   "$19": 0
+  },
+  "evidence": [
+   "scratch/gst08_0.png (local)"
+  ]
+ },
+ {
+  "id": "SC-GS12",
+  "milestone": "Game state $18=12 probe (artificial)",
+  "round": 1,
+  "status": "visited",
+  "route": "Import SC-002 snapshot; emulator.memory.write $18=[12,0] (sets $18=12, $19=0); trace 200-250 frames, Start pressed in the third 50-frame block",
+  "result": "state 12/1, screen unchanged after 200 frames",
+  "natural": false,
+  "patch": {
+   "$18": 12,
+   "$19": 0
+  },
+  "evidence": [
+   "scratch/gst12_0.png (local)"
+  ]
+ },
+ {
+  "id": "SC-GS14",
+  "milestone": "Game state $18=14 probe (artificial)",
+  "round": 1,
+  "status": "visited",
+  "route": "Import SC-002 snapshot; emulator.memory.write $18=[14,0] (sets $18=14, $19=0); trace 200-250 frames, Start pressed in the third 50-frame block",
+  "result": "state 14 briefly showed a castle-approach scene, then returned to 5/6",
+  "natural": false,
+  "patch": {
+   "$18": 14,
+   "$19": 0
+  },
+  "evidence": [
+   "scratch/gst14_0.png (local)"
+  ]
+ },
+ {
+  "id": "SC-GS15",
+  "milestone": "Game state $18=15 probe (artificial)",
+  "round": 1,
+  "status": "attempted",
+  "route": "Import SC-002 snapshot; emulator.memory.write $18=[15,0] (sets $18=15, $19=0); run 0/1500/3500 frames, then trace 200-250 frames with Start pressed in the third 50-frame block",
+  "result": "ending sequence (castle collapse scene) runs with garbled tiles because the stage CHR set was not loaded; substate advanced 3 -> 7 -> 9 over 3700 frames",
+  "natural": false,
+  "patch": {
+   "$18": 15,
+   "$19": 0
+  },
+  "evidence": [
+   "scratch/gst15_0.png (local)"
+  ]
+ },
+ {
+  "id": "SC-ENDING",
+  "milestone": "Natural ending / credits after Dracula",
+  "round": 1,
+  "status": "visited",
+  "route": "Needs boss-room access (SC-BOSS) or a correctly initialised ending entry (CHR load before $18=15).",
+  "result": "Artificial $18=15 executed ending code with garbled graphics (SC-GS15); natural ending not reached. Lead L-007. | Round 2: ending and credits reached with correct graphics after defeating Dracula (SC-ENDING2; artificial setup, game-driven sequence).",
+  "natural": false
+ },
+ {
+  "id": "SC-BOSS3",
+  "milestone": "Stage 3 boss (Phantom Bat) fight, defeat, orb and stage clear (artificial)",
+  "round": 2,
+  "status": "visited",
+  "natural": false,
+  "route": "Import scratch/r2/snap_s3start.json (SC-002 snapshot + warp $28=3,$45=0,$2A=4, 260 frames). Patch $2F=1,$2E=$80; then write $18=[5,0], $4A=5, $1F=5 (GameState 5 screen restart that keeps Stage/StageHalf/ScrollPos, the stair half-change contract at $9xxx Stairs_CheckExit) together with Simon ObjY $0354/$3F, ObjX $038C and PlayerWorldX $40/$41 = $354/$3F=80, $38C=100, $40/$41=[$E4,1]; 48 frames. Hold right 160 frames -> camera reaches page 2 offset 0 = StageCameraLockTable[3]=$02 (half 0, page 2) -> CameraLocked=1, boss type $19 state $80+ (snapshot snap_s3boss.json). Fight traced 570 frames (b/a/left/right pattern, $45 refreshed to 64 every ~100 frames). Then $1A9 (BossHealth)=1, whip pattern [b6,-8,right10,b6,-8,left10] until BossHealth=0; walk onto orb (type $2F) -> GameState $0C stage clear -> map scene (Stage 20) -> stage 4 GameState 5/6 after ~800 frames.",
+  "result": "Boss room loaded with correct graphics, camera lock, bat fight, defeat flame -> orb -> stage clear tally -> inter-stage map -> stage 4. 3850 observed starts in the fight window; 141 in bank 10 (all at static L-001 closure instruction starts, context [10,11,14,15]).",
+  "patch": {
+   "$28": 3,
+   "$45": 0,
+   "$2A": 4,
+   "$2F": 1,
+   "$2E": 128,
+   "$18": [
+    5,
+    0
+   ],
+   "$4A": 5,
+   "$1F": 5,
+   "$354": 80,
+   "$3F": 80,
+   "$38C": 100,
+   "$40": [
+    228,
+    1
+   ],
+   "$1A9": 1
+  },
+  "evidence": [
+   "scratch/r2/snap_s3boss.json",
+   "scratch/r2/s3_p1.png",
+   "scratch/r2/s3_fight.png",
+   "scratch/r2/s4_after_clear.png",
+   "scratch/r2/cov_boss3.json"
+  ]
+ },
+ {
+  "id": "SC-WARP-CLEAR",
+  "milestone": "Stage warp with correct CHR via stage-clear path (artificial)",
+  "round": 2,
+  "status": "visited",
+  "natural": false,
+  "route": "During GameState $0C (stage clear, e.g. snap from SC-BOSS3 after orb pickup) write $28=N-1: the clear sequence advances to stage N through the map scene and loads its graphics set. Used with N=18.",
+  "result": "Stage 18 loaded with correct graphics (death-reload warp leaves the old CHR set: garbled tiles).",
+  "patch": {
+   "$28": 17
+  },
+  "evidence": [
+   "scratch/r2/s18_clearwarp.png",
+   "scratch/r2/s18_start.png (death-warp, garbled)"
+  ]
+ },
+ {
+  "id": "SC-BOSS18",
+  "milestone": "Dracula (stage 18) fight, both forms, final orb (artificial)",
+  "round": 2,
+  "status": "visited",
+  "natural": false,
+  "route": "From SC-WARP-CLEAR stage 18: write $46=1,$2F=0,$2E=0; then write $18=[5,0], $4A=5, $1F=5 (GameState 5 screen restart that keeps Stage/StageHalf/ScrollPos, the stair half-change contract at $9xxx Stairs_CheckExit) together with Simon ObjY $0354/$3F, ObjX $038C and PlayerWorldX $40/$41 = $354/$3F=128, $38C=60, $40/$41=[60,0]; 120 frames -> CameraLocked (StageCameraLockTable[18]=$10), boss type $1D (snapshot snap_s18h1.json). Loop: move toward slot-7 X, a 8 frames, b 8 frames, $45=64, BossHealth $1A9 capped at 1. FinalBossPhase $7A becomes 1 after ~170 loop iterations total; second form defeated; orb -> walk right.",
+  "result": "Dracula fight executed (partial trace 2190 starts, 72 in bank 10, all aligned with L-001 closure). Both forms defeated, orb collected -> GameState $0C -> $0F ending.",
+  "patch": {
+   "$46": 1,
+   "$2F": 0,
+   "$2E": 0,
+   "$18": [
+    5,
+    0
+   ],
+   "$4A": 5,
+   "$1F": 5,
+   "$354": 128,
+   "$3F": 128,
+   "$38C": 60,
+   "$40": [
+    60,
+    0
+   ],
+   "$1A9": "<=1"
+  },
+  "evidence": [
+   "scratch/r2/snap_s18h1.json",
+   "scratch/r2/snap_s18orb.json",
+   "scratch/r2/s18_h1.png",
+   "scratch/r2/drac3.png",
+   "scratch/r2/cov_drac.json"
+  ]
+ },
+ {
+  "id": "SC-ENDING2",
+  "milestone": "Ending, castle collapse and staff credits, second quest start (artificial route, natural sequence after orb)",
+  "round": 2,
+  "status": "visited",
+  "natural": false,
+  "route": "From scratch/r2/snap_s18orb.json run ~3900 frames without input: GameState $0C -> $0F (substates 2..10, credits roll) -> GameState 5/6 stage 0 with Quest $2B=1. Traced windows: 240 frames of ending from snap_end_a.json + 90 frames of the final clear.",
+  "result": "Ending scene renders correctly (unlike round-1 SC-GS15 probe), credits shown (e.g. SKELETON / ZOMBIE cast lines), second quest begins. 1497 observed starts in the traced windows.",
+  "evidence": [
+   "scratch/r2/end_a.png",
+   "scratch/r2/end_b7.png",
+   "scratch/r2/end_b11.png",
+   "scratch/r2/snap_end_a.json",
+   "scratch/r2/cov_end.json"
+  ]
+ },
+ {
+  "id": "SC-BOSS6",
+  "milestone": "Stage 6 boss (type $1B, ObjT1B_Medusa) fight, defeat, orb, stage clear (artificial)",
+  "round": 2,
+  "phase": "redirect",
+  "status": "visited",
+  "natural": false,
+  "route": "Import scratch/r2/snap_s3orb.json; no input 60 frames (orb lands), hold right until GameState $0C; write $28=5 (SC-WARP-CLEAR) -> stage 6 with correct graphics after ~900 frames (snap_s6start.json). Then write $46=1,$2F=0,$2E=0,$18=[5,0],$4A=5,$1F=5, $354/$3F=128, $38C=60, $40/$41=[60,0]; 60 frames -> StageCameraLockTable[6]=$10 (half 1 page 0), CameraLocked, boss slot 7 type $1B (snap_s6boss.json). Fight loop (s6fight.py: right/b/a+right/left pattern, $45=64 each loop, BossHealth $1A9 capped at 1 after 15 loops) traced in memory; defeat -> orb $2F; walk to orb -> GameState $0C -> map scene (Stage 20) -> stage 7 GameState 5/6.",
+  "result": "Medusa-head boss rendered and fought (snake hair sprite), defeated, orb, clear, stage 7. 3696 observed instruction starts in the traced window (113 in bank 10), all at existing classified instruction starts; none of the 6 residual bytes executed.",
+  "patch": {
+   "$28": 5,
+   "$46": 1,
+   "$2F": 0,
+   "$2E": 0,
+   "$18": [
+    5,
+    0
+   ],
+   "$4A": 5,
+   "$1F": 5,
+   "$354": 128,
+   "$3F": 128,
+   "$38C": 60,
+   "$40": [
+    60,
+    0
+   ],
+   "$1A9": 1
+  },
+  "evidence": [
+   "analysis/redirect/r2-a1/emu/snap_s6start.json",
+   "analysis/redirect/r2-a1/emu/snap_s6boss.json",
+   "analysis/redirect/r2-a1/emu/snap_s6orb.json",
+   "analysis/redirect/r2-a1/emu/s6_h1.png",
+   "analysis/redirect/r2-a1/emu/s6_fight.png",
+   "analysis/redirect/r2-a1/emu/s6_after.png",
+   "analysis/redirect/r2-a1/emu/s6_clear.png",
+   "analysis/redirect/r2-a1/emu/cov_s6.json"
+  ]
+ },
+ {
+  "id": "SC-BOSS9-12-15",
+  "milestone": "Bosses of stages 9, 12, 15 (types $1A Mummy / $1C Frankenstein / $18 Death, tentative)",
+  "round": 2,
+  "phase": "redirect",
+  "status": "deferred",
+  "natural": false,
+  "route": "Same as SC-BOSS6: stage-clear warp from a GameState $0C snapshot (e.g. analysis/redirect/r2-a1/emu/snap_s6orb.json after orb pickup) with $28=N-1, then GameState-5 restart at the lock page: StageCameraLockTable[$FC3A+N] = $05 (stage 9: half 0 page 5), $03 (stage 12: half 0 page 3), $10 (stage 15: half 1 page 0); set $46/$2F/$2E and Simon position on that page.",
+  "result": "Not run: recipe proven on stages 3/6/18; remaining visits only confirm tentative boss names (no classification question depends on them; bank-10 boss handlers already Static and execution cross-checks found no contradictions).",
+  "evidence": [
+   "analysis/handoffs/round-2-redirect.md"
+  ]
+ }
+]

@@ -1,0 +1,11 @@
+# Round8 commentary complete — ROM incomplete
+
+ROM classification: 99.99% (262134 / 262160 bytes classified; 26 bytes unknown).
+
+Full current-source readability complete: 40,323 Code, 90,739 Data, 131,072 CHR bytes; 19,016 scaffold records and 2,111 meaningful units reviewed. Entire round7 commentary preserved at analysis/round-8/commentary-round7; 18,979 physically exact classified blocks and valid prior credit migrated. Seventeen encoded fragments/114 bytes named and explained; twenty exact unknown boundary notes retained. No pending/deferred readability ranges. Full partition, locations, numeric operands and identities checked in analysis/round-8/readability-check.json.
+
+Examples: LegacyEncodedFragment0F16C uses literal $0201/A83D operand symbols and explains ordinary actual PPU setup/SBC, no inline skip. LegacyEncodedFragment0F1C2 explains $0209/A7F1 operand-interior SRE, no stored-pair consumer. F1A6/F35F B0A1 transfers retain incompatible BCS/PHP limits. F1CC/F246 distinguish actual finite B044 RAM-fill tail with valid stack from separate incompatible fragments; AB28 remains BRK/storage, no returning X producer. Data barriers remain generic stored words/pairs/masks. Prior four-piece-copy prose no longer calls the newly accepted following fragment structurally ambiguous; corresponding review summaries updated.
+
+No working copied wrappers, source-callee substitutions, natural entry, arbitrary carry/X safety or renderer inferred. All bank context [6,7,14,15] and actual CPU operands retained. Remaining26 tiny bytes/20 intervals lack independent role discrimination; semantic limitations in commentary/uncertainties.md. No new runtime scenario or execution coverage.
+
+Fresh final verification byte-identical: analysis/round-8/final-verification.json, source game.asm SHA256 22160bfee7431f68e7596773552de200398548210286a0142a4913cf69470488. Reading copy commentary/reading-after.asm refreshed; receipt analysis/round-8/reading-refresh.json. Maintained source commentary/source/game.asm and symbols.inc. ROM/map/state identities unchanged from pass008. Final editorial/terminal acceptance remains pending after redirect; no audit run. No toolkit issues found. No disassembly/map/state/ROM/toolkit writes, archive/publication/cleanup performed.

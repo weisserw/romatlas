@@ -1,0 +1,110 @@
+{
+  "checked_utc": "2026-11-26T11:27:02.251303+00:00",
+  "workflow_status": "finished-terminal-incomplete",
+  "classification_complete": false,
+  "classified_bytes": 262134,
+  "total_physical_bytes": 262160,
+  "classification_percentage": "99.99%",
+  "unknown_bytes": 26,
+  "unknown_intervals": 20,
+  "checkpoint": "maps/pass-008-final.json",
+  "identity_sha256": {
+    "input/game.nes": "409670883cc059edbc86d6f0797fb5a55eba97768d5caff2f4f8e7496f44e945",
+    "/root/romatlas/target/release/romatlas": "8ff56b0b1cf8d2a3aca5430c70d34280ae3db36fc6774919062db4ea63843f82",
+    "maps/current.json": "c7bb1bca8f17e12ec7536dd8ee1c96a85e5d511d9d72cb43b1894e40cf38cbe1",
+    "maps/pass-008-final.json": "c7bb1bca8f17e12ec7536dd8ee1c96a85e5d511d9d72cb43b1894e40cf38cbe1",
+    "analysis/state.json": "c7bb1bca8f17e12ec7536dd8ee1c96a85e5d511d9d72cb43b1894e40cf38cbe1",
+    "commentary/baseline.json": "c7bb1bca8f17e12ec7536dd8ee1c96a85e5d511d9d72cb43b1894e40cf38cbe1",
+    "commentary/phase1-state.json": "c7bb1bca8f17e12ec7536dd8ee1c96a85e5d511d9d72cb43b1894e40cf38cbe1"
+  },
+  "source_sha256": {
+    "commentary/source/symbols.inc": "a04b1d0a63a9b3aa204093381a2ab314ecdb6a8889efa0ecf092817e6589cf68",
+    "commentary/source/game.asm": "8da43e11447b5bcb424cbe877ab672cb23ddcb4d1a5018739c34cd78d7ba114d"
+  },
+  "reading_sha256": "229f63a8ff1ad450bba260149d894e8b00f93d13da2c9756bb74b65a5f69b030",
+  "strict_commentary_audit": {
+    "byte_identical": true,
+    "ok": true,
+    "rom_sha256": "409670883cc059edbc86d6f0797fb5a55eba97768d5caff2f4f8e7496f44e945",
+    "source_sha256": {
+      "game.asm": "8da43e11447b5bcb424cbe877ab672cb23ddcb4d1a5018739c34cd78d7ba114d",
+      "symbols.inc": "a04b1d0a63a9b3aa204093381a2ab314ecdb6a8889efa0ecf092817e6589cf68"
+    },
+    "reviewed_regions": 19016,
+    "reviewed_units": 20438,
+    "editorial_audit": true
+  },
+  "verification": {
+    "byte_identical": true,
+    "ok": true,
+    "rom_sha256": "409670883cc059edbc86d6f0797fb5a55eba97768d5caff2f4f8e7496f44e945",
+    "source_sha256": {
+      "game.asm": "8da43e11447b5bcb424cbe877ab672cb23ddcb4d1a5018739c34cd78d7ba114d",
+      "symbols.inc": "a04b1d0a63a9b3aa204093381a2ab314ecdb6a8889efa0ecf092817e6589cf68"
+    }
+  },
+  "unique_meaningful_units": 2136,
+  "unit_attachments": 20438,
+  "code_unit_union_coverage": true,
+  "pending_reviews": [],
+  "independent_validation": [
+    {
+      "command": [
+        "/root/romatlas/target/release/romatlas",
+        "store",
+        "validate",
+        "input/game.nes",
+        "--store",
+        "analysis/state.json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"ok\":true}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/root/romatlas/target/release/romatlas",
+        "map",
+        "validate",
+        "maps/current.json",
+        "--rom",
+        "input/game.nes"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"ok\":true}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/root/romatlas/target/release/romatlas",
+        "map",
+        "validate",
+        "maps/pass-008-final.json",
+        "--rom",
+        "input/game.nes"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"ok\":true}\n",
+      "stderr": ""
+    }
+  ],
+  "terminal_reasoning": "analysis/coordinator-rejection-review.md",
+  "residual_ledger": "analysis/redirect/round8-20261126/unknown-ledger.json",
+  "gameplay_review": "analysis/coordinator-gameplay-check.json",
+  "editorial_handoff": "analysis/handoffs/final-editorial.md",
+  "archive_selection": "analysis/archive-selection-check.json",
+  "archive_executed": false,
+  "cleanup_performed": false,
+  "toolkit_modified": false,
+  "document_accounting": {
+    "documents": 96,
+    "omitted_documents": 36,
+    "unaccounted_documents": [],
+    "optional_absences": {
+      "analysis/annotations.json": "Not produced by NES workflow; physical annotations/evidence/context embedded in validated analysis/state.json and maps/current.json. Archive selection copies defaults only if present (archive.py lines 386-391). No missing generated annotation sidecar required."
+    },
+    "archive_options_sha256": "3684d711b4b6b83480a47561984d037a734c7fe27bb94a3c31b6ebcc8ef6d952"
+  },
+  "final_receipt_sha256": "8f33de4f5a3109a3bf769fdee950bdf4bf06f234843f691202424efd3de6e9ec",
+  "final_review_sha256": "2ddbbf306c1f0e8ac4f1de3f252f599ebc976e5feef16386eb4335f12c904f8a"
+}

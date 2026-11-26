@@ -1,0 +1,2 @@
+Round4 disassembly complete, ROM incomplete. ROM classification: 99.53% (260918 / 262160 bytes classified; 1242 bytes unknown).
+No pending samephase work. Full current-source commentary is next phase; final editorial audit pending. maps/pass-004-final.json and analysis/pass-004-final-verification.json verified. Exact residual frontier1242bytes/34ranges in counts.json/final-checks.json; analysis/handoffs/round4-disassembly.md.

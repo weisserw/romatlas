@@ -1,0 +1,11 @@
+# Final editorial acceptance handoff
+
+Final editorial acceptance complete. Structural classification remains 65552/65552 bytes (100%), zero unknown/gaps/overlaps. The checkpoint/current/store/frozen commentary baseline remain SHA256 58d2d1fc77ed1a0c5ee0b835c8df8a5a734ed773152332e814ff6b5fbb3a94d8. ROM identity remains 9f180bfd1c5eeb71e44466cb81cc5a5b084f35a9e72953125289ac06f8ca0450.
+
+Reused valid prior review and inspected affected helper/table ranges, title dependencies, symbols, raw-address operands and inventory claims. Fixed three score-input stores using value-colliding EVENT_WARP instead of scratch_ptr; named four $2004 writes OAMDATA; corrected an obsolete road-pointer summary still claiming Code/pending C002. Bytes and classification unchanged. See commentary/editorial-audit.md for actual semantic/prose scope and limits. No remaining known readability/naming frontier; uncertainty is documented, not silently converted into certainty.
+
+commentary/review.json editorial_audit is reviewed. Fresh documented commentary.py audit passes: 104 regions, 47 Code regions, 317 unit records / 315 unique reviewed units. Fresh verify is byte-identical and reading-after.asm refreshed. Configured release binary map.validate and store.validate both return ok=true; independent physical coverage and annotation checks pass. Mapper 3 fixed PRG context remains [0,1,2,3]; existing internal execution views retain their null placeholders, with no state edits.
+
+Authoritative artifacts: commentary/audit.json, commentary/verification.json, commentary/reading-after.asm, commentary/editorial-audit.md, analysis/final-acceptance/result.json and map-validation.json/store-validation.json. New source SHA256 09246f28d6803c895adcf5d4f2e6e3bbddbb33f3fdba35956f4d3e45d48734ee; symbols ff7dcbaeddf992d4a80814fc889cfa85b9b11583cb268e8c39f2273f3fb3db42. Other hashes are in result.json.
+
+Original intent, art/tune identities, exact stream partitions and helper natural reachability remain qualified in commentary/uncertainties.md. No full compatibility claim follows. No ROM/map/classification/toolkit/asset/baseline edits, runtime/server, archive execution/publication or deletion/cleanup. Approximately 2.6 GiB free; analysis/scratch 36 KiB retained. Coordinator owns archive selection/inventory and any later archive action.

@@ -1,0 +1,21 @@
+{
+  "byte_identical": true,
+  "ok": true,
+  "rom_sha256": "36a51481de96e0848e435e96c9d1788eef578fc71e4de20e883fca4311ad5dce",
+  "source_sha256": {
+    "bank0.asm": "96d1257a70662d2f2cbff9627963dbda6465522fcb14f106c3feca16ff31bc46",
+    "bank1.asm": "89f22e132a7be9c8dee4f02aa1c843bd2f4088293c86f703a63a87ee9fd18fbc",
+    "bank2.asm": "c2f233be3fd31c930b04d9163637194a54b429bdc8feb570a15e6f2d416342cc",
+    "bank3.asm": "146cffe7bd97372701ce069df5fbbc2f75eee25eacee682e825b837a35ee4175",
+    "bank4.asm": "212b4ab810f4e2563d1efc2f1101bdd0ee5a3f3a1ad0c3df3777551b989ba323",
+    "bank5.asm": "e61e35a9555a90fe5145f943490006d5f69b46538568279046f37227238d14fb",
+    "bank6.asm": "0a82d8a5fa85bffeb66fd1f8213a6acc8998965e3b8419aaca7bd056ab5d28f3",
+    "bank7.asm": "049221b661e12ab9b541be376eb29fa6256730ea3d3baffda687f6693eac48b2",
+    "game.asm": "9d6130dfb9aa549df4fdcdf9f13c76cc04956f7cf420b580f4c1909243664c5b",
+    "hw.inc": "5d94c859be13ed40b213a427669232b6f75565942a65801cabe22fb4b7f0050d",
+    "ram.inc": "3d85029f89537357eb6ecc2e59bdfc3f5bbe5dec6d4927628c663a83bfd86487"
+  },
+  "reviewed_regions": 4280,
+  "reviewed_units": 1896,
+  "editorial_audit": true
+}

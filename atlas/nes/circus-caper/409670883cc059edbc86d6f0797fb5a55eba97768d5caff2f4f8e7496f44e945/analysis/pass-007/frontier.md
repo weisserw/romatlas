@@ -1,0 +1,1 @@
+Round7 DISASSEMBLY COMPLETE; ROM INCOMPLETE. ROM classification: 99.95% (262020 / 262160 bytes classified; 140 bytes unknown). Fresh pass-007-final byte-identical; exact prior region preservation, union/perbank/complement and R003/R014 history persisted. Next full current-source commentary. No terminal/editorial completion claim.

@@ -1,0 +1,2 @@
+Round3 disassembly complete, ROM incomplete. ROM classification: 84.10% (220484 / 262160 bytes classified; 41676 bytes unknown).
+Final maps/pass-003-final.json; verification analysis/pass-003-final-verification.json. All4ready leads consumed;20896gain (3944code/16952data). Full current-source commentary is next separate phase. No pending samephase work. Exact188range unknown complement in counts.json/final-checks.json. See analysis/handoffs/round3-disassembly.md.

@@ -1,0 +1,1 @@
+Round6 commentary in progress. Entire prior commentary preserved in commentary-round5. Prepare fresh pass006 baseline; migrate exact physical blocks/review; review all changed code/data and residual notes/affected claims; verify and refresh reading copy. Final editorial audit pending. No structural edits.

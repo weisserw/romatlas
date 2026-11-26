@@ -1,0 +1,15 @@
+# Round 1 current-source readability — active
+
+Prepared baseline from maps/pass-001-final.json (SHA256 42fbe24d52edf33f94a70cefa07d77ade66950c769fe284a1e4fec359592757c). Frozen before/ and source initially verified byte-identical. All 4,790 original source lines inspected; 4,427 instruction/directive locations indexed in analysis/commentary/round-001/addressed.txt. Draft functional inventory and source editing script persisted in analysis/commentary/round-001/edit.py with roughly 200 meaningful entry/algorithm explanations spanning CPU $8100..$FF24. These drafts still require application, symbol replacement, inspection and verification; review scaffold remains pending until that work is accepted.
+
+Exact current frontier: full source has been read, functional notes drafted; no region is yet credited as completed source readability. Remaining work: validate the draft boundaries; apply source comments/labels and coherent hardware/RAM symbols; explain every data/image/unknown boundary using prior consumer evidence plus current inspection; inspect complete resulting source for gaps; populate review inventory; fresh verification and reading refresh. No redirect/audit run. Classification and source readability are separate.
+
+Concrete structural question: CPU $A4AB..$A4B6 pitch-table consumer conflicts with Code classification; preserve bytes/classification and explain uncertainty near source. Existing D001..D004 unknown boundaries remain unresolved.
+
+## Applied-source milestone
+
+The draft has now been applied and refined: 233 functional notes, 701 entry/branch/table labels, and consistent CPU hardware/RAM/data aliases. All 39 Code regions have an explained entry. All Data/Image/Unknown boundaries have source prose, with consumer-derived table/stream/record descriptions replacing generic evidence shorthand where supported. Both complete initial source inspection and the resulting operand/data-boundary gap scan are done. Source now has 6165 lines, including wrapped prose; symbols.inc supplies explicit CPU aliases for incbin-backed data.
+
+Fresh verification after application and refinement: commentary/verification.json ok=true, byte_identical=true. Source SHA256 game.asm 9dc5fb49dee152d06a408898a5ed14b010a9285d2e5e3ebd801ad32a29aed86c; symbols.inc 857f029bf2b1fd5290a07989dd3ab8985671dd0e9f19d7c5dec726f5ed536f54. An initial intermediate verify found incbin storage-label versus CPU-alias mismatch; corrected with separate storage labels and execution equates, then verified byte-identical. Prior attempts/evidence preserved.
+
+Exact remaining frontier: no unread source ranges; remaining administrative acceptance of current-source scope is updating full scaffold/unit records to final source locations, refreshing reading-after.asm, recording final identities and compact handoff. No audit/redirect has run. Structural questions C001/C002 and all D001..D004 are preserved in redirect-questions.md; uncertainties.md separates semantic uncertainty from skipped work. Free disk remains 2.6 GiB; commentary about 1.2 MiB, phase evidence about 204 KiB.

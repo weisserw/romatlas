@@ -1,0 +1,9 @@
+# Final editorial acceptance in progress
+
+Scope: terminal incomplete pass008; no structural investigation restart. Reuse round8 full readability and prior semantic reviews. Inspect targeted bank/operand/format limitations; repair concrete prose, naming and review-inventory gaps. Preserve pre-editorial files here before changes. Then strict documented commentary audit, independent configured-release store/map validation, exact unknown/identity/source checks and final handoff. No archive, publication, deletion, cleanup or toolkit changes.
+
+Targeted source review complete. Repairs underway: duplicate reset summaries; serializer preconditions and incorrectly CHR1-named CHR0 entry; missing attachments of existing routine units on instruction scaffold entries; explicit continuation units where inline data or shared returns split prior unit records. No classification contradiction found.
+
+Inventory/source repairs complete. Independent configured release validation and identity/unknown/scaffold/source checks passed (identity-inventory-check.json, independent-validation.json). Strict audit running after source-root path normalization; initial rejection preserved as attempt001. No further source edits pending; do not claim final acceptance until audit.json and fresh byte-identical verification/reading are present.
+
+COMPLETE: standard strict audit passed, fresh byte-identical verification and reading refresh passed. Final cached inventory confirms the sole post-snapshot prose correction did not change structural/status/source-location fields. See final-receipt.json and analysis/handoffs/final-editorial.md. No remaining work in this editorial phase; classification stays terminal incomplete. TI-001 is one performance missing feature, no accuracy blocker. No archive action performed.

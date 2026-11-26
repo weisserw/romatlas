@@ -1,0 +1,216 @@
+{
+  "version": 1,
+  "scenarios": [
+    {
+      "id": "title2",
+      "status": "visited",
+      "route": "From reset: untraced tick budget10000000 (~335frames); snapshot title; trace60frames.",
+      "observed_result": "Cabal title; captures title2.ppm/png and title2.snapshot.json.",
+      "artificial": false,
+      "evidence": "analysis/evidence/round001/title2"
+    },
+    {
+      "id": "play1",
+      "status": "visited",
+      "route": "title2: Start2frames, release30; Start2, release40.",
+      "observed_result": "Village Level1-1 rendered; five lives,10grenades. Natural level display, active combat not proven.",
+      "artificial": false,
+      "evidence": "analysis/evidence/round001/play1"
+    },
+    {
+      "id": "combat",
+      "status": "attempted",
+      "route": "play1: A90; A+Right60; A+Left+Up60; B+Left+Down30; release20frames.",
+      "observed_result": "Rendered player and village; press-start gate remains. No claim firing or rolling executed.",
+      "artificial": false,
+      "evidence": "analysis/evidence/round001/combat"
+    },
+    {
+      "id": "natural-combat",
+      "status": "attempted",
+      "route": "combat: Start2; A80 request partlytimedout; A+Right+Up40.",
+      "observed_result": "Same waiting screen; persisted partial run and trace. No further identical input retry.",
+      "artificial": false,
+      "evidence": "analysis/evidence/round001/natural-combat"
+    },
+    {
+      "id": "level3-shortcut",
+      "status": "attempted",
+      "route": "level-screen snapshot: RAM08=16; Start2/release90; A+Right60.",
+      "observed_result": "RAM08 overwritten to0; same village. Reject direct08 patch as durable stage selection.",
+      "artificial": true,
+      "evidence": "analysis/evidence/round001/level3-shortcut"
+    },
+    {
+      "id": "beach",
+      "status": "visited",
+      "route": "level-screen snapshot: RAMD2=2,D3=0; Start2/release65; Start2; A+Right35. Some requests hit timeout; inspect actual trace/snapshot counters.",
+      "observed_result": "Distinct scenery captured. Scene0 is artificial and computes previous level finalscene: do not call these valid natural level entries. Boss actors/mechanics not confirmed.",
+      "artificial": true,
+      "evidence": "analysis/evidence/round001/beach"
+    },
+    {
+      "id": "dock",
+      "status": "visited",
+      "route": "level-screen snapshot: RAMD2=3,D3=0; Start2/release65; Start2; A+Right35. Some requests hit timeout; inspect actual trace/snapshot counters.",
+      "observed_result": "Distinct scenery captured. Scene0 is artificial and computes previous level finalscene: do not call these valid natural level entries. Boss actors/mechanics not confirmed.",
+      "artificial": true,
+      "evidence": "analysis/evidence/round001/dock"
+    },
+    {
+      "id": "jungle",
+      "status": "visited",
+      "route": "level-screen snapshot: RAMD2=4,D3=0; Start2/release65; Start2; A+Right35. Some requests hit timeout; inspect actual trace/snapshot counters.",
+      "observed_result": "Distinct scenery captured. Scene0 is artificial and computes previous level finalscene: do not call these valid natural level entries. Boss actors/mechanics not confirmed.",
+      "artificial": true,
+      "evidence": "analysis/evidence/round001/jungle"
+    },
+    {
+      "id": "mountains",
+      "status": "visited",
+      "route": "level-screen snapshot: RAMD2=5,D3=0; Start2/release65; Start2; A+Right35. Some requests hit timeout; inspect actual trace/snapshot counters.",
+      "observed_result": "Distinct scenery captured. Scene0 is artificial and computes previous level finalscene: do not call these valid natural level entries. Boss actors/mechanics not confirmed.",
+      "artificial": true,
+      "evidence": "analysis/evidence/round001/mountains"
+    },
+    {
+      "id": "final-boss",
+      "status": "visited",
+      "route": "level-screen snapshot: RAMD2=5,D3=3; Start2/release65; Start2; A+Right35. Some requests hit timeout; inspect actual trace/snapshot counters.",
+      "observed_result": "Distinct scenery captured. Scene0 is artificial and computes previous level finalscene: do not call these valid natural level entries. Boss actors/mechanics not confirmed.",
+      "artificial": true,
+      "evidence": "analysis/evidence/round001/final-boss"
+    },
+    {
+      "id": "final4-boss-attempt",
+      "status": "attempted",
+      "route": "level-screen: RAMD2=5,D3=4; Start2/release65. Persist final4-intro. Restore; operation1 for boundary; PC817C,SP255; A20frames.",
+      "observed_result": "Level5-4 desert initialized. Boss-specific continuation entered but screen remains intro/wait; boss actor not demonstrated.",
+      "artificial": true,
+      "evidence": "analysis/evidence/round001/final4-boss-attempt"
+    },
+    {
+      "id": "final4-after-delay",
+      "status": "attempted",
+      "route": "final4-boss-attempt: A300frames tracingoff, then20frames tracingon.",
+      "observed_result": "No productive change in wait; save gating-ram/contexts. Needs wait/initialization contract research.",
+      "artificial": true,
+      "evidence": "analysis/evidence/round001/final4-after-delay"
+    },
+    {
+      "id": "ending-entry",
+      "status": "visited",
+      "route": "play1: release; operation1; RAMD2=5,D3=4,08=38; PC8196,SP255 with effectivebanks0,1,2,3. Request100frames trace, timeout after partialexecution.",
+      "observed_result": "Illustrated ending scene with soldier/flag and beginning of text; actual fetches persisted. Artificial ending entry, credits/highscore terminal not yet demonstrated.",
+      "artificial": true,
+      "evidence": "analysis/evidence/round001/ending-entry"
+    },
+    {
+      "id": "later-bosses-and-terminal-highscore",
+      "status": "deferred",
+      "route": "Research supported mainloop wait and stage/boss initialization before another progression experiment.",
+      "observed_result": "Current artificial scene displays/ending are useful, but boss mechanics, normal scene completion and highscore terminal remain unverified. No arbitrary RAM brute force.",
+      "artificial": true,
+      "evidence": "analysis/evidence/round001/later-bosses-and-terminal-highscore",
+      "superseded_in_part_by": "round002-a-post-ending-ranking",
+      "current_disposition": "Artificial BEST5PLAYERS terminal visited in round002-a; natural boss victory and natural ending route remain deferred. Original observed_result is historical.",
+      "current_evidence": [
+        "analysis/handoffs/round-002-redirect.md",
+        "analysis/redirect/round003-a/review.md"
+      ]
+    },
+    {
+      "id": "round001-a-natural-unpaused",
+      "status": "visited",
+      "artificial": false,
+      "route": "analysis/redirect/round001-a/unpause.py; release2/Start1/release2/movement20 from natural-combat snapshot",
+      "observed_result": "Start edge10 exits interlude; RAM31=FF; soldiers visible and movement/fire trial recorded. Natural later progression not claimed.",
+      "evidence": [
+        "analysis/redirect/round001-a/unpaused-run.json",
+        "analysis/redirect/round001-a/unpaused.png",
+        "analysis/redirect/round001-a/unpaused-contexts.json"
+      ]
+    },
+    {
+      "id": "round001-a-level2-1-mechanics",
+      "status": "attempted",
+      "artificial": true,
+      "route": "Initial D2/D3 patch and scene loader in milestones.py; restore completed scene snapshot then methods resume-milestones-bounded.py, sprite0-shortcut.py, split-wait-contract.py. Each call bounded; full recipes and clean snapshots retained.",
+      "observed_result": "Distinct later scenery loaded, but sustained combat/boss mechanics not independently confirmed. Mainline sprite0-hit synchronization recurs; known tile relocation and exact subroutine skip did not solve initialization/timing prerequisite. No unchanged replay recommended.",
+      "evidence": [
+        "analysis/redirect/round001-a/level2-1-resumed-run.json",
+        "analysis/redirect/round001-a/level2-1-sprite-shortcut-run.json",
+        "analysis/redirect/round001-a/level2-1-split-wait-run.json",
+        "analysis/redirect/round001-a/level2-1-split-wait-contexts.json"
+      ]
+    },
+    {
+      "id": "round001-a-level3-1-mechanics",
+      "status": "attempted",
+      "artificial": true,
+      "route": "Initial D2/D3 patch and scene loader in milestones.py; restore completed scene snapshot then methods resume-milestones-bounded.py, sprite0-shortcut.py, split-wait-contract.py. Each call bounded; full recipes and clean snapshots retained.",
+      "observed_result": "Distinct later scenery loaded, but sustained combat/boss mechanics not independently confirmed. Mainline sprite0-hit synchronization recurs; known tile relocation and exact subroutine skip did not solve initialization/timing prerequisite. No unchanged replay recommended.",
+      "evidence": [
+        "analysis/redirect/round001-a/level3-1-resumed-run.json",
+        "analysis/redirect/round001-a/level3-1-sprite-shortcut-run.json",
+        "analysis/redirect/round001-a/level3-1-split-wait-run.json",
+        "analysis/redirect/round001-a/level3-1-split-wait-contexts.json"
+      ]
+    },
+    {
+      "id": "round001-a-level4-1-mechanics",
+      "status": "attempted",
+      "artificial": true,
+      "route": "Initial D2/D3 patch and scene loader in milestones.py; restore completed scene snapshot then methods resume-milestones-bounded.py, sprite0-shortcut.py, split-wait-contract.py. Each call bounded; full recipes and clean snapshots retained.",
+      "observed_result": "Distinct later scenery loaded, but sustained combat/boss mechanics not independently confirmed. Mainline sprite0-hit synchronization recurs; known tile relocation and exact subroutine skip did not solve initialization/timing prerequisite. No unchanged replay recommended.",
+      "evidence": [
+        "analysis/redirect/round001-a/level4-1-resumed-run.json",
+        "analysis/redirect/round001-a/level4-1-sprite-shortcut-run.json",
+        "analysis/redirect/round001-a/level4-1-split-wait-run.json",
+        "analysis/redirect/round001-a/level4-1-split-wait-contexts.json"
+      ]
+    },
+    {
+      "id": "round001-a-level5-4-mechanics",
+      "status": "attempted",
+      "artificial": true,
+      "route": "Initial D2/D3 patch and scene loader in milestones.py; restore completed scene snapshot then methods resume-milestones-bounded.py, sprite0-shortcut.py, split-wait-contract.py. Each call bounded; full recipes and clean snapshots retained.",
+      "observed_result": "Distinct later scenery loaded, but sustained combat/boss mechanics not independently confirmed. Mainline sprite0-hit synchronization recurs; known tile relocation and exact subroutine skip did not solve initialization/timing prerequisite. No unchanged replay recommended.",
+      "evidence": [
+        "analysis/redirect/round001-a/level5-4-resumed-run.json",
+        "analysis/redirect/round001-a/level5-4-sprite-shortcut-run.json",
+        "analysis/redirect/round001-a/level5-4-split-wait-run.json",
+        "analysis/redirect/round001-a/level5-4-split-wait-contexts.json"
+      ]
+    },
+    {
+      "id": "round002-natural-continuation",
+      "status": "attempted",
+      "artificial": false,
+      "milestone": "Natural first battlefield representative movement/fire/roll continuation",
+      "route": "Import round001-a/unpaused.snapshot.json; reassert buttons []; [right,a]; [up,b]; [left,a], request10frames each,max_operations1500000,timeout_ms8000.",
+      "observed_result": "All four calls stopped by execution timeout retaining partial progress;2972 contextual fetch roots recorded. No990C fetch; no later milestone claimed.",
+      "evidence": [
+        "analysis/evidence/round002/gameplay.py",
+        "analysis/evidence/round002/gameplay-run.json",
+        "analysis/evidence/round002/gameplay-contexts.json",
+        "analysis/evidence/round002/gameplay-summary.json"
+      ]
+    },
+    {
+      "id": "round002-a-post-ending-ranking",
+      "milestone": "Terminal high-score scoreboard and ranking/title continuation",
+      "status": "visited",
+      "artificial": true,
+      "route": "Restore analysis/evidence/round001/ending-entry.snapshot.json; seek bank0 instruction boundary<=300operations;PC819C,stack255; release120000ops,Start120000ops,release120000ops;8000ms each.",
+      "observed_result": "All operation budgets completed; BEST5PLAYERS board rendered; ranking/title fetches observed. Natural victory/ending not established.",
+      "evidence": [
+        "analysis/redirect/round002-a/terminal-probe.py",
+        "analysis/redirect/round002-a/terminal-run.json",
+        "analysis/redirect/round002-a/terminal-contexts.json",
+        "analysis/redirect/round002-a/terminal.png",
+        "analysis/redirect/round002-a/terminal.snapshot.json"
+      ]
+    }
+  ]
+}

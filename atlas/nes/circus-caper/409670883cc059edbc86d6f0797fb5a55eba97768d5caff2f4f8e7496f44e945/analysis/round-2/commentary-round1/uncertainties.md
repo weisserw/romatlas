@@ -1,0 +1,17 @@
+# Reviewed uncertainties
+
+All current classified source has been reviewed. Unknown intervals retain explicit raw-gap notes; 116,678 bytes remain structurally unknown. ROM table aliases in symbols.inc name their consuming mechanics and CPU bank context; they do not classify unknown backing bytes. Generic uniform data keeps the prior bounded pattern/conflicting-code review credit, with no invented consumer, format or fill purpose. CHR is header-defined planar backing; individual tile/scene assignments remain unknown.
+
+DisplayInitSelector ($039F) is written by LoadSelectedDisplayGraphics, physical $08010. The bank-0 initializer/update tables dispatch selected display behavior; this is not an established level number. DisplayWork RAM is reused among these handlers, with context-specific aliases where mechanics are clear. Timer/HUD counters and sprite groups are named mechanically; exact minigame/scene names and natural entry contracts remain unresolved. Artificial selector runs do not prove later levels were visited.
+
+Scene setup at physical $1CECA consumes a four-byte descriptor (CHR1, PRG restoration flag, graphics ID, text ID). This improves the mechanical source explanation but does not complete the parent event/scheduler/stack contract. Keep R001 active; do not reapply selector-only or arbitrary-PC recipes as successful progression.
+
+NMI dispatch at physical $1C3EF..$1C401 uses an even byte offset in $1E. Its full table extent, accepted handler set and indirect targets still need structural review (R002). Audio code at $10010..$108CF has eight 32-byte software voice records, paired onto four APU channels. High-nibble and extended command dispatch, duration/value envelope streams and saved single-level substream return are explained; omitted handlers/table extents and the optional pitch-transform/effect meanings remain unresolved. Decoded pointers alone do not prove code, and actual/natural selection is separate from structural role.
+
+The graphics loaders at $08010 and $1FAF1 consume eight-byte descriptors: metatile, layout, attribute, palette pointers. They expand 240 2x2 indices into 960 tile bytes and upload 64 attributes. Follow these consumer constraints into record-like banks for R003 without requiring exact game semantics or natural callers for a structurally supported table. Naming a consumer pointer is not extent proof.
+
+Text output at physical $034D9..$03523 compares the next token with $80 twice, branching first to CPU $B524 and then $B542. The second comparison appears shadowed in this path. Both fragments and exact bytes are preserved; omitted code/other entry contracts remain unknown. This is a ROM behavior observation, not a toolkit bug. A bounded redirect check could inspect the control-token handlers and references to those two targets while establishing script record boundaries.
+
+The sound reset at physical $1FF54 clears two overlapping 256-byte spans, $05F3..$06F2 then $05E0..$06DF; both loops wrap Y. The mapper reset stubs have separate physical identities despite CPU $FFD0 aliases. Read/write register symbols never identify immutable ROM storage.
+
+Partial classified routines have honest mechanics summaries and nearby unknown-gap notes. Unknown continuations are an analysis gap, not unreviewed source. No claim of full gameplay, hardware compatibility, whole-ROM classification or final editorial/archive acceptance is made.

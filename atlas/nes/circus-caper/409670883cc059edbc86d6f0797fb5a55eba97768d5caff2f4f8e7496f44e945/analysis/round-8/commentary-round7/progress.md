@@ -1,0 +1,5 @@
+# Round7 commentary — current-source readability complete
+
+All 262,020 classified bytes readable: 40,209 Code, 90,739 Data, 131,072 CHR. The 140 unknown bytes have 37 exact physical boundary notes. All 19,016 scaffold records and 2,094 meaningful units reviewed; no pending/deferred source gaps. Entire prior commentary preserved at analysis/round-7/commentary-round6; 18,977 physically exact classified blocks and all prior valid review credit migrated.
+
+Two independently pointed empty sprite lists and stage6 room4 parent replacement pair now named and explained. Mirrored lists share Y/tile and X=8-X with horizontal flip, while some palette bits differ. Parent pair actual reads were captured under artificial initialization before timeout; natural use remains unresolved. Only trailing $60 remains unknown. Full inventory, source locations, numeric operands and identities checked in analysis/round-7/readability-check.json. Final editorial audit remains pending. Fresh final byte-identical verification passed (analysis/round-7/final-verification.json); reading-after.asm refreshed (reading-refresh.json). No toolkit issues found.
