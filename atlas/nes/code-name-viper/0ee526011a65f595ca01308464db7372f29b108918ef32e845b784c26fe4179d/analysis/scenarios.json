@@ -1,0 +1,158 @@
+{
+  "version": 1,
+  "phase": "round01-disassembly",
+  "evidence": "analysis/pass-001/batch-log.jsonl",
+  "replay_notes": "All budgets and explicit input presses/releases are in RPC log and named scripts. Snapshot imports restore input: reassert recorded intended buttons; named snapshots not required. Artificial RAM/register edits are not natural reachability.",
+  "milestones": [
+    {
+      "milestone": "Title and difficulty menu",
+      "status": "visited",
+      "route": "batch.py: reset neutral60 frames. play.py: Start1/release, neutral90. advance.py entered difficulty start15.",
+      "observed": "Code Name: Viper title, Easy/Normal/Difficult menu.",
+      "evidence": [
+        "analysis/pass-001/boot.png",
+        "analysis/pass-001/entered.png",
+        "analysis/pass-001/start.snapshot.json"
+      ]
+    },
+    {
+      "milestone": "Opening briefing",
+      "status": "visited",
+      "route": "difficulty -> intro -> briefing -> stage1 snapshots; A presses/releases with bounded waits.",
+      "observed": "Office scene and dialogue paragraphs. Long wait route stopped in favor of password contract.",
+      "evidence": [
+        "analysis/pass-001/intro.png",
+        "analysis/pass-001/briefing.png",
+        "analysis/pass-001/stage1.png"
+      ]
+    },
+    {
+      "milestone": "Password entry and validation",
+      "status": "visited",
+      "route": "fastplay.py start password down start wait:60; clean password.snapshot.json. RAM $0730 six numeric digit bytes, Start2/release2.",
+      "observed": "040471 accepts stage3; 745765 stage8. 081629 rejected. 217298 quest1 stage0.",
+      "artificial": true,
+      "evidence": [
+        "analysis/pass-001/password.png",
+        "analysis/pass-001/passwords.py"
+      ]
+    },
+    {
+      "milestone": "Middle game stage4 field and active firing",
+      "status": "visited",
+      "route": "040471 accepted; bounded map waits; import area4active, RAM $3A/$3B=[1,0]; map-skip.py creates area4-playfield preview; wait-skip.py one operation then X=1 with stack-proved BAC8 return. Neutral entry wait through frame608. tiny-play.py 12x1 frame, four neutral then eight right+B. action-play.py 24x1 frame: right+A8/up+A4/down+B8/release4.",
+      "observed": "Forest HUD/background, then player/projectile visible; ammunition50 ->49 ->48. Walking/shooting confirmed; jump/climb/crouch input attempted, distinct outcomes unconfirmed.",
+      "artificial": true,
+      "evidence": [
+        "analysis/pass-001/active-tiny.png",
+        "analysis/pass-001/action-play.png",
+        "analysis/pass-001/action-play.snapshot.json"
+      ]
+    },
+    {
+      "milestone": "Late game stage8 map",
+      "status": "visited",
+      "route": "stage-route.py late7 171602, map-skip.py late7-field late7-preview; stage variable7 confirmed.",
+      "observed": "Late destination map visited; countdown patch before map-delay initialization was overwritten/ineffective. Need exact loop arrival before replaying patch.",
+      "artificial": true,
+      "evidence": [
+        "analysis/pass-001/late7-field.png",
+        "analysis/pass-001/late7-preview.png",
+        "analysis/pass-001/late7-preview.snapshot.json",
+        "analysis/redirect/round01-01/late-progress.png",
+        "analysis/redirect/round01-01/late-progress.snapshot.json",
+        "analysis/redirect/round01-01/findings.md"
+      ],
+      "history": [
+        {
+          "status": "attempted",
+          "observed": "Late destination map visited; countdown patch before map-delay initialization was overwritten/ineffective. Need exact loop arrival before replaying patch."
+        }
+      ],
+      "round01_redirect": "Correct flight counter2C then return counter23 then stackBAC8 X1; late-progress snapshot stage7 active mansion jump/shooting; ammo50->49."
+    },
+    {
+      "milestone": "Final boss room / combat",
+      "status": "visited",
+      "route": "Password745765, Start2/release2, neutral100+8 trace frames; right+B10/A8/release; neutral60 +5 trace frames.",
+      "observed": "Room and both actors confirmed; A begins conversation. Boss combat/victory not yet confirmed.",
+      "artificial": true,
+      "evidence": [
+        "analysis/pass-001/boss-arrival.png",
+        "analysis/pass-001/boss-played.png",
+        "analysis/pass-001/boss.snapshot.json",
+        "analysis/redirect/round01-01/boss-combat.snapshot.json",
+        "analysis/redirect/round01-01/boss-lethal-result.snapshot.json",
+        "analysis/redirect/round01-01/findings.md"
+      ],
+      "history": [
+        {
+          "status": "attempted",
+          "observed": "Room and both actors confirmed; A begins conversation. Boss combat/victory not yet confirmed."
+        }
+      ],
+      "round01_redirect": "A/neutral advances confrontation; boss-combat snapshot frame843. Supported lethal patch0558=0,0353=20 -> selector92 animation -> playerstate1E -> stage9. Artificial victory only."
+    },
+    {
+      "milestone": "Ending / terminal screen",
+      "status": "visited",
+      "route": "External217298 password tested.",
+      "observed": "Selects quest1 stage0, not ending. Boss victory contract unknown; no arbitrary RAM edit attempted.",
+      "artificial": true,
+      "evidence": [
+        "analysis/pass-001/ending.snapshot.json",
+        "analysis/investigation.md",
+        "analysis/redirect/round01-01/after-victory.png",
+        "analysis/redirect/round01-01/terminal.png",
+        "analysis/redirect/round01-01/terminal.snapshot.json",
+        "analysis/redirect/round01-01/findings.md"
+      ],
+      "history": [
+        {
+          "status": "attempted",
+          "observed": "Selects quest1 stage0, not ending. Boss victory contract unknown; no arbitrary RAM edit attempted."
+        }
+      ],
+      "round01_redirect": "Supported boss-lethal route, all-clear score completion then Start. Credits wait/scroll shortcuts preserve understood counters. terminal snapshot frame2320, stackBB1D and infiniteBB1B decoded; visible The End."
+    },
+    {
+      "milestone": "Remaining stages and rare mechanics",
+      "status": "deferred",
+      "reason": "Supported local password metadata provides stage0..8 recipes; map/entry timing and dialogue contracts need redirect. Current pass used representative middle/late/boss attempts; no claim of broad exhaustion."
+    }
+  ],
+  "round01_redirect": {
+    "attempt": "analysis/redirect/round01-01",
+    "exact_patches_and_budgets": "analysis/redirect/round01-01/rpc.jsonl",
+    "selected_routes": "analysis/redirect/round01-01/findings.md",
+    "artificial": true,
+    "trace_note": "One-frame accepted aggregate samples; zero aggregate drops; capacity0 detail drops expected."
+  },
+  "reviews": [
+    {
+      "phase": "round02-disassembly",
+      "status": "reused_confirmed_artifacts",
+      "route_replayed": false,
+      "evidence": "analysis/pass-002/review.md",
+      "outcome": "Stage7 active mansion/frame677 and The End/frame2320 saved artificial routes reviewed and contextual fetches classified. No new natural reachability or unedited ending claim. Prior failures and successful milestones preserved."
+    },
+    {
+      "id": "coordinator-terminal-progression-review",
+      "phase": "terminal-coordinator-review",
+      "checkpoint": "maps/pass-005.json",
+      "status": "reused_confirmed_artifacts",
+      "route_replayed": false,
+      "evidence": [
+        "analysis/redirect/round05-01/rejection-review.md",
+        "analysis/redirect/round01-01/findings.md",
+        "analysis/redirect/round01-01/late-progress.snapshot.json",
+        "analysis/redirect/round01-01/boss-combat.snapshot.json",
+        "analysis/redirect/round01-01/boss-lethal-result.snapshot.json",
+        "analysis/redirect/round01-01/terminal.snapshot.json",
+        "analysis/redirect/round01-01/terminal.png"
+      ],
+      "outcome": "Representative middle/late active movement, jump and firing; boss confrontation, understood artificial lethal-hit transition, all-clear, credits and visible The End reviewed. Prior map-flight/dialogue timing obstacles were resolved by saved later redirect routes; early failed attempts remain historical. Exact patches, effective banks, explicit inputs and budgets remain in cited findings and rpc logs. No natural victory, unedited ending or exhaustive stage coverage claim.",
+      "remaining_milestones": "Other stage permutations and rare mechanics remain deferred: representative distinct systems and ending were reached, and no supported route through them discriminates the nine residual static code/data fragments. No obvious untried progression shortcut is required for the current structural questions; arbitrary replay/RAM sweeps would repeat known mechanics."
+    }
+  ]
+}

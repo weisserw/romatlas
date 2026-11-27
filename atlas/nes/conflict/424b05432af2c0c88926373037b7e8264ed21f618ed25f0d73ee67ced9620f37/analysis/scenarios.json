@@ -1,0 +1,997 @@
+{
+  "version": 1,
+  "runtime": {
+    "trace_capacity": 0,
+    "aggregate_drops": 0,
+    "detail_complete": false,
+    "mid_instruction_pc_not_fetch": true
+  },
+  "scenarios": [
+    {
+      "id": "R1-BOOT",
+      "route": "cold reset; 180 frame request max_operations20000000 timeout_ms10000 stops at32; replay90 frame request max_operations4000000 timeout_ms20000 stops at79; snapshot frontier.snapshot; untraced wait300 frames max_operations15000000 timeout_ms10000 reaches342.",
+      "evidence": [
+        "round1/emulator-step.json",
+        "round1/boot-replay.json",
+        "round1/contexts-boot.json",
+        "round1/frontier2.snapshot"
+      ],
+      "status": "visited",
+      "artificial": false
+    },
+    {
+      "id": "R1-TITLE",
+      "route": "frontier2: wait60 frames timeout15000 (partial); Start press2/release20; A press2/release20 ->419; disable trace, wait600 frames max_operations20000000 timeout25000 ->1019.",
+      "evidence": [
+        "round1/title-finish-state.json",
+        "round1/title-finish.png",
+        "round1/title-finish.snapshot"
+      ],
+      "status": "visited",
+      "artificial": false,
+      "input_correction": "Earlier button/pressed fields were ignored by NES adapter. These are empty-input attempts, not actual Start/A presses. See NES-DOC-001."
+    },
+    {
+      "id": "R1-MENU-CORRECTED",
+      "route": "Load title-finish.snapshot; port1 buttons[start],2 frames; buttons[],20 frames; max_operations2000000 timeout_ms12000 per step.",
+      "evidence": [
+        "round1/menu-corrected-route.json",
+        "round1/menu-corrected.snapshot",
+        "round1/menu-corrected.png"
+      ],
+      "status": "attempted",
+      "artificial": false
+    },
+    {
+      "id": "R1-START-HOLD",
+      "route": "menu-corrected.snapshot: port1 buttons[start]15 frames, release30; $3E=1 and $37=67 confirms accepted Start; wait120 untraced frames -> mode/unit menu.",
+      "evidence": [
+        "round1/start-held-route.json",
+        "round1/scenario-menu-wait.json",
+        "round1/scenario-menu.png"
+      ],
+      "status": "visited",
+      "artificial": false
+    },
+    {
+      "id": "R1-SETUP",
+      "route": "scenario-menu.snapshot: A2 release10 A2 release20 -> Fame menu; A3 release25 -> map1-8 selector. Each traced action max_operations2000000 timeout_ms12000.",
+      "evidence": [
+        "round1/mode-select-route.json",
+        "round1/fame-select-route.json",
+        "round1/fame-select.png"
+      ],
+      "status": "visited",
+      "artificial": false
+    },
+    {
+      "id": "R1-MAP1",
+      "artificial": false,
+      "status": "visited",
+      "route": "fame-select.snapshot: A3/release30, extra A15/release20 redundant; wait200 untraced ->map1-field; trace25 ->map1-field-active; wait180 untraced ->map1-ready frame1741. Map entry has192-frame accepted-selection delay.",
+      "evidence": [
+        "round1/map1-enter-route.json",
+        "round1/map1-confirm-route.json",
+        "round1/map1-field-active-route.json",
+        "round1/map1-ready.png",
+        "round1/map1-ready.snapshot"
+      ]
+    },
+    {
+      "id": "R1-MAP15",
+      "artificial": true,
+      "status": "visited",
+      "route": "clean fame-select.snapshot, RAM34=14,3E=1,41=191; trace10; release/wait400 untraced timeout20000 partial; distinct field screenshot; interactive trace underway.",
+      "evidence": [
+        "round1/map15-shortcut-route.json",
+        "round1/map15-shortcut.snapshot",
+        "round1/map15-ready.png",
+        "round1/map15-ready.snapshot"
+      ]
+    },
+    {
+      "id": "R1-FINAL16",
+      "artificial": true,
+      "status": "visited",
+      "route": "clean fame-select.snapshot, RAM34=15,3E=1,41=191; operation1 alignment then PC8F38 with existing menu return stack251 and banks[4,5,14,15]. Inspected epilogue sets05FF/copies34to0B/RTS; password intentionally bypassed. Trace10; release/wait400 untraced timeout20000 partial ->distinct final field.",
+      "evidence": [
+        "round1/final-shortcut-route.json",
+        "round1/map-select-decode.json",
+        "round1/final-ready.png",
+        "round1/final-ready.snapshot"
+      ]
+    },
+    {
+      "id": "R1-MAP1-MOVE-SELECT",
+      "artificial": false,
+      "status": "visited",
+      "source": "analysis/round1/map1-command.snapshot",
+      "actions": [
+        {
+          "input": {
+            "button": "right",
+            "pressed": true,
+            "frames": 8
+          },
+          "result": {
+            "id": 1,
+            "jsonrpc": "2.0",
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 52500788,
+              "frames": 1763,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 38,
+                "pc": 63718,
+                "stack": 245,
+                "x": 16,
+                "y": 4
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "button": "right",
+            "pressed": false,
+            "frames": 3
+          },
+          "result": {
+            "id": 1,
+            "jsonrpc": "2.0",
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 52590129,
+              "frames": 1766,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 38,
+                "pc": 63719,
+                "stack": 245,
+                "x": 0,
+                "y": 4
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "button": "a",
+            "pressed": true,
+            "frames": 8
+          },
+          "result": {
+            "id": 1,
+            "jsonrpc": "2.0",
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 52828373,
+              "frames": 1774,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 38,
+                "pc": 63717,
+                "stack": 245,
+                "x": 0,
+                "y": 4
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "button": "a",
+            "pressed": false,
+            "frames": 8
+          },
+          "result": {
+            "id": 1,
+            "jsonrpc": "2.0",
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 53066617,
+              "frames": 1782,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 38,
+                "pc": 63719,
+                "stack": 245,
+                "x": 0,
+                "y": 4
+              }
+            }
+          }
+        }
+      ],
+      "evidence": [
+        "round1/map1-move-select-route.json",
+        "round1/map1-move-select-contexts-0.json",
+        "round1/map1-move-select.snapshot"
+      ],
+      "result": "Map1 shows CHOOSE THE UNIT command. Map15/final right/A/B inputs execute field interaction paths; final display scroll changes. One final A8 step timeout partial; retained state and explicit release used."
+    },
+    {
+      "id": "R1-MAP15-INTERACT",
+      "artificial": true,
+      "status": "visited",
+      "source": "analysis/round1/map15-ready.snapshot",
+      "actions": [
+        {
+          "input": {
+            "button": "right",
+            "pressed": true,
+            "frames": 8
+          },
+          "result": {
+            "id": 1,
+            "jsonrpc": "2.0",
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 46961615,
+              "frames": 1577,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": false,
+                "p": 38,
+                "pc": 63715,
+                "stack": 247,
+                "x": 16,
+                "y": 4
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "button": "right",
+            "pressed": false,
+            "frames": 3
+          },
+          "result": {
+            "id": 1,
+            "jsonrpc": "2.0",
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 47050957,
+              "frames": 1580,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 38,
+                "pc": 63719,
+                "stack": 247,
+                "x": 0,
+                "y": 4
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "button": "a",
+            "pressed": true,
+            "frames": 8
+          },
+          "result": {
+            "id": 1,
+            "jsonrpc": "2.0",
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 47289201,
+              "frames": 1588,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": false,
+                "p": 38,
+                "pc": 63718,
+                "stack": 247,
+                "x": 0,
+                "y": 4
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "button": "a",
+            "pressed": false,
+            "frames": 8
+          },
+          "result": {
+            "id": 1,
+            "jsonrpc": "2.0",
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 47527445,
+              "frames": 1596,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 38,
+                "pc": 63716,
+                "stack": 247,
+                "x": 0,
+                "y": 4
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "button": "b",
+            "pressed": true,
+            "frames": 6
+          },
+          "result": {
+            "id": 1,
+            "jsonrpc": "2.0",
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 47706128,
+              "frames": 1602,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 38,
+                "pc": 63719,
+                "stack": 249,
+                "x": 16,
+                "y": 4
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "button": "b",
+            "pressed": false,
+            "frames": 3
+          },
+          "result": {
+            "id": 1,
+            "jsonrpc": "2.0",
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 47795469,
+              "frames": 1605,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": false,
+                "p": 38,
+                "pc": 63715,
+                "stack": 249,
+                "x": 16,
+                "y": 4
+              }
+            }
+          }
+        }
+      ],
+      "evidence": [
+        "round1/map15-interact-route.json",
+        "round1/map15-interact-contexts-0.json",
+        "round1/map15-interact.snapshot"
+      ],
+      "result": "Map1 shows CHOOSE THE UNIT command. Map15/final right/A/B inputs execute field interaction paths; final display scroll changes. One final A8 step timeout partial; retained state and explicit release used."
+    },
+    {
+      "id": "R1-FINAL-INTERACT",
+      "artificial": true,
+      "status": "visited",
+      "source": "analysis/round1/final-ready.snapshot",
+      "actions": [
+        {
+          "input": {
+            "button": "right",
+            "pressed": true,
+            "frames": 8
+          },
+          "result": {
+            "id": 1,
+            "jsonrpc": "2.0",
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 48242177,
+              "frames": 1620,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 38,
+                "pc": 63718,
+                "stack": 247,
+                "x": 16,
+                "y": 4
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "button": "right",
+            "pressed": false,
+            "frames": 3
+          },
+          "result": {
+            "id": 1,
+            "jsonrpc": "2.0",
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 48331518,
+              "frames": 1623,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 38,
+                "pc": 63720,
+                "stack": 247,
+                "x": 0,
+                "y": 4
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "button": "a",
+            "pressed": true,
+            "frames": 8
+          },
+          "result": {
+            "error": {
+              "code": -32000,
+              "message": "execution timeout"
+            },
+            "id": 1,
+            "jsonrpc": "2.0"
+          }
+        },
+        {
+          "input": {
+            "button": "a",
+            "pressed": false,
+            "frames": 8
+          },
+          "result": {
+            "id": 1,
+            "jsonrpc": "2.0",
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 48778226,
+              "frames": 1638,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 38,
+                "pc": 63718,
+                "stack": 247,
+                "x": 0,
+                "y": 4
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "button": "b",
+            "pressed": true,
+            "frames": 6
+          },
+          "result": {
+            "id": 1,
+            "jsonrpc": "2.0",
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 48956909,
+              "frames": 1644,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 38,
+                "pc": 63718,
+                "stack": 249,
+                "x": 16,
+                "y": 4
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "button": "b",
+            "pressed": false,
+            "frames": 3
+          },
+          "result": {
+            "id": 1,
+            "jsonrpc": "2.0",
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 49046250,
+              "frames": 1647,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 38,
+                "pc": 63716,
+                "stack": 249,
+                "x": 16,
+                "y": 4
+              }
+            }
+          }
+        }
+      ],
+      "evidence": [
+        "round1/final-interact-route.json",
+        "round1/final-interact-contexts-0.json",
+        "round1/final-interact.snapshot"
+      ],
+      "result": "Map1 shows CHOOSE THE UNIT command. Map15/final right/A/B inputs execute field interaction paths; final display scroll changes. One final A8 step timeout partial; retained state and explicit release used."
+    },
+    {
+      "id": "R1-CURSOR-UNIT",
+      "artificial": true,
+      "status": "visited",
+      "route": "Load map1-idle-ready.snapshot; RAM04/05=[6,20]; no buttons4frames; A6/release18; wait120 untraced.",
+      "evidence": [
+        "round1/cursor-unit-route.json",
+        "round1/cursor-unit-ram.json",
+        "round1/cursor-unit-menu.png",
+        "round1/cursor-contract.md"
+      ],
+      "result": "Selected ID6 infantry mirror03B7..03BE exactly matches PRG-RAM8-byte record; portrait, MOVE choice, anti-ground attacker text visible."
+    },
+    {
+      "id": "R1-TACTICAL",
+      "artificial": true,
+      "status": "visited",
+      "route": "battle-setup-route.json exact cursor/mirror/direction/property edits; PC CA8B/stackFB preserves C2AD caller; trace10; untraced wait180; tactical A6/release15 timeout partial.",
+      "evidence": [
+        "round1/battle-setup-route.json",
+        "round1/battle-setup-records.json",
+        "round1/attack-dispatch-decode.json",
+        "round1/battle-ready.png",
+        "round1/battle-action-route.json"
+      ],
+      "result": "BLUE AH-1S / RED INFANTRYMEN strength15 tactical display. Initial earlier ID6 infantry guess corrected.",
+      "world_commit_limitation": "Original selected mirror relocated without matching world coordinates; later F3D2 commit search loops. Tactical frame/result evidence valid; no field-return claim. Corrected route below retains original world coords."
+    },
+    {
+      "id": "R1-TACTICAL-RESULT",
+      "artificial": true,
+      "status": "visited",
+      "route": "From battle-settings-ready.snapshot, right4/release3/A4/release10; down4/release3/down4/release3/A4/release12; wait600 no inputs; trace20; A6/release15; wait600; trace10.",
+      "evidence": [
+        "round1/battle-fast-route.json",
+        "round1/battle-auto-select-route.json",
+        "round1/battle-command-route.json",
+        "round1/battle-later-result.png",
+        "round1/battle-complete-active-route.json",
+        "round1/battle-result-records.json"
+      ],
+      "result": "At3938 red strength0 and100-point loss/battle-completion message; AH-1S flight. Result trace at3948 accepted. No campaign victory/ending claim; exact auto flags not isolated.",
+      "world_commit_limitation": "Original selected mirror relocated without matching world coordinates; later F3D2 commit search loops. Tactical frame/result evidence valid; no field-return claim. Corrected route below retains original world coords."
+    },
+    {
+      "id": "R1-CORRECTED-COMBAT",
+      "artificial": true,
+      "status": "visited",
+      "route": "flag-consistent-setup-route.json keeps M1A1 world coords72/20, strength/ammoFE->1E, cursor22/8 direction0 targets T80 at86/6. Options route resumed from durable2646 after process143. Same-encounter normal confirmations and retreat/result continuations are explicitly budgeted in linked routes.",
+      "evidence": [
+        "round1/flag-consistent-setup-route.json",
+        "round1/flag-consistent-battle-ready.png",
+        "round1/flag-consistent-options-route.json",
+        "round1/flag-consistent-red-confirm-route.json",
+        "round1/flag-consistent-final-shot-route.json",
+        "round1/flag-consistent-resolution-route.json",
+        "round1/flag-consistent-post-destruction-route.json",
+        "round1/flag-world-committed-records.json",
+        "round1/flag-campaign-result.png",
+        "round1/corrected-world-active-route.json"
+      ],
+      "result": "M1A1 actual destruction and coordinate-consistent world removal verified; count16->15 and redT80 HP5/ammo13. Ordinary field returned; no campaign terminal. Objective/flag identity remains candidate only."
+    },
+    {
+      "id": "R1-RD-PASSWORD",
+      "artificial": true,
+      "status": "visited",
+      "route": "Supportedselector15/acceptdelay191 -> actualMap16UI. PatchROMselected15bytekeybuffer46..54/latch3C; actualcomparator+ordinaryinitialization.",
+      "result": "PasswordUI/validationvisited;960expandedbytesexactlyequalbypass, no whole-stateornaturalkeyboardclaim.",
+      "evidence": [
+        "/root/romatlas-batch/424b05432af2c0c88926373037b7e8264ed21f618ed25f0d73ee67ced9620f37/workspace/analysis/redirect/r1-static-continuations/password-route.json",
+        "/root/romatlas-batch/424b05432af2c0c88926373037b7e8264ed21f618ed25f0d73ee67ced9620f37/workspace/analysis/redirect/r1-static-continuations/password-accepted-route.json",
+        "/root/romatlas-batch/424b05432af2c0c88926373037b7e8264ed21f618ed25f0d73ee67ced9620f37/workspace/analysis/redirect/r1-static-continuations/password-field-route.json",
+        "/root/romatlas-batch/424b05432af2c0c88926373037b7e8264ed21f618ed25f0d73ee67ced9620f37/workspace/analysis/redirect/r1-static-continuations/password-ui.png"
+      ]
+    },
+    {
+      "id": "R1-RD-FACTORY",
+      "artificial": true,
+      "status": "visited",
+      "route": "Cursor4/5andcache038D..0390for7,19; ordinaryB/direction thenread-onlyparentC10Bgate; actualsample20 thenordinaryA. DirectCB39mechanicstestseparatebranch.",
+      "result": "Productionpanelselectedordinarilyfromartificialcursorstate; Aconfirmationcreatedpending14descriptor; earlyinputsnegativeonlyfortiming.",
+      "evidence": [
+        "/root/romatlas-batch/424b05432af2c0c88926373037b7e8264ed21f618ed25f0d73ee67ced9620f37/workspace/analysis/redirect/r1-static-continuations/factory-parent-route.json",
+        "/root/romatlas-batch/424b05432af2c0c88926373037b7e8264ed21f618ed25f0d73ee67ced9620f37/workspace/analysis/redirect/r1-static-continuations/factory-parent.png",
+        "/root/romatlas-batch/424b05432af2c0c88926373037b7e8264ed21f618ed25f0d73ee67ced9620f37/workspace/analysis/redirect/r1-static-continuations/factory-finish-route.json"
+      ]
+    },
+    {
+      "id": "R1-RD-PRODUCTION-BIRTH",
+      "artificial": true,
+      "status": "visited",
+      "route": "Savedqueue->actualC40Bclear0415->C13Enewturn->pairedE093upperrestoregatedF962->mainC10B. ExplicitPC/stackturnshortcut, noarbitrarygateflag.",
+      "result": "Actual8090/B7CB/INC6000fetch; count15->16, exactpending8bytesinserted,15oldrecordsshiftunchangedrelativealready-resetbaseline. Birthcaptureblackduringrebuild, no renderednewunitclaim.",
+      "evidence": [
+        "/root/romatlas-batch/424b05432af2c0c88926373037b7e8264ed21f618ed25f0d73ee67ced9620f37/workspace/analysis/redirect/r1-static-continuations/production-upper-route.json",
+        "/root/romatlas-batch/424b05432af2c0c88926373037b7e8264ed21f618ed25f0d73ee67ced9620f37/workspace/analysis/redirect/r1-static-continuations/production-upper-contexts-0.json",
+        "/root/romatlas-batch/424b05432af2c0c88926373037b7e8264ed21f618ed25f0d73ee67ced9620f37/workspace/analysis/redirect/r1-static-continuations/production-upper.snapshot"
+      ]
+    },
+    {
+      "id": "R1-RD-DEFEAT",
+      "artificial": true,
+      "status": "visited",
+      "route": "Retainedrealbattledeadresult, internal41/43codes->first5gameB327instructions only, assertPC B336andunchanged16resultbytes; C446/stackFB.",
+      "result": "0420=1/BLUE HAS BEEN DEFEATEDrendered; A/releasereset. Consumer-correctionartificial, notearned/naturaloutcome.",
+      "evidence": [
+        "/root/romatlas-batch/424b05432af2c0c88926373037b7e8264ed21f618ed25f0d73ee67ced9620f37/workspace/analysis/redirect/r1-static-continuations/terminal-route.json",
+        "/root/romatlas-batch/424b05432af2c0c88926373037b7e8264ed21f618ed25f0d73ee67ced9620f37/workspace/analysis/redirect/r1-static-continuations/terminal-outcome.png",
+        "/root/romatlas-batch/424b05432af2c0c88926373037b7e8264ed21f618ed25f0d73ee67ced9620f37/workspace/analysis/redirect/r1-static-continuations/defeat-restart-route.json"
+      ]
+    },
+    {
+      "id": "R1-RD-ENDING",
+      "artificial": true,
+      "status": "visited",
+      "route": "Outcomecontract0313=0,38=15,0420=2,PC8033; properstate0initializer. Timer34/35[59,13], hardmode00=2(sourcedthirdFameflag), creditspage35=6fromsavedcurrentpage throughnormalB0A0.",
+      "result": "Finalrouteintro/defaultterminal+reset,hardstates1/2/3staffcredits,state4finalscene,state5ENDandA/resetvisited. Countershortcuts/artificialspecified; noearnedvictoryorallcreditpagesclaim.",
+      "evidence": [
+        "/root/romatlas-batch/424b05432af2c0c88926373037b7e8264ed21f618ed25f0d73ee67ced9620f37/workspace/analysis/redirect/r1-static-continuations/final-ending-route.json",
+        "/root/romatlas-batch/424b05432af2c0c88926373037b7e8264ed21f618ed25f0d73ee67ced9620f37/workspace/analysis/redirect/r1-static-continuations/ending-transition-route.json",
+        "/root/romatlas-batch/424b05432af2c0c88926373037b7e8264ed21f618ed25f0d73ee67ced9620f37/workspace/analysis/redirect/r1-static-continuations/ending-hard-route.json",
+        "/root/romatlas-batch/424b05432af2c0c88926373037b7e8264ed21f618ed25f0d73ee67ced9620f37/workspace/analysis/redirect/r1-static-continuations/ending-hard.png",
+        "/root/romatlas-batch/424b05432af2c0c88926373037b7e8264ed21f618ed25f0d73ee67ced9620f37/workspace/analysis/redirect/r1-static-continuations/credits-finish-route.json",
+        "/root/romatlas-batch/424b05432af2c0c88926373037b7e8264ed21f618ed25f0d73ee67ced9620f37/workspace/analysis/redirect/r1-static-continuations/credits-exit-route.json",
+        "/root/romatlas-batch/424b05432af2c0c88926373037b7e8264ed21f618ed25f0d73ee67ced9620f37/workspace/analysis/redirect/r1-static-continuations/credits-end.png"
+      ]
+    }
+  ],
+  "progression": [
+    {
+      "milestone": "title",
+      "status": "visited",
+      "evidence": "round1/title-finish.png"
+    },
+    {
+      "milestone": "scenario selection",
+      "status": "visited",
+      "route": "R1-SETUP",
+      "evidence": "round1/fame-select.png"
+    },
+    {
+      "milestone": "tactical battle",
+      "status": "visited",
+      "route": "artificial R1-TACTICAL",
+      "evidence": "round1/battle-ready.png",
+      "limitation": "Initial command tested; auto mode separately unconfirmed."
+    },
+    {
+      "milestone": "later scenario",
+      "status": "visited",
+      "reason": "identify menu or RAM scenario contract",
+      "evidence": "round1/map15-ready.png",
+      "limitation": "Field visited; production/password interaction not yet exercised."
+    },
+    {
+      "milestone": "victory/defeat ending",
+      "status": "visited",
+      "reason": "Supported candidate-objective tank death/world-removal attempt performed; no terminal. Actual objective eligibility/turn-loss predicate unresolved; ready R1-L01 research. No arbitrary terminal flags.",
+      "history": [
+        {
+          "milestone": "victory/defeat ending",
+          "status": "deferred",
+          "reason": "Supported candidate-objective tank death/world-removal attempt performed; no terminal. Actual objective eligibility/turn-loss predicate unresolved; ready R1-L01 research. No arbitrary terminal flags."
+        }
+      ],
+      "route": "R1-RD-DEFEAT/R1-RD-ENDING",
+      "evidence": "/root/romatlas-batch/424b05432af2c0c88926373037b7e8264ed21f618ed25f0d73ee67ced9620f37/workspace/analysis/redirect/r1-static-continuations/summary.json",
+      "limitation": "Artificialdebugroutes, exactpatches/contractsretained; noearned/naturalcampaignclaim."
+    },
+    {
+      "milestone": "strategic hex map",
+      "status": "visited",
+      "route": "natural R1-MAP1",
+      "evidence": "round1/map1-ready.png"
+    },
+    {
+      "milestone": "production",
+      "status": "visited",
+      "reason": "Field reached; need factory cursor/unit selection contract.",
+      "history": [
+        {
+          "milestone": "production",
+          "status": "deferred",
+          "reason": "Field reached; need factory cursor/unit selection contract."
+        }
+      ],
+      "route": "R1-RD-FACTORY/R1-RD-PRODUCTION-BIRTH",
+      "evidence": "/root/romatlas-batch/424b05432af2c0c88926373037b7e8264ed21f618ed25f0d73ee67ced9620f37/workspace/analysis/redirect/r1-static-continuations/summary.json",
+      "limitation": "Artificialdebugroutes, exactpatches/contractsretained; noearned/naturalcampaignclaim."
+    },
+    {
+      "milestone": "artificial selector15 field",
+      "status": "visited",
+      "route": "artificial R1-FINAL16; inspected selector epilogue, password bypassed",
+      "evidence": "round1/final-ready.png",
+      "limitation": "Visible field and interaction; password bypass, natural final initialization/third-group semantics unproved."
+    },
+    {
+      "milestone": "password validation/input",
+      "status": "visited",
+      "reason": "Known external password lead; final field reached via explicit bypass, password UI untested.",
+      "history": [
+        {
+          "milestone": "password validation/input",
+          "status": "deferred",
+          "reason": "Known external password lead; final field reached via explicit bypass, password UI untested."
+        }
+      ],
+      "route": "R1-RD-PASSWORD",
+      "evidence": "/root/romatlas-batch/424b05432af2c0c88926373037b7e8264ed21f618ed25f0d73ee67ced9620f37/workspace/analysis/redirect/r1-static-continuations/summary.json",
+      "limitation": "Artificialdebugroutes, exactpatches/contractsretained; noearned/naturalcampaignclaim."
+    },
+    {
+      "milestone": "unit selection / command menu",
+      "status": "visited",
+      "route": "artificial cursor-state shortcut R1-CURSOR-UNIT",
+      "evidence": "round1/cursor-unit-menu.png"
+    },
+    {
+      "milestone": "auto battle / message settings",
+      "status": "visited",
+      "route": "Settings menu and speed selection directly visited; autonomous no-input battle progression/result observed, exact mode acceptance still unresolved.",
+      "evidence": "round1/battle-later-result.png"
+    },
+    {
+      "milestone": "tactical unit defeat/result",
+      "status": "visited",
+      "route": "artificial R1-TACTICAL-RESULT",
+      "evidence": "round1/battle-later-result.png",
+      "limitation": "Original relocated-mirror result could not commit; corrected same-game route separately verifies world cleanup."
+    },
+    {
+      "milestone": "battle result world commit / unit removal",
+      "status": "visited",
+      "route": "artificial coordinate-consistent R1-CORRECTED-COMBAT",
+      "evidence": "round1/flag-world-committed-records.json"
+    }
+  ],
+  "phase_reviews": [
+    {
+      "phase": "round3-disassembly",
+      "status": "saved_broad_milestones_reused",
+      "evidence": [
+        "analysis/round3/structural-review.md",
+        "analysis/redirect/r2-tactical-frontiers/handoff.md"
+      ],
+      "milestones_reviewed": [
+        "later/final fields",
+        "password",
+        "tactical result/world commit",
+        "factory/pendingproduction/birth",
+        "defeat",
+        "default ending",
+        "staffcredits/finalscene/END/reset"
+      ],
+      "new_runtime": false,
+      "reason": "All representative milestone statuses visited; no unchanged replay can resolve current24byte structural residuals. Exact natural/artificial provenance and prior route budgets remain primary. Natural earned campaign victory and every credits-page rendering unclaimed."
+    },
+    {
+      "phase": "round3-redirect",
+      "status": "saved_broad_milestones_reused",
+      "milestones_reviewed": [
+        "later/finalfield",
+        "actualpasswordcomparator",
+        "coordinateconsistentbattle/worldcommit",
+        "factoryproduction/worldbirth",
+        "defeat",
+        "default/finalending",
+        "staffcredits/END/reset"
+      ],
+      "evidence": [
+        "analysis/redirect/r1-static-continuations/terminal-route.json",
+        "analysis/redirect/r1-static-continuations/ending-hard-route.json",
+        "analysis/redirect/r1-static-continuations/production-upper-route.json",
+        "analysis/redirect/r3-residual-contracts/research.md"
+      ],
+      "new_runtime": false,
+      "reason": "Representative checklist milestones visited; static source closes signature-dependent exceptional screen, not a missing later-game milestone. No unchanged replay resolves narrow residual ambiguities. All natural/artificial route provenance and exact original edits/budgets preserved; earned natural campaign win/everycredits page unclaimed."
+    },
+    {
+      "phase": "round4-disassembly",
+      "status": "saved_broad_milestones_reused",
+      "new_runtime": false,
+      "evidence": [
+        "analysis/round4/structural-review.md",
+        "analysis/redirect/r3-residual-contracts/research.md"
+      ],
+      "reason": "Reviewed later/finalfield, password, factory/worldbirth, tactical/worldcommit, defeat, ending/staffcredits/END/reset saved visits. No practical missing representative milestone; immutable signature bypass is not missing later-game progression. Exact prior artificial/natural provenance and budgets retained; unchanged replay not useful for19 structural residual bytes."
+    },
+    {
+      "phase": "round4-redirect",
+      "status": "saved_broad_milestones_reused",
+      "new_runtime": false,
+      "milestones_reviewed": [
+        "later/final field",
+        "password comparator",
+        "tactical battle/worldcommit",
+        "factory/pending production/worldbirth",
+        "defeat",
+        "default ending/staffcredits/finalscene/END/reset"
+      ],
+      "evidence": [
+        "analysis/redirect/r1-static-continuations/terminal-route.json",
+        "analysis/redirect/r1-static-continuations/ending-hard-route.json",
+        "analysis/redirect/r1-static-continuations/production-upper-route.json",
+        "analysis/redirect/r4-role-review/research.md"
+      ],
+      "reason": "Reviewed all saved representative progression statuses; no practical missing later-game milestone. No unchanged replay distinguishes dormant reset/isolated footer roles. Preserve artificial-state provenance; no earned campaign victory or every-credit-page claim."
+    },
+    {
+      "phase": "round5-disassembly",
+      "status": "saved_broad_milestones_reused",
+      "new_runtime": false,
+      "evidence": [
+        "analysis/round5/structural-review.md",
+        "analysis/redirect/r4-role-review/research.md"
+      ],
+      "reason": "Broad later/ending milestone review found no practical missing representative milestone or changed runtime question. No unchanged replay; retain prior artificial/natural provenance."
+    },
+    {
+      "phase": "round5-redirect",
+      "result": "Saved representative later/final fields, password, battle/world commit, production/birth, defeat/default ending and credits/END/reset reviewed; no practical missing representative milestone or useful new runtime test. Artificial provenance retained; no earned natural campaign victory/every-credit-page claim.",
+      "evidence": "analysis/redirect/r5-terminal-review/rejection-review.md"
+    }
+  ]
+}

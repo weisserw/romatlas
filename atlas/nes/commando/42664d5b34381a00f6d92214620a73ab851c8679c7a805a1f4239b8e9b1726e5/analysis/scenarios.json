@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "phase": "round-002-redirect-completed-ready-batch",
+  "input_api": "emulator.input {buttons:[names],port:1|2}; arrays replace held state; reassert after restore",
+  "execution": "frame chunks<=30, max_operations=2000000, timeout_ms=30000; short traced windows2 frames; trace enabled capacity0 kinds Instruction",
+  "milestones": [
+    {
+      "milestone": "Title/menu",
+      "status": "visited",
+      "route": "Fresh emulator60 frames then90 frames no buttons; title at frame150",
+      "snapshot": "round-001/play-0.snapshot",
+      "evidence": [
+        "round-001/play-0.ppm.png",
+        "round-001/rpc.jsonl"
+      ],
+      "reachability": "natural"
+    },
+    {
+      "milestone": "Helicopter arrival and landing",
+      "status": "visited",
+      "route": "Restore ingame.snapshot (title), buttons[start]60 frames, []60, [a]60, [start]60 => againstart.snapshot; restore againstart, []180 frames => land.snapshot",
+      "evidence": [
+        "round-001/heldstart.ppm.png",
+        "round-001/land.ppm.png",
+        "round-001/progress-game.py"
+      ],
+      "reachability": "natural"
+    },
+    {
+      "milestone": "Ground combat and scrolling",
+      "status": "visited",
+      "route": "From land, up+b300 frames then up+a+b300 frames; each followed by2-frame trace sample",
+      "evidence": [
+        "round-001/advance2.ppm.png",
+        "round-001/progression-contexts.json",
+        "round-001/progress-game.py"
+      ],
+      "reachability": "natural"
+    },
+    {
+      "milestone": "Area-select menu",
+      "status": "visited",
+      "route": "Title: controller2 left,right,a,b,a,down,up; each8f press8f release. Controller1 a8f; a+select8f then a8f, repeated4 times",
+      "result": "Display1-2 and indices049D=1,049E=1; transfer to subsequent level initialization unresolved",
+      "evidence": [
+        "round-001/select-3.ppm.png",
+        "round-001/select.py",
+        "round-001/select-3-ram.json"
+      ],
+      "reachability": "built-in cheat inputs"
+    },
+    {
+      "milestone": "Later areas2,3,4",
+      "status": "attempted",
+      "route": "After area-select snapshot, patch RAM049D=index and049E=index%4 for index1,2,3;049C=9;0060=128; Start60, release180, up+a+b120; frame chunks30",
+      "result": "Pre-start patches overwritten; screenshots show first area. Active-stage index patches and0060=8 corrupted terrain instead of initializing level.",
+      "evidence": [
+        "round-001/later.py",
+        "round-001/patch-active.py",
+        "round-001/area-1.ppm.png",
+        "round-001/active-1.ppm.png"
+      ],
+      "reachability": "artificial",
+      "retry": "Only with supported natural stage-load/continue entry contract"
+    },
+    {
+      "milestone": "Final mission4-4",
+      "status": "attempted",
+      "route": "Same two patch recipes with index15 and area3",
+      "result": "Pre-start reverted to early area; active state corrupt. Written indices do not prove visit.",
+      "evidence": [
+        "round-001/area-15.ppm",
+        "round-001/active-15.ppm",
+        "round-001/later.py",
+        "round-001/patch-active.py"
+      ],
+      "reachability": "artificial"
+    },
+    {
+      "milestone": "Fortress boss/major stage transition",
+      "status": "deferred",
+      "reason": "Need supported stage initializer or scroll/progression contract; early combat sampled, no boss claim"
+    },
+    {
+      "milestone": "Ending/credits/secret ending",
+      "status": "deferred",
+      "reason": "Final mission shortcut attempted and unsuccessful. Missing natural initializer contract requires redirect; source guide secret-ending conditions remain unverified."
+    },
+    {
+      "milestone": "Later areas1-2,1-4 and final4-4",
+      "status": "visited",
+      "route": "Restore pre-stage.snapshot at natural C5CC post-clear boundary; patch049D/E to1/1,3/3,15/3; idle360f thenUp+A+B120f,30-frame chunks.",
+      "result": "Coherent distinct terrain/enemies/projectiles and persistent mission indices confirmed. Final-stage fortress gates/combat seen after endpoint experiment respawn.",
+      "reachability": "artificial supported stage initializer",
+      "evidence": [
+        "analysis/redirect/r001-connected/runtime.json",
+        "analysis/redirect/r001-connected/stage-1.ppm.png",
+        "analysis/redirect/r001-connected/stage-3.ppm.png",
+        "analysis/redirect/r001-connected/stage-15.ppm.png",
+        "analysis/redirect/r001-connected/stage-contexts.json",
+        "analysis/redirect/r001-connected/endpoint-23.ppm.png"
+      ]
+    },
+    {
+      "milestone": "Final-stage endpoint/boss/ending shortcut",
+      "status": "attempted",
+      "route": "Restore stage15;0079..007B=[0,1,F2],0064=70,Up+A+B720f.",
+      "result": "Dependent scroll/map state unsynchronized; death then4-4 respawn, fortress combat; no boss-clear or ending claim.",
+      "reachability": "artificial",
+      "evidence": [
+        "analysis/redirect/r001-connected/endpoint.json",
+        "analysis/redirect/r001-connected/endpoint.py",
+        "analysis/redirect/r001-connected/endpoint-contexts.json"
+      ],
+      "retry": "Only with improved dependent terrain/object transition contract; do not repeat raw endpoint warp."
+    },
+    {
+      "milestone": "Final completion presentation and progression reset",
+      "status": "visited",
+      "reachability": "artificial source-supported global/player state shortcut; no boss-clear/natural route claim",
+      "route": "Restore r001 stage15.snapshot, release input;0040=81,005D=0,0060=E0,0062=80,0064=10,0083=03,0088=0,008D=0,008F=0,054B=0,049B=0. Pool already empty;049D/E remain0F/03. Run_untilB08B<=300000ops, then2100frames in30-frame calls.",
+      "result": "B08B reached after17897ops/frame641. Timed sprite presentation, congratulations and final all-missions-over text visibly displayed. At2100frames mission/area became0/0 and statusFF in global transition; no staff credits/secret ending/boss defeat claimed.",
+      "evidence": [
+        "analysis/redirect/r002-contracts/ending-global-contract.py",
+        "analysis/redirect/r002-contracts/ending-global-contract.json",
+        "analysis/redirect/r002-contracts/ending-global-contract-30.ppm.png",
+        "analysis/redirect/r002-contracts/ending-global-contract-60.ppm.png",
+        "analysis/redirect/r002-contracts/ending-global-contract-69.ppm.png",
+        "analysis/redirect/r002-contracts/ending-global-contract-after.snapshot"
+      ]
+    },
+    {
+      "milestone": "Player-only ending-state shortcut and player-entry interception",
+      "status": "attempted",
+      "reachability": "artificial",
+      "result": "Player-only40/E0 was overwritten by pending globalA1 death/restart path; AFC6/A700 intercepts absent within300000ops. Improved global-state contract subsequently succeeded. These failures do not prove entry unreachable.",
+      "evidence": [
+        "analysis/redirect/r002-contracts/ending.json",
+        "analysis/redirect/r002-contracts/ending-active.json",
+        "analysis/redirect/r002-contracts/ending-intercept.json",
+        "analysis/redirect/r002-contracts/ending-player-entry.json"
+      ],
+      "retry": "Do not repeat unchanged; use successful global/player contract."
+    }
+  ],
+  "failed_input_records": "round-001/pass.py used unsupported singular button/pressed and remained title; not gameplay reachability evidence. Interrupted bounded process retained ledger. Corrected scripts are game.py/menu.py/progress-game.py.",
+  "snapshots": "Same-build local snapshots contain ROM state and must remain local. Import after emulator.start; explicitly set buttons after import.",
+  "round002_review": "Successful later/final initializer and failed raw endpoint evidence reused unchanged. Ending/boss transition deferred to dependent terrain/object contract; no repeated RAM sweep."
+}

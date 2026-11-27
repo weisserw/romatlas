@@ -1,0 +1,1 @@
+Round05 redirect complete, incomplete classification pending coordinator primary rejection review. No ready proposal. Exact map/state9ee8e27a9dbcb20283460614a5113e3869648a4d45ea5334215468301f82964e;16Unknown bytes9fragments. Read rejection-review.md and primary-windows.txt/consumer-windows.txt/physical-facts.json. Final editorial audit NOT run.

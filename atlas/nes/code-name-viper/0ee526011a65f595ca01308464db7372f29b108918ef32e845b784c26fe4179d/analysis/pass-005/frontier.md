@@ -1,0 +1,2 @@
+Round05 disassembly COMPLETE, whole-ROM incomplete, overall goal active. ROM classification: 99.99% (262144 / 262160 bytes classified; 16 bytes unknown).
+Checkpoint maps/pass-005.json SHA2569ee8e27a9dbcb20283460614a5113e3869648a4d45ea5334215468301f82964e; verification byte_identical=true. Exact residual9fragments unknown.json. Next fullcurrent-source commentary then redirect; finaleditorial reserved, no terminal assessment.

@@ -1,0 +1,23 @@
+{
+  "scope": "independent current full inventory checks plus targeted semantic/editorial acceptance; existing sound review reused",
+  "physical_bytes": 131088,
+  "regions": 9623,
+  "meaningful_units": 731,
+  "code_regions": 9499,
+  "all_reviewed": true,
+  "raw_direct_control_targets": [],
+  "errors": [],
+  "evidence": [
+    "analysis/round-003/commentary-prose-corrections.json",
+    "analysis/redirect/r003-acceptance/findings.md",
+    "analysis/final-targeted-source.txt"
+  ],
+  "editorial_repairs": [
+    "two misleading bank aliases renamed by actual target contract",
+    "mapper selector6 versus effective 8KiB bank13 clarified",
+    "two byte-count descriptions corrected to 64-byte chunk counts",
+    "redundant palette entry explanation shortened"
+  ],
+  "boundary_check_note": "Region-9516 contains two substructures at offsets108608 length28 and108636 length12. Both lie within the40-byte region; initial diagnostic expected each unit to contain region start, which is inapplicable to multiple substructures. Rechecked containment and exact summed extent40; no defect.",
+  "all_units_source_anchors_valid": true
+}

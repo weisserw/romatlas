@@ -1,0 +1,27 @@
+{
+  "checkpoint": "pass-005",
+  "rom_sha256": "424b05432af2c0c88926373037b7e8264ed21f618ed25f0d73ee67ced9620f37",
+  "map_sha256": "e7d6e4a1b6e7fa1bf3e42d5cd6ecfdf37d94df7758bf4f52b83129957346bc23",
+  "state_sha256": "e7d6e4a1b6e7fa1bf3e42d5cd6ecfdf37d94df7758bf4f52b83129957346bc23",
+  "classified": 262148,
+  "total": 262160,
+  "unknown": 12,
+  "map_validate": {
+    "ok": true,
+    "command": "/root/romatlas/target/release/romatlas map validate maps/current.json --rom input/game.nes"
+  },
+  "store_validate": {
+    "ok": true,
+    "command": "/root/romatlas/target/release/romatlas store validate input/game.nes --store analysis/state.json"
+  },
+  "classification_complete": false,
+  "terminal_rejection_review": "analysis/terminal-rejection-review.md",
+  "editorial_acceptance": {
+    "ok": true,
+    "audit": "commentary/audit.json",
+    "source_sha256": "c48035c080d7be3f851ea3f8b41376bed27d1c7c60a8bf7e9a9abc87775726d6",
+    "distinct_units": 1375,
+    "unit_references": 18943
+  },
+  "terminal_workflow": "justified_incomplete"
+}

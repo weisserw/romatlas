@@ -1,0 +1,21 @@
+# Round02 disassembly — verified pass002
+
+One disassembly pass complete; whole-ROM incomplete, overall goal active. Next full current-source commentary migration/review, then redirect; no terminal exhaustion or final editorial audit. Do not replay unchanged gameplay.
+
+ROM classification: 73.72% (193274 / 262160 bytes classified; 68886 bytes unknown).
+
+Added39133 unique bytes. New checkpoint maps/pass-002.json; current/internal/checkpoint SHA256de61d9a48d3713139a2fb103019075d49b8740ce5986b1c42bc5c0a96e905dd1. Fresh generated/pass-002 source and analysis/pass-002-verification.json confirm byte-identical rebuilding. ROM SHA2560ee526011a65f595ca01308464db7372f29b108918ef32e845b784c26fe4179d unchanged. All636 prior map entries preserved exactly. No baseline rerun.
+
+Exact report/per-bank counts and233-interval residual complement: analysis/pass-002/classification-report.json and unknown.json. Current1145 structural regions:972 Code/18409 bytes;173 non-code/174865 bytes (Data43205, Text588, CHR Image131072). All classified bytes have evidence annotations. Current generated full-ROM scaffold will include233 unknown intervals/68886 bytes in addition; raw fallback does not classify them.
+
+Independent review: analysis/pass-002/review.md; independent-review.json/accepted-initial.json; closure-reviewed.txt/accepted-connected.json; manual-reviewed.json/accepted-manual.json; bounded RPC evidence in rpc.jsonl, closure-rpc.jsonl and extra-rpc.jsonl. All633 redirect proposals inspected. One code claim narrowed: physical115270..115279 ends valid code at115277; two$1E bytes then independently proved pause sound Data using C117's toggled0/1 index. They are not code. SingleFE68 EA and shared isolatedRTS physical58BC remain unknown.
+
+Accepted scene/boss/ending/player/reset/actor-table/graphics batch plus individually decoded actual artificial fetches. Initial33925 unique new bytes; connected static539 code +1088 neighboring generic property-like data +72 fixed resource pointer data. Then complete useful post-FEA4 stage introduction bank4/5 and map-flight bank0/1 routines/cleanup/waits, exact bounded screen/motion data, pause sound table and four signed probe arrays added622 code+2887 data. No pointer-only target promotion. Generic graphics/property/inner screen streams were classified after practical consumer/content/boundary inspection without inventing specific compression or stage/resource identity.
+
+Reused stage7 active mansion/frame677 and terminal The End/frame2320 artifacts from round01-01. No new emulator replay; broad progression checklist reviewed/preserved. Saved3285 contextual roots/2777 unique starts remain artificial actual-fetch samples; code provenance totals Observed10694/Static7715 are structural map metrics, not exhaustive execution coverage or natural reachability. Runtime artificial routes and natural availability stay separate.
+
+LeadsL004/L005/L006/L009/L010 verified; prior missing fields retained as resolved history. L007/L008 semantic resolutions must enter next commentary (84-loop overreads code but extra digit candidates impossible; C6AB constantA2&08=0; F8CE frame wait). L011 newly separates resource selector/bank identity from generic physical data and records stage7 PPU-address alias at BCF7: fourteen stored bytes BD16..BD24; index7 reads opcodeA5 as high byte, masked PPU address2500, original intent unresolved. L012 is concrete bank10/11 stage/checkpoint spawn/room record continuation via ECce/ED38 B746/B747 into A2/A3 plus bank0 room/object records and D3C4 row pointers. These need consumer/boundary research, not unchanged gameplay. Exact recipes in analysis/leads.json.
+
+Existing commentary intentionally untouched: source SHA2565cd4fc40747c05bb643b293d6b82166437774d80a067606ef3f62e62a2231394; constants SHA25614cfafe930621d90b84e8c3f302dfd4fb082b4016de4bb9ad43899975deddfeb. Prior readability is for pass001 only. Prepare/migrate full current pass002 source in the next commentary phase; this worker did not prepare or edit commentary.
+
+No toolkit issues found; analysis/toolkit-issues.md records zero confirmed/suspected bugs or missing features, no blocker. No toolkit edit, deletion/cleanup, archive, publication or commercial ROM/asset download. Everything stays local.

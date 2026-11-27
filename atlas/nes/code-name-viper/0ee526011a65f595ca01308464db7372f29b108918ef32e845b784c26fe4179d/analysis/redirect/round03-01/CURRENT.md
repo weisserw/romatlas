@@ -1,0 +1,11 @@
+Round03 redirect COMPLETE READY BATCH; not terminal exhaustion. Next: independent disassembly review ofL015/L016, then fullcurrent-source commentary. Overallgoalactive; finaleditorial auditreserved.
+
+Authoritative handoff analysis/handoffs/round03-redirect.md; groupedprimaryevidence findings.md; exact proposals.json/code-proposals.json/data-proposals-final.json; perrootbodyfacts routine-body-facts.json; specialaudio stackproof manual-code-claims.json. Persistentleads updatedwithnewL015/L016, prior14outcomespreserved.
+
+Input/outputmap/state/pass003final SHA7b1032bc75e57ecef9741788fd7f1127b26c87fb506b6fba76d03cded25ad646,241542classified/20618unknown119intervalsunchanged. Proposed20570uniqueunknownbytes=7431StaticCode+13139StaticData, accepted0. Conditional48bytes21fragments onlyifallaccepted. Exact119ledger unknown-ledger.json withperrangeproposal/residualdispositions; originalunknown-ledger-initial.json. Conditionaltinyresidualprimaryevidence/competinginterpretations residual-dispositions.json; noopcodeonlyclassification.
+
+Audit.json:3292proposedinstructionrecords,zero differingphysicaldecodes/instructionoverlaps/Dataoverlaps/CodeData conflicts,unchangedROM/map/state/commentedgame/constants hashes. ConfiguredAPI119residualdecodes plus4588contextgraph. NewlypreciseC061/FA5B returns2/3; generic8000/8001barrierspreserved. Audio86AEcountloopbalancesPHA/PLA;854AinlinewordsData. F5E1 singlebyteRAMwrite/postincrement/trap, notfullfillloop. Routinefield/control/stacksemanticgroups provide independentstructuralproof; naturalactors/callersunresolvedseparately.
+
+Importantcorrection: physical130680/1FE78 CPUFE68 actual04 notpriorEA;11byteevenbankrunfollowedacceptedFE69LDY00 supportsnarrowgenericData, nostage10claim. Initialprovisional12CE9..12D49 narrowed12CF9 atcoherentslotscan; originalprovisionalfilepreserved. Allidentifiedpromisingconnectedandindependentavenuesfollowedwithinthisphase; tinyremainingfragmentsretainactualstructuralambiguitywithdecisiveevidence, notmeremissingnaturalcaller.
+
+NoROM/map/state/source/toolkitmutation, runtime replay, cleanup/deletion,archive,publish. No toolkitissuesfound; noblocker. Disk3.1GiBfree; attempt21MiB. Allresearch/artifactslocal.

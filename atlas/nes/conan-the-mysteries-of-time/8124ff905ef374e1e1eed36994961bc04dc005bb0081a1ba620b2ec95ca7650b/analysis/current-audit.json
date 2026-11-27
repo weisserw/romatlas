@@ -1,0 +1,171 @@
+{
+  "ok": true,
+  "orchestration_terminal": "complete-with-user-authorized-manual-fallback",
+  "rom_classification_complete": false,
+  "authorized_fallback_annotation_complete": true,
+  "evidence_backed_classification_bytes": 131087,
+  "manual_fallback_bytes": 1,
+  "all_bytes_evidence_backed": false,
+  "current_source_readability_complete": true,
+  "final_editorial_acceptance": true,
+  "byte_identical": true,
+  "total_bytes": 131088,
+  "classified_bytes": 131088,
+  "counts": {
+    "Data": 104239,
+    "Code": 26849
+  },
+  "unknown_bytes": 0,
+  "unknown_offsets": [],
+  "manual_fallback_record": {
+    "id": 907,
+    "offset": 117489,
+    "length": 1,
+    "kind": "Data",
+    "provenance": "Manual",
+    "confidence": 1.0,
+    "label": null,
+    "comment": "User-directed generic data fallback; meaning unknown. RTS versus spare-data ambiguity remains unresolved.",
+    "evidence": "Explicit batch-only user authorization after exact unknown complement verification (1 byte <=10). Physical [117489,117490), fixed PRG 8 KiB bank14, CPU $CAE1. This Manual fallback is not proven structural classification, execution, reachability, padding, dead-code or unused-byte evidence. Prior reference/stack review could not distinguish redundant RTS/no-op callback from spare data; see analysis/redirect/r02-cae1-review-20261127/rejection-review.md.",
+    "views": []
+  },
+  "percentage": 100.0,
+  "annotated_regions": 907,
+  "validation": [
+    {
+      "command": [
+        "/root/romatlas/target/release/romatlas",
+        "verify",
+        "input/game.nes",
+        "--generated",
+        "commentary/source"
+      ],
+      "result": {
+        "byte_identical": true,
+        "ok": true
+      }
+    },
+    {
+      "command": [
+        "/root/romatlas/target/release/romatlas",
+        "map",
+        "validate",
+        "maps/current.json",
+        "--rom",
+        "input/game.nes"
+      ],
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "command": [
+        "/root/romatlas/target/release/romatlas",
+        "store",
+        "validate",
+        "input/game.nes",
+        "--store",
+        "analysis/state.json"
+      ],
+      "result": {
+        "ok": true
+      }
+    }
+  ],
+  "editorial_audit": {
+    "byte_identical": true,
+    "ok": true,
+    "rom_sha256": "8124ff905ef374e1e1eed36994961bc04dc005bb0081a1ba620b2ec95ca7650b",
+    "source_sha256": {
+      "game.asm": "8511272630fc235f8c9fbfa6f46dcd11af32d239ff969862506a26bdb3649e7a",
+      "symbols.inc": "152d4994ea1c296ca5e22764688ae8a432184a4baaf9f7cc4589783a085a7d8a"
+    },
+    "reviewed_regions": 907,
+    "reviewed_units": 1016,
+    "editorial_audit": true
+  },
+  "strict_editorial_audit": {
+    "ok": true,
+    "strict_editorial_review": true,
+    "supported_strict_cli_option": false,
+    "supported_command": "python3 /root/romatlas/scripts/commentary.py audit . --json",
+    "reviewed_regions": 907,
+    "reviewed_units": 1016,
+    "region_counts": {
+      "Data": 176,
+      "Code": 731
+    },
+    "pending_readability_ranges": [],
+    "current_inventory_reconciled": true,
+    "prior_source_credit_reused": true,
+    "only_source_delta": "Explicit user-authorized generic Manual Data note at physical 117489; meaning unknown; structural ambiguity unresolved",
+    "historical_tree": "analysis/round-03/prior-commentary",
+    "current_map_hashes": {
+      "maps/current.json": "6bf456f5e396b62899cf09dc73038c8ff959448f52edbee6040955d7c94c71ad",
+      "maps/manual-fallback-disassembly.json": "6bf456f5e396b62899cf09dc73038c8ff959448f52edbee6040955d7c94c71ad",
+      "analysis/state.json": "6bf456f5e396b62899cf09dc73038c8ff959448f52edbee6040955d7c94c71ad",
+      "commentary/baseline.json": "6bf456f5e396b62899cf09dc73038c8ff959448f52edbee6040955d7c94c71ad",
+      "commentary/phase1-state.json": "6bf456f5e396b62899cf09dc73038c8ff959448f52edbee6040955d7c94c71ad",
+      "commentary/source/mapping.json": "6bf456f5e396b62899cf09dc73038c8ff959448f52edbee6040955d7c94c71ad"
+    },
+    "evidence_backed_completion": false,
+    "authorized_fallback_annotation_complete": true
+  },
+  "scenario_evidence_paths_exist": true,
+  "visited_scenarios": 11,
+  "archive_document_contract": {
+    "script": "/root/romatlas/scripts/archive.py",
+    "script_sha256": "9dd430235e3f3f48dd345c90bc0d21a42456bed757307f090c588d5c28810bd3",
+    "markdown_files_accounted": 40,
+    "additional_final_documents": [
+      "analysis/archive-document-selection.md",
+      "analysis/batch-completion-audit.md",
+      "analysis/batch-terminal-handoff.md",
+      "analysis/final-completion-audit.md",
+      "analysis/handoffs/manual-fallback-commentary.md",
+      "analysis/handoffs/manual-fallback-disassembly.md",
+      "analysis/handoffs/round-01-commentary.md",
+      "analysis/handoffs/round-01-disassembly.md",
+      "analysis/handoffs/round-01-redirect.md",
+      "analysis/handoffs/round-02-commentary.md",
+      "analysis/handoffs/round-02-disassembly.md",
+      "analysis/handoffs/round-02-redirect.md",
+      "analysis/redirect/r01-connected-20261127/data-contracts.md",
+      "analysis/redirect/r01-connected-20261127/residual-contracts.md",
+      "analysis/redirect/r02-cae1-review-20261127/rejection-review.md",
+      "analysis/round-01/commentary-readability-assessment.md",
+      "analysis/round-02/commentary-readability-assessment.md",
+      "analysis/round-02/prior-commentary/progress.md",
+      "analysis/round-02/prior-commentary/uncertainties.md",
+      "analysis/round-02/review.md",
+      "analysis/round-03/prior-commentary/editorial-audit.md",
+      "analysis/round-03/prior-commentary/progress.md",
+      "analysis/round-03/prior-commentary/uncertainties.md",
+      "analysis/terminal-handoff.md"
+    ],
+    "omitted_duplicate_instruction_scaffolds": [
+      "analysis/round-02/prior-commentary/AGENTS.md",
+      "analysis/round-02/prior-commentary/prompt.md",
+      "analysis/round-02/prior-commentary/workflow.md",
+      "analysis/round-03/prior-commentary/AGENTS.md",
+      "analysis/round-03/prior-commentary/prompt.md",
+      "analysis/round-03/prior-commentary/workflow.md"
+    ],
+    "unrecognized_unaccounted": [],
+    "archive_executed": false
+  },
+  "hashes": {
+    "analysis/state.json": "6bf456f5e396b62899cf09dc73038c8ff959448f52edbee6040955d7c94c71ad",
+    "maps/current.json": "6bf456f5e396b62899cf09dc73038c8ff959448f52edbee6040955d7c94c71ad",
+    "maps/manual-fallback-disassembly.json": "6bf456f5e396b62899cf09dc73038c8ff959448f52edbee6040955d7c94c71ad",
+    "commentary/phase1-state.json": "6bf456f5e396b62899cf09dc73038c8ff959448f52edbee6040955d7c94c71ad",
+    "commentary/baseline.json": "6bf456f5e396b62899cf09dc73038c8ff959448f52edbee6040955d7c94c71ad",
+    "input/game.nes": "8124ff905ef374e1e1eed36994961bc04dc005bb0081a1ba620b2ec95ca7650b",
+    "commentary/source/game.asm": "8511272630fc235f8c9fbfa6f46dcd11af32d239ff969862506a26bdb3649e7a",
+    "commentary/source/symbols.inc": "152d4994ea1c296ca5e22764688ae8a432184a4baaf9f7cc4589783a085a7d8a",
+    "commentary/reading-after.asm": "88260df6cd921f12b8969ab8d33a793c79e3d671ad63bd03cd21f53e91473a55",
+    "commentary/audit.json": "6009a44ec55a48ad49fbf754b670ac7f0aad3afaad05b676b5d17abbd24e0af6",
+    "archive-options.json": "084fc7f64a908636b2093482785b4357b52db9c42465b7b4b9fac9d32bc706fb"
+  },
+  "configured_binary_sha256": "8ff56b0b1cf8d2a3aca5430c70d34280ae3db36fc6774919062db4ea63843f82"
+}

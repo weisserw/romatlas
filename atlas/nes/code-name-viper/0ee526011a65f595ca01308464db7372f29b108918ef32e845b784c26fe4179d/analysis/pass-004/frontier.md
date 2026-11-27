@@ -1,0 +1,2 @@
+Round04 disassembly COMPLETE; whole-ROM incomplete; overall goal active. ROM classification: 99.98% (262112 / 262160 bytes classified; 48 bytes unknown).
+Checkpoint maps/pass-004.json SHA256db5ce160d67a8705fb7da671627035cdd170680a7af6bccb90756afcdb8c010e; verification analysis/pass-004-verification.json byte_identical=true. Exact21 residuals in unknown.json; independent review.md and fresh-code-review.json/data-review.json/accepted.json. Next full current-source commentary, then redirect. No terminal assessment.

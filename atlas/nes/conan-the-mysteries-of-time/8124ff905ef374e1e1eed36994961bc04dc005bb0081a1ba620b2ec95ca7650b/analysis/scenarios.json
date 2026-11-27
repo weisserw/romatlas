@@ -1,0 +1,207 @@
+{
+  "version": 1,
+  "round": 1,
+  "phase": "disassembly",
+  "input_contract": {
+    "port": 1,
+    "buttons": "complete held-button array; [] releases all"
+  },
+  "execution_budget": {
+    "max_operations": 20000000,
+    "timeout_ms": 5000,
+    "successful_gameplay_chunk_frames": 10
+  },
+  "snapshots": "round-01/*.snapshot local same-build; reassert inputs after import",
+  "scenarios": [
+    {
+      "milestone": "startup/title",
+      "status": "visited",
+      "artificial": false,
+      "route": "Fresh emulator; release buttons; trace Instruction capacity 0; 18 x10 frames =180. Snapshot title.snapshot. Initial all-kind180-frame timeout discarded; replay starts fresh.",
+      "observed": "Conan Mindscape1990 title screen",
+      "evidence": [
+        "round-01/title.png",
+        "round-01/summary-start.json",
+        "round-01/contexts-start.json"
+      ]
+    },
+    {
+      "milestone": "cave and ordinary mechanics",
+      "status": "visited",
+      "artificial": false,
+      "route": "Restore title.snapshot, buttons=[]240frames; buttons=[start]2frames; buttons=[]120frames then10 traced. Snapshot actual-game-start.snapshot atframe552. From clean: []10trace; right60untraced; b10trace; right+down90untraced; a10trace; select2trace; []10trace. All successful steps <=10frames except initial untraced title wait.",
+      "observed": "Cave, right movement/forward jump/attack input windows; Select tested while falling, no menu shown in that route.",
+      "evidence": [
+        "round-01/actual-started.png",
+        "round-01/mechanics-weapon.png",
+        "round-01/mechanics-contexts.json",
+        "round-01/mechanics-summary.json"
+      ]
+    },
+    {
+      "milestone": "stage index1: ruins",
+      "status": "visited",
+      "artificial": true,
+      "patch": {
+        "0x52": 0,
+        "0x04AA": 1
+      },
+      "route": "Import actual-game-start.snapshot; assert buttons=[]; patch RAM; []10trace, []80untraced, right4trace,b4trace,down4trace (10-frame maximum chunks). Stage3 test instead []10trace+100untraced+10trace; movement exercised in other milestones.",
+      "observed": "Initialized stage index1, intact distinct area framebuffer, flag consumed. Stage names are guide hypotheses; index itself locally verified.",
+      "evidence": [
+        "round-01/milestone-1.png",
+        "round-01/progression-contexts.json",
+        "round-01/progression-results.json"
+      ]
+    },
+    {
+      "milestone": "stage index2: hydra area",
+      "status": "visited",
+      "artificial": true,
+      "patch": {
+        "0x52": 1,
+        "0x04AA": 1
+      },
+      "route": "Import actual-game-start.snapshot; assert buttons=[]; patch RAM; []10trace, []80untraced, right4trace,b4trace,down4trace (10-frame maximum chunks). Stage3 test instead []10trace+100untraced+10trace; movement exercised in other milestones.",
+      "observed": "Initialized stage index2, intact distinct area framebuffer, flag consumed. Stage names are guide hypotheses; index itself locally verified.",
+      "evidence": [
+        "round-01/milestone-2.png",
+        "round-01/progression-contexts.json",
+        "round-01/progression-results.json"
+      ]
+    },
+    {
+      "milestone": "stage index3: ship",
+      "status": "visited",
+      "artificial": true,
+      "patch": {
+        "0x52": 2,
+        "0x04AA": 1
+      },
+      "route": "Import actual-game-start.snapshot; assert buttons=[]; patch RAM; []10trace, []80untraced, right4trace,b4trace,down4trace (10-frame maximum chunks). Stage3 test instead []10trace+100untraced+10trace; movement exercised in other milestones.",
+      "observed": "Initialized stage index3, intact distinct area framebuffer, flag consumed. Stage names are guide hypotheses; index itself locally verified.",
+      "evidence": [
+        "round-01/advance-stage3.png",
+        "round-01/advance-contexts.json",
+        "round-01/advance-ram.json"
+      ]
+    },
+    {
+      "milestone": "stage index4: forest",
+      "status": "visited",
+      "artificial": true,
+      "patch": {
+        "0x52": 3,
+        "0x04AA": 1
+      },
+      "route": "Import actual-game-start.snapshot; assert buttons=[]; patch RAM; []10trace, []80untraced, right4trace,b4trace,down4trace (10-frame maximum chunks). Stage3 test instead []10trace+100untraced+10trace; movement exercised in other milestones.",
+      "observed": "Initialized stage index4, intact distinct area framebuffer, flag consumed. Stage names are guide hypotheses; index itself locally verified.",
+      "evidence": [
+        "round-01/milestone-4.png",
+        "round-01/progression-contexts.json",
+        "round-01/progression-results.json"
+      ]
+    },
+    {
+      "milestone": "stage index5: castle",
+      "status": "visited",
+      "artificial": true,
+      "patch": {
+        "0x52": 4,
+        "0x04AA": 1
+      },
+      "route": "Import actual-game-start.snapshot; assert buttons=[]; patch RAM; []10trace, []80untraced, right4trace,b4trace,down4trace (10-frame maximum chunks). Stage3 test instead []10trace+100untraced+10trace; movement exercised in other milestones.",
+      "observed": "Initialized stage index5, intact distinct area framebuffer, flag consumed. Stage names are guide hypotheses; index itself locally verified.",
+      "evidence": [
+        "round-01/milestone-5.png",
+        "round-01/progression-contexts.json",
+        "round-01/progression-results.json"
+      ]
+    },
+    {
+      "milestone": "stage index6: tomb",
+      "status": "visited",
+      "artificial": true,
+      "patch": {
+        "0x52": 5,
+        "0x04AA": 1
+      },
+      "route": "Import actual-game-start.snapshot; assert buttons=[]; patch RAM; []10trace, []80untraced, right4trace,b4trace,down4trace (10-frame maximum chunks). Stage3 test instead []10trace+100untraced+10trace; movement exercised in other milestones.",
+      "observed": "Initialized stage index6, intact distinct area framebuffer, flag consumed. Stage names are guide hypotheses; index itself locally verified.",
+      "evidence": [
+        "round-01/milestone-6.png",
+        "round-01/progression-contexts.json",
+        "round-01/progression-results.json"
+      ]
+    },
+    {
+      "milestone": "stage index7: final area",
+      "status": "visited",
+      "artificial": true,
+      "patch": {
+        "0x52": 6,
+        "0x04AA": 1
+      },
+      "route": "Import actual-game-start.snapshot; assert buttons=[]; patch RAM; []10trace, []80untraced, right4trace,b4trace,down4trace (10-frame maximum chunks). Stage3 test instead []10trace+100untraced+10trace; movement exercised in other milestones.",
+      "observed": "Initialized stage index7, intact distinct area framebuffer, flag consumed. Stage names are guide hypotheses; index itself locally verified.",
+      "evidence": [
+        "round-01/milestone-7.png",
+        "round-01/progression-contexts.json",
+        "round-01/progression-results.json"
+      ]
+    },
+    {
+      "milestone": "ending/terminal",
+      "status": "visited",
+      "artificial": true,
+      "patch": {
+        "0x52": 7,
+        "0x04AA": 1
+      },
+      "route": "Clean game-start snapshot; buttons=[]; patches;10traced+70untraced+10traced frames. No buttons in terminal loop.",
+      "observed": "'Conan the King' ending framebuffer. Earlier generic B-window exited it and stage reset0; repeat changed inputs to preserve terminal display.",
+      "evidence": [
+        "round-01/terminal-no-input.png",
+        "round-01/terminal-contexts.json",
+        "round-01/ending-path.json"
+      ]
+    },
+    {
+      "milestone": "weapon selection/inventory",
+      "status": "visited",
+      "artificial": true,
+      "patch": {
+        "0x06D3..0x06DF": [
+          9,
+          1,
+          1,
+          9,
+          1,
+          9,
+          9,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "route": "Clean game-start snapshot; patch thirteen RAM bytes;select2,[]10,right2,a2,[]10frames, all traced Instruction only.",
+      "observed": "Full weapon-selection grid displayed after transition; directional/A inputs exercised, individual selection semantics unresolved.",
+      "evidence": [
+        "round-01/inventory-select.png",
+        "round-01/inventory-contexts.json",
+        "round-01/inventory-summary.json"
+      ]
+    },
+    {
+      "milestone": "natural boss victories/full unassisted route",
+      "status": "deferred",
+      "reason": "All indexed areas and terminal visited via supported transition. Individual boss collision/weapon requirements need mechanic/handler contracts; broad pass no longer requires long difficult manual play. No claim of successful natural victory.",
+      "evidence": [
+        "gameplay.md"
+      ]
+    }
+  ]
+}

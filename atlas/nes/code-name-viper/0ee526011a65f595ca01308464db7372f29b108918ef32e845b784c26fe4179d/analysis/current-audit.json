@@ -1,0 +1,108 @@
+{
+  "phase": "terminal-coordinator-audit",
+  "status": "verified_terminal_handoff",
+  "rom_sha256": "0ee526011a65f595ca01308464db7372f29b108918ef32e845b784c26fe4179d",
+  "map_sha256": "9ee8e27a9dbcb20283460614a5113e3869648a4d45ea5334215468301f82964e",
+  "classification": {
+    "total": 262160,
+    "classified": 262144,
+    "unknown": 16,
+    "percentage": 99.99389685688129,
+    "unknown_intervals": [
+      {
+        "offset": 6253,
+        "length": 2
+      },
+      {
+        "offset": 21457,
+        "length": 3
+      },
+      {
+        "offset": 21541,
+        "length": 1
+      },
+      {
+        "offset": 22519,
+        "length": 3
+      },
+      {
+        "offset": 22872,
+        "length": 1
+      },
+      {
+        "offset": 31867,
+        "length": 2
+      },
+      {
+        "offset": 49141,
+        "length": 1
+      },
+      {
+        "offset": 66866,
+        "length": 1
+      },
+      {
+        "offset": 99608,
+        "length": 2
+      }
+    ],
+    "evidence_backed_regions": 1551
+  },
+  "configured_binary": "/root/romatlas/target/release/romatlas",
+  "store_validate": {
+    "ok": true
+  },
+  "map_validate": {
+    "ok": true
+  },
+  "terminal_rejection_review": "analysis/coordinator-rejection-review.md",
+  "final_editorial": {
+    "complete": true,
+    "reviewed_regions": 1560,
+    "total_regions": 1560,
+    "reviewed_units": 1436,
+    "total_units": 1436,
+    "editorial_audit": true,
+    "reasons": []
+  },
+  "archive_executed": false,
+  "cleanup_executed": false,
+  "published": false,
+  "source_sha256": {
+    "constants.inc": "c9f0335a8b9400cb223f1fcea6fd2addb987ed794b8b572bf7b57f713e826d68",
+    "game.asm": "28816a872f2c3d663612900ea281ef4c89d553d0a9d1c047af0cc2409ec05293"
+  },
+  "commentary_audit_sha256": "86b3f262c8affc492446093985739c0b76b225e275ab88558a86dced5c736727",
+  "commentary_verification_sha256": "b5fd3fc6014685ea04202d829adf76f97f337fac7be6336936fc3562a662ae92",
+  "reading_copy_sha256": "e8c19a0d917da2de0d1fd84bc7446e2dbae47650d759945e9ef47cbce51ea48f",
+  "prior_region_preservation": {
+    "maps/pass-001.json": 636,
+    "maps/pass-002.json": 1145,
+    "maps/pass-003-final.json": 1353,
+    "maps/pass-004.json": 1539,
+    "maps/pass-005.json": 1551
+  },
+  "historical_label_supersessions": {
+    "analysis/round-3/commentary-pass002": [],
+    "analysis/round-2/commentary-pass001": [
+      "StartSceneScript_Resume_fb13"
+    ],
+    "analysis/round-5/commentary-pass004": [],
+    "analysis/round-4/commentary-pass003": []
+  },
+  "phase_handoffs_verified": 15,
+  "orchestration_result": "documented_terminal_incomplete",
+  "rom_classification_complete": false,
+  "orchestration_complete": true,
+  "archive_document_selection": {
+    "passed": true,
+    "report": "analysis/archive-document-selection.json",
+    "options": "archive-options.json",
+    "markdown_files": 71,
+    "additional_final": 49,
+    "omitted_duplicates": 12,
+    "unrecognized": []
+  },
+  "final_requirement_audit": "analysis/final-requirements-audit.md",
+  "terminal_handoff": "analysis/terminal-handoff.md"
+}

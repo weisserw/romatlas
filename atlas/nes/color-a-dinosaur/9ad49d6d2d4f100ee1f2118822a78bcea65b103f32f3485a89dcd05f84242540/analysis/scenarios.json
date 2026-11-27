@@ -1,0 +1,313 @@
+{
+  "version": 1,
+  "game": "Color a Dinosaur (local copyright identification)",
+  "runtime_context": {
+    "mapper": 2,
+    "fixed_prg_banks": [
+      14,
+      15
+    ],
+    "observed_low_pairs": [
+      [
+        0,
+        1
+      ],
+      [
+        8,
+        9
+      ]
+    ],
+    "all_offsets": "physical file including16byte header"
+  },
+  "execution_budget": {
+    "unit": "frame",
+    "max_operations": 3000000,
+    "timeout_ms": 10000,
+    "advice": "Split long replay segments into <=20frame chunks. Startup long requests timed out; authoritative frame state retained and compact exact frame route below replaces wall-time dependence."
+  },
+  "natural_replay": {
+    "initial": "emulator.start at frame0; trace enabled capacity0; inputs initially released",
+    "segments": [
+      {
+        "buttons": [],
+        "frames": 72
+      },
+      {
+        "buttons": [
+          "start"
+        ],
+        "frames": 2
+      },
+      {
+        "buttons": [],
+        "frames": 20
+      },
+      {
+        "buttons": [],
+        "frames": 266
+      },
+      {
+        "buttons": [
+          "start"
+        ],
+        "frames": 10
+      },
+      {
+        "buttons": [],
+        "frames": 20
+      },
+      {
+        "buttons": [
+          "start"
+        ],
+        "frames": 2
+      },
+      {
+        "buttons": [],
+        "frames": 20
+      },
+      {
+        "buttons": [],
+        "frames": 100
+      },
+      {
+        "buttons": [
+          "start"
+        ],
+        "frames": 10
+      },
+      {
+        "buttons": [],
+        "frames": 50
+      },
+      {
+        "buttons": [
+          "a"
+        ],
+        "frames": 2
+      },
+      {
+        "buttons": [],
+        "frames": 45
+      },
+      {
+        "buttons": [
+          "a"
+        ],
+        "frames": 2
+      },
+      {
+        "buttons": [
+          "select"
+        ],
+        "frames": 2
+      },
+      {
+        "buttons": [
+          "right"
+        ],
+        "frames": 10
+      },
+      {
+        "buttons": [],
+        "frames": 8
+      },
+      {
+        "buttons": [
+          "a"
+        ],
+        "frames": 10
+      },
+      {
+        "buttons": [],
+        "frames": 30
+      },
+      {
+        "buttons": [
+          "a"
+        ],
+        "frames": 2
+      },
+      {
+        "buttons": [],
+        "frames": 15
+      },
+      {
+        "buttons": [
+          "b"
+        ],
+        "frames": 2
+      },
+      {
+        "buttons": [],
+        "frames": 5
+      },
+      {
+        "buttons": [
+          "select"
+        ],
+        "frames": 2
+      },
+      {
+        "buttons": [],
+        "frames": 5
+      },
+      {
+        "buttons": [
+          "start"
+        ],
+        "frames": 2
+      },
+      {
+        "buttons": [],
+        "frames": 30
+      },
+      {
+        "buttons": [
+          "down"
+        ],
+        "frames": 2
+      },
+      {
+        "buttons": [
+          "right"
+        ],
+        "frames": 2
+      },
+      {
+        "buttons": [
+          "b"
+        ],
+        "frames": 2
+      },
+      {
+        "buttons": [],
+        "frames": 30
+      },
+      {
+        "buttons": [
+          "a"
+        ],
+        "frames": 15
+      },
+      {
+        "buttons": [],
+        "frames": 10
+      },
+      {
+        "buttons": [
+          "start"
+        ],
+        "frames": 20
+      },
+      {
+        "buttons": [],
+        "frames": 20
+      },
+      {
+        "buttons": [
+          "start"
+        ],
+        "frames": 1
+      },
+      {
+        "buttons": [],
+        "frames": 5
+      }
+    ],
+    "final_frame": 851,
+    "final_cpu_cycles": 25340939,
+    "final_context": {
+      "prg_banks": [
+        0,
+        1,
+        14,
+        15
+      ]
+    },
+    "note": "Issue each button set then step the stated frames. Between named press helpers there was an immediate release call, even when zero released frames occurred before the next button set. No reset or ROM patch. Natural route has not been replayed end-to-end from reset; preserved exact achieved machine counters/snapshots support continuation."
+  },
+  "milestones": [
+    {
+      "milestone": "copyright/title",
+      "status": "visited",
+      "result": "Local title/copyright identifies game",
+      "evidence": [
+        "evidence/game-start.png",
+        "evidence/selection.png"
+      ]
+    },
+    {
+      "milestone": "16-dinosaur selection grid",
+      "status": "visited",
+      "route": "Start frames512\u2013522, then50 released frames, grid at572",
+      "evidence": [
+        "evidence/grid3.png"
+      ]
+    },
+    {
+      "milestone": "point-to-point picture and palette",
+      "status": "visited",
+      "route": "A frames572\u2013574; further bounded waits/interactions until full stegosaurus at681; A/B/Select by712",
+      "result": "Full-size picture, cursor, colored/patterned palette visibly present; actual filled area not confirmed",
+      "evidence": [
+        "evidence/picture1.png",
+        "evidence/palette-paint.png",
+        "evidence/painting-snapshot.json"
+      ]
+    },
+    {
+      "milestone": "fill region, return to grid, alternate selection/freehand via B",
+      "status": "attempted",
+      "route": "Detailed natural segments712\u2013851",
+      "result": "Palette selection moved but picture remained stegosaurus; Start did not visibly exit. Inputs confirmed in RAM$01/$02 (Start=0x10 at846); transition/state prerequisite unresolved. Do not assume new selection or successful fill.",
+      "evidence": [
+        "evidence/freehand-alternate.png",
+        "evidence/return-result.png",
+        "evidence/fill-result.png"
+      ]
+    },
+    {
+      "milestone": "freehand mode shortcut",
+      "status": "attempted",
+      "artificial": true,
+      "route": "At frame851 save snapshot before-mode-patch; write ram$004D=[0]; right+down15frames; A5frames; release8frames; ends879 with context[0,1,14,15]",
+      "contract": "Directional handler checks$4D to choose point traversal versus direct coordinate updates. This alone does not establish full mode entry contract.",
+      "result": "Write accepted/artificial=true but coordinates$21/$22 remained156/124 and screenshot unchanged; no successful freehand movement or new-picture visit claimed. Restored clean named snapshot to851, reasserted buttons=[] before handoff.",
+      "evidence": [
+        "evidence/artificial-freehand-state.json",
+        "evidence/artificial-freehand-ram.json",
+        "evidence/artificial-freehand.png"
+      ]
+    },
+    {
+      "milestone": "other dinosaur choices / full freehand drawing",
+      "status": "deferred",
+      "reason": "Concrete return/mode entry contract missing; redirect should inspect handler gates rather than repeat button waits or arbitrary RAM edits."
+    },
+    {
+      "milestone": "later levels/bosses/ending",
+      "status": "unavailable",
+      "reason": "Manual/local evidence describes a sixteen-picture coloring activity, with no level/boss/win progression or terminal ending established. No conventional progression fabricated."
+    },
+    {
+      "milestone": "round01 redirect: supported exit, alternate picture and freehand painting",
+      "status": "visited",
+      "artificial": true,
+      "route": "Import natural released-input snapshot round01-static-contracts/after-exit-snapshot.json at1076, busy0/foregroundC13E. Correct NES input schema buttons[]. Release2, Start2 schedules timer199/inputC191 at1080. Save start-scheduled snapshot; write RAM$10=1 and wait100frames in20frame calls: menu at1180. Import menu-ready snapshot for preserved continuation: release2,Right2,release2,B2 chooses picture_index$43=1 and mode$4D=0 at1188. Release,save choice,write RAM$10=1,step10frame chunks until1268 busy0/inputC1F0. Right+Down6 moves168/160->180/172. Release2,A2 schedules fill at1278;release80frames shows visibly painted red regions at1358, still active foregroundC4B6.",
+      "observed_result": "Initialized alternative dinosaur picture, correct freehand mode, actual diagonal cursor movement and visible region painting. Timer shortcuts explicitly artificial; Start before first patch was natural. No completed flood claimed at1358. Continued saved machine: fill active1368 then idle foregroundC13E at1378; completed painting confirmed.",
+      "evidence": [
+        "redirect/round01-static-contracts/runtime4-progress.json",
+        "redirect/round01-static-contracts/runtime5.json",
+        "redirect/round01-static-contracts/menu-ready.png",
+        "redirect/round01-static-contracts/freehand-ready.png",
+        "redirect/round01-static-contracts/freehand-after-fill.png",
+        "redirect/round01-static-contracts/freehand-after-fill-snapshot.json",
+        "redirect/round01-static-contracts/runtime6.json",
+        "redirect/round01-static-contracts/fill-continuation-snapshot.json",
+        "redirect/round01-static-contracts/fill-continuation.png"
+      ],
+      "limitations": "runtime.py/runtime2.py/runtime3.py input calls used wrong button/pressed schema and are no-op released-input observations, not negative game tests; runtime3 foreground shortcut separately artificial. runtime4 upload timeout closed its Python protocol parent before recovery; runtime5 resumed saved menu checkpoint with error-aware live handling and no timeout. Initial printed picture field in runtime5 console used wrong index76; authoritative raw RAM$43 is1."
+    }
+  ]
+}
