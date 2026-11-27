@@ -1,0 +1,41 @@
+{
+  "scope": "Physical classification coverage under explicit user batch fallback, separate from evidence-backed structural completion",
+  "whole_rom_complete": false,
+  "whole_rom_map_coverage_complete": true,
+  "whole_rom_evidence_backed_complete": false,
+  "terminal_status": "complete batch fallback workflow with passing strict editorial audit and fresh byte identity",
+  "total_bytes": 131088,
+  "classified_bytes": 131088,
+  "unknown_bytes": 0,
+  "classification_percentage": 100.0,
+  "kinds": {
+    "Code": 12948,
+    "Data": 118140
+  },
+  "provenance": {
+    "Observed": 5150,
+    "Static": 125931,
+    "Manual": 7
+  },
+  "evidence_backed_bytes": 131081,
+  "manual_fallback_bytes": 7,
+  "unknown_ranges": [],
+  "fallback_ranges": [
+    {
+      "offset": 114704,
+      "length": 6
+    },
+    {
+      "offset": 122350,
+      "length": 1
+    }
+  ],
+  "fallback_record": "analysis/fallback-004-disassembly-handoff.md",
+  "prior_audit": "analysis/fallback-004/prior-current-audit.json",
+  "validation": "analysis/fallback-final/map-validation.json",
+  "fidelity_checkpoint": "analysis/pass-004-verification.json",
+  "rom_sha256": "5d82c76a81c043a06a3b38bef6fdc998464f28f8bd4bdcf82a60a6871d570cde",
+  "map_sha256": "b30c4a50b2a26f5d40d30bb6f341324a51cca641f624fb2aa329cd6cba893142",
+  "final_verification": "analysis/fallback-final/verification.json",
+  "final_conclusions": "analysis/fallback-final-handoff.md"
+}

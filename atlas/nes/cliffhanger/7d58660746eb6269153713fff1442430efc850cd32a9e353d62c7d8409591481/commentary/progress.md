@@ -1,0 +1,9 @@
+# Commentary progress — manual residual fallback
+
+Full current-source readability is complete for 262160 classified bytes, including 26640 code bytes and 10 user-directed Manual fallback bytes. Zero bytes are unknown in the map; the three fallback fragments still have unresolved code/data ambiguity. No new structural or runtime evidence is claimed.
+
+Preserved entire prior commentary in analysis/round-005/commentary-prior before fresh baseline preparation. All 7348 unchanged physical regions retain sound prior naming, prose and review credit, including A600 and its dependencies. Reconciled all 7351 scaffold entries against the current state and checked all source locations. Updated only the three literal fragment notes at source/game.asm:6028,24390,32911 to explain Manual fallback and the unresolved TXA bridge, INC/INC/RTS helper and timer-clear interpretations. Literal bytes, routine/branch/RAM names, constants, emission and source line locations are preserved. No remaining current-source readability gap or deferred range. Existing generic-data and semantic uncertainty reviews remain valid.
+
+Separate final editorial review completed for this checkpoint. Reused prior sound review, inspected the three fallback boundaries and known contract/name concerns, and independently reconciled all 7351 regions, 7405 units and 14756 source references with the current map. No source change or deferred readability work was required. The previous duplicate verification paragraph was removed. Historical editing worklists retain early classification wording; current source/review and editorial-audit.md identify their historical status.
+
+Fresh final validation results and remaining limitations are recorded in analysis/manual-residual-fallback-final-validation.json and analysis/handoffs/manual-residual-fallback-final-acceptance.md. Prior final records are preserved. No research, gameplay, toolkit edit, archive, deletion or publication was performed.

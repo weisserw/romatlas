@@ -1,0 +1,19 @@
+# User-directed fallback disassembly handoff
+
+Phase complete under the explicit user batch exception; input pass-003, output pass-004. Historical terminal and rejection records remain unchanged. This record supersedes their current classification count only, not their evidence conclusions.
+
+ROM classification: 100.00% (131088 / 131088 bytes classified; 0 bytes unknown).
+
+This is map coverage under the authorized fallback: 131081 bytes retain evidence-backed structural classification (99.99466%); 7 bytes are user-directed Manual generic Data with unknown meaning, not newly proven non-code. Thus whole-ROM evidence-backed structural completion is not claimed. Code 12948; Data118140 (118133 prior evidence-backed +7 Manual). Provenance totals: Observed5150, Static125931, Manual7. Execution coverage unchanged and separate.
+
+Independently recomputed the unique physical-byte complement before any edit: exactly offset114704 length6 [0x1C010,0x1C016), bytes58 A9 FF 8D 07 80; offset122350 length1 [0x1DDEE,0x1DDEF), byte60. Total7<=10, matching the authorized list exactly. Input state equals portable current map, SHA256e4eba763e2ee1edaa6f4e6e911e8e2e029d15d5982f71402fb656dba55f6d07b. See [before.json](fallback-004/before.json).
+
+The six-byte prefix aliases fixed-bank CPU$C000..$C005 and plausibly decodes CLI;LDA #FF;STA$8007 before accepted initialization. Its intended structural role remains ambiguous. The isolated$60 aliases CPU$DDDE and plausibly decodes RTS, but nearby loop branches do not establish entry or fallthrough. Prior consumer/reference, layout, mapper bus-conflict and matched-epilogue checks remain in [coordinator rejection review](coordinator-rejection-review.md) and [primary residual review](redirect/r003-residual-review-20261126/rejection-review.md). Those checks did not prove Data. The user expressly authorized these residuals as generic Data with unknown meaning and Manual provenance; confidence1 records that explicit assertion, not independent structural certainty. No semantic label, executable view, deadness or reachability was invented.
+
+Supported configured binary /root/romatlas/target/release/romatlas was used. API sequence: api.describe; map.load analysis/state.json; map.validate; two map.annotate {region:{kind:Data,provenance:Manual,...}}; map.validate; map.save analysis/state.json; map.export maps/current.json. Exact requests/results: [rpc.json](fallback-004/rpc.json); reproducible driver [apply.py](fallback-004/apply.py). Old regions verified unchanged by ID/content. New IDs796/797. Post-save internal/portable maps equal; unique coverage and provenance verified independently in [after.json](fallback-004/after.json).
+
+Per-bank Code/Data/Unknown: banks0–13 each0/8192/0; bank14 6625/1567/0 (includes7ManualData); bank15 6323/1869/0. Header16Data. No lead/research redirect performed under this exception; prior lead histories and analysis remain intact.
+
+`python3 run.py checkpoint pass-004` validated the portable map, generated fresh source and verified byte-identical reconstruction: [verification](pass-004-verification.json), [portable map](../maps/pass-004.json), generated/pass-004. Current state/map SHA256b30c4a50b2a26f5d40d30bb6f341324a51cca641f624fb2aa329cd6cba893142. ROM SHA2565d82c76a81c043a06a3b38bef6fdc998464f28f8bd4bdcf82a60a6871d570cde remains unchanged.
+
+Next separate worker: commentary refresh for the two Manual regions and affected old Unknown notes, preserving prior editorial review; fresh final audit/byte verification and reading copy are coordinator/commentary work. Existing commentary was not edited in this phase. Do not infer acceptance of the changed source from the prior audit. No archive, deletion, publication or toolkit edits. Disk3.7GiB available, no scratch directory found, no cleanup performed. No new toolkit issues found; [toolkit issues](toolkit-issues.md) retains0confirmed bugs/0suspected bugs/1nonblocking missing feature NES-001.

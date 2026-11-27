@@ -1,0 +1,12 @@
+# Round 001 disassembly handoff — incomplete
+ROM classification: 92.55% (121318 / 131088 bytes classified; 9770 bytes unknown).
+
+Code6362/Data114956;391 regions, all classified bytes evidence-annotated. Banks0–13 each8192Data; bank14=3476Code/49Data/4667Unknown; bank15=2886Code/203Data/5103Unknown; header16Data. [Exact counts](round-001/counts.json), [130 unknown gaps](round-001/unknown-ranges.json), [structural evidence](round-001/data-review.md).
+
+Saved internal state analysis/state.json, portable mapping maps/current.json; checkpoint [verification](pass-001-verification.json) confirms generated/pass-001 byte-identical to unchanged ROM. Map digest10ecd32ac00236156562665b3fe0623a5c99ed16af05c1d0b15f8a6505a2a0f8. Full current-source commentary is next; editorial/readability not complete.
+
+Game is visually Classic Concentration (1990). [Scenarios](scenarios.json) retain routes, exact RAM/PC patches, snapshots and progression checklist. Natural setup/name/main board visited; source-supported artificial later rebus board and timed car final exercised; timeout produced GAME CODE/restart terminal. Artificial route: matching snapshot; $1F=0,$BF=2,PC=$E9F0; A→final init, Start→GET READY; $7F=0 releases sound wait; final timer/cursor tested; $1C=1 expires to terminal. Later-board shortcut uses $C7=1,PC=$EAC2, A and $7F=0. No natural wins asserted. Execution union2615 physical ROM opcode starts; RAM fetches retained separately, never attributed to ROM.
+
+Ready redirect avenues in [leads](leads.json): R001-L1 inspect $C921/$C9E7/$DBD1 four-byte inline graphics descriptors and $C997 variable records; R001-L2 prove ordinary callee return contracts and rejoin caller fallthroughs (safe closure currently stops every call); R001-L3 answer validation and car-success RAM contracts from saved matching/bonusplay snapshots; R001-L4 refine mixed generic banked assets into exact constituent schemas. Anchored $FBFC inline screen records already classified. Third deciding round/correct-wrong answer/car success remain concrete deferred progression work. This is an ordinary nonterminal handoff, not exhaustion or full compatibility.
+
+[Toolkit issues](toolkit-issues.md):0 confirmed bugs,0 suspected bugs,1 missing NES parameter-schema documentation/validation feature, no blocker. Use emulator.input {buttons:[...],port:1} and [] to release. Generic button/pressed silently supplied no input. Toolkit HEAD8dcb02b3a03c0a6831907921cf1243d62db6901f, configured binary unchanged. Disk3.8GiB free; analysis96MiB. No toolkit edits/archive/publication/deletion.

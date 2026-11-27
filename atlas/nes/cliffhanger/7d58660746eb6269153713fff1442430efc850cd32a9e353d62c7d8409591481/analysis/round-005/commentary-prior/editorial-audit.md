@@ -1,0 +1,11 @@
+# Final editorial acceptance
+
+Accepted current-source editorial readiness for round-004-disassembly, separately from terminal INCOMPLETE ROM classification (262150/262160; ten unknown bytes).
+
+Reused prior complete readability review and its preserved 26,634 code bytes, plus the reviewed six-byte A600 addition; did not require a whole-source reread. Checked full current inventory and source locations through final audit. All 7,351 scaffold entries and meaningful discovered units are reviewed. No concrete outstanding naming, comment, structure or contradictory-contract defect was found. Existing address-based internal storage labels do not replace the descriptive routine/branch symbols and nearby functional explanations. No cosmetic rewrite was needed.
+
+Targeted current-source inspection: game.asm:23743 installation/reset/first-tick contract and actor/stack/effective bank requirements; game.asm:6028,24390,32911 literal unknown boundaries and immediate consumers; game.asm:43345 tracking-identity termination precondition; game.asm:43508 saved-stack continuation; game.asm:50772 score nibble order and balanced pushes/pops. Checked D58E bank-pair semantics against current source at game.asm:41833 and existing uncertainties; sampled workspace.inc, sound.inc and tables.inc CPU alias/record/active-bank documentation. Names and comments distinguish established mechanical roles from unresolved game identities and natural entry.
+
+The residual one-, five- and four-byte fragments remain unknown, not generic data or asserted executable routines. Reused coordinator-rejection-review.md and round-004-redirect handoff: no concrete revised discriminator remains. Generic data retains bounded inspection credit; unresolved animation/artwork/sound identities, stage14 missing columns and scoped gameplay limitations remain in uncertainties.md. No new semantic claim or classification change follows from editorial acceptance.
+
+Final acceptance requires commentary.py audit (fresh exact rebuild and reading copy) and configured-binary map/store validation; actual results are recorded in audit.json and analysis/handoffs/final-editorial-acceptance.md. Source, frozen baseline, map and internal store are preserved; no toolkit edit or publication.

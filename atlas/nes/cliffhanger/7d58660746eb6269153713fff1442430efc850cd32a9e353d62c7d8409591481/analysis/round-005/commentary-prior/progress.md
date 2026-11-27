@@ -1,0 +1,13 @@
+# Commentary progress — round004
+
+Current-source readability is complete for 262150 classified bytes, including 26640 code bytes. Ten bytes remain structurally unknown in three literal fragments (100415+1, 108281+5, 111386+4). Rounded 100.00% classification does not mean whole-ROM completion.
+
+Preserved the entire prior commentary tree in analysis/round-004/commentary-prior before fresh baseline preparation. Reused 7350 exact physical blocks and their valid full-source review credit. The only changed structural range is six bytes at physical 108048..108054, PRG bank 13 CPU $A600..$A606. InstallVariantIdleAnimationAndTick now explains its behavior-selected idle script installation, cursor reset, delay-one first tick, actor workspace, effective PRG banks and ordinary return-address preconditions. Both calls use existing descriptive symbols. Natural entry and execution remain unresolved. Removed only this fragment from the stale current unknown note; prior limitations and historical records remain intact.
+
+All 7351 current scaffold records are reviewed; no current-source readability ranges are deferred. Connected animation producer/consumer contracts were checked against round-004/review.md and established source. The prior full readability review remains valid for unchanged routines and data. The current uncertainty inventory retains unknown actor/animation identities and three structural fragments with honest literal boundaries.
+
+Fresh verification passes byte-identical against the unchanged input ROM, and reading-after.asm is refreshed. readability-checks.json records current scaffold, source locations, preserved physical code and source/ROM hashes. Final editorial_audit remains pending, reserved for final acceptance after redirect. No final audit, redirect investigation, toolkit modification, publishing, archive or deletion occurred. Disk has 3.4 GiB available; no exploratory scratch output was created.
+
+## Final editorial acceptance
+
+Targeted cleanup accepted after reuse of valid full readability review and inspection of new A600, literal residual boundaries, stack/tracking/bank contracts and shared aliases. No concrete source defect required a rewrite. editorial-audit.md records substantive scope and uncertainties. Final commentary.py audit passed: 7351 regions, 7405 units reviewed, fresh byte-identical rebuild and refreshed reading-after.asm. Configured-binary current map/store validations passed; identities preserved in analysis/final-editorial-identities.json. No readability/editorial work remains. Classification remains terminal INCOMPLETE with ten unknown bytes; no ROM completion or full gameplay/hardware claim.

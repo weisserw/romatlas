@@ -1,0 +1,23 @@
+# Round003 commentary
+
+Full current-source readability covers1249 Code regions/21274 instructions,172 non-code regions and67 unknown boundaries. Entire prior commentary was copied and hash-verified before fresh preparation under analysis/round-003/commentary-prior; its original live directory is retained separately. Physical identity carries1198 Code regions and423 meaningful units. All51 new Code regions (3144 bytes),106 Data regions (10375 bytes), existing backlog and affected dependencies have been reviewed. Review inventory totals1488 scaffold records and593 meaningful units; final editorial audit remains pending.
+
+Mechanical names and comments explain player axis steering and paired stack restoration, crossing/actor allocation, local certified service tails, background rectangles, score ranking/name entry, text/OAM formats and collision quadrant corrections. Context-specific menu RAM aliases explain shared gameplay storage without changing physical identity. EB8B now uses26 response pointers; C109 remains eight states. The fourFFEF JMP suffixes remainUnknown with explicit boundary notes. Prior graphics/count/literal corrections remain verified.
+
+No readability gap remains; uncertain identities/allocation/domain meanings are recorded in uncertainties.md. Classification remains129712/131088 (98.95%),1376 unknown. Byte-identical coherent verification passed; fresh final verification/read result is recorded in analysis/round-003-commentary-verification.json and analysis/round-003/commentary-scope.json. No toolkit/ROM/classification edits. Final editorial/archive acceptance is deferred.
+
+Prior phase record retained below.
+
+# Round 002 commentary complete
+
+Current-source readability is complete for checkpoint maps/round-002-disassembly-final.json. ROM classification remains incomplete at116193/131088 bytes (88.64%);14895 unknown bytes in199 intervals. Full editorial acceptance is pending and no final audit was run.
+
+Reviewed all1198 Code regions/43656 bytes,66 non-code regions/72537 bytes (header included), and199 unknown boundary intervals. All1463 scaffold records have reviewed summaries and source locations. Preserved173 sound meaningful units and added250, for423 units. Carried all761 prior physical code ranges;437 expanded code ranges received current mechanics/prose and control/field symbols. There are19914 instruction starts and2747 validated contextual instruction labels,243 RAM/hardware equates plus15 collision-local storage aliases. Exact source/reading identities and mechanical scope checks are in analysis/round-002/commentary-scope.json.
+
+The previous entire commentary was preserved before preparation at analysis/round-002/commentary-prior and commentary-prior-live; every file in the hash manifest was rechecked. Physical source boundaries and dependency review preserve sound prior prose/names. Twenty-nine old entry summaries were corrected for newly supported continuations/mechanics; earlier active notes estimated thirty-four, superseded by this exact count. Three mandatory corrections now explain sixteen source bytes per bit-reversed tile, the extra256 output bytes for zero low counter, and COUNT distinct stage literals. The independent eight-byte/eight-zero padded uploader remains distinct.
+
+Expanded explanations cover actor steering/spawning/attachments and recovery; action-slot movement/hits; sprite descriptor orientation, clipping and optional attributes; phase/grid/PPU readback; audio jump/counted substreams and motion synthesis; collision command parsing, squared-distance and quadrant/slope responses; stage defaults, row/graphics/palette/text structures. Contextual RAM names retain scratch reuse. Unknown intervals have honest boundaries; generic data does not acquire invented container/fill meanings. C001-C006 current conclusions and remaining questions are in uncertainties.md.
+
+Fresh final byte-identical verification: analysis/round-002-commentary-verification.json, also commentary/verification.json. Reading copy refreshed at commentary/reading-after.asm. ROM/current map/internal state match the frozen current checkpoint; no classification edits. No current-source readability backlog remains. Final editorial audit is reserved for final acceptance.
+
+Toolkit report unchanged: NES-001 confirmed documentation/API-validation issue, NES-002 documented precision missing feature, no blockers. No new issue found during commentary. No gameplay replay or unsupported API was needed; static source and existing evidence suffice for these explanations. No toolkit/ROM edits, archive, deletion, cleanup or publication. All source/assets/evidence remain local; about3.4GiB free at the last check.

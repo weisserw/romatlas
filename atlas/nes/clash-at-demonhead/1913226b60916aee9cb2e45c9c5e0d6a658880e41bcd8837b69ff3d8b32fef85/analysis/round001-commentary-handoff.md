@@ -1,0 +1,13 @@
+# Round001 commentary handoff
+
+Status: current-source readability complete; ROM classification incomplete; final editorial acceptance pending.
+
+Scope: unchanged pass-001, 148886/262160 classified (56.79%), 113274 unknown. Full 8280-line frozen listing inspected. All 513 classified code fragments and ten data/image regions now have local mechanical explanations; every unknown interval has an honest boundary note. No known classified naming/comment backlog remains. Source has functional bank-aware routine/branch labels, consistent RAM/hardware aliases, voice-field constants and consumer-derived ROM table equates; those equates do not classify target bytes. Review scaffold: 940 reviewed entries, 243 compact units. `editorial_audit` remains pending; final audit was not invoked.
+
+Fresh byte-identical verification passed: commentary/verification.json; source SHA256 2d174f96a7ee27a2d52638f68e91325bae8d3f690f4a0fb7a699e9fdd5950690. Refreshed commentary/reading-after.asm. Input SHA256 unchanged; maps/current.json equals commentary/baseline.json and analysis/state.json equals commentary/phase1-state.json. Frozen before/ and reading-before preserved.
+
+Examples: actor frame cache/OAM rotation, scene metatile/attribute streaming, inventory/status widgets and dialogue timing, audio voice scripts/envelopes/repeat/call stack, player camera/trajectory/contact samples, actor collision scheduling, MMC1 software bank stack, NMI DMA and controller edges. Draft consistency review corrected MMC1 registers: $9fff control, $bfff CHR0, $c000 CHR1; split routines change CHR1. Actor auxiliary fields are documented unions, not fixed game meanings.
+
+Unresolved meanings: numbered actor variants, generic status values and optional widget/effect states, text control handlers, special scene orientation/IDs, full table extents, unknown reset continuation and art ownership. All are explained in commentary/uncertainties.md; sparse classified fragments explain established mechanics rather than asserting full routines. Existing redirect L001 scene initialization, L002 dialogue progression and L003 static dispatch closure remain useful. No new execution/classification or reachability claim made.
+
+Durable details: commentary/progress.md, commentary/review.json, analysis/commentary/coverage.json, source and frozen baseline. Helper scripts/notes are drafting history; maintained source is authoritative and must not be regenerated over. No toolkit issue, cleanup, archive or publication occurred. All generated source/assets stay local; maps/current.json remains the supported ROM-free mapping deliverable.

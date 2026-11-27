@@ -1,0 +1,13 @@
+# Coordinator archive preparation contract
+
+Inspected `/root/romatlas/scripts/archive.py` read-only at workflow start. No archive command has been executed or authorized.
+
+The `FINAL` list automatically selects standard maps, state, scenarios, investigation/gameplay/progress, commentary baseline/review/audit/verification/progress/uncertainties/editorial-audit. NES `.sym` names are replaced with `.json`. Additional final Markdown must be explicitly selected with `documents`; paths must be workspace-relative under analysis/ or commentary/, end in .md, exist, contain no parent traversal, and exclude analysis/toolkit-issues.md. `omitted_documents` cannot overlap selected artifacts. The scanner recursively accounts for *.md in analysis/ and commentary/, except paths containing before/ or source/. Toolkit issues and commentary prompt/workflow/AGENTS are recognized separately. Unrecognized Markdown must be explicitly selected or omitted; filenames are not guessed.
+
+Before terminal handoff the coordinator must write archive-options.json with documents and omitted_documents arrays, inspect every additional Markdown document, preserve final findings/handoffs/history needed to understand the result, and validate complete scanner accounting without invoking archive. The options file is preparation only; archive also has editorial and fidelity gates which must be checked independently for final acceptance. No publication or cleanup is authorized.
+
+## Source-location contract correction after round007
+
+The final commentary/archive inventory contract resolves each review `source` location relative to `commentary/source`, so the correct location is `game.asm:LINE`, not `source/game.asm:LINE`. Earlier phase-local checks had tested locations relative to commentary and therefore missed this metadata defect. The coordinator preserved the old current review in analysis/round007/review-before-location-contract-repair.json, removed only redundant source/ prefixes from the current review, and checked the complete scaffold, unit bounds and real source paths with cached line counts. Evidence: analysis/round007/coordinator-post-finalizer-check.json. Readable source, classification and binary identity did not change. Future phase merges and final acceptance must honor this contract.
+
+The unretained original round007 finalizer was observed reaching its final frontier write. Its script performs no later workspace writes. Matching passed verification and source hash supported restoring the frontier wording; evidence: analysis/round007/finalizer-resolution.json. No unknown late source writer remains from that invocation.

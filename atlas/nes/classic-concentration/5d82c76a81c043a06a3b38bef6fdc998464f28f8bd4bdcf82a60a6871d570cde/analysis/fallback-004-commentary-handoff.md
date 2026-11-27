@@ -1,0 +1,11 @@
+# Pass004 commentary handoff
+
+Current-source readability complete:12948Code/118140Data,0Unknown; all797 scaffold entries and962 meaningful units reviewed,6233 instruction starts. Valid previous full-source credit reused and reconciled against fresh pass004 map by physical identity.795 unchanged regions retain evidence/summary contracts; two changed ranges114704+6 and122350+1 are Manual user-directed generic Data, unknown meaning, without independent non-code proof. Source explains the retained CLI/LDA/STA and isolated RTS possibilities without claiming entry or reachability. No research or classification changes.
+
+Entire previous commentary preserved first at analysis/fallback-004/commentary-prior, including historical acceptance. Fresh before/baseline/state frozen from pass004. Map/state/baseline SHA256 b30c4a50b2a26f5d40d30bb6f341324a51cca641f624fb2aa329cd6cba893142. Evidence-backed131081 bytes plus7 user fallback bytes gives complete map coverage, not complete evidence-backed structural proof.
+
+Artifacts: commentary/progress.md, commentary/uncertainties.md, commentary/review.json; analysis/fallback-004/commentary-coverage.json and commentary-integrate.py. Every inventory source reference checked; both boundary prose and dependent uncertainty claims updated. Source/assets carried intact except two boundary comment edits; no meaningful units deleted. Prior useful naming/commentary and editorial fixes preserved.
+
+Fresh supported verify passed ok=true,byte_identical=true (commentary/verification.json). Reading-after refreshed and exact-source containment confirmed. Source SHA2562d7b6a2b86b49683702ed4dabd70776e87b8e2a198fb70bc3bcbad8484c11f4e; reading SHA25668be40fa12dff559e23c9c7bc380d887b7eae817474e139980f8d01d7847f207. ROM unchanged5d82c76a81c043a06a3b38bef6fdc998464f28f8bd4bdcf82a60a6871d570cde.
+
+Actual readability gaps: none. Remaining meanings and original structural ambiguity are documented, not resolved by fallback. Final editorial acceptance pending: next separate worker checks changed boundary prose/inventory, reused reviews and dependency consistency, then runs fresh supported audit/verify/read. This commentary worker did not invoke final audit. No archive/delete/publish/toolkit edits. Historical terminal handoffs remain untouched.

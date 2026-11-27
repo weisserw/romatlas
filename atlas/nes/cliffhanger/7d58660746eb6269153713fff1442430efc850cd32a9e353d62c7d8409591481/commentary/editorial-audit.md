@@ -1,0 +1,11 @@
+# Final editorial acceptance — manual residual fallback
+
+Separate final review accepts the current source editorially. All 262160 physical bytes are classified, including exactly ten user-directed generic Data bytes with Manual provenance; the fallback convention supplies no new structural or runtime evidence.
+
+Reused sound prior full-source review for 7348 unchanged regions and 26640 code bytes. Inspected all three changed literal notes and their preceding/following boundaries at game.asm:6028,24390,32911. They retain the possible TXA bridge, INC/INC/RTS helper and timer-clear interpretations without asserting non-code, format, consumer or reachability proof. No invented semantic name is needed for these fragments. Literal boundaries and code contracts are unchanged.
+
+Rechecked A600 install/reset/first-tick and effective-bank contract, D58E logical versus physical bank semantics, tracking-search termination precondition, saved-stack continuation, score nibble order and stack balance, plus shared RAM/sound/table alias headers. Existing descriptive routine/branch names explain mechanical roles; unresolved identities retain address labels where appropriate. No actual source naming/comment defect, missing meaningful structure or deferred readability work was found. Full inventory alignment and every review source location were checked independently in analysis/manual-residual-fallback-final-inventory.json.
+
+The auxiliary *-notes.json files are historical editing worklists, not the accepted inventory: some early summaries refer to then-unclassified continuations. Current source and review.json supersede those summaries. Preserve them as investigation history. Prior final acceptance and its records remain preserved, including analysis/round-005/commentary-prior and analysis/handoffs/final-editorial-acceptance.md.
+
+Final strict audit performs a fresh exact rebuild and refreshes the reading copy; actual acceptance results are recorded separately in analysis/manual-residual-fallback-final-validation.json and the new final handoff. Remaining structural ambiguity, unnamed identities, natural-entry limits, stage14 column discrepancy and scoped gameplay/hardware coverage are unchanged in uncertainties.md. No redirect, toolkit edit, archive, deletion or publication was performed.

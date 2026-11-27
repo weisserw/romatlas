@@ -1,0 +1,13 @@
+# Round002 redirect handoff — supported combined batch
+
+Input `pass-002-final`, current-source readability complete; source SHA2569c658e925f43c7810444b822d7dc780dfda4f3859578d9347702694053f49a69. Map/state unchanged:199961/262160classified,62199unknown across363intervals. No new runtime execution or classification.
+
+L007/L008 are ready in `analysis/leads.json`. Unique evidence directory `analysis/redirect/round002-20261126-a/`; use `proposals.json`, `proposal-summary.json`, `progress.md` and `unknown-ledger.json`. Proposed31244distinctunknownbytes:23976Code and7268Data;0accepted. If all accepted,30955unknown remain. All code/data, instruction-start and known-role conflict checks pass.
+
+Code evidence combines full RAM indexed-write bounds, supported directcallee entries, bank/stack helper returns, explicit conditional normal returns, literal bank-select/pop transfers, finite pointer consumers and resetcontracts. All96behavior/constructor entries, named menu/player/terrain/widget/projectile/interaction dispatchers and50inlinepools/367entries were followed through supported continuations. Static inference and natural reachability remain separate; context/mode3/frame assumptions are explicit. Pointer values alone do not establish code.
+
+Primary artifacts: `actor-domain-proof.json`, `actor-stream-proof.json`, `timed-table-proofs.json`, `entry-table-proofs.json`, `remaining-dispatch-proof.json`, `data-proof.json`, `ppu-stream-proof.json`, `reset-proof.json`, `contact-contract-proof.json`, plus closure/return/inline decoder chains and runnable recipes. Actor streams include a separately justified generic40byte gap; unknown ownership does not block noncode classification. Whole mixed menu gaps and full masked selector domains were rejected only within their actual counterexample scope.
+
+Important correction for next commentary: EB2D consumes TWO inline fallback pointerbytes. Nonzero/nonFFcontact resumes at callerJSR+5; FFcontact jumps via that pointer; zero discards the helper caller. Current three-byte-inline-call wording is incorrect. Do not resume at ordinaryJSR+3 or annotate inline pointers as instructions.
+
+Actual deferral reasons/next prerequisites in `deferred-avenues.json`: unresolved indirect buffer bounds and nested bank/frame contracts at remaining call barriers; ambiguous residual mixed structures. Saved broad later-route/final/THE END and natural dialogue evidence retained; no unchanged replay. No terminal exhaustion claim. Independently review/classify this whole batch, complete full current-source commentary, then redirect on the updated ledger. Final editorial audit remains pending. ROM/configured binary, historical work, map/state and source were preserved; no cleanup, toolkit edit, archive or publication.

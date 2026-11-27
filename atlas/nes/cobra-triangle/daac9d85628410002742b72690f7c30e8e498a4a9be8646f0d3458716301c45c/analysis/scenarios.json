@@ -1,0 +1,766 @@
+{
+  "version": 1,
+  "scenarios": [
+    {
+      "id": "R1-stage-25",
+      "milestone": "Race course",
+      "status": "visited",
+      "route_or_patch": {
+        "snapshot": "analysis/round-001/skip-2.snapshot.json",
+        "pre_step": [
+          {
+            "unit": "cycle",
+            "count": 10000,
+            "max_operations": 20000,
+            "timeout_ms": 3000
+          },
+          {
+            "unit": "operation",
+            "count": 1,
+            "max_operations": 1000,
+            "timeout_ms": 1000
+          }
+        ],
+        "patches": {
+          "$00ED": 0,
+          "$0738": 9,
+          "$05F5": 12
+        },
+        "registers": {
+          "pc": 33133
+        },
+        "entry_context": {
+          "prg_banks": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        "input": [
+          {
+            "buttons": [],
+            "port": 1
+          },
+          {
+            "frames": 25,
+            "max_operations": 10000000,
+            "timeout_ms": 15000
+          },
+          {
+            "buttons": [
+              "a",
+              "b",
+              "right"
+            ],
+            "port": 1
+          },
+          {
+            "frames": 20,
+            "max_operations": 10000000,
+            "timeout_ms": 15000
+          },
+          {
+            "buttons": [],
+            "port": 1
+          }
+        ],
+        "stage_patches": {
+          "$0737": 25,
+          "$0702": 0
+        }
+      },
+      "observed_result": "River-bank course and boat rendered; acceleration/fire/steering exercised.",
+      "evidence": [
+        "analysis/round-001/extra-25.ppm",
+        "analysis/round-001/extra-25.snapshot.json",
+        "analysis/round-001/extra-25-ram.json",
+        "analysis/round-001/rpc.jsonl"
+      ],
+      "reachability": "Artificial stage-entry scenario; natural progression unproved."
+    },
+    {
+      "id": "R1-stage-26",
+      "milestone": "Collect pods",
+      "status": "visited",
+      "route_or_patch": {
+        "snapshot": "analysis/round-001/skip-2.snapshot.json",
+        "pre_step": [
+          {
+            "unit": "cycle",
+            "count": 10000,
+            "max_operations": 20000,
+            "timeout_ms": 3000
+          },
+          {
+            "unit": "operation",
+            "count": 1,
+            "max_operations": 1000,
+            "timeout_ms": 1000
+          }
+        ],
+        "patches": {
+          "$00ED": 0,
+          "$0738": 9,
+          "$05F5": 12
+        },
+        "registers": {
+          "pc": 33133
+        },
+        "entry_context": {
+          "prg_banks": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        "input": [
+          {
+            "buttons": [],
+            "port": 1
+          },
+          {
+            "frames": 30,
+            "max_operations": 10000000,
+            "timeout_ms": 15000
+          },
+          {
+            "buttons": [
+              "a",
+              "b",
+              "right"
+            ],
+            "port": 1
+          },
+          {
+            "frames": 20,
+            "max_operations": 10000000,
+            "timeout_ms": 15000
+          },
+          {
+            "buttons": [],
+            "port": 1
+          }
+        ],
+        "stage_patches": {
+          "$0737": 26,
+          "$0702": 1
+        }
+      },
+      "observed_result": "Distinct ramp course rendered; A/B/right 20 frames plus later left replay.",
+      "evidence": [
+        "analysis/round-001/visit-26.ppm",
+        "analysis/round-001/visit-26.snapshot.json",
+        "analysis/round-001/visit-26-ram.json",
+        "analysis/round-001/rpc.jsonl"
+      ],
+      "reachability": "Artificial stage-entry scenario; natural progression unproved."
+    },
+    {
+      "id": "R1-stage-27",
+      "milestone": "Dispose of mines",
+      "status": "visited",
+      "route_or_patch": {
+        "snapshot": "analysis/round-001/skip-2.snapshot.json",
+        "pre_step": [
+          {
+            "unit": "cycle",
+            "count": 10000,
+            "max_operations": 20000,
+            "timeout_ms": 3000
+          },
+          {
+            "unit": "operation",
+            "count": 1,
+            "max_operations": 1000,
+            "timeout_ms": 1000
+          }
+        ],
+        "patches": {
+          "$00ED": 0,
+          "$0738": 9,
+          "$05F5": 12
+        },
+        "registers": {
+          "pc": 33133
+        },
+        "entry_context": {
+          "prg_banks": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        "input": [
+          {
+            "buttons": [],
+            "port": 1
+          },
+          {
+            "frames": 30,
+            "max_operations": 10000000,
+            "timeout_ms": 15000
+          },
+          {
+            "buttons": [
+              "a",
+              "b",
+              "right"
+            ],
+            "port": 1
+          },
+          {
+            "frames": 20,
+            "max_operations": 10000000,
+            "timeout_ms": 15000
+          },
+          {
+            "buttons": [],
+            "port": 1
+          }
+        ],
+        "stage_patches": {
+          "$0737": 27,
+          "$0702": 2
+        }
+      },
+      "observed_result": "Distinct mine-course initialization map5/type1 observed and inputs exercised; mine disposal completion unverified.",
+      "evidence": [
+        "analysis/round-001/visit-27.ppm",
+        "analysis/round-001/visit-27.snapshot.json",
+        "analysis/round-001/visit-27-ram.json",
+        "analysis/round-001/rpc.jsonl"
+      ],
+      "reachability": "Artificial stage-entry scenario; natural progression unproved."
+    },
+    {
+      "id": "R1-stage-28",
+      "milestone": "Reach finish / hazards",
+      "status": "visited",
+      "route_or_patch": {
+        "snapshot": "analysis/round-001/skip-2.snapshot.json",
+        "pre_step": [
+          {
+            "unit": "cycle",
+            "count": 10000,
+            "max_operations": 20000,
+            "timeout_ms": 3000
+          },
+          {
+            "unit": "operation",
+            "count": 1,
+            "max_operations": 1000,
+            "timeout_ms": 1000
+          }
+        ],
+        "patches": {
+          "$00ED": 0,
+          "$0738": 9,
+          "$05F5": 12
+        },
+        "registers": {
+          "pc": 33133
+        },
+        "entry_context": {
+          "prg_banks": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        "input": [
+          {
+            "buttons": [],
+            "port": 1
+          },
+          {
+            "frames": 25,
+            "max_operations": 10000000,
+            "timeout_ms": 15000
+          },
+          {
+            "buttons": [
+              "a",
+              "b",
+              "right"
+            ],
+            "port": 1
+          },
+          {
+            "frames": 20,
+            "max_operations": 10000000,
+            "timeout_ms": 15000
+          },
+          {
+            "buttons": [],
+            "port": 1
+          }
+        ],
+        "stage_patches": {
+          "$0737": 28,
+          "$0702": 3
+        }
+      },
+      "observed_result": "Different narrowing river course rendered, map8/type4; end transition unverified.",
+      "evidence": [
+        "analysis/round-001/extra-28.ppm",
+        "analysis/round-001/extra-28.snapshot.json",
+        "analysis/round-001/extra-28-ram.json",
+        "analysis/round-001/rpc.jsonl"
+      ],
+      "reachability": "Artificial stage-entry scenario; natural progression unproved."
+    },
+    {
+      "id": "R1-stage-29",
+      "milestone": "First monster encounter",
+      "status": "attempted",
+      "route_or_patch": {
+        "snapshot": "analysis/round-001/skip-2.snapshot.json",
+        "pre_step": [
+          {
+            "unit": "cycle",
+            "count": 10000,
+            "max_operations": 20000,
+            "timeout_ms": 3000
+          },
+          {
+            "unit": "operation",
+            "count": 1,
+            "max_operations": 1000,
+            "timeout_ms": 1000
+          }
+        ],
+        "patches": {
+          "$00ED": 0,
+          "$0738": 9,
+          "$05F5": 12
+        },
+        "registers": {
+          "pc": 33133
+        },
+        "entry_context": {
+          "prg_banks": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        "input": [
+          {
+            "buttons": [],
+            "port": 1
+          },
+          {
+            "frames": 30,
+            "max_operations": 10000000,
+            "timeout_ms": 15000
+          },
+          {
+            "buttons": [
+              "a",
+              "b",
+              "right"
+            ],
+            "port": 1
+          },
+          {
+            "frames": 20,
+            "max_operations": 10000000,
+            "timeout_ms": 15000
+          },
+          {
+            "buttons": [],
+            "port": 1
+          }
+        ],
+        "stage_patches": {
+          "$0737": 29,
+          "$0702": 4
+        }
+      },
+      "observed_result": "Map17/type9 initialized and open-water frame rendered; actual boss appearance or defeat not established within short visit.",
+      "evidence": [
+        "analysis/round-001/visit-29.ppm",
+        "analysis/round-001/visit-29.snapshot.json",
+        "analysis/round-001/visit-29-ram.json",
+        "analysis/round-001/rpc.jsonl"
+      ],
+      "reachability": "Artificial stage-entry scenario; natural progression unproved."
+    },
+    {
+      "id": "R1-stage-30",
+      "milestone": "Shoot targets",
+      "status": "visited",
+      "route_or_patch": {
+        "snapshot": "analysis/round-001/skip-2.snapshot.json",
+        "pre_step": [
+          {
+            "unit": "cycle",
+            "count": 10000,
+            "max_operations": 20000,
+            "timeout_ms": 3000
+          },
+          {
+            "unit": "operation",
+            "count": 1,
+            "max_operations": 1000,
+            "timeout_ms": 1000
+          }
+        ],
+        "patches": {
+          "$00ED": 0,
+          "$0738": 9,
+          "$05F5": 12
+        },
+        "registers": {
+          "pc": 33133
+        },
+        "entry_context": {
+          "prg_banks": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        "input": [
+          {
+            "buttons": [],
+            "port": 1
+          },
+          {
+            "frames": 30,
+            "max_operations": 10000000,
+            "timeout_ms": 15000
+          },
+          {
+            "buttons": [
+              "a",
+              "b",
+              "right"
+            ],
+            "port": 1
+          },
+          {
+            "frames": 20,
+            "max_operations": 10000000,
+            "timeout_ms": 15000
+          },
+          {
+            "buttons": [],
+            "port": 1
+          }
+        ],
+        "stage_patches": {
+          "$0737": 30,
+          "$0702": 5
+        }
+      },
+      "observed_result": "Map11/type3 initialized, river target course rendered and firing exercised; all-target objective not verified.",
+      "evidence": [
+        "analysis/round-001/visit-30.ppm",
+        "analysis/round-001/visit-30.snapshot.json",
+        "analysis/round-001/visit-30-ram.json",
+        "analysis/round-001/rpc.jsonl"
+      ],
+      "reachability": "Artificial stage-entry scenario; natural progression unproved."
+    },
+    {
+      "id": "R1-stage-31",
+      "milestone": "Guard people",
+      "status": "visited",
+      "route_or_patch": {
+        "snapshot": "analysis/round-001/skip-2.snapshot.json",
+        "pre_step": [
+          {
+            "unit": "cycle",
+            "count": 10000,
+            "max_operations": 20000,
+            "timeout_ms": 3000
+          },
+          {
+            "unit": "operation",
+            "count": 1,
+            "max_operations": 1000,
+            "timeout_ms": 1000
+          }
+        ],
+        "patches": {
+          "$00ED": 0,
+          "$0738": 9,
+          "$05F5": 12
+        },
+        "registers": {
+          "pc": 33133
+        },
+        "entry_context": {
+          "prg_banks": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        "input": [
+          {
+            "buttons": [],
+            "port": 1
+          },
+          {
+            "frames": 25,
+            "max_operations": 10000000,
+            "timeout_ms": 15000
+          },
+          {
+            "buttons": [
+              "a",
+              "b",
+              "right"
+            ],
+            "port": 1
+          },
+          {
+            "frames": 20,
+            "max_operations": 10000000,
+            "timeout_ms": 15000
+          },
+          {
+            "buttons": [],
+            "port": 1
+          }
+        ],
+        "stage_patches": {
+          "$0737": 31,
+          "$0702": 6
+        }
+      },
+      "observed_result": "Rendered eight people around a marked ring; A/B/right input supplied. A transient mid-instruction PC $0095 did not prove RAM execution; ram-instruction-check.json records subsequent actual ROM fetches. No RAM upload-origin inference.",
+      "evidence": [
+        "analysis/round-001/extra-31.ppm",
+        "analysis/round-001/extra-31.snapshot.json",
+        "analysis/round-001/extra-31-ram.json",
+        "analysis/round-001/rpc.jsonl"
+      ],
+      "reachability": "Artificial stage-entry scenario; natural progression unproved."
+    },
+    {
+      "id": "R1-stage-32",
+      "milestone": "Waterfall",
+      "status": "visited",
+      "route_or_patch": {
+        "snapshot": "analysis/round-001/skip-2.snapshot.json",
+        "pre_step": [
+          {
+            "unit": "cycle",
+            "count": 10000,
+            "max_operations": 20000,
+            "timeout_ms": 3000
+          },
+          {
+            "unit": "operation",
+            "count": 1,
+            "max_operations": 1000,
+            "timeout_ms": 1000
+          }
+        ],
+        "patches": {
+          "$00ED": 0,
+          "$0738": 9,
+          "$05F5": 12
+        },
+        "registers": {
+          "pc": 33133
+        },
+        "entry_context": {
+          "prg_banks": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        "input": [
+          {
+            "buttons": [],
+            "port": 1
+          },
+          {
+            "frames": 25,
+            "max_operations": 10000000,
+            "timeout_ms": 15000
+          },
+          {
+            "buttons": [
+              "a",
+              "b",
+              "right"
+            ],
+            "port": 1
+          },
+          {
+            "frames": 20,
+            "max_operations": 10000000,
+            "timeout_ms": 15000
+          },
+          {
+            "buttons": [],
+            "port": 1
+          }
+        ],
+        "stage_patches": {
+          "$0737": 32,
+          "$0702": 7
+        }
+      },
+      "observed_result": "Map15/type5 initialized, rocky waterfall route rendered and inputs exercised; waterfall jump completion unverified.",
+      "evidence": [
+        "analysis/round-001/extra-32.ppm",
+        "analysis/round-001/extra-32.snapshot.json",
+        "analysis/round-001/extra-32-ram.json",
+        "analysis/round-001/rpc.jsonl"
+      ],
+      "reachability": "Artificial stage-entry scenario; natural progression unproved."
+    },
+    {
+      "id": "R1-stage-49",
+      "milestone": "Ending / rescued planes",
+      "status": "visited",
+      "route_or_patch": {
+        "snapshot": "analysis/round-001/skip-2.snapshot.json",
+        "pre_step": [
+          {
+            "unit": "cycle",
+            "count": 10000,
+            "max_operations": 20000,
+            "timeout_ms": 3000
+          },
+          {
+            "unit": "operation",
+            "count": 1,
+            "max_operations": 1000,
+            "timeout_ms": 1000
+          }
+        ],
+        "patches": {
+          "$00ED": 0,
+          "$0738": 9,
+          "$05F5": 12
+        },
+        "registers": {
+          "pc": 33133
+        },
+        "entry_context": {
+          "prg_banks": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        "input": [
+          {
+            "buttons": [],
+            "port": 1
+          },
+          {
+            "frames": 25,
+            "max_operations": 10000000,
+            "timeout_ms": 15000
+          },
+          {
+            "buttons": [
+              "a",
+              "b",
+              "right"
+            ],
+            "port": 1
+          },
+          {
+            "frames": 20,
+            "max_operations": 10000000,
+            "timeout_ms": 15000
+          },
+          {
+            "buttons": [],
+            "port": 1
+          }
+        ],
+        "stage_patches": {
+          "$0737": 49,
+          "$0702": 24
+        }
+      },
+      "observed_result": "Map26/type9 initialized and five downed planes rendered. Automatic boat route progressed during bounded waits. HP-zero experiment was misidentified as boss test and does not demonstrate boss defeat.",
+      "evidence": [
+        "analysis/round-001/extra-49.ppm",
+        "analysis/round-001/extra-49.snapshot.json",
+        "analysis/round-001/extra-49-ram.json",
+        "analysis/round-001/rpc.jsonl"
+      ],
+      "reachability": "Artificial stage-entry scenario; natural progression unproved."
+    },
+    {
+      "id": "R1-title",
+      "milestone": "Startup title / attract",
+      "status": "visited",
+      "route_or_patch": "Start emulator; trace capacity0; 45 frames bounded. Actual NES input requires complete buttons array. Later expire attract countdown by restoring startup snapshot and patching $009F=1,$0002=15, with empty held inputs; repeat bounded timer expiries as skip_attract.py records.",
+      "observed_result": "Cobra Triangle title; attract sequence then demo race. Short title Start attempts occurred during noninteractive attract state.",
+      "evidence": [
+        "analysis/round-001/startup.snapshot.json",
+        "analysis/round-001/skip_attract.py",
+        "analysis/round-001/skip-contexts.json"
+      ]
+    },
+    {
+      "id": "R1-entry-rejected",
+      "milestone": "Naive stage PC shortcut",
+      "status": "attempted",
+      "route_or_patch": "At skip-2 snapshot frame boundary immediately set PC $816D and stage pair.",
+      "observed_result": "Pending NMI diverted execution immediately after first LDA. Stage writes alone did not visit requested stage. Corrected by 10000-cycle advance + operation completion before patches/PC edit.",
+      "evidence": [
+        "analysis/round-001/entry-trace.json",
+        "analysis/round-001/test_entry.py"
+      ]
+    },
+    {
+      "id": "R1-credits",
+      "milestone": "Ending credits / terminal screen",
+      "status": "visited",
+      "route_or_patch": "Restore extra-49 snapshot, clear inputs, trace off240 frames then on6, three iterations; continue credits.py bounded600-frame waits with6 traced capture frames.",
+      "observed_result": "Staff credits visually confirmed in credits-2.ppm; thanks-for-playing screen confirmed in terminal-0.ppm. Natural whole-game completion not claimed.",
+      "evidence": [
+        "analysis/round-001/ending.py",
+        "analysis/round-001/credits.py",
+        "analysis/round-001/credits-2.ppm",
+        "analysis/round-001/terminal-0.ppm"
+      ]
+    },
+    {
+      "id": "R1-terminal-score",
+      "milestone": "Post-credits high score / restart",
+      "status": "deferred",
+      "observed_result": "Staff credits and thanks-for-playing screen already reached. Subsequent score entry/restart offers no specific new classification target in this bounded pass; reusable terminal snapshot retained.",
+      "evidence": [
+        "analysis/round-001/terminal-0.snapshot.json"
+      ]
+    },
+    {
+      "id": "R1-stage-48",
+      "milestone": "Final shark boss",
+      "status": "visited",
+      "route_or_patch": "final_boss.py 48 23 uses documented common recipe; 45 initial frames +180 untraced +20 traced. Restore final-shark-observation, wait600 untraced +6 traced (boss_wait.py) to pass long intro. Then restore boss-long-0 and supply A/B/left20 frames (boss_fire.py), release all.",
+      "observed_result": "Stage24 Fry The Monster intro and subsequent shark fin attacking boat visually confirmed in boss-long-0.ppm. Combat inputs exercised after appearance. Defeat unverified; no boss-HP patch was used in this boss state.",
+      "evidence": [
+        "analysis/round-001/extra-48-contexts.json",
+        "analysis/round-001/boss-long-0.ppm",
+        "analysis/round-001/boss-long-0.snapshot.json",
+        "analysis/round-001/boss-fire-contexts.json"
+      ],
+      "reachability": "Artificial stage-entry; natural final-boss reachability not claimed."
+    }
+  ]
+}

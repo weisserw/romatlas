@@ -1,0 +1,13 @@
+# Archive repair
+
+The archive rejected `mapping.json` because the maintained source tree retained the pass-002 metadata while the frozen pass-003 baseline already included the final Manual fallback. The recipe contract only accepts unchanged baseline assets or exact ROM slices for non-assembly files.
+
+Backed up the original source metadata at `analysis/archive-repair-backups/mapping.json`, then copied the existing frozen `commentary/before/mapping.json` to `commentary/source/mapping.json`. Compared the complete parsed maps: all prior regions and other fields are identical; the only changes are six already-authorized Manual Data entries covering seven bytes and next_id 1440 to 1446. The replacement is byte-identical to both `commentary/baseline.json` and `maps/current.json`. This reconciles stale metadata without reclassifying bytes or changing any assembly, labels, comments, ROM assets, review credit or frozen files. The assembly SHA256 remains ef4a245919f11f881083a30ce7960db61aefcdf8ee62600b06032c14b21399e1.
+
+The strict supported commentary audit was rerun: ok=true, byte_identical=true, editorial_audit=true, 1444 reviewed regions and 1853 reviewed unit associations. It rebuilt the maintained source and refreshed the reading copy. The original input SHA256 remains 4a8b649b8ef253e178875f1a3f3614e16ac46484d8d49bb3ef7ff8f41633c818. No new review credit was added; the prior final editorial assessment remains applicable because assembly and evidence are unchanged.
+
+Archive options retain all prior final/history documents and omitted instruction copies, and add this report. Only the disposable probe at `/tmp/romatlas-archive-probe-i6ek14lt/archive` is authorized here. Probe verification is recorded below after execution.
+
+Residual limitations are unchanged: seven Manual fallback bytes retain unresolved code/data meaning, and semantic and hardware limitations remain as documented in the retained final handoff and uncertainties. No toolkit modification, new research, disassembly restart or real atlas publication occurred. Historical statements that no archive had yet run describe earlier checkpoints.
+
+The specified probe argv, extended from the current archive options, returned exit 0 with ok=true, exact_source=true, byte_identical=true and editorial_complete=true. Its review status reports complete with no reasons outstanding. The archive restores the exact maintained source tree and rebuilds the original ROM. The local machine-readable invocation/result record is `analysis/archive-repair-probe.json`. The probe is rerun after this report update so the disposable archive contains this final record.

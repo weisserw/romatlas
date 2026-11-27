@@ -1,0 +1,13 @@
+# Current commentary uncertainties — pass-002
+
+Full current classified-source readability is complete. Exact original names, data generators and natural reachability are not implied by the mechanical explanations. Historical round-one prose is preserved intact in analysis/round-02/commentary-pass-001/uncertainties.md.
+
+The sprite-zero descriptor at physical $1cedd+4 is now Data with its Y/tile/attributes/X schema in source. The scene sound tables at $1ec83+48 now agree with corrected map evidence. Both earlier structural correction questions are resolved in pass-002, not pending commentary work.
+
+Actor state setters, synthetic-return dispatch, main75/small34/aux80 tables, finite menu/projectile/sound tables and bank-return contracts are described in source. Static entry/selector preconditions do not establish that every type or command is naturally selected. Sound $ec2f preserves selector $93 through its narrow command service, with matching shadow/hardware and established MMC1 mode-three assumptions; the auxiliary wrapper exits in bank four even for bank-five callers. Lower slots after unqualified PRG writes remain unresolved.
+
+Rescue actor-seven mechanics have stronger artificial confirmation: initialized contact/alignment increments scene and total rescue counts. Exact natural encounter/boss identity remains unresolved. The improved high-health test establishes active actor mechanics, not a boss identification. Existing leads/scenarios preserve both successful and failed observations; no unchanged runtime experiment was repeated here.
+
+Seven unknown bytes in six physical spans: $108fb+1,$10e2c+1,$14422+2,$14558+1 (five RTS bytes total), $184c3+1,$1fd8e+1 (two zero bytes). Source marks each inclusion. No independent entry/stack or bounded field/record evidence presently distinguishes code from data. See analysis/redirect/r01-static-contracts/residual-review.md and analysis/round02/review.md. This is a local ambiguity assessment, not terminal exhaustion. Redirect may evaluate a changed inference or new independent evidence; opcode identity, forced execution and unchanged adjacent returning handlers are insufficient by themselves.
+
+Generic sparse actor/sprite/sound/scene spans retain explicit non-code boundaries with unknown full schema. Bounded byte/word/coordinate consumers are described where supported. Remaining song/item/event names, complete original asset organization, natural paths to every handler and the original table-generation algorithms are semantic questions, not deferred readability or classification work. No new structural lead was established during commentary.

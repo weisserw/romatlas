@@ -1,0 +1,133 @@
+{
+  "version": 1,
+  "round": 1,
+  "phase": "redirect",
+  "step_contract": {
+    "unit": "frame",
+    "max_operations": 10000000,
+    "timeout_ms": 30000,
+    "on_timeout": "Inspect actual state; no inference that requested frame count completed."
+  },
+  "scenarios": [
+    {
+      "id": "S001",
+      "milestone": "Opening/title",
+      "status": "visited",
+      "recipe": "analysis/scratch/pass.py then play.py. Initial request180 frames timed out at100; durable title snapshot at frame100. +60, Start2, release60 yields frame222 title.",
+      "evidence": [
+        "analysis/round001/title.snapshot.json",
+        "analysis/round001/after-start.ppm",
+        "analysis/round001/state-title.json"
+      ]
+    },
+    {
+      "id": "S002",
+      "milestone": "Attack/route1 map/action",
+      "status": "visited",
+      "recipe": "analysis/scratch/game.py from play.snapshot: Start2, release60; right+A+B60, release20 stayed map. analysis/scratch/explore.py from action.snapshot: Start2/release15 toggles action, A2/release15, right+B45, right+A+B20, release2.",
+      "evidence": [
+        "analysis/round001/attack.ppm",
+        "analysis/round001/release2.ppm",
+        "analysis/round001/explore.snapshot.json"
+      ]
+    },
+    {
+      "id": "S003",
+      "milestone": "Inventory and route map",
+      "status": "visited",
+      "recipe": "analysis/scratch/shortcut.py from explore.snapshot: Select2/release10, Select2/release10, Start2/release10. Clean map snapshot saved.",
+      "evidence": [
+        "analysis/round001/inventory-release.ppm",
+        "analysis/round001/map-clean.snapshot.json"
+      ]
+    },
+    {
+      "id": "S004",
+      "milestone": "Route11 boss shortcut",
+      "status": "attempted",
+      "recipe": "Restore map-clean snapshot, reassert release, write internal RAM834 ($0342)=[10], Start2/release20, right+A+B15/release2. Effective banks4/5\u219212/13, fixed14/15.",
+      "observed_result": "Artificial execution; terrain remains route1. Display-route patch insufficient to initialize new route.",
+      "evidence": [
+        "analysis/round001/route-11.ppm",
+        "analysis/round001/route-11.snapshot.json"
+      ]
+    },
+    {
+      "id": "S005",
+      "milestone": "Route43 finale/ending shortcut",
+      "status": "attempted",
+      "recipe": "Restore same clean snapshot independently, reassert release, write RAM834=[42], same inputs/budgets as S004.",
+      "observed_result": "Artificial execution; route1 terrain persists. No boss/finale/ending visit claimed.",
+      "evidence": [
+        "analysis/round001/route-43.ppm",
+        "analysis/round001/route-43.snapshot.json"
+      ]
+    },
+    {
+      "id": "S006",
+      "milestone": "Route1 traversal and Guycot NPC dialogue",
+      "status": "visited",
+      "recipe": "progress.py: restore explore.snapshot; trace disabled for5 iterations of right+A+B40/right+B40, then trace enabled A2/release20. later.py: restore traverse.snapshot;15 iterations right+up+A+B40/right+up+B40 with trace disabled, then trace enabled A2/release20. Reached Tom Guycot dialogue, banks6/7. dialog.py adds4 repeats A2/release5; remains dialogue.",
+      "evidence": [
+        "analysis/round001/traverse.ppm",
+        "analysis/round001/later.ppm",
+        "analysis/round001/dialog-next.snapshot.json",
+        "analysis/round001/summary-dialog.json"
+      ]
+    },
+    {
+      "id": "S007",
+      "milestone": "Water route3, climbing route9, boss11, late routes40/39, final43 and endings",
+      "status": "deferred",
+      "reason": "Superseded by initialized stage/ending visits S008/S009; individual special mechanics not all exercised. Route43 finale hypothesis corrected to bounded42-route domain.",
+      "evidence": [
+        "analysis/round001/map-decode.json",
+        "analysis/gameplay.md"
+      ]
+    },
+    {
+      "id": "S008",
+      "milestone": "Initialized route3/9/11/39/40/42 and opposite final-route endpoint",
+      "status": "visited",
+      "route_or_patch_recipe": "/root/romatlas-batch/1913226b60916aee9cb2e45c9c5e0d6a658880e41bcd8837b69ff3d8b32fef85/workspace/analysis/redirect/round001-20261126-a/shortcuts.py; final42.py; opposite42.py; explicit stack/argument contract in progress.md",
+      "observed_result": "Distinct initialized scene IDs/geometry; right+A+B15 exercised movement/shooting. All artificial. Swimming/climbing and boss defeat not established. Route43 tested reads beyond42-record domain; no finale claim.",
+      "evidence": [
+        "/root/romatlas-batch/1913226b60916aee9cb2e45c9c5e0d6a658880e41bcd8837b69ff3d8b32fef85/workspace/analysis/redirect/round001-20261126-a/route3.snapshot.json",
+        "/root/romatlas-batch/1913226b60916aee9cb2e45c9c5e0d6a658880e41bcd8837b69ff3d8b32fef85/workspace/analysis/redirect/round001-20261126-a/route9.snapshot.json",
+        "/root/romatlas-batch/1913226b60916aee9cb2e45c9c5e0d6a658880e41bcd8837b69ff3d8b32fef85/workspace/analysis/redirect/round001-20261126-a/route11.png",
+        "/root/romatlas-batch/1913226b60916aee9cb2e45c9c5e0d6a658880e41bcd8837b69ff3d8b32fef85/workspace/analysis/redirect/round001-20261126-a/route39.png",
+        "/root/romatlas-batch/1913226b60916aee9cb2e45c9c5e0d6a658880e41bcd8837b69ff3d8b32fef85/workspace/analysis/redirect/round001-20261126-a/route40.snapshot.json",
+        "/root/romatlas-batch/1913226b60916aee9cb2e45c9c5e0d6a658880e41bcd8837b69ff3d8b32fef85/workspace/analysis/redirect/round001-20261126-a/route42.png",
+        "/root/romatlas-batch/1913226b60916aee9cb2e45c9c5e0d6a658880e41bcd8837b69ff3d8b32fef85/workspace/analysis/redirect/round001-20261126-a/opposite-route42.png"
+      ]
+    },
+    {
+      "id": "S009",
+      "milestone": "Final special scene and ending sequence",
+      "status": "visited",
+      "route_or_patch_recipe": "/root/romatlas-batch/1913226b60916aee9cb2e45c9c5e0d6a658880e41bcd8837b69ff3d8b32fef85/workspace/analysis/redirect/round001-20261126-a/scene_c7.py -> final_state.py -> final_continue.py -> ending_finish.py -> ending_last.py",
+      "observed_result": "Artificial initialized final special scene, explicit supported$98bd entry, final dialogue40, ending cliff conversation, terminal THE END at frame5709. Natural boss defeat/ending route not established.",
+      "evidence": [
+        "/root/romatlas-batch/1913226b60916aee9cb2e45c9c5e0d6a658880e41bcd8837b69ff3d8b32fef85/workspace/analysis/redirect/round001-20261126-a/c7-init.snapshot.json",
+        "/root/romatlas-batch/1913226b60916aee9cb2e45c9c5e0d6a658880e41bcd8837b69ff3d8b32fef85/workspace/analysis/redirect/round001-20261126-a/c7-3.png",
+        "/root/romatlas-batch/1913226b60916aee9cb2e45c9c5e0d6a658880e41bcd8837b69ff3d8b32fef85/workspace/analysis/redirect/round001-20261126-a/final-state.snapshot.json",
+        "/root/romatlas-batch/1913226b60916aee9cb2e45c9c5e0d6a658880e41bcd8837b69ff3d8b32fef85/workspace/analysis/redirect/round001-20261126-a/end-7.png",
+        "/root/romatlas-batch/1913226b60916aee9cb2e45c9c5e0d6a658880e41bcd8837b69ff3d8b32fef85/workspace/analysis/redirect/round001-20261126-a/end2-9.png",
+        "analysis/redirect/round001-20261126-a/end3-9.png",
+        "analysis/redirect/round001-20261126-a/ending-third.snapshot.json"
+      ]
+    },
+    {
+      "id": "S010",
+      "milestone": "Natural timed dialogue dismissal",
+      "status": "visited",
+      "route_or_patch_recipe": "/root/romatlas-batch/1913226b60916aee9cb2e45c9c5e0d6a658880e41bcd8837b69ff3d8b32fef85/workspace/analysis/redirect/round001-20261126-a/runtime.py then dialog_retry.py",
+      "observed_result": "Waited for text completion then A2/released waits returned natural route1 action. B/Start alone at state1 had no effect.",
+      "evidence": [
+        "/root/romatlas-batch/1913226b60916aee9cb2e45c9c5e0d6a658880e41bcd8837b69ff3d8b32fef85/workspace/analysis/redirect/round001-20261126-a/retry-3.png",
+        "/root/romatlas-batch/1913226b60916aee9cb2e45c9c5e0d6a658880e41bcd8837b69ff3d8b32fef85/workspace/analysis/redirect/round001-20261126-a/dialog-dismissed.snapshot.json",
+        "/root/romatlas-batch/1913226b60916aee9cb2e45c9c5e0d6a658880e41bcd8837b69ff3d8b32fef85/workspace/analysis/redirect/round001-20261126-a/retry-contexts.json"
+      ]
+    }
+  ]
+}

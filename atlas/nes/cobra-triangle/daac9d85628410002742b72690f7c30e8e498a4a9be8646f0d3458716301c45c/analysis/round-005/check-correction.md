@@ -1,0 +1,1 @@
+Initial preannotation raw assertion used guessed scene-delta operands99/9A and branch displacement0A. Immutable ROM establishes45/46 and09; current source aliases/branch target agree. Corrected assertions before map mutation; no semantic or proposal change.

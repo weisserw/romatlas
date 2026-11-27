@@ -1,0 +1,11 @@
+# Round002 commentary handoff
+
+**Full current-source readability complete; classification incomplete; final editorial acceptance pending.** Current map remains `round-002-disassembly`:258766/262160 classified,3394 unknown. All23329 code bytes covered:13031 prior bytes preserved verbatim,10298 newly reviewed. All89717 added classified bytes reviewed. No readability ranges deferred.
+
+Prior entire commentary preserved unchanged at `analysis/round-002/commentary-prior/` before fresh baseline preparation. Physical rebase retains valid prose/review and all616 classified prior regions. New source has209 functional/branch explanations,349 local branch names and289 named data starts, plus consistent RAM/field/hardware/routine operands. Review scaffold5736 entries retained, source locations refreshed. [Scope](../../commentary/current-scope.json), [progress](../../commentary/progress.md), [units](../round-002/commentary-code-units.json).
+
+Examples: four-slot allocator returns record+14 and callers subtract14 explicitly; type-biased A304 fields named correctly; player region samples and signed braking; special actor attack/recoil/terminal mechanics; counted world-list copy and conditional tracking search; centered text and score unpacking; PPU fill's X:Y counter and balanced stack. Structured data records explain format/consumer once; generic fragments retain honest role/boundary limits.
+
+Fresh final [verification](../round-002-commentary-verification.json) ok=true/byte_identical=true, input SHA unchanged. `commentary/reading-after.asm` refreshed. `readability-checks.json` checks current scaffold/locations, prior-code preservation and reading-copy freshness. Final editorial audit **not run**; targeted editorial/archive acceptance remains its own final phase.
+
+Remaining uncertainty:9324 callback target,991D incoming pointer,D80F matching-record/return prerequisites; exact encounter identities and some table/stream formats; stage14 encoded82 columns versus nominal96. Unknown bytes remain literal; no natural selection/reachability or full compatibility claim. Prior gameplay/scenarios reused; boss combat/completion still unconfirmed. No toolkit edits, redirect execution, archive, publishing, deletion or ROM changes.

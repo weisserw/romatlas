@@ -1,0 +1,6 @@
+# Round004 redirect active
+Input maps/round-004-disassembly-final.json; 131058/131088 classified,30unknown/11slices. Current readability scope complete at source0c6fce44625015d8a08466e71d718ea4a6c2228085b8abd4c342c6c19dd518e3; final editorial pending.
+Primary prior candidate review and every current unknown source boundary retrieved. No unchanged runtime replay. Frontier: reassess orphan-return/trampoline/prefix claims using actual whole-consumer semantics; investigate mixed G3 9EA2 bytes against neighboring selectors/list encodings, distinguishing generic-data inference from schema inference. Prior missing callers are not universal rejection grounds. Lead IDs pending evidence discrimination. No classification/source/state/ROM/toolkit changes.
+
+## Phase complete
+Ready R4-SHARED-TARGET-RESET5StaticCode; primary combined known zero endpoint+real accepted consumer path+frame continuation, exact local preconditions and reachability uncertainty retained. All other residual avenue types inspected; findings.md and exact ledger. No terminal exhaustion. Persistent leads/pass/history and compact analysis/handoffs/round-004-redirect.md complete. Protected identities unchanged; no map/source/state/ROM/toolkit changes. Independent disassembly next. Mutations ceased.

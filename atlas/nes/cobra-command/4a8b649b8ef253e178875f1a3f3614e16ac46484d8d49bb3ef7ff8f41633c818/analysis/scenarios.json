@@ -1,0 +1,222 @@
+{
+  "version": 1,
+  "phase": "round01-disassembly",
+  "scenarios": [
+    {
+      "milestone": "intro",
+      "route": [
+        {
+          "buttons": [],
+          "frames_requested": 180,
+          "timeout_ms": 10000,
+          "max_operations": 10000000,
+          "observed_frames": 33,
+          "result": "bounded timeout"
+        },
+        {
+          "buttons": [],
+          "frames": 180,
+          "timeout_ms": 60000,
+          "max_operations": 6000000
+        }
+      ],
+      "observed_result": "sea/aircraft intro rendered at frame213",
+      "evidence": [
+        "round01/title180.ppm",
+        "round01/title-snapshot.json",
+        "round01/natural-summary.json"
+      ],
+      "status": "visited"
+    },
+    {
+      "milestone": "title",
+      "route": [
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 2,
+          "max_operations": 100000,
+          "timeout_ms": 5000
+        },
+        {
+          "buttons": [],
+          "frames": 60,
+          "max_operations": 2000000,
+          "timeout_ms": 30000
+        }
+      ],
+      "observed_result": "Cobra Command US title at frame275",
+      "evidence": [
+        "round01/started.ppm",
+        "round01/started-snapshot.json"
+      ],
+      "status": "visited"
+    },
+    {
+      "milestone": "stage1",
+      "route": [
+        {
+          "buttons": [
+            "start"
+          ],
+          "frames": 2,
+          "max_operations": 100000,
+          "timeout_ms": 5000
+        },
+        {
+          "buttons": [],
+          "frames": 90,
+          "max_operations": 3000000,
+          "timeout_ms": 40000
+        }
+      ],
+      "observed_result": "equipment screen at frame367 ($4e=10), followed right+A+B180 into actual stage1 jungle flight/shooting at frame547 ($4e=0,$27=1,$28=1)",
+      "status": "visited",
+      "evidence": [
+        "round01/gameplay.ppm",
+        "round01/stage1-play.ppm",
+        "round01/stage1-play-observed-instructions.json"
+      ]
+    },
+    {
+      "milestone": "reverse-and-equipment",
+      "route_or_patch": "Restore stage1-play-snapshot.json; Start2/release15 reverses; Select2/release30 opens equipment",
+      "status": "visited",
+      "observed_result": "Start reverse and Select menu confirmed",
+      "evidence": [
+        "round01/start-menu.ppm",
+        "round01/equipment-menu.ppm",
+        "round01/equipment-menu-snapshot.json"
+      ]
+    },
+    {
+      "milestone": "scene2-later-surface",
+      "route_or_patch": "scene_experiment.py 2; clean equipment snapshot; saved scene$cb/$88/$4e=2 and documented bank5 exit RAM contract; right+A+B80frames,3M ticks/45s",
+      "status": "visited",
+      "observed_result": "artificial distinct desert/cloud/mountain flight/shooting,$4e2,$27=1,banks[2,3,14,15]",
+      "evidence": [
+        "round01/scene2.ppm",
+        "round01/scene2-snapshot.json",
+        "round01/scene2-observed-instructions.json"
+      ]
+    },
+    {
+      "milestone": "scene4",
+      "route_or_patch": "scene_experiment.py 4; clean equipment-menu snapshot, bank5 exit assignments and saved scene$cb/$88/$4e; odd scene sets saved mode$d2=0, even1; right+A+B80frames,3M ticks/45s",
+      "status": "visited",
+      "artificial": true,
+      "observed_result": "dark jungle terrain; accepted fetched instructions and active helicopter rendered",
+      "evidence": [
+        "round01/scene4.ppm",
+        "round01/scene4-snapshot.json",
+        "round01/scene4-observed-instructions.json"
+      ]
+    },
+    {
+      "milestone": "scene6",
+      "route_or_patch": "scene_experiment.py 6; clean equipment-menu snapshot, bank5 exit assignments and saved scene$cb/$88/$4e; odd scene sets saved mode$d2=0, even1; right+A+B80frames,3M ticks/45s",
+      "status": "visited",
+      "artificial": true,
+      "observed_result": "sea and small islands; accepted fetched instructions and active helicopter rendered",
+      "evidence": [
+        "round01/scene6.ppm",
+        "round01/scene6-snapshot.json",
+        "round01/scene6-observed-instructions.json"
+      ]
+    },
+    {
+      "milestone": "scene8",
+      "route_or_patch": "scene_experiment.py 8; clean equipment-menu snapshot, bank5 exit assignments and saved scene$cb/$88/$4e; odd scene sets saved mode$d2=0, even1; right+A+B80frames,3M ticks/45s",
+      "status": "visited",
+      "artificial": true,
+      "observed_result": "night archipelago; accepted fetched instructions and active helicopter rendered",
+      "evidence": [
+        "round01/scene8.ppm",
+        "round01/scene8-snapshot.json",
+        "round01/scene8-observed-instructions.json"
+      ]
+    },
+    {
+      "milestone": "scene9",
+      "route_or_patch": "scene_experiment.py 9; clean equipment-menu snapshot, bank5 exit assignments and saved scene$cb/$88/$4e; odd scene sets saved mode$d2=0, even1; right+A+B80frames,3M ticks/45s",
+      "status": "visited",
+      "artificial": true,
+      "observed_result": "underground fortress/cave; vertical mode$27=0; accepted fetched instructions and active helicopter rendered",
+      "evidence": [
+        "round01/scene9.ppm",
+        "round01/scene9-snapshot.json",
+        "round01/scene9-observed-instructions.json"
+      ]
+    },
+    {
+      "milestone": "final-boss-condition",
+      "status": "attempted",
+      "artificial": true,
+      "route_or_patch": "boss_experiment.py: restore scene9, patch$0505=1,$02c9=$80 based fixed$e07f condition; down+A+B60frames,2.5M ticks/40s",
+      "observed_result": "Fortress scene continued; player became obscured/possibly destroyed. No demonstrated boss encounter. Exact room/world-position/boss activation contract remains unknown; unchanged flag patch should not be repeated.",
+      "evidence": [
+        "round01/boss-condition.ppm",
+        "round01/boss-condition-state.json",
+        "round01/boss-condition-observed-instructions.json"
+      ]
+    },
+    {
+      "milestone": "ending-transition",
+      "status": "visited",
+      "artificial": true,
+      "route_or_patch": "ending_experiment.py: restore clean stage1 flight, operation1 boundary, PC$fd34,stack$fd,P$24; no register input contract, routine clears mode/scroll via$fd6e then sets scene$0e and banks before calls; []120frames,4M ticks/60s",
+      "observed_result": "Artificial full ending victory message followed by victory soldier/flag and STAFF/GRAPHICS credit pages. Initial traced request hit bounded timeout after88frames; saved state advanced900frames with tracing disabled, then30tracedframes. Credits continuation used six300frame trace-disabled captures then30tracedframes; no fetch evidence inferred during disabled intervals.",
+      "evidence": [
+        "round01/ending-late.ppm",
+        "round01/credits0.ppm",
+        "round01/credits4.ppm",
+        "round01/credits-snapshot.json",
+        "round01/credits-observed-instructions.json"
+      ]
+    },
+    {
+      "milestone": "hostage-rescue-specific-interaction",
+      "status": "visited",
+      "initial_deferral": "Flight/fire and menu/underground mechanics represented; exact hostage coordinates/flags not yet identified, avoid blind RAM forcing. Redirect can trace actor/rescue consumers.",
+      "route_or_patch": "analysis/redirect/r01-static-contracts/rescue_test.py; clean scene9 snapshot;4e8=80,4ef=1,4ea=playerX,4f2=0;3frames,then initialized actor7Y/X=playerY/X;4frames",
+      "observed_result": "Earlier deferral resolved by the source-supported artificial proximity rescue experiment. Initialized type26 actor7 then consumed aligned actor;0507/05bf incremented0=>1,0503 cleared. Artificial scenario; natural rescue route unresolved.",
+      "evidence": [
+        "redirect/r01-static-contracts/rescue-patches.json",
+        "redirect/r01-static-contracts/rescue-spawn-ram.json",
+        "redirect/r01-static-contracts/rescue-aligned-ram.json",
+        "redirect/r01-static-contracts/rescue-observed-instructions.json"
+      ]
+    },
+    {
+      "milestone": "other-underground-scenes1-3-5-7",
+      "status": "deferred",
+      "reason": "Final underground9 provides representative distinct cave mechanics; not every level variant required for broad best effort."
+    },
+    {
+      "milestone": "proximity actor rescue",
+      "route_or_patch": "analysis/redirect/r01-static-contracts/rescue_test.py; clean scene9 snapshot;4e8=80,4ef=1,4ea=playerX,4f2=0;3frames,then initialized actor7Y/X=playerY/X;4frames",
+      "observed_result": "Initialized type26 actor7 then consumed aligned actor;0507/05bf incremented0=>1,0503 cleared. Artificial scenario; natural rescue route unresolved.",
+      "status": "visited",
+      "evidence": [
+        "redirect/r01-static-contracts/rescue-patches.json",
+        "redirect/r01-static-contracts/rescue-spawn-ram.json",
+        "redirect/r01-static-contracts/rescue-aligned-ram.json",
+        "redirect/r01-static-contracts/rescue-observed-instructions.json"
+      ]
+    },
+    {
+      "milestone": "source-initialized high-health actor (boss hypothesis)",
+      "status": "attempted",
+      "route_or_patch": "redirect/r01-static-contracts/high_hp_test.py and materially revised high_hp_position_test.py; genuine type70 descriptor and c0f9 main-loop spawn contract, then kind40 position inputs160/0/80",
+      "observed_result": "Default positionXff culled actor. Revised supported initialization kept actorstatec6 active30frames firing with health121,Y64,X147; final-cave frame inspected. Actor update mechanics visited artificially; boss identity/natural encounter not confirmed.",
+      "evidence": [
+        "redirect/r01-static-contracts/high-hp-patches.json",
+        "redirect/r01-static-contracts/high-hp-position-patches.json",
+        "redirect/r01-static-contracts/high-hp-position-ram.json",
+        "redirect/r01-static-contracts/high-hp-position-observed-instructions.json",
+        "redirect/r01-static-contracts/high-hp-position.png"
+      ]
+    }
+  ]
+}

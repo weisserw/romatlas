@@ -1,0 +1,11 @@
+# Commentary progress — round003
+
+Current-source readability is complete for262144 classified bytes, including26634 code bytes. Sixteen bytes remain structurally unknown in four literal fragments; this is not whole-ROM classification completion or final editorial acceptance.
+
+Preserved the entire previous tree in analysis/round-003/commentary-prior before preparing the fresh verified baseline. Carried5684 exact physical blocks and their sound prose/review credit. Read all3305 newly classified code bytes in compact instruction order; explained64 meaningful routines/continuations and three data structures covering73 new data bytes. The complete current scaffold has7351 reviewed entries. There are no deferred readability ranges.
+
+Examples include signed actor separation, pickup/resource handling, packed BCD addition/subtraction and stage costs, world slot allocation/profile expansion, terrain-mask bank restoration, directional velocity planes, centered text, continue-menu input and music/effect stepping. New symbols replace understood RAM, hardware, field and branch operands. RewindMusicStreamFourBytes corrects the structural shorthand that called MusicStreamLo/Hi a period; it rewinds the stream pointer. Updated carried destinations that now have named source and removed their stale unresolved-destination comments. Prior source otherwise retains its valid explanations.
+
+D80F retains its matching-record precondition; D86F requires two saved pointer bytes; EF7C's three two-push iterations balance six pops. D58E itself changes PRG context; restoration is explicit in its D5B8/presentation callers. No broad arbitrary-input or natural-reachability claim is made. Current limits and the exact four residuals are in uncertainties.md and current-scope.json. No redirect investigation or final audit was run in this phase.
+
+Fresh source verification passes byte-identical against the unchanged input ROM; reading-after.asm is refreshed. readability-checks.json records scaffold/location/ROM/hash checks independently of final editorial acceptance. Final editorial_audit remains pending. Disk remained3.4GiB available and no evidence or scratch was deleted. All source/assets and historical records remain local.

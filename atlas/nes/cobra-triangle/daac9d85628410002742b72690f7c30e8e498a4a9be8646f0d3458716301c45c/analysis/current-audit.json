@@ -1,0 +1,72 @@
+{
+  "status": "structural audit passed; ROM incomplete",
+  "total": 131088,
+  "classified": 131063,
+  "code": 48115,
+  "other": 82948,
+  "unknown": 25,
+  "percentage": 99.98,
+  "unknown_intervals": [
+    {
+      "offset": 277,
+      "length": 1
+    },
+    {
+      "offset": 811,
+      "length": 2
+    },
+    {
+      "offset": 2801,
+      "length": 3
+    },
+    {
+      "offset": 3140,
+      "length": 3
+    },
+    {
+      "offset": 11951,
+      "length": 3
+    },
+    {
+      "offset": 14251,
+      "length": 2
+    },
+    {
+      "offset": 25939,
+      "length": 3
+    },
+    {
+      "offset": 30710,
+      "length": 1
+    },
+    {
+      "offset": 106162,
+      "length": 5
+    },
+    {
+      "offset": 113405,
+      "length": 2
+    }
+  ],
+  "all_classified_regions_have_evidence_and_provenance": true,
+  "all_code_regions_have_bank_views": true,
+  "overlaps": 0,
+  "rom_identity_unchanged": true,
+  "current_map_equals_final_checkpoint_and_commentary_baseline": true,
+  "state_equals_commentary_baseline": true,
+  "ready_or_blocked_leads": 0,
+  "store_validate": {
+    "ok": true
+  },
+  "map_validate": {
+    "ok": true
+  },
+  "checkpoint_verification": "analysis/round-005-disassembly-final-verification.json",
+  "coordinator_rejection_review": "analysis/coordinator-rejection-review.md",
+  "whole_rom_classification_complete": false,
+  "final_editorial_audit": "commentary/audit.json",
+  "editorial_complete": true,
+  "source_sha256": "8a75a69947ed859e4302fca913deeea5451fc6d4b96aff5c5a62a502c1aad2f1",
+  "reading_sha256": "48df2dc8bc775b2100ae2ee295c10ea02f63f0d46da5dab29ce0578e26ae21be",
+  "archive_document_selection": "analysis/archive-document-selection.json"
+}

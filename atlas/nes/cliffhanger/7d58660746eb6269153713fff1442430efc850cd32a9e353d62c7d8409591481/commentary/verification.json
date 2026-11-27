@@ -1,0 +1,12 @@
+{
+  "byte_identical": true,
+  "ok": true,
+  "rom_sha256": "7d58660746eb6269153713fff1442430efc850cd32a9e353d62c7d8409591481",
+  "source_sha256": {
+    "game.asm": "43ca15df29bf5406e9034474d5a307d5e971c1006da2c67ed5fb451341ff67f1",
+    "registers.inc": "4fde70d8ab35f50c87979cb01eb1aacba7a6ed0301b1eb474ad1b760d9abcffa",
+    "sound.inc": "f0d2dfb36f70dbc45e660eed9fbf0410223fae9322cf9d3b358f95ea4c754939",
+    "tables.inc": "66b3b3b8000cd0267317c863b398983abfdabccd526fb155b0f22379b6151545",
+    "workspace.inc": "f5f097b948bdaa7d93b29e433c75e268d5e6f2bfc47cb9f9c08f4c3d01aa087c"
+  }
+}

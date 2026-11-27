@@ -1,0 +1,11 @@
+# Round005 disassembly complete; commentary next
+
+ROM classification: 99.98% (131063 / 131088 bytes classified; 25 bytes unknown).
+
+Accepted R4-SHARED-TARGET-RESET5StaticCode at physical9813..9818/G0A645..A64A,banks[0,1,2,3]. Independent review combines known043F zero endpoint and accepted conditional no-call frame consumer; actual entry/natural selection remains unresolved. Original rejection and redirect correction preserved. Exact evidence analysis/round-005/review.md, independent-review.json,accepted-proposals.json,annotation-rpc.jsonl. Connected consumer/tail bytes already classified; ten remaining local ambiguities supply no newly discriminating contract. No unchanged gameplay/artificial-entry replay. One pass complete; ROM incomplete, no terminal exhaustion assertion.
+
+Fresh configured decode, map.validate/save/export and byte-identical checkpoint succeeded: maps/round-005-disassembly-final.json; analysis/round-005-disassembly-final-verification.json; generated/round-005-disassembly-final. Internal analysis/state.json and portable maps/current.json saved. Code48115,other82948; exact counts/perbank and complement analysis/round-005/classification-counts.json and unknown-ranges.json. All classified Code has explicit CPU bank views/evidence; no new Observed bytes or gameplay coverage. Existing broad progression/boss/ending/credits reused.
+
+Per-bank code/data/unknown: 0:6167/2016/9; 1:7260/927/5; 2:7143/1049/0; 3:6850/1338/4; 4:1434/6758/0; 5:3469/4723/0; 6:1801/6391/0; 7:372/7820/0; 8:967/7225/0; 9:0/8192/0; 10:34/8158/0; 11:328/7864/0; 12:3739/4448/5; 13:6620/1570/2; 14:1462/6730/0; 15:469/7723/0. Header16 classified non-code bytes separate. Residual physical277:1;811:2;2801:3;3140:3;11951:3;14251:2;25939:3;30710:1;106162:5;113405:2.
+
+Source commentary unchanged and expanded-scope readability refresh now required; replace former unknown reset prefix with meaningful reset/frame contract. Review stale current source33832 “adjacent unknown reset continuation” wording. Final editorial remains pending. Toolkit report analysis/toolkit-issues.md retains1confirmed issue/NES-001 and1missing feature/NES-002,0suspected,0blockers,no new finding; toolkit unchanged. ROM unchanged; no archive/deletion/cleanup/publication.

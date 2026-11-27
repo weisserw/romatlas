@@ -1,0 +1,49 @@
+# Round002 redirect active findings
+
+Checkpoint immutable maps/round-002-disassembly-final.json,116193 classified;14895 unknown/199 intervals. All proposals Static; natural selection/reachability unproved. Code versus data, role, and reachability separate.
+
+## R2-STEERING-DISPATCH
+
+G0 CPU$8D5C doubles selector scratch$00; zero returns at$8D6F; nonzero indexes pointer halves$8D71/$8D72. Physical3459..3507 ($8D73..$8DA3) has24 complete pointers, bounded independently by first implementation$8DA3. Six implementations and shared internal entry$8DF9 occupy3507..3669 ($8DA3..$8E45). Each has coherent steering semantics: quarter-frame centering in one coordinate; paired complemented/uncomplemented coordinates passed to established quantized direction helper$92CB; explicit joins to established$8D6F store/RTS. All paths remain G0, no mapper writes; six ordinary implementations are not classified from pointer plausibility alone. Exact decode/control evidence context-code-instructions.json and parents. Actual selector domain remains unresolved. This supports a conditional routine contract for selectors0..24; does not prove global state producer bounds.
+
+The saved-coordinate caller at$8D29 pushes three bytes before JSR$8D5C. Its36-byte continuation$8D38..$8D5C chooses a returned direction/popup record, restores exactly those three bytes and returns. This is an independently coherent stack/return routine under the explicit bounded selector precondition. No universal propagation through$8D6C or arbitrary scratch$00 is justified. Table and body package pending exact independent review.
+
+## Local mapper contract refinement
+
+Old decisive artifacts stopped at mapper writes even when an immediate A selects unchanged effective PRG group. Prior audit that immediate continuations were already covered did not establish caller-return contracts. Revised context_cfg.py carries immediate A through ordinary control flow and proves bank preservation only when all paths of a callee have safe writes and closed ordinary calls. It newly proves G0$831D, G0$CDAD and G3$A8C7. Raw mapper$08/$18 select group0; $03/$13 select group3. Mirror-bit changes do not change PRG identity. These contracts add no new caller continuation bytes on current map: fresh graph difference is only162 steering implementation bytes. Negative result is useful; do not retry this same refinement for byte gains. Other mapper/indirect sinks remain blocked locally, not by graph budgets.
+
+## Residual consumer/pattern batch
+
+residual-inspection.json records exact199 intervals, direct indexed/data references, branch conflicts and byte patterns, using only accepted current code instructions. Every candidate must be split at actual code/content changes; raw-gap extent is not a role proof. Practical inspection reveals numerous explicitly consumed data blocks never proposed in prior large batch: direction quantization$9301/$9401; square/distance values$A3F3/$A473; background descriptors$9983; G3 palette$A999 and attributes$A9FF; fixed text$A72C and tile streams$FAE7/$FB67/$FBDB/$FD3A etc. Generic Data acceptable for surrounding clear non-code where exact internal schemas remain uncertain. Avoid broadening consumer extents solely because indices are possible.
+
+Counterexample localized: old unknown physical48678..48768 begins five bytes of coherent code (`LDY $24; JMP $BD62`); data starts48683 ($BE1B), not48678. G3$9DC4 bytes initially resemble LDA/BNE instructions but are consumed via explicit sprite descriptor pointers, not control transfer; inspect that consumer before role claim.
+
+## E2FB contradiction active
+
+G0$E59B reads$04A6; on negative, StageSystem!=1 jumps to data$E2FB. Stage exit$8E45 writes$80 independent of system; simple assertion that only system1 can set negative is unsupported. Data bytes begin70 19 F0 0B C0 00 80 02 00 00; decoding reaches implausible/unofficial content and overlaps independently used stage parameter data. Current explicit source/table classifications retained. Need inspect actual entry/control and selecting state, not fabricate code from JMP. Frontier remains active.
+
+E2FB follow-through: source$E656 loads mode$BE; nonzero routes$E653->$E317; only zero enters$E65C->$E5CF and forced-motion entry$E59B. Exit initializer$8E45 sets$04A4=1,$04A6=$80 AND$BE=1, therefore its directly produced exit state bypasses contradictory jump. Two discriminating artificial18-operation probes (contradiction_probe.py/results.json/rpc.jsonl) initialize otherwise identical mode1 versus mode0 states, disablePPU/NMI via RAM trampoline and select effectiveG0 explicitly. Mode1 PCs routeE656/E658/E65A/E653/E317; inconsistent forced mode0 reachesE59B/E59E/E5A0/E5A3/E5A5. Both contexts[0,1,2,3]. This confirms a state gate, not a hidden mapper change. It does not prove no other writer ever produces negative$04A6 with$BE0 or arbitrary entry intoE59B; global infeasibility remains unclaimed. No reason to reclassify stage parameter data, and no new code bytes from this question. Snapshot clean restored after probes; ROM immutable.
+
+## Connected specialized service/state batch
+
+service_contracts.py proves exact immediateA/X/Y FF80 calls only where all direct callee paths preserve effective PRG group and never write shared scratch$00; parameter permutations handled, no nonlinear ingress into selector setup. Graphic selector3/6/9 inG2 and audio initialization$57 inG3 are concrete examples. Unlike universal FF80 propagation this protects$00 explicitly. specialized-service-contracts.json carries each exact call/entry proof. This unlocks score ranking$ABA9, initializer installed continuation$AD13, connected three-character name editing/navigation plus ending display$B0D2. All selected continuations/shared helpers followed. Score state stores persistent six-byte score/name records, uses a grid cursor, accepts characters untilthree, then returns to attract state. Character entry installs$AD13 in$16/$17 and later runs bounded self loops awaiting frame dispatch. Parameter14-byte block$AD05 and eightOAM32-byte block$B06E are explicit consumers.
+
+A concrete CFG counterexample at$B500: LDA0;STA00;BEQ$B4D3 cannot fall through to$B502. $B502..$B519 instead contains two ten-byte system lookup rows plus three trailing data bytes, independently consumed at$B4E5/$B4AC. Excluded these23bytes from code; no raw legal-decoding rule.
+
+## Upgrade and parallel actor steering continuations
+
+$EBFA cycles upgrade selector1..5 explicitly; $E669 indexes$E7D3+2*selector. Five cells$E7D5..$E7DF target allfive coherent handlers: increase acceleration parameter$0720 and motion target$03BC; progress$071C/$071D and set$072A atcount5; increment target alone; explicit no-op return; timed upgrade/effect with lifetime flags and queue request. First handler$E7DF bounds table. Allfive investigated, not a selected subset.
+
+Accepted generic52-byte pointer-looking block$C121..$C155 now has a concrete consumer: actor dispatcher$EB8B reads$C11F+2*selector, zero returns;26 words target9 unique entries in$C60B..$C6FC. This is a parallel indexed-actor version of first steering family, with movementtarget approach, axis centering and paired coordinate quantization. Contextual routine contracts/control joins establish241 codebytes; generic data classification stays unchanged but next commentary must correct “exact consumer unresolved” and prior eight-entry wording at$EB8B. Do not confuse this26-entry response family with independent eight-entry state table$C109. Global command-selector/reachability domain not claimed.
+
+## Candidate review corrections and final scope
+
+Canonical current batch:3144 Static Code bytes/51groups/1360 instructions,10387 Static Data bytes/106 claims;13531 total proposed,1364 unknown/63 intervals would remain if fully accepted. Accepted checkpoint remains116193/131088 and14895 unknown/199 intervals. Configured toolkit decode independently matches every proposed instruction offset/length. No code overlaps or accepted/proposed direct control transfers into proposedData.
+
+Candidate review caught a real boundary mistake: base$AD05 is not an unused data prefix. The initializer copies indices13..1, so actual state data starts$AD06; byte$AD05 is the high operand of preceding `JMP $AD03`. Corrected data to13bytes$AD06..$AD13 and kept full3-byte self-loopCode. Original overbroad14-byte claim is preserved in progress/findings history and superseded here. Likewise$B502 impossible fallthrough remainsData and$BE16's first5bytes remain outside the adjacent85-byte data claim.
+
+Mirrored$FF96/$FF99/$FFA1/$FFA9/$FFF7 stubs have byte-identical accepted counterparts and explicit reset/return/delay/indirect-entry contracts. Proposed remaining45bytes on structural copy/routine evidence, without claiming their post-switch physical copies are fetched. Audio command0..9 and steering selector0..24/0..26 contracts are explicitly conditional; no global producer domain or natural execution claim.
+
+Raw-text writer$A91A..$A942 is a mechanically identical variant of known biased writer$A8F2/$A8FD with the bias arithmetic omitted: balancedJSR/RTS, countA, cursorY, two destination bytes and high-bit glyph termination, exact next-routine boundary. Static input contract supplies valid position/glyph records; actual caller remains unresolved. This is independent protocol/control evidence, not legal decode alone.
+
+Canonical proposals, final paths and validation: code-proposals.json/data-proposals.json; specialized-context-code-instructions.json and specialized-context-code-parents.json; specialized-service-contracts.json/specialized-wrapper-contracts.json; specialized-context-return-contracts.json; code-toolkit-decode-validation.json/proposal-code-toolkit-listing.txt. Residual obligations and why further obvious continuations are not ready: residual-obstacles.md. All research stays local. No classification/source/state/toolkit/ROM changes.

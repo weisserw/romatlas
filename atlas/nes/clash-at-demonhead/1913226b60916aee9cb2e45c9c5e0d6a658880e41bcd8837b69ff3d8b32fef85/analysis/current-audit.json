@@ -1,0 +1,382 @@
+{
+  "checkpoint": "pass-009-final",
+  "classification_complete": false,
+  "editorial_acceptance": "separate; see commentary/audit.json",
+  "image_size": 262160,
+  "classified_bytes": 262140,
+  "unknown_bytes": 20,
+  "unknown_intervals": 14,
+  "kinds": {
+    "Data": 62574,
+    "Code": 60992,
+    "Text": 7502,
+    "Image": 131072
+  },
+  "banks": [
+    {
+      "bank": "Header",
+      "start": 0,
+      "end_exclusive": 16,
+      "code": 0,
+      "data": 16,
+      "classified": 16,
+      "unknown": 0
+    },
+    {
+      "bank": "PRG 00",
+      "start": 16,
+      "end_exclusive": 8208,
+      "code": 75,
+      "data": 8117,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "bank": "PRG 01",
+      "start": 8208,
+      "end_exclusive": 16400,
+      "code": 334,
+      "data": 7858,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "bank": "PRG 02",
+      "start": 16400,
+      "end_exclusive": 24592,
+      "code": 3694,
+      "data": 4498,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "bank": "PRG 03",
+      "start": 24592,
+      "end_exclusive": 32784,
+      "code": 0,
+      "data": 8192,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "bank": "PRG 04",
+      "start": 32784,
+      "end_exclusive": 40976,
+      "code": 2902,
+      "data": 5288,
+      "classified": 8190,
+      "unknown": 2
+    },
+    {
+      "bank": "PRG 05",
+      "start": 40976,
+      "end_exclusive": 49168,
+      "code": 6505,
+      "data": 1683,
+      "classified": 8188,
+      "unknown": 4
+    },
+    {
+      "bank": "PRG 06",
+      "start": 49168,
+      "end_exclusive": 57360,
+      "code": 759,
+      "data": 7433,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "bank": "PRG 07",
+      "start": 57360,
+      "end_exclusive": 65552,
+      "code": 4826,
+      "data": 3365,
+      "classified": 8191,
+      "unknown": 1
+    },
+    {
+      "bank": "PRG 08",
+      "start": 65552,
+      "end_exclusive": 73744,
+      "code": 1662,
+      "data": 6530,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "bank": "PRG 09",
+      "start": 73744,
+      "end_exclusive": 81936,
+      "code": 1045,
+      "data": 7147,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "bank": "PRG 10",
+      "start": 81936,
+      "end_exclusive": 90128,
+      "code": 7297,
+      "data": 894,
+      "classified": 8191,
+      "unknown": 1
+    },
+    {
+      "bank": "PRG 11",
+      "start": 90128,
+      "end_exclusive": 98320,
+      "code": 7301,
+      "data": 891,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "bank": "PRG 12",
+      "start": 98320,
+      "end_exclusive": 106512,
+      "code": 7614,
+      "data": 577,
+      "classified": 8191,
+      "unknown": 1
+    },
+    {
+      "bank": "PRG 13",
+      "start": 106512,
+      "end_exclusive": 114704,
+      "code": 6954,
+      "data": 1235,
+      "classified": 8189,
+      "unknown": 3
+    },
+    {
+      "bank": "PRG 14",
+      "start": 114704,
+      "end_exclusive": 122896,
+      "code": 3512,
+      "data": 4679,
+      "classified": 8191,
+      "unknown": 1
+    },
+    {
+      "bank": "PRG 15",
+      "start": 122896,
+      "end_exclusive": 131088,
+      "code": 6512,
+      "data": 1673,
+      "classified": 8185,
+      "unknown": 7
+    },
+    {
+      "bank": "CHR 00",
+      "start": 131088,
+      "end_exclusive": 139280,
+      "code": 0,
+      "data": 8192,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "bank": "CHR 01",
+      "start": 139280,
+      "end_exclusive": 147472,
+      "code": 0,
+      "data": 8192,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "bank": "CHR 02",
+      "start": 147472,
+      "end_exclusive": 155664,
+      "code": 0,
+      "data": 8192,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "bank": "CHR 03",
+      "start": 155664,
+      "end_exclusive": 163856,
+      "code": 0,
+      "data": 8192,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "bank": "CHR 04",
+      "start": 163856,
+      "end_exclusive": 172048,
+      "code": 0,
+      "data": 8192,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "bank": "CHR 05",
+      "start": 172048,
+      "end_exclusive": 180240,
+      "code": 0,
+      "data": 8192,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "bank": "CHR 06",
+      "start": 180240,
+      "end_exclusive": 188432,
+      "code": 0,
+      "data": 8192,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "bank": "CHR 07",
+      "start": 188432,
+      "end_exclusive": 196624,
+      "code": 0,
+      "data": 8192,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "bank": "CHR 08",
+      "start": 196624,
+      "end_exclusive": 204816,
+      "code": 0,
+      "data": 8192,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "bank": "CHR 09",
+      "start": 204816,
+      "end_exclusive": 213008,
+      "code": 0,
+      "data": 8192,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "bank": "CHR 10",
+      "start": 213008,
+      "end_exclusive": 221200,
+      "code": 0,
+      "data": 8192,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "bank": "CHR 11",
+      "start": 221200,
+      "end_exclusive": 229392,
+      "code": 0,
+      "data": 8192,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "bank": "CHR 12",
+      "start": 229392,
+      "end_exclusive": 237584,
+      "code": 0,
+      "data": 8192,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "bank": "CHR 13",
+      "start": 237584,
+      "end_exclusive": 245776,
+      "code": 0,
+      "data": 8192,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "bank": "CHR 14",
+      "start": 245776,
+      "end_exclusive": 253968,
+      "code": 0,
+      "data": 8192,
+      "classified": 8192,
+      "unknown": 0
+    },
+    {
+      "bank": "CHR 15",
+      "start": 253968,
+      "end_exclusive": 262160,
+      "code": 0,
+      "data": 8192,
+      "classified": 8192,
+      "unknown": 0
+    }
+  ],
+  "unknown": [
+    {
+      "length": 1,
+      "offset": 35348
+    },
+    {
+      "length": 1,
+      "offset": 36120
+    },
+    {
+      "length": 4,
+      "offset": 44616
+    },
+    {
+      "length": 1,
+      "offset": 58392
+    },
+    {
+      "length": 1,
+      "offset": 82207
+    },
+    {
+      "length": 1,
+      "offset": 98618
+    },
+    {
+      "length": 1,
+      "offset": 113182
+    },
+    {
+      "length": 1,
+      "offset": 114532
+    },
+    {
+      "length": 1,
+      "offset": 114553
+    },
+    {
+      "length": 1,
+      "offset": 115870
+    },
+    {
+      "length": 2,
+      "offset": 125938
+    },
+    {
+      "length": 3,
+      "offset": 125962
+    },
+    {
+      "length": 1,
+      "offset": 130916
+    },
+    {
+      "length": 1,
+      "offset": 130937
+    }
+  ],
+  "map_validation": {
+    "ok": true
+  },
+  "method": "Configured toolkit JSON-RPC map.validate and analysis.unknown(offset=0,limit=1000); independent physical complement and kind-count checks against analysis/state.json and round009 ledger. No API named audit exists or is assumed.",
+  "sha256": {
+    "input/game.nes": "1913226b60916aee9cb2e45c9c5e0d6a658880e41bcd8837b69ff3d8b32fef85",
+    "maps/current.json": "112cb6e3f56c21efd18004c1768366d7c906852dd046d247de11795c6f3a92b0",
+    "analysis/state.json": "112cb6e3f56c21efd18004c1768366d7c906852dd046d247de11795c6f3a92b0"
+  },
+  "execution_coverage": "Not remeasured; structural classification is not execution coverage."
+}

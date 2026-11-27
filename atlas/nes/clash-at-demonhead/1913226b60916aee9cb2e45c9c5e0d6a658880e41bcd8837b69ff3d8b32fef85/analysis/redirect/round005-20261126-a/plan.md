@@ -1,0 +1,4 @@
+# Round005 redirect
+Input pass-005-final,246470 classified,15690 unknown/178 intervals; current commentary SHA ad192b9a17c0ca30a733177f589b616caab214c11454c177acf6fa5e2633ac99.
+Preserve map/source/ROM and all prior evidence. Rectangle correction supersedes reversed-pointer proof; required id14401 comment repair retained in L011.
+Changed method: reassess narrow fixed-bank residuals independently of global return closure. Prior traversal rejects tails when a callee normal-return proof fails. This establishes a traversal barrier, not code/data rejection for a complete standalone coherent mechanism under explicit entry contracts. Decode local residual routines, inspect callees and exact stack/mapper context; propose only when independent role/bounds support it. Stop at actual ambiguous control or unsupported indirect domains. Also review strongest data/fragment candidates using primary evidence before terminal assessment.

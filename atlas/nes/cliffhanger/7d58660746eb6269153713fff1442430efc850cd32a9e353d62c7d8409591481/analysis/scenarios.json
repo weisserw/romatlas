@@ -1,0 +1,192 @@
+{
+  "version": 1,
+  "round": 1,
+  "scenarios": [
+    {
+      "id": "startup-title",
+      "milestone": "publisher/copyright/title",
+      "status": "visited",
+      "route": "analysis/round-001/progress-game.py from startup.snapshot.json; initial attempted Start keys were ineffective and timing alone produced title",
+      "observed": "Sony, copyright, title image at frame1089",
+      "evidence": [
+        "analysis/round-001/progress-7.png",
+        "analysis/round-001/progress-game.log"
+      ]
+    },
+    {
+      "id": "first-gameplay",
+      "milestone": "first level cabin, controller mechanics",
+      "status": "visited",
+      "route": "play.py then gameplay-next.py; Start held60/released,360 frames,Right+A+B20 frames",
+      "observed": "Natural attract/demo cabin scene; initial attempted controls ineffective. Player-start route retested separately.",
+      "evidence": [
+        "analysis/round-001/movement.png",
+        "analysis/round-001/movement.snapshot.json",
+        "analysis/round-001/analysis-contexts-movement.json"
+      ]
+    },
+    {
+      "id": "artificial-stage-4",
+      "milestone": "later stage index 4",
+      "status": "visited",
+      "route": "shortcuts.py: restore gameplay-clean; RAM $0404=3,$0708=2; 240 frames then Right+A+B10 frames; initial controls ineffective, valid-list retest in mechanics.py for stage4/14 and correct-inputs.py for stage8/15",
+      "observed": "Snowy forest visible, RAM stage4/status0; valid control retest ends at title after fall/death",
+      "evidence": [
+        "analysis/round-001/stage-4.ppm",
+        "analysis/round-001/shortcuts.log",
+        "analysis/round-001/stage-4-ram.json",
+        "analysis/round-001/stage-4.png",
+        "analysis/round-001/forest-play-before.png",
+        "analysis/round-001/forest-play-after.png"
+      ]
+    },
+    {
+      "id": "artificial-stage-8",
+      "milestone": "later stage index 8",
+      "status": "attempted",
+      "route": "shortcuts.py: restore gameplay-clean; RAM $0404=7,$0708=2; 240 frames then Right+A+B10 frames; initial controls ineffective, valid-list retest in mechanics.py for stage4/14 and correct-inputs.py for stage8/15",
+      "observed": "Level Completed interstitial visible, stage8/status2; stage8 gameplay not confirmed",
+      "evidence": [
+        "analysis/round-001/stage-8.ppm",
+        "analysis/round-001/shortcuts.log",
+        "analysis/round-001/stage-8-ram.json",
+        "analysis/round-001/stage-8.png"
+      ]
+    },
+    {
+      "id": "artificial-stage-14",
+      "milestone": "later stage index 14",
+      "status": "visited",
+      "route": "shortcuts.py: restore gameplay-clean; RAM $0404=13,$0708=2; 240 frames then Right+A+B10 frames; initial controls ineffective, valid-list retest in mechanics.py for stage4/14 and correct-inputs.py for stage8/15",
+      "observed": "Cliff hanging screen visible, stage14/status0; valid controls yield ladder/cliff platform screen and lower lives",
+      "evidence": [
+        "analysis/round-001/stage-14.ppm",
+        "analysis/round-001/shortcuts.log",
+        "analysis/round-001/stage-14-ram.json",
+        "analysis/round-001/stage-14.png",
+        "analysis/round-001/cliff-play-before.png",
+        "analysis/round-001/cliff-play-after.png"
+      ]
+    },
+    {
+      "id": "artificial-stage-15",
+      "milestone": "ending transition",
+      "status": "visited",
+      "route": "shortcuts.py: restore gameplay-clean; RAM $0404=14,$0708=2; 240 frames then Right+A+B10 frames; initial controls ineffective, valid-list retest in mechanics.py for stage4/14 and correct-inputs.py for stage8/15",
+      "observed": "Gabe/Jessie terminal dialogue and mountain scene visible, stage15/status2",
+      "evidence": [
+        "analysis/round-001/stage-15.ppm",
+        "analysis/round-001/shortcuts.log",
+        "analysis/round-001/stage-15-ram.json",
+        "analysis/round-001/stage-15.png"
+      ]
+    },
+    {
+      "id": "natural-player-start",
+      "milestone": "player-started level1 and controls",
+      "status": "visited",
+      "route": "correct-inputs.py natural-start; intro-controls.py; mechanics.py natural-play",
+      "observed": "Valid Start route reached level1; controls move/climb player from ground to cabin roof. No RAM patch.",
+      "evidence": [
+        "analysis/round-001/natural-start.png",
+        "analysis/round-001/intro-controls.log",
+        "analysis/round-001/mechanics.log",
+        "analysis/round-001/natural-play-before.png",
+        "analysis/round-001/natural-play-after.png"
+      ]
+    },
+    {
+      "id": "credits",
+      "milestone": "staff credits",
+      "status": "deferred",
+      "route": "ending scene selector $12 reached via $0404=14,$0708=2",
+      "observed": "Terminal Gabe/Jessie dialogue reached. Credits advancement contract unresolved; redirect should inspect $ECCC scene sequencing rather than repeat long waits.",
+      "evidence": [
+        "analysis/round-001/stage-15.png"
+      ]
+    },
+    {
+      "id": "boss-combat",
+      "milestone": "representative boss combat",
+      "status": "deferred",
+      "observed": "Later cliff/forest and ending reached; boss-specific actor/setup contract unresolved. Redirect inspect stage setup and scene records; no arbitrary RAM brute-force.",
+      "evidence": [
+        "analysis/round-001/level-loop-decode.json"
+      ]
+    },
+    {
+      "id": "redirect-stage8-play",
+      "milestone": "stage8 gameplay after presentation",
+      "status": "visited",
+      "route": "restore actual-stage8.snapshot.json;12 repetitions Start6/release30; restore resulting milestone8 and right20/release4,right+B20/release4,A+B20/release4",
+      "observed": "Rendered stage8 mountain ground, player/enemy; after controls player moves and enemy projectile visible. Artificial route inherited; actual short200-operation fetch contexts retained separately.",
+      "evidence": [
+        "analysis/redirect/round001-a/untraced/milestone-8-7.png",
+        "analysis/redirect/round001-a/mechanics-v2/stage8-after.png",
+        "analysis/redirect/round001-a/mechanics-v2/contexts.json",
+        "analysis/redirect/round001-a/runtime-untraced.py",
+        "analysis/redirect/round001-a/mechanics-v2.py"
+      ]
+    },
+    {
+      "id": "redirect-credits",
+      "milestone": "staff credits and return to title",
+      "status": "visited",
+      "route": "restore actual-ending.snapshot.json;12 repetitions valid Start6/release30",
+      "observed": "TESTERS credits visible at pulse3, copyright at7; title/intro restart at11. Inherits artificial terminal-stage progression, not natural completion.",
+      "evidence": [
+        "analysis/redirect/round001-a/untraced/milestone-15-3.png",
+        "analysis/redirect/round001-a/untraced/milestone-15-7.png",
+        "analysis/redirect/round001-a/untraced/runtime.jsonl"
+      ]
+    },
+    {
+      "id": "redirect-boss-proximity",
+      "milestone": "stage14 actor type2D proximity/combat setup",
+      "status": "attempted",
+      "route": "restore stage14; step1; copy actor0633 X/Y byte pairs to player0617/061E; RAM06FE/06FF=0;20settle thenB15/right+B15/A+B15,release3 each",
+      "observed": "Two characters together on cliff platform before controls, title afterward. Boss encounter setup supported by copied BF8B type2D template; actual combat/completion not confirmed. No arbitrary sweep.",
+      "evidence": [
+        "analysis/redirect/round001-a/boss.py",
+        "analysis/redirect/round001-a/boss/before.png",
+        "analysis/redirect/round001-a/boss/after.png",
+        "analysis/redirect/round001-a/boss/actors-before.json",
+        "analysis/redirect/round001-a/boss/runtime.jsonl"
+      ]
+    },
+    {
+      "id": "round002-boss-contact-contract",
+      "milestone": "stage14type2Dcontactdamage",
+      "status": "attempted",
+      "route": "analysis/redirect/round002-a/boss-plan.md andboss-test.py;exactpatches inboss/patches.json;B3/release2frames",
+      "observed": "Artificialscene retained;actor650remained1;no bank12callbackfetch9324..94AA;no combat/completionclaim",
+      "evidence": [
+        "analysis/redirect/round002-a/boss-result.md",
+        "analysis/redirect/round002-a/boss/runtime.jsonl",
+        "analysis/redirect/round002-a/boss/contexts.json",
+        "analysis/redirect/round002-a/boss/after.png"
+      ]
+    }
+  ],
+  "correction": "Earlier button/pressed requests silently cleared input; NES-001. Their attempted control claims are superseded. Use port1/buttons complete lists. Actual opcode observations remain valid.",
+  "phase_reviews": [
+    {
+      "phase": "round002-disassembly",
+      "status": "reused visited/attempted scenarios; no new runtime claim",
+      "reason": "Natural level1 and artificial stages4/8/14/ending/credits already covered; static contract/record validation yielded substantial gain. Boss combat recipe unchanged and unconfirmed; no duplicate progression replay.",
+      "evidence": "analysis/round-002/review.md"
+    },
+    {
+      "phase": "round003-redirect",
+      "status": "reviewed prior visited/attempted milestones; no new runtime claim",
+      "reason": "Ending/credits and stage8 superseding visited records retrieved; boss primary negative reviewed. No new supported action-timing shortcut, arbitrary patches not repeated.",
+      "evidence": "analysis/redirect/round003-a/review.md"
+    },
+    {
+      "phase": "round004-redirect",
+      "status": "reviewed prior visited/attempted milestones; no new runtime claim",
+      "reason": "Natural1 and artificial4/8/14/ending/credits retained; boss contact negative has five-frame scope, no supported revised action-timing shortcut. No arbitrary replay.",
+      "evidence": "analysis/redirect/round004-a/review.md"
+    }
+  ]
+}

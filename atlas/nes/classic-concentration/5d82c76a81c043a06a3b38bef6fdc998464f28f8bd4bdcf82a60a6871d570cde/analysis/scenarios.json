@@ -1,0 +1,2019 @@
+{
+  "version": 1,
+  "round": 1,
+  "phase": "redirect",
+  "snapshots_local_only": true,
+  "initialization": {
+    "start_frames": 60,
+    "start_cycles": 1784562,
+    "title_frames": 368,
+    "title_cycles": 10962388,
+    "title_cycle_delta": 9177826
+  },
+  "milestones": [
+    {
+      "milestone": "Opening/title/menu and setup",
+      "status": "visited",
+      "reachability": "natural",
+      "evidence": [
+        "analysis/round-001/title.ppm.png",
+        "analysis/round-001/namedone.ppm.png"
+      ],
+      "route": "start snapshot -> title cycle delta 9177826 -> menu/prompt/setup saved route chain"
+    },
+    {
+      "milestone": "Main rebus matching round",
+      "status": "visited",
+      "reachability": "natural",
+      "evidence": [
+        "analysis/round-001/matching.ppm.png"
+      ],
+      "route": "namedone -> gameplay -> matching; selected numbered doors and moved cursor; first prize RING visible"
+    },
+    {
+      "milestone": "Later rebus round",
+      "status": "visited",
+      "reachability": "artificial",
+      "evidence": [
+        "analysis/round-001/round2play.ppm.png"
+      ],
+      "route": "matching snapshot; $1F=0,$C7=1,PC=$EAC2; A; $7F=0 bypass music semaphore; initialized later board"
+    },
+    {
+      "milestone": "Third deciding rebus round",
+      "status": "visited",
+      "reachability": "artificial",
+      "route": "matching.snapshot; $1F=0,$C7=1,$7F=0,PC=$EA6D increments round to2; A; $7F=0; bounded initialization; post-load right4frames moves$54 0->1",
+      "evidence": [
+        "analysis/redirect/r001-contracts-20261126/third-route.json",
+        "analysis/redirect/r001-contracts-20261126/third-ready-route.json",
+        "analysis/redirect/r001-contracts-20261126/third-ready-3.ppm.png",
+        "analysis/redirect/r001-contracts-20261126/third-cursor-route.json"
+      ]
+    },
+    {
+      "milestone": "Puzzle guess keyboard/correct and wrong-answer branches",
+      "status": "visited",
+      "reachability": "artificial",
+      "route": "matching answer HiSToRy BooK; typed HSTRBK vs empty at$0120; actual JSR$E89C returns comparatorcarry1vs0. Restore test snapshot andPC=$E8A9 skips fixed delay, shows correct/wrong screens. Input text patched; natural solved keyboard route unobserved.",
+      "evidence": [
+        "analysis/redirect/r001-contracts-20261126/answer-tests.json",
+        "analysis/redirect/r001-contracts-20261126/answer-branches.json",
+        "analysis/redirect/r001-contracts-20261126/answer-correct-branch-0.ppm.png",
+        "analysis/redirect/r001-contracts-20261126/answer-wrong-branch-0.ppm.png"
+      ]
+    },
+    {
+      "milestone": "Final car matching round",
+      "status": "visited",
+      "reachability": "artificial",
+      "evidence": [
+        "analysis/round-001/bonusready.ppm.png",
+        "analysis/round-001/bonusplay.ppm.png"
+      ],
+      "route": "matching snapshot; $1F=0,$BF=2,PC=$E9F0 -> A -> Start; $7F=0 at E254 sound wait; timer35->33 and cursor/door inputs exercised"
+    },
+    {
+      "milestone": "Final timeout and terminal/restart screen",
+      "status": "visited",
+      "reachability": "artificial",
+      "evidence": [
+        "analysis/round-001/timeout.ppm.png"
+      ],
+      "route": "bonusplay snapshot; $1C=1 ->120frames,A2,240frames; GAME CODE and PLAY ANOTHER GAME screen"
+    },
+    {
+      "milestone": "Car award/success ending",
+      "status": "visited",
+      "reachability": "artificial",
+      "route": "bonusplay.snapshot late-final contract:24of25flags$02,remainingindex0,$88=0;PC=$E2B1; source completion$C426 -> award LE BARON. Timeouts retain partial progress; bounded continuation states recorded.",
+      "evidence": [
+        "analysis/redirect/r001-contracts-20261126/car-success-route.json",
+        "analysis/redirect/r001-contracts-20261126/car-award-route.json",
+        "analysis/redirect/r001-contracts-20261126/car-award-4.ppm.png"
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "id": "board-route",
+      "artifact": "analysis/round-001/board-route.json",
+      "recipe": {
+        "source": "name",
+        "sequence": [
+          {
+            "button": "a",
+            "frames": 2,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 67242107,
+              "frames": 2258,
+              "main": {
+                "a": 1,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 37,
+                "pc": 64376,
+                "stack": 245,
+                "x": 58,
+                "y": 36
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 2,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 67301668,
+              "frames": 2260,
+              "main": {
+                "a": 1,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 37,
+                "pc": 64376,
+                "stack": 245,
+                "x": 52,
+                "y": 113
+              }
+            }
+          },
+          {
+            "button": "start",
+            "frames": 2,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 67361229,
+              "frames": 2262,
+              "main": {
+                "a": 1,
+                "frozen": false,
+                "mid_instruction": false,
+                "p": 165,
+                "pc": 64362,
+                "stack": 247,
+                "x": 46,
+                "y": 171
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 180,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 72721719,
+              "frames": 2442,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": false,
+                "p": 36,
+                "pc": 55712,
+                "stack": 245,
+                "x": 0,
+                "y": 1
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "bonus-route",
+      "artifact": "analysis/round-001/bonus-route.json",
+      "recipe": {
+        "source": "bonusready",
+        "sequence": [
+          {
+            "button": "start",
+            "frames": 2,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 111317260,
+              "frames": 3738,
+              "main": {
+                "a": 2,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 36,
+                "pc": 56276,
+                "stack": 241,
+                "x": 12,
+                "y": 10
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 120,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 114890920,
+              "frames": 3858,
+              "main": {
+                "a": 1,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 36,
+                "pc": 57943,
+                "stack": 247,
+                "x": 12,
+                "y": 13
+              }
+            }
+          },
+          {
+            "button": "a",
+            "frames": 2,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 114950481,
+              "frames": 3860,
+              "main": {
+                "a": 1,
+                "frozen": false,
+                "mid_instruction": false,
+                "p": 36,
+                "pc": 57942,
+                "stack": 247,
+                "x": 12,
+                "y": 13
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 30,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 115843896,
+              "frames": 3890,
+              "main": {
+                "a": 1,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 36,
+                "pc": 57943,
+                "stack": 247,
+                "x": 12,
+                "y": 13
+              }
+            }
+          },
+          {
+            "button": "right",
+            "frames": 2,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 115903457,
+              "frames": 3892,
+              "main": {
+                "a": 1,
+                "frozen": false,
+                "mid_instruction": false,
+                "p": 36,
+                "pc": 57942,
+                "stack": 247,
+                "x": 12,
+                "y": 13
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 10,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 116201262,
+              "frames": 3902,
+              "main": {
+                "a": 1,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 36,
+                "pc": 57943,
+                "stack": 247,
+                "x": 12,
+                "y": 13
+              }
+            }
+          },
+          {
+            "button": "a",
+            "frames": 2,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 116260823,
+              "frames": 3904,
+              "main": {
+                "a": 1,
+                "frozen": false,
+                "mid_instruction": false,
+                "p": 36,
+                "pc": 57942,
+                "stack": 247,
+                "x": 12,
+                "y": 13
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 60,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 118047653,
+              "frames": 3964,
+              "main": {
+                "a": 1,
+                "frozen": false,
+                "mid_instruction": false,
+                "p": 36,
+                "pc": 57940,
+                "stack": 247,
+                "x": 12,
+                "y": 13
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "bonusplay-route",
+      "artifact": "analysis/round-001/bonusplay-route.json",
+      "recipe": {
+        "source": "bonus",
+        "patches": [
+          [
+            127,
+            [
+              0
+            ]
+          ]
+        ],
+        "sequence": [
+          {
+            "button": "a",
+            "frames": 2,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 118107214,
+              "frames": 3966,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 37,
+                "pc": 64356,
+                "stack": 241,
+                "x": 8,
+                "y": 57
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 60,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 119894044,
+              "frames": 4026,
+              "main": {
+                "a": 2,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 37,
+                "pc": 98,
+                "stack": 240,
+                "x": 7,
+                "y": 47
+              }
+            }
+          },
+          {
+            "button": "right",
+            "frames": 2,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 119953605,
+              "frames": 4028,
+              "main": {
+                "a": 2,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 37,
+                "pc": 64360,
+                "stack": 241,
+                "x": 1,
+                "y": 106
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 10,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 120251410,
+              "frames": 4038,
+              "main": {
+                "a": 8,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 37,
+                "pc": 64376,
+                "stack": 239,
+                "x": 8,
+                "y": 96
+              }
+            }
+          },
+          {
+            "button": "a",
+            "frames": 2,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 120310971,
+              "frames": 4040,
+              "main": {
+                "a": 8,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 165,
+                "pc": 64362,
+                "stack": 241,
+                "x": 2,
+                "y": 155
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 90,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 122991216,
+              "frames": 4130,
+              "main": {
+                "a": 10,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 165,
+                "pc": 64376,
+                "stack": 239,
+                "x": 1,
+                "y": 150
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "bonusready-route",
+      "artifact": "analysis/round-001/bonusready-route.json",
+      "recipe": {
+        "source": "finalprompt",
+        "sequence": [
+          {
+            "button": "a",
+            "frames": 2,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 104110374,
+              "frames": 3496,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 164,
+                "pc": 55710,
+                "stack": 241,
+                "x": 0,
+                "y": 3
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 240,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 111257699,
+              "frames": 3736,
+              "main": {
+                "a": 64,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 36,
+                "pc": 55706,
+                "stack": 243,
+                "x": 0,
+                "y": 7
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "codeprompt-route",
+      "artifact": "analysis/round-001/codeprompt-route.json",
+      "recipe": {
+        "source": "menu2",
+        "sequence": [
+          {
+            "button": null,
+            "frames": 300,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 31207699,
+              "frames": 1048,
+              "main": {
+                "a": 2,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 36,
+                "pc": 56277,
+                "stack": 245,
+                "x": 12,
+                "y": 12
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "contestant-route",
+      "artifact": "analysis/round-001/contestant-route.json",
+      "recipe": {
+        "source": "players",
+        "sequence": [
+          {
+            "button": "a",
+            "frames": 2,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  6,
+                  7,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 61762495,
+              "frames": 2074,
+              "main": {
+                "a": 1,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 36,
+                "pc": 55888,
+                "stack": 245,
+                "x": 6,
+                "y": 2
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 90,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 64442740,
+              "frames": 2164,
+              "main": {
+                "a": 83,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 38,
+                "pc": 55699,
+                "stack": 245,
+                "x": 0,
+                "y": 0
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "finalprompt-route",
+      "artifact": "analysis/round-001/finalprompt-route.json",
+      "recipe": {
+        "source": "matching",
+        "artificial": true,
+        "patches": [
+          [
+            31,
+            [
+              0
+            ]
+          ],
+          [
+            191,
+            [
+              2
+            ]
+          ]
+        ],
+        "pc": 59888,
+        "states": [
+          {
+            "artificial": true,
+            "context": {
+              "prg_banks": [
+                4,
+                5,
+                14,
+                15
+              ]
+            },
+            "cpu_cycles": 100477151,
+            "frames": 3374,
+            "main": {
+              "a": 1,
+              "frozen": false,
+              "mid_instruction": true,
+              "p": 36,
+              "pc": 55889,
+              "stack": 237,
+              "x": 119,
+              "y": 2
+            }
+          },
+          {
+            "artificial": true,
+            "context": {
+              "prg_banks": [
+                12,
+                13,
+                14,
+                15
+              ]
+            },
+            "cpu_cycles": 104050813,
+            "frames": 3494,
+            "main": {
+              "a": 0,
+              "frozen": false,
+              "mid_instruction": true,
+              "p": 38,
+              "pc": 55708,
+              "stack": 241,
+              "x": 0,
+              "y": 8
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "gameplay-route",
+      "artifact": "analysis/round-001/gameplay-route.json",
+      "recipe": {
+        "source": "namedone",
+        "sequence": [
+          {
+            "button": "start",
+            "frames": 2,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 81000698,
+              "frames": 2720,
+              "main": {
+                "a": 1,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 37,
+                "pc": 53849,
+                "stack": 253,
+                "x": 0,
+                "y": 0
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 180,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 86361193,
+              "frames": 2900,
+              "main": {
+                "a": 1,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 36,
+                "pc": 55886,
+                "stack": 241,
+                "x": 0,
+                "y": 2
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "matching-route",
+      "artifact": "analysis/round-001/matching-route.json",
+      "recipe": {
+        "source": "gameplay",
+        "sequence": [
+          {
+            "button": null,
+            "frames": 180,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 91721683,
+              "frames": 3080,
+              "main": {
+                "a": 2,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 37,
+                "pc": 64376,
+                "stack": 247,
+                "x": 8,
+                "y": 53
+              }
+            }
+          },
+          {
+            "button": "a",
+            "frames": 2,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 91781244,
+              "frames": 3082,
+              "main": {
+                "a": 2,
+                "frozen": false,
+                "mid_instruction": false,
+                "p": 37,
+                "pc": 64375,
+                "stack": 247,
+                "x": 2,
+                "y": 119
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 90,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 94461489,
+              "frames": 3172,
+              "main": {
+                "a": 6,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 37,
+                "pc": 64360,
+                "stack": 247,
+                "x": 6,
+                "y": 117
+              }
+            }
+          },
+          {
+            "button": "right",
+            "frames": 2,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 94521050,
+              "frames": 3174,
+              "main": {
+                "a": 8,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 165,
+                "pc": 64376,
+                "stack": 245,
+                "x": 10,
+                "y": 190
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 10,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 94818855,
+              "frames": 3184,
+              "main": {
+                "a": 12,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 37,
+                "pc": 64357,
+                "stack": 249,
+                "x": 2,
+                "y": 36
+              }
+            }
+          },
+          {
+            "button": "a",
+            "frames": 2,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 94878416,
+              "frames": 3186,
+              "main": {
+                "a": 1,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 36,
+                "pc": 55887,
+                "stack": 247,
+                "x": 1,
+                "y": 2
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 180,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 100238906,
+              "frames": 3366,
+              "main": {
+                "a": 8,
+                "frozen": false,
+                "mid_instruction": false,
+                "p": 165,
+                "pc": 64352,
+                "stack": 249,
+                "x": 8,
+                "y": 160
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "menu-route",
+      "artifact": "analysis/round-001/menu-route.json",
+      "recipe": {
+        "source": "title",
+        "sequence": [
+          {
+            "button": "start",
+            "frames": 10,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 11254764,
+              "frames": 378,
+              "main": {
+                "a": 1,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 36,
+                "pc": 55888,
+                "stack": 247,
+                "x": 0,
+                "y": 2
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 180,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 16615254,
+              "frames": 558,
+              "main": {
+                "a": 1,
+                "frozen": false,
+                "mid_instruction": false,
+                "p": 36,
+                "pc": 55885,
+                "stack": 247,
+                "x": 0,
+                "y": 2
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "menu2-route",
+      "artifact": "analysis/round-001/menu2-route.json",
+      "recipe": {
+        "source": "menu",
+        "sequence": [
+          {
+            "button": "start",
+            "frames": 10,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 16913059,
+              "frames": 568,
+              "main": {
+                "a": 1,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 36,
+                "pc": 55888,
+                "stack": 247,
+                "x": 0,
+                "y": 2
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 180,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 22273549,
+              "frames": 748,
+              "main": {
+                "a": 1,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 36,
+                "pc": 55887,
+                "stack": 247,
+                "x": 12,
+                "y": 2
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "name-route",
+      "artifact": "analysis/round-001/name-route.json",
+      "recipe": {
+        "source": "contestant",
+        "sequence": [
+          {
+            "button": "b",
+            "frames": 2,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 64502301,
+              "frames": 2166,
+              "main": {
+                "a": 8,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 36,
+                "pc": 56274,
+                "stack": 249,
+                "x": 12,
+                "y": 7
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 90,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 67182546,
+              "frames": 2256,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": false,
+                "p": 38,
+                "pc": 55711,
+                "stack": 245,
+                "x": 1,
+                "y": 7
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "nameA-route",
+      "artifact": "analysis/round-001/nameA-route.json",
+      "recipe": {
+        "source": "board",
+        "sequence": [
+          {
+            "button": "a",
+            "frames": 10,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 73019524,
+              "frames": 2452,
+              "main": {
+                "a": 2,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 37,
+                "pc": 64354,
+                "stack": 247,
+                "x": 35,
+                "y": 66
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 20,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 73615134,
+              "frames": 2472,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": false,
+                "p": 164,
+                "pc": 55709,
+                "stack": 245,
+                "x": 1,
+                "y": 6
+              }
+            }
+          },
+          {
+            "button": "b",
+            "frames": 10,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 73912939,
+              "frames": 2482,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 37,
+                "pc": 64353,
+                "stack": 247,
+                "x": 2,
+                "y": 97
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 30,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 74806354,
+              "frames": 2512,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": false,
+                "p": 38,
+                "pc": 55711,
+                "stack": 245,
+                "x": 1,
+                "y": 1
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "namedone-route",
+      "artifact": "analysis/round-001/namedone-route.json",
+      "recipe": {
+        "source": "nameA",
+        "sequence": [
+          {
+            "button": "up",
+            "frames": 2,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 74865915,
+              "frames": 2514,
+              "main": {
+                "a": 211,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 37,
+                "pc": 64376,
+                "stack": 245,
+                "x": 25,
+                "y": 76
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 10,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 75163720,
+              "frames": 2524,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": false,
+                "p": 36,
+                "pc": 55702,
+                "stack": 245,
+                "x": 1,
+                "y": 7
+              }
+            }
+          },
+          {
+            "button": "left",
+            "frames": 2,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 75223281,
+              "frames": 2526,
+              "main": {
+                "a": 211,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 37,
+                "pc": 64376,
+                "stack": 245,
+                "x": 25,
+                "y": 79
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 10,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 75521086,
+              "frames": 2536,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": false,
+                "p": 38,
+                "pc": 55663,
+                "stack": 249,
+                "x": 0,
+                "y": 0
+              }
+            }
+          },
+          {
+            "button": "a",
+            "frames": 2,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 75580647,
+              "frames": 2538,
+              "main": {
+                "a": 2,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 36,
+                "pc": 56277,
+                "stack": 245,
+                "x": 0,
+                "y": 2
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 180,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 80941137,
+              "frames": 2718,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 38,
+                "pc": 55712,
+                "stack": 247,
+                "x": 1,
+                "y": 6
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "players-route",
+      "artifact": "analysis/round-001/players-route.json",
+      "recipe": {
+        "source": "prompt",
+        "sequence": [
+          {
+            "button": "right",
+            "frames": 1,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 58039932,
+              "frames": 1949,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 36,
+                "pc": 55712,
+                "stack": 245,
+                "x": 0,
+                "y": 6
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 2,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 58099493,
+              "frames": 1951,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": false,
+                "p": 36,
+                "pc": 55712,
+                "stack": 245,
+                "x": 1,
+                "y": 4
+              }
+            }
+          },
+          {
+            "button": "a",
+            "frames": 1,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 58129274,
+              "frames": 1952,
+              "main": {
+                "a": 8,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 36,
+                "pc": 56275,
+                "stack": 246,
+                "x": 12,
+                "y": 29
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 120,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 61702934,
+              "frames": 2072,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": false,
+                "p": 38,
+                "pc": 55707,
+                "stack": 247,
+                "x": 1,
+                "y": 2
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "prompt-route",
+      "artifact": "analysis/round-001/prompt-route.json",
+      "recipe": {
+        "source": "codeprompt",
+        "sequence": [
+          {
+            "button": "start",
+            "frames": 600,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 49075999,
+              "frames": 1648,
+              "main": {
+                "a": 1,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 36,
+                "pc": 55886,
+                "stack": 247,
+                "x": 0,
+                "y": 2
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 300,
+            "result": {
+              "artificial": false,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 58010152,
+              "frames": 1948,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 36,
+                "pc": 55704,
+                "stack": 245,
+                "x": 0,
+                "y": 3
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "round2-route",
+      "artifact": "analysis/round-001/round2-route.json",
+      "recipe": {
+        "source": "matching",
+        "artificial": true,
+        "patches": [
+          [
+            31,
+            [
+              0
+            ]
+          ],
+          [
+            199,
+            [
+              1
+            ]
+          ]
+        ],
+        "pc": 60098,
+        "states": [
+          {
+            "artificial": true,
+            "context": {
+              "prg_banks": [
+                12,
+                13,
+                14,
+                15
+              ]
+            },
+            "cpu_cycles": 100477150,
+            "frames": 3374,
+            "main": {
+              "a": 0,
+              "frozen": false,
+              "mid_instruction": false,
+              "p": 38,
+              "pc": 55707,
+              "stack": 241,
+              "x": 1,
+              "y": 4
+            }
+          },
+          {
+            "artificial": true,
+            "context": {
+              "prg_banks": [
+                12,
+                13,
+                14,
+                15
+              ]
+            },
+            "cpu_cycles": 104050810,
+            "frames": 3494,
+            "main": {
+              "a": 0,
+              "frozen": false,
+              "mid_instruction": true,
+              "p": 36,
+              "pc": 55670,
+              "stack": 243,
+              "x": 0,
+              "y": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "round2play-route",
+      "artifact": "analysis/round-001/round2play-route.json",
+      "recipe": {
+        "source": "round2",
+        "patches": [
+          [
+            127,
+            [
+              0
+            ]
+          ]
+        ],
+        "sequence": [
+          {
+            "button": "a",
+            "frames": 2,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 104110371,
+              "frames": 3496,
+              "main": {
+                "a": 1,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 36,
+                "pc": 60106,
+                "stack": 247,
+                "x": 0,
+                "y": 0
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 180,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 109470867,
+              "frames": 3676,
+              "main": {
+                "a": 0,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 165,
+                "pc": 64376,
+                "stack": 247,
+                "x": 5,
+                "y": 144
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "timeout-route",
+      "artifact": "analysis/round-001/timeout-route.json",
+      "recipe": {
+        "source": "bonusplay",
+        "patches": [
+          [
+            28,
+            [
+              1
+            ]
+          ]
+        ],
+        "sequence": [
+          {
+            "button": null,
+            "frames": 120,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 126564876,
+              "frames": 4250,
+              "main": {
+                "a": 16,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 165,
+                "pc": 64360,
+                "stack": 239,
+                "x": 9,
+                "y": 135
+              }
+            }
+          },
+          {
+            "button": "a",
+            "frames": 2,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  12,
+                  13,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 126624437,
+              "frames": 4252,
+              "main": {
+                "a": 16,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 165,
+                "pc": 64376,
+                "stack": 237,
+                "x": 3,
+                "y": 193
+              }
+            }
+          },
+          {
+            "button": null,
+            "frames": 240,
+            "result": {
+              "artificial": true,
+              "context": {
+                "prg_banks": [
+                  8,
+                  9,
+                  14,
+                  15
+                ]
+              },
+              "cpu_cycles": 133771757,
+              "frames": 4492,
+              "main": {
+                "a": 1,
+                "frozen": false,
+                "mid_instruction": true,
+                "p": 36,
+                "pc": 55886,
+                "stack": 239,
+                "x": 0,
+                "y": 2
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "redirect_attempt": "analysis/redirect/r001-contracts-20261126",
+  "research_history": [
+    {
+      "round": 1,
+      "attempt": "analysis/redirect/r001-contracts-20261126",
+      "outcome": "third board, correct/wrong displays and car award visited artificially; no natural full win claim"
+    }
+  ]
+}
